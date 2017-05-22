@@ -1,0 +1,880 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Buzzer_Counter_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	Buzzer_Counter_backup:
+  21 0000 000000   		.space	3
+  22 0003 00       		.section	.text.Buzzer_Counter_SaveConfig,"ax",%progbits
+  23              		.align	2
+  24              		.global	Buzzer_Counter_SaveConfig
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	Buzzer_Counter_SaveConfig, %function
+  28              	Buzzer_Counter_SaveConfig:
+  29              	.LFB0:
+  30              		.file 1 ".\\Generated_Source\\PSoC5\\Buzzer_Counter_PM.c"
+   1:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * File Name: Buzzer_Counter_PM.c  
+   3:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Version 3.0
+   4:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+   5:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Description:
+   6:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *    This file provides the power management source code to API for the
+   7:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *    Counter.  
+   8:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+   9:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *   Note:
+  10:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *     None
+  11:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  12:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** ********************************************************************************
+  13:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * the software package with which this file was provided.
+  17:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *******************************************************************************/
+  18:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  19:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** #include "Buzzer_Counter.h"
+  20:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  21:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** static Buzzer_Counter_backupStruct Buzzer_Counter_backup;
+  22:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  23:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  24:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Function Name: Buzzer_Counter_SaveConfig
+  26:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Summary:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 2
+
+
+  28:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *     Save the current user configuration
+  29:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  30:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Parameters:  
+  31:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+  32:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  33:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Return: 
+  34:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+  35:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  36:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Global variables:
+  37:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Buzzer_Counter_backup:  Variables of this global structure are modified to 
+  38:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  store the values of non retention configuration registers when Sleep() API is 
+  39:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  called.
+  40:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  41:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *******************************************************************************/
+  42:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** void Buzzer_Counter_SaveConfig(void) 
+  43:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** {
+  31              		.loc 1 43 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35              		@ link register save eliminated.
+  36 0000 80B4     		push	{r7}
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 7, -4
+  39 0002 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  44:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #if (!Buzzer_Counter_UsingFixedFunction)
+  45:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  46:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         Buzzer_Counter_backup.CounterUdb = Buzzer_Counter_ReadCounter();
+  47:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  48:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         #if(!Buzzer_Counter_ControlRegRemoved)
+  49:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             Buzzer_Counter_backup.CounterControlRegister = Buzzer_Counter_ReadControlRegister();
+  50:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         #endif /* (!Buzzer_Counter_ControlRegRemoved) */
+  51:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  52:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #endif /* (!Buzzer_Counter_UsingFixedFunction) */
+  53:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** }
+  41              		.loc 1 53 0
+  42 0004 BD46     		mov	sp, r7
+  43              		.cfi_def_cfa_register 13
+  44              		@ sp needed
+  45 0006 5DF8047B 		ldr	r7, [sp], #4
+  46              		.cfi_restore 7
+  47              		.cfi_def_cfa_offset 0
+  48 000a 7047     		bx	lr
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	Buzzer_Counter_SaveConfig, .-Buzzer_Counter_SaveConfig
+  52              		.section	.text.Buzzer_Counter_RestoreConfig,"ax",%progbits
+  53              		.align	2
+  54              		.global	Buzzer_Counter_RestoreConfig
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	Buzzer_Counter_RestoreConfig, %function
+  58              	Buzzer_Counter_RestoreConfig:
+  59              	.LFB1:
+  54:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  55:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 3
+
+
+  56:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** /*******************************************************************************
+  57:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Function Name: Buzzer_Counter_RestoreConfig
+  58:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** ********************************************************************************
+  59:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  60:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Summary:
+  61:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Restores the current user configuration.
+  62:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  63:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Parameters:  
+  64:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+  65:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  66:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Return: 
+  67:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+  68:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  69:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Global variables:
+  70:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Buzzer_Counter_backup:  Variables of this global structure are used to 
+  71:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  72:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  73:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *******************************************************************************/
+  74:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** void Buzzer_Counter_RestoreConfig(void) 
+  75:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** {      
+  60              		.loc 1 75 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 1, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 80B4     		push	{r7}
+  66              		.cfi_def_cfa_offset 4
+  67              		.cfi_offset 7, -4
+  68 0002 00AF     		add	r7, sp, #0
+  69              		.cfi_def_cfa_register 7
+  76:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #if (!Buzzer_Counter_UsingFixedFunction)
+  77:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  78:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****        Buzzer_Counter_WriteCounter(Buzzer_Counter_backup.CounterUdb);
+  79:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  80:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         #if(!Buzzer_Counter_ControlRegRemoved)
+  81:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             Buzzer_Counter_WriteControlRegister(Buzzer_Counter_backup.CounterControlRegister);
+  82:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         #endif /* (!Buzzer_Counter_ControlRegRemoved) */
+  83:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  84:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #endif /* (!Buzzer_Counter_UsingFixedFunction) */
+  85:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** }
+  70              		.loc 1 85 0
+  71 0004 BD46     		mov	sp, r7
+  72              		.cfi_def_cfa_register 13
+  73              		@ sp needed
+  74 0006 5DF8047B 		ldr	r7, [sp], #4
+  75              		.cfi_restore 7
+  76              		.cfi_def_cfa_offset 0
+  77 000a 7047     		bx	lr
+  78              		.cfi_endproc
+  79              	.LFE1:
+  80              		.size	Buzzer_Counter_RestoreConfig, .-Buzzer_Counter_RestoreConfig
+  81              		.section	.text.Buzzer_Counter_Sleep,"ax",%progbits
+  82              		.align	2
+  83              		.global	Buzzer_Counter_Sleep
+  84              		.thumb
+  85              		.thumb_func
+  86              		.type	Buzzer_Counter_Sleep, %function
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 4
+
+
+  87              	Buzzer_Counter_Sleep:
+  88              	.LFB2:
+  86:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  87:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+  88:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** /*******************************************************************************
+  89:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Function Name: Buzzer_Counter_Sleep
+  90:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** ********************************************************************************
+  91:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Summary:
+  92:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *     Stop and Save the user configuration
+  93:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  94:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Parameters:  
+  95:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+  96:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+  97:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Return: 
+  98:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+  99:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+ 100:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Global variables:
+ 101:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Buzzer_Counter_backup.enableState:  Is modified depending on the enable 
+ 102:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  state of the block before entering sleep mode.
+ 103:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+ 104:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *******************************************************************************/
+ 105:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** void Buzzer_Counter_Sleep(void) 
+ 106:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** {
+  89              		.loc 1 106 0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 1, uses_anonymous_args = 0
+  93 0000 80B5     		push	{r7, lr}
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 00AF     		add	r7, sp, #0
+  98              		.cfi_def_cfa_register 7
+ 107:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #if(!Buzzer_Counter_ControlRegRemoved)
+ 108:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         /* Save Counter's enable state */
+ 109:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         if(Buzzer_Counter_CTRL_ENABLE == (Buzzer_Counter_CONTROL & Buzzer_Counter_CTRL_ENABLE))
+  99              		.loc 1 109 0
+ 100 0004 094B     		ldr	r3, .L6
+ 101 0006 1B78     		ldrb	r3, [r3]
+ 102 0008 DBB2     		uxtb	r3, r3
+ 103 000a 03F00103 		and	r3, r3, #1
+ 104 000e 002B     		cmp	r3, #0
+ 105 0010 03D0     		beq	.L4
+ 110:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         {
+ 111:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             /* Counter is enabled */
+ 112:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             Buzzer_Counter_backup.CounterEnableState = 1u;
+ 106              		.loc 1 112 0
+ 107 0012 074B     		ldr	r3, .L6+4
+ 108 0014 0122     		movs	r2, #1
+ 109 0016 1A70     		strb	r2, [r3]
+ 110 0018 02E0     		b	.L5
+ 111              	.L4:
+ 113:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         }
+ 114:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         else
+ 115:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         {
+ 116:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             /* Counter is disabled */
+ 117:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             Buzzer_Counter_backup.CounterEnableState = 0u;
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 5
+
+
+ 112              		.loc 1 117 0
+ 113 001a 054B     		ldr	r3, .L6+4
+ 114 001c 0022     		movs	r2, #0
+ 115 001e 1A70     		strb	r2, [r3]
+ 116              	.L5:
+ 118:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         }
+ 119:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #else
+ 120:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         Buzzer_Counter_backup.CounterEnableState = 1u;
+ 121:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         if(Buzzer_Counter_backup.CounterEnableState != 0u)
+ 122:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         {
+ 123:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             Buzzer_Counter_backup.CounterEnableState = 0u;
+ 124:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         }
+ 125:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #endif /* (!Buzzer_Counter_ControlRegRemoved) */
+ 126:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     
+ 127:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     Buzzer_Counter_Stop();
+ 117              		.loc 1 127 0
+ 118 0020 FFF7FEFF 		bl	Buzzer_Counter_Stop
+ 128:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     Buzzer_Counter_SaveConfig();
+ 119              		.loc 1 128 0
+ 120 0024 FFF7FEFF 		bl	Buzzer_Counter_SaveConfig
+ 129:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** }
+ 121              		.loc 1 129 0
+ 122 0028 80BD     		pop	{r7, pc}
+ 123              	.L7:
+ 124 002a 00BF     		.align	2
+ 125              	.L6:
+ 126 002c 004F0040 		.word	1073762048
+ 127 0030 00000000 		.word	Buzzer_Counter_backup
+ 128              		.cfi_endproc
+ 129              	.LFE2:
+ 130              		.size	Buzzer_Counter_Sleep, .-Buzzer_Counter_Sleep
+ 131              		.section	.text.Buzzer_Counter_Wakeup,"ax",%progbits
+ 132              		.align	2
+ 133              		.global	Buzzer_Counter_Wakeup
+ 134              		.thumb
+ 135              		.thumb_func
+ 136              		.type	Buzzer_Counter_Wakeup, %function
+ 137              	Buzzer_Counter_Wakeup:
+ 138              	.LFB3:
+ 130:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+ 131:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** 
+ 132:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** /*******************************************************************************
+ 133:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Function Name: Buzzer_Counter_Wakeup
+ 134:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** ********************************************************************************
+ 135:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+ 136:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Summary:
+ 137:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Restores and enables the user configuration
+ 138:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  
+ 139:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Parameters:  
+ 140:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+ 141:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+ 142:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Return: 
+ 143:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  void
+ 144:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+ 145:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** * Global variables:
+ 146:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  Buzzer_Counter_backup.enableState:  Is used to restore the enable state of 
+ 147:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *  block on wakeup from sleep mode.
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 6
+
+
+ 148:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *
+ 149:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** *******************************************************************************/
+ 150:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** void Buzzer_Counter_Wakeup(void) 
+ 151:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** {
+ 139              		.loc 1 151 0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 1, uses_anonymous_args = 0
+ 143 0000 80B5     		push	{r7, lr}
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 7, -8
+ 146              		.cfi_offset 14, -4
+ 147 0002 00AF     		add	r7, sp, #0
+ 148              		.cfi_def_cfa_register 7
+ 152:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     Buzzer_Counter_RestoreConfig();
+ 149              		.loc 1 152 0
+ 150 0004 FFF7FEFF 		bl	Buzzer_Counter_RestoreConfig
+ 153:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #if(!Buzzer_Counter_ControlRegRemoved)
+ 154:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         if(Buzzer_Counter_backup.CounterEnableState == 1u)
+ 151              		.loc 1 154 0
+ 152 0008 034B     		ldr	r3, .L10
+ 153 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 154 000c 012B     		cmp	r3, #1
+ 155 000e 01D1     		bne	.L8
+ 155:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         {
+ 156:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             /* Enable Counter's operation */
+ 157:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****             Buzzer_Counter_Enable();
+ 156              		.loc 1 157 0
+ 157 0010 FFF7FEFF 		bl	Buzzer_Counter_Enable
+ 158              	.L8:
+ 158:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****         } /* Do nothing if Counter was disabled before */    
+ 159:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     #endif /* (!Buzzer_Counter_ControlRegRemoved) */
+ 160:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c ****     
+ 161:.\Generated_Source\PSoC5/Buzzer_Counter_PM.c **** }
+ 159              		.loc 1 161 0
+ 160 0014 80BD     		pop	{r7, pc}
+ 161              	.L11:
+ 162 0016 00BF     		.align	2
+ 163              	.L10:
+ 164 0018 00000000 		.word	Buzzer_Counter_backup
+ 165              		.cfi_endproc
+ 166              	.LFE3:
+ 167              		.size	Buzzer_Counter_Wakeup, .-Buzzer_Counter_Wakeup
+ 168              		.text
+ 169              	.Letext0:
+ 170              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 171              		.file 3 ".\\Generated_Source\\PSoC5\\Buzzer_Counter.h"
+ 172              		.section	.debug_info,"",%progbits
+ 173              	.Ldebug_info0:
+ 174 0000 2D010000 		.4byte	0x12d
+ 175 0004 0400     		.2byte	0x4
+ 176 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 177 000a 04       		.byte	0x4
+ 178 000b 01       		.uleb128 0x1
+ 179 000c 22010000 		.4byte	.LASF23
+ 180 0010 01       		.byte	0x1
+ 181 0011 CA010000 		.4byte	.LASF24
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 7
+
+
+ 182 0015 5A000000 		.4byte	.LASF25
+ 183 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 184 001d 00000000 		.4byte	0
+ 185 0021 00000000 		.4byte	.Ldebug_line0
+ 186 0025 02       		.uleb128 0x2
+ 187 0026 01       		.byte	0x1
+ 188 0027 06       		.byte	0x6
+ 189 0028 0A020000 		.4byte	.LASF0
+ 190 002c 02       		.uleb128 0x2
+ 191 002d 01       		.byte	0x1
+ 192 002e 08       		.byte	0x8
+ 193 002f F6000000 		.4byte	.LASF1
+ 194 0033 02       		.uleb128 0x2
+ 195 0034 02       		.byte	0x2
+ 196 0035 05       		.byte	0x5
+ 197 0036 AD000000 		.4byte	.LASF2
+ 198 003a 02       		.uleb128 0x2
+ 199 003b 02       		.byte	0x2
+ 200 003c 07       		.byte	0x7
+ 201 003d F7010000 		.4byte	.LASF3
+ 202 0041 02       		.uleb128 0x2
+ 203 0042 04       		.byte	0x4
+ 204 0043 05       		.byte	0x5
+ 205 0044 19010000 		.4byte	.LASF4
+ 206 0048 02       		.uleb128 0x2
+ 207 0049 04       		.byte	0x4
+ 208 004a 07       		.byte	0x7
+ 209 004b 9B000000 		.4byte	.LASF5
+ 210 004f 02       		.uleb128 0x2
+ 211 0050 08       		.byte	0x8
+ 212 0051 05       		.byte	0x5
+ 213 0052 00000000 		.4byte	.LASF6
+ 214 0056 02       		.uleb128 0x2
+ 215 0057 08       		.byte	0x8
+ 216 0058 07       		.byte	0x7
+ 217 0059 B7000000 		.4byte	.LASF7
+ 218 005d 03       		.uleb128 0x3
+ 219 005e 04       		.byte	0x4
+ 220 005f 05       		.byte	0x5
+ 221 0060 696E7400 		.ascii	"int\000"
+ 222 0064 02       		.uleb128 0x2
+ 223 0065 04       		.byte	0x4
+ 224 0066 07       		.byte	0x7
+ 225 0067 16020000 		.4byte	.LASF8
+ 226 006b 04       		.uleb128 0x4
+ 227 006c 95000000 		.4byte	.LASF12
+ 228 0070 02       		.byte	0x2
+ 229 0071 C2       		.byte	0xc2
+ 230 0072 2C000000 		.4byte	0x2c
+ 231 0076 02       		.uleb128 0x2
+ 232 0077 04       		.byte	0x4
+ 233 0078 04       		.byte	0x4
+ 234 0079 CE000000 		.4byte	.LASF9
+ 235 007d 02       		.uleb128 0x2
+ 236 007e 08       		.byte	0x8
+ 237 007f 04       		.byte	0x4
+ 238 0080 C3010000 		.4byte	.LASF10
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 8
+
+
+ 239 0084 02       		.uleb128 0x2
+ 240 0085 01       		.byte	0x1
+ 241 0086 08       		.byte	0x8
+ 242 0087 F1000000 		.4byte	.LASF11
+ 243 008b 05       		.uleb128 0x5
+ 244 008c 50020000 		.4byte	.LASF13
+ 245 0090 02       		.byte	0x2
+ 246 0091 6C01     		.2byte	0x16c
+ 247 0093 97000000 		.4byte	0x97
+ 248 0097 06       		.uleb128 0x6
+ 249 0098 6B000000 		.4byte	0x6b
+ 250 009c 02       		.uleb128 0x2
+ 251 009d 04       		.byte	0x4
+ 252 009e 07       		.byte	0x7
+ 253 009f 60020000 		.4byte	.LASF14
+ 254 00a3 07       		.uleb128 0x7
+ 255 00a4 03       		.byte	0x3
+ 256 00a5 03       		.byte	0x3
+ 257 00a6 40       		.byte	0x40
+ 258 00a7 D0000000 		.4byte	0xd0
+ 259 00ab 08       		.uleb128 0x8
+ 260 00ac B0010000 		.4byte	.LASF15
+ 261 00b0 03       		.byte	0x3
+ 262 00b1 42       		.byte	0x42
+ 263 00b2 6B000000 		.4byte	0x6b
+ 264 00b6 00       		.byte	0
+ 265 00b7 08       		.uleb128 0x8
+ 266 00b8 55020000 		.4byte	.LASF16
+ 267 00bc 03       		.byte	0x3
+ 268 00bd 43       		.byte	0x43
+ 269 00be 6B000000 		.4byte	0x6b
+ 270 00c2 01       		.byte	0x1
+ 271 00c3 08       		.uleb128 0x8
+ 272 00c4 23020000 		.4byte	.LASF17
+ 273 00c8 03       		.byte	0x3
+ 274 00c9 46       		.byte	0x46
+ 275 00ca 6B000000 		.4byte	0x6b
+ 276 00ce 02       		.byte	0x2
+ 277 00cf 00       		.byte	0
+ 278 00d0 04       		.uleb128 0x4
+ 279 00d1 3E000000 		.4byte	.LASF18
+ 280 00d5 03       		.byte	0x3
+ 281 00d6 49       		.byte	0x49
+ 282 00d7 A3000000 		.4byte	0xa3
+ 283 00db 09       		.uleb128 0x9
+ 284 00dc 0E000000 		.4byte	.LASF19
+ 285 00e0 01       		.byte	0x1
+ 286 00e1 2A       		.byte	0x2a
+ 287 00e2 00000000 		.4byte	.LFB0
+ 288 00e6 0C000000 		.4byte	.LFE0-.LFB0
+ 289 00ea 01       		.uleb128 0x1
+ 290 00eb 9C       		.byte	0x9c
+ 291 00ec 09       		.uleb128 0x9
+ 292 00ed D4000000 		.4byte	.LASF20
+ 293 00f1 01       		.byte	0x1
+ 294 00f2 4A       		.byte	0x4a
+ 295 00f3 00000000 		.4byte	.LFB1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 9
+
+
+ 296 00f7 0C000000 		.4byte	.LFE1-.LFB1
+ 297 00fb 01       		.uleb128 0x1
+ 298 00fc 9C       		.byte	0x9c
+ 299 00fd 0A       		.uleb128 0xa
+ 300 00fe 04010000 		.4byte	.LASF21
+ 301 0102 01       		.byte	0x1
+ 302 0103 69       		.byte	0x69
+ 303 0104 00000000 		.4byte	.LFB2
+ 304 0108 34000000 		.4byte	.LFE2-.LFB2
+ 305 010c 01       		.uleb128 0x1
+ 306 010d 9C       		.byte	0x9c
+ 307 010e 0A       		.uleb128 0xa
+ 308 010f 28000000 		.4byte	.LASF22
+ 309 0113 01       		.byte	0x1
+ 310 0114 96       		.byte	0x96
+ 311 0115 00000000 		.4byte	.LFB3
+ 312 0119 1C000000 		.4byte	.LFE3-.LFB3
+ 313 011d 01       		.uleb128 0x1
+ 314 011e 9C       		.byte	0x9c
+ 315 011f 0B       		.uleb128 0xb
+ 316 0120 3A020000 		.4byte	.LASF26
+ 317 0124 01       		.byte	0x1
+ 318 0125 15       		.byte	0x15
+ 319 0126 D0000000 		.4byte	0xd0
+ 320 012a 05       		.uleb128 0x5
+ 321 012b 03       		.byte	0x3
+ 322 012c 00000000 		.4byte	Buzzer_Counter_backup
+ 323 0130 00       		.byte	0
+ 324              		.section	.debug_abbrev,"",%progbits
+ 325              	.Ldebug_abbrev0:
+ 326 0000 01       		.uleb128 0x1
+ 327 0001 11       		.uleb128 0x11
+ 328 0002 01       		.byte	0x1
+ 329 0003 25       		.uleb128 0x25
+ 330 0004 0E       		.uleb128 0xe
+ 331 0005 13       		.uleb128 0x13
+ 332 0006 0B       		.uleb128 0xb
+ 333 0007 03       		.uleb128 0x3
+ 334 0008 0E       		.uleb128 0xe
+ 335 0009 1B       		.uleb128 0x1b
+ 336 000a 0E       		.uleb128 0xe
+ 337 000b 55       		.uleb128 0x55
+ 338 000c 17       		.uleb128 0x17
+ 339 000d 11       		.uleb128 0x11
+ 340 000e 01       		.uleb128 0x1
+ 341 000f 10       		.uleb128 0x10
+ 342 0010 17       		.uleb128 0x17
+ 343 0011 00       		.byte	0
+ 344 0012 00       		.byte	0
+ 345 0013 02       		.uleb128 0x2
+ 346 0014 24       		.uleb128 0x24
+ 347 0015 00       		.byte	0
+ 348 0016 0B       		.uleb128 0xb
+ 349 0017 0B       		.uleb128 0xb
+ 350 0018 3E       		.uleb128 0x3e
+ 351 0019 0B       		.uleb128 0xb
+ 352 001a 03       		.uleb128 0x3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 10
+
+
+ 353 001b 0E       		.uleb128 0xe
+ 354 001c 00       		.byte	0
+ 355 001d 00       		.byte	0
+ 356 001e 03       		.uleb128 0x3
+ 357 001f 24       		.uleb128 0x24
+ 358 0020 00       		.byte	0
+ 359 0021 0B       		.uleb128 0xb
+ 360 0022 0B       		.uleb128 0xb
+ 361 0023 3E       		.uleb128 0x3e
+ 362 0024 0B       		.uleb128 0xb
+ 363 0025 03       		.uleb128 0x3
+ 364 0026 08       		.uleb128 0x8
+ 365 0027 00       		.byte	0
+ 366 0028 00       		.byte	0
+ 367 0029 04       		.uleb128 0x4
+ 368 002a 16       		.uleb128 0x16
+ 369 002b 00       		.byte	0
+ 370 002c 03       		.uleb128 0x3
+ 371 002d 0E       		.uleb128 0xe
+ 372 002e 3A       		.uleb128 0x3a
+ 373 002f 0B       		.uleb128 0xb
+ 374 0030 3B       		.uleb128 0x3b
+ 375 0031 0B       		.uleb128 0xb
+ 376 0032 49       		.uleb128 0x49
+ 377 0033 13       		.uleb128 0x13
+ 378 0034 00       		.byte	0
+ 379 0035 00       		.byte	0
+ 380 0036 05       		.uleb128 0x5
+ 381 0037 16       		.uleb128 0x16
+ 382 0038 00       		.byte	0
+ 383 0039 03       		.uleb128 0x3
+ 384 003a 0E       		.uleb128 0xe
+ 385 003b 3A       		.uleb128 0x3a
+ 386 003c 0B       		.uleb128 0xb
+ 387 003d 3B       		.uleb128 0x3b
+ 388 003e 05       		.uleb128 0x5
+ 389 003f 49       		.uleb128 0x49
+ 390 0040 13       		.uleb128 0x13
+ 391 0041 00       		.byte	0
+ 392 0042 00       		.byte	0
+ 393 0043 06       		.uleb128 0x6
+ 394 0044 35       		.uleb128 0x35
+ 395 0045 00       		.byte	0
+ 396 0046 49       		.uleb128 0x49
+ 397 0047 13       		.uleb128 0x13
+ 398 0048 00       		.byte	0
+ 399 0049 00       		.byte	0
+ 400 004a 07       		.uleb128 0x7
+ 401 004b 13       		.uleb128 0x13
+ 402 004c 01       		.byte	0x1
+ 403 004d 0B       		.uleb128 0xb
+ 404 004e 0B       		.uleb128 0xb
+ 405 004f 3A       		.uleb128 0x3a
+ 406 0050 0B       		.uleb128 0xb
+ 407 0051 3B       		.uleb128 0x3b
+ 408 0052 0B       		.uleb128 0xb
+ 409 0053 01       		.uleb128 0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 11
+
+
+ 410 0054 13       		.uleb128 0x13
+ 411 0055 00       		.byte	0
+ 412 0056 00       		.byte	0
+ 413 0057 08       		.uleb128 0x8
+ 414 0058 0D       		.uleb128 0xd
+ 415 0059 00       		.byte	0
+ 416 005a 03       		.uleb128 0x3
+ 417 005b 0E       		.uleb128 0xe
+ 418 005c 3A       		.uleb128 0x3a
+ 419 005d 0B       		.uleb128 0xb
+ 420 005e 3B       		.uleb128 0x3b
+ 421 005f 0B       		.uleb128 0xb
+ 422 0060 49       		.uleb128 0x49
+ 423 0061 13       		.uleb128 0x13
+ 424 0062 38       		.uleb128 0x38
+ 425 0063 0B       		.uleb128 0xb
+ 426 0064 00       		.byte	0
+ 427 0065 00       		.byte	0
+ 428 0066 09       		.uleb128 0x9
+ 429 0067 2E       		.uleb128 0x2e
+ 430 0068 00       		.byte	0
+ 431 0069 3F       		.uleb128 0x3f
+ 432 006a 19       		.uleb128 0x19
+ 433 006b 03       		.uleb128 0x3
+ 434 006c 0E       		.uleb128 0xe
+ 435 006d 3A       		.uleb128 0x3a
+ 436 006e 0B       		.uleb128 0xb
+ 437 006f 3B       		.uleb128 0x3b
+ 438 0070 0B       		.uleb128 0xb
+ 439 0071 27       		.uleb128 0x27
+ 440 0072 19       		.uleb128 0x19
+ 441 0073 11       		.uleb128 0x11
+ 442 0074 01       		.uleb128 0x1
+ 443 0075 12       		.uleb128 0x12
+ 444 0076 06       		.uleb128 0x6
+ 445 0077 40       		.uleb128 0x40
+ 446 0078 18       		.uleb128 0x18
+ 447 0079 9742     		.uleb128 0x2117
+ 448 007b 19       		.uleb128 0x19
+ 449 007c 00       		.byte	0
+ 450 007d 00       		.byte	0
+ 451 007e 0A       		.uleb128 0xa
+ 452 007f 2E       		.uleb128 0x2e
+ 453 0080 00       		.byte	0
+ 454 0081 3F       		.uleb128 0x3f
+ 455 0082 19       		.uleb128 0x19
+ 456 0083 03       		.uleb128 0x3
+ 457 0084 0E       		.uleb128 0xe
+ 458 0085 3A       		.uleb128 0x3a
+ 459 0086 0B       		.uleb128 0xb
+ 460 0087 3B       		.uleb128 0x3b
+ 461 0088 0B       		.uleb128 0xb
+ 462 0089 27       		.uleb128 0x27
+ 463 008a 19       		.uleb128 0x19
+ 464 008b 11       		.uleb128 0x11
+ 465 008c 01       		.uleb128 0x1
+ 466 008d 12       		.uleb128 0x12
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 12
+
+
+ 467 008e 06       		.uleb128 0x6
+ 468 008f 40       		.uleb128 0x40
+ 469 0090 18       		.uleb128 0x18
+ 470 0091 9642     		.uleb128 0x2116
+ 471 0093 19       		.uleb128 0x19
+ 472 0094 00       		.byte	0
+ 473 0095 00       		.byte	0
+ 474 0096 0B       		.uleb128 0xb
+ 475 0097 34       		.uleb128 0x34
+ 476 0098 00       		.byte	0
+ 477 0099 03       		.uleb128 0x3
+ 478 009a 0E       		.uleb128 0xe
+ 479 009b 3A       		.uleb128 0x3a
+ 480 009c 0B       		.uleb128 0xb
+ 481 009d 3B       		.uleb128 0x3b
+ 482 009e 0B       		.uleb128 0xb
+ 483 009f 49       		.uleb128 0x49
+ 484 00a0 13       		.uleb128 0x13
+ 485 00a1 02       		.uleb128 0x2
+ 486 00a2 18       		.uleb128 0x18
+ 487 00a3 00       		.byte	0
+ 488 00a4 00       		.byte	0
+ 489 00a5 00       		.byte	0
+ 490              		.section	.debug_aranges,"",%progbits
+ 491 0000 34000000 		.4byte	0x34
+ 492 0004 0200     		.2byte	0x2
+ 493 0006 00000000 		.4byte	.Ldebug_info0
+ 494 000a 04       		.byte	0x4
+ 495 000b 00       		.byte	0
+ 496 000c 0000     		.2byte	0
+ 497 000e 0000     		.2byte	0
+ 498 0010 00000000 		.4byte	.LFB0
+ 499 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 500 0018 00000000 		.4byte	.LFB1
+ 501 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 502 0020 00000000 		.4byte	.LFB2
+ 503 0024 34000000 		.4byte	.LFE2-.LFB2
+ 504 0028 00000000 		.4byte	.LFB3
+ 505 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 506 0030 00000000 		.4byte	0
+ 507 0034 00000000 		.4byte	0
+ 508              		.section	.debug_ranges,"",%progbits
+ 509              	.Ldebug_ranges0:
+ 510 0000 00000000 		.4byte	.LFB0
+ 511 0004 0C000000 		.4byte	.LFE0
+ 512 0008 00000000 		.4byte	.LFB1
+ 513 000c 0C000000 		.4byte	.LFE1
+ 514 0010 00000000 		.4byte	.LFB2
+ 515 0014 34000000 		.4byte	.LFE2
+ 516 0018 00000000 		.4byte	.LFB3
+ 517 001c 1C000000 		.4byte	.LFE3
+ 518 0020 00000000 		.4byte	0
+ 519 0024 00000000 		.4byte	0
+ 520              		.section	.debug_line,"",%progbits
+ 521              	.Ldebug_line0:
+ 522 0000 BB000000 		.section	.debug_str,"MS",%progbits,1
+ 522      02006400 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 13
+
+
+ 522      00000201 
+ 522      FB0E0D00 
+ 522      01010101 
+ 523              	.LASF6:
+ 524 0000 6C6F6E67 		.ascii	"long long int\000"
+ 524      206C6F6E 
+ 524      6720696E 
+ 524      7400
+ 525              	.LASF19:
+ 526 000e 42757A7A 		.ascii	"Buzzer_Counter_SaveConfig\000"
+ 526      65725F43 
+ 526      6F756E74 
+ 526      65725F53 
+ 526      61766543 
+ 527              	.LASF22:
+ 528 0028 42757A7A 		.ascii	"Buzzer_Counter_Wakeup\000"
+ 528      65725F43 
+ 528      6F756E74 
+ 528      65725F57 
+ 528      616B6575 
+ 529              	.LASF18:
+ 530 003e 42757A7A 		.ascii	"Buzzer_Counter_backupStruct\000"
+ 530      65725F43 
+ 530      6F756E74 
+ 530      65725F62 
+ 530      61636B75 
+ 531              	.LASF25:
+ 532 005a 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 532      6F726B73 
+ 532      70616365 
+ 532      5C50536F 
+ 532      435F4372 
+ 533 0089 61645F76 		.ascii	"ad_v2.cydsn\000"
+ 533      322E6379 
+ 533      64736E00 
+ 534              	.LASF12:
+ 535 0095 75696E74 		.ascii	"uint8\000"
+ 535      3800
+ 536              	.LASF5:
+ 537 009b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 537      20756E73 
+ 537      69676E65 
+ 537      6420696E 
+ 537      7400
+ 538              	.LASF2:
+ 539 00ad 73686F72 		.ascii	"short int\000"
+ 539      7420696E 
+ 539      7400
+ 540              	.LASF7:
+ 541 00b7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 541      206C6F6E 
+ 541      6720756E 
+ 541      7369676E 
+ 541      65642069 
+ 542              	.LASF9:
+ 543 00ce 666C6F61 		.ascii	"float\000"
+ 543      7400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 14
+
+
+ 544              	.LASF20:
+ 545 00d4 42757A7A 		.ascii	"Buzzer_Counter_RestoreConfig\000"
+ 545      65725F43 
+ 545      6F756E74 
+ 545      65725F52 
+ 545      6573746F 
+ 546              	.LASF11:
+ 547 00f1 63686172 		.ascii	"char\000"
+ 547      00
+ 548              	.LASF1:
+ 549 00f6 756E7369 		.ascii	"unsigned char\000"
+ 549      676E6564 
+ 549      20636861 
+ 549      7200
+ 550              	.LASF21:
+ 551 0104 42757A7A 		.ascii	"Buzzer_Counter_Sleep\000"
+ 551      65725F43 
+ 551      6F756E74 
+ 551      65725F53 
+ 551      6C656570 
+ 552              	.LASF4:
+ 553 0119 6C6F6E67 		.ascii	"long int\000"
+ 553      20696E74 
+ 553      00
+ 554              	.LASF23:
+ 555 0122 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 555      4320342E 
+ 555      392E3320 
+ 555      32303135 
+ 555      30333033 
+ 556 0155 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 556      20726576 
+ 556      6973696F 
+ 556      6E203232 
+ 556      31323230 
+ 557 0188 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 557      66756E63 
+ 557      74696F6E 
+ 557      2D736563 
+ 557      74696F6E 
+ 558              	.LASF15:
+ 559 01b0 436F756E 		.ascii	"CounterEnableState\000"
+ 559      74657245 
+ 559      6E61626C 
+ 559      65537461 
+ 559      746500
+ 560              	.LASF10:
+ 561 01c3 646F7562 		.ascii	"double\000"
+ 561      6C6500
+ 562              	.LASF24:
+ 563 01ca 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Buzzer_Counter_PM.c\000"
+ 563      6E657261 
+ 563      7465645F 
+ 563      536F7572 
+ 563      63655C50 
+ 564              	.LASF3:
+ 565 01f7 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cccjRL4x.s 			page 15
+
+
+ 565      7420756E 
+ 565      7369676E 
+ 565      65642069 
+ 565      6E7400
+ 566              	.LASF0:
+ 567 020a 7369676E 		.ascii	"signed char\000"
+ 567      65642063 
+ 567      68617200 
+ 568              	.LASF8:
+ 569 0216 756E7369 		.ascii	"unsigned int\000"
+ 569      676E6564 
+ 569      20696E74 
+ 569      00
+ 570              	.LASF17:
+ 571 0223 436F756E 		.ascii	"CounterControlRegister\000"
+ 571      74657243 
+ 571      6F6E7472 
+ 571      6F6C5265 
+ 571      67697374 
+ 572              	.LASF26:
+ 573 023a 42757A7A 		.ascii	"Buzzer_Counter_backup\000"
+ 573      65725F43 
+ 573      6F756E74 
+ 573      65725F62 
+ 573      61636B75 
+ 574              	.LASF13:
+ 575 0250 72656738 		.ascii	"reg8\000"
+ 575      00
+ 576              	.LASF16:
+ 577 0255 436F756E 		.ascii	"CounterUdb\000"
+ 577      74657255 
+ 577      646200
+ 578              	.LASF14:
+ 579 0260 73697A65 		.ascii	"sizetype\000"
+ 579      74797065 
+ 579      00
+ 580              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

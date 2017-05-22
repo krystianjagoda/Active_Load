@@ -1,0 +1,773 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LCD_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	LCD_backup:
+  21 0000 00       		.space	1
+  22 0001 000000   		.section	.text.LCD_SaveConfig,"ax",%progbits
+  23              		.align	2
+  24              		.global	LCD_SaveConfig
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	LCD_SaveConfig, %function
+  28              	LCD_SaveConfig:
+  29              	.LFB0:
+  30              		.file 1 ".\\Generated_Source\\PSoC5\\LCD_PM.c"
+   1:.\Generated_Source\PSoC5/LCD_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/LCD_PM.c **** * File Name: LCD_PM.c
+   3:.\Generated_Source\PSoC5/LCD_PM.c **** * Version 2.10
+   4:.\Generated_Source\PSoC5/LCD_PM.c **** *
+   5:.\Generated_Source\PSoC5/LCD_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/LCD_PM.c **** *  This file provides the API source code for the Static Segment LCD component.
+   7:.\Generated_Source\PSoC5/LCD_PM.c **** *
+   8:.\Generated_Source\PSoC5/LCD_PM.c **** * Note:
+   9:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  10:.\Generated_Source\PSoC5/LCD_PM.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/LCD_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/LCD_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC5/LCD_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC5/LCD_PM.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/LCD_PM.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  17:.\Generated_Source\PSoC5/LCD_PM.c **** #include "LCD.h"
+  18:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  19:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  20:.\Generated_Source\PSoC5/LCD_PM.c **** static LCD_BACKUP_STRUCT LCD_backup;
+  21:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  22:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  23:.\Generated_Source\PSoC5/LCD_PM.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC5/LCD_PM.c **** * Function Name: LCD_SaveConfig
+  25:.\Generated_Source\PSoC5/LCD_PM.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  27:.\Generated_Source\PSoC5/LCD_PM.c **** * Summary:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 2
+
+
+  28:.\Generated_Source\PSoC5/LCD_PM.c **** *  Does nothing, provided for consistency.
+  29:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  30:.\Generated_Source\PSoC5/LCD_PM.c **** * Parameters:
+  31:.\Generated_Source\PSoC5/LCD_PM.c **** *  None.
+  32:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  33:.\Generated_Source\PSoC5/LCD_PM.c **** * Return:
+  34:.\Generated_Source\PSoC5/LCD_PM.c **** *  None.
+  35:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  36:.\Generated_Source\PSoC5/LCD_PM.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC5/LCD_PM.c **** void LCD_SaveConfig(void) 
+  38:.\Generated_Source\PSoC5/LCD_PM.c **** {
+  31              		.loc 1 38 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35              		@ link register save eliminated.
+  36 0000 80B4     		push	{r7}
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 7, -4
+  39 0002 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  39:.\Generated_Source\PSoC5/LCD_PM.c **** }
+  41              		.loc 1 39 0
+  42 0004 BD46     		mov	sp, r7
+  43              		.cfi_def_cfa_register 13
+  44              		@ sp needed
+  45 0006 5DF8047B 		ldr	r7, [sp], #4
+  46              		.cfi_restore 7
+  47              		.cfi_def_cfa_offset 0
+  48 000a 7047     		bx	lr
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	LCD_SaveConfig, .-LCD_SaveConfig
+  52              		.section	.text.LCD_RestoreConfig,"ax",%progbits
+  53              		.align	2
+  54              		.global	LCD_RestoreConfig
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	LCD_RestoreConfig, %function
+  58              	LCD_RestoreConfig:
+  59              	.LFB1:
+  40:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  41:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  42:.\Generated_Source\PSoC5/LCD_PM.c **** /*******************************************************************************
+  43:.\Generated_Source\PSoC5/LCD_PM.c **** * Function Name: LCD_RestoreConfig
+  44:.\Generated_Source\PSoC5/LCD_PM.c **** ********************************************************************************
+  45:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  46:.\Generated_Source\PSoC5/LCD_PM.c **** * Summary:
+  47:.\Generated_Source\PSoC5/LCD_PM.c **** *  Does nothing, provided for consistency.
+  48:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  49:.\Generated_Source\PSoC5/LCD_PM.c **** * Parameters:
+  50:.\Generated_Source\PSoC5/LCD_PM.c **** *  None.
+  51:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  52:.\Generated_Source\PSoC5/LCD_PM.c **** * Return:
+  53:.\Generated_Source\PSoC5/LCD_PM.c **** *  None.
+  54:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  55:.\Generated_Source\PSoC5/LCD_PM.c **** *******************************************************************************/
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 3
+
+
+  56:.\Generated_Source\PSoC5/LCD_PM.c **** void LCD_RestoreConfig(void) 
+  57:.\Generated_Source\PSoC5/LCD_PM.c **** {
+  60              		.loc 1 57 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 1, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 80B4     		push	{r7}
+  66              		.cfi_def_cfa_offset 4
+  67              		.cfi_offset 7, -4
+  68 0002 00AF     		add	r7, sp, #0
+  69              		.cfi_def_cfa_register 7
+  58:.\Generated_Source\PSoC5/LCD_PM.c **** }
+  70              		.loc 1 58 0
+  71 0004 BD46     		mov	sp, r7
+  72              		.cfi_def_cfa_register 13
+  73              		@ sp needed
+  74 0006 5DF8047B 		ldr	r7, [sp], #4
+  75              		.cfi_restore 7
+  76              		.cfi_def_cfa_offset 0
+  77 000a 7047     		bx	lr
+  78              		.cfi_endproc
+  79              	.LFE1:
+  80              		.size	LCD_RestoreConfig, .-LCD_RestoreConfig
+  81              		.section	.text.LCD_Sleep,"ax",%progbits
+  82              		.align	2
+  83              		.global	LCD_Sleep
+  84              		.thumb
+  85              		.thumb_func
+  86              		.type	LCD_Sleep, %function
+  87              	LCD_Sleep:
+  88              	.LFB2:
+  59:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  60:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  61:.\Generated_Source\PSoC5/LCD_PM.c **** /*******************************************************************************
+  62:.\Generated_Source\PSoC5/LCD_PM.c **** * Function Name: LCD_Sleep
+  63:.\Generated_Source\PSoC5/LCD_PM.c **** ********************************************************************************
+  64:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  65:.\Generated_Source\PSoC5/LCD_PM.c **** * Summary:
+  66:.\Generated_Source\PSoC5/LCD_PM.c **** *  Prepares the component for entering the sleep mode.
+  67:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  68:.\Generated_Source\PSoC5/LCD_PM.c **** * Parameters:
+  69:.\Generated_Source\PSoC5/LCD_PM.c **** *  None.
+  70:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  71:.\Generated_Source\PSoC5/LCD_PM.c **** * Return:
+  72:.\Generated_Source\PSoC5/LCD_PM.c **** *  None.
+  73:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  74:.\Generated_Source\PSoC5/LCD_PM.c **** * Reentrant:
+  75:.\Generated_Source\PSoC5/LCD_PM.c **** *  No.
+  76:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  77:.\Generated_Source\PSoC5/LCD_PM.c **** *******************************************************************************/
+  78:.\Generated_Source\PSoC5/LCD_PM.c **** void LCD_Sleep(void) 
+  79:.\Generated_Source\PSoC5/LCD_PM.c **** {
+  89              		.loc 1 79 0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 4
+
+
+  93 0000 80B5     		push	{r7, lr}
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 00AF     		add	r7, sp, #0
+  98              		.cfi_def_cfa_register 7
+  80:.\Generated_Source\PSoC5/LCD_PM.c ****     LCD_backup.enableState = LCD_enableState;
+  99              		.loc 1 80 0
+ 100 0004 044B     		ldr	r3, .L4
+ 101 0006 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 102 0008 044B     		ldr	r3, .L4+4
+ 103 000a 1A70     		strb	r2, [r3]
+  81:.\Generated_Source\PSoC5/LCD_PM.c ****     LCD_SaveConfig();
+ 104              		.loc 1 81 0
+ 105 000c FFF7FEFF 		bl	LCD_SaveConfig
+  82:.\Generated_Source\PSoC5/LCD_PM.c ****     LCD_Stop();
+ 106              		.loc 1 82 0
+ 107 0010 FFF7FEFF 		bl	LCD_Stop
+  83:.\Generated_Source\PSoC5/LCD_PM.c **** }
+ 108              		.loc 1 83 0
+ 109 0014 80BD     		pop	{r7, pc}
+ 110              	.L5:
+ 111 0016 00BF     		.align	2
+ 112              	.L4:
+ 113 0018 00000000 		.word	LCD_enableState
+ 114 001c 00000000 		.word	LCD_backup
+ 115              		.cfi_endproc
+ 116              	.LFE2:
+ 117              		.size	LCD_Sleep, .-LCD_Sleep
+ 118              		.section	.text.LCD_Wakeup,"ax",%progbits
+ 119              		.align	2
+ 120              		.global	LCD_Wakeup
+ 121              		.thumb
+ 122              		.thumb_func
+ 123              		.type	LCD_Wakeup, %function
+ 124              	LCD_Wakeup:
+ 125              	.LFB3:
+  84:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  85:.\Generated_Source\PSoC5/LCD_PM.c **** 
+  86:.\Generated_Source\PSoC5/LCD_PM.c **** /*******************************************************************************
+  87:.\Generated_Source\PSoC5/LCD_PM.c **** * Function Name: LCD_Wakeup
+  88:.\Generated_Source\PSoC5/LCD_PM.c **** ********************************************************************************
+  89:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  90:.\Generated_Source\PSoC5/LCD_PM.c **** * Summary:
+  91:.\Generated_Source\PSoC5/LCD_PM.c **** *  Wakes the component from sleep mode. Configures DMA and enables the component
+  92:.\Generated_Source\PSoC5/LCD_PM.c **** *  for normal operation.
+  93:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  94:.\Generated_Source\PSoC5/LCD_PM.c **** * Parameters:
+  95:.\Generated_Source\PSoC5/LCD_PM.c **** *  LCD_enableState - Global variable.
+  96:.\Generated_Source\PSoC5/LCD_PM.c **** *
+  97:.\Generated_Source\PSoC5/LCD_PM.c **** * Return:
+  98:.\Generated_Source\PSoC5/LCD_PM.c **** *  Status one of standard status for PSoC3 Component
+  99:.\Generated_Source\PSoC5/LCD_PM.c **** *       CYRET_SUCCESS - Function completed successfully.
+ 100:.\Generated_Source\PSoC5/LCD_PM.c **** *       CYRET_LOCKED - The object was locked, already in use. Some of TDs or
+ 101:.\Generated_Source\PSoC5/LCD_PM.c **** *                      a channel already in use.
+ 102:.\Generated_Source\PSoC5/LCD_PM.c **** *
+ 103:.\Generated_Source\PSoC5/LCD_PM.c **** * Reentrant:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 5
+
+
+ 104:.\Generated_Source\PSoC5/LCD_PM.c **** *  No.
+ 105:.\Generated_Source\PSoC5/LCD_PM.c **** *
+ 106:.\Generated_Source\PSoC5/LCD_PM.c **** *******************************************************************************/
+ 107:.\Generated_Source\PSoC5/LCD_PM.c **** void LCD_Wakeup(void) 
+ 108:.\Generated_Source\PSoC5/LCD_PM.c **** {
+ 126              		.loc 1 108 0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 1, uses_anonymous_args = 0
+ 130 0000 80B5     		push	{r7, lr}
+ 131              		.cfi_def_cfa_offset 8
+ 132              		.cfi_offset 7, -8
+ 133              		.cfi_offset 14, -4
+ 134 0002 00AF     		add	r7, sp, #0
+ 135              		.cfi_def_cfa_register 7
+ 109:.\Generated_Source\PSoC5/LCD_PM.c ****     LCD_RestoreConfig();
+ 136              		.loc 1 109 0
+ 137 0004 FFF7FEFF 		bl	LCD_RestoreConfig
+ 110:.\Generated_Source\PSoC5/LCD_PM.c **** 
+ 111:.\Generated_Source\PSoC5/LCD_PM.c ****     if(LCD_backup.enableState == 1u)
+ 138              		.loc 1 111 0
+ 139 0008 034B     		ldr	r3, .L8
+ 140 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 141 000c 012B     		cmp	r3, #1
+ 142 000e 01D1     		bne	.L6
+ 112:.\Generated_Source\PSoC5/LCD_PM.c ****     {
+ 113:.\Generated_Source\PSoC5/LCD_PM.c ****         LCD_Enable();
+ 143              		.loc 1 113 0
+ 144 0010 FFF7FEFF 		bl	LCD_Enable
+ 145              	.L6:
+ 114:.\Generated_Source\PSoC5/LCD_PM.c ****     }
+ 115:.\Generated_Source\PSoC5/LCD_PM.c **** }
+ 146              		.loc 1 115 0
+ 147 0014 80BD     		pop	{r7, pc}
+ 148              	.L9:
+ 149 0016 00BF     		.align	2
+ 150              	.L8:
+ 151 0018 00000000 		.word	LCD_backup
+ 152              		.cfi_endproc
+ 153              	.LFE3:
+ 154              		.size	LCD_Wakeup, .-LCD_Wakeup
+ 155              		.text
+ 156              	.Letext0:
+ 157              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 158              		.file 3 ".\\Generated_Source\\PSoC5\\LCD.h"
+ 159              		.section	.debug_info,"",%progbits
+ 160              	.Ldebug_info0:
+ 161 0000 08010000 		.4byte	0x108
+ 162 0004 0400     		.2byte	0x4
+ 163 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 164 000a 04       		.byte	0x4
+ 165 000b 01       		.uleb128 0x1
+ 166 000c 1A000000 		.4byte	.LASF18
+ 167 0010 01       		.byte	0x1
+ 168 0011 18010000 		.4byte	.LASF19
+ 169 0015 A8000000 		.4byte	.LASF20
+ 170 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 6
+
+
+ 171 001d 00000000 		.4byte	0
+ 172 0021 00000000 		.4byte	.Ldebug_line0
+ 173 0025 02       		.uleb128 0x2
+ 174 0026 01       		.byte	0x1
+ 175 0027 06       		.byte	0x6
+ 176 0028 CC010000 		.4byte	.LASF0
+ 177 002c 02       		.uleb128 0x2
+ 178 002d 01       		.byte	0x1
+ 179 002e 08       		.byte	0x8
+ 180 002f E9000000 		.4byte	.LASF1
+ 181 0033 02       		.uleb128 0x2
+ 182 0034 02       		.byte	0x2
+ 183 0035 05       		.byte	0x5
+ 184 0036 9C010000 		.4byte	.LASF2
+ 185 003a 02       		.uleb128 0x2
+ 186 003b 02       		.byte	0x2
+ 187 003c 07       		.byte	0x7
+ 188 003d D8010000 		.4byte	.LASF3
+ 189 0041 02       		.uleb128 0x2
+ 190 0042 04       		.byte	0x4
+ 191 0043 05       		.byte	0x5
+ 192 0044 B7010000 		.4byte	.LASF4
+ 193 0048 02       		.uleb128 0x2
+ 194 0049 04       		.byte	0x4
+ 195 004a 07       		.byte	0x7
+ 196 004b 06010000 		.4byte	.LASF5
+ 197 004f 02       		.uleb128 0x2
+ 198 0050 08       		.byte	0x8
+ 199 0051 05       		.byte	0x5
+ 200 0052 77010000 		.4byte	.LASF6
+ 201 0056 02       		.uleb128 0x2
+ 202 0057 08       		.byte	0x8
+ 203 0058 07       		.byte	0x7
+ 204 0059 60010000 		.4byte	.LASF7
+ 205 005d 03       		.uleb128 0x3
+ 206 005e 04       		.byte	0x4
+ 207 005f 05       		.byte	0x5
+ 208 0060 696E7400 		.ascii	"int\000"
+ 209 0064 02       		.uleb128 0x2
+ 210 0065 04       		.byte	0x4
+ 211 0066 07       		.byte	0x7
+ 212 0067 53010000 		.4byte	.LASF8
+ 213 006b 04       		.uleb128 0x4
+ 214 006c A6010000 		.4byte	.LASF12
+ 215 0070 02       		.byte	0x2
+ 216 0071 C2       		.byte	0xc2
+ 217 0072 2C000000 		.4byte	0x2c
+ 218 0076 02       		.uleb128 0x2
+ 219 0077 04       		.byte	0x4
+ 220 0078 04       		.byte	0x4
+ 221 0079 E3000000 		.4byte	.LASF9
+ 222 007d 02       		.uleb128 0x2
+ 223 007e 08       		.byte	0x8
+ 224 007f 04       		.byte	0x4
+ 225 0080 3A010000 		.4byte	.LASF10
+ 226 0084 02       		.uleb128 0x2
+ 227 0085 01       		.byte	0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 7
+
+
+ 228 0086 08       		.byte	0x8
+ 229 0087 85010000 		.4byte	.LASF11
+ 230 008b 05       		.uleb128 0x5
+ 231 008c 01       		.byte	0x1
+ 232 008d 03       		.byte	0x3
+ 233 008e 2C       		.byte	0x2c
+ 234 008f A0000000 		.4byte	0xa0
+ 235 0093 06       		.uleb128 0x6
+ 236 0094 C0010000 		.4byte	.LASF21
+ 237 0098 03       		.byte	0x3
+ 238 0099 2E       		.byte	0x2e
+ 239 009a 6B000000 		.4byte	0x6b
+ 240 009e 00       		.byte	0
+ 241 009f 00       		.byte	0
+ 242 00a0 04       		.uleb128 0x4
+ 243 00a1 8A010000 		.4byte	.LASF13
+ 244 00a5 03       		.byte	0x3
+ 245 00a6 2F       		.byte	0x2f
+ 246 00a7 8B000000 		.4byte	0x8b
+ 247 00ab 07       		.uleb128 0x7
+ 248 00ac F7000000 		.4byte	.LASF14
+ 249 00b0 01       		.byte	0x1
+ 250 00b1 25       		.byte	0x25
+ 251 00b2 00000000 		.4byte	.LFB0
+ 252 00b6 0C000000 		.4byte	.LFE0-.LFB0
+ 253 00ba 01       		.uleb128 0x1
+ 254 00bb 9C       		.byte	0x9c
+ 255 00bc 07       		.uleb128 0x7
+ 256 00bd 41010000 		.4byte	.LASF15
+ 257 00c1 01       		.byte	0x1
+ 258 00c2 38       		.byte	0x38
+ 259 00c3 00000000 		.4byte	.LFB1
+ 260 00c7 0C000000 		.4byte	.LFE1-.LFB1
+ 261 00cb 01       		.uleb128 0x1
+ 262 00cc 9C       		.byte	0x9c
+ 263 00cd 08       		.uleb128 0x8
+ 264 00ce 10000000 		.4byte	.LASF16
+ 265 00d2 01       		.byte	0x1
+ 266 00d3 4E       		.byte	0x4e
+ 267 00d4 00000000 		.4byte	.LFB2
+ 268 00d8 20000000 		.4byte	.LFE2-.LFB2
+ 269 00dc 01       		.uleb128 0x1
+ 270 00dd 9C       		.byte	0x9c
+ 271 00de 08       		.uleb128 0x8
+ 272 00df EB010000 		.4byte	.LASF17
+ 273 00e3 01       		.byte	0x1
+ 274 00e4 6B       		.byte	0x6b
+ 275 00e5 00000000 		.4byte	.LFB3
+ 276 00e9 1C000000 		.4byte	.LFE3-.LFB3
+ 277 00ed 01       		.uleb128 0x1
+ 278 00ee 9C       		.byte	0x9c
+ 279 00ef 09       		.uleb128 0x9
+ 280 00f0 AC010000 		.4byte	.LASF22
+ 281 00f4 01       		.byte	0x1
+ 282 00f5 14       		.byte	0x14
+ 283 00f6 A0000000 		.4byte	0xa0
+ 284 00fa 05       		.uleb128 0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 8
+
+
+ 285 00fb 03       		.byte	0x3
+ 286 00fc 00000000 		.4byte	LCD_backup
+ 287 0100 0A       		.uleb128 0xa
+ 288 0101 00000000 		.4byte	.LASF23
+ 289 0105 03       		.byte	0x3
+ 290 0106 76       		.byte	0x76
+ 291 0107 6B000000 		.4byte	0x6b
+ 292 010b 00       		.byte	0
+ 293              		.section	.debug_abbrev,"",%progbits
+ 294              	.Ldebug_abbrev0:
+ 295 0000 01       		.uleb128 0x1
+ 296 0001 11       		.uleb128 0x11
+ 297 0002 01       		.byte	0x1
+ 298 0003 25       		.uleb128 0x25
+ 299 0004 0E       		.uleb128 0xe
+ 300 0005 13       		.uleb128 0x13
+ 301 0006 0B       		.uleb128 0xb
+ 302 0007 03       		.uleb128 0x3
+ 303 0008 0E       		.uleb128 0xe
+ 304 0009 1B       		.uleb128 0x1b
+ 305 000a 0E       		.uleb128 0xe
+ 306 000b 55       		.uleb128 0x55
+ 307 000c 17       		.uleb128 0x17
+ 308 000d 11       		.uleb128 0x11
+ 309 000e 01       		.uleb128 0x1
+ 310 000f 10       		.uleb128 0x10
+ 311 0010 17       		.uleb128 0x17
+ 312 0011 00       		.byte	0
+ 313 0012 00       		.byte	0
+ 314 0013 02       		.uleb128 0x2
+ 315 0014 24       		.uleb128 0x24
+ 316 0015 00       		.byte	0
+ 317 0016 0B       		.uleb128 0xb
+ 318 0017 0B       		.uleb128 0xb
+ 319 0018 3E       		.uleb128 0x3e
+ 320 0019 0B       		.uleb128 0xb
+ 321 001a 03       		.uleb128 0x3
+ 322 001b 0E       		.uleb128 0xe
+ 323 001c 00       		.byte	0
+ 324 001d 00       		.byte	0
+ 325 001e 03       		.uleb128 0x3
+ 326 001f 24       		.uleb128 0x24
+ 327 0020 00       		.byte	0
+ 328 0021 0B       		.uleb128 0xb
+ 329 0022 0B       		.uleb128 0xb
+ 330 0023 3E       		.uleb128 0x3e
+ 331 0024 0B       		.uleb128 0xb
+ 332 0025 03       		.uleb128 0x3
+ 333 0026 08       		.uleb128 0x8
+ 334 0027 00       		.byte	0
+ 335 0028 00       		.byte	0
+ 336 0029 04       		.uleb128 0x4
+ 337 002a 16       		.uleb128 0x16
+ 338 002b 00       		.byte	0
+ 339 002c 03       		.uleb128 0x3
+ 340 002d 0E       		.uleb128 0xe
+ 341 002e 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 9
+
+
+ 342 002f 0B       		.uleb128 0xb
+ 343 0030 3B       		.uleb128 0x3b
+ 344 0031 0B       		.uleb128 0xb
+ 345 0032 49       		.uleb128 0x49
+ 346 0033 13       		.uleb128 0x13
+ 347 0034 00       		.byte	0
+ 348 0035 00       		.byte	0
+ 349 0036 05       		.uleb128 0x5
+ 350 0037 13       		.uleb128 0x13
+ 351 0038 01       		.byte	0x1
+ 352 0039 0B       		.uleb128 0xb
+ 353 003a 0B       		.uleb128 0xb
+ 354 003b 3A       		.uleb128 0x3a
+ 355 003c 0B       		.uleb128 0xb
+ 356 003d 3B       		.uleb128 0x3b
+ 357 003e 0B       		.uleb128 0xb
+ 358 003f 01       		.uleb128 0x1
+ 359 0040 13       		.uleb128 0x13
+ 360 0041 00       		.byte	0
+ 361 0042 00       		.byte	0
+ 362 0043 06       		.uleb128 0x6
+ 363 0044 0D       		.uleb128 0xd
+ 364 0045 00       		.byte	0
+ 365 0046 03       		.uleb128 0x3
+ 366 0047 0E       		.uleb128 0xe
+ 367 0048 3A       		.uleb128 0x3a
+ 368 0049 0B       		.uleb128 0xb
+ 369 004a 3B       		.uleb128 0x3b
+ 370 004b 0B       		.uleb128 0xb
+ 371 004c 49       		.uleb128 0x49
+ 372 004d 13       		.uleb128 0x13
+ 373 004e 38       		.uleb128 0x38
+ 374 004f 0B       		.uleb128 0xb
+ 375 0050 00       		.byte	0
+ 376 0051 00       		.byte	0
+ 377 0052 07       		.uleb128 0x7
+ 378 0053 2E       		.uleb128 0x2e
+ 379 0054 00       		.byte	0
+ 380 0055 3F       		.uleb128 0x3f
+ 381 0056 19       		.uleb128 0x19
+ 382 0057 03       		.uleb128 0x3
+ 383 0058 0E       		.uleb128 0xe
+ 384 0059 3A       		.uleb128 0x3a
+ 385 005a 0B       		.uleb128 0xb
+ 386 005b 3B       		.uleb128 0x3b
+ 387 005c 0B       		.uleb128 0xb
+ 388 005d 27       		.uleb128 0x27
+ 389 005e 19       		.uleb128 0x19
+ 390 005f 11       		.uleb128 0x11
+ 391 0060 01       		.uleb128 0x1
+ 392 0061 12       		.uleb128 0x12
+ 393 0062 06       		.uleb128 0x6
+ 394 0063 40       		.uleb128 0x40
+ 395 0064 18       		.uleb128 0x18
+ 396 0065 9742     		.uleb128 0x2117
+ 397 0067 19       		.uleb128 0x19
+ 398 0068 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 10
+
+
+ 399 0069 00       		.byte	0
+ 400 006a 08       		.uleb128 0x8
+ 401 006b 2E       		.uleb128 0x2e
+ 402 006c 00       		.byte	0
+ 403 006d 3F       		.uleb128 0x3f
+ 404 006e 19       		.uleb128 0x19
+ 405 006f 03       		.uleb128 0x3
+ 406 0070 0E       		.uleb128 0xe
+ 407 0071 3A       		.uleb128 0x3a
+ 408 0072 0B       		.uleb128 0xb
+ 409 0073 3B       		.uleb128 0x3b
+ 410 0074 0B       		.uleb128 0xb
+ 411 0075 27       		.uleb128 0x27
+ 412 0076 19       		.uleb128 0x19
+ 413 0077 11       		.uleb128 0x11
+ 414 0078 01       		.uleb128 0x1
+ 415 0079 12       		.uleb128 0x12
+ 416 007a 06       		.uleb128 0x6
+ 417 007b 40       		.uleb128 0x40
+ 418 007c 18       		.uleb128 0x18
+ 419 007d 9642     		.uleb128 0x2116
+ 420 007f 19       		.uleb128 0x19
+ 421 0080 00       		.byte	0
+ 422 0081 00       		.byte	0
+ 423 0082 09       		.uleb128 0x9
+ 424 0083 34       		.uleb128 0x34
+ 425 0084 00       		.byte	0
+ 426 0085 03       		.uleb128 0x3
+ 427 0086 0E       		.uleb128 0xe
+ 428 0087 3A       		.uleb128 0x3a
+ 429 0088 0B       		.uleb128 0xb
+ 430 0089 3B       		.uleb128 0x3b
+ 431 008a 0B       		.uleb128 0xb
+ 432 008b 49       		.uleb128 0x49
+ 433 008c 13       		.uleb128 0x13
+ 434 008d 02       		.uleb128 0x2
+ 435 008e 18       		.uleb128 0x18
+ 436 008f 00       		.byte	0
+ 437 0090 00       		.byte	0
+ 438 0091 0A       		.uleb128 0xa
+ 439 0092 34       		.uleb128 0x34
+ 440 0093 00       		.byte	0
+ 441 0094 03       		.uleb128 0x3
+ 442 0095 0E       		.uleb128 0xe
+ 443 0096 3A       		.uleb128 0x3a
+ 444 0097 0B       		.uleb128 0xb
+ 445 0098 3B       		.uleb128 0x3b
+ 446 0099 0B       		.uleb128 0xb
+ 447 009a 49       		.uleb128 0x49
+ 448 009b 13       		.uleb128 0x13
+ 449 009c 3F       		.uleb128 0x3f
+ 450 009d 19       		.uleb128 0x19
+ 451 009e 3C       		.uleb128 0x3c
+ 452 009f 19       		.uleb128 0x19
+ 453 00a0 00       		.byte	0
+ 454 00a1 00       		.byte	0
+ 455 00a2 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 11
+
+
+ 456              		.section	.debug_aranges,"",%progbits
+ 457 0000 34000000 		.4byte	0x34
+ 458 0004 0200     		.2byte	0x2
+ 459 0006 00000000 		.4byte	.Ldebug_info0
+ 460 000a 04       		.byte	0x4
+ 461 000b 00       		.byte	0
+ 462 000c 0000     		.2byte	0
+ 463 000e 0000     		.2byte	0
+ 464 0010 00000000 		.4byte	.LFB0
+ 465 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 466 0018 00000000 		.4byte	.LFB1
+ 467 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 468 0020 00000000 		.4byte	.LFB2
+ 469 0024 20000000 		.4byte	.LFE2-.LFB2
+ 470 0028 00000000 		.4byte	.LFB3
+ 471 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 472 0030 00000000 		.4byte	0
+ 473 0034 00000000 		.4byte	0
+ 474              		.section	.debug_ranges,"",%progbits
+ 475              	.Ldebug_ranges0:
+ 476 0000 00000000 		.4byte	.LFB0
+ 477 0004 0C000000 		.4byte	.LFE0
+ 478 0008 00000000 		.4byte	.LFB1
+ 479 000c 0C000000 		.4byte	.LFE1
+ 480 0010 00000000 		.4byte	.LFB2
+ 481 0014 20000000 		.4byte	.LFE2
+ 482 0018 00000000 		.4byte	.LFB3
+ 483 001c 1C000000 		.4byte	.LFE3
+ 484 0020 00000000 		.4byte	0
+ 485 0024 00000000 		.4byte	0
+ 486              		.section	.debug_line,"",%progbits
+ 487              	.Ldebug_line0:
+ 488 0000 9C000000 		.section	.debug_str,"MS",%progbits,1
+ 488      02004E00 
+ 488      00000201 
+ 488      FB0E0D00 
+ 488      01010101 
+ 489              	.LASF23:
+ 490 0000 4C43445F 		.ascii	"LCD_enableState\000"
+ 490      656E6162 
+ 490      6C655374 
+ 490      61746500 
+ 491              	.LASF16:
+ 492 0010 4C43445F 		.ascii	"LCD_Sleep\000"
+ 492      536C6565 
+ 492      7000
+ 493              	.LASF18:
+ 494 001a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 494      4320342E 
+ 494      392E3320 
+ 494      32303135 
+ 494      30333033 
+ 495 004d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 495      20726576 
+ 495      6973696F 
+ 495      6E203232 
+ 495      31323230 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 12
+
+
+ 496 0080 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 496      66756E63 
+ 496      74696F6E 
+ 496      2D736563 
+ 496      74696F6E 
+ 497              	.LASF20:
+ 498 00a8 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Kopia_Poczatki\\QDExam"
+ 498      6F726B73 
+ 498      70616365 
+ 498      5C50536F 
+ 498      435F4372 
+ 499 00d7 706C6530 		.ascii	"ple01.cydsn\000"
+ 499      312E6379 
+ 499      64736E00 
+ 500              	.LASF9:
+ 501 00e3 666C6F61 		.ascii	"float\000"
+ 501      7400
+ 502              	.LASF1:
+ 503 00e9 756E7369 		.ascii	"unsigned char\000"
+ 503      676E6564 
+ 503      20636861 
+ 503      7200
+ 504              	.LASF14:
+ 505 00f7 4C43445F 		.ascii	"LCD_SaveConfig\000"
+ 505      53617665 
+ 505      436F6E66 
+ 505      696700
+ 506              	.LASF5:
+ 507 0106 6C6F6E67 		.ascii	"long unsigned int\000"
+ 507      20756E73 
+ 507      69676E65 
+ 507      6420696E 
+ 507      7400
+ 508              	.LASF19:
+ 509 0118 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LCD_PM.c\000"
+ 509      6E657261 
+ 509      7465645F 
+ 509      536F7572 
+ 509      63655C50 
+ 510              	.LASF10:
+ 511 013a 646F7562 		.ascii	"double\000"
+ 511      6C6500
+ 512              	.LASF15:
+ 513 0141 4C43445F 		.ascii	"LCD_RestoreConfig\000"
+ 513      52657374 
+ 513      6F726543 
+ 513      6F6E6669 
+ 513      6700
+ 514              	.LASF8:
+ 515 0153 756E7369 		.ascii	"unsigned int\000"
+ 515      676E6564 
+ 515      20696E74 
+ 515      00
+ 516              	.LASF7:
+ 517 0160 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 517      206C6F6E 
+ 517      6720756E 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc01m9mb.s 			page 13
+
+
+ 517      7369676E 
+ 517      65642069 
+ 518              	.LASF6:
+ 519 0177 6C6F6E67 		.ascii	"long long int\000"
+ 519      206C6F6E 
+ 519      6720696E 
+ 519      7400
+ 520              	.LASF11:
+ 521 0185 63686172 		.ascii	"char\000"
+ 521      00
+ 522              	.LASF13:
+ 523 018a 4C43445F 		.ascii	"LCD_BACKUP_STRUCT\000"
+ 523      4241434B 
+ 523      55505F53 
+ 523      54525543 
+ 523      5400
+ 524              	.LASF2:
+ 525 019c 73686F72 		.ascii	"short int\000"
+ 525      7420696E 
+ 525      7400
+ 526              	.LASF12:
+ 527 01a6 75696E74 		.ascii	"uint8\000"
+ 527      3800
+ 528              	.LASF22:
+ 529 01ac 4C43445F 		.ascii	"LCD_backup\000"
+ 529      6261636B 
+ 529      757000
+ 530              	.LASF4:
+ 531 01b7 6C6F6E67 		.ascii	"long int\000"
+ 531      20696E74 
+ 531      00
+ 532              	.LASF21:
+ 533 01c0 656E6162 		.ascii	"enableState\000"
+ 533      6C655374 
+ 533      61746500 
+ 534              	.LASF0:
+ 535 01cc 7369676E 		.ascii	"signed char\000"
+ 535      65642063 
+ 535      68617200 
+ 536              	.LASF3:
+ 537 01d8 73686F72 		.ascii	"short unsigned int\000"
+ 537      7420756E 
+ 537      7369676E 
+ 537      65642069 
+ 537      6E7400
+ 538              	.LASF17:
+ 539 01eb 4C43445F 		.ascii	"LCD_Wakeup\000"
+ 539      57616B65 
+ 539      757000
+ 540              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

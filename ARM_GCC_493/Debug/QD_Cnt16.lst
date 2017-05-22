@@ -1,0 +1,2327 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"QD_Cnt16.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	QD_Cnt16_initVar
+  19              		.bss
+  20              		.type	QD_Cnt16_initVar, %object
+  21              		.size	QD_Cnt16_initVar, 1
+  22              	QD_Cnt16_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.QD_Cnt16_Init,"ax",%progbits
+  25              		.align	2
+  26              		.global	QD_Cnt16_Init
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	QD_Cnt16_Init, %function
+  30              	QD_Cnt16_Init:
+  31              	.LFB0:
+  32              		.file 1 "Generated_Source\\PSoC5\\QD_Cnt16.c"
+   1:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/QD_Cnt16.c **** * File Name: QD_Cnt16.c  
+   3:Generated_Source\PSoC5/QD_Cnt16.c **** * Version 3.0
+   4:Generated_Source\PSoC5/QD_Cnt16.c **** *
+   5:Generated_Source\PSoC5/QD_Cnt16.c **** *  Description:
+   6:Generated_Source\PSoC5/QD_Cnt16.c **** *     The Counter component consists of a 8, 16, 24 or 32-bit counter with
+   7:Generated_Source\PSoC5/QD_Cnt16.c **** *     a selectable period between 2 and 2^Width - 1.  
+   8:Generated_Source\PSoC5/QD_Cnt16.c **** *
+   9:Generated_Source\PSoC5/QD_Cnt16.c **** *   Note:
+  10:Generated_Source\PSoC5/QD_Cnt16.c **** *     None
+  11:Generated_Source\PSoC5/QD_Cnt16.c **** *
+  12:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+  13:Generated_Source\PSoC5/QD_Cnt16.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC5/QD_Cnt16.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:Generated_Source\PSoC5/QD_Cnt16.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:Generated_Source\PSoC5/QD_Cnt16.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+  18:Generated_Source\PSoC5/QD_Cnt16.c **** 
+  19:Generated_Source\PSoC5/QD_Cnt16.c **** #include "QD_Cnt16.h"
+  20:Generated_Source\PSoC5/QD_Cnt16.c **** 
+  21:Generated_Source\PSoC5/QD_Cnt16.c **** uint8 QD_Cnt16_initVar = 0u;
+  22:Generated_Source\PSoC5/QD_Cnt16.c **** 
+  23:Generated_Source\PSoC5/QD_Cnt16.c **** 
+  24:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+  25:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_Init
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 2
+
+
+  26:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+  27:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+  28:Generated_Source\PSoC5/QD_Cnt16.c **** *     Initialize to the schematic state
+  29:Generated_Source\PSoC5/QD_Cnt16.c **** * 
+  30:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+  31:Generated_Source\PSoC5/QD_Cnt16.c **** *  void  
+  32:Generated_Source\PSoC5/QD_Cnt16.c **** *
+  33:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+  34:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+  35:Generated_Source\PSoC5/QD_Cnt16.c **** *
+  36:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+  37:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_Init(void) 
+  38:Generated_Source\PSoC5/QD_Cnt16.c **** {
+  33              		.loc 1 38 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 8
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 82B0     		sub	sp, sp, #8
+  42              		.cfi_def_cfa_offset 16
+  43 0004 00AF     		add	r7, sp, #0
+  44              		.cfi_def_cfa_register 7
+  39:Generated_Source\PSoC5/QD_Cnt16.c ****         #if (!QD_Cnt16_UsingFixedFunction && !QD_Cnt16_ControlRegRemoved)
+  40:Generated_Source\PSoC5/QD_Cnt16.c ****             uint8 ctrl;
+  41:Generated_Source\PSoC5/QD_Cnt16.c ****         #endif /* (!QD_Cnt16_UsingFixedFunction && !QD_Cnt16_ControlRegRemoved) */
+  42:Generated_Source\PSoC5/QD_Cnt16.c ****         
+  43:Generated_Source\PSoC5/QD_Cnt16.c ****         #if(!QD_Cnt16_UsingFixedFunction) 
+  44:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Interrupt State Backup for Critical Region*/
+  45:Generated_Source\PSoC5/QD_Cnt16.c ****             uint8 QD_Cnt16_interruptState;
+  46:Generated_Source\PSoC5/QD_Cnt16.c ****         #endif /* (!QD_Cnt16_UsingFixedFunction) */
+  47:Generated_Source\PSoC5/QD_Cnt16.c ****         
+  48:Generated_Source\PSoC5/QD_Cnt16.c ****         #if (QD_Cnt16_UsingFixedFunction)
+  49:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Clear all bits but the enable bit (if it's already set for Timer operation */
+  50:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_CONTROL &= QD_Cnt16_CTRL_ENABLE;
+  51:Generated_Source\PSoC5/QD_Cnt16.c ****             
+  52:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Clear the mode bits for continuous run mode */
+  53:Generated_Source\PSoC5/QD_Cnt16.c ****             #if (CY_PSOC5A)
+  54:Generated_Source\PSoC5/QD_Cnt16.c ****                 QD_Cnt16_CONTROL2 &= ((uint8)(~QD_Cnt16_CTRL_MODE_MASK));
+  55:Generated_Source\PSoC5/QD_Cnt16.c ****             #endif /* (CY_PSOC5A) */
+  56:Generated_Source\PSoC5/QD_Cnt16.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  57:Generated_Source\PSoC5/QD_Cnt16.c ****                 QD_Cnt16_CONTROL3 &= ((uint8)(~QD_Cnt16_CTRL_MODE_MASK));                
+  58:Generated_Source\PSoC5/QD_Cnt16.c ****             #endif /* (CY_PSOC3 || CY_PSOC5LP) */
+  59:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Check if One Shot mode is enabled i.e. RunMode !=0*/
+  60:Generated_Source\PSoC5/QD_Cnt16.c ****             #if (QD_Cnt16_RunModeUsed != 0x0u)
+  61:Generated_Source\PSoC5/QD_Cnt16.c ****                 /* Set 3rd bit of Control register to enable one shot mode */
+  62:Generated_Source\PSoC5/QD_Cnt16.c ****                 QD_Cnt16_CONTROL |= QD_Cnt16_ONESHOT;
+  63:Generated_Source\PSoC5/QD_Cnt16.c ****             #endif /* (QD_Cnt16_RunModeUsed != 0x0u) */
+  64:Generated_Source\PSoC5/QD_Cnt16.c ****             
+  65:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Set the IRQ to use the status register interrupts */
+  66:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_CONTROL2 |= QD_Cnt16_CTRL2_IRQ_SEL;
+  67:Generated_Source\PSoC5/QD_Cnt16.c ****             
+  68:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+  69:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_RT1 &= ((uint8)(~QD_Cnt16_RT1_MASK));
+  70:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_RT1 |= QD_Cnt16_SYNC;     
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 3
+
+
+  71:Generated_Source\PSoC5/QD_Cnt16.c ****                     
+  72:Generated_Source\PSoC5/QD_Cnt16.c ****             /*Enable DSI Sync all all inputs of the Timer*/
+  73:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_RT1 &= ((uint8)(~QD_Cnt16_SYNCDSI_MASK));
+  74:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_RT1 |= QD_Cnt16_SYNCDSI_EN;
+  75:Generated_Source\PSoC5/QD_Cnt16.c **** 
+  76:Generated_Source\PSoC5/QD_Cnt16.c ****         #else
+  77:Generated_Source\PSoC5/QD_Cnt16.c ****             #if(!QD_Cnt16_ControlRegRemoved)
+  78:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Set the default compare mode defined in the parameter */
+  79:Generated_Source\PSoC5/QD_Cnt16.c ****             ctrl = QD_Cnt16_CONTROL & ((uint8)(~QD_Cnt16_CTRL_CMPMODE_MASK));
+  45              		.loc 1 79 0
+  46 0006 1C4B     		ldr	r3, .L2
+  47 0008 1B78     		ldrb	r3, [r3]
+  48 000a DBB2     		uxtb	r3, r3
+  49 000c 23F00703 		bic	r3, r3, #7
+  50 0010 FB71     		strb	r3, [r7, #7]
+  80:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_CONTROL = ctrl | QD_Cnt16_DEFAULT_COMPARE_MODE;
+  51              		.loc 1 80 0
+  52 0012 194A     		ldr	r2, .L2
+  53 0014 FB79     		ldrb	r3, [r7, #7]
+  54 0016 1370     		strb	r3, [r2]
+  81:Generated_Source\PSoC5/QD_Cnt16.c ****             
+  82:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Set the default capture mode defined in the parameter */
+  83:Generated_Source\PSoC5/QD_Cnt16.c ****             ctrl = QD_Cnt16_CONTROL & ((uint8)(~QD_Cnt16_CTRL_CAPMODE_MASK));
+  55              		.loc 1 83 0
+  56 0018 174B     		ldr	r3, .L2
+  57 001a 1B78     		ldrb	r3, [r3]
+  58 001c DBB2     		uxtb	r3, r3
+  59 001e 23F00303 		bic	r3, r3, #3
+  60 0022 FB71     		strb	r3, [r7, #7]
+  84:Generated_Source\PSoC5/QD_Cnt16.c ****             
+  85:Generated_Source\PSoC5/QD_Cnt16.c ****             #if( 0 != QD_Cnt16_CAPTURE_MODE_CONF)
+  86:Generated_Source\PSoC5/QD_Cnt16.c ****                 QD_Cnt16_CONTROL = ctrl | QD_Cnt16_DEFAULT_CAPTURE_MODE;
+  87:Generated_Source\PSoC5/QD_Cnt16.c ****             #else
+  88:Generated_Source\PSoC5/QD_Cnt16.c ****                 QD_Cnt16_CONTROL = ctrl;
+  61              		.loc 1 88 0
+  62 0024 144A     		ldr	r2, .L2
+  63 0026 FB79     		ldrb	r3, [r7, #7]
+  64 0028 1370     		strb	r3, [r2]
+  89:Generated_Source\PSoC5/QD_Cnt16.c ****             #endif /* 0 != QD_Cnt16_CAPTURE_MODE */ 
+  90:Generated_Source\PSoC5/QD_Cnt16.c ****             
+  91:Generated_Source\PSoC5/QD_Cnt16.c ****             #endif /* (!QD_Cnt16_ControlRegRemoved) */
+  92:Generated_Source\PSoC5/QD_Cnt16.c ****         #endif /* (QD_Cnt16_UsingFixedFunction) */
+  93:Generated_Source\PSoC5/QD_Cnt16.c ****         
+  94:Generated_Source\PSoC5/QD_Cnt16.c ****         /* Clear all data in the FIFO's */
+  95:Generated_Source\PSoC5/QD_Cnt16.c ****         #if (!QD_Cnt16_UsingFixedFunction)
+  96:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_ClearFIFO();
+  65              		.loc 1 96 0
+  66 002a FFF7FEFF 		bl	QD_Cnt16_ClearFIFO
+  97:Generated_Source\PSoC5/QD_Cnt16.c ****         #endif /* (!QD_Cnt16_UsingFixedFunction) */
+  98:Generated_Source\PSoC5/QD_Cnt16.c ****         
+  99:Generated_Source\PSoC5/QD_Cnt16.c ****         /* Set Initial values from Configuration */
+ 100:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_WritePeriod(QD_Cnt16_INIT_PERIOD_VALUE);
+  67              		.loc 1 100 0
+  68 002e 4FF40040 		mov	r0, #32768
+  69 0032 FFF7FEFF 		bl	QD_Cnt16_WritePeriod
+ 101:Generated_Source\PSoC5/QD_Cnt16.c ****         #if (!(QD_Cnt16_UsingFixedFunction && (CY_PSOC5A)))
+ 102:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_WriteCounter(QD_Cnt16_INIT_COUNTER_VALUE);
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 4
+
+
+  70              		.loc 1 102 0
+  71 0036 4FF40040 		mov	r0, #32768
+  72 003a FFF7FEFF 		bl	QD_Cnt16_WriteCounter
+ 103:Generated_Source\PSoC5/QD_Cnt16.c ****         #endif /* (!(QD_Cnt16_UsingFixedFunction && (CY_PSOC5A))) */
+ 104:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_SetInterruptMode(QD_Cnt16_INIT_INTERRUPTS_MASK);
+  73              		.loc 1 104 0
+  74 003e 0020     		movs	r0, #0
+  75 0040 FFF7FEFF 		bl	QD_Cnt16_SetInterruptMode
+ 105:Generated_Source\PSoC5/QD_Cnt16.c ****         
+ 106:Generated_Source\PSoC5/QD_Cnt16.c ****         #if (!QD_Cnt16_UsingFixedFunction)
+ 107:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Read the status register to clear the unwanted interrupts */
+ 108:Generated_Source\PSoC5/QD_Cnt16.c ****             (void)QD_Cnt16_ReadStatusRegister();
+  76              		.loc 1 108 0
+  77 0044 FFF7FEFF 		bl	QD_Cnt16_ReadStatusRegister
+ 109:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Set the compare value (only available to non-fixed function implementation */
+ 110:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_WriteCompare(QD_Cnt16_INIT_COMPARE_VALUE);
+  78              		.loc 1 110 0
+  79 0048 4FF40040 		mov	r0, #32768
+  80 004c FFF7FEFF 		bl	QD_Cnt16_WriteCompare
+ 111:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 112:Generated_Source\PSoC5/QD_Cnt16.c ****             
+ 113:Generated_Source\PSoC5/QD_Cnt16.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 114:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Enter Critical Region*/
+ 115:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_interruptState = CyEnterCriticalSection();
+  81              		.loc 1 115 0
+  82 0050 FFF7FEFF 		bl	CyEnterCriticalSection
+  83 0054 0346     		mov	r3, r0
+  84 0056 BB71     		strb	r3, [r7, #6]
+ 116:Generated_Source\PSoC5/QD_Cnt16.c ****             
+ 117:Generated_Source\PSoC5/QD_Cnt16.c ****             QD_Cnt16_STATUS_AUX_CTRL |= QD_Cnt16_STATUS_ACTL_INT_EN_MASK;
+  85              		.loc 1 117 0
+  86 0058 084A     		ldr	r2, .L2+4
+  87 005a 084B     		ldr	r3, .L2+4
+  88 005c 1B78     		ldrb	r3, [r3]
+  89 005e DBB2     		uxtb	r3, r3
+  90 0060 43F01003 		orr	r3, r3, #16
+  91 0064 DBB2     		uxtb	r3, r3
+  92 0066 1370     		strb	r3, [r2]
+ 118:Generated_Source\PSoC5/QD_Cnt16.c ****             
+ 119:Generated_Source\PSoC5/QD_Cnt16.c ****             /* Exit Critical Region*/
+ 120:Generated_Source\PSoC5/QD_Cnt16.c ****             CyExitCriticalSection(QD_Cnt16_interruptState);
+  93              		.loc 1 120 0
+  94 0068 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+  95 006a 1846     		mov	r0, r3
+  96 006c FFF7FEFF 		bl	CyExitCriticalSection
+ 121:Generated_Source\PSoC5/QD_Cnt16.c ****             
+ 122:Generated_Source\PSoC5/QD_Cnt16.c ****         #endif /* (!QD_Cnt16_UsingFixedFunction) */
+ 123:Generated_Source\PSoC5/QD_Cnt16.c **** }
+  97              		.loc 1 123 0
+  98 0070 0837     		adds	r7, r7, #8
+  99              		.cfi_def_cfa_offset 8
+ 100 0072 BD46     		mov	sp, r7
+ 101              		.cfi_def_cfa_register 13
+ 102              		@ sp needed
+ 103 0074 80BD     		pop	{r7, pc}
+ 104              	.L3:
+ 105 0076 00BF     		.align	2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 5
+
+
+ 106              	.L2:
+ 107 0078 77640040 		.word	1073767543
+ 108 007c 97640040 		.word	1073767575
+ 109              		.cfi_endproc
+ 110              	.LFE0:
+ 111              		.size	QD_Cnt16_Init, .-QD_Cnt16_Init
+ 112              		.section	.text.QD_Cnt16_Enable,"ax",%progbits
+ 113              		.align	2
+ 114              		.global	QD_Cnt16_Enable
+ 115              		.thumb
+ 116              		.thumb_func
+ 117              		.type	QD_Cnt16_Enable, %function
+ 118              	QD_Cnt16_Enable:
+ 119              	.LFB1:
+ 124:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 125:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 126:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 127:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_Enable
+ 128:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 129:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 130:Generated_Source\PSoC5/QD_Cnt16.c **** *     Enable the Counter
+ 131:Generated_Source\PSoC5/QD_Cnt16.c **** * 
+ 132:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 133:Generated_Source\PSoC5/QD_Cnt16.c **** *  void  
+ 134:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 135:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 136:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 137:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 138:Generated_Source\PSoC5/QD_Cnt16.c **** * Side Effects: 
+ 139:Generated_Source\PSoC5/QD_Cnt16.c **** *   If the Enable mode is set to Hardware only then this function has no effect 
+ 140:Generated_Source\PSoC5/QD_Cnt16.c **** *   on the operation of the counter.
+ 141:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 142:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 143:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_Enable(void) 
+ 144:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 120              		.loc 1 144 0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 1, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
+ 125 0000 80B4     		push	{r7}
+ 126              		.cfi_def_cfa_offset 4
+ 127              		.cfi_offset 7, -4
+ 128 0002 00AF     		add	r7, sp, #0
+ 129              		.cfi_def_cfa_register 7
+ 145:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 146:Generated_Source\PSoC5/QD_Cnt16.c ****     #if (QD_Cnt16_UsingFixedFunction)
+ 147:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_GLOBAL_ENABLE |= QD_Cnt16_BLOCK_EN_MASK;
+ 148:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_GLOBAL_STBY_ENABLE |= QD_Cnt16_BLOCK_STBY_EN_MASK;
+ 149:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */  
+ 150:Generated_Source\PSoC5/QD_Cnt16.c ****         
+ 151:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Enable the counter from the control register  */
+ 152:Generated_Source\PSoC5/QD_Cnt16.c ****     /* If Fixed Function then make sure Mode is set correctly */
+ 153:Generated_Source\PSoC5/QD_Cnt16.c ****     /* else make sure reset is clear */
+ 154:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(!QD_Cnt16_ControlRegRemoved || QD_Cnt16_UsingFixedFunction)
+ 155:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_CONTROL |= QD_Cnt16_CTRL_ENABLE;                
+ 130              		.loc 1 155 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 6
+
+
+ 131 0004 054A     		ldr	r2, .L5
+ 132 0006 054B     		ldr	r3, .L5
+ 133 0008 1B78     		ldrb	r3, [r3]
+ 134 000a DBB2     		uxtb	r3, r3
+ 135 000c 63F07F03 		orn	r3, r3, #127
+ 136 0010 DBB2     		uxtb	r3, r3
+ 137 0012 1370     		strb	r3, [r2]
+ 156:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (!QD_Cnt16_ControlRegRemoved || QD_Cnt16_UsingFixedFunction) */
+ 157:Generated_Source\PSoC5/QD_Cnt16.c ****     
+ 158:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 138              		.loc 1 158 0
+ 139 0014 BD46     		mov	sp, r7
+ 140              		.cfi_def_cfa_register 13
+ 141              		@ sp needed
+ 142 0016 5DF8047B 		ldr	r7, [sp], #4
+ 143              		.cfi_restore 7
+ 144              		.cfi_def_cfa_offset 0
+ 145 001a 7047     		bx	lr
+ 146              	.L6:
+ 147              		.align	2
+ 148              	.L5:
+ 149 001c 77640040 		.word	1073767543
+ 150              		.cfi_endproc
+ 151              	.LFE1:
+ 152              		.size	QD_Cnt16_Enable, .-QD_Cnt16_Enable
+ 153              		.section	.text.QD_Cnt16_Start,"ax",%progbits
+ 154              		.align	2
+ 155              		.global	QD_Cnt16_Start
+ 156              		.thumb
+ 157              		.thumb_func
+ 158              		.type	QD_Cnt16_Start, %function
+ 159              	QD_Cnt16_Start:
+ 160              	.LFB2:
+ 159:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 160:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 161:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 162:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_Start
+ 163:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 164:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 165:Generated_Source\PSoC5/QD_Cnt16.c **** *  Enables the counter for operation 
+ 166:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 167:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 168:Generated_Source\PSoC5/QD_Cnt16.c **** *  void  
+ 169:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 170:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 171:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 172:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 173:Generated_Source\PSoC5/QD_Cnt16.c **** * Global variables:
+ 174:Generated_Source\PSoC5/QD_Cnt16.c **** *  QD_Cnt16_initVar: Is modified when this function is called for the  
+ 175:Generated_Source\PSoC5/QD_Cnt16.c **** *   first time. Is used to ensure that initialization happens only once.
+ 176:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 177:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 178:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_Start(void) 
+ 179:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 161              		.loc 1 179 0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 7
+
+
+ 164              		@ frame_needed = 1, uses_anonymous_args = 0
+ 165 0000 80B5     		push	{r7, lr}
+ 166              		.cfi_def_cfa_offset 8
+ 167              		.cfi_offset 7, -8
+ 168              		.cfi_offset 14, -4
+ 169 0002 00AF     		add	r7, sp, #0
+ 170              		.cfi_def_cfa_register 7
+ 180:Generated_Source\PSoC5/QD_Cnt16.c ****     if(QD_Cnt16_initVar == 0u)
+ 171              		.loc 1 180 0
+ 172 0004 054B     		ldr	r3, .L9
+ 173 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 174 0008 002B     		cmp	r3, #0
+ 175 000a 04D1     		bne	.L8
+ 181:Generated_Source\PSoC5/QD_Cnt16.c ****     {
+ 182:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_Init();
+ 176              		.loc 1 182 0
+ 177 000c FFF7FEFF 		bl	QD_Cnt16_Init
+ 183:Generated_Source\PSoC5/QD_Cnt16.c ****         
+ 184:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_initVar = 1u; /* Clear this bit for Initialization */        
+ 178              		.loc 1 184 0
+ 179 0010 024B     		ldr	r3, .L9
+ 180 0012 0122     		movs	r2, #1
+ 181 0014 1A70     		strb	r2, [r3]
+ 182              	.L8:
+ 185:Generated_Source\PSoC5/QD_Cnt16.c ****     }
+ 186:Generated_Source\PSoC5/QD_Cnt16.c ****     
+ 187:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Enable the Counter */
+ 188:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_Enable();        
+ 183              		.loc 1 188 0
+ 184 0016 FFF7FEFF 		bl	QD_Cnt16_Enable
+ 189:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 185              		.loc 1 189 0
+ 186 001a 80BD     		pop	{r7, pc}
+ 187              	.L10:
+ 188              		.align	2
+ 189              	.L9:
+ 190 001c 00000000 		.word	QD_Cnt16_initVar
+ 191              		.cfi_endproc
+ 192              	.LFE2:
+ 193              		.size	QD_Cnt16_Start, .-QD_Cnt16_Start
+ 194              		.section	.text.QD_Cnt16_Stop,"ax",%progbits
+ 195              		.align	2
+ 196              		.global	QD_Cnt16_Stop
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.type	QD_Cnt16_Stop, %function
+ 200              	QD_Cnt16_Stop:
+ 201              	.LFB3:
+ 190:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 191:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 192:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 193:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_Stop
+ 194:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 195:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 196:Generated_Source\PSoC5/QD_Cnt16.c **** * Halts the counter, but does not change any modes or disable interrupts.
+ 197:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 198:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 8
+
+
+ 199:Generated_Source\PSoC5/QD_Cnt16.c **** *  void  
+ 200:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 201:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 202:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 203:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 204:Generated_Source\PSoC5/QD_Cnt16.c **** * Side Effects: If the Enable mode is set to Hardware only then this function
+ 205:Generated_Source\PSoC5/QD_Cnt16.c **** *               has no effect on the operation of the counter.
+ 206:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 207:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 208:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_Stop(void) 
+ 209:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 202              		.loc 1 209 0
+ 203              		.cfi_startproc
+ 204              		@ args = 0, pretend = 0, frame = 0
+ 205              		@ frame_needed = 1, uses_anonymous_args = 0
+ 206              		@ link register save eliminated.
+ 207 0000 80B4     		push	{r7}
+ 208              		.cfi_def_cfa_offset 4
+ 209              		.cfi_offset 7, -4
+ 210 0002 00AF     		add	r7, sp, #0
+ 211              		.cfi_def_cfa_register 7
+ 210:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Disable Counter */
+ 211:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(!QD_Cnt16_ControlRegRemoved || QD_Cnt16_UsingFixedFunction)
+ 212:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_CONTROL &= ((uint8)(~QD_Cnt16_CTRL_ENABLE));        
+ 212              		.loc 1 212 0
+ 213 0004 054A     		ldr	r2, .L12
+ 214 0006 054B     		ldr	r3, .L12
+ 215 0008 1B78     		ldrb	r3, [r3]
+ 216 000a DBB2     		uxtb	r3, r3
+ 217 000c 03F07F03 		and	r3, r3, #127
+ 218 0010 DBB2     		uxtb	r3, r3
+ 219 0012 1370     		strb	r3, [r2]
+ 213:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (!QD_Cnt16_ControlRegRemoved || QD_Cnt16_UsingFixedFunction) */
+ 214:Generated_Source\PSoC5/QD_Cnt16.c ****     
+ 215:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Globally disable the Fixed Function Block chosen */
+ 216:Generated_Source\PSoC5/QD_Cnt16.c ****     #if (QD_Cnt16_UsingFixedFunction)
+ 217:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_GLOBAL_ENABLE &= ((uint8)(~QD_Cnt16_BLOCK_EN_MASK));
+ 218:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_GLOBAL_STBY_ENABLE &= ((uint8)(~QD_Cnt16_BLOCK_STBY_EN_MASK));
+ 219:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 220:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 220              		.loc 1 220 0
+ 221 0014 BD46     		mov	sp, r7
+ 222              		.cfi_def_cfa_register 13
+ 223              		@ sp needed
+ 224 0016 5DF8047B 		ldr	r7, [sp], #4
+ 225              		.cfi_restore 7
+ 226              		.cfi_def_cfa_offset 0
+ 227 001a 7047     		bx	lr
+ 228              	.L13:
+ 229              		.align	2
+ 230              	.L12:
+ 231 001c 77640040 		.word	1073767543
+ 232              		.cfi_endproc
+ 233              	.LFE3:
+ 234              		.size	QD_Cnt16_Stop, .-QD_Cnt16_Stop
+ 235              		.section	.text.QD_Cnt16_SetInterruptMode,"ax",%progbits
+ 236              		.align	2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 9
+
+
+ 237              		.global	QD_Cnt16_SetInterruptMode
+ 238              		.thumb
+ 239              		.thumb_func
+ 240              		.type	QD_Cnt16_SetInterruptMode, %function
+ 241              	QD_Cnt16_SetInterruptMode:
+ 242              	.LFB4:
+ 221:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 222:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 223:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 224:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_SetInterruptMode
+ 225:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 226:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 227:Generated_Source\PSoC5/QD_Cnt16.c **** * Configures which interrupt sources are enabled to generate the final interrupt
+ 228:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 229:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 230:Generated_Source\PSoC5/QD_Cnt16.c **** *  InterruptsMask: This parameter is an or'd collection of the status bits
+ 231:Generated_Source\PSoC5/QD_Cnt16.c **** *                   which will be allowed to generate the counters interrupt.   
+ 232:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 233:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 234:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 235:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 236:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 237:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_SetInterruptMode(uint8 interruptsMask) 
+ 238:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 243              		.loc 1 238 0
+ 244              		.cfi_startproc
+ 245              		@ args = 0, pretend = 0, frame = 8
+ 246              		@ frame_needed = 1, uses_anonymous_args = 0
+ 247              		@ link register save eliminated.
+ 248 0000 80B4     		push	{r7}
+ 249              		.cfi_def_cfa_offset 4
+ 250              		.cfi_offset 7, -4
+ 251 0002 83B0     		sub	sp, sp, #12
+ 252              		.cfi_def_cfa_offset 16
+ 253 0004 00AF     		add	r7, sp, #0
+ 254              		.cfi_def_cfa_register 7
+ 255 0006 0346     		mov	r3, r0
+ 256 0008 FB71     		strb	r3, [r7, #7]
+ 239:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_STATUS_MASK = interruptsMask;
+ 257              		.loc 1 239 0
+ 258 000a 044A     		ldr	r2, .L15
+ 259 000c FB79     		ldrb	r3, [r7, #7]
+ 260 000e 1370     		strb	r3, [r2]
+ 240:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 261              		.loc 1 240 0
+ 262 0010 0C37     		adds	r7, r7, #12
+ 263              		.cfi_def_cfa_offset 4
+ 264 0012 BD46     		mov	sp, r7
+ 265              		.cfi_def_cfa_register 13
+ 266              		@ sp needed
+ 267 0014 5DF8047B 		ldr	r7, [sp], #4
+ 268              		.cfi_restore 7
+ 269              		.cfi_def_cfa_offset 0
+ 270 0018 7047     		bx	lr
+ 271              	.L16:
+ 272 001a 00BF     		.align	2
+ 273              	.L15:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 10
+
+
+ 274 001c 87640040 		.word	1073767559
+ 275              		.cfi_endproc
+ 276              	.LFE4:
+ 277              		.size	QD_Cnt16_SetInterruptMode, .-QD_Cnt16_SetInterruptMode
+ 278              		.section	.text.QD_Cnt16_ReadStatusRegister,"ax",%progbits
+ 279              		.align	2
+ 280              		.global	QD_Cnt16_ReadStatusRegister
+ 281              		.thumb
+ 282              		.thumb_func
+ 283              		.type	QD_Cnt16_ReadStatusRegister, %function
+ 284              	QD_Cnt16_ReadStatusRegister:
+ 285              	.LFB5:
+ 241:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 242:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 243:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 244:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ReadStatusRegister
+ 245:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 246:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 247:Generated_Source\PSoC5/QD_Cnt16.c **** *   Reads the status register and returns it's state. This function should use
+ 248:Generated_Source\PSoC5/QD_Cnt16.c **** *       defined types for the bit-field information as the bits in this
+ 249:Generated_Source\PSoC5/QD_Cnt16.c **** *       register may be permuteable.
+ 250:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 251:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 252:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 253:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 254:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 255:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint8) The contents of the status register
+ 256:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 257:Generated_Source\PSoC5/QD_Cnt16.c **** * Side Effects:
+ 258:Generated_Source\PSoC5/QD_Cnt16.c **** *   Status register bits may be clear on read. 
+ 259:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 260:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 261:Generated_Source\PSoC5/QD_Cnt16.c **** uint8   QD_Cnt16_ReadStatusRegister(void) 
+ 262:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 286              		.loc 1 262 0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 1, uses_anonymous_args = 0
+ 290              		@ link register save eliminated.
+ 291 0000 80B4     		push	{r7}
+ 292              		.cfi_def_cfa_offset 4
+ 293              		.cfi_offset 7, -4
+ 294 0002 00AF     		add	r7, sp, #0
+ 295              		.cfi_def_cfa_register 7
+ 263:Generated_Source\PSoC5/QD_Cnt16.c ****     return QD_Cnt16_STATUS;
+ 296              		.loc 1 263 0
+ 297 0004 034B     		ldr	r3, .L19
+ 298 0006 1B78     		ldrb	r3, [r3]
+ 299 0008 DBB2     		uxtb	r3, r3
+ 264:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 300              		.loc 1 264 0
+ 301 000a 1846     		mov	r0, r3
+ 302 000c BD46     		mov	sp, r7
+ 303              		.cfi_def_cfa_register 13
+ 304              		@ sp needed
+ 305 000e 5DF8047B 		ldr	r7, [sp], #4
+ 306              		.cfi_restore 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 11
+
+
+ 307              		.cfi_def_cfa_offset 0
+ 308 0012 7047     		bx	lr
+ 309              	.L20:
+ 310              		.align	2
+ 311              	.L19:
+ 312 0014 67640040 		.word	1073767527
+ 313              		.cfi_endproc
+ 314              	.LFE5:
+ 315              		.size	QD_Cnt16_ReadStatusRegister, .-QD_Cnt16_ReadStatusRegister
+ 316              		.section	.text.QD_Cnt16_ReadControlRegister,"ax",%progbits
+ 317              		.align	2
+ 318              		.global	QD_Cnt16_ReadControlRegister
+ 319              		.thumb
+ 320              		.thumb_func
+ 321              		.type	QD_Cnt16_ReadControlRegister, %function
+ 322              	QD_Cnt16_ReadControlRegister:
+ 323              	.LFB6:
+ 265:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 266:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 267:Generated_Source\PSoC5/QD_Cnt16.c **** #if(!QD_Cnt16_ControlRegRemoved)
+ 268:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 269:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ReadControlRegister
+ 270:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 271:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 272:Generated_Source\PSoC5/QD_Cnt16.c **** *   Reads the control register and returns it's state. This function should use
+ 273:Generated_Source\PSoC5/QD_Cnt16.c **** *       defined types for the bit-field information as the bits in this
+ 274:Generated_Source\PSoC5/QD_Cnt16.c **** *       register may be permuteable.
+ 275:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 276:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 277:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 278:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 279:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 280:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint8) The contents of the control register
+ 281:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 282:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 283:Generated_Source\PSoC5/QD_Cnt16.c **** uint8   QD_Cnt16_ReadControlRegister(void) 
+ 284:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 324              		.loc 1 284 0
+ 325              		.cfi_startproc
+ 326              		@ args = 0, pretend = 0, frame = 0
+ 327              		@ frame_needed = 1, uses_anonymous_args = 0
+ 328              		@ link register save eliminated.
+ 329 0000 80B4     		push	{r7}
+ 330              		.cfi_def_cfa_offset 4
+ 331              		.cfi_offset 7, -4
+ 332 0002 00AF     		add	r7, sp, #0
+ 333              		.cfi_def_cfa_register 7
+ 285:Generated_Source\PSoC5/QD_Cnt16.c ****     return QD_Cnt16_CONTROL;
+ 334              		.loc 1 285 0
+ 335 0004 034B     		ldr	r3, .L23
+ 336 0006 1B78     		ldrb	r3, [r3]
+ 337 0008 DBB2     		uxtb	r3, r3
+ 286:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 338              		.loc 1 286 0
+ 339 000a 1846     		mov	r0, r3
+ 340 000c BD46     		mov	sp, r7
+ 341              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 12
+
+
+ 342              		@ sp needed
+ 343 000e 5DF8047B 		ldr	r7, [sp], #4
+ 344              		.cfi_restore 7
+ 345              		.cfi_def_cfa_offset 0
+ 346 0012 7047     		bx	lr
+ 347              	.L24:
+ 348              		.align	2
+ 349              	.L23:
+ 350 0014 77640040 		.word	1073767543
+ 351              		.cfi_endproc
+ 352              	.LFE6:
+ 353              		.size	QD_Cnt16_ReadControlRegister, .-QD_Cnt16_ReadControlRegister
+ 354              		.section	.text.QD_Cnt16_WriteControlRegister,"ax",%progbits
+ 355              		.align	2
+ 356              		.global	QD_Cnt16_WriteControlRegister
+ 357              		.thumb
+ 358              		.thumb_func
+ 359              		.type	QD_Cnt16_WriteControlRegister, %function
+ 360              	QD_Cnt16_WriteControlRegister:
+ 361              	.LFB7:
+ 287:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 288:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 289:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 290:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_WriteControlRegister
+ 291:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 292:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 293:Generated_Source\PSoC5/QD_Cnt16.c **** *   Sets the bit-field of the control register.  This function should use
+ 294:Generated_Source\PSoC5/QD_Cnt16.c **** *       defined types for the bit-field information as the bits in this
+ 295:Generated_Source\PSoC5/QD_Cnt16.c **** *       register may be permuteable.
+ 296:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 297:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 298:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 299:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 300:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 301:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint8) The contents of the control register
+ 302:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 303:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 304:Generated_Source\PSoC5/QD_Cnt16.c **** void    QD_Cnt16_WriteControlRegister(uint8 control) 
+ 305:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 362              		.loc 1 305 0
+ 363              		.cfi_startproc
+ 364              		@ args = 0, pretend = 0, frame = 8
+ 365              		@ frame_needed = 1, uses_anonymous_args = 0
+ 366              		@ link register save eliminated.
+ 367 0000 80B4     		push	{r7}
+ 368              		.cfi_def_cfa_offset 4
+ 369              		.cfi_offset 7, -4
+ 370 0002 83B0     		sub	sp, sp, #12
+ 371              		.cfi_def_cfa_offset 16
+ 372 0004 00AF     		add	r7, sp, #0
+ 373              		.cfi_def_cfa_register 7
+ 374 0006 0346     		mov	r3, r0
+ 375 0008 FB71     		strb	r3, [r7, #7]
+ 306:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_CONTROL = control;
+ 376              		.loc 1 306 0
+ 377 000a 044A     		ldr	r2, .L26
+ 378 000c FB79     		ldrb	r3, [r7, #7]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 13
+
+
+ 379 000e 1370     		strb	r3, [r2]
+ 307:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 380              		.loc 1 307 0
+ 381 0010 0C37     		adds	r7, r7, #12
+ 382              		.cfi_def_cfa_offset 4
+ 383 0012 BD46     		mov	sp, r7
+ 384              		.cfi_def_cfa_register 13
+ 385              		@ sp needed
+ 386 0014 5DF8047B 		ldr	r7, [sp], #4
+ 387              		.cfi_restore 7
+ 388              		.cfi_def_cfa_offset 0
+ 389 0018 7047     		bx	lr
+ 390              	.L27:
+ 391 001a 00BF     		.align	2
+ 392              	.L26:
+ 393 001c 77640040 		.word	1073767543
+ 394              		.cfi_endproc
+ 395              	.LFE7:
+ 396              		.size	QD_Cnt16_WriteControlRegister, .-QD_Cnt16_WriteControlRegister
+ 397              		.section	.text.QD_Cnt16_WriteCounter,"ax",%progbits
+ 398              		.align	2
+ 399              		.global	QD_Cnt16_WriteCounter
+ 400              		.thumb
+ 401              		.thumb_func
+ 402              		.type	QD_Cnt16_WriteCounter, %function
+ 403              	QD_Cnt16_WriteCounter:
+ 404              	.LFB8:
+ 308:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 309:Generated_Source\PSoC5/QD_Cnt16.c **** #endif  /* (!QD_Cnt16_ControlRegRemoved) */
+ 310:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 311:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 312:Generated_Source\PSoC5/QD_Cnt16.c **** #if (!(QD_Cnt16_UsingFixedFunction && (CY_PSOC5A)))
+ 313:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 314:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_WriteCounter
+ 315:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 316:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 317:Generated_Source\PSoC5/QD_Cnt16.c **** *   This funtion is used to set the counter to a specific value
+ 318:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 319:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 320:Generated_Source\PSoC5/QD_Cnt16.c **** *  counter:  New counter value. 
+ 321:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 322:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 323:Generated_Source\PSoC5/QD_Cnt16.c **** *  void 
+ 324:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 325:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 326:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_WriteCounter(uint16 counter) \
+ 327:Generated_Source\PSoC5/QD_Cnt16.c ****                                    
+ 328:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 405              		.loc 1 328 0
+ 406              		.cfi_startproc
+ 407              		@ args = 0, pretend = 0, frame = 8
+ 408              		@ frame_needed = 1, uses_anonymous_args = 0
+ 409              		@ link register save eliminated.
+ 410 0000 80B4     		push	{r7}
+ 411              		.cfi_def_cfa_offset 4
+ 412              		.cfi_offset 7, -4
+ 413 0002 83B0     		sub	sp, sp, #12
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 14
+
+
+ 414              		.cfi_def_cfa_offset 16
+ 415 0004 00AF     		add	r7, sp, #0
+ 416              		.cfi_def_cfa_register 7
+ 417 0006 0346     		mov	r3, r0
+ 418 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 329:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 330:Generated_Source\PSoC5/QD_Cnt16.c ****         /* assert if block is already enabled */
+ 331:Generated_Source\PSoC5/QD_Cnt16.c ****         CYASSERT (0u == (QD_Cnt16_GLOBAL_ENABLE & QD_Cnt16_BLOCK_EN_MASK));
+ 332:Generated_Source\PSoC5/QD_Cnt16.c ****         /* If block is disabled, enable it and then write the counter */
+ 333:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_GLOBAL_ENABLE |= QD_Cnt16_BLOCK_EN_MASK;
+ 334:Generated_Source\PSoC5/QD_Cnt16.c ****         CY_SET_REG16(QD_Cnt16_COUNTER_LSB_PTR, (uint16)counter);
+ 335:Generated_Source\PSoC5/QD_Cnt16.c ****         QD_Cnt16_GLOBAL_ENABLE &= ((uint8)(~QD_Cnt16_BLOCK_EN_MASK));
+ 336:Generated_Source\PSoC5/QD_Cnt16.c ****     #else
+ 337:Generated_Source\PSoC5/QD_Cnt16.c ****         CY_SET_REG16(QD_Cnt16_COUNTER_LSB_PTR, counter);
+ 419              		.loc 1 337 0
+ 420 000a 044A     		ldr	r2, .L29
+ 421 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 422 000e 1380     		strh	r3, [r2]	@ movhi
+ 338:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 339:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 423              		.loc 1 339 0
+ 424 0010 0C37     		adds	r7, r7, #12
+ 425              		.cfi_def_cfa_offset 4
+ 426 0012 BD46     		mov	sp, r7
+ 427              		.cfi_def_cfa_register 13
+ 428              		@ sp needed
+ 429 0014 5DF8047B 		ldr	r7, [sp], #4
+ 430              		.cfi_restore 7
+ 431              		.cfi_def_cfa_offset 0
+ 432 0018 7047     		bx	lr
+ 433              	.L30:
+ 434 001a 00BF     		.align	2
+ 435              	.L29:
+ 436 001c 0C680040 		.word	1073768460
+ 437              		.cfi_endproc
+ 438              	.LFE8:
+ 439              		.size	QD_Cnt16_WriteCounter, .-QD_Cnt16_WriteCounter
+ 440              		.section	.text.QD_Cnt16_ReadCounter,"ax",%progbits
+ 441              		.align	2
+ 442              		.global	QD_Cnt16_ReadCounter
+ 443              		.thumb
+ 444              		.thumb_func
+ 445              		.type	QD_Cnt16_ReadCounter, %function
+ 446              	QD_Cnt16_ReadCounter:
+ 447              	.LFB9:
+ 340:Generated_Source\PSoC5/QD_Cnt16.c **** #endif /* (!(QD_Cnt16_UsingFixedFunction && (CY_PSOC5A))) */
+ 341:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 342:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 343:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 344:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ReadCounter
+ 345:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 346:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 347:Generated_Source\PSoC5/QD_Cnt16.c **** * Returns the current value of the counter.  It doesn't matter
+ 348:Generated_Source\PSoC5/QD_Cnt16.c **** * if the counter is enabled or running.
+ 349:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 350:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 351:Generated_Source\PSoC5/QD_Cnt16.c **** *  void:  
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 15
+
+
+ 352:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 353:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 354:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint16) The present value of the counter.
+ 355:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 356:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 357:Generated_Source\PSoC5/QD_Cnt16.c **** uint16 QD_Cnt16_ReadCounter(void) 
+ 358:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 448              		.loc 1 358 0
+ 449              		.cfi_startproc
+ 450              		@ args = 0, pretend = 0, frame = 0
+ 451              		@ frame_needed = 1, uses_anonymous_args = 0
+ 452              		@ link register save eliminated.
+ 453 0000 80B4     		push	{r7}
+ 454              		.cfi_def_cfa_offset 4
+ 455              		.cfi_offset 7, -4
+ 456 0002 00AF     		add	r7, sp, #0
+ 457              		.cfi_def_cfa_register 7
+ 359:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Force capture by reading Accumulator */
+ 360:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Must first do a software capture to be able to read the counter */
+ 361:Generated_Source\PSoC5/QD_Cnt16.c ****     /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 362:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 363:Generated_Source\PSoC5/QD_Cnt16.c **** 		(void)CY_GET_REG16(QD_Cnt16_COUNTER_LSB_PTR);
+ 364:Generated_Source\PSoC5/QD_Cnt16.c **** 	#else
+ 365:Generated_Source\PSoC5/QD_Cnt16.c **** 		(void)CY_GET_REG8(QD_Cnt16_COUNTER_LSB_PTR_8BIT);
+ 458              		.loc 1 365 0
+ 459 0004 044B     		ldr	r3, .L33
+ 460 0006 1B78     		ldrb	r3, [r3]
+ 366:Generated_Source\PSoC5/QD_Cnt16.c **** 	#endif/* (QD_Cnt16_UsingFixedFunction) */
+ 367:Generated_Source\PSoC5/QD_Cnt16.c ****     
+ 368:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
+ 369:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 370:Generated_Source\PSoC5/QD_Cnt16.c ****         return ((uint16)CY_GET_REG16(QD_Cnt16_STATICCOUNT_LSB_PTR));
+ 371:Generated_Source\PSoC5/QD_Cnt16.c ****     #else
+ 372:Generated_Source\PSoC5/QD_Cnt16.c ****         return (CY_GET_REG16(QD_Cnt16_STATICCOUNT_LSB_PTR));
+ 461              		.loc 1 372 0
+ 462 0008 044B     		ldr	r3, .L33+4
+ 463 000a 1B88     		ldrh	r3, [r3]	@ movhi
+ 464 000c 9BB2     		uxth	r3, r3
+ 373:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 374:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 465              		.loc 1 374 0
+ 466 000e 1846     		mov	r0, r3
+ 467 0010 BD46     		mov	sp, r7
+ 468              		.cfi_def_cfa_register 13
+ 469              		@ sp needed
+ 470 0012 5DF8047B 		ldr	r7, [sp], #4
+ 471              		.cfi_restore 7
+ 472              		.cfi_def_cfa_offset 0
+ 473 0016 7047     		bx	lr
+ 474              	.L34:
+ 475              		.align	2
+ 476              	.L33:
+ 477 0018 06640040 		.word	1073767430
+ 478 001c 8C680040 		.word	1073768588
+ 479              		.cfi_endproc
+ 480              	.LFE9:
+ 481              		.size	QD_Cnt16_ReadCounter, .-QD_Cnt16_ReadCounter
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 16
+
+
+ 482              		.section	.text.QD_Cnt16_ReadCapture,"ax",%progbits
+ 483              		.align	2
+ 484              		.global	QD_Cnt16_ReadCapture
+ 485              		.thumb
+ 486              		.thumb_func
+ 487              		.type	QD_Cnt16_ReadCapture, %function
+ 488              	QD_Cnt16_ReadCapture:
+ 489              	.LFB10:
+ 375:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 376:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 377:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 378:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ReadCapture
+ 379:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 380:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 381:Generated_Source\PSoC5/QD_Cnt16.c **** *   This function returns the last value captured.
+ 382:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 383:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 384:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 385:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 386:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 387:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint16) Present Capture value.
+ 388:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 389:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 390:Generated_Source\PSoC5/QD_Cnt16.c **** uint16 QD_Cnt16_ReadCapture(void) 
+ 391:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 490              		.loc 1 391 0
+ 491              		.cfi_startproc
+ 492              		@ args = 0, pretend = 0, frame = 0
+ 493              		@ frame_needed = 1, uses_anonymous_args = 0
+ 494              		@ link register save eliminated.
+ 495 0000 80B4     		push	{r7}
+ 496              		.cfi_def_cfa_offset 4
+ 497              		.cfi_offset 7, -4
+ 498 0002 00AF     		add	r7, sp, #0
+ 499              		.cfi_def_cfa_register 7
+ 392:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 393:Generated_Source\PSoC5/QD_Cnt16.c ****         return ((uint16)CY_GET_REG16(QD_Cnt16_STATICCOUNT_LSB_PTR));
+ 394:Generated_Source\PSoC5/QD_Cnt16.c ****     #else
+ 395:Generated_Source\PSoC5/QD_Cnt16.c ****         return (CY_GET_REG16(QD_Cnt16_STATICCOUNT_LSB_PTR));
+ 500              		.loc 1 395 0
+ 501 0004 034B     		ldr	r3, .L37
+ 502 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 503 0008 9BB2     		uxth	r3, r3
+ 396:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 397:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 504              		.loc 1 397 0
+ 505 000a 1846     		mov	r0, r3
+ 506 000c BD46     		mov	sp, r7
+ 507              		.cfi_def_cfa_register 13
+ 508              		@ sp needed
+ 509 000e 5DF8047B 		ldr	r7, [sp], #4
+ 510              		.cfi_restore 7
+ 511              		.cfi_def_cfa_offset 0
+ 512 0012 7047     		bx	lr
+ 513              	.L38:
+ 514              		.align	2
+ 515              	.L37:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 17
+
+
+ 516 0014 8C680040 		.word	1073768588
+ 517              		.cfi_endproc
+ 518              	.LFE10:
+ 519              		.size	QD_Cnt16_ReadCapture, .-QD_Cnt16_ReadCapture
+ 520              		.section	.text.QD_Cnt16_WritePeriod,"ax",%progbits
+ 521              		.align	2
+ 522              		.global	QD_Cnt16_WritePeriod
+ 523              		.thumb
+ 524              		.thumb_func
+ 525              		.type	QD_Cnt16_WritePeriod, %function
+ 526              	QD_Cnt16_WritePeriod:
+ 527              	.LFB11:
+ 398:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 399:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 400:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 401:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_WritePeriod
+ 402:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 403:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 404:Generated_Source\PSoC5/QD_Cnt16.c **** * Changes the period of the counter.  The new period 
+ 405:Generated_Source\PSoC5/QD_Cnt16.c **** * will be loaded the next time terminal count is detected.
+ 406:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 407:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 408:Generated_Source\PSoC5/QD_Cnt16.c **** *  period: (uint16) A value of 0 will result in
+ 409:Generated_Source\PSoC5/QD_Cnt16.c **** *         the counter remaining at zero.  
+ 410:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 411:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 412:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 413:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 414:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 415:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_WritePeriod(uint16 period) 
+ 416:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 528              		.loc 1 416 0
+ 529              		.cfi_startproc
+ 530              		@ args = 0, pretend = 0, frame = 8
+ 531              		@ frame_needed = 1, uses_anonymous_args = 0
+ 532              		@ link register save eliminated.
+ 533 0000 80B4     		push	{r7}
+ 534              		.cfi_def_cfa_offset 4
+ 535              		.cfi_offset 7, -4
+ 536 0002 83B0     		sub	sp, sp, #12
+ 537              		.cfi_def_cfa_offset 16
+ 538 0004 00AF     		add	r7, sp, #0
+ 539              		.cfi_def_cfa_register 7
+ 540 0006 0346     		mov	r3, r0
+ 541 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 417:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 418:Generated_Source\PSoC5/QD_Cnt16.c ****         CY_SET_REG16(QD_Cnt16_PERIOD_LSB_PTR,(uint16)period);
+ 419:Generated_Source\PSoC5/QD_Cnt16.c ****     #else
+ 420:Generated_Source\PSoC5/QD_Cnt16.c ****         CY_SET_REG16(QD_Cnt16_PERIOD_LSB_PTR, period);
+ 542              		.loc 1 420 0
+ 543 000a 044A     		ldr	r2, .L40
+ 544 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 545 000e 1380     		strh	r3, [r2]	@ movhi
+ 421:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 422:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 546              		.loc 1 422 0
+ 547 0010 0C37     		adds	r7, r7, #12
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 18
+
+
+ 548              		.cfi_def_cfa_offset 4
+ 549 0012 BD46     		mov	sp, r7
+ 550              		.cfi_def_cfa_register 13
+ 551              		@ sp needed
+ 552 0014 5DF8047B 		ldr	r7, [sp], #4
+ 553              		.cfi_restore 7
+ 554              		.cfi_def_cfa_offset 0
+ 555 0018 7047     		bx	lr
+ 556              	.L41:
+ 557 001a 00BF     		.align	2
+ 558              	.L40:
+ 559 001c 4C680040 		.word	1073768524
+ 560              		.cfi_endproc
+ 561              	.LFE11:
+ 562              		.size	QD_Cnt16_WritePeriod, .-QD_Cnt16_WritePeriod
+ 563              		.section	.text.QD_Cnt16_ReadPeriod,"ax",%progbits
+ 564              		.align	2
+ 565              		.global	QD_Cnt16_ReadPeriod
+ 566              		.thumb
+ 567              		.thumb_func
+ 568              		.type	QD_Cnt16_ReadPeriod, %function
+ 569              	QD_Cnt16_ReadPeriod:
+ 570              	.LFB12:
+ 423:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 424:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 425:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 426:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ReadPeriod
+ 427:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 428:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 429:Generated_Source\PSoC5/QD_Cnt16.c **** * Reads the current period value without affecting counter operation.
+ 430:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 431:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 432:Generated_Source\PSoC5/QD_Cnt16.c **** *  void:  
+ 433:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 434:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 435:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint16) Present period value.
+ 436:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 437:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 438:Generated_Source\PSoC5/QD_Cnt16.c **** uint16 QD_Cnt16_ReadPeriod(void) 
+ 439:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 571              		.loc 1 439 0
+ 572              		.cfi_startproc
+ 573              		@ args = 0, pretend = 0, frame = 0
+ 574              		@ frame_needed = 1, uses_anonymous_args = 0
+ 575              		@ link register save eliminated.
+ 576 0000 80B4     		push	{r7}
+ 577              		.cfi_def_cfa_offset 4
+ 578              		.cfi_offset 7, -4
+ 579 0002 00AF     		add	r7, sp, #0
+ 580              		.cfi_def_cfa_register 7
+ 440:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 441:Generated_Source\PSoC5/QD_Cnt16.c ****         return ((uint16)CY_GET_REG16(QD_Cnt16_PERIOD_LSB_PTR));
+ 442:Generated_Source\PSoC5/QD_Cnt16.c ****     #else
+ 443:Generated_Source\PSoC5/QD_Cnt16.c ****         return (CY_GET_REG16(QD_Cnt16_PERIOD_LSB_PTR));
+ 581              		.loc 1 443 0
+ 582 0004 034B     		ldr	r3, .L44
+ 583 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 19
+
+
+ 584 0008 9BB2     		uxth	r3, r3
+ 444:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 445:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 585              		.loc 1 445 0
+ 586 000a 1846     		mov	r0, r3
+ 587 000c BD46     		mov	sp, r7
+ 588              		.cfi_def_cfa_register 13
+ 589              		@ sp needed
+ 590 000e 5DF8047B 		ldr	r7, [sp], #4
+ 591              		.cfi_restore 7
+ 592              		.cfi_def_cfa_offset 0
+ 593 0012 7047     		bx	lr
+ 594              	.L45:
+ 595              		.align	2
+ 596              	.L44:
+ 597 0014 4C680040 		.word	1073768524
+ 598              		.cfi_endproc
+ 599              	.LFE12:
+ 600              		.size	QD_Cnt16_ReadPeriod, .-QD_Cnt16_ReadPeriod
+ 601              		.section	.text.QD_Cnt16_WriteCompare,"ax",%progbits
+ 602              		.align	2
+ 603              		.global	QD_Cnt16_WriteCompare
+ 604              		.thumb
+ 605              		.thumb_func
+ 606              		.type	QD_Cnt16_WriteCompare, %function
+ 607              	QD_Cnt16_WriteCompare:
+ 608              	.LFB13:
+ 446:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 447:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 448:Generated_Source\PSoC5/QD_Cnt16.c **** #if (!QD_Cnt16_UsingFixedFunction)
+ 449:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 450:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_WriteCompare
+ 451:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 452:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 453:Generated_Source\PSoC5/QD_Cnt16.c **** * Changes the compare value.  The compare output will 
+ 454:Generated_Source\PSoC5/QD_Cnt16.c **** * reflect the new value on the next UDB clock.  The compare output will be 
+ 455:Generated_Source\PSoC5/QD_Cnt16.c **** * driven high when the present counter value compares true based on the 
+ 456:Generated_Source\PSoC5/QD_Cnt16.c **** * configured compare mode setting. 
+ 457:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 458:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 459:Generated_Source\PSoC5/QD_Cnt16.c **** *  Compare:  New compare value. 
+ 460:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 461:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 462:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 463:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 464:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 465:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_WriteCompare(uint16 compare) \
+ 466:Generated_Source\PSoC5/QD_Cnt16.c ****                                    
+ 467:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 609              		.loc 1 467 0
+ 610              		.cfi_startproc
+ 611              		@ args = 0, pretend = 0, frame = 8
+ 612              		@ frame_needed = 1, uses_anonymous_args = 0
+ 613              		@ link register save eliminated.
+ 614 0000 80B4     		push	{r7}
+ 615              		.cfi_def_cfa_offset 4
+ 616              		.cfi_offset 7, -4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 20
+
+
+ 617 0002 83B0     		sub	sp, sp, #12
+ 618              		.cfi_def_cfa_offset 16
+ 619 0004 00AF     		add	r7, sp, #0
+ 620              		.cfi_def_cfa_register 7
+ 621 0006 0346     		mov	r3, r0
+ 622 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 468:Generated_Source\PSoC5/QD_Cnt16.c ****     #if(QD_Cnt16_UsingFixedFunction)
+ 469:Generated_Source\PSoC5/QD_Cnt16.c ****         CY_SET_REG16(QD_Cnt16_COMPARE_LSB_PTR, (uint16)compare);
+ 470:Generated_Source\PSoC5/QD_Cnt16.c ****     #else
+ 471:Generated_Source\PSoC5/QD_Cnt16.c ****         CY_SET_REG16(QD_Cnt16_COMPARE_LSB_PTR, compare);
+ 623              		.loc 1 471 0
+ 624 000a 044A     		ldr	r2, .L47
+ 625 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 626 000e 1380     		strh	r3, [r2]	@ movhi
+ 472:Generated_Source\PSoC5/QD_Cnt16.c ****     #endif /* (QD_Cnt16_UsingFixedFunction) */
+ 473:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 627              		.loc 1 473 0
+ 628 0010 0C37     		adds	r7, r7, #12
+ 629              		.cfi_def_cfa_offset 4
+ 630 0012 BD46     		mov	sp, r7
+ 631              		.cfi_def_cfa_register 13
+ 632              		@ sp needed
+ 633 0014 5DF8047B 		ldr	r7, [sp], #4
+ 634              		.cfi_restore 7
+ 635              		.cfi_def_cfa_offset 0
+ 636 0018 7047     		bx	lr
+ 637              	.L48:
+ 638 001a 00BF     		.align	2
+ 639              	.L47:
+ 640 001c 6C680040 		.word	1073768556
+ 641              		.cfi_endproc
+ 642              	.LFE13:
+ 643              		.size	QD_Cnt16_WriteCompare, .-QD_Cnt16_WriteCompare
+ 644              		.section	.text.QD_Cnt16_ReadCompare,"ax",%progbits
+ 645              		.align	2
+ 646              		.global	QD_Cnt16_ReadCompare
+ 647              		.thumb
+ 648              		.thumb_func
+ 649              		.type	QD_Cnt16_ReadCompare, %function
+ 650              	QD_Cnt16_ReadCompare:
+ 651              	.LFB14:
+ 474:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 475:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 476:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 477:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ReadCompare
+ 478:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 479:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 480:Generated_Source\PSoC5/QD_Cnt16.c **** * Returns the compare value.
+ 481:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 482:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 483:Generated_Source\PSoC5/QD_Cnt16.c **** *  void:
+ 484:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 485:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 486:Generated_Source\PSoC5/QD_Cnt16.c **** *  (uint16) Present compare value.
+ 487:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 488:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 489:Generated_Source\PSoC5/QD_Cnt16.c **** uint16 QD_Cnt16_ReadCompare(void) 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 21
+
+
+ 490:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 652              		.loc 1 490 0
+ 653              		.cfi_startproc
+ 654              		@ args = 0, pretend = 0, frame = 0
+ 655              		@ frame_needed = 1, uses_anonymous_args = 0
+ 656              		@ link register save eliminated.
+ 657 0000 80B4     		push	{r7}
+ 658              		.cfi_def_cfa_offset 4
+ 659              		.cfi_offset 7, -4
+ 660 0002 00AF     		add	r7, sp, #0
+ 661              		.cfi_def_cfa_register 7
+ 491:Generated_Source\PSoC5/QD_Cnt16.c ****     return (CY_GET_REG16(QD_Cnt16_COMPARE_LSB_PTR));
+ 662              		.loc 1 491 0
+ 663 0004 034B     		ldr	r3, .L51
+ 664 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 665 0008 9BB2     		uxth	r3, r3
+ 492:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 666              		.loc 1 492 0
+ 667 000a 1846     		mov	r0, r3
+ 668 000c BD46     		mov	sp, r7
+ 669              		.cfi_def_cfa_register 13
+ 670              		@ sp needed
+ 671 000e 5DF8047B 		ldr	r7, [sp], #4
+ 672              		.cfi_restore 7
+ 673              		.cfi_def_cfa_offset 0
+ 674 0012 7047     		bx	lr
+ 675              	.L52:
+ 676              		.align	2
+ 677              	.L51:
+ 678 0014 6C680040 		.word	1073768556
+ 679              		.cfi_endproc
+ 680              	.LFE14:
+ 681              		.size	QD_Cnt16_ReadCompare, .-QD_Cnt16_ReadCompare
+ 682              		.section	.text.QD_Cnt16_ClearFIFO,"ax",%progbits
+ 683              		.align	2
+ 684              		.global	QD_Cnt16_ClearFIFO
+ 685              		.thumb
+ 686              		.thumb_func
+ 687              		.type	QD_Cnt16_ClearFIFO, %function
+ 688              	QD_Cnt16_ClearFIFO:
+ 689              	.LFB15:
+ 493:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 494:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 495:Generated_Source\PSoC5/QD_Cnt16.c **** #if (QD_Cnt16_COMPARE_MODE_SOFTWARE)
+ 496:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 497:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_SetCompareMode
+ 498:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 499:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 500:Generated_Source\PSoC5/QD_Cnt16.c **** *  Sets the software controlled Compare Mode.
+ 501:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 502:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:
+ 503:Generated_Source\PSoC5/QD_Cnt16.c **** *  compareMode:  Compare Mode Enumerated Type.
+ 504:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 505:Generated_Source\PSoC5/QD_Cnt16.c **** * Return:
+ 506:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 507:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 508:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 22
+
+
+ 509:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_SetCompareMode(uint8 compareMode) 
+ 510:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 511:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Clear the compare mode bits in the control register */
+ 512:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_CONTROL &= ((uint8)(~QD_Cnt16_CTRL_CMPMODE_MASK));
+ 513:Generated_Source\PSoC5/QD_Cnt16.c ****     
+ 514:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Write the new setting */
+ 515:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_CONTROL |= compareMode;
+ 516:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 517:Generated_Source\PSoC5/QD_Cnt16.c **** #endif  /* (QD_Cnt16_COMPARE_MODE_SOFTWARE) */
+ 518:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 519:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 520:Generated_Source\PSoC5/QD_Cnt16.c **** #if (QD_Cnt16_CAPTURE_MODE_SOFTWARE)
+ 521:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 522:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_SetCaptureMode
+ 523:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 524:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 525:Generated_Source\PSoC5/QD_Cnt16.c **** *  Sets the software controlled Capture Mode.
+ 526:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 527:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:
+ 528:Generated_Source\PSoC5/QD_Cnt16.c **** *  captureMode:  Capture Mode Enumerated Type.
+ 529:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 530:Generated_Source\PSoC5/QD_Cnt16.c **** * Return:
+ 531:Generated_Source\PSoC5/QD_Cnt16.c **** *  void
+ 532:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 533:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 534:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_SetCaptureMode(uint8 captureMode) 
+ 535:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 536:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Clear the capture mode bits in the control register */
+ 537:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_CONTROL &= ((uint8)(~QD_Cnt16_CTRL_CAPMODE_MASK));
+ 538:Generated_Source\PSoC5/QD_Cnt16.c ****     
+ 539:Generated_Source\PSoC5/QD_Cnt16.c ****     /* Write the new setting */
+ 540:Generated_Source\PSoC5/QD_Cnt16.c ****     QD_Cnt16_CONTROL |= ((uint8)((uint8)captureMode << QD_Cnt16_CTRL_CAPMODE0_SHIFT));
+ 541:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 542:Generated_Source\PSoC5/QD_Cnt16.c **** #endif  /* (QD_Cnt16_CAPTURE_MODE_SOFTWARE) */
+ 543:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 544:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 545:Generated_Source\PSoC5/QD_Cnt16.c **** /*******************************************************************************
+ 546:Generated_Source\PSoC5/QD_Cnt16.c **** * Function Name: QD_Cnt16_ClearFIFO
+ 547:Generated_Source\PSoC5/QD_Cnt16.c **** ********************************************************************************
+ 548:Generated_Source\PSoC5/QD_Cnt16.c **** * Summary:
+ 549:Generated_Source\PSoC5/QD_Cnt16.c **** *   This function clears all capture data from the capture FIFO
+ 550:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 551:Generated_Source\PSoC5/QD_Cnt16.c **** * Parameters:  
+ 552:Generated_Source\PSoC5/QD_Cnt16.c **** *  void:
+ 553:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 554:Generated_Source\PSoC5/QD_Cnt16.c **** * Return: 
+ 555:Generated_Source\PSoC5/QD_Cnt16.c **** *  None
+ 556:Generated_Source\PSoC5/QD_Cnt16.c **** *
+ 557:Generated_Source\PSoC5/QD_Cnt16.c **** *******************************************************************************/
+ 558:Generated_Source\PSoC5/QD_Cnt16.c **** void QD_Cnt16_ClearFIFO(void) 
+ 559:Generated_Source\PSoC5/QD_Cnt16.c **** {
+ 690              		.loc 1 559 0
+ 691              		.cfi_startproc
+ 692              		@ args = 0, pretend = 0, frame = 0
+ 693              		@ frame_needed = 1, uses_anonymous_args = 0
+ 694 0000 80B5     		push	{r7, lr}
+ 695              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 23
+
+
+ 696              		.cfi_offset 7, -8
+ 697              		.cfi_offset 14, -4
+ 698 0002 00AF     		add	r7, sp, #0
+ 699              		.cfi_def_cfa_register 7
+ 560:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 561:Generated_Source\PSoC5/QD_Cnt16.c ****     while(0u != (QD_Cnt16_ReadStatusRegister() & QD_Cnt16_STATUS_FIFONEMP))
+ 700              		.loc 1 561 0
+ 701 0004 01E0     		b	.L54
+ 702              	.L55:
+ 562:Generated_Source\PSoC5/QD_Cnt16.c ****     {
+ 563:Generated_Source\PSoC5/QD_Cnt16.c ****         (void)QD_Cnt16_ReadCapture();
+ 703              		.loc 1 563 0
+ 704 0006 FFF7FEFF 		bl	QD_Cnt16_ReadCapture
+ 705              	.L54:
+ 561:Generated_Source\PSoC5/QD_Cnt16.c ****     {
+ 706              		.loc 1 561 0
+ 707 000a FFF7FEFF 		bl	QD_Cnt16_ReadStatusRegister
+ 708 000e 0346     		mov	r3, r0
+ 709 0010 03F04003 		and	r3, r3, #64
+ 710 0014 002B     		cmp	r3, #0
+ 711 0016 F6D1     		bne	.L55
+ 564:Generated_Source\PSoC5/QD_Cnt16.c ****     }
+ 565:Generated_Source\PSoC5/QD_Cnt16.c **** 
+ 566:Generated_Source\PSoC5/QD_Cnt16.c **** }
+ 712              		.loc 1 566 0
+ 713 0018 80BD     		pop	{r7, pc}
+ 714              		.cfi_endproc
+ 715              	.LFE15:
+ 716              		.size	QD_Cnt16_ClearFIFO, .-QD_Cnt16_ClearFIFO
+ 717 001a 00BF     		.text
+ 718              	.Letext0:
+ 719              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 720              		.section	.debug_info,"",%progbits
+ 721              	.Ldebug_info0:
+ 722 0000 84020000 		.4byte	0x284
+ 723 0004 0400     		.2byte	0x4
+ 724 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 725 000a 04       		.byte	0x4
+ 726 000b 01       		.uleb128 0x1
+ 727 000c 79000000 		.4byte	.LASF40
+ 728 0010 01       		.byte	0x1
+ 729 0011 A6010000 		.4byte	.LASF41
+ 730 0015 E5010000 		.4byte	.LASF42
+ 731 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 732 001d 00000000 		.4byte	0
+ 733 0021 00000000 		.4byte	.Ldebug_line0
+ 734 0025 02       		.uleb128 0x2
+ 735 0026 01       		.byte	0x1
+ 736 0027 06       		.byte	0x6
+ 737 0028 1C030000 		.4byte	.LASF0
+ 738 002c 02       		.uleb128 0x2
+ 739 002d 01       		.byte	0x1
+ 740 002e 08       		.byte	0x8
+ 741 002f C8010000 		.4byte	.LASF1
+ 742 0033 02       		.uleb128 0x2
+ 743 0034 02       		.byte	0x2
+ 744 0035 05       		.byte	0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 24
+
+
+ 745 0036 DE020000 		.4byte	.LASF2
+ 746 003a 02       		.uleb128 0x2
+ 747 003b 02       		.byte	0x2
+ 748 003c 07       		.byte	0x7
+ 749 003d 30030000 		.4byte	.LASF3
+ 750 0041 02       		.uleb128 0x2
+ 751 0042 04       		.byte	0x4
+ 752 0043 05       		.byte	0x5
+ 753 0044 13030000 		.4byte	.LASF4
+ 754 0048 02       		.uleb128 0x2
+ 755 0049 04       		.byte	0x4
+ 756 004a 07       		.byte	0x7
+ 757 004b 62010000 		.4byte	.LASF5
+ 758 004f 02       		.uleb128 0x2
+ 759 0050 08       		.byte	0x8
+ 760 0051 05       		.byte	0x5
+ 761 0052 B6020000 		.4byte	.LASF6
+ 762 0056 02       		.uleb128 0x2
+ 763 0057 08       		.byte	0x8
+ 764 0058 07       		.byte	0x7
+ 765 0059 56020000 		.4byte	.LASF7
+ 766 005d 03       		.uleb128 0x3
+ 767 005e 04       		.byte	0x4
+ 768 005f 05       		.byte	0x5
+ 769 0060 696E7400 		.ascii	"int\000"
+ 770 0064 02       		.uleb128 0x2
+ 771 0065 04       		.byte	0x4
+ 772 0066 07       		.byte	0x7
+ 773 0067 49020000 		.4byte	.LASF8
+ 774 006b 04       		.uleb128 0x4
+ 775 006c 74010000 		.4byte	.LASF9
+ 776 0070 02       		.byte	0x2
+ 777 0071 C2       		.byte	0xc2
+ 778 0072 2C000000 		.4byte	0x2c
+ 779 0076 04       		.uleb128 0x4
+ 780 0077 20020000 		.4byte	.LASF10
+ 781 007b 02       		.byte	0x2
+ 782 007c C3       		.byte	0xc3
+ 783 007d 3A000000 		.4byte	0x3a
+ 784 0081 02       		.uleb128 0x2
+ 785 0082 04       		.byte	0x4
+ 786 0083 04       		.byte	0x4
+ 787 0084 1D010000 		.4byte	.LASF11
+ 788 0088 02       		.uleb128 0x2
+ 789 0089 08       		.byte	0x8
+ 790 008a 04       		.byte	0x4
+ 791 008b DE010000 		.4byte	.LASF12
+ 792 008f 02       		.uleb128 0x2
+ 793 0090 01       		.byte	0x1
+ 794 0091 08       		.byte	0x8
+ 795 0092 C4020000 		.4byte	.LASF13
+ 796 0096 05       		.uleb128 0x5
+ 797 0097 5D010000 		.4byte	.LASF14
+ 798 009b 02       		.byte	0x2
+ 799 009c 6C01     		.2byte	0x16c
+ 800 009e A2000000 		.4byte	0xa2
+ 801 00a2 06       		.uleb128 0x6
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 25
+
+
+ 802 00a3 6B000000 		.4byte	0x6b
+ 803 00a7 05       		.uleb128 0x5
+ 804 00a8 00000000 		.4byte	.LASF15
+ 805 00ac 02       		.byte	0x2
+ 806 00ad 6D01     		.2byte	0x16d
+ 807 00af B3000000 		.4byte	0xb3
+ 808 00b3 06       		.uleb128 0x6
+ 809 00b4 76000000 		.4byte	0x76
+ 810 00b8 02       		.uleb128 0x2
+ 811 00b9 04       		.byte	0x4
+ 812 00ba 07       		.byte	0x7
+ 813 00bb AD020000 		.4byte	.LASF16
+ 814 00bf 07       		.uleb128 0x7
+ 815 00c0 43030000 		.4byte	.LASF22
+ 816 00c4 01       		.byte	0x1
+ 817 00c5 25       		.byte	0x25
+ 818 00c6 00000000 		.4byte	.LFB0
+ 819 00ca 80000000 		.4byte	.LFE0-.LFB0
+ 820 00ce 01       		.uleb128 0x1
+ 821 00cf 9C       		.byte	0x9c
+ 822 00d0 F1000000 		.4byte	0xf1
+ 823 00d4 08       		.uleb128 0x8
+ 824 00d5 8B020000 		.4byte	.LASF17
+ 825 00d9 01       		.byte	0x1
+ 826 00da 28       		.byte	0x28
+ 827 00db 6B000000 		.4byte	0x6b
+ 828 00df 02       		.uleb128 0x2
+ 829 00e0 91       		.byte	0x91
+ 830 00e1 77       		.sleb128 -9
+ 831 00e2 08       		.uleb128 0x8
+ 832 00e3 5A000000 		.4byte	.LASF18
+ 833 00e7 01       		.byte	0x1
+ 834 00e8 2D       		.byte	0x2d
+ 835 00e9 6B000000 		.4byte	0x6b
+ 836 00ed 02       		.uleb128 0x2
+ 837 00ee 91       		.byte	0x91
+ 838 00ef 76       		.sleb128 -10
+ 839 00f0 00       		.byte	0
+ 840 00f1 09       		.uleb128 0x9
+ 841 00f2 7B020000 		.4byte	.LASF19
+ 842 00f6 01       		.byte	0x1
+ 843 00f7 8F       		.byte	0x8f
+ 844 00f8 00000000 		.4byte	.LFB1
+ 845 00fc 20000000 		.4byte	.LFE1-.LFB1
+ 846 0100 01       		.uleb128 0x1
+ 847 0101 9C       		.byte	0x9c
+ 848 0102 0A       		.uleb128 0xa
+ 849 0103 3A020000 		.4byte	.LASF20
+ 850 0107 01       		.byte	0x1
+ 851 0108 B2       		.byte	0xb2
+ 852 0109 00000000 		.4byte	.LFB2
+ 853 010d 20000000 		.4byte	.LFE2-.LFB2
+ 854 0111 01       		.uleb128 0x1
+ 855 0112 9C       		.byte	0x9c
+ 856 0113 09       		.uleb128 0x9
+ 857 0114 6D020000 		.4byte	.LASF21
+ 858 0118 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 26
+
+
+ 859 0119 D0       		.byte	0xd0
+ 860 011a 00000000 		.4byte	.LFB3
+ 861 011e 20000000 		.4byte	.LFE3-.LFB3
+ 862 0122 01       		.uleb128 0x1
+ 863 0123 9C       		.byte	0x9c
+ 864 0124 0B       		.uleb128 0xb
+ 865 0125 06000000 		.4byte	.LASF23
+ 866 0129 01       		.byte	0x1
+ 867 012a ED       		.byte	0xed
+ 868 012b 00000000 		.4byte	.LFB4
+ 869 012f 20000000 		.4byte	.LFE4-.LFB4
+ 870 0133 01       		.uleb128 0x1
+ 871 0134 9C       		.byte	0x9c
+ 872 0135 48010000 		.4byte	0x148
+ 873 0139 0C       		.uleb128 0xc
+ 874 013a 82010000 		.4byte	.LASF27
+ 875 013e 01       		.byte	0x1
+ 876 013f ED       		.byte	0xed
+ 877 0140 6B000000 		.4byte	0x6b
+ 878 0144 02       		.uleb128 0x2
+ 879 0145 91       		.byte	0x91
+ 880 0146 77       		.sleb128 -9
+ 881 0147 00       		.byte	0
+ 882 0148 0D       		.uleb128 0xd
+ 883 0149 41010000 		.4byte	.LASF24
+ 884 014d 01       		.byte	0x1
+ 885 014e 0501     		.2byte	0x105
+ 886 0150 6B000000 		.4byte	0x6b
+ 887 0154 00000000 		.4byte	.LFB5
+ 888 0158 18000000 		.4byte	.LFE5-.LFB5
+ 889 015c 01       		.uleb128 0x1
+ 890 015d 9C       		.byte	0x9c
+ 891 015e 0D       		.uleb128 0xd
+ 892 015f 90020000 		.4byte	.LASF25
+ 893 0163 01       		.byte	0x1
+ 894 0164 1B01     		.2byte	0x11b
+ 895 0166 6B000000 		.4byte	0x6b
+ 896 016a 00000000 		.4byte	.LFB6
+ 897 016e 18000000 		.4byte	.LFE6-.LFB6
+ 898 0172 01       		.uleb128 0x1
+ 899 0173 9C       		.byte	0x9c
+ 900 0174 0E       		.uleb128 0xe
+ 901 0175 23010000 		.4byte	.LASF26
+ 902 0179 01       		.byte	0x1
+ 903 017a 3001     		.2byte	0x130
+ 904 017c 00000000 		.4byte	.LFB7
+ 905 0180 20000000 		.4byte	.LFE7-.LFB7
+ 906 0184 01       		.uleb128 0x1
+ 907 0185 9C       		.byte	0x9c
+ 908 0186 9A010000 		.4byte	0x19a
+ 909 018a 0F       		.uleb128 0xf
+ 910 018b 7A010000 		.4byte	.LASF28
+ 911 018f 01       		.byte	0x1
+ 912 0190 3001     		.2byte	0x130
+ 913 0192 6B000000 		.4byte	0x6b
+ 914 0196 02       		.uleb128 0x2
+ 915 0197 91       		.byte	0x91
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 27
+
+
+ 916 0198 77       		.sleb128 -9
+ 917 0199 00       		.byte	0
+ 918 019a 0E       		.uleb128 0xe
+ 919 019b 07010000 		.4byte	.LASF29
+ 920 019f 01       		.byte	0x1
+ 921 01a0 4601     		.2byte	0x146
+ 922 01a2 00000000 		.4byte	.LFB8
+ 923 01a6 20000000 		.4byte	.LFE8-.LFB8
+ 924 01aa 01       		.uleb128 0x1
+ 925 01ab 9C       		.byte	0x9c
+ 926 01ac C0010000 		.4byte	0x1c0
+ 927 01b0 0F       		.uleb128 0xf
+ 928 01b1 D6010000 		.4byte	.LASF30
+ 929 01b5 01       		.byte	0x1
+ 930 01b6 4601     		.2byte	0x146
+ 931 01b8 76000000 		.4byte	0x76
+ 932 01bc 02       		.uleb128 0x2
+ 933 01bd 91       		.byte	0x91
+ 934 01be 76       		.sleb128 -10
+ 935 01bf 00       		.byte	0
+ 936 01c0 0D       		.uleb128 0xd
+ 937 01c1 31000000 		.4byte	.LASF31
+ 938 01c5 01       		.byte	0x1
+ 939 01c6 6501     		.2byte	0x165
+ 940 01c8 76000000 		.4byte	0x76
+ 941 01cc 00000000 		.4byte	.LFB9
+ 942 01d0 20000000 		.4byte	.LFE9-.LFB9
+ 943 01d4 01       		.uleb128 0x1
+ 944 01d5 9C       		.byte	0x9c
+ 945 01d6 0D       		.uleb128 0xd
+ 946 01d7 FE020000 		.4byte	.LASF32
+ 947 01db 01       		.byte	0x1
+ 948 01dc 8601     		.2byte	0x186
+ 949 01de 76000000 		.4byte	0x76
+ 950 01e2 00000000 		.4byte	.LFB10
+ 951 01e6 18000000 		.4byte	.LFE10-.LFB10
+ 952 01ea 01       		.uleb128 0x1
+ 953 01eb 9C       		.byte	0x9c
+ 954 01ec 0E       		.uleb128 0xe
+ 955 01ed C9020000 		.4byte	.LASF33
+ 956 01f1 01       		.byte	0x1
+ 957 01f2 9F01     		.2byte	0x19f
+ 958 01f4 00000000 		.4byte	.LFB11
+ 959 01f8 20000000 		.4byte	.LFE11-.LFB11
+ 960 01fc 01       		.uleb128 0x1
+ 961 01fd 9C       		.byte	0x9c
+ 962 01fe 12020000 		.4byte	0x212
+ 963 0202 0F       		.uleb128 0xf
+ 964 0203 72000000 		.4byte	.LASF34
+ 965 0207 01       		.byte	0x1
+ 966 0208 9F01     		.2byte	0x19f
+ 967 020a 76000000 		.4byte	0x76
+ 968 020e 02       		.uleb128 0x2
+ 969 020f 91       		.byte	0x91
+ 970 0210 76       		.sleb128 -10
+ 971 0211 00       		.byte	0
+ 972 0212 0D       		.uleb128 0xd
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 28
+
+
+ 973 0213 46000000 		.4byte	.LASF35
+ 974 0217 01       		.byte	0x1
+ 975 0218 B601     		.2byte	0x1b6
+ 976 021a 76000000 		.4byte	0x76
+ 977 021e 00000000 		.4byte	.LFB12
+ 978 0222 18000000 		.4byte	.LFE12-.LFB12
+ 979 0226 01       		.uleb128 0x1
+ 980 0227 9C       		.byte	0x9c
+ 981 0228 0E       		.uleb128 0xe
+ 982 0229 E8020000 		.4byte	.LASF36
+ 983 022d 01       		.byte	0x1
+ 984 022e D101     		.2byte	0x1d1
+ 985 0230 00000000 		.4byte	.LFB13
+ 986 0234 20000000 		.4byte	.LFE13-.LFB13
+ 987 0238 01       		.uleb128 0x1
+ 988 0239 9C       		.byte	0x9c
+ 989 023a 4E020000 		.4byte	0x24e
+ 990 023e 0F       		.uleb128 0xf
+ 991 023f 28030000 		.4byte	.LASF37
+ 992 0243 01       		.byte	0x1
+ 993 0244 D101     		.2byte	0x1d1
+ 994 0246 76000000 		.4byte	0x76
+ 995 024a 02       		.uleb128 0x2
+ 996 024b 91       		.byte	0x91
+ 997 024c 76       		.sleb128 -10
+ 998 024d 00       		.byte	0
+ 999 024e 0D       		.uleb128 0xd
+ 1000 024f 91010000 		.4byte	.LASF38
+ 1001 0253 01       		.byte	0x1
+ 1002 0254 E901     		.2byte	0x1e9
+ 1003 0256 76000000 		.4byte	0x76
+ 1004 025a 00000000 		.4byte	.LFB14
+ 1005 025e 18000000 		.4byte	.LFE14-.LFB14
+ 1006 0262 01       		.uleb128 0x1
+ 1007 0263 9C       		.byte	0x9c
+ 1008 0264 10       		.uleb128 0x10
+ 1009 0265 27020000 		.4byte	.LASF39
+ 1010 0269 01       		.byte	0x1
+ 1011 026a 2E02     		.2byte	0x22e
+ 1012 026c 00000000 		.4byte	.LFB15
+ 1013 0270 1A000000 		.4byte	.LFE15-.LFB15
+ 1014 0274 01       		.uleb128 0x1
+ 1015 0275 9C       		.byte	0x9c
+ 1016 0276 11       		.uleb128 0x11
+ 1017 0277 20000000 		.4byte	.LASF43
+ 1018 027b 01       		.byte	0x1
+ 1019 027c 15       		.byte	0x15
+ 1020 027d 6B000000 		.4byte	0x6b
+ 1021 0281 05       		.uleb128 0x5
+ 1022 0282 03       		.byte	0x3
+ 1023 0283 00000000 		.4byte	QD_Cnt16_initVar
+ 1024 0287 00       		.byte	0
+ 1025              		.section	.debug_abbrev,"",%progbits
+ 1026              	.Ldebug_abbrev0:
+ 1027 0000 01       		.uleb128 0x1
+ 1028 0001 11       		.uleb128 0x11
+ 1029 0002 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 29
+
+
+ 1030 0003 25       		.uleb128 0x25
+ 1031 0004 0E       		.uleb128 0xe
+ 1032 0005 13       		.uleb128 0x13
+ 1033 0006 0B       		.uleb128 0xb
+ 1034 0007 03       		.uleb128 0x3
+ 1035 0008 0E       		.uleb128 0xe
+ 1036 0009 1B       		.uleb128 0x1b
+ 1037 000a 0E       		.uleb128 0xe
+ 1038 000b 55       		.uleb128 0x55
+ 1039 000c 17       		.uleb128 0x17
+ 1040 000d 11       		.uleb128 0x11
+ 1041 000e 01       		.uleb128 0x1
+ 1042 000f 10       		.uleb128 0x10
+ 1043 0010 17       		.uleb128 0x17
+ 1044 0011 00       		.byte	0
+ 1045 0012 00       		.byte	0
+ 1046 0013 02       		.uleb128 0x2
+ 1047 0014 24       		.uleb128 0x24
+ 1048 0015 00       		.byte	0
+ 1049 0016 0B       		.uleb128 0xb
+ 1050 0017 0B       		.uleb128 0xb
+ 1051 0018 3E       		.uleb128 0x3e
+ 1052 0019 0B       		.uleb128 0xb
+ 1053 001a 03       		.uleb128 0x3
+ 1054 001b 0E       		.uleb128 0xe
+ 1055 001c 00       		.byte	0
+ 1056 001d 00       		.byte	0
+ 1057 001e 03       		.uleb128 0x3
+ 1058 001f 24       		.uleb128 0x24
+ 1059 0020 00       		.byte	0
+ 1060 0021 0B       		.uleb128 0xb
+ 1061 0022 0B       		.uleb128 0xb
+ 1062 0023 3E       		.uleb128 0x3e
+ 1063 0024 0B       		.uleb128 0xb
+ 1064 0025 03       		.uleb128 0x3
+ 1065 0026 08       		.uleb128 0x8
+ 1066 0027 00       		.byte	0
+ 1067 0028 00       		.byte	0
+ 1068 0029 04       		.uleb128 0x4
+ 1069 002a 16       		.uleb128 0x16
+ 1070 002b 00       		.byte	0
+ 1071 002c 03       		.uleb128 0x3
+ 1072 002d 0E       		.uleb128 0xe
+ 1073 002e 3A       		.uleb128 0x3a
+ 1074 002f 0B       		.uleb128 0xb
+ 1075 0030 3B       		.uleb128 0x3b
+ 1076 0031 0B       		.uleb128 0xb
+ 1077 0032 49       		.uleb128 0x49
+ 1078 0033 13       		.uleb128 0x13
+ 1079 0034 00       		.byte	0
+ 1080 0035 00       		.byte	0
+ 1081 0036 05       		.uleb128 0x5
+ 1082 0037 16       		.uleb128 0x16
+ 1083 0038 00       		.byte	0
+ 1084 0039 03       		.uleb128 0x3
+ 1085 003a 0E       		.uleb128 0xe
+ 1086 003b 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 30
+
+
+ 1087 003c 0B       		.uleb128 0xb
+ 1088 003d 3B       		.uleb128 0x3b
+ 1089 003e 05       		.uleb128 0x5
+ 1090 003f 49       		.uleb128 0x49
+ 1091 0040 13       		.uleb128 0x13
+ 1092 0041 00       		.byte	0
+ 1093 0042 00       		.byte	0
+ 1094 0043 06       		.uleb128 0x6
+ 1095 0044 35       		.uleb128 0x35
+ 1096 0045 00       		.byte	0
+ 1097 0046 49       		.uleb128 0x49
+ 1098 0047 13       		.uleb128 0x13
+ 1099 0048 00       		.byte	0
+ 1100 0049 00       		.byte	0
+ 1101 004a 07       		.uleb128 0x7
+ 1102 004b 2E       		.uleb128 0x2e
+ 1103 004c 01       		.byte	0x1
+ 1104 004d 3F       		.uleb128 0x3f
+ 1105 004e 19       		.uleb128 0x19
+ 1106 004f 03       		.uleb128 0x3
+ 1107 0050 0E       		.uleb128 0xe
+ 1108 0051 3A       		.uleb128 0x3a
+ 1109 0052 0B       		.uleb128 0xb
+ 1110 0053 3B       		.uleb128 0x3b
+ 1111 0054 0B       		.uleb128 0xb
+ 1112 0055 27       		.uleb128 0x27
+ 1113 0056 19       		.uleb128 0x19
+ 1114 0057 11       		.uleb128 0x11
+ 1115 0058 01       		.uleb128 0x1
+ 1116 0059 12       		.uleb128 0x12
+ 1117 005a 06       		.uleb128 0x6
+ 1118 005b 40       		.uleb128 0x40
+ 1119 005c 18       		.uleb128 0x18
+ 1120 005d 9642     		.uleb128 0x2116
+ 1121 005f 19       		.uleb128 0x19
+ 1122 0060 01       		.uleb128 0x1
+ 1123 0061 13       		.uleb128 0x13
+ 1124 0062 00       		.byte	0
+ 1125 0063 00       		.byte	0
+ 1126 0064 08       		.uleb128 0x8
+ 1127 0065 34       		.uleb128 0x34
+ 1128 0066 00       		.byte	0
+ 1129 0067 03       		.uleb128 0x3
+ 1130 0068 0E       		.uleb128 0xe
+ 1131 0069 3A       		.uleb128 0x3a
+ 1132 006a 0B       		.uleb128 0xb
+ 1133 006b 3B       		.uleb128 0x3b
+ 1134 006c 0B       		.uleb128 0xb
+ 1135 006d 49       		.uleb128 0x49
+ 1136 006e 13       		.uleb128 0x13
+ 1137 006f 02       		.uleb128 0x2
+ 1138 0070 18       		.uleb128 0x18
+ 1139 0071 00       		.byte	0
+ 1140 0072 00       		.byte	0
+ 1141 0073 09       		.uleb128 0x9
+ 1142 0074 2E       		.uleb128 0x2e
+ 1143 0075 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 31
+
+
+ 1144 0076 3F       		.uleb128 0x3f
+ 1145 0077 19       		.uleb128 0x19
+ 1146 0078 03       		.uleb128 0x3
+ 1147 0079 0E       		.uleb128 0xe
+ 1148 007a 3A       		.uleb128 0x3a
+ 1149 007b 0B       		.uleb128 0xb
+ 1150 007c 3B       		.uleb128 0x3b
+ 1151 007d 0B       		.uleb128 0xb
+ 1152 007e 27       		.uleb128 0x27
+ 1153 007f 19       		.uleb128 0x19
+ 1154 0080 11       		.uleb128 0x11
+ 1155 0081 01       		.uleb128 0x1
+ 1156 0082 12       		.uleb128 0x12
+ 1157 0083 06       		.uleb128 0x6
+ 1158 0084 40       		.uleb128 0x40
+ 1159 0085 18       		.uleb128 0x18
+ 1160 0086 9742     		.uleb128 0x2117
+ 1161 0088 19       		.uleb128 0x19
+ 1162 0089 00       		.byte	0
+ 1163 008a 00       		.byte	0
+ 1164 008b 0A       		.uleb128 0xa
+ 1165 008c 2E       		.uleb128 0x2e
+ 1166 008d 00       		.byte	0
+ 1167 008e 3F       		.uleb128 0x3f
+ 1168 008f 19       		.uleb128 0x19
+ 1169 0090 03       		.uleb128 0x3
+ 1170 0091 0E       		.uleb128 0xe
+ 1171 0092 3A       		.uleb128 0x3a
+ 1172 0093 0B       		.uleb128 0xb
+ 1173 0094 3B       		.uleb128 0x3b
+ 1174 0095 0B       		.uleb128 0xb
+ 1175 0096 27       		.uleb128 0x27
+ 1176 0097 19       		.uleb128 0x19
+ 1177 0098 11       		.uleb128 0x11
+ 1178 0099 01       		.uleb128 0x1
+ 1179 009a 12       		.uleb128 0x12
+ 1180 009b 06       		.uleb128 0x6
+ 1181 009c 40       		.uleb128 0x40
+ 1182 009d 18       		.uleb128 0x18
+ 1183 009e 9642     		.uleb128 0x2116
+ 1184 00a0 19       		.uleb128 0x19
+ 1185 00a1 00       		.byte	0
+ 1186 00a2 00       		.byte	0
+ 1187 00a3 0B       		.uleb128 0xb
+ 1188 00a4 2E       		.uleb128 0x2e
+ 1189 00a5 01       		.byte	0x1
+ 1190 00a6 3F       		.uleb128 0x3f
+ 1191 00a7 19       		.uleb128 0x19
+ 1192 00a8 03       		.uleb128 0x3
+ 1193 00a9 0E       		.uleb128 0xe
+ 1194 00aa 3A       		.uleb128 0x3a
+ 1195 00ab 0B       		.uleb128 0xb
+ 1196 00ac 3B       		.uleb128 0x3b
+ 1197 00ad 0B       		.uleb128 0xb
+ 1198 00ae 27       		.uleb128 0x27
+ 1199 00af 19       		.uleb128 0x19
+ 1200 00b0 11       		.uleb128 0x11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 32
+
+
+ 1201 00b1 01       		.uleb128 0x1
+ 1202 00b2 12       		.uleb128 0x12
+ 1203 00b3 06       		.uleb128 0x6
+ 1204 00b4 40       		.uleb128 0x40
+ 1205 00b5 18       		.uleb128 0x18
+ 1206 00b6 9742     		.uleb128 0x2117
+ 1207 00b8 19       		.uleb128 0x19
+ 1208 00b9 01       		.uleb128 0x1
+ 1209 00ba 13       		.uleb128 0x13
+ 1210 00bb 00       		.byte	0
+ 1211 00bc 00       		.byte	0
+ 1212 00bd 0C       		.uleb128 0xc
+ 1213 00be 05       		.uleb128 0x5
+ 1214 00bf 00       		.byte	0
+ 1215 00c0 03       		.uleb128 0x3
+ 1216 00c1 0E       		.uleb128 0xe
+ 1217 00c2 3A       		.uleb128 0x3a
+ 1218 00c3 0B       		.uleb128 0xb
+ 1219 00c4 3B       		.uleb128 0x3b
+ 1220 00c5 0B       		.uleb128 0xb
+ 1221 00c6 49       		.uleb128 0x49
+ 1222 00c7 13       		.uleb128 0x13
+ 1223 00c8 02       		.uleb128 0x2
+ 1224 00c9 18       		.uleb128 0x18
+ 1225 00ca 00       		.byte	0
+ 1226 00cb 00       		.byte	0
+ 1227 00cc 0D       		.uleb128 0xd
+ 1228 00cd 2E       		.uleb128 0x2e
+ 1229 00ce 00       		.byte	0
+ 1230 00cf 3F       		.uleb128 0x3f
+ 1231 00d0 19       		.uleb128 0x19
+ 1232 00d1 03       		.uleb128 0x3
+ 1233 00d2 0E       		.uleb128 0xe
+ 1234 00d3 3A       		.uleb128 0x3a
+ 1235 00d4 0B       		.uleb128 0xb
+ 1236 00d5 3B       		.uleb128 0x3b
+ 1237 00d6 05       		.uleb128 0x5
+ 1238 00d7 27       		.uleb128 0x27
+ 1239 00d8 19       		.uleb128 0x19
+ 1240 00d9 49       		.uleb128 0x49
+ 1241 00da 13       		.uleb128 0x13
+ 1242 00db 11       		.uleb128 0x11
+ 1243 00dc 01       		.uleb128 0x1
+ 1244 00dd 12       		.uleb128 0x12
+ 1245 00de 06       		.uleb128 0x6
+ 1246 00df 40       		.uleb128 0x40
+ 1247 00e0 18       		.uleb128 0x18
+ 1248 00e1 9742     		.uleb128 0x2117
+ 1249 00e3 19       		.uleb128 0x19
+ 1250 00e4 00       		.byte	0
+ 1251 00e5 00       		.byte	0
+ 1252 00e6 0E       		.uleb128 0xe
+ 1253 00e7 2E       		.uleb128 0x2e
+ 1254 00e8 01       		.byte	0x1
+ 1255 00e9 3F       		.uleb128 0x3f
+ 1256 00ea 19       		.uleb128 0x19
+ 1257 00eb 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 33
+
+
+ 1258 00ec 0E       		.uleb128 0xe
+ 1259 00ed 3A       		.uleb128 0x3a
+ 1260 00ee 0B       		.uleb128 0xb
+ 1261 00ef 3B       		.uleb128 0x3b
+ 1262 00f0 05       		.uleb128 0x5
+ 1263 00f1 27       		.uleb128 0x27
+ 1264 00f2 19       		.uleb128 0x19
+ 1265 00f3 11       		.uleb128 0x11
+ 1266 00f4 01       		.uleb128 0x1
+ 1267 00f5 12       		.uleb128 0x12
+ 1268 00f6 06       		.uleb128 0x6
+ 1269 00f7 40       		.uleb128 0x40
+ 1270 00f8 18       		.uleb128 0x18
+ 1271 00f9 9742     		.uleb128 0x2117
+ 1272 00fb 19       		.uleb128 0x19
+ 1273 00fc 01       		.uleb128 0x1
+ 1274 00fd 13       		.uleb128 0x13
+ 1275 00fe 00       		.byte	0
+ 1276 00ff 00       		.byte	0
+ 1277 0100 0F       		.uleb128 0xf
+ 1278 0101 05       		.uleb128 0x5
+ 1279 0102 00       		.byte	0
+ 1280 0103 03       		.uleb128 0x3
+ 1281 0104 0E       		.uleb128 0xe
+ 1282 0105 3A       		.uleb128 0x3a
+ 1283 0106 0B       		.uleb128 0xb
+ 1284 0107 3B       		.uleb128 0x3b
+ 1285 0108 05       		.uleb128 0x5
+ 1286 0109 49       		.uleb128 0x49
+ 1287 010a 13       		.uleb128 0x13
+ 1288 010b 02       		.uleb128 0x2
+ 1289 010c 18       		.uleb128 0x18
+ 1290 010d 00       		.byte	0
+ 1291 010e 00       		.byte	0
+ 1292 010f 10       		.uleb128 0x10
+ 1293 0110 2E       		.uleb128 0x2e
+ 1294 0111 00       		.byte	0
+ 1295 0112 3F       		.uleb128 0x3f
+ 1296 0113 19       		.uleb128 0x19
+ 1297 0114 03       		.uleb128 0x3
+ 1298 0115 0E       		.uleb128 0xe
+ 1299 0116 3A       		.uleb128 0x3a
+ 1300 0117 0B       		.uleb128 0xb
+ 1301 0118 3B       		.uleb128 0x3b
+ 1302 0119 05       		.uleb128 0x5
+ 1303 011a 27       		.uleb128 0x27
+ 1304 011b 19       		.uleb128 0x19
+ 1305 011c 11       		.uleb128 0x11
+ 1306 011d 01       		.uleb128 0x1
+ 1307 011e 12       		.uleb128 0x12
+ 1308 011f 06       		.uleb128 0x6
+ 1309 0120 40       		.uleb128 0x40
+ 1310 0121 18       		.uleb128 0x18
+ 1311 0122 9642     		.uleb128 0x2116
+ 1312 0124 19       		.uleb128 0x19
+ 1313 0125 00       		.byte	0
+ 1314 0126 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 34
+
+
+ 1315 0127 11       		.uleb128 0x11
+ 1316 0128 34       		.uleb128 0x34
+ 1317 0129 00       		.byte	0
+ 1318 012a 03       		.uleb128 0x3
+ 1319 012b 0E       		.uleb128 0xe
+ 1320 012c 3A       		.uleb128 0x3a
+ 1321 012d 0B       		.uleb128 0xb
+ 1322 012e 3B       		.uleb128 0x3b
+ 1323 012f 0B       		.uleb128 0xb
+ 1324 0130 49       		.uleb128 0x49
+ 1325 0131 13       		.uleb128 0x13
+ 1326 0132 3F       		.uleb128 0x3f
+ 1327 0133 19       		.uleb128 0x19
+ 1328 0134 02       		.uleb128 0x2
+ 1329 0135 18       		.uleb128 0x18
+ 1330 0136 00       		.byte	0
+ 1331 0137 00       		.byte	0
+ 1332 0138 00       		.byte	0
+ 1333              		.section	.debug_aranges,"",%progbits
+ 1334 0000 94000000 		.4byte	0x94
+ 1335 0004 0200     		.2byte	0x2
+ 1336 0006 00000000 		.4byte	.Ldebug_info0
+ 1337 000a 04       		.byte	0x4
+ 1338 000b 00       		.byte	0
+ 1339 000c 0000     		.2byte	0
+ 1340 000e 0000     		.2byte	0
+ 1341 0010 00000000 		.4byte	.LFB0
+ 1342 0014 80000000 		.4byte	.LFE0-.LFB0
+ 1343 0018 00000000 		.4byte	.LFB1
+ 1344 001c 20000000 		.4byte	.LFE1-.LFB1
+ 1345 0020 00000000 		.4byte	.LFB2
+ 1346 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1347 0028 00000000 		.4byte	.LFB3
+ 1348 002c 20000000 		.4byte	.LFE3-.LFB3
+ 1349 0030 00000000 		.4byte	.LFB4
+ 1350 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1351 0038 00000000 		.4byte	.LFB5
+ 1352 003c 18000000 		.4byte	.LFE5-.LFB5
+ 1353 0040 00000000 		.4byte	.LFB6
+ 1354 0044 18000000 		.4byte	.LFE6-.LFB6
+ 1355 0048 00000000 		.4byte	.LFB7
+ 1356 004c 20000000 		.4byte	.LFE7-.LFB7
+ 1357 0050 00000000 		.4byte	.LFB8
+ 1358 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1359 0058 00000000 		.4byte	.LFB9
+ 1360 005c 20000000 		.4byte	.LFE9-.LFB9
+ 1361 0060 00000000 		.4byte	.LFB10
+ 1362 0064 18000000 		.4byte	.LFE10-.LFB10
+ 1363 0068 00000000 		.4byte	.LFB11
+ 1364 006c 20000000 		.4byte	.LFE11-.LFB11
+ 1365 0070 00000000 		.4byte	.LFB12
+ 1366 0074 18000000 		.4byte	.LFE12-.LFB12
+ 1367 0078 00000000 		.4byte	.LFB13
+ 1368 007c 20000000 		.4byte	.LFE13-.LFB13
+ 1369 0080 00000000 		.4byte	.LFB14
+ 1370 0084 18000000 		.4byte	.LFE14-.LFB14
+ 1371 0088 00000000 		.4byte	.LFB15
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 35
+
+
+ 1372 008c 1A000000 		.4byte	.LFE15-.LFB15
+ 1373 0090 00000000 		.4byte	0
+ 1374 0094 00000000 		.4byte	0
+ 1375              		.section	.debug_ranges,"",%progbits
+ 1376              	.Ldebug_ranges0:
+ 1377 0000 00000000 		.4byte	.LFB0
+ 1378 0004 80000000 		.4byte	.LFE0
+ 1379 0008 00000000 		.4byte	.LFB1
+ 1380 000c 20000000 		.4byte	.LFE1
+ 1381 0010 00000000 		.4byte	.LFB2
+ 1382 0014 20000000 		.4byte	.LFE2
+ 1383 0018 00000000 		.4byte	.LFB3
+ 1384 001c 20000000 		.4byte	.LFE3
+ 1385 0020 00000000 		.4byte	.LFB4
+ 1386 0024 20000000 		.4byte	.LFE4
+ 1387 0028 00000000 		.4byte	.LFB5
+ 1388 002c 18000000 		.4byte	.LFE5
+ 1389 0030 00000000 		.4byte	.LFB6
+ 1390 0034 18000000 		.4byte	.LFE6
+ 1391 0038 00000000 		.4byte	.LFB7
+ 1392 003c 20000000 		.4byte	.LFE7
+ 1393 0040 00000000 		.4byte	.LFB8
+ 1394 0044 20000000 		.4byte	.LFE8
+ 1395 0048 00000000 		.4byte	.LFB9
+ 1396 004c 20000000 		.4byte	.LFE9
+ 1397 0050 00000000 		.4byte	.LFB10
+ 1398 0054 18000000 		.4byte	.LFE10
+ 1399 0058 00000000 		.4byte	.LFB11
+ 1400 005c 20000000 		.4byte	.LFE11
+ 1401 0060 00000000 		.4byte	.LFB12
+ 1402 0064 18000000 		.4byte	.LFE12
+ 1403 0068 00000000 		.4byte	.LFB13
+ 1404 006c 20000000 		.4byte	.LFE13
+ 1405 0070 00000000 		.4byte	.LFB14
+ 1406 0074 18000000 		.4byte	.LFE14
+ 1407 0078 00000000 		.4byte	.LFB15
+ 1408 007c 1A000000 		.4byte	.LFE15
+ 1409 0080 00000000 		.4byte	0
+ 1410 0084 00000000 		.4byte	0
+ 1411              		.section	.debug_line,"",%progbits
+ 1412              	.Ldebug_line0:
+ 1413 0000 82010000 		.section	.debug_str,"MS",%progbits,1
+ 1413      02004500 
+ 1413      00000201 
+ 1413      FB0E0D00 
+ 1413      01010101 
+ 1414              	.LASF15:
+ 1415 0000 72656731 		.ascii	"reg16\000"
+ 1415      3600
+ 1416              	.LASF23:
+ 1417 0006 51445F43 		.ascii	"QD_Cnt16_SetInterruptMode\000"
+ 1417      6E743136 
+ 1417      5F536574 
+ 1417      496E7465 
+ 1417      72727570 
+ 1418              	.LASF43:
+ 1419 0020 51445F43 		.ascii	"QD_Cnt16_initVar\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 36
+
+
+ 1419      6E743136 
+ 1419      5F696E69 
+ 1419      74566172 
+ 1419      00
+ 1420              	.LASF31:
+ 1421 0031 51445F43 		.ascii	"QD_Cnt16_ReadCounter\000"
+ 1421      6E743136 
+ 1421      5F526561 
+ 1421      64436F75 
+ 1421      6E746572 
+ 1422              	.LASF35:
+ 1423 0046 51445F43 		.ascii	"QD_Cnt16_ReadPeriod\000"
+ 1423      6E743136 
+ 1423      5F526561 
+ 1423      64506572 
+ 1423      696F6400 
+ 1424              	.LASF18:
+ 1425 005a 51445F43 		.ascii	"QD_Cnt16_interruptState\000"
+ 1425      6E743136 
+ 1425      5F696E74 
+ 1425      65727275 
+ 1425      70745374 
+ 1426              	.LASF34:
+ 1427 0072 70657269 		.ascii	"period\000"
+ 1427      6F6400
+ 1428              	.LASF40:
+ 1429 0079 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1429      4320342E 
+ 1429      392E3320 
+ 1429      32303135 
+ 1429      30333033 
+ 1430 00ac 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1430      20726576 
+ 1430      6973696F 
+ 1430      6E203232 
+ 1430      31323230 
+ 1431 00df 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1431      66756E63 
+ 1431      74696F6E 
+ 1431      2D736563 
+ 1431      74696F6E 
+ 1432              	.LASF29:
+ 1433 0107 51445F43 		.ascii	"QD_Cnt16_WriteCounter\000"
+ 1433      6E743136 
+ 1433      5F577269 
+ 1433      7465436F 
+ 1433      756E7465 
+ 1434              	.LASF11:
+ 1435 011d 666C6F61 		.ascii	"float\000"
+ 1435      7400
+ 1436              	.LASF26:
+ 1437 0123 51445F43 		.ascii	"QD_Cnt16_WriteControlRegister\000"
+ 1437      6E743136 
+ 1437      5F577269 
+ 1437      7465436F 
+ 1437      6E74726F 
+ 1438              	.LASF24:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 37
+
+
+ 1439 0141 51445F43 		.ascii	"QD_Cnt16_ReadStatusRegister\000"
+ 1439      6E743136 
+ 1439      5F526561 
+ 1439      64537461 
+ 1439      74757352 
+ 1440              	.LASF14:
+ 1441 015d 72656738 		.ascii	"reg8\000"
+ 1441      00
+ 1442              	.LASF5:
+ 1443 0162 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1443      20756E73 
+ 1443      69676E65 
+ 1443      6420696E 
+ 1443      7400
+ 1444              	.LASF9:
+ 1445 0174 75696E74 		.ascii	"uint8\000"
+ 1445      3800
+ 1446              	.LASF28:
+ 1447 017a 636F6E74 		.ascii	"control\000"
+ 1447      726F6C00 
+ 1448              	.LASF27:
+ 1449 0182 696E7465 		.ascii	"interruptsMask\000"
+ 1449      72727570 
+ 1449      74734D61 
+ 1449      736B00
+ 1450              	.LASF38:
+ 1451 0191 51445F43 		.ascii	"QD_Cnt16_ReadCompare\000"
+ 1451      6E743136 
+ 1451      5F526561 
+ 1451      64436F6D 
+ 1451      70617265 
+ 1452              	.LASF41:
+ 1453 01a6 47656E65 		.ascii	"Generated_Source\\PSoC5\\QD_Cnt16.c\000"
+ 1453      72617465 
+ 1453      645F536F 
+ 1453      75726365 
+ 1453      5C50536F 
+ 1454              	.LASF1:
+ 1455 01c8 756E7369 		.ascii	"unsigned char\000"
+ 1455      676E6564 
+ 1455      20636861 
+ 1455      7200
+ 1456              	.LASF30:
+ 1457 01d6 636F756E 		.ascii	"counter\000"
+ 1457      74657200 
+ 1458              	.LASF12:
+ 1459 01de 646F7562 		.ascii	"double\000"
+ 1459      6C6500
+ 1460              	.LASF42:
+ 1461 01e5 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 1461      6F726B73 
+ 1461      70616365 
+ 1461      5C50536F 
+ 1461      435F4372 
+ 1462 0214 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 1462      392E6379 
+ 1462      64736E00 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 38
+
+
+ 1463              	.LASF10:
+ 1464 0220 75696E74 		.ascii	"uint16\000"
+ 1464      313600
+ 1465              	.LASF39:
+ 1466 0227 51445F43 		.ascii	"QD_Cnt16_ClearFIFO\000"
+ 1466      6E743136 
+ 1466      5F436C65 
+ 1466      61724649 
+ 1466      464F00
+ 1467              	.LASF20:
+ 1468 023a 51445F43 		.ascii	"QD_Cnt16_Start\000"
+ 1468      6E743136 
+ 1468      5F537461 
+ 1468      727400
+ 1469              	.LASF8:
+ 1470 0249 756E7369 		.ascii	"unsigned int\000"
+ 1470      676E6564 
+ 1470      20696E74 
+ 1470      00
+ 1471              	.LASF7:
+ 1472 0256 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1472      206C6F6E 
+ 1472      6720756E 
+ 1472      7369676E 
+ 1472      65642069 
+ 1473              	.LASF21:
+ 1474 026d 51445F43 		.ascii	"QD_Cnt16_Stop\000"
+ 1474      6E743136 
+ 1474      5F53746F 
+ 1474      7000
+ 1475              	.LASF19:
+ 1476 027b 51445F43 		.ascii	"QD_Cnt16_Enable\000"
+ 1476      6E743136 
+ 1476      5F456E61 
+ 1476      626C6500 
+ 1477              	.LASF17:
+ 1478 028b 6374726C 		.ascii	"ctrl\000"
+ 1478      00
+ 1479              	.LASF25:
+ 1480 0290 51445F43 		.ascii	"QD_Cnt16_ReadControlRegister\000"
+ 1480      6E743136 
+ 1480      5F526561 
+ 1480      64436F6E 
+ 1480      74726F6C 
+ 1481              	.LASF16:
+ 1482 02ad 73697A65 		.ascii	"sizetype\000"
+ 1482      74797065 
+ 1482      00
+ 1483              	.LASF6:
+ 1484 02b6 6C6F6E67 		.ascii	"long long int\000"
+ 1484      206C6F6E 
+ 1484      6720696E 
+ 1484      7400
+ 1485              	.LASF13:
+ 1486 02c4 63686172 		.ascii	"char\000"
+ 1486      00
+ 1487              	.LASF33:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccQ3KThD.s 			page 39
+
+
+ 1488 02c9 51445F43 		.ascii	"QD_Cnt16_WritePeriod\000"
+ 1488      6E743136 
+ 1488      5F577269 
+ 1488      74655065 
+ 1488      72696F64 
+ 1489              	.LASF2:
+ 1490 02de 73686F72 		.ascii	"short int\000"
+ 1490      7420696E 
+ 1490      7400
+ 1491              	.LASF36:
+ 1492 02e8 51445F43 		.ascii	"QD_Cnt16_WriteCompare\000"
+ 1492      6E743136 
+ 1492      5F577269 
+ 1492      7465436F 
+ 1492      6D706172 
+ 1493              	.LASF32:
+ 1494 02fe 51445F43 		.ascii	"QD_Cnt16_ReadCapture\000"
+ 1494      6E743136 
+ 1494      5F526561 
+ 1494      64436170 
+ 1494      74757265 
+ 1495              	.LASF4:
+ 1496 0313 6C6F6E67 		.ascii	"long int\000"
+ 1496      20696E74 
+ 1496      00
+ 1497              	.LASF0:
+ 1498 031c 7369676E 		.ascii	"signed char\000"
+ 1498      65642063 
+ 1498      68617200 
+ 1499              	.LASF37:
+ 1500 0328 636F6D70 		.ascii	"compare\000"
+ 1500      61726500 
+ 1501              	.LASF3:
+ 1502 0330 73686F72 		.ascii	"short unsigned int\000"
+ 1502      7420756E 
+ 1502      7369676E 
+ 1502      65642069 
+ 1502      6E7400
+ 1503              	.LASF22:
+ 1504 0343 51445F43 		.ascii	"QD_Cnt16_Init\000"
+ 1504      6E743136 
+ 1504      5F496E69 
+ 1504      7400
+ 1505              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

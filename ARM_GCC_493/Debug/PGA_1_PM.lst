@@ -1,0 +1,851 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PGA_1_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	PGA_1_backup:
+  21 0000 00000000 		.space	4
+  22              		.section	.text.PGA_1_SaveConfig,"ax",%progbits
+  23              		.align	2
+  24              		.global	PGA_1_SaveConfig
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	PGA_1_SaveConfig, %function
+  28              	PGA_1_SaveConfig:
+  29              	.LFB0:
+  30              		.file 1 ".\\Generated_Source\\PSoC5\\PGA_1_PM.c"
+   1:.\Generated_Source\PSoC5/PGA_1_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/PGA_1_PM.c **** * File Name: PGA_1_PM.c  
+   3:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Version 2.0
+   4:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+   5:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Description:
+   6:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  This file provides the power manager source code to the API for PGA 
+   7:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  Component.
+   8:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+   9:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Note:
+  10:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  11:.\Generated_Source\PSoC5/PGA_1_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/PGA_1_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:.\Generated_Source\PSoC5/PGA_1_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:.\Generated_Source\PSoC5/PGA_1_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/PGA_1_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  18:.\Generated_Source\PSoC5/PGA_1_PM.c **** #include "PGA_1.h"
+  19:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  20:.\Generated_Source\PSoC5/PGA_1_PM.c **** static PGA_1_BACKUP_STRUCT  PGA_1_backup;
+  21:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  22:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  23:.\Generated_Source\PSoC5/PGA_1_PM.c **** /*******************************************************************************
+  24:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Function Name: PGA_1_SaveConfig
+  25:.\Generated_Source\PSoC5/PGA_1_PM.c **** ********************************************************************************
+  26:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  27:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Summary:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 2
+
+
+  28:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  Save the current user register configuration.
+  29:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  30:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Parameters:
+  31:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  void
+  32:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  33:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Return:
+  34:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  void
+  35:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  36:.\Generated_Source\PSoC5/PGA_1_PM.c **** *******************************************************************************/
+  37:.\Generated_Source\PSoC5/PGA_1_PM.c **** void PGA_1_SaveConfig(void) 
+  38:.\Generated_Source\PSoC5/PGA_1_PM.c **** {
+  31              		.loc 1 38 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35              		@ link register save eliminated.
+  36 0000 80B4     		push	{r7}
+  37              		.cfi_def_cfa_offset 4
+  38              		.cfi_offset 7, -4
+  39 0002 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  39:.\Generated_Source\PSoC5/PGA_1_PM.c ****     /* Nothing to save as registers are System reset on retention flops */
+  40:.\Generated_Source\PSoC5/PGA_1_PM.c **** }
+  41              		.loc 1 40 0
+  42 0004 BD46     		mov	sp, r7
+  43              		.cfi_def_cfa_register 13
+  44              		@ sp needed
+  45 0006 5DF8047B 		ldr	r7, [sp], #4
+  46              		.cfi_restore 7
+  47              		.cfi_def_cfa_offset 0
+  48 000a 7047     		bx	lr
+  49              		.cfi_endproc
+  50              	.LFE0:
+  51              		.size	PGA_1_SaveConfig, .-PGA_1_SaveConfig
+  52              		.section	.text.PGA_1_RestoreConfig,"ax",%progbits
+  53              		.align	2
+  54              		.global	PGA_1_RestoreConfig
+  55              		.thumb
+  56              		.thumb_func
+  57              		.type	PGA_1_RestoreConfig, %function
+  58              	PGA_1_RestoreConfig:
+  59              	.LFB1:
+  41:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  42:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  43:.\Generated_Source\PSoC5/PGA_1_PM.c **** /*******************************************************************************  
+  44:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Function Name: PGA_1_RestoreConfig
+  45:.\Generated_Source\PSoC5/PGA_1_PM.c **** ********************************************************************************
+  46:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  47:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Summary:
+  48:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  Restore the register configurations.
+  49:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  50:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Parameters:
+  51:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  void
+  52:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  53:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Return:
+  54:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  void
+  55:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 3
+
+
+  56:.\Generated_Source\PSoC5/PGA_1_PM.c **** *******************************************************************************/
+  57:.\Generated_Source\PSoC5/PGA_1_PM.c **** void PGA_1_RestoreConfig(void) 
+  58:.\Generated_Source\PSoC5/PGA_1_PM.c **** {
+  60              		.loc 1 58 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 1, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  65 0000 80B4     		push	{r7}
+  66              		.cfi_def_cfa_offset 4
+  67              		.cfi_offset 7, -4
+  68 0002 00AF     		add	r7, sp, #0
+  69              		.cfi_def_cfa_register 7
+  59:.\Generated_Source\PSoC5/PGA_1_PM.c ****     /* Nothing to restore */
+  60:.\Generated_Source\PSoC5/PGA_1_PM.c **** }
+  70              		.loc 1 60 0
+  71 0004 BD46     		mov	sp, r7
+  72              		.cfi_def_cfa_register 13
+  73              		@ sp needed
+  74 0006 5DF8047B 		ldr	r7, [sp], #4
+  75              		.cfi_restore 7
+  76              		.cfi_def_cfa_offset 0
+  77 000a 7047     		bx	lr
+  78              		.cfi_endproc
+  79              	.LFE1:
+  80              		.size	PGA_1_RestoreConfig, .-PGA_1_RestoreConfig
+  81              		.section	.text.PGA_1_Sleep,"ax",%progbits
+  82              		.align	2
+  83              		.global	PGA_1_Sleep
+  84              		.thumb
+  85              		.thumb_func
+  86              		.type	PGA_1_Sleep, %function
+  87              	PGA_1_Sleep:
+  88              	.LFB2:
+  61:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  62:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+  63:.\Generated_Source\PSoC5/PGA_1_PM.c **** /*******************************************************************************   
+  64:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Function Name: PGA_1_Sleep
+  65:.\Generated_Source\PSoC5/PGA_1_PM.c **** ********************************************************************************
+  66:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  67:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Summary:
+  68:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  Disables block's operation and saves its configuration. Should be called 
+  69:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  just prior to entering sleep.
+  70:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  71:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Parameters:
+  72:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  None
+  73:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  74:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Return:
+  75:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  None
+  76:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  77:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Global variables:
+  78:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  PGA_1_backup: The structure field 'enableState' is modified 
+  79:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  depending on the enable state of the block before entering to sleep mode.
+  80:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+  81:.\Generated_Source\PSoC5/PGA_1_PM.c **** *******************************************************************************/
+  82:.\Generated_Source\PSoC5/PGA_1_PM.c **** void PGA_1_Sleep(void) 
+  83:.\Generated_Source\PSoC5/PGA_1_PM.c **** {
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 4
+
+
+  89              		.loc 1 83 0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 1, uses_anonymous_args = 0
+  93 0000 80B5     		push	{r7, lr}
+  94              		.cfi_def_cfa_offset 8
+  95              		.cfi_offset 7, -8
+  96              		.cfi_offset 14, -4
+  97 0002 00AF     		add	r7, sp, #0
+  98              		.cfi_def_cfa_register 7
+  84:.\Generated_Source\PSoC5/PGA_1_PM.c ****     /* Save PGA enable state */
+  85:.\Generated_Source\PSoC5/PGA_1_PM.c ****     if((PGA_1_PM_ACT_CFG_REG & PGA_1_ACT_PWR_EN) != 0u)
+  99              		.loc 1 85 0
+ 100 0004 094B     		ldr	r3, .L6
+ 101 0006 1B78     		ldrb	r3, [r3]
+ 102 0008 DBB2     		uxtb	r3, r3
+ 103 000a 03F00403 		and	r3, r3, #4
+ 104 000e 002B     		cmp	r3, #0
+ 105 0010 05D0     		beq	.L4
+  86:.\Generated_Source\PSoC5/PGA_1_PM.c ****     {
+  87:.\Generated_Source\PSoC5/PGA_1_PM.c ****         /* Component is enabled */
+  88:.\Generated_Source\PSoC5/PGA_1_PM.c ****         PGA_1_backup.enableState = 1u;
+ 106              		.loc 1 88 0
+ 107 0012 074B     		ldr	r3, .L6+4
+ 108 0014 0122     		movs	r2, #1
+ 109 0016 1A70     		strb	r2, [r3]
+  89:.\Generated_Source\PSoC5/PGA_1_PM.c ****         /* Stop the configuration */
+  90:.\Generated_Source\PSoC5/PGA_1_PM.c ****         PGA_1_Stop();
+ 110              		.loc 1 90 0
+ 111 0018 FFF7FEFF 		bl	PGA_1_Stop
+ 112 001c 02E0     		b	.L5
+ 113              	.L4:
+  91:.\Generated_Source\PSoC5/PGA_1_PM.c ****     }
+  92:.\Generated_Source\PSoC5/PGA_1_PM.c ****     else
+  93:.\Generated_Source\PSoC5/PGA_1_PM.c ****     {
+  94:.\Generated_Source\PSoC5/PGA_1_PM.c ****         /* Component is disabled */
+  95:.\Generated_Source\PSoC5/PGA_1_PM.c ****         PGA_1_backup.enableState = 0u;
+ 114              		.loc 1 95 0
+ 115 001e 044B     		ldr	r3, .L6+4
+ 116 0020 0022     		movs	r2, #0
+ 117 0022 1A70     		strb	r2, [r3]
+ 118              	.L5:
+  96:.\Generated_Source\PSoC5/PGA_1_PM.c ****     }
+  97:.\Generated_Source\PSoC5/PGA_1_PM.c ****     /* Save the configuration */
+  98:.\Generated_Source\PSoC5/PGA_1_PM.c ****     PGA_1_SaveConfig();
+ 119              		.loc 1 98 0
+ 120 0024 FFF7FEFF 		bl	PGA_1_SaveConfig
+  99:.\Generated_Source\PSoC5/PGA_1_PM.c **** }
+ 121              		.loc 1 99 0
+ 122 0028 80BD     		pop	{r7, pc}
+ 123              	.L7:
+ 124 002a 00BF     		.align	2
+ 125              	.L6:
+ 126 002c A9430040 		.word	1073759145
+ 127 0030 00000000 		.word	PGA_1_backup
+ 128              		.cfi_endproc
+ 129              	.LFE2:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 5
+
+
+ 130              		.size	PGA_1_Sleep, .-PGA_1_Sleep
+ 131              		.section	.text.PGA_1_Wakeup,"ax",%progbits
+ 132              		.align	2
+ 133              		.global	PGA_1_Wakeup
+ 134              		.thumb
+ 135              		.thumb_func
+ 136              		.type	PGA_1_Wakeup, %function
+ 137              	PGA_1_Wakeup:
+ 138              	.LFB3:
+ 100:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+ 101:.\Generated_Source\PSoC5/PGA_1_PM.c **** 
+ 102:.\Generated_Source\PSoC5/PGA_1_PM.c **** /*******************************************************************************
+ 103:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Function Name: PGA_1_Wakeup
+ 104:.\Generated_Source\PSoC5/PGA_1_PM.c **** ********************************************************************************
+ 105:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+ 106:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Summary:
+ 107:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  Enables block's operation and restores its configuration. Should be called
+ 108:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  just after awaking from sleep.
+ 109:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+ 110:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Parameters:
+ 111:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  None
+ 112:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+ 113:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Return:
+ 114:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  void
+ 115:.\Generated_Source\PSoC5/PGA_1_PM.c **** *
+ 116:.\Generated_Source\PSoC5/PGA_1_PM.c **** * Global variables:
+ 117:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  PGA_1_backup: The structure field 'enableState' is used to 
+ 118:.\Generated_Source\PSoC5/PGA_1_PM.c **** *  restore the enable state of block after wakeup from sleep mode.
+ 119:.\Generated_Source\PSoC5/PGA_1_PM.c **** * 
+ 120:.\Generated_Source\PSoC5/PGA_1_PM.c **** *******************************************************************************/
+ 121:.\Generated_Source\PSoC5/PGA_1_PM.c **** void PGA_1_Wakeup(void) 
+ 122:.\Generated_Source\PSoC5/PGA_1_PM.c **** {
+ 139              		.loc 1 122 0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 1, uses_anonymous_args = 0
+ 143 0000 80B5     		push	{r7, lr}
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 7, -8
+ 146              		.cfi_offset 14, -4
+ 147 0002 00AF     		add	r7, sp, #0
+ 148              		.cfi_def_cfa_register 7
+ 123:.\Generated_Source\PSoC5/PGA_1_PM.c ****     /* Restore the configurations */
+ 124:.\Generated_Source\PSoC5/PGA_1_PM.c ****     PGA_1_RestoreConfig();
+ 149              		.loc 1 124 0
+ 150 0004 FFF7FEFF 		bl	PGA_1_RestoreConfig
+ 125:.\Generated_Source\PSoC5/PGA_1_PM.c ****      /* Enables the component operation */
+ 126:.\Generated_Source\PSoC5/PGA_1_PM.c ****     if(PGA_1_backup.enableState == 1u)
+ 151              		.loc 1 126 0
+ 152 0008 034B     		ldr	r3, .L10
+ 153 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 154 000c 012B     		cmp	r3, #1
+ 155 000e 01D1     		bne	.L8
+ 127:.\Generated_Source\PSoC5/PGA_1_PM.c ****     {
+ 128:.\Generated_Source\PSoC5/PGA_1_PM.c ****         PGA_1_Enable();
+ 156              		.loc 1 128 0
+ 157 0010 FFF7FEFF 		bl	PGA_1_Enable
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 6
+
+
+ 158              	.L8:
+ 129:.\Generated_Source\PSoC5/PGA_1_PM.c ****     } /* Do nothing if component was disable before */
+ 130:.\Generated_Source\PSoC5/PGA_1_PM.c **** }
+ 159              		.loc 1 130 0
+ 160 0014 80BD     		pop	{r7, pc}
+ 161              	.L11:
+ 162 0016 00BF     		.align	2
+ 163              	.L10:
+ 164 0018 00000000 		.word	PGA_1_backup
+ 165              		.cfi_endproc
+ 166              	.LFE3:
+ 167              		.size	PGA_1_Wakeup, .-PGA_1_Wakeup
+ 168              		.text
+ 169              	.Letext0:
+ 170              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 171              		.file 3 ".\\Generated_Source\\PSoC5\\PGA_1.h"
+ 172              		.section	.debug_info,"",%progbits
+ 173              	.Ldebug_info0:
+ 174 0000 39010000 		.4byte	0x139
+ 175 0004 0400     		.2byte	0x4
+ 176 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 177 000a 04       		.byte	0x4
+ 178 000b 01       		.uleb128 0x1
+ 179 000c 92000000 		.4byte	.LASF24
+ 180 0010 01       		.byte	0x1
+ 181 0011 50010000 		.4byte	.LASF25
+ 182 0015 A5010000 		.4byte	.LASF26
+ 183 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 184 001d 00000000 		.4byte	0
+ 185 0021 00000000 		.4byte	.Ldebug_line0
+ 186 0025 02       		.uleb128 0x2
+ 187 0026 01       		.byte	0x1
+ 188 0027 06       		.byte	0x6
+ 189 0028 87010000 		.4byte	.LASF0
+ 190 002c 02       		.uleb128 0x2
+ 191 002d 01       		.byte	0x1
+ 192 002e 08       		.byte	0x8
+ 193 002f 76000000 		.4byte	.LASF1
+ 194 0033 02       		.uleb128 0x2
+ 195 0034 02       		.byte	0x2
+ 196 0035 05       		.byte	0x5
+ 197 0036 20010000 		.4byte	.LASF2
+ 198 003a 02       		.uleb128 0x2
+ 199 003b 02       		.byte	0x2
+ 200 003c 07       		.byte	0x7
+ 201 003d 74010000 		.4byte	.LASF3
+ 202 0041 02       		.uleb128 0x2
+ 203 0042 04       		.byte	0x4
+ 204 0043 05       		.byte	0x5
+ 205 0044 89000000 		.4byte	.LASF4
+ 206 0048 02       		.uleb128 0x2
+ 207 0049 04       		.byte	0x4
+ 208 004a 07       		.byte	0x7
+ 209 004b 2A010000 		.4byte	.LASF5
+ 210 004f 02       		.uleb128 0x2
+ 211 0050 08       		.byte	0x8
+ 212 0051 05       		.byte	0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 7
+
+
+ 213 0052 00000000 		.4byte	.LASF6
+ 214 0056 02       		.uleb128 0x2
+ 215 0057 08       		.byte	0x8
+ 216 0058 07       		.byte	0x7
+ 217 0059 56000000 		.4byte	.LASF7
+ 218 005d 03       		.uleb128 0x3
+ 219 005e 04       		.byte	0x4
+ 220 005f 05       		.byte	0x5
+ 221 0060 696E7400 		.ascii	"int\000"
+ 222 0064 02       		.uleb128 0x2
+ 223 0065 04       		.byte	0x4
+ 224 0066 07       		.byte	0x7
+ 225 0067 1A000000 		.4byte	.LASF8
+ 226 006b 04       		.uleb128 0x4
+ 227 006c 47000000 		.4byte	.LASF12
+ 228 0070 02       		.byte	0x2
+ 229 0071 C2       		.byte	0xc2
+ 230 0072 2C000000 		.4byte	0x2c
+ 231 0076 02       		.uleb128 0x2
+ 232 0077 04       		.byte	0x4
+ 233 0078 04       		.byte	0x4
+ 234 0079 DD010000 		.4byte	.LASF9
+ 235 007d 02       		.uleb128 0x2
+ 236 007e 08       		.byte	0x8
+ 237 007f 04       		.byte	0x4
+ 238 0080 3C010000 		.4byte	.LASF10
+ 239 0084 02       		.uleb128 0x2
+ 240 0085 01       		.byte	0x1
+ 241 0086 08       		.byte	0x8
+ 242 0087 84000000 		.4byte	.LASF11
+ 243 008b 05       		.uleb128 0x5
+ 244 008c E3010000 		.4byte	.LASF13
+ 245 0090 02       		.byte	0x2
+ 246 0091 6C01     		.2byte	0x16c
+ 247 0093 97000000 		.4byte	0x97
+ 248 0097 06       		.uleb128 0x6
+ 249 0098 6B000000 		.4byte	0x6b
+ 250 009c 02       		.uleb128 0x2
+ 251 009d 04       		.byte	0x4
+ 252 009e 07       		.byte	0x7
+ 253 009f 9C010000 		.4byte	.LASF14
+ 254 00a3 07       		.uleb128 0x7
+ 255 00a4 04       		.byte	0x4
+ 256 00a5 03       		.byte	0x3
+ 257 00a6 2D       		.byte	0x2d
+ 258 00a7 DC000000 		.4byte	0xdc
+ 259 00ab 08       		.uleb128 0x8
+ 260 00ac 0E000000 		.4byte	.LASF15
+ 261 00b0 03       		.byte	0x3
+ 262 00b1 2F       		.byte	0x2f
+ 263 00b2 6B000000 		.4byte	0x6b
+ 264 00b6 00       		.byte	0
+ 265 00b7 08       		.uleb128 0x8
+ 266 00b8 4D000000 		.4byte	.LASF16
+ 267 00bc 03       		.byte	0x3
+ 268 00bd 30       		.byte	0x30
+ 269 00be 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 8
+
+
+ 270 00c2 01       		.byte	0x1
+ 271 00c3 08       		.uleb128 0x8
+ 272 00c4 93010000 		.4byte	.LASF17
+ 273 00c8 03       		.byte	0x3
+ 274 00c9 31       		.byte	0x31
+ 275 00ca 6B000000 		.4byte	0x6b
+ 276 00ce 02       		.byte	0x2
+ 277 00cf 08       		.uleb128 0x8
+ 278 00d0 6D000000 		.4byte	.LASF18
+ 279 00d4 03       		.byte	0x3
+ 280 00d5 32       		.byte	0x32
+ 281 00d6 6B000000 		.4byte	0x6b
+ 282 00da 03       		.byte	0x3
+ 283 00db 00       		.byte	0
+ 284 00dc 04       		.uleb128 0x4
+ 285 00dd 27000000 		.4byte	.LASF19
+ 286 00e1 03       		.byte	0x3
+ 287 00e2 33       		.byte	0x33
+ 288 00e3 A3000000 		.4byte	0xa3
+ 289 00e7 09       		.uleb128 0x9
+ 290 00e8 E8010000 		.4byte	.LASF20
+ 291 00ec 01       		.byte	0x1
+ 292 00ed 25       		.byte	0x25
+ 293 00ee 00000000 		.4byte	.LFB0
+ 294 00f2 0C000000 		.4byte	.LFE0-.LFB0
+ 295 00f6 01       		.uleb128 0x1
+ 296 00f7 9C       		.byte	0x9c
+ 297 00f8 09       		.uleb128 0x9
+ 298 00f9 06020000 		.4byte	.LASF21
+ 299 00fd 01       		.byte	0x1
+ 300 00fe 39       		.byte	0x39
+ 301 00ff 00000000 		.4byte	.LFB1
+ 302 0103 0C000000 		.4byte	.LFE1-.LFB1
+ 303 0107 01       		.uleb128 0x1
+ 304 0108 9C       		.byte	0x9c
+ 305 0109 0A       		.uleb128 0xa
+ 306 010a 3B000000 		.4byte	.LASF22
+ 307 010e 01       		.byte	0x1
+ 308 010f 52       		.byte	0x52
+ 309 0110 00000000 		.4byte	.LFB2
+ 310 0114 34000000 		.4byte	.LFE2-.LFB2
+ 311 0118 01       		.uleb128 0x1
+ 312 0119 9C       		.byte	0x9c
+ 313 011a 0A       		.uleb128 0xa
+ 314 011b F9010000 		.4byte	.LASF23
+ 315 011f 01       		.byte	0x1
+ 316 0120 79       		.byte	0x79
+ 317 0121 00000000 		.4byte	.LFB3
+ 318 0125 1C000000 		.4byte	.LFE3-.LFB3
+ 319 0129 01       		.uleb128 0x1
+ 320 012a 9C       		.byte	0x9c
+ 321 012b 0B       		.uleb128 0xb
+ 322 012c 43010000 		.4byte	.LASF27
+ 323 0130 01       		.byte	0x1
+ 324 0131 14       		.byte	0x14
+ 325 0132 DC000000 		.4byte	0xdc
+ 326 0136 05       		.uleb128 0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 9
+
+
+ 327 0137 03       		.byte	0x3
+ 328 0138 00000000 		.4byte	PGA_1_backup
+ 329 013c 00       		.byte	0
+ 330              		.section	.debug_abbrev,"",%progbits
+ 331              	.Ldebug_abbrev0:
+ 332 0000 01       		.uleb128 0x1
+ 333 0001 11       		.uleb128 0x11
+ 334 0002 01       		.byte	0x1
+ 335 0003 25       		.uleb128 0x25
+ 336 0004 0E       		.uleb128 0xe
+ 337 0005 13       		.uleb128 0x13
+ 338 0006 0B       		.uleb128 0xb
+ 339 0007 03       		.uleb128 0x3
+ 340 0008 0E       		.uleb128 0xe
+ 341 0009 1B       		.uleb128 0x1b
+ 342 000a 0E       		.uleb128 0xe
+ 343 000b 55       		.uleb128 0x55
+ 344 000c 17       		.uleb128 0x17
+ 345 000d 11       		.uleb128 0x11
+ 346 000e 01       		.uleb128 0x1
+ 347 000f 10       		.uleb128 0x10
+ 348 0010 17       		.uleb128 0x17
+ 349 0011 00       		.byte	0
+ 350 0012 00       		.byte	0
+ 351 0013 02       		.uleb128 0x2
+ 352 0014 24       		.uleb128 0x24
+ 353 0015 00       		.byte	0
+ 354 0016 0B       		.uleb128 0xb
+ 355 0017 0B       		.uleb128 0xb
+ 356 0018 3E       		.uleb128 0x3e
+ 357 0019 0B       		.uleb128 0xb
+ 358 001a 03       		.uleb128 0x3
+ 359 001b 0E       		.uleb128 0xe
+ 360 001c 00       		.byte	0
+ 361 001d 00       		.byte	0
+ 362 001e 03       		.uleb128 0x3
+ 363 001f 24       		.uleb128 0x24
+ 364 0020 00       		.byte	0
+ 365 0021 0B       		.uleb128 0xb
+ 366 0022 0B       		.uleb128 0xb
+ 367 0023 3E       		.uleb128 0x3e
+ 368 0024 0B       		.uleb128 0xb
+ 369 0025 03       		.uleb128 0x3
+ 370 0026 08       		.uleb128 0x8
+ 371 0027 00       		.byte	0
+ 372 0028 00       		.byte	0
+ 373 0029 04       		.uleb128 0x4
+ 374 002a 16       		.uleb128 0x16
+ 375 002b 00       		.byte	0
+ 376 002c 03       		.uleb128 0x3
+ 377 002d 0E       		.uleb128 0xe
+ 378 002e 3A       		.uleb128 0x3a
+ 379 002f 0B       		.uleb128 0xb
+ 380 0030 3B       		.uleb128 0x3b
+ 381 0031 0B       		.uleb128 0xb
+ 382 0032 49       		.uleb128 0x49
+ 383 0033 13       		.uleb128 0x13
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 10
+
+
+ 384 0034 00       		.byte	0
+ 385 0035 00       		.byte	0
+ 386 0036 05       		.uleb128 0x5
+ 387 0037 16       		.uleb128 0x16
+ 388 0038 00       		.byte	0
+ 389 0039 03       		.uleb128 0x3
+ 390 003a 0E       		.uleb128 0xe
+ 391 003b 3A       		.uleb128 0x3a
+ 392 003c 0B       		.uleb128 0xb
+ 393 003d 3B       		.uleb128 0x3b
+ 394 003e 05       		.uleb128 0x5
+ 395 003f 49       		.uleb128 0x49
+ 396 0040 13       		.uleb128 0x13
+ 397 0041 00       		.byte	0
+ 398 0042 00       		.byte	0
+ 399 0043 06       		.uleb128 0x6
+ 400 0044 35       		.uleb128 0x35
+ 401 0045 00       		.byte	0
+ 402 0046 49       		.uleb128 0x49
+ 403 0047 13       		.uleb128 0x13
+ 404 0048 00       		.byte	0
+ 405 0049 00       		.byte	0
+ 406 004a 07       		.uleb128 0x7
+ 407 004b 13       		.uleb128 0x13
+ 408 004c 01       		.byte	0x1
+ 409 004d 0B       		.uleb128 0xb
+ 410 004e 0B       		.uleb128 0xb
+ 411 004f 3A       		.uleb128 0x3a
+ 412 0050 0B       		.uleb128 0xb
+ 413 0051 3B       		.uleb128 0x3b
+ 414 0052 0B       		.uleb128 0xb
+ 415 0053 01       		.uleb128 0x1
+ 416 0054 13       		.uleb128 0x13
+ 417 0055 00       		.byte	0
+ 418 0056 00       		.byte	0
+ 419 0057 08       		.uleb128 0x8
+ 420 0058 0D       		.uleb128 0xd
+ 421 0059 00       		.byte	0
+ 422 005a 03       		.uleb128 0x3
+ 423 005b 0E       		.uleb128 0xe
+ 424 005c 3A       		.uleb128 0x3a
+ 425 005d 0B       		.uleb128 0xb
+ 426 005e 3B       		.uleb128 0x3b
+ 427 005f 0B       		.uleb128 0xb
+ 428 0060 49       		.uleb128 0x49
+ 429 0061 13       		.uleb128 0x13
+ 430 0062 38       		.uleb128 0x38
+ 431 0063 0B       		.uleb128 0xb
+ 432 0064 00       		.byte	0
+ 433 0065 00       		.byte	0
+ 434 0066 09       		.uleb128 0x9
+ 435 0067 2E       		.uleb128 0x2e
+ 436 0068 00       		.byte	0
+ 437 0069 3F       		.uleb128 0x3f
+ 438 006a 19       		.uleb128 0x19
+ 439 006b 03       		.uleb128 0x3
+ 440 006c 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 11
+
+
+ 441 006d 3A       		.uleb128 0x3a
+ 442 006e 0B       		.uleb128 0xb
+ 443 006f 3B       		.uleb128 0x3b
+ 444 0070 0B       		.uleb128 0xb
+ 445 0071 27       		.uleb128 0x27
+ 446 0072 19       		.uleb128 0x19
+ 447 0073 11       		.uleb128 0x11
+ 448 0074 01       		.uleb128 0x1
+ 449 0075 12       		.uleb128 0x12
+ 450 0076 06       		.uleb128 0x6
+ 451 0077 40       		.uleb128 0x40
+ 452 0078 18       		.uleb128 0x18
+ 453 0079 9742     		.uleb128 0x2117
+ 454 007b 19       		.uleb128 0x19
+ 455 007c 00       		.byte	0
+ 456 007d 00       		.byte	0
+ 457 007e 0A       		.uleb128 0xa
+ 458 007f 2E       		.uleb128 0x2e
+ 459 0080 00       		.byte	0
+ 460 0081 3F       		.uleb128 0x3f
+ 461 0082 19       		.uleb128 0x19
+ 462 0083 03       		.uleb128 0x3
+ 463 0084 0E       		.uleb128 0xe
+ 464 0085 3A       		.uleb128 0x3a
+ 465 0086 0B       		.uleb128 0xb
+ 466 0087 3B       		.uleb128 0x3b
+ 467 0088 0B       		.uleb128 0xb
+ 468 0089 27       		.uleb128 0x27
+ 469 008a 19       		.uleb128 0x19
+ 470 008b 11       		.uleb128 0x11
+ 471 008c 01       		.uleb128 0x1
+ 472 008d 12       		.uleb128 0x12
+ 473 008e 06       		.uleb128 0x6
+ 474 008f 40       		.uleb128 0x40
+ 475 0090 18       		.uleb128 0x18
+ 476 0091 9642     		.uleb128 0x2116
+ 477 0093 19       		.uleb128 0x19
+ 478 0094 00       		.byte	0
+ 479 0095 00       		.byte	0
+ 480 0096 0B       		.uleb128 0xb
+ 481 0097 34       		.uleb128 0x34
+ 482 0098 00       		.byte	0
+ 483 0099 03       		.uleb128 0x3
+ 484 009a 0E       		.uleb128 0xe
+ 485 009b 3A       		.uleb128 0x3a
+ 486 009c 0B       		.uleb128 0xb
+ 487 009d 3B       		.uleb128 0x3b
+ 488 009e 0B       		.uleb128 0xb
+ 489 009f 49       		.uleb128 0x49
+ 490 00a0 13       		.uleb128 0x13
+ 491 00a1 02       		.uleb128 0x2
+ 492 00a2 18       		.uleb128 0x18
+ 493 00a3 00       		.byte	0
+ 494 00a4 00       		.byte	0
+ 495 00a5 00       		.byte	0
+ 496              		.section	.debug_aranges,"",%progbits
+ 497 0000 34000000 		.4byte	0x34
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 12
+
+
+ 498 0004 0200     		.2byte	0x2
+ 499 0006 00000000 		.4byte	.Ldebug_info0
+ 500 000a 04       		.byte	0x4
+ 501 000b 00       		.byte	0
+ 502 000c 0000     		.2byte	0
+ 503 000e 0000     		.2byte	0
+ 504 0010 00000000 		.4byte	.LFB0
+ 505 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 506 0018 00000000 		.4byte	.LFB1
+ 507 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 508 0020 00000000 		.4byte	.LFB2
+ 509 0024 34000000 		.4byte	.LFE2-.LFB2
+ 510 0028 00000000 		.4byte	.LFB3
+ 511 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 512 0030 00000000 		.4byte	0
+ 513 0034 00000000 		.4byte	0
+ 514              		.section	.debug_ranges,"",%progbits
+ 515              	.Ldebug_ranges0:
+ 516 0000 00000000 		.4byte	.LFB0
+ 517 0004 0C000000 		.4byte	.LFE0
+ 518 0008 00000000 		.4byte	.LFB1
+ 519 000c 0C000000 		.4byte	.LFE1
+ 520 0010 00000000 		.4byte	.LFB2
+ 521 0014 34000000 		.4byte	.LFE2
+ 522 0018 00000000 		.4byte	.LFB3
+ 523 001c 1C000000 		.4byte	.LFE3
+ 524 0020 00000000 		.4byte	0
+ 525 0024 00000000 		.4byte	0
+ 526              		.section	.debug_line,"",%progbits
+ 527              	.Ldebug_line0:
+ 528 0000 A2000000 		.section	.debug_str,"MS",%progbits,1
+ 528      02005200 
+ 528      00000201 
+ 528      FB0E0D00 
+ 528      01010101 
+ 529              	.LASF6:
+ 530 0000 6C6F6E67 		.ascii	"long long int\000"
+ 530      206C6F6E 
+ 530      6720696E 
+ 530      7400
+ 531              	.LASF15:
+ 532 000e 656E6162 		.ascii	"enableState\000"
+ 532      6C655374 
+ 532      61746500 
+ 533              	.LASF8:
+ 534 001a 756E7369 		.ascii	"unsigned int\000"
+ 534      676E6564 
+ 534      20696E74 
+ 534      00
+ 535              	.LASF19:
+ 536 0027 5047415F 		.ascii	"PGA_1_BACKUP_STRUCT\000"
+ 536      315F4241 
+ 536      434B5550 
+ 536      5F535452 
+ 536      55435400 
+ 537              	.LASF22:
+ 538 003b 5047415F 		.ascii	"PGA_1_Sleep\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 13
+
+
+ 538      315F536C 
+ 538      65657000 
+ 539              	.LASF12:
+ 540 0047 75696E74 		.ascii	"uint8\000"
+ 540      3800
+ 541              	.LASF16:
+ 542 004d 73634352 		.ascii	"scCR1Reg\000"
+ 542      31526567 
+ 542      00
+ 543              	.LASF7:
+ 544 0056 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 544      206C6F6E 
+ 544      6720756E 
+ 544      7369676E 
+ 544      65642069 
+ 545              	.LASF18:
+ 546 006d 73634352 		.ascii	"scCR3Reg\000"
+ 546      33526567 
+ 546      00
+ 547              	.LASF1:
+ 548 0076 756E7369 		.ascii	"unsigned char\000"
+ 548      676E6564 
+ 548      20636861 
+ 548      7200
+ 549              	.LASF11:
+ 550 0084 63686172 		.ascii	"char\000"
+ 550      00
+ 551              	.LASF4:
+ 552 0089 6C6F6E67 		.ascii	"long int\000"
+ 552      20696E74 
+ 552      00
+ 553              	.LASF24:
+ 554 0092 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 554      4320342E 
+ 554      392E3320 
+ 554      32303135 
+ 554      30333033 
+ 555 00c5 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 555      20726576 
+ 555      6973696F 
+ 555      6E203232 
+ 555      31323230 
+ 556 00f8 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 556      66756E63 
+ 556      74696F6E 
+ 556      2D736563 
+ 556      74696F6E 
+ 557              	.LASF2:
+ 558 0120 73686F72 		.ascii	"short int\000"
+ 558      7420696E 
+ 558      7400
+ 559              	.LASF5:
+ 560 012a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 560      20756E73 
+ 560      69676E65 
+ 560      6420696E 
+ 560      7400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 14
+
+
+ 561              	.LASF10:
+ 562 013c 646F7562 		.ascii	"double\000"
+ 562      6C6500
+ 563              	.LASF27:
+ 564 0143 5047415F 		.ascii	"PGA_1_backup\000"
+ 564      315F6261 
+ 564      636B7570 
+ 564      00
+ 565              	.LASF25:
+ 566 0150 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\PGA_1_PM.c\000"
+ 566      6E657261 
+ 566      7465645F 
+ 566      536F7572 
+ 566      63655C50 
+ 567              	.LASF3:
+ 568 0174 73686F72 		.ascii	"short unsigned int\000"
+ 568      7420756E 
+ 568      7369676E 
+ 568      65642069 
+ 568      6E7400
+ 569              	.LASF0:
+ 570 0187 7369676E 		.ascii	"signed char\000"
+ 570      65642063 
+ 570      68617200 
+ 571              	.LASF17:
+ 572 0193 73634352 		.ascii	"scCR2Reg\000"
+ 572      32526567 
+ 572      00
+ 573              	.LASF14:
+ 574 019c 73697A65 		.ascii	"sizetype\000"
+ 574      74797065 
+ 574      00
+ 575              	.LASF26:
+ 576 01a5 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\QDExample01\\QDExample"
+ 576      6F726B73 
+ 576      70616365 
+ 576      5C50536F 
+ 576      435F4372 
+ 577 01d4 30312E63 		.ascii	"01.cydsn\000"
+ 577      7964736E 
+ 577      00
+ 578              	.LASF9:
+ 579 01dd 666C6F61 		.ascii	"float\000"
+ 579      7400
+ 580              	.LASF13:
+ 581 01e3 72656738 		.ascii	"reg8\000"
+ 581      00
+ 582              	.LASF20:
+ 583 01e8 5047415F 		.ascii	"PGA_1_SaveConfig\000"
+ 583      315F5361 
+ 583      7665436F 
+ 583      6E666967 
+ 583      00
+ 584              	.LASF23:
+ 585 01f9 5047415F 		.ascii	"PGA_1_Wakeup\000"
+ 585      315F5761 
+ 585      6B657570 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccZplFjf.s 			page 15
+
+
+ 585      00
+ 586              	.LASF21:
+ 587 0206 5047415F 		.ascii	"PGA_1_RestoreConfig\000"
+ 587      315F5265 
+ 587      73746F72 
+ 587      65436F6E 
+ 587      66696700 
+ 588              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,2542 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"u8g_dev_ssd1306_64x48.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.rodata
+  19              		.align	2
+  20              		.type	u8g_dev_ssd1306_64x48_init_seq, %object
+  21              		.size	u8g_dev_ssd1306_64x48_init_seq, 36
+  22              	u8g_dev_ssd1306_64x48_init_seq:
+  23 0000 FF       		.byte	-1
+  24 0001 D0       		.byte	-48
+  25 0002 FF       		.byte	-1
+  26 0003 E0       		.byte	-32
+  27 0004 FF       		.byte	-1
+  28 0005 C1       		.byte	-63
+  29 0006 FF       		.byte	-1
+  30 0007 D1       		.byte	-47
+  31 0008 AE       		.byte	-82
+  32 0009 D5       		.byte	-43
+  33 000a 80       		.byte	-128
+  34 000b A8       		.byte	-88
+  35 000c 2F       		.byte	47
+  36 000d D3       		.byte	-45
+  37 000e 00       		.byte	0
+  38 000f 40       		.byte	64
+  39 0010 8D       		.byte	-115
+  40 0011 14       		.byte	20
+  41 0012 A1       		.byte	-95
+  42 0013 C8       		.byte	-56
+  43 0014 DA       		.byte	-38
+  44 0015 12       		.byte	18
+  45 0016 81       		.byte	-127
+  46 0017 CF       		.byte	-49
+  47 0018 D9       		.byte	-39
+  48 0019 22       		.byte	34
+  49 001a DB       		.byte	-37
+  50 001b 00       		.byte	0
+  51 001c 2E       		.byte	46
+  52 001d A4       		.byte	-92
+  53 001e A6       		.byte	-90
+  54 001f AF       		.byte	-81
+  55 0020 FF       		.byte	-1
+  56 0021 D0       		.byte	-48
+  57 0022 FF       		.byte	-1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 2
+
+
+  58 0023 FE       		.byte	-2
+  59              		.align	2
+  60              		.type	u8g_dev_ssd1306_64x48_data_start, %object
+  61              		.size	u8g_dev_ssd1306_64x48_data_start, 8
+  62              	u8g_dev_ssd1306_64x48_data_start:
+  63 0024 FF       		.byte	-1
+  64 0025 E0       		.byte	-32
+  65 0026 FF       		.byte	-1
+  66 0027 D1       		.byte	-47
+  67 0028 12       		.byte	18
+  68 0029 00       		.byte	0
+  69 002a FF       		.byte	-1
+  70 002b FE       		.byte	-2
+  71              		.align	2
+  72              		.type	u8g_dev_ssd13xx_sleep_on, %object
+  73              		.size	u8g_dev_ssd13xx_sleep_on, 9
+  74              	u8g_dev_ssd13xx_sleep_on:
+  75 002c FF       		.byte	-1
+  76 002d E0       		.byte	-32
+  77 002e FF       		.byte	-1
+  78 002f D1       		.byte	-47
+  79 0030 AE       		.byte	-82
+  80 0031 FF       		.byte	-1
+  81 0032 D0       		.byte	-48
+  82 0033 FF       		.byte	-1
+  83 0034 FE       		.byte	-2
+  84 0035 000000   		.align	2
+  85              		.type	u8g_dev_ssd13xx_sleep_off, %object
+  86              		.size	u8g_dev_ssd13xx_sleep_off, 11
+  87              	u8g_dev_ssd13xx_sleep_off:
+  88 0038 FF       		.byte	-1
+  89 0039 E0       		.byte	-32
+  90 003a FF       		.byte	-1
+  91 003b D1       		.byte	-47
+  92 003c AF       		.byte	-81
+  93 003d FF       		.byte	-1
+  94 003e 32       		.byte	50
+  95 003f FF       		.byte	-1
+  96 0040 D0       		.byte	-48
+  97 0041 FF       		.byte	-1
+  98 0042 FE       		.byte	-2
+  99 0043 00       		.section	.text.u8g_dev_ssd1306_64x48_fn,"ax",%progbits
+ 100              		.align	2
+ 101              		.global	u8g_dev_ssd1306_64x48_fn
+ 102              		.thumb
+ 103              		.thumb_func
+ 104              		.type	u8g_dev_ssd1306_64x48_fn, %function
+ 105              	u8g_dev_ssd1306_64x48_fn:
+ 106              	.LFB0:
+ 107              		.file 1 ".\\u8glib_arm_v1.18.1\\src\\u8g_dev_ssd1306_64x48.c"
+   1:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** /*
+   2:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+   3:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   u8g_dev_ssd1306_64x48.c
+   4:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+   5:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   Universal 8bit Graphics Library
+   6:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   
+   7:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   Copyright (c) 2011, olikraus@gmail.com
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 3
+
+
+   8:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   All rights reserved.
+   9:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  10:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   are permitted provided that the following conditions are met:
+  12:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  13:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     of conditions and the following disclaimer.
+  15:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     
+  16:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     materials provided with the distribution.
+  19:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  20:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  34:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   
+  35:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  36:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** */
+  37:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  38:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  39:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** #include "u8g.h"
+  40:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  41:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** #define WIDTH 64
+  42:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** #define HEIGHT 48
+  43:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** #define PAGE_HEIGHT 8
+  44:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  45:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  46:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  47:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** /* init sequence buydisplay.com 0.66" 64x48 OLED */
+  48:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** /* http://www.buydisplay.com/download/manual/ER-OLED0.66-1_Series_Datasheet.pdf */
+  49:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** static const uint8_t u8g_dev_ssd1306_64x48_init_seq[] PROGMEM = {
+  50:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(0),        /* disable chip */
+  51:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_ADR(0),       /* instruction mode */
+  52:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_RST(1),		/* do reset low pulse with (1*16)+2 milliseconds */
+  53:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(1),        /* enable chip */
+  54:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  55:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0ae,				/* display off, sleep mode */
+  56:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0d5, 0x080,			/* clock divide ratio (0x00=1) and oscillator frequency (0x8) */
+  57:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0a8, 0x02f,			/* Multiplex Ration, Jul 12, 2015: From 0.66" OLED datasheet */
+  58:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  59:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0d3, 0x000,			/*  */
+  60:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  61:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x040,				/* start line */
+  62:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   
+  63:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x08d, 0x014,			/* charge pump setting (p62): 0x014 enable, 0x010 disable */ 
+  64:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 4
+
+
+  65:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   //0x020, 0x002,			/* com pin HW config, sequential com pin config (bit 4), disable left/right rem
+  66:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0a1,				/* segment remap a0/a1*/
+  67:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0c8,				/* c0: scan dir normal, c8: reverse */
+  68:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0da, 0x012,			/* com pin HW config, sequential com pin config (bit 4), disable left/right remap
+  69:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x081, 0x0cf,			/* set contrast control */
+  70:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0d9, 0x022,			/* pre-charge period 0x022/f1, from 0.66" OLED datasheet */
+  71:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0db, 0x000,			/* vcomh deselect level, from 0.66" OLED datasheet */
+  72:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   
+  73:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x02e,				/* 2012-05-27: Deactivate scroll */ 
+  74:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0a4,				/* output ram to display */
+  75:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0a6,				/* none inverted normal display mode */
+  76:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0af,				/* display on */
+  77:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  78:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(0),        /* disable chip */
+  79:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_END           /* end of sequence */
+  80:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** };
+  81:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  82:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  83:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  84:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  85:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** static const uint8_t u8g_dev_ssd1306_64x48_data_start[] PROGMEM = {
+  86:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_ADR(0),       /* instruction mode */
+  87:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(1),        /* enable chip */
+  88:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x010+2,				/* set upper 4 bit of the col adr. to 0, 0.66" OLED starts with offset 32 */
+  89:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x000,				/* set lower 4 bit of the col adr. to 4  */
+  90:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_END           /* end of sequence */
+  91:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** };
+  92:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+  93:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** static const uint8_t u8g_dev_ssd13xx_sleep_on[] PROGMEM = {
+  94:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_ADR(0),           /* instruction mode */
+  95:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(1),             /* enable chip */
+  96:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0ae,		/* display off */      
+  97:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(0),             /* disable chip, bugfix 12 nov 2014 */
+  98:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_END                /* end of sequence */
+  99:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** };
+ 100:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+ 101:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** static const uint8_t u8g_dev_ssd13xx_sleep_off[] PROGMEM = {
+ 102:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_ADR(0),           /* instruction mode */
+ 103:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(1),             /* enable chip */
+ 104:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   0x0af,		/* display on */      
+ 105:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_DLY(50),       /* delay 50 ms */
+ 106:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_CS(0),             /* disable chip, bugfix 12 nov 2014 */
+ 107:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   U8G_ESC_END                /* end of sequence */
+ 108:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** };
+ 109:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+ 110:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** uint8_t u8g_dev_ssd1306_64x48_fn(u8g_t *u8g, u8g_dev_t *dev, uint8_t msg, void *arg)
+ 111:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** {
+ 108              		.loc 1 111 0
+ 109              		.cfi_startproc
+ 110              		@ args = 0, pretend = 0, frame = 24
+ 111              		@ frame_needed = 1, uses_anonymous_args = 0
+ 112 0000 80B5     		push	{r7, lr}
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 7, -8
+ 115              		.cfi_offset 14, -4
+ 116 0002 86B0     		sub	sp, sp, #24
+ 117              		.cfi_def_cfa_offset 32
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 5
+
+
+ 118 0004 00AF     		add	r7, sp, #0
+ 119              		.cfi_def_cfa_register 7
+ 120 0006 F860     		str	r0, [r7, #12]
+ 121 0008 B960     		str	r1, [r7, #8]
+ 122 000a 3B60     		str	r3, [r7]
+ 123 000c 1346     		mov	r3, r2
+ 124 000e FB71     		strb	r3, [r7, #7]
+ 112:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   switch(msg)
+ 125              		.loc 1 112 0
+ 126 0010 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 127 0012 0A3B     		subs	r3, r3, #10
+ 128 0014 0B2B     		cmp	r3, #11
+ 129 0016 5BD8     		bhi	.L2
+ 130 0018 01A2     		adr	r2, .L4
+ 131 001a 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 132 001e 00BF     		.p2align 2
+ 133              	.L4:
+ 134 0020 51000000 		.word	.L3+1
+ 135 0024 D1000000 		.word	.L2+1
+ 136 0028 D1000000 		.word	.L2+1
+ 137 002c D1000000 		.word	.L2+1
+ 138 0030 D1000000 		.word	.L2+1
+ 139 0034 D1000000 		.word	.L2+1
+ 140 0038 B5000000 		.word	.L6+1
+ 141 003c C3000000 		.word	.L7+1
+ 142 0040 D1000000 		.word	.L2+1
+ 143 0044 D1000000 		.word	.L2+1
+ 144 0048 D1000000 		.word	.L2+1
+ 145 004c 67000000 		.word	.L8+1
+ 146              		.p2align 1
+ 147              	.L3:
+ 113:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   {
+ 114:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_INIT:
+ 115:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_InitCom(u8g, dev, U8G_SPI_CLK_CYCLE_300NS);
+ 148              		.loc 1 115 0
+ 149 0050 F868     		ldr	r0, [r7, #12]
+ 150 0052 B968     		ldr	r1, [r7, #8]
+ 151 0054 0222     		movs	r2, #2
+ 152 0056 FFF7FEFF 		bl	u8g_InitCom
+ 116:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd1306_64x48_init_seq);
+ 153              		.loc 1 116 0
+ 154 005a F868     		ldr	r0, [r7, #12]
+ 155 005c B968     		ldr	r1, [r7, #8]
+ 156 005e 224A     		ldr	r2, .L11
+ 157 0060 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 117:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       break;
+ 158              		.loc 1 117 0
+ 159 0064 34E0     		b	.L2
+ 160              	.L8:
+ 161              	.LBB2:
+ 118:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_STOP:
+ 119:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       break;
+ 120:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_PAGE_NEXT:
+ 121:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       {
+ 122:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_pb_t *pb = (u8g_pb_t *)(dev->dev_mem);
+ 162              		.loc 1 122 0
+ 163 0066 BB68     		ldr	r3, [r7, #8]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 6
+
+
+ 164 0068 5B68     		ldr	r3, [r3, #4]
+ 165 006a 7B61     		str	r3, [r7, #20]
+ 123:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd1306_64x48_data_start);    
+ 166              		.loc 1 123 0
+ 167 006c F868     		ldr	r0, [r7, #12]
+ 168 006e B968     		ldr	r1, [r7, #8]
+ 169 0070 1E4A     		ldr	r2, .L11+4
+ 170 0072 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 124:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_WriteByte(u8g, dev, 0x0b0 | pb->p.page);	/* select current page (SSD1306) */
+ 171              		.loc 1 124 0
+ 172 0076 7B69     		ldr	r3, [r7, #20]
+ 173 0078 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 174 007a 63F04F03 		orn	r3, r3, #79
+ 175 007e DBB2     		uxtb	r3, r3
+ 176 0080 F868     		ldr	r0, [r7, #12]
+ 177 0082 B968     		ldr	r1, [r7, #8]
+ 178 0084 1A46     		mov	r2, r3
+ 179 0086 FFF7FEFF 		bl	u8g_WriteByte
+ 125:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_SetAddress(u8g, dev, 1);					/* data mode */
+ 180              		.loc 1 125 0
+ 181 008a F868     		ldr	r0, [r7, #12]
+ 182 008c B968     		ldr	r1, [r7, #8]
+ 183 008e 0122     		movs	r2, #1
+ 184 0090 FFF7FEFF 		bl	u8g_SetAddress
+ 126:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         if ( u8g_pb_WriteBuffer(pb, u8g, dev) == 0 )
+ 185              		.loc 1 126 0
+ 186 0094 7869     		ldr	r0, [r7, #20]
+ 187 0096 F968     		ldr	r1, [r7, #12]
+ 188 0098 BA68     		ldr	r2, [r7, #8]
+ 189 009a FFF7FEFF 		bl	u8g_pb_WriteBuffer
+ 190 009e 0346     		mov	r3, r0
+ 191 00a0 002B     		cmp	r3, #0
+ 192 00a2 01D1     		bne	.L9
+ 127:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****           return 0;
+ 193              		.loc 1 127 0
+ 194 00a4 0023     		movs	r3, #0
+ 195 00a6 1BE0     		b	.L10
+ 196              	.L9:
+ 128:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_SetChipSelect(u8g, dev, 0);
+ 197              		.loc 1 128 0
+ 198 00a8 F868     		ldr	r0, [r7, #12]
+ 199 00aa B968     		ldr	r1, [r7, #8]
+ 200 00ac 0022     		movs	r2, #0
+ 201 00ae FFF7FEFF 		bl	u8g_SetChipSelect
+ 202              	.LBE2:
+ 129:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       }
+ 130:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       break;
+ 203              		.loc 1 130 0
+ 204 00b2 0DE0     		b	.L2
+ 205              	.L6:
+ 131:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_SLEEP_ON:
+ 132:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd13xx_sleep_on);    
+ 206              		.loc 1 132 0
+ 207 00b4 F868     		ldr	r0, [r7, #12]
+ 208 00b6 B968     		ldr	r1, [r7, #8]
+ 209 00b8 0D4A     		ldr	r2, .L11+8
+ 210 00ba FFF7FEFF 		bl	u8g_WriteEscSeqP
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 7
+
+
+ 133:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       return 1;
+ 211              		.loc 1 133 0
+ 212 00be 0123     		movs	r3, #1
+ 213 00c0 0EE0     		b	.L10
+ 214              	.L7:
+ 134:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_SLEEP_OFF:
+ 135:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd13xx_sleep_off);    
+ 215              		.loc 1 135 0
+ 216 00c2 F868     		ldr	r0, [r7, #12]
+ 217 00c4 B968     		ldr	r1, [r7, #8]
+ 218 00c6 0B4A     		ldr	r2, .L11+12
+ 219 00c8 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 136:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       return 1;
+ 220              		.loc 1 136 0
+ 221 00cc 0123     		movs	r3, #1
+ 222 00ce 07E0     		b	.L10
+ 223              	.L2:
+ 137:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** }
+ 138:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   
+ 139:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   return u8g_dev_pb8v1_base_fn(u8g, dev, msg, arg);
+ 224              		.loc 1 139 0
+ 225 00d0 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 226 00d2 F868     		ldr	r0, [r7, #12]
+ 227 00d4 B968     		ldr	r1, [r7, #8]
+ 228 00d6 1A46     		mov	r2, r3
+ 229 00d8 3B68     		ldr	r3, [r7]
+ 230 00da FFF7FEFF 		bl	u8g_dev_pb8v1_base_fn
+ 231 00de 0346     		mov	r3, r0
+ 232              	.L10:
+ 140:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** }
+ 233              		.loc 1 140 0
+ 234 00e0 1846     		mov	r0, r3
+ 235 00e2 1837     		adds	r7, r7, #24
+ 236              		.cfi_def_cfa_offset 8
+ 237 00e4 BD46     		mov	sp, r7
+ 238              		.cfi_def_cfa_register 13
+ 239              		@ sp needed
+ 240 00e6 80BD     		pop	{r7, pc}
+ 241              	.L12:
+ 242              		.align	2
+ 243              	.L11:
+ 244 00e8 00000000 		.word	u8g_dev_ssd1306_64x48_init_seq
+ 245 00ec 24000000 		.word	u8g_dev_ssd1306_64x48_data_start
+ 246 00f0 2C000000 		.word	u8g_dev_ssd13xx_sleep_on
+ 247 00f4 38000000 		.word	u8g_dev_ssd13xx_sleep_off
+ 248              		.cfi_endproc
+ 249              	.LFE0:
+ 250              		.size	u8g_dev_ssd1306_64x48_fn, .-u8g_dev_ssd1306_64x48_fn
+ 251              		.section	.text.u8g_dev_ssd1306_64x48_2x_fn,"ax",%progbits
+ 252              		.align	2
+ 253              		.global	u8g_dev_ssd1306_64x48_2x_fn
+ 254              		.thumb
+ 255              		.thumb_func
+ 256              		.type	u8g_dev_ssd1306_64x48_2x_fn, %function
+ 257              	u8g_dev_ssd1306_64x48_2x_fn:
+ 258              	.LFB1:
+ 141:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 8
+
+
+ 142:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** uint8_t u8g_dev_ssd1306_64x48_2x_fn(u8g_t *u8g, u8g_dev_t *dev, uint8_t msg, void *arg)
+ 143:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** {
+ 259              		.loc 1 143 0
+ 260              		.cfi_startproc
+ 261              		@ args = 0, pretend = 0, frame = 24
+ 262              		@ frame_needed = 1, uses_anonymous_args = 0
+ 263 0000 90B5     		push	{r4, r7, lr}
+ 264              		.cfi_def_cfa_offset 12
+ 265              		.cfi_offset 4, -12
+ 266              		.cfi_offset 7, -8
+ 267              		.cfi_offset 14, -4
+ 268 0002 87B0     		sub	sp, sp, #28
+ 269              		.cfi_def_cfa_offset 40
+ 270 0004 00AF     		add	r7, sp, #0
+ 271              		.cfi_def_cfa_register 7
+ 272 0006 F860     		str	r0, [r7, #12]
+ 273 0008 B960     		str	r1, [r7, #8]
+ 274 000a 3B60     		str	r3, [r7]
+ 275 000c 1346     		mov	r3, r2
+ 276 000e FB71     		strb	r3, [r7, #7]
+ 144:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   switch(msg)
+ 277              		.loc 1 144 0
+ 278 0010 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 279 0012 0A3B     		subs	r3, r3, #10
+ 280 0014 0B2B     		cmp	r3, #11
+ 281 0016 00F28880 		bhi	.L14
+ 282 001a 01A2     		adr	r2, .L16
+ 283 001c 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 284              		.p2align 2
+ 285              	.L16:
+ 286 0020 51000000 		.word	.L15+1
+ 287 0024 2B010000 		.word	.L14+1
+ 288 0028 2B010000 		.word	.L14+1
+ 289 002c 2B010000 		.word	.L14+1
+ 290 0030 2B010000 		.word	.L14+1
+ 291 0034 2B010000 		.word	.L14+1
+ 292 0038 0F010000 		.word	.L18+1
+ 293 003c 1D010000 		.word	.L19+1
+ 294 0040 2B010000 		.word	.L14+1
+ 295 0044 2B010000 		.word	.L14+1
+ 296 0048 2B010000 		.word	.L14+1
+ 297 004c 67000000 		.word	.L20+1
+ 298              		.p2align 1
+ 299              	.L15:
+ 145:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   {
+ 146:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_INIT:
+ 147:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_InitCom(u8g, dev, U8G_SPI_CLK_CYCLE_300NS);
+ 300              		.loc 1 147 0
+ 301 0050 F868     		ldr	r0, [r7, #12]
+ 302 0052 B968     		ldr	r1, [r7, #8]
+ 303 0054 0222     		movs	r2, #2
+ 304 0056 FFF7FEFF 		bl	u8g_InitCom
+ 148:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd1306_64x48_init_seq);
+ 305              		.loc 1 148 0
+ 306 005a F868     		ldr	r0, [r7, #12]
+ 307 005c B968     		ldr	r1, [r7, #8]
+ 308 005e 394A     		ldr	r2, .L22
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 9
+
+
+ 309 0060 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 149:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       break;
+ 310              		.loc 1 149 0
+ 311 0064 61E0     		b	.L14
+ 312              	.L20:
+ 313              	.LBB3:
+ 150:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_STOP:
+ 151:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       break;
+ 152:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_PAGE_NEXT:
+ 153:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       {
+ 154:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_pb_t *pb = (u8g_pb_t *)(dev->dev_mem);
+ 314              		.loc 1 154 0
+ 315 0066 BB68     		ldr	r3, [r7, #8]
+ 316 0068 5B68     		ldr	r3, [r3, #4]
+ 317 006a 7B61     		str	r3, [r7, #20]
+ 155:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 	
+ 156:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd1306_64x48_data_start);    
+ 318              		.loc 1 156 0
+ 319 006c F868     		ldr	r0, [r7, #12]
+ 320 006e B968     		ldr	r1, [r7, #8]
+ 321 0070 354A     		ldr	r2, .L22+4
+ 322 0072 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 157:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_WriteByte(u8g, dev, 0x0b0 | (pb->p.page*2));	/* select current page (SSD1306) */
+ 323              		.loc 1 157 0
+ 324 0076 7B69     		ldr	r3, [r7, #20]
+ 325 0078 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 326 007a 5B00     		lsls	r3, r3, #1
+ 327 007c DBB2     		uxtb	r3, r3
+ 328 007e DBB2     		uxtb	r3, r3
+ 329 0080 63F04F03 		orn	r3, r3, #79
+ 330 0084 DBB2     		uxtb	r3, r3
+ 331 0086 DBB2     		uxtb	r3, r3
+ 332 0088 F868     		ldr	r0, [r7, #12]
+ 333 008a B968     		ldr	r1, [r7, #8]
+ 334 008c 1A46     		mov	r2, r3
+ 335 008e FFF7FEFF 		bl	u8g_WriteByte
+ 158:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_SetAddress(u8g, dev, 1);					/* data mode */
+ 336              		.loc 1 158 0
+ 337 0092 F868     		ldr	r0, [r7, #12]
+ 338 0094 B968     		ldr	r1, [r7, #8]
+ 339 0096 0122     		movs	r2, #1
+ 340 0098 FFF7FEFF 		bl	u8g_SetAddress
+ 159:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 	u8g_WriteSequence(u8g, dev, pb->width, pb->buf); 
+ 341              		.loc 1 159 0
+ 342 009c 7B69     		ldr	r3, [r7, #20]
+ 343 009e 5A79     		ldrb	r2, [r3, #5]	@ zero_extendqisi2
+ 344 00a0 7B69     		ldr	r3, [r7, #20]
+ 345 00a2 9B68     		ldr	r3, [r3, #8]
+ 346 00a4 F868     		ldr	r0, [r7, #12]
+ 347 00a6 B968     		ldr	r1, [r7, #8]
+ 348 00a8 FFF7FEFF 		bl	u8g_WriteSequence
+ 160:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_SetChipSelect(u8g, dev, 0);
+ 349              		.loc 1 160 0
+ 350 00ac F868     		ldr	r0, [r7, #12]
+ 351 00ae B968     		ldr	r1, [r7, #8]
+ 352 00b0 0022     		movs	r2, #0
+ 353 00b2 FFF7FEFF 		bl	u8g_SetChipSelect
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 10
+
+
+ 161:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 	
+ 162:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd1306_64x48_data_start);    
+ 354              		.loc 1 162 0
+ 355 00b6 F868     		ldr	r0, [r7, #12]
+ 356 00b8 B968     		ldr	r1, [r7, #8]
+ 357 00ba 234A     		ldr	r2, .L22+4
+ 358 00bc FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 163:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_WriteByte(u8g, dev, 0x0b0 | (pb->p.page*2+1));	/* select current page (SSD1306) */
+ 359              		.loc 1 163 0
+ 360 00c0 7B69     		ldr	r3, [r7, #20]
+ 361 00c2 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 362 00c4 5B00     		lsls	r3, r3, #1
+ 363 00c6 DBB2     		uxtb	r3, r3
+ 364 00c8 0133     		adds	r3, r3, #1
+ 365 00ca DBB2     		uxtb	r3, r3
+ 366 00cc DBB2     		uxtb	r3, r3
+ 367 00ce 63F04F03 		orn	r3, r3, #79
+ 368 00d2 DBB2     		uxtb	r3, r3
+ 369 00d4 DBB2     		uxtb	r3, r3
+ 370 00d6 F868     		ldr	r0, [r7, #12]
+ 371 00d8 B968     		ldr	r1, [r7, #8]
+ 372 00da 1A46     		mov	r2, r3
+ 373 00dc FFF7FEFF 		bl	u8g_WriteByte
+ 164:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_SetAddress(u8g, dev, 1);					/* data mode */
+ 374              		.loc 1 164 0
+ 375 00e0 F868     		ldr	r0, [r7, #12]
+ 376 00e2 B968     		ldr	r1, [r7, #8]
+ 377 00e4 0122     		movs	r2, #1
+ 378 00e6 FFF7FEFF 		bl	u8g_SetAddress
+ 165:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** 	u8g_WriteSequence(u8g, dev, pb->width, (uint8_t *)(pb->buf)+pb->width); 
+ 379              		.loc 1 165 0
+ 380 00ea 7B69     		ldr	r3, [r7, #20]
+ 381 00ec 5C79     		ldrb	r4, [r3, #5]	@ zero_extendqisi2
+ 382 00ee 7B69     		ldr	r3, [r7, #20]
+ 383 00f0 9B68     		ldr	r3, [r3, #8]
+ 384 00f2 7A69     		ldr	r2, [r7, #20]
+ 385 00f4 5279     		ldrb	r2, [r2, #5]	@ zero_extendqisi2
+ 386 00f6 1344     		add	r3, r3, r2
+ 387 00f8 F868     		ldr	r0, [r7, #12]
+ 388 00fa B968     		ldr	r1, [r7, #8]
+ 389 00fc 2246     		mov	r2, r4
+ 390 00fe FFF7FEFF 		bl	u8g_WriteSequence
+ 166:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****         u8g_SetChipSelect(u8g, dev, 0);
+ 391              		.loc 1 166 0
+ 392 0102 F868     		ldr	r0, [r7, #12]
+ 393 0104 B968     		ldr	r1, [r7, #8]
+ 394 0106 0022     		movs	r2, #0
+ 395 0108 FFF7FEFF 		bl	u8g_SetChipSelect
+ 396              	.LBE3:
+ 167:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       }
+ 168:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       break;
+ 397              		.loc 1 168 0
+ 398 010c 0DE0     		b	.L14
+ 399              	.L18:
+ 169:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_SLEEP_ON:
+ 170:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd13xx_sleep_on);    
+ 400              		.loc 1 170 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 11
+
+
+ 401 010e F868     		ldr	r0, [r7, #12]
+ 402 0110 B968     		ldr	r1, [r7, #8]
+ 403 0112 0E4A     		ldr	r2, .L22+8
+ 404 0114 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 171:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       return 1;
+ 405              		.loc 1 171 0
+ 406 0118 0123     		movs	r3, #1
+ 407 011a 0EE0     		b	.L21
+ 408              	.L19:
+ 172:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****     case U8G_DEV_MSG_SLEEP_OFF:
+ 173:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_ssd13xx_sleep_off);    
+ 409              		.loc 1 173 0
+ 410 011c F868     		ldr	r0, [r7, #12]
+ 411 011e B968     		ldr	r1, [r7, #8]
+ 412 0120 0B4A     		ldr	r2, .L22+12
+ 413 0122 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 174:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****       return 1;
+ 414              		.loc 1 174 0
+ 415 0126 0123     		movs	r3, #1
+ 416 0128 07E0     		b	.L21
+ 417              	.L14:
+ 175:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   }
+ 176:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c ****   return u8g_dev_pb16v1_base_fn(u8g, dev, msg, arg);
+ 418              		.loc 1 176 0
+ 419 012a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 420 012c F868     		ldr	r0, [r7, #12]
+ 421 012e B968     		ldr	r1, [r7, #8]
+ 422 0130 1A46     		mov	r2, r3
+ 423 0132 3B68     		ldr	r3, [r7]
+ 424 0134 FFF7FEFF 		bl	u8g_dev_pb16v1_base_fn
+ 425 0138 0346     		mov	r3, r0
+ 426              	.L21:
+ 177:.\u8glib_arm_v1.18.1\src/u8g_dev_ssd1306_64x48.c **** }
+ 427              		.loc 1 177 0
+ 428 013a 1846     		mov	r0, r3
+ 429 013c 1C37     		adds	r7, r7, #28
+ 430              		.cfi_def_cfa_offset 12
+ 431 013e BD46     		mov	sp, r7
+ 432              		.cfi_def_cfa_register 13
+ 433              		@ sp needed
+ 434 0140 90BD     		pop	{r4, r7, pc}
+ 435              	.L23:
+ 436 0142 00BF     		.align	2
+ 437              	.L22:
+ 438 0144 00000000 		.word	u8g_dev_ssd1306_64x48_init_seq
+ 439 0148 24000000 		.word	u8g_dev_ssd1306_64x48_data_start
+ 440 014c 2C000000 		.word	u8g_dev_ssd13xx_sleep_on
+ 441 0150 38000000 		.word	u8g_dev_ssd13xx_sleep_off
+ 442              		.cfi_endproc
+ 443              	.LFE1:
+ 444              		.size	u8g_dev_ssd1306_64x48_2x_fn, .-u8g_dev_ssd1306_64x48_2x_fn
+ 445              		.global	u8g_dev_ssd1306_64x48_sw_spi_buf
+ 446              		.bss
+ 447              		.align	2
+ 448              		.type	u8g_dev_ssd1306_64x48_sw_spi_buf, %object
+ 449              		.size	u8g_dev_ssd1306_64x48_sw_spi_buf, 64
+ 450              	u8g_dev_ssd1306_64x48_sw_spi_buf:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 12
+
+
+ 451 0000 00000000 		.space	64
+ 451      00000000 
+ 451      00000000 
+ 451      00000000 
+ 451      00000000 
+ 452              		.global	u8g_dev_ssd1306_64x48_sw_spi_pb
+ 453              		.data
+ 454              		.align	2
+ 455              		.type	u8g_dev_ssd1306_64x48_sw_spi_pb, %object
+ 456              		.size	u8g_dev_ssd1306_64x48_sw_spi_pb, 12
+ 457              	u8g_dev_ssd1306_64x48_sw_spi_pb:
+ 458 0000 08       		.byte	8
+ 459 0001 30       		.byte	48
+ 460 0002 00       		.byte	0
+ 461 0003 00       		.byte	0
+ 462 0004 00       		.byte	0
+ 463 0005 40       		.byte	64
+ 464 0006 0000     		.space	2
+ 465 0008 00000000 		.word	u8g_dev_ssd1306_64x48_sw_spi_buf
+ 466              		.global	u8g_dev_ssd1306_64x48_sw_spi
+ 467              		.align	2
+ 468              		.type	u8g_dev_ssd1306_64x48_sw_spi, %object
+ 469              		.size	u8g_dev_ssd1306_64x48_sw_spi, 12
+ 470              	u8g_dev_ssd1306_64x48_sw_spi:
+ 471 000c 00000000 		.word	u8g_dev_ssd1306_64x48_fn
+ 472 0010 00000000 		.word	u8g_dev_ssd1306_64x48_sw_spi_pb
+ 473 0014 00000000 		.word	u8g_com_null_fn
+ 474              		.global	u8g_dev_ssd1306_64x48_hw_spi_buf
+ 475              		.bss
+ 476              		.align	2
+ 477              		.type	u8g_dev_ssd1306_64x48_hw_spi_buf, %object
+ 478              		.size	u8g_dev_ssd1306_64x48_hw_spi_buf, 64
+ 479              	u8g_dev_ssd1306_64x48_hw_spi_buf:
+ 480 0040 00000000 		.space	64
+ 480      00000000 
+ 480      00000000 
+ 480      00000000 
+ 480      00000000 
+ 481              		.global	u8g_dev_ssd1306_64x48_hw_spi_pb
+ 482              		.data
+ 483              		.align	2
+ 484              		.type	u8g_dev_ssd1306_64x48_hw_spi_pb, %object
+ 485              		.size	u8g_dev_ssd1306_64x48_hw_spi_pb, 12
+ 486              	u8g_dev_ssd1306_64x48_hw_spi_pb:
+ 487 0018 08       		.byte	8
+ 488 0019 30       		.byte	48
+ 489 001a 00       		.byte	0
+ 490 001b 00       		.byte	0
+ 491 001c 00       		.byte	0
+ 492 001d 40       		.byte	64
+ 493 001e 0000     		.space	2
+ 494 0020 00000000 		.word	u8g_dev_ssd1306_64x48_hw_spi_buf
+ 495              		.global	u8g_dev_ssd1306_64x48_hw_spi
+ 496              		.align	2
+ 497              		.type	u8g_dev_ssd1306_64x48_hw_spi, %object
+ 498              		.size	u8g_dev_ssd1306_64x48_hw_spi, 12
+ 499              	u8g_dev_ssd1306_64x48_hw_spi:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 13
+
+
+ 500 0024 00000000 		.word	u8g_dev_ssd1306_64x48_fn
+ 501 0028 00000000 		.word	u8g_dev_ssd1306_64x48_hw_spi_pb
+ 502 002c 00000000 		.word	u8g_com_null_fn
+ 503              		.global	u8g_dev_ssd1306_64x48_i2c_buf
+ 504              		.bss
+ 505              		.align	2
+ 506              		.type	u8g_dev_ssd1306_64x48_i2c_buf, %object
+ 507              		.size	u8g_dev_ssd1306_64x48_i2c_buf, 64
+ 508              	u8g_dev_ssd1306_64x48_i2c_buf:
+ 509 0080 00000000 		.space	64
+ 509      00000000 
+ 509      00000000 
+ 509      00000000 
+ 509      00000000 
+ 510              		.global	u8g_dev_ssd1306_64x48_i2c_pb
+ 511              		.data
+ 512              		.align	2
+ 513              		.type	u8g_dev_ssd1306_64x48_i2c_pb, %object
+ 514              		.size	u8g_dev_ssd1306_64x48_i2c_pb, 12
+ 515              	u8g_dev_ssd1306_64x48_i2c_pb:
+ 516 0030 08       		.byte	8
+ 517 0031 30       		.byte	48
+ 518 0032 00       		.byte	0
+ 519 0033 00       		.byte	0
+ 520 0034 00       		.byte	0
+ 521 0035 40       		.byte	64
+ 522 0036 0000     		.space	2
+ 523 0038 00000000 		.word	u8g_dev_ssd1306_64x48_i2c_buf
+ 524              		.global	u8g_dev_ssd1306_64x48_i2c
+ 525              		.align	2
+ 526              		.type	u8g_dev_ssd1306_64x48_i2c, %object
+ 527              		.size	u8g_dev_ssd1306_64x48_i2c, 12
+ 528              	u8g_dev_ssd1306_64x48_i2c:
+ 529 003c 00000000 		.word	u8g_dev_ssd1306_64x48_fn
+ 530 0040 00000000 		.word	u8g_dev_ssd1306_64x48_i2c_pb
+ 531 0044 00000000 		.word	u8g_com_null_fn
+ 532              		.global	u8g_dev_ssd1306_64x48_2x_buf
+ 533              		.bss
+ 534              		.align	2
+ 535              		.type	u8g_dev_ssd1306_64x48_2x_buf, %object
+ 536              		.size	u8g_dev_ssd1306_64x48_2x_buf, 128
+ 537              	u8g_dev_ssd1306_64x48_2x_buf:
+ 538 00c0 00000000 		.space	128
+ 538      00000000 
+ 538      00000000 
+ 538      00000000 
+ 538      00000000 
+ 539              		.global	u8g_dev_ssd1306_64x48_2x_pb
+ 540              		.data
+ 541              		.align	2
+ 542              		.type	u8g_dev_ssd1306_64x48_2x_pb, %object
+ 543              		.size	u8g_dev_ssd1306_64x48_2x_pb, 12
+ 544              	u8g_dev_ssd1306_64x48_2x_pb:
+ 545 0048 10       		.byte	16
+ 546 0049 30       		.byte	48
+ 547 004a 00       		.byte	0
+ 548 004b 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 14
+
+
+ 549 004c 00       		.byte	0
+ 550 004d 40       		.byte	64
+ 551 004e 0000     		.space	2
+ 552 0050 00000000 		.word	u8g_dev_ssd1306_64x48_2x_buf
+ 553              		.global	u8g_dev_ssd1306_64x48_2x_sw_spi
+ 554              		.align	2
+ 555              		.type	u8g_dev_ssd1306_64x48_2x_sw_spi, %object
+ 556              		.size	u8g_dev_ssd1306_64x48_2x_sw_spi, 12
+ 557              	u8g_dev_ssd1306_64x48_2x_sw_spi:
+ 558 0054 00000000 		.word	u8g_dev_ssd1306_64x48_2x_fn
+ 559 0058 00000000 		.word	u8g_dev_ssd1306_64x48_2x_pb
+ 560 005c 00000000 		.word	u8g_com_null_fn
+ 561              		.global	u8g_dev_ssd1306_64x48_2x_hw_spi
+ 562              		.align	2
+ 563              		.type	u8g_dev_ssd1306_64x48_2x_hw_spi, %object
+ 564              		.size	u8g_dev_ssd1306_64x48_2x_hw_spi, 12
+ 565              	u8g_dev_ssd1306_64x48_2x_hw_spi:
+ 566 0060 00000000 		.word	u8g_dev_ssd1306_64x48_2x_fn
+ 567 0064 00000000 		.word	u8g_dev_ssd1306_64x48_2x_pb
+ 568 0068 00000000 		.word	u8g_com_null_fn
+ 569              		.global	u8g_dev_ssd1306_64x48_2x_i2c
+ 570              		.align	2
+ 571              		.type	u8g_dev_ssd1306_64x48_2x_i2c, %object
+ 572              		.size	u8g_dev_ssd1306_64x48_2x_i2c, 12
+ 573              	u8g_dev_ssd1306_64x48_2x_i2c:
+ 574 006c 00000000 		.word	u8g_dev_ssd1306_64x48_2x_fn
+ 575 0070 00000000 		.word	u8g_dev_ssd1306_64x48_2x_pb
+ 576 0074 00000000 		.word	u8g_com_null_fn
+ 577              		.text
+ 578              	.Letext0:
+ 579              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 580              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 581              		.file 4 ".\\u8glib_arm_v1.18.1\\src\\u8g.h"
+ 582              		.section	.debug_info,"",%progbits
+ 583              	.Ldebug_info0:
+ 584 0000 FB060000 		.4byte	0x6fb
+ 585 0004 0400     		.2byte	0x4
+ 586 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 587 000a 04       		.byte	0x4
+ 588 000b 01       		.uleb128 0x1
+ 589 000c 2B020000 		.4byte	.LASF90
+ 590 0010 01       		.byte	0x1
+ 591 0011 AA040000 		.4byte	.LASF91
+ 592 0015 1F010000 		.4byte	.LASF92
+ 593 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 594 001d 00000000 		.4byte	0
+ 595 0021 00000000 		.4byte	.Ldebug_line0
+ 596 0025 02       		.uleb128 0x2
+ 597 0026 04       		.byte	0x4
+ 598 0027 05       		.byte	0x5
+ 599 0028 696E7400 		.ascii	"int\000"
+ 600 002c 03       		.uleb128 0x3
+ 601 002d 04       		.byte	0x4
+ 602 002e 07       		.byte	0x7
+ 603 002f EE030000 		.4byte	.LASF0
+ 604 0033 04       		.uleb128 0x4
+ 605 0034 40040000 		.4byte	.LASF2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 15
+
+
+ 606 0038 02       		.byte	0x2
+ 607 0039 1B       		.byte	0x1b
+ 608 003a 3E000000 		.4byte	0x3e
+ 609 003e 03       		.uleb128 0x3
+ 610 003f 01       		.byte	0x1
+ 611 0040 06       		.byte	0x6
+ 612 0041 C4030000 		.4byte	.LASF1
+ 613 0045 04       		.uleb128 0x4
+ 614 0046 09030000 		.4byte	.LASF3
+ 615 004a 02       		.byte	0x2
+ 616 004b 1D       		.byte	0x1d
+ 617 004c 50000000 		.4byte	0x50
+ 618 0050 03       		.uleb128 0x3
+ 619 0051 01       		.byte	0x1
+ 620 0052 08       		.byte	0x8
+ 621 0053 93030000 		.4byte	.LASF4
+ 622 0057 03       		.uleb128 0x3
+ 623 0058 02       		.byte	0x2
+ 624 0059 05       		.byte	0x5
+ 625 005a 83000000 		.4byte	.LASF5
+ 626 005e 03       		.uleb128 0x3
+ 627 005f 02       		.byte	0x2
+ 628 0060 07       		.byte	0x7
+ 629 0061 2D040000 		.4byte	.LASF6
+ 630 0065 03       		.uleb128 0x3
+ 631 0066 04       		.byte	0x4
+ 632 0067 05       		.byte	0x5
+ 633 0068 54040000 		.4byte	.LASF7
+ 634 006c 03       		.uleb128 0x3
+ 635 006d 04       		.byte	0x4
+ 636 006e 07       		.byte	0x7
+ 637 006f DB040000 		.4byte	.LASF8
+ 638 0073 03       		.uleb128 0x3
+ 639 0074 08       		.byte	0x8
+ 640 0075 05       		.byte	0x5
+ 641 0076 10020000 		.4byte	.LASF9
+ 642 007a 03       		.uleb128 0x3
+ 643 007b 08       		.byte	0x8
+ 644 007c 07       		.byte	0x7
+ 645 007d D0030000 		.4byte	.LASF10
+ 646 0081 04       		.uleb128 0x4
+ 647 0082 77000000 		.4byte	.LASF11
+ 648 0086 03       		.byte	0x3
+ 649 0087 14       		.byte	0x14
+ 650 0088 33000000 		.4byte	0x33
+ 651 008c 04       		.uleb128 0x4
+ 652 008d 17010000 		.4byte	.LASF12
+ 653 0091 03       		.byte	0x3
+ 654 0092 15       		.byte	0x15
+ 655 0093 45000000 		.4byte	0x45
+ 656 0097 04       		.uleb128 0x4
+ 657 0098 1F000000 		.4byte	.LASF13
+ 658 009c 04       		.byte	0x4
+ 659 009d 80       		.byte	0x80
+ 660 009e 8C000000 		.4byte	0x8c
+ 661 00a2 04       		.uleb128 0x4
+ 662 00a3 00000000 		.4byte	.LASF14
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 16
+
+
+ 663 00a7 04       		.byte	0x4
+ 664 00a8 A0       		.byte	0xa0
+ 665 00a9 AD000000 		.4byte	0xad
+ 666 00ad 05       		.uleb128 0x5
+ 667 00ae A0000000 		.4byte	.LASF41
+ 668 00b2 3C       		.byte	0x3c
+ 669 00b3 04       		.byte	0x4
+ 670 00b4 4B04     		.2byte	0x44b
+ 671 00b6 0D020000 		.4byte	0x20d
+ 672 00ba 06       		.uleb128 0x6
+ 673 00bb D0010000 		.4byte	.LASF15
+ 674 00bf 04       		.byte	0x4
+ 675 00c0 4D04     		.2byte	0x44d
+ 676 00c2 02030000 		.4byte	0x302
+ 677 00c6 00       		.byte	0
+ 678 00c7 06       		.uleb128 0x6
+ 679 00c8 E7030000 		.4byte	.LASF16
+ 680 00cc 04       		.byte	0x4
+ 681 00cd 4E04     		.2byte	0x44e
+ 682 00cf 02030000 		.4byte	0x302
+ 683 00d3 01       		.byte	0x1
+ 684 00d4 07       		.uleb128 0x7
+ 685 00d5 64657600 		.ascii	"dev\000"
+ 686 00d9 04       		.byte	0x4
+ 687 00da 5104     		.2byte	0x451
+ 688 00dc 42030000 		.4byte	0x342
+ 689 00e0 04       		.byte	0x4
+ 690 00e1 06       		.uleb128 0x6
+ 691 00e2 7E000000 		.4byte	.LASF17
+ 692 00e6 04       		.byte	0x4
+ 693 00e7 5204     		.2byte	0x452
+ 694 00e9 6E040000 		.4byte	0x46e
+ 695 00ed 08       		.byte	0x8
+ 696 00ee 06       		.uleb128 0x6
+ 697 00ef AE050000 		.4byte	.LASF18
+ 698 00f3 04       		.byte	0x4
+ 699 00f4 5304     		.2byte	0x453
+ 700 00f6 6E040000 		.4byte	0x46e
+ 701 00fa 0C       		.byte	0xc
+ 702 00fb 06       		.uleb128 0x6
+ 703 00fc DB000000 		.4byte	.LASF19
+ 704 0100 04       		.byte	0x4
+ 705 0101 5404     		.2byte	0x454
+ 706 0103 8C000000 		.4byte	0x8c
+ 707 0107 10       		.byte	0x10
+ 708 0108 06       		.uleb128 0x6
+ 709 0109 A0010000 		.4byte	.LASF20
+ 710 010d 04       		.byte	0x4
+ 711 010e 5404     		.2byte	0x454
+ 712 0110 8C000000 		.4byte	0x8c
+ 713 0114 11       		.byte	0x11
+ 714 0115 06       		.uleb128 0x6
+ 715 0116 83030000 		.4byte	.LASF21
+ 716 011a 04       		.byte	0x4
+ 717 011b 5504     		.2byte	0x455
+ 718 011d 8C000000 		.4byte	0x8c
+ 719 0121 12       		.byte	0x12
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 17
+
+
+ 720 0122 06       		.uleb128 0x6
+ 721 0123 5D040000 		.4byte	.LASF22
+ 722 0127 04       		.byte	0x4
+ 723 0128 5604     		.2byte	0x456
+ 724 012a 8C000000 		.4byte	0x8c
+ 725 012e 13       		.byte	0x13
+ 726 012f 06       		.uleb128 0x6
+ 727 0130 A7000000 		.4byte	.LASF23
+ 728 0134 04       		.byte	0x4
+ 729 0135 5704     		.2byte	0x457
+ 730 0137 02030000 		.4byte	0x302
+ 731 013b 14       		.byte	0x14
+ 732 013c 06       		.uleb128 0x6
+ 733 013d B0000000 		.4byte	.LASF24
+ 734 0141 04       		.byte	0x4
+ 735 0142 5804     		.2byte	0x458
+ 736 0144 02030000 		.4byte	0x302
+ 737 0148 15       		.byte	0x15
+ 738 0149 06       		.uleb128 0x6
+ 739 014a 18040000 		.4byte	.LASF25
+ 740 014e 04       		.byte	0x4
+ 741 014f 5904     		.2byte	0x459
+ 742 0151 13040000 		.4byte	0x413
+ 743 0155 18       		.byte	0x18
+ 744 0156 06       		.uleb128 0x6
+ 745 0157 5A010000 		.4byte	.LASF26
+ 746 015b 04       		.byte	0x4
+ 747 015c 5B04     		.2byte	0x45b
+ 748 015e 81000000 		.4byte	0x81
+ 749 0162 1C       		.byte	0x1c
+ 750 0163 06       		.uleb128 0x6
+ 751 0164 13030000 		.4byte	.LASF27
+ 752 0168 04       		.byte	0x4
+ 753 0169 5C04     		.2byte	0x45c
+ 754 016b 81000000 		.4byte	0x81
+ 755 016f 1D       		.byte	0x1d
+ 756 0170 06       		.uleb128 0x6
+ 757 0171 1B030000 		.4byte	.LASF28
+ 758 0175 04       		.byte	0x4
+ 759 0176 5D04     		.2byte	0x45d
+ 760 0178 81000000 		.4byte	0x81
+ 761 017c 1E       		.byte	0x1e
+ 762 017d 06       		.uleb128 0x6
+ 763 017e 06060000 		.4byte	.LASF29
+ 764 0182 04       		.byte	0x4
+ 765 0183 5E04     		.2byte	0x45e
+ 766 0185 8C000000 		.4byte	0x8c
+ 767 0189 1F       		.byte	0x1f
+ 768 018a 06       		.uleb128 0x6
+ 769 018b AD030000 		.4byte	.LASF30
+ 770 018f 04       		.byte	0x4
+ 771 0190 5F04     		.2byte	0x45f
+ 772 0192 8C000000 		.4byte	0x8c
+ 773 0196 20       		.byte	0x20
+ 774 0197 06       		.uleb128 0x6
+ 775 0198 BA050000 		.4byte	.LASF31
+ 776 019c 04       		.byte	0x4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 18
+
+
+ 777 019d 6104     		.2byte	0x461
+ 778 019f 30040000 		.4byte	0x430
+ 779 01a3 24       		.byte	0x24
+ 780 01a4 06       		.uleb128 0x6
+ 781 01a5 D1050000 		.4byte	.LASF32
+ 782 01a9 04       		.byte	0x4
+ 783 01aa 6204     		.2byte	0x462
+ 784 01ac 8C000000 		.4byte	0x8c
+ 785 01b0 28       		.byte	0x28
+ 786 01b1 06       		.uleb128 0x6
+ 787 01b2 07010000 		.4byte	.LASF33
+ 788 01b6 04       		.byte	0x4
+ 789 01b7 6304     		.2byte	0x463
+ 790 01b9 81000000 		.4byte	0x81
+ 791 01bd 29       		.byte	0x29
+ 792 01be 06       		.uleb128 0x6
+ 793 01bf 59050000 		.4byte	.LASF34
+ 794 01c3 04       		.byte	0x4
+ 795 01c4 6404     		.2byte	0x464
+ 796 01c6 81000000 		.4byte	0x81
+ 797 01ca 2A       		.byte	0x2a
+ 798 01cb 06       		.uleb128 0x6
+ 799 01cc 83050000 		.4byte	.LASF35
+ 800 01d0 04       		.byte	0x4
+ 801 01d1 6504     		.2byte	0x465
+ 802 01d3 8C000000 		.4byte	0x8c
+ 803 01d7 2B       		.byte	0x2b
+ 804 01d8 06       		.uleb128 0x6
+ 805 01d9 FA000000 		.4byte	.LASF36
+ 806 01dd 04       		.byte	0x4
+ 807 01de 6604     		.2byte	0x466
+ 808 01e0 8C000000 		.4byte	0x8c
+ 809 01e4 2C       		.byte	0x2c
+ 810 01e5 06       		.uleb128 0x6
+ 811 01e6 BA030000 		.4byte	.LASF37
+ 812 01ea 04       		.byte	0x4
+ 813 01eb 6804     		.2byte	0x468
+ 814 01ed 49020000 		.4byte	0x249
+ 815 01f1 2D       		.byte	0x2d
+ 816 01f2 06       		.uleb128 0x6
+ 817 01f3 B9000000 		.4byte	.LASF38
+ 818 01f7 04       		.byte	0x4
+ 819 01f8 6F04     		.2byte	0x46f
+ 820 01fa 51040000 		.4byte	0x451
+ 821 01fe 34       		.byte	0x34
+ 822 01ff 06       		.uleb128 0x6
+ 823 0200 1E020000 		.4byte	.LASF39
+ 824 0204 04       		.byte	0x4
+ 825 0205 7104     		.2byte	0x471
+ 826 0207 B9020000 		.4byte	0x2b9
+ 827 020b 38       		.byte	0x38
+ 828 020c 00       		.byte	0
+ 829 020d 04       		.uleb128 0x4
+ 830 020e EB000000 		.4byte	.LASF40
+ 831 0212 04       		.byte	0x4
+ 832 0213 A1       		.byte	0xa1
+ 833 0214 18020000 		.4byte	0x218
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 19
+
+
+ 834 0218 08       		.uleb128 0x8
+ 835 0219 3F060000 		.4byte	.LASF42
+ 836 021d 0C       		.byte	0xc
+ 837 021e 04       		.byte	0x4
+ 838 021f CF       		.byte	0xcf
+ 839 0220 49020000 		.4byte	0x249
+ 840 0224 09       		.uleb128 0x9
+ 841 0225 62040000 		.4byte	.LASF43
+ 842 0229 04       		.byte	0x4
+ 843 022a D1       		.byte	0xd1
+ 844 022b 0D030000 		.4byte	0x30d
+ 845 022f 00       		.byte	0
+ 846 0230 09       		.uleb128 0x9
+ 847 0231 A6050000 		.4byte	.LASF44
+ 848 0235 04       		.byte	0x4
+ 849 0236 D2       		.byte	0xd2
+ 850 0237 48030000 		.4byte	0x348
+ 851 023b 04       		.byte	0x4
+ 852 023c 09       		.uleb128 0x9
+ 853 023d 57060000 		.4byte	.LASF45
+ 854 0241 04       		.byte	0x4
+ 855 0242 D3       		.byte	0xd3
+ 856 0243 4A030000 		.4byte	0x34a
+ 857 0247 08       		.byte	0x8
+ 858 0248 00       		.byte	0
+ 859 0249 04       		.uleb128 0x4
+ 860 024a 4F030000 		.4byte	.LASF46
+ 861 024e 04       		.byte	0x4
+ 862 024f A3       		.byte	0xa3
+ 863 0250 54020000 		.4byte	0x254
+ 864 0254 05       		.uleb128 0x5
+ 865 0255 DF010000 		.4byte	.LASF47
+ 866 0259 07       		.byte	0x7
+ 867 025a 04       		.byte	0x4
+ 868 025b 1D02     		.2byte	0x21d
+ 869 025d B9020000 		.4byte	0x2b9
+ 870 0261 07       		.uleb128 0x7
+ 871 0262 7800     		.ascii	"x\000"
+ 872 0264 04       		.byte	0x4
+ 873 0265 1F02     		.2byte	0x21f
+ 874 0267 02030000 		.4byte	0x302
+ 875 026b 00       		.byte	0
+ 876 026c 07       		.uleb128 0x7
+ 877 026d 7900     		.ascii	"y\000"
+ 878 026f 04       		.byte	0x4
+ 879 0270 1F02     		.2byte	0x21f
+ 880 0272 02030000 		.4byte	0x302
+ 881 0276 01       		.byte	0x1
+ 882 0277 06       		.uleb128 0x6
+ 883 0278 2F000000 		.4byte	.LASF48
+ 884 027c 04       		.byte	0x4
+ 885 027d 2002     		.2byte	0x220
+ 886 027f 8C000000 		.4byte	0x8c
+ 887 0283 02       		.byte	0x2
+ 888 0284 07       		.uleb128 0x7
+ 889 0285 64697200 		.ascii	"dir\000"
+ 890 0289 04       		.byte	0x4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 20
+
+
+ 891 028a 2102     		.2byte	0x221
+ 892 028c 8C000000 		.4byte	0x8c
+ 893 0290 03       		.byte	0x3
+ 894 0291 06       		.uleb128 0x6
+ 895 0292 8D000000 		.4byte	.LASF49
+ 896 0296 04       		.byte	0x4
+ 897 0297 2202     		.2byte	0x222
+ 898 0299 8C000000 		.4byte	0x8c
+ 899 029d 04       		.byte	0x4
+ 900 029e 06       		.uleb128 0x6
+ 901 029f D6010000 		.4byte	.LASF50
+ 902 02a3 04       		.byte	0x4
+ 903 02a4 2302     		.2byte	0x223
+ 904 02a6 8C000000 		.4byte	0x8c
+ 905 02aa 05       		.byte	0x5
+ 906 02ab 06       		.uleb128 0x6
+ 907 02ac F5000000 		.4byte	.LASF51
+ 908 02b0 04       		.byte	0x4
+ 909 02b1 2402     		.2byte	0x224
+ 910 02b3 8C000000 		.4byte	0x8c
+ 911 02b7 06       		.byte	0x6
+ 912 02b8 00       		.byte	0
+ 913 02b9 04       		.uleb128 0x4
+ 914 02ba 9C050000 		.4byte	.LASF52
+ 915 02be 04       		.byte	0x4
+ 916 02bf A5       		.byte	0xa5
+ 917 02c0 C4020000 		.4byte	0x2c4
+ 918 02c4 05       		.uleb128 0x5
+ 919 02c5 49040000 		.4byte	.LASF53
+ 920 02c9 04       		.byte	0x4
+ 921 02ca 04       		.byte	0x4
+ 922 02cb 3102     		.2byte	0x231
+ 923 02cd 02030000 		.4byte	0x302
+ 924 02d1 07       		.uleb128 0x7
+ 925 02d2 783000   		.ascii	"x0\000"
+ 926 02d5 04       		.byte	0x4
+ 927 02d6 3302     		.2byte	0x233
+ 928 02d8 02030000 		.4byte	0x302
+ 929 02dc 00       		.byte	0
+ 930 02dd 07       		.uleb128 0x7
+ 931 02de 793000   		.ascii	"y0\000"
+ 932 02e1 04       		.byte	0x4
+ 933 02e2 3302     		.2byte	0x233
+ 934 02e4 02030000 		.4byte	0x302
+ 935 02e8 01       		.byte	0x1
+ 936 02e9 07       		.uleb128 0x7
+ 937 02ea 783100   		.ascii	"x1\000"
+ 938 02ed 04       		.byte	0x4
+ 939 02ee 3302     		.2byte	0x233
+ 940 02f0 02030000 		.4byte	0x302
+ 941 02f4 02       		.byte	0x2
+ 942 02f5 07       		.uleb128 0x7
+ 943 02f6 793100   		.ascii	"y1\000"
+ 944 02f9 04       		.byte	0x4
+ 945 02fa 3302     		.2byte	0x233
+ 946 02fc 02030000 		.4byte	0x302
+ 947 0300 03       		.byte	0x3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 21
+
+
+ 948 0301 00       		.byte	0
+ 949 0302 04       		.uleb128 0x4
+ 950 0303 22040000 		.4byte	.LASF54
+ 951 0307 04       		.byte	0x4
+ 952 0308 AF       		.byte	0xaf
+ 953 0309 8C000000 		.4byte	0x8c
+ 954 030d 04       		.uleb128 0x4
+ 955 030e FB020000 		.4byte	.LASF55
+ 956 0312 04       		.byte	0x4
+ 957 0313 C7       		.byte	0xc7
+ 958 0314 18030000 		.4byte	0x318
+ 959 0318 0A       		.uleb128 0xa
+ 960 0319 04       		.byte	0x4
+ 961 031a 1E030000 		.4byte	0x31e
+ 962 031e 0B       		.uleb128 0xb
+ 963 031f 8C000000 		.4byte	0x8c
+ 964 0323 3C030000 		.4byte	0x33c
+ 965 0327 0C       		.uleb128 0xc
+ 966 0328 3C030000 		.4byte	0x33c
+ 967 032c 0C       		.uleb128 0xc
+ 968 032d 42030000 		.4byte	0x342
+ 969 0331 0C       		.uleb128 0xc
+ 970 0332 8C000000 		.4byte	0x8c
+ 971 0336 0C       		.uleb128 0xc
+ 972 0337 48030000 		.4byte	0x348
+ 973 033b 00       		.byte	0
+ 974 033c 0A       		.uleb128 0xa
+ 975 033d 04       		.byte	0x4
+ 976 033e A2000000 		.4byte	0xa2
+ 977 0342 0A       		.uleb128 0xa
+ 978 0343 04       		.byte	0x4
+ 979 0344 0D020000 		.4byte	0x20d
+ 980 0348 0D       		.uleb128 0xd
+ 981 0349 04       		.byte	0x4
+ 982 034a 04       		.uleb128 0x4
+ 983 034b 23030000 		.4byte	.LASF56
+ 984 034f 04       		.byte	0x4
+ 985 0350 CA       		.byte	0xca
+ 986 0351 55030000 		.4byte	0x355
+ 987 0355 0A       		.uleb128 0xa
+ 988 0356 04       		.byte	0x4
+ 989 0357 5B030000 		.4byte	0x35b
+ 990 035b 0B       		.uleb128 0xb
+ 991 035c 8C000000 		.4byte	0x8c
+ 992 0360 79030000 		.4byte	0x379
+ 993 0364 0C       		.uleb128 0xc
+ 994 0365 3C030000 		.4byte	0x33c
+ 995 0369 0C       		.uleb128 0xc
+ 996 036a 8C000000 		.4byte	0x8c
+ 997 036e 0C       		.uleb128 0xc
+ 998 036f 8C000000 		.4byte	0x8c
+ 999 0373 0C       		.uleb128 0xc
+ 1000 0374 48030000 		.4byte	0x348
+ 1001 0378 00       		.byte	0
+ 1002 0379 05       		.uleb128 0x5
+ 1003 037a A1030000 		.4byte	.LASF57
+ 1004 037e 05       		.byte	0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 22
+
+
+ 1005 037f 04       		.byte	0x4
+ 1006 0380 9E03     		.2byte	0x39e
+ 1007 0382 C8030000 		.4byte	0x3c8
+ 1008 0386 06       		.uleb128 0x6
+ 1009 0387 12060000 		.4byte	.LASF58
+ 1010 038b 04       		.byte	0x4
+ 1011 038c A003     		.2byte	0x3a0
+ 1012 038e 02030000 		.4byte	0x302
+ 1013 0392 00       		.byte	0
+ 1014 0393 06       		.uleb128 0x6
+ 1015 0394 4A060000 		.4byte	.LASF59
+ 1016 0398 04       		.byte	0x4
+ 1017 0399 A103     		.2byte	0x3a1
+ 1018 039b 02030000 		.4byte	0x302
+ 1019 039f 01       		.byte	0x1
+ 1020 03a0 06       		.uleb128 0x6
+ 1021 03a1 C9050000 		.4byte	.LASF60
+ 1022 03a5 04       		.byte	0x4
+ 1023 03a6 A203     		.2byte	0x3a2
+ 1024 03a8 02030000 		.4byte	0x302
+ 1025 03ac 02       		.byte	0x2
+ 1026 03ad 06       		.uleb128 0x6
+ 1027 03ae A2040000 		.4byte	.LASF61
+ 1028 03b2 04       		.byte	0x4
+ 1029 03b3 A303     		.2byte	0x3a3
+ 1030 03b5 02030000 		.4byte	0x302
+ 1031 03b9 03       		.byte	0x3
+ 1032 03ba 06       		.uleb128 0x6
+ 1033 03bb E2050000 		.4byte	.LASF62
+ 1034 03bf 04       		.byte	0x4
+ 1035 03c0 A403     		.2byte	0x3a4
+ 1036 03c2 8C000000 		.4byte	0x8c
+ 1037 03c6 04       		.byte	0x4
+ 1038 03c7 00       		.byte	0
+ 1039 03c8 0E       		.uleb128 0xe
+ 1040 03c9 ED040000 		.4byte	.LASF63
+ 1041 03cd 04       		.byte	0x4
+ 1042 03ce A603     		.2byte	0x3a6
+ 1043 03d0 79030000 		.4byte	0x379
+ 1044 03d4 05       		.uleb128 0x5
+ 1045 03d5 4F050000 		.4byte	.LASF64
+ 1046 03d9 0C       		.byte	0xc
+ 1047 03da 04       		.byte	0x4
+ 1048 03db AF03     		.2byte	0x3af
+ 1049 03dd 07040000 		.4byte	0x407
+ 1050 03e1 07       		.uleb128 0x7
+ 1051 03e2 7000     		.ascii	"p\000"
+ 1052 03e4 04       		.byte	0x4
+ 1053 03e5 B103     		.2byte	0x3b1
+ 1054 03e7 C8030000 		.4byte	0x3c8
+ 1055 03eb 00       		.byte	0
+ 1056 03ec 06       		.uleb128 0x6
+ 1057 03ed D0010000 		.4byte	.LASF15
+ 1058 03f1 04       		.byte	0x4
+ 1059 03f2 B203     		.2byte	0x3b2
+ 1060 03f4 02030000 		.4byte	0x302
+ 1061 03f8 05       		.byte	0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 23
+
+
+ 1062 03f9 07       		.uleb128 0x7
+ 1063 03fa 62756600 		.ascii	"buf\000"
+ 1064 03fe 04       		.byte	0x4
+ 1065 03ff B303     		.2byte	0x3b3
+ 1066 0401 48030000 		.4byte	0x348
+ 1067 0405 08       		.byte	0x8
+ 1068 0406 00       		.byte	0
+ 1069 0407 0E       		.uleb128 0xe
+ 1070 0408 D5020000 		.4byte	.LASF65
+ 1071 040c 04       		.byte	0x4
+ 1072 040d B503     		.2byte	0x3b5
+ 1073 040f D4030000 		.4byte	0x3d4
+ 1074 0413 0E       		.uleb128 0xe
+ 1075 0414 B9020000 		.4byte	.LASF66
+ 1076 0418 04       		.byte	0x4
+ 1077 0419 0D04     		.2byte	0x40d
+ 1078 041b 1F040000 		.4byte	0x41f
+ 1079 041f 0A       		.uleb128 0xa
+ 1080 0420 04       		.byte	0x4
+ 1081 0421 25040000 		.4byte	0x425
+ 1082 0425 0F       		.uleb128 0xf
+ 1083 0426 30040000 		.4byte	0x430
+ 1084 042a 0C       		.uleb128 0xc
+ 1085 042b 3C030000 		.4byte	0x33c
+ 1086 042f 00       		.byte	0
+ 1087 0430 0E       		.uleb128 0xe
+ 1088 0431 C2000000 		.4byte	.LASF67
+ 1089 0435 04       		.byte	0x4
+ 1090 0436 1004     		.2byte	0x410
+ 1091 0438 3C040000 		.4byte	0x43c
+ 1092 043c 0A       		.uleb128 0xa
+ 1093 043d 04       		.byte	0x4
+ 1094 043e 42040000 		.4byte	0x442
+ 1095 0442 0B       		.uleb128 0xb
+ 1096 0443 02030000 		.4byte	0x302
+ 1097 0447 51040000 		.4byte	0x451
+ 1098 044b 0C       		.uleb128 0xc
+ 1099 044c 3C030000 		.4byte	0x33c
+ 1100 0450 00       		.byte	0
+ 1101 0451 0E       		.uleb128 0xe
+ 1102 0452 93000000 		.4byte	.LASF68
+ 1103 0456 04       		.byte	0x4
+ 1104 0457 1304     		.2byte	0x413
+ 1105 0459 5D040000 		.4byte	0x45d
+ 1106 045d 0A       		.uleb128 0xa
+ 1107 045e 04       		.byte	0x4
+ 1108 045f 63040000 		.4byte	0x463
+ 1109 0463 0F       		.uleb128 0xf
+ 1110 0464 6E040000 		.4byte	0x46e
+ 1111 0468 0C       		.uleb128 0xc
+ 1112 0469 8C000000 		.4byte	0x8c
+ 1113 046d 00       		.byte	0
+ 1114 046e 0A       		.uleb128 0xa
+ 1115 046f 04       		.byte	0x4
+ 1116 0470 74040000 		.4byte	0x474
+ 1117 0474 10       		.uleb128 0x10
+ 1118 0475 97000000 		.4byte	0x97
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 24
+
+
+ 1119 0479 03       		.uleb128 0x3
+ 1120 047a 04       		.byte	0x4
+ 1121 047b 07       		.byte	0x7
+ 1122 047c CC020000 		.4byte	.LASF69
+ 1123 0480 11       		.uleb128 0x11
+ 1124 0481 06000000 		.4byte	.LASF70
+ 1125 0485 01       		.byte	0x1
+ 1126 0486 6E       		.byte	0x6e
+ 1127 0487 8C000000 		.4byte	0x8c
+ 1128 048b 00000000 		.4byte	.LFB0
+ 1129 048f F8000000 		.4byte	.LFE0-.LFB0
+ 1130 0493 01       		.uleb128 0x1
+ 1131 0494 9C       		.byte	0x9c
+ 1132 0495 E9040000 		.4byte	0x4e9
+ 1133 0499 12       		.uleb128 0x12
+ 1134 049a 75386700 		.ascii	"u8g\000"
+ 1135 049e 01       		.byte	0x1
+ 1136 049f 6E       		.byte	0x6e
+ 1137 04a0 3C030000 		.4byte	0x33c
+ 1138 04a4 02       		.uleb128 0x2
+ 1139 04a5 91       		.byte	0x91
+ 1140 04a6 6C       		.sleb128 -20
+ 1141 04a7 12       		.uleb128 0x12
+ 1142 04a8 64657600 		.ascii	"dev\000"
+ 1143 04ac 01       		.byte	0x1
+ 1144 04ad 6E       		.byte	0x6e
+ 1145 04ae 42030000 		.4byte	0x342
+ 1146 04b2 02       		.uleb128 0x2
+ 1147 04b3 91       		.byte	0x91
+ 1148 04b4 68       		.sleb128 -24
+ 1149 04b5 12       		.uleb128 0x12
+ 1150 04b6 6D736700 		.ascii	"msg\000"
+ 1151 04ba 01       		.byte	0x1
+ 1152 04bb 6E       		.byte	0x6e
+ 1153 04bc 8C000000 		.4byte	0x8c
+ 1154 04c0 02       		.uleb128 0x2
+ 1155 04c1 91       		.byte	0x91
+ 1156 04c2 67       		.sleb128 -25
+ 1157 04c3 12       		.uleb128 0x12
+ 1158 04c4 61726700 		.ascii	"arg\000"
+ 1159 04c8 01       		.byte	0x1
+ 1160 04c9 6E       		.byte	0x6e
+ 1161 04ca 48030000 		.4byte	0x348
+ 1162 04ce 02       		.uleb128 0x2
+ 1163 04cf 91       		.byte	0x91
+ 1164 04d0 60       		.sleb128 -32
+ 1165 04d1 13       		.uleb128 0x13
+ 1166 04d2 66000000 		.4byte	.LBB2
+ 1167 04d6 4C000000 		.4byte	.LBE2-.LBB2
+ 1168 04da 14       		.uleb128 0x14
+ 1169 04db 706200   		.ascii	"pb\000"
+ 1170 04de 01       		.byte	0x1
+ 1171 04df 7A       		.byte	0x7a
+ 1172 04e0 E9040000 		.4byte	0x4e9
+ 1173 04e4 02       		.uleb128 0x2
+ 1174 04e5 91       		.byte	0x91
+ 1175 04e6 74       		.sleb128 -12
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 25
+
+
+ 1176 04e7 00       		.byte	0
+ 1177 04e8 00       		.byte	0
+ 1178 04e9 0A       		.uleb128 0xa
+ 1179 04ea 04       		.byte	0x4
+ 1180 04eb 07040000 		.4byte	0x407
+ 1181 04ef 11       		.uleb128 0x11
+ 1182 04f0 86040000 		.4byte	.LASF71
+ 1183 04f4 01       		.byte	0x1
+ 1184 04f5 8E       		.byte	0x8e
+ 1185 04f6 8C000000 		.4byte	0x8c
+ 1186 04fa 00000000 		.4byte	.LFB1
+ 1187 04fe 54010000 		.4byte	.LFE1-.LFB1
+ 1188 0502 01       		.uleb128 0x1
+ 1189 0503 9C       		.byte	0x9c
+ 1190 0504 58050000 		.4byte	0x558
+ 1191 0508 12       		.uleb128 0x12
+ 1192 0509 75386700 		.ascii	"u8g\000"
+ 1193 050d 01       		.byte	0x1
+ 1194 050e 8E       		.byte	0x8e
+ 1195 050f 3C030000 		.4byte	0x33c
+ 1196 0513 02       		.uleb128 0x2
+ 1197 0514 91       		.byte	0x91
+ 1198 0515 64       		.sleb128 -28
+ 1199 0516 12       		.uleb128 0x12
+ 1200 0517 64657600 		.ascii	"dev\000"
+ 1201 051b 01       		.byte	0x1
+ 1202 051c 8E       		.byte	0x8e
+ 1203 051d 42030000 		.4byte	0x342
+ 1204 0521 02       		.uleb128 0x2
+ 1205 0522 91       		.byte	0x91
+ 1206 0523 60       		.sleb128 -32
+ 1207 0524 12       		.uleb128 0x12
+ 1208 0525 6D736700 		.ascii	"msg\000"
+ 1209 0529 01       		.byte	0x1
+ 1210 052a 8E       		.byte	0x8e
+ 1211 052b 8C000000 		.4byte	0x8c
+ 1212 052f 02       		.uleb128 0x2
+ 1213 0530 91       		.byte	0x91
+ 1214 0531 5F       		.sleb128 -33
+ 1215 0532 12       		.uleb128 0x12
+ 1216 0533 61726700 		.ascii	"arg\000"
+ 1217 0537 01       		.byte	0x1
+ 1218 0538 8E       		.byte	0x8e
+ 1219 0539 48030000 		.4byte	0x348
+ 1220 053d 02       		.uleb128 0x2
+ 1221 053e 91       		.byte	0x91
+ 1222 053f 58       		.sleb128 -40
+ 1223 0540 13       		.uleb128 0x13
+ 1224 0541 66000000 		.4byte	.LBB3
+ 1225 0545 A6000000 		.4byte	.LBE3-.LBB3
+ 1226 0549 14       		.uleb128 0x14
+ 1227 054a 706200   		.ascii	"pb\000"
+ 1228 054d 01       		.byte	0x1
+ 1229 054e 9A       		.byte	0x9a
+ 1230 054f E9040000 		.4byte	0x4e9
+ 1231 0553 02       		.uleb128 0x2
+ 1232 0554 91       		.byte	0x91
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 26
+
+
+ 1233 0555 6C       		.sleb128 -20
+ 1234 0556 00       		.byte	0
+ 1235 0557 00       		.byte	0
+ 1236 0558 15       		.uleb128 0x15
+ 1237 0559 8C000000 		.4byte	0x8c
+ 1238 055d 68050000 		.4byte	0x568
+ 1239 0561 16       		.uleb128 0x16
+ 1240 0562 79040000 		.4byte	0x479
+ 1241 0566 23       		.byte	0x23
+ 1242 0567 00       		.byte	0
+ 1243 0568 17       		.uleb128 0x17
+ 1244 0569 E7050000 		.4byte	.LASF72
+ 1245 056d 01       		.byte	0x1
+ 1246 056e 31       		.byte	0x31
+ 1247 056f 79050000 		.4byte	0x579
+ 1248 0573 05       		.uleb128 0x5
+ 1249 0574 03       		.byte	0x3
+ 1250 0575 00000000 		.4byte	u8g_dev_ssd1306_64x48_init_seq
+ 1251 0579 10       		.uleb128 0x10
+ 1252 057a 58050000 		.4byte	0x558
+ 1253 057e 15       		.uleb128 0x15
+ 1254 057f 8C000000 		.4byte	0x8c
+ 1255 0583 8E050000 		.4byte	0x58e
+ 1256 0587 16       		.uleb128 0x16
+ 1257 0588 79040000 		.4byte	0x479
+ 1258 058c 07       		.byte	0x7
+ 1259 058d 00       		.byte	0
+ 1260 058e 17       		.uleb128 0x17
+ 1261 058f 35000000 		.4byte	.LASF73
+ 1262 0593 01       		.byte	0x1
+ 1263 0594 55       		.byte	0x55
+ 1264 0595 9F050000 		.4byte	0x59f
+ 1265 0599 05       		.uleb128 0x5
+ 1266 059a 03       		.byte	0x3
+ 1267 059b 24000000 		.4byte	u8g_dev_ssd1306_64x48_data_start
+ 1268 059f 10       		.uleb128 0x10
+ 1269 05a0 7E050000 		.4byte	0x57e
+ 1270 05a4 15       		.uleb128 0x15
+ 1271 05a5 8C000000 		.4byte	0x8c
+ 1272 05a9 B4050000 		.4byte	0x5b4
+ 1273 05ad 16       		.uleb128 0x16
+ 1274 05ae 79040000 		.4byte	0x479
+ 1275 05b2 08       		.byte	0x8
+ 1276 05b3 00       		.byte	0
+ 1277 05b4 17       		.uleb128 0x17
+ 1278 05b5 6A050000 		.4byte	.LASF74
+ 1279 05b9 01       		.byte	0x1
+ 1280 05ba 5D       		.byte	0x5d
+ 1281 05bb C5050000 		.4byte	0x5c5
+ 1282 05bf 05       		.uleb128 0x5
+ 1283 05c0 03       		.byte	0x3
+ 1284 05c1 2C000000 		.4byte	u8g_dev_ssd13xx_sleep_on
+ 1285 05c5 10       		.uleb128 0x10
+ 1286 05c6 A4050000 		.4byte	0x5a4
+ 1287 05ca 15       		.uleb128 0x15
+ 1288 05cb 8C000000 		.4byte	0x8c
+ 1289 05cf DA050000 		.4byte	0x5da
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 27
+
+
+ 1290 05d3 16       		.uleb128 0x16
+ 1291 05d4 79040000 		.4byte	0x479
+ 1292 05d8 0A       		.byte	0xa
+ 1293 05d9 00       		.byte	0
+ 1294 05da 17       		.uleb128 0x17
+ 1295 05db 5E060000 		.4byte	.LASF75
+ 1296 05df 01       		.byte	0x1
+ 1297 05e0 65       		.byte	0x65
+ 1298 05e1 EB050000 		.4byte	0x5eb
+ 1299 05e5 05       		.uleb128 0x5
+ 1300 05e6 03       		.byte	0x3
+ 1301 05e7 38000000 		.4byte	u8g_dev_ssd13xx_sleep_off
+ 1302 05eb 10       		.uleb128 0x10
+ 1303 05ec CA050000 		.4byte	0x5ca
+ 1304 05f0 18       		.uleb128 0x18
+ 1305 05f1 69040000 		.4byte	.LASF76
+ 1306 05f5 01       		.byte	0x1
+ 1307 05f6 B3       		.byte	0xb3
+ 1308 05f7 0D020000 		.4byte	0x20d
+ 1309 05fb 05       		.uleb128 0x5
+ 1310 05fc 03       		.byte	0x3
+ 1311 05fd 00000000 		.4byte	u8g_dev_ssd1306_64x48_sw_spi
+ 1312 0601 18       		.uleb128 0x18
+ 1313 0602 F8040000 		.4byte	.LASF77
+ 1314 0606 01       		.byte	0x1
+ 1315 0607 B4       		.byte	0xb4
+ 1316 0608 0D020000 		.4byte	0x20d
+ 1317 060c 05       		.uleb128 0x5
+ 1318 060d 03       		.byte	0x3
+ 1319 060e 00000000 		.4byte	u8g_dev_ssd1306_64x48_hw_spi
+ 1320 0612 18       		.uleb128 0x18
+ 1321 0613 35050000 		.4byte	.LASF78
+ 1322 0617 01       		.byte	0x1
+ 1323 0618 B5       		.byte	0xb5
+ 1324 0619 0D020000 		.4byte	0x20d
+ 1325 061d 05       		.uleb128 0x5
+ 1326 061e 03       		.byte	0x3
+ 1327 061f 00000000 		.4byte	u8g_dev_ssd1306_64x48_i2c
+ 1328 0623 18       		.uleb128 0x18
+ 1329 0624 15050000 		.4byte	.LASF79
+ 1330 0628 01       		.byte	0x1
+ 1331 0629 B9       		.byte	0xb9
+ 1332 062a 0D020000 		.4byte	0x20d
+ 1333 062e 05       		.uleb128 0x5
+ 1334 062f 03       		.byte	0x3
+ 1335 0630 00000000 		.4byte	u8g_dev_ssd1306_64x48_2x_sw_spi
+ 1336 0634 18       		.uleb128 0x18
+ 1337 0635 63010000 		.4byte	.LASF80
+ 1338 0639 01       		.byte	0x1
+ 1339 063a BA       		.byte	0xba
+ 1340 063b 0D020000 		.4byte	0x20d
+ 1341 063f 05       		.uleb128 0x5
+ 1342 0640 03       		.byte	0x3
+ 1343 0641 00000000 		.4byte	u8g_dev_ssd1306_64x48_2x_hw_spi
+ 1344 0645 18       		.uleb128 0x18
+ 1345 0646 FB030000 		.4byte	.LASF81
+ 1346 064a 01       		.byte	0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 28
+
+
+ 1347 064b BB       		.byte	0xbb
+ 1348 064c 0D020000 		.4byte	0x20d
+ 1349 0650 05       		.uleb128 0x5
+ 1350 0651 03       		.byte	0x3
+ 1351 0652 00000000 		.4byte	u8g_dev_ssd1306_64x48_2x_i2c
+ 1352 0656 15       		.uleb128 0x15
+ 1353 0657 8C000000 		.4byte	0x8c
+ 1354 065b 66060000 		.4byte	0x666
+ 1355 065f 16       		.uleb128 0x16
+ 1356 0660 79040000 		.4byte	0x479
+ 1357 0664 3F       		.byte	0x3f
+ 1358 0665 00       		.byte	0
+ 1359 0666 18       		.uleb128 0x18
+ 1360 0667 1E060000 		.4byte	.LASF82
+ 1361 066b 01       		.byte	0x1
+ 1362 066c B3       		.byte	0xb3
+ 1363 066d 56060000 		.4byte	0x656
+ 1364 0671 05       		.uleb128 0x5
+ 1365 0672 03       		.byte	0x3
+ 1366 0673 00000000 		.4byte	u8g_dev_ssd1306_64x48_sw_spi_buf
+ 1367 0677 18       		.uleb128 0x18
+ 1368 0678 63030000 		.4byte	.LASF83
+ 1369 067c 01       		.byte	0x1
+ 1370 067d B3       		.byte	0xb3
+ 1371 067e 07040000 		.4byte	0x407
+ 1372 0682 05       		.uleb128 0x5
+ 1373 0683 03       		.byte	0x3
+ 1374 0684 00000000 		.4byte	u8g_dev_ssd1306_64x48_sw_spi_pb
+ 1375 0688 18       		.uleb128 0x18
+ 1376 0689 56000000 		.4byte	.LASF84
+ 1377 068d 01       		.byte	0x1
+ 1378 068e B4       		.byte	0xb4
+ 1379 068f 56060000 		.4byte	0x656
+ 1380 0693 05       		.uleb128 0x5
+ 1381 0694 03       		.byte	0x3
+ 1382 0695 00000000 		.4byte	u8g_dev_ssd1306_64x48_hw_spi_buf
+ 1383 0699 18       		.uleb128 0x18
+ 1384 069a B0010000 		.4byte	.LASF85
+ 1385 069e 01       		.byte	0x1
+ 1386 069f B4       		.byte	0xb4
+ 1387 06a0 07040000 		.4byte	0x407
+ 1388 06a4 05       		.uleb128 0x5
+ 1389 06a5 03       		.byte	0x3
+ 1390 06a6 00000000 		.4byte	u8g_dev_ssd1306_64x48_hw_spi_pb
+ 1391 06aa 18       		.uleb128 0x18
+ 1392 06ab 31030000 		.4byte	.LASF86
+ 1393 06af 01       		.byte	0x1
+ 1394 06b0 B5       		.byte	0xb5
+ 1395 06b1 56060000 		.4byte	0x656
+ 1396 06b5 05       		.uleb128 0x5
+ 1397 06b6 03       		.byte	0x3
+ 1398 06b7 00000000 		.4byte	u8g_dev_ssd1306_64x48_i2c_buf
+ 1399 06bb 18       		.uleb128 0x18
+ 1400 06bc DE020000 		.4byte	.LASF87
+ 1401 06c0 01       		.byte	0x1
+ 1402 06c1 B5       		.byte	0xb5
+ 1403 06c2 07040000 		.4byte	0x407
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 29
+
+
+ 1404 06c6 05       		.uleb128 0x5
+ 1405 06c7 03       		.byte	0x3
+ 1406 06c8 00000000 		.4byte	u8g_dev_ssd1306_64x48_i2c_pb
+ 1407 06cc 15       		.uleb128 0x15
+ 1408 06cd 8C000000 		.4byte	0x8c
+ 1409 06d1 DC060000 		.4byte	0x6dc
+ 1410 06d5 16       		.uleb128 0x16
+ 1411 06d6 79040000 		.4byte	0x479
+ 1412 06da 7F       		.byte	0x7f
+ 1413 06db 00       		.byte	0
+ 1414 06dc 18       		.uleb128 0x18
+ 1415 06dd 83010000 		.4byte	.LASF88
+ 1416 06e1 01       		.byte	0x1
+ 1417 06e2 B7       		.byte	0xb7
+ 1418 06e3 CC060000 		.4byte	0x6cc
+ 1419 06e7 05       		.uleb128 0x5
+ 1420 06e8 03       		.byte	0x3
+ 1421 06e9 00000000 		.4byte	u8g_dev_ssd1306_64x48_2x_buf
+ 1422 06ed 18       		.uleb128 0x18
+ 1423 06ee F4010000 		.4byte	.LASF89
+ 1424 06f2 01       		.byte	0x1
+ 1425 06f3 B8       		.byte	0xb8
+ 1426 06f4 07040000 		.4byte	0x407
+ 1427 06f8 05       		.uleb128 0x5
+ 1428 06f9 03       		.byte	0x3
+ 1429 06fa 00000000 		.4byte	u8g_dev_ssd1306_64x48_2x_pb
+ 1430 06fe 00       		.byte	0
+ 1431              		.section	.debug_abbrev,"",%progbits
+ 1432              	.Ldebug_abbrev0:
+ 1433 0000 01       		.uleb128 0x1
+ 1434 0001 11       		.uleb128 0x11
+ 1435 0002 01       		.byte	0x1
+ 1436 0003 25       		.uleb128 0x25
+ 1437 0004 0E       		.uleb128 0xe
+ 1438 0005 13       		.uleb128 0x13
+ 1439 0006 0B       		.uleb128 0xb
+ 1440 0007 03       		.uleb128 0x3
+ 1441 0008 0E       		.uleb128 0xe
+ 1442 0009 1B       		.uleb128 0x1b
+ 1443 000a 0E       		.uleb128 0xe
+ 1444 000b 55       		.uleb128 0x55
+ 1445 000c 17       		.uleb128 0x17
+ 1446 000d 11       		.uleb128 0x11
+ 1447 000e 01       		.uleb128 0x1
+ 1448 000f 10       		.uleb128 0x10
+ 1449 0010 17       		.uleb128 0x17
+ 1450 0011 00       		.byte	0
+ 1451 0012 00       		.byte	0
+ 1452 0013 02       		.uleb128 0x2
+ 1453 0014 24       		.uleb128 0x24
+ 1454 0015 00       		.byte	0
+ 1455 0016 0B       		.uleb128 0xb
+ 1456 0017 0B       		.uleb128 0xb
+ 1457 0018 3E       		.uleb128 0x3e
+ 1458 0019 0B       		.uleb128 0xb
+ 1459 001a 03       		.uleb128 0x3
+ 1460 001b 08       		.uleb128 0x8
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 30
+
+
+ 1461 001c 00       		.byte	0
+ 1462 001d 00       		.byte	0
+ 1463 001e 03       		.uleb128 0x3
+ 1464 001f 24       		.uleb128 0x24
+ 1465 0020 00       		.byte	0
+ 1466 0021 0B       		.uleb128 0xb
+ 1467 0022 0B       		.uleb128 0xb
+ 1468 0023 3E       		.uleb128 0x3e
+ 1469 0024 0B       		.uleb128 0xb
+ 1470 0025 03       		.uleb128 0x3
+ 1471 0026 0E       		.uleb128 0xe
+ 1472 0027 00       		.byte	0
+ 1473 0028 00       		.byte	0
+ 1474 0029 04       		.uleb128 0x4
+ 1475 002a 16       		.uleb128 0x16
+ 1476 002b 00       		.byte	0
+ 1477 002c 03       		.uleb128 0x3
+ 1478 002d 0E       		.uleb128 0xe
+ 1479 002e 3A       		.uleb128 0x3a
+ 1480 002f 0B       		.uleb128 0xb
+ 1481 0030 3B       		.uleb128 0x3b
+ 1482 0031 0B       		.uleb128 0xb
+ 1483 0032 49       		.uleb128 0x49
+ 1484 0033 13       		.uleb128 0x13
+ 1485 0034 00       		.byte	0
+ 1486 0035 00       		.byte	0
+ 1487 0036 05       		.uleb128 0x5
+ 1488 0037 13       		.uleb128 0x13
+ 1489 0038 01       		.byte	0x1
+ 1490 0039 03       		.uleb128 0x3
+ 1491 003a 0E       		.uleb128 0xe
+ 1492 003b 0B       		.uleb128 0xb
+ 1493 003c 0B       		.uleb128 0xb
+ 1494 003d 3A       		.uleb128 0x3a
+ 1495 003e 0B       		.uleb128 0xb
+ 1496 003f 3B       		.uleb128 0x3b
+ 1497 0040 05       		.uleb128 0x5
+ 1498 0041 01       		.uleb128 0x1
+ 1499 0042 13       		.uleb128 0x13
+ 1500 0043 00       		.byte	0
+ 1501 0044 00       		.byte	0
+ 1502 0045 06       		.uleb128 0x6
+ 1503 0046 0D       		.uleb128 0xd
+ 1504 0047 00       		.byte	0
+ 1505 0048 03       		.uleb128 0x3
+ 1506 0049 0E       		.uleb128 0xe
+ 1507 004a 3A       		.uleb128 0x3a
+ 1508 004b 0B       		.uleb128 0xb
+ 1509 004c 3B       		.uleb128 0x3b
+ 1510 004d 05       		.uleb128 0x5
+ 1511 004e 49       		.uleb128 0x49
+ 1512 004f 13       		.uleb128 0x13
+ 1513 0050 38       		.uleb128 0x38
+ 1514 0051 0B       		.uleb128 0xb
+ 1515 0052 00       		.byte	0
+ 1516 0053 00       		.byte	0
+ 1517 0054 07       		.uleb128 0x7
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 31
+
+
+ 1518 0055 0D       		.uleb128 0xd
+ 1519 0056 00       		.byte	0
+ 1520 0057 03       		.uleb128 0x3
+ 1521 0058 08       		.uleb128 0x8
+ 1522 0059 3A       		.uleb128 0x3a
+ 1523 005a 0B       		.uleb128 0xb
+ 1524 005b 3B       		.uleb128 0x3b
+ 1525 005c 05       		.uleb128 0x5
+ 1526 005d 49       		.uleb128 0x49
+ 1527 005e 13       		.uleb128 0x13
+ 1528 005f 38       		.uleb128 0x38
+ 1529 0060 0B       		.uleb128 0xb
+ 1530 0061 00       		.byte	0
+ 1531 0062 00       		.byte	0
+ 1532 0063 08       		.uleb128 0x8
+ 1533 0064 13       		.uleb128 0x13
+ 1534 0065 01       		.byte	0x1
+ 1535 0066 03       		.uleb128 0x3
+ 1536 0067 0E       		.uleb128 0xe
+ 1537 0068 0B       		.uleb128 0xb
+ 1538 0069 0B       		.uleb128 0xb
+ 1539 006a 3A       		.uleb128 0x3a
+ 1540 006b 0B       		.uleb128 0xb
+ 1541 006c 3B       		.uleb128 0x3b
+ 1542 006d 0B       		.uleb128 0xb
+ 1543 006e 01       		.uleb128 0x1
+ 1544 006f 13       		.uleb128 0x13
+ 1545 0070 00       		.byte	0
+ 1546 0071 00       		.byte	0
+ 1547 0072 09       		.uleb128 0x9
+ 1548 0073 0D       		.uleb128 0xd
+ 1549 0074 00       		.byte	0
+ 1550 0075 03       		.uleb128 0x3
+ 1551 0076 0E       		.uleb128 0xe
+ 1552 0077 3A       		.uleb128 0x3a
+ 1553 0078 0B       		.uleb128 0xb
+ 1554 0079 3B       		.uleb128 0x3b
+ 1555 007a 0B       		.uleb128 0xb
+ 1556 007b 49       		.uleb128 0x49
+ 1557 007c 13       		.uleb128 0x13
+ 1558 007d 38       		.uleb128 0x38
+ 1559 007e 0B       		.uleb128 0xb
+ 1560 007f 00       		.byte	0
+ 1561 0080 00       		.byte	0
+ 1562 0081 0A       		.uleb128 0xa
+ 1563 0082 0F       		.uleb128 0xf
+ 1564 0083 00       		.byte	0
+ 1565 0084 0B       		.uleb128 0xb
+ 1566 0085 0B       		.uleb128 0xb
+ 1567 0086 49       		.uleb128 0x49
+ 1568 0087 13       		.uleb128 0x13
+ 1569 0088 00       		.byte	0
+ 1570 0089 00       		.byte	0
+ 1571 008a 0B       		.uleb128 0xb
+ 1572 008b 15       		.uleb128 0x15
+ 1573 008c 01       		.byte	0x1
+ 1574 008d 27       		.uleb128 0x27
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 32
+
+
+ 1575 008e 19       		.uleb128 0x19
+ 1576 008f 49       		.uleb128 0x49
+ 1577 0090 13       		.uleb128 0x13
+ 1578 0091 01       		.uleb128 0x1
+ 1579 0092 13       		.uleb128 0x13
+ 1580 0093 00       		.byte	0
+ 1581 0094 00       		.byte	0
+ 1582 0095 0C       		.uleb128 0xc
+ 1583 0096 05       		.uleb128 0x5
+ 1584 0097 00       		.byte	0
+ 1585 0098 49       		.uleb128 0x49
+ 1586 0099 13       		.uleb128 0x13
+ 1587 009a 00       		.byte	0
+ 1588 009b 00       		.byte	0
+ 1589 009c 0D       		.uleb128 0xd
+ 1590 009d 0F       		.uleb128 0xf
+ 1591 009e 00       		.byte	0
+ 1592 009f 0B       		.uleb128 0xb
+ 1593 00a0 0B       		.uleb128 0xb
+ 1594 00a1 00       		.byte	0
+ 1595 00a2 00       		.byte	0
+ 1596 00a3 0E       		.uleb128 0xe
+ 1597 00a4 16       		.uleb128 0x16
+ 1598 00a5 00       		.byte	0
+ 1599 00a6 03       		.uleb128 0x3
+ 1600 00a7 0E       		.uleb128 0xe
+ 1601 00a8 3A       		.uleb128 0x3a
+ 1602 00a9 0B       		.uleb128 0xb
+ 1603 00aa 3B       		.uleb128 0x3b
+ 1604 00ab 05       		.uleb128 0x5
+ 1605 00ac 49       		.uleb128 0x49
+ 1606 00ad 13       		.uleb128 0x13
+ 1607 00ae 00       		.byte	0
+ 1608 00af 00       		.byte	0
+ 1609 00b0 0F       		.uleb128 0xf
+ 1610 00b1 15       		.uleb128 0x15
+ 1611 00b2 01       		.byte	0x1
+ 1612 00b3 27       		.uleb128 0x27
+ 1613 00b4 19       		.uleb128 0x19
+ 1614 00b5 01       		.uleb128 0x1
+ 1615 00b6 13       		.uleb128 0x13
+ 1616 00b7 00       		.byte	0
+ 1617 00b8 00       		.byte	0
+ 1618 00b9 10       		.uleb128 0x10
+ 1619 00ba 26       		.uleb128 0x26
+ 1620 00bb 00       		.byte	0
+ 1621 00bc 49       		.uleb128 0x49
+ 1622 00bd 13       		.uleb128 0x13
+ 1623 00be 00       		.byte	0
+ 1624 00bf 00       		.byte	0
+ 1625 00c0 11       		.uleb128 0x11
+ 1626 00c1 2E       		.uleb128 0x2e
+ 1627 00c2 01       		.byte	0x1
+ 1628 00c3 3F       		.uleb128 0x3f
+ 1629 00c4 19       		.uleb128 0x19
+ 1630 00c5 03       		.uleb128 0x3
+ 1631 00c6 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 33
+
+
+ 1632 00c7 3A       		.uleb128 0x3a
+ 1633 00c8 0B       		.uleb128 0xb
+ 1634 00c9 3B       		.uleb128 0x3b
+ 1635 00ca 0B       		.uleb128 0xb
+ 1636 00cb 27       		.uleb128 0x27
+ 1637 00cc 19       		.uleb128 0x19
+ 1638 00cd 49       		.uleb128 0x49
+ 1639 00ce 13       		.uleb128 0x13
+ 1640 00cf 11       		.uleb128 0x11
+ 1641 00d0 01       		.uleb128 0x1
+ 1642 00d1 12       		.uleb128 0x12
+ 1643 00d2 06       		.uleb128 0x6
+ 1644 00d3 40       		.uleb128 0x40
+ 1645 00d4 18       		.uleb128 0x18
+ 1646 00d5 9642     		.uleb128 0x2116
+ 1647 00d7 19       		.uleb128 0x19
+ 1648 00d8 01       		.uleb128 0x1
+ 1649 00d9 13       		.uleb128 0x13
+ 1650 00da 00       		.byte	0
+ 1651 00db 00       		.byte	0
+ 1652 00dc 12       		.uleb128 0x12
+ 1653 00dd 05       		.uleb128 0x5
+ 1654 00de 00       		.byte	0
+ 1655 00df 03       		.uleb128 0x3
+ 1656 00e0 08       		.uleb128 0x8
+ 1657 00e1 3A       		.uleb128 0x3a
+ 1658 00e2 0B       		.uleb128 0xb
+ 1659 00e3 3B       		.uleb128 0x3b
+ 1660 00e4 0B       		.uleb128 0xb
+ 1661 00e5 49       		.uleb128 0x49
+ 1662 00e6 13       		.uleb128 0x13
+ 1663 00e7 02       		.uleb128 0x2
+ 1664 00e8 18       		.uleb128 0x18
+ 1665 00e9 00       		.byte	0
+ 1666 00ea 00       		.byte	0
+ 1667 00eb 13       		.uleb128 0x13
+ 1668 00ec 0B       		.uleb128 0xb
+ 1669 00ed 01       		.byte	0x1
+ 1670 00ee 11       		.uleb128 0x11
+ 1671 00ef 01       		.uleb128 0x1
+ 1672 00f0 12       		.uleb128 0x12
+ 1673 00f1 06       		.uleb128 0x6
+ 1674 00f2 00       		.byte	0
+ 1675 00f3 00       		.byte	0
+ 1676 00f4 14       		.uleb128 0x14
+ 1677 00f5 34       		.uleb128 0x34
+ 1678 00f6 00       		.byte	0
+ 1679 00f7 03       		.uleb128 0x3
+ 1680 00f8 08       		.uleb128 0x8
+ 1681 00f9 3A       		.uleb128 0x3a
+ 1682 00fa 0B       		.uleb128 0xb
+ 1683 00fb 3B       		.uleb128 0x3b
+ 1684 00fc 0B       		.uleb128 0xb
+ 1685 00fd 49       		.uleb128 0x49
+ 1686 00fe 13       		.uleb128 0x13
+ 1687 00ff 02       		.uleb128 0x2
+ 1688 0100 18       		.uleb128 0x18
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 34
+
+
+ 1689 0101 00       		.byte	0
+ 1690 0102 00       		.byte	0
+ 1691 0103 15       		.uleb128 0x15
+ 1692 0104 01       		.uleb128 0x1
+ 1693 0105 01       		.byte	0x1
+ 1694 0106 49       		.uleb128 0x49
+ 1695 0107 13       		.uleb128 0x13
+ 1696 0108 01       		.uleb128 0x1
+ 1697 0109 13       		.uleb128 0x13
+ 1698 010a 00       		.byte	0
+ 1699 010b 00       		.byte	0
+ 1700 010c 16       		.uleb128 0x16
+ 1701 010d 21       		.uleb128 0x21
+ 1702 010e 00       		.byte	0
+ 1703 010f 49       		.uleb128 0x49
+ 1704 0110 13       		.uleb128 0x13
+ 1705 0111 2F       		.uleb128 0x2f
+ 1706 0112 0B       		.uleb128 0xb
+ 1707 0113 00       		.byte	0
+ 1708 0114 00       		.byte	0
+ 1709 0115 17       		.uleb128 0x17
+ 1710 0116 34       		.uleb128 0x34
+ 1711 0117 00       		.byte	0
+ 1712 0118 03       		.uleb128 0x3
+ 1713 0119 0E       		.uleb128 0xe
+ 1714 011a 3A       		.uleb128 0x3a
+ 1715 011b 0B       		.uleb128 0xb
+ 1716 011c 3B       		.uleb128 0x3b
+ 1717 011d 0B       		.uleb128 0xb
+ 1718 011e 49       		.uleb128 0x49
+ 1719 011f 13       		.uleb128 0x13
+ 1720 0120 02       		.uleb128 0x2
+ 1721 0121 18       		.uleb128 0x18
+ 1722 0122 00       		.byte	0
+ 1723 0123 00       		.byte	0
+ 1724 0124 18       		.uleb128 0x18
+ 1725 0125 34       		.uleb128 0x34
+ 1726 0126 00       		.byte	0
+ 1727 0127 03       		.uleb128 0x3
+ 1728 0128 0E       		.uleb128 0xe
+ 1729 0129 3A       		.uleb128 0x3a
+ 1730 012a 0B       		.uleb128 0xb
+ 1731 012b 3B       		.uleb128 0x3b
+ 1732 012c 0B       		.uleb128 0xb
+ 1733 012d 49       		.uleb128 0x49
+ 1734 012e 13       		.uleb128 0x13
+ 1735 012f 3F       		.uleb128 0x3f
+ 1736 0130 19       		.uleb128 0x19
+ 1737 0131 02       		.uleb128 0x2
+ 1738 0132 18       		.uleb128 0x18
+ 1739 0133 00       		.byte	0
+ 1740 0134 00       		.byte	0
+ 1741 0135 00       		.byte	0
+ 1742              		.section	.debug_aranges,"",%progbits
+ 1743 0000 24000000 		.4byte	0x24
+ 1744 0004 0200     		.2byte	0x2
+ 1745 0006 00000000 		.4byte	.Ldebug_info0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 35
+
+
+ 1746 000a 04       		.byte	0x4
+ 1747 000b 00       		.byte	0
+ 1748 000c 0000     		.2byte	0
+ 1749 000e 0000     		.2byte	0
+ 1750 0010 00000000 		.4byte	.LFB0
+ 1751 0014 F8000000 		.4byte	.LFE0-.LFB0
+ 1752 0018 00000000 		.4byte	.LFB1
+ 1753 001c 54010000 		.4byte	.LFE1-.LFB1
+ 1754 0020 00000000 		.4byte	0
+ 1755 0024 00000000 		.4byte	0
+ 1756              		.section	.debug_ranges,"",%progbits
+ 1757              	.Ldebug_ranges0:
+ 1758 0000 00000000 		.4byte	.LFB0
+ 1759 0004 F8000000 		.4byte	.LFE0
+ 1760 0008 00000000 		.4byte	.LFB1
+ 1761 000c 54010000 		.4byte	.LFE1
+ 1762 0010 00000000 		.4byte	0
+ 1763 0014 00000000 		.4byte	0
+ 1764              		.section	.debug_line,"",%progbits
+ 1765              	.Ldebug_line0:
+ 1766 0000 98010000 		.section	.debug_str,"MS",%progbits,1
+ 1766      02004801 
+ 1766      00000201 
+ 1766      FB0E0D00 
+ 1766      01010101 
+ 1767              	.LASF14:
+ 1768 0000 7538675F 		.ascii	"u8g_t\000"
+ 1768      7400
+ 1769              	.LASF70:
+ 1770 0006 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_fn\000"
+ 1770      6465765F 
+ 1770      73736431 
+ 1770      3330365F 
+ 1770      36347834 
+ 1771              	.LASF13:
+ 1772 001f 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 1772      70676D5F 
+ 1772      75696E74 
+ 1772      385F7400 
+ 1773              	.LASF48:
+ 1774 002f 70697865 		.ascii	"pixel\000"
+ 1774      6C00
+ 1775              	.LASF73:
+ 1776 0035 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_data_start\000"
+ 1776      6465765F 
+ 1776      73736431 
+ 1776      3330365F 
+ 1776      36347834 
+ 1777              	.LASF84:
+ 1778 0056 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_hw_spi_buf\000"
+ 1778      6465765F 
+ 1778      73736431 
+ 1778      3330365F 
+ 1778      36347834 
+ 1779              	.LASF11:
+ 1780 0077 696E7438 		.ascii	"int8_t\000"
+ 1780      5F7400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 36
+
+
+ 1781              	.LASF17:
+ 1782 007e 666F6E74 		.ascii	"font\000"
+ 1782      00
+ 1783              	.LASF5:
+ 1784 0083 73686F72 		.ascii	"short int\000"
+ 1784      7420696E 
+ 1784      7400
+ 1785              	.LASF49:
+ 1786 008d 636F6C6F 		.ascii	"color\000"
+ 1786      7200
+ 1787              	.LASF68:
+ 1788 0093 7538675F 		.ascii	"u8g_state_cb\000"
+ 1788      73746174 
+ 1788      655F6362 
+ 1788      00
+ 1789              	.LASF41:
+ 1790 00a0 5F753867 		.ascii	"_u8g_t\000"
+ 1790      5F7400
+ 1791              	.LASF23:
+ 1792 00a7 63757273 		.ascii	"cursor_x\000"
+ 1792      6F725F78 
+ 1792      00
+ 1793              	.LASF24:
+ 1794 00b0 63757273 		.ascii	"cursor_y\000"
+ 1794      6F725F79 
+ 1794      00
+ 1795              	.LASF38:
+ 1796 00b9 73746174 		.ascii	"state_cb\000"
+ 1796      655F6362 
+ 1796      00
+ 1797              	.LASF67:
+ 1798 00c2 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 1798      666F6E74 
+ 1798      5F63616C 
+ 1798      635F7672 
+ 1798      65665F66 
+ 1799              	.LASF19:
+ 1800 00db 63757273 		.ascii	"cursor_fg_color\000"
+ 1800      6F725F66 
+ 1800      675F636F 
+ 1800      6C6F7200 
+ 1801              	.LASF40:
+ 1802 00eb 7538675F 		.ascii	"u8g_dev_t\000"
+ 1802      6465765F 
+ 1802      7400
+ 1803              	.LASF51:
+ 1804 00f5 626C7565 		.ascii	"blue\000"
+ 1804      00
+ 1805              	.LASF36:
+ 1806 00fa 6C696E65 		.ascii	"line_spacing\000"
+ 1806      5F737061 
+ 1806      63696E67 
+ 1806      00
+ 1807              	.LASF33:
+ 1808 0107 666F6E74 		.ascii	"font_ref_ascent\000"
+ 1808      5F726566 
+ 1808      5F617363 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 37
+
+
+ 1808      656E7400 
+ 1809              	.LASF12:
+ 1810 0117 75696E74 		.ascii	"uint8_t\000"
+ 1810      385F7400 
+ 1811              	.LASF92:
+ 1812 011f 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Kopia_Poczatki\\QDExam"
+ 1812      6F726B73 
+ 1812      70616365 
+ 1812      5C50536F 
+ 1812      435F4372 
+ 1813 014e 706C6530 		.ascii	"ple01.cydsn\000"
+ 1813      312E6379 
+ 1813      64736E00 
+ 1814              	.LASF26:
+ 1815 015a 676C7970 		.ascii	"glyph_dx\000"
+ 1815      685F6478 
+ 1815      00
+ 1816              	.LASF80:
+ 1817 0163 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_2x_hw_spi\000"
+ 1817      6465765F 
+ 1817      73736431 
+ 1817      3330365F 
+ 1817      36347834 
+ 1818              	.LASF88:
+ 1819 0183 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_2x_buf\000"
+ 1819      6465765F 
+ 1819      73736431 
+ 1819      3330365F 
+ 1819      36347834 
+ 1820              	.LASF20:
+ 1821 01a0 63757273 		.ascii	"cursor_bg_color\000"
+ 1821      6F725F62 
+ 1821      675F636F 
+ 1821      6C6F7200 
+ 1822              	.LASF85:
+ 1823 01b0 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_hw_spi_pb\000"
+ 1823      6465765F 
+ 1823      73736431 
+ 1823      3330365F 
+ 1823      36347834 
+ 1824              	.LASF15:
+ 1825 01d0 77696474 		.ascii	"width\000"
+ 1825      6800
+ 1826              	.LASF50:
+ 1827 01d6 68695F63 		.ascii	"hi_color\000"
+ 1827      6F6C6F72 
+ 1827      00
+ 1828              	.LASF47:
+ 1829 01df 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 1829      5F646576 
+ 1829      5F617267 
+ 1829      5F706978 
+ 1829      656C5F74 
+ 1830              	.LASF89:
+ 1831 01f4 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_2x_pb\000"
+ 1831      6465765F 
+ 1831      73736431 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 38
+
+
+ 1831      3330365F 
+ 1831      36347834 
+ 1832              	.LASF9:
+ 1833 0210 6C6F6E67 		.ascii	"long long int\000"
+ 1833      206C6F6E 
+ 1833      6720696E 
+ 1833      7400
+ 1834              	.LASF39:
+ 1835 021e 63757272 		.ascii	"current_page\000"
+ 1835      656E745F 
+ 1835      70616765 
+ 1835      00
+ 1836              	.LASF90:
+ 1837 022b 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1837      4320342E 
+ 1837      392E3320 
+ 1837      32303135 
+ 1837      30333033 
+ 1838 025e 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1838      20726576 
+ 1838      6973696F 
+ 1838      6E203232 
+ 1838      31323230 
+ 1839 0291 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1839      66756E63 
+ 1839      74696F6E 
+ 1839      2D736563 
+ 1839      74696F6E 
+ 1840              	.LASF66:
+ 1841 02b9 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 1841      64726177 
+ 1841      5F637572 
+ 1841      736F725F 
+ 1841      666E00
+ 1842              	.LASF69:
+ 1843 02cc 73697A65 		.ascii	"sizetype\000"
+ 1843      74797065 
+ 1843      00
+ 1844              	.LASF65:
+ 1845 02d5 7538675F 		.ascii	"u8g_pb_t\000"
+ 1845      70625F74 
+ 1845      00
+ 1846              	.LASF87:
+ 1847 02de 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_i2c_pb\000"
+ 1847      6465765F 
+ 1847      73736431 
+ 1847      3330365F 
+ 1847      36347834 
+ 1848              	.LASF55:
+ 1849 02fb 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 1849      6465765F 
+ 1849      666E7074 
+ 1849      7200
+ 1850              	.LASF3:
+ 1851 0309 5F5F7569 		.ascii	"__uint8_t\000"
+ 1851      6E74385F 
+ 1851      7400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 39
+
+
+ 1852              	.LASF27:
+ 1853 0313 676C7970 		.ascii	"glyph_x\000"
+ 1853      685F7800 
+ 1854              	.LASF28:
+ 1855 031b 676C7970 		.ascii	"glyph_y\000"
+ 1855      685F7900 
+ 1856              	.LASF56:
+ 1857 0323 7538675F 		.ascii	"u8g_com_fnptr\000"
+ 1857      636F6D5F 
+ 1857      666E7074 
+ 1857      7200
+ 1858              	.LASF86:
+ 1859 0331 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_i2c_buf\000"
+ 1859      6465765F 
+ 1859      73736431 
+ 1859      3330365F 
+ 1859      36347834 
+ 1860              	.LASF46:
+ 1861 034f 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 1861      6465765F 
+ 1861      6172675F 
+ 1861      70697865 
+ 1861      6C5F7400 
+ 1862              	.LASF83:
+ 1863 0363 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_sw_spi_pb\000"
+ 1863      6465765F 
+ 1863      73736431 
+ 1863      3330365F 
+ 1863      36347834 
+ 1864              	.LASF21:
+ 1865 0383 63757273 		.ascii	"cursor_encoding\000"
+ 1865      6F725F65 
+ 1865      6E636F64 
+ 1865      696E6700 
+ 1866              	.LASF4:
+ 1867 0393 756E7369 		.ascii	"unsigned char\000"
+ 1867      676E6564 
+ 1867      20636861 
+ 1867      7200
+ 1868              	.LASF57:
+ 1869 03a1 5F753867 		.ascii	"_u8g_page_t\000"
+ 1869      5F706167 
+ 1869      655F7400 
+ 1870              	.LASF30:
+ 1871 03ad 676C7970 		.ascii	"glyph_height\000"
+ 1871      685F6865 
+ 1871      69676874 
+ 1871      00
+ 1872              	.LASF37:
+ 1873 03ba 6172675F 		.ascii	"arg_pixel\000"
+ 1873      70697865 
+ 1873      6C00
+ 1874              	.LASF1:
+ 1875 03c4 7369676E 		.ascii	"signed char\000"
+ 1875      65642063 
+ 1875      68617200 
+ 1876              	.LASF10:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 40
+
+
+ 1877 03d0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1877      206C6F6E 
+ 1877      6720756E 
+ 1877      7369676E 
+ 1877      65642069 
+ 1878              	.LASF16:
+ 1879 03e7 68656967 		.ascii	"height\000"
+ 1879      687400
+ 1880              	.LASF0:
+ 1881 03ee 756E7369 		.ascii	"unsigned int\000"
+ 1881      676E6564 
+ 1881      20696E74 
+ 1881      00
+ 1882              	.LASF81:
+ 1883 03fb 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_2x_i2c\000"
+ 1883      6465765F 
+ 1883      73736431 
+ 1883      3330365F 
+ 1883      36347834 
+ 1884              	.LASF25:
+ 1885 0418 63757273 		.ascii	"cursor_fn\000"
+ 1885      6F725F66 
+ 1885      6E00
+ 1886              	.LASF54:
+ 1887 0422 7538675F 		.ascii	"u8g_uint_t\000"
+ 1887      75696E74 
+ 1887      5F7400
+ 1888              	.LASF6:
+ 1889 042d 73686F72 		.ascii	"short unsigned int\000"
+ 1889      7420756E 
+ 1889      7369676E 
+ 1889      65642069 
+ 1889      6E7400
+ 1890              	.LASF2:
+ 1891 0440 5F5F696E 		.ascii	"__int8_t\000"
+ 1891      74385F74 
+ 1891      00
+ 1892              	.LASF53:
+ 1893 0449 5F753867 		.ascii	"_u8g_box_t\000"
+ 1893      5F626F78 
+ 1893      5F7400
+ 1894              	.LASF7:
+ 1895 0454 6C6F6E67 		.ascii	"long int\000"
+ 1895      20696E74 
+ 1895      00
+ 1896              	.LASF22:
+ 1897 045d 6D6F6465 		.ascii	"mode\000"
+ 1897      00
+ 1898              	.LASF43:
+ 1899 0462 6465765F 		.ascii	"dev_fn\000"
+ 1899      666E00
+ 1900              	.LASF76:
+ 1901 0469 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_sw_spi\000"
+ 1901      6465765F 
+ 1901      73736431 
+ 1901      3330365F 
+ 1901      36347834 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 41
+
+
+ 1902              	.LASF71:
+ 1903 0486 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_2x_fn\000"
+ 1903      6465765F 
+ 1903      73736431 
+ 1903      3330365F 
+ 1903      36347834 
+ 1904              	.LASF61:
+ 1905 04a2 70616765 		.ascii	"page_y1\000"
+ 1905      5F793100 
+ 1906              	.LASF91:
+ 1907 04aa 2E5C7538 		.ascii	".\\u8glib_arm_v1.18.1\\src\\u8g_dev_ssd1306_64x48.c"
+ 1907      676C6962 
+ 1907      5F61726D 
+ 1907      5F76312E 
+ 1907      31382E31 
+ 1908 04da 00       		.ascii	"\000"
+ 1909              	.LASF8:
+ 1910 04db 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1910      20756E73 
+ 1910      69676E65 
+ 1910      6420696E 
+ 1910      7400
+ 1911              	.LASF63:
+ 1912 04ed 7538675F 		.ascii	"u8g_page_t\000"
+ 1912      70616765 
+ 1912      5F7400
+ 1913              	.LASF77:
+ 1914 04f8 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_hw_spi\000"
+ 1914      6465765F 
+ 1914      73736431 
+ 1914      3330365F 
+ 1914      36347834 
+ 1915              	.LASF79:
+ 1916 0515 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_2x_sw_spi\000"
+ 1916      6465765F 
+ 1916      73736431 
+ 1916      3330365F 
+ 1916      36347834 
+ 1917              	.LASF78:
+ 1918 0535 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_i2c\000"
+ 1918      6465765F 
+ 1918      73736431 
+ 1918      3330365F 
+ 1918      36347834 
+ 1919              	.LASF64:
+ 1920 054f 5F753867 		.ascii	"_u8g_pb_t\000"
+ 1920      5F70625F 
+ 1920      7400
+ 1921              	.LASF34:
+ 1922 0559 666F6E74 		.ascii	"font_ref_descent\000"
+ 1922      5F726566 
+ 1922      5F646573 
+ 1922      63656E74 
+ 1922      00
+ 1923              	.LASF74:
+ 1924 056a 7538675F 		.ascii	"u8g_dev_ssd13xx_sleep_on\000"
+ 1924      6465765F 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 42
+
+
+ 1924      73736431 
+ 1924      3378785F 
+ 1924      736C6565 
+ 1925              	.LASF35:
+ 1926 0583 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 1926      5F6C696E 
+ 1926      655F7370 
+ 1926      6163696E 
+ 1926      675F6661 
+ 1927              	.LASF52:
+ 1928 059c 7538675F 		.ascii	"u8g_box_t\000"
+ 1928      626F785F 
+ 1928      7400
+ 1929              	.LASF44:
+ 1930 05a6 6465765F 		.ascii	"dev_mem\000"
+ 1930      6D656D00 
+ 1931              	.LASF18:
+ 1932 05ae 63757273 		.ascii	"cursor_font\000"
+ 1932      6F725F66 
+ 1932      6F6E7400 
+ 1933              	.LASF31:
+ 1934 05ba 666F6E74 		.ascii	"font_calc_vref\000"
+ 1934      5F63616C 
+ 1934      635F7672 
+ 1934      656600
+ 1935              	.LASF60:
+ 1936 05c9 70616765 		.ascii	"page_y0\000"
+ 1936      5F793000 
+ 1937              	.LASF32:
+ 1938 05d1 666F6E74 		.ascii	"font_height_mode\000"
+ 1938      5F686569 
+ 1938      6768745F 
+ 1938      6D6F6465 
+ 1938      00
+ 1939              	.LASF62:
+ 1940 05e2 70616765 		.ascii	"page\000"
+ 1940      00
+ 1941              	.LASF72:
+ 1942 05e7 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_init_seq\000"
+ 1942      6465765F 
+ 1942      73736431 
+ 1942      3330365F 
+ 1942      36347834 
+ 1943              	.LASF29:
+ 1944 0606 676C7970 		.ascii	"glyph_width\000"
+ 1944      685F7769 
+ 1944      64746800 
+ 1945              	.LASF58:
+ 1946 0612 70616765 		.ascii	"page_height\000"
+ 1946      5F686569 
+ 1946      67687400 
+ 1947              	.LASF82:
+ 1948 061e 7538675F 		.ascii	"u8g_dev_ssd1306_64x48_sw_spi_buf\000"
+ 1948      6465765F 
+ 1948      73736431 
+ 1948      3330365F 
+ 1948      36347834 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXhuTPD.s 			page 43
+
+
+ 1949              	.LASF42:
+ 1950 063f 5F753867 		.ascii	"_u8g_dev_t\000"
+ 1950      5F646576 
+ 1950      5F7400
+ 1951              	.LASF59:
+ 1952 064a 746F7461 		.ascii	"total_height\000"
+ 1952      6C5F6865 
+ 1952      69676874 
+ 1952      00
+ 1953              	.LASF45:
+ 1954 0657 636F6D5F 		.ascii	"com_fn\000"
+ 1954      666E00
+ 1955              	.LASF75:
+ 1956 065e 7538675F 		.ascii	"u8g_dev_ssd13xx_sleep_off\000"
+ 1956      6465765F 
+ 1956      73736431 
+ 1956      3378785F 
+ 1956      736C6565 
+ 1957              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

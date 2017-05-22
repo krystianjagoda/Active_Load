@@ -1,0 +1,2963 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"EEPROM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.EEPROM_Enable,"ax",%progbits
+  19              		.align	2
+  20              		.global	EEPROM_Enable
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	EEPROM_Enable, %function
+  24              	EEPROM_Enable:
+  25              	.LFB0:
+  26              		.file 1 "Generated_Source\\PSoC5\\EEPROM.c"
+   1:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/EEPROM.c **** * File Name: EEPROM.c
+   3:Generated_Source\PSoC5/EEPROM.c **** * Version 3.0
+   4:Generated_Source\PSoC5/EEPROM.c **** *
+   5:Generated_Source\PSoC5/EEPROM.c **** *  Description:
+   6:Generated_Source\PSoC5/EEPROM.c **** *   Provides the source code to the API for the EEPROM component.
+   7:Generated_Source\PSoC5/EEPROM.c **** *
+   8:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+   9:Generated_Source\PSoC5/EEPROM.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  10:Generated_Source\PSoC5/EEPROM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  11:Generated_Source\PSoC5/EEPROM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:Generated_Source\PSoC5/EEPROM.c **** * the software package with which this file was provided.
+  13:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+  14:Generated_Source\PSoC5/EEPROM.c **** 
+  15:Generated_Source\PSoC5/EEPROM.c **** #include "EEPROM.h"
+  16:Generated_Source\PSoC5/EEPROM.c **** 
+  17:Generated_Source\PSoC5/EEPROM.c **** 
+  18:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+  19:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_Enable
+  20:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+  21:Generated_Source\PSoC5/EEPROM.c **** *
+  22:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+  23:Generated_Source\PSoC5/EEPROM.c **** *  Enable the EEPROM block. Also reads the temperature and stores it for
+  24:Generated_Source\PSoC5/EEPROM.c **** *  future writes.
+  25:Generated_Source\PSoC5/EEPROM.c **** *
+  26:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+  27:Generated_Source\PSoC5/EEPROM.c **** *  None
+  28:Generated_Source\PSoC5/EEPROM.c **** *
+  29:Generated_Source\PSoC5/EEPROM.c **** * Return:
+  30:Generated_Source\PSoC5/EEPROM.c **** *  None
+  31:Generated_Source\PSoC5/EEPROM.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 2
+
+
+  32:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+  33:Generated_Source\PSoC5/EEPROM.c **** void EEPROM_Enable(void) 
+  34:Generated_Source\PSoC5/EEPROM.c **** {
+  27              		.loc 1 34 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 7, -8
+  34              		.cfi_offset 14, -4
+  35 0002 00AF     		add	r7, sp, #0
+  36              		.cfi_def_cfa_register 7
+  35:Generated_Source\PSoC5/EEPROM.c ****     /* Read temperature value */
+  36:Generated_Source\PSoC5/EEPROM.c ****     (void)CySetTemp();
+  37              		.loc 1 36 0
+  38 0004 FFF7FEFF 		bl	CySetTemp
+  37:Generated_Source\PSoC5/EEPROM.c **** 
+  38:Generated_Source\PSoC5/EEPROM.c ****     /* Start EEPROM block */
+  39:Generated_Source\PSoC5/EEPROM.c ****     CyEEPROM_Start();
+  39              		.loc 1 39 0
+  40 0008 FFF7FEFF 		bl	CyEEPROM_Start
+  40:Generated_Source\PSoC5/EEPROM.c **** }
+  41              		.loc 1 40 0
+  42 000c 80BD     		pop	{r7, pc}
+  43              		.cfi_endproc
+  44              	.LFE0:
+  45              		.size	EEPROM_Enable, .-EEPROM_Enable
+  46 000e 00BF     		.section	.text.EEPROM_Start,"ax",%progbits
+  47              		.align	2
+  48              		.global	EEPROM_Start
+  49              		.thumb
+  50              		.thumb_func
+  51              		.type	EEPROM_Start, %function
+  52              	EEPROM_Start:
+  53              	.LFB1:
+  41:Generated_Source\PSoC5/EEPROM.c **** 
+  42:Generated_Source\PSoC5/EEPROM.c **** 
+  43:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+  44:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_Start
+  45:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+  46:Generated_Source\PSoC5/EEPROM.c **** *
+  47:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+  48:Generated_Source\PSoC5/EEPROM.c **** *  Starts EEPROM.
+  49:Generated_Source\PSoC5/EEPROM.c **** *
+  50:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+  51:Generated_Source\PSoC5/EEPROM.c **** *  None
+  52:Generated_Source\PSoC5/EEPROM.c **** *
+  53:Generated_Source\PSoC5/EEPROM.c **** * Return:
+  54:Generated_Source\PSoC5/EEPROM.c **** *  None
+  55:Generated_Source\PSoC5/EEPROM.c **** *
+  56:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+  57:Generated_Source\PSoC5/EEPROM.c **** void EEPROM_Start(void) 
+  58:Generated_Source\PSoC5/EEPROM.c **** {
+  54              		.loc 1 58 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 3
+
+
+  57              		@ frame_needed = 1, uses_anonymous_args = 0
+  58 0000 80B5     		push	{r7, lr}
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 7, -8
+  61              		.cfi_offset 14, -4
+  62 0002 00AF     		add	r7, sp, #0
+  63              		.cfi_def_cfa_register 7
+  59:Generated_Source\PSoC5/EEPROM.c ****     EEPROM_Enable();
+  64              		.loc 1 59 0
+  65 0004 FFF7FEFF 		bl	EEPROM_Enable
+  60:Generated_Source\PSoC5/EEPROM.c **** }
+  66              		.loc 1 60 0
+  67 0008 80BD     		pop	{r7, pc}
+  68              		.cfi_endproc
+  69              	.LFE1:
+  70              		.size	EEPROM_Start, .-EEPROM_Start
+  71 000a 00BF     		.section	.text.EEPROM_Stop,"ax",%progbits
+  72              		.align	2
+  73              		.global	EEPROM_Stop
+  74              		.thumb
+  75              		.thumb_func
+  76              		.type	EEPROM_Stop, %function
+  77              	EEPROM_Stop:
+  78              	.LFB2:
+  61:Generated_Source\PSoC5/EEPROM.c **** 
+  62:Generated_Source\PSoC5/EEPROM.c **** 
+  63:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+  64:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_Stop
+  65:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+  66:Generated_Source\PSoC5/EEPROM.c **** *
+  67:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+  68:Generated_Source\PSoC5/EEPROM.c **** *  Stops and powers down EEPROM.
+  69:Generated_Source\PSoC5/EEPROM.c **** *
+  70:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+  71:Generated_Source\PSoC5/EEPROM.c **** *  None
+  72:Generated_Source\PSoC5/EEPROM.c **** *
+  73:Generated_Source\PSoC5/EEPROM.c **** * Return:
+  74:Generated_Source\PSoC5/EEPROM.c **** *  None
+  75:Generated_Source\PSoC5/EEPROM.c **** *
+  76:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+  77:Generated_Source\PSoC5/EEPROM.c **** void EEPROM_Stop (void) 
+  78:Generated_Source\PSoC5/EEPROM.c **** {
+  79              		.loc 1 78 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 0
+  82              		@ frame_needed = 1, uses_anonymous_args = 0
+  83 0000 80B5     		push	{r7, lr}
+  84              		.cfi_def_cfa_offset 8
+  85              		.cfi_offset 7, -8
+  86              		.cfi_offset 14, -4
+  87 0002 00AF     		add	r7, sp, #0
+  88              		.cfi_def_cfa_register 7
+  79:Generated_Source\PSoC5/EEPROM.c ****     /* Stop and power down EEPROM block */
+  80:Generated_Source\PSoC5/EEPROM.c ****     CyEEPROM_Stop();
+  89              		.loc 1 80 0
+  90 0004 FFF7FEFF 		bl	CyEEPROM_Stop
+  81:Generated_Source\PSoC5/EEPROM.c **** }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 4
+
+
+  91              		.loc 1 81 0
+  92 0008 80BD     		pop	{r7, pc}
+  93              		.cfi_endproc
+  94              	.LFE2:
+  95              		.size	EEPROM_Stop, .-EEPROM_Stop
+  96 000a 00BF     		.section	.text.EEPROM_WriteByte,"ax",%progbits
+  97              		.align	2
+  98              		.global	EEPROM_WriteByte
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	EEPROM_WriteByte, %function
+ 102              	EEPROM_WriteByte:
+ 103              	.LFB3:
+  82:Generated_Source\PSoC5/EEPROM.c **** 
+  83:Generated_Source\PSoC5/EEPROM.c **** 
+  84:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+  85:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_WriteByte
+  86:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+  87:Generated_Source\PSoC5/EEPROM.c **** *
+  88:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+  89:Generated_Source\PSoC5/EEPROM.c **** *  Writes a byte of data to the EEPROM. This function blocks until
+  90:Generated_Source\PSoC5/EEPROM.c **** *  the function is complete. For a reliable write procedure to occur you should
+  91:Generated_Source\PSoC5/EEPROM.c **** *  call EEPROM_UpdateTemperature() function if the temperature of the
+  92:Generated_Source\PSoC5/EEPROM.c **** *  silicon has been changed for more than 10C since the component was started.
+  93:Generated_Source\PSoC5/EEPROM.c **** *
+  94:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+  95:Generated_Source\PSoC5/EEPROM.c **** *  dataByte:  The byte of data to write to the EEPROM
+  96:Generated_Source\PSoC5/EEPROM.c **** *  address:   The address of data to be written. The maximum address is dependent
+  97:Generated_Source\PSoC5/EEPROM.c **** *             on the EEPROM size.
+  98:Generated_Source\PSoC5/EEPROM.c **** *
+  99:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 100:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_SUCCESS, if the operation was successful.
+ 101:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_BAD_PARAM, if the parameter sectorNumber is out of range.
+ 102:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_LOCKED, if the SPC is being used.
+ 103:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 104:Generated_Source\PSoC5/EEPROM.c **** *
+ 105:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 106:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_WriteByte(uint8 dataByte, uint16 address) 
+ 107:Generated_Source\PSoC5/EEPROM.c **** {
+ 104              		.loc 1 107 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 16
+ 107              		@ frame_needed = 1, uses_anonymous_args = 0
+ 108 0000 80B5     		push	{r7, lr}
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 7, -8
+ 111              		.cfi_offset 14, -4
+ 112 0002 84B0     		sub	sp, sp, #16
+ 113              		.cfi_def_cfa_offset 24
+ 114 0004 00AF     		add	r7, sp, #0
+ 115              		.cfi_def_cfa_register 7
+ 116 0006 0346     		mov	r3, r0
+ 117 0008 0A46     		mov	r2, r1
+ 118 000a FB71     		strb	r3, [r7, #7]
+ 119 000c 1346     		mov	r3, r2	@ movhi
+ 120 000e BB80     		strh	r3, [r7, #4]	@ movhi
+ 108:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 5
+
+
+ 109:Generated_Source\PSoC5/EEPROM.c ****     uint16 rowNumber;
+ 110:Generated_Source\PSoC5/EEPROM.c ****     uint16 byteNumber;
+ 111:Generated_Source\PSoC5/EEPROM.c ****     
+ 112:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 121              		.loc 1 112 0
+ 122 0010 FFF7FEFF 		bl	CySpcStart
+ 113:Generated_Source\PSoC5/EEPROM.c **** 
+ 114:Generated_Source\PSoC5/EEPROM.c ****     if (address < CY_EEPROM_SIZE)
+ 123              		.loc 1 114 0
+ 124 0014 BB88     		ldrh	r3, [r7, #4]
+ 125 0016 B3F5006F 		cmp	r3, #2048
+ 126 001a 75D2     		bcs	.L5
+ 115:Generated_Source\PSoC5/EEPROM.c ****     {
+ 116:Generated_Source\PSoC5/EEPROM.c ****         rowNumber = address/(uint16)CY_EEPROM_SIZEOF_ROW;
+ 127              		.loc 1 116 0
+ 128 001c BB88     		ldrh	r3, [r7, #4]
+ 129 001e 1B09     		lsrs	r3, r3, #4
+ 130 0020 7B81     		strh	r3, [r7, #10]	@ movhi
+ 117:Generated_Source\PSoC5/EEPROM.c ****         byteNumber = address - (rowNumber * ((uint16)CY_EEPROM_SIZEOF_ROW));
+ 131              		.loc 1 117 0
+ 132 0022 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 133 0024 1A46     		mov	r2, r3	@ movhi
+ 134 0026 1203     		lsls	r2, r2, #12
+ 135 0028 D31A     		subs	r3, r2, r3
+ 136 002a 1B01     		lsls	r3, r3, #4
+ 137 002c 9AB2     		uxth	r2, r3
+ 138 002e BB88     		ldrh	r3, [r7, #4]	@ movhi
+ 139 0030 1344     		add	r3, r3, r2
+ 140 0032 3B81     		strh	r3, [r7, #8]	@ movhi
+ 118:Generated_Source\PSoC5/EEPROM.c ****         if(CYRET_SUCCESS == CySpcLock())
+ 141              		.loc 1 118 0
+ 142 0034 FFF7FEFF 		bl	CySpcLock
+ 143 0038 0346     		mov	r3, r0
+ 144 003a 002B     		cmp	r3, #0
+ 145 003c 61D1     		bne	.L6
+ 119:Generated_Source\PSoC5/EEPROM.c ****         {
+ 120:Generated_Source\PSoC5/EEPROM.c ****             status = CySpcLoadMultiByte(CY_SPC_FIRST_EE_ARRAYID, byteNumber, &dataByte, \
+ 146              		.loc 1 120 0
+ 147 003e 3A89     		ldrh	r2, [r7, #8]
+ 148 0040 FB1D     		adds	r3, r7, #7
+ 149 0042 4020     		movs	r0, #64
+ 150 0044 1146     		mov	r1, r2
+ 151 0046 1A46     		mov	r2, r3
+ 152 0048 0123     		movs	r3, #1
+ 153 004a FFF7FEFF 		bl	CySpcLoadMultiByte
+ 154 004e F860     		str	r0, [r7, #12]
+ 121:Generated_Source\PSoC5/EEPROM.c ****                                                                     EEPROM_SPC_BYTE_WRITE_SIZE);
+ 122:Generated_Source\PSoC5/EEPROM.c ****             if (CYRET_STARTED == status)
+ 155              		.loc 1 122 0
+ 156 0050 FB68     		ldr	r3, [r7, #12]
+ 157 0052 072B     		cmp	r3, #7
+ 158 0054 4CD1     		bne	.L7
+ 123:Generated_Source\PSoC5/EEPROM.c ****             {
+ 124:Generated_Source\PSoC5/EEPROM.c ****                 /* Plan for failure */
+ 125:Generated_Source\PSoC5/EEPROM.c ****                 status = CYRET_UNKNOWN;
+ 159              		.loc 1 125 0
+ 160 0056 4FF0FF33 		mov	r3, #-1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 6
+
+
+ 161 005a FB60     		str	r3, [r7, #12]
+ 126:Generated_Source\PSoC5/EEPROM.c **** 
+ 127:Generated_Source\PSoC5/EEPROM.c ****                 while(CY_SPC_BUSY)
+ 162              		.loc 1 127 0
+ 163 005c 00BF     		nop
+ 164              	.L8:
+ 165              		.loc 1 127 0 is_stmt 0 discriminator 1
+ 166 005e 2E4B     		ldr	r3, .L20
+ 167 0060 1B78     		ldrb	r3, [r3]
+ 168 0062 DBB2     		uxtb	r3, r3
+ 169 0064 03F00203 		and	r3, r3, #2
+ 170 0068 002B     		cmp	r3, #0
+ 171 006a F8D0     		beq	.L8
+ 128:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 129:Generated_Source\PSoC5/EEPROM.c ****                     /* Wait until SPC becomes idle */
+ 130:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 131:Generated_Source\PSoC5/EEPROM.c **** 
+ 132:Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 172              		.loc 1 132 0 is_stmt 1
+ 173 006c 2A4B     		ldr	r3, .L20
+ 174 006e 1B78     		ldrb	r3, [r3]
+ 175 0070 DBB2     		uxtb	r3, r3
+ 176 0072 03F00203 		and	r3, r3, #2
+ 177 0076 002B     		cmp	r3, #0
+ 178 0078 08D0     		beq	.L9
+ 179              		.loc 1 132 0 is_stmt 0 discriminator 1
+ 180 007a 274B     		ldr	r3, .L20
+ 181 007c 1B78     		ldrb	r3, [r3]
+ 182 007e DBB2     		uxtb	r3, r3
+ 183 0080 9B08     		lsrs	r3, r3, #2
+ 184 0082 DBB2     		uxtb	r3, r3
+ 185 0084 002B     		cmp	r3, #0
+ 186 0086 01D1     		bne	.L9
+ 133:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 134:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_SUCCESS;
+ 187              		.loc 1 134 0 is_stmt 1
+ 188 0088 0023     		movs	r3, #0
+ 189 008a FB60     		str	r3, [r7, #12]
+ 190              	.L9:
+ 135:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 136:Generated_Source\PSoC5/EEPROM.c ****                 /* Command to erase and program the row. */
+ 137:Generated_Source\PSoC5/EEPROM.c ****                 if(CYRET_SUCCESS == status)
+ 191              		.loc 1 137 0
+ 192 008c FB68     		ldr	r3, [r7, #12]
+ 193 008e 002B     		cmp	r3, #0
+ 194 0090 2AD1     		bne	.L10
+ 138:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 139:Generated_Source\PSoC5/EEPROM.c ****                     if(CySpcWriteRow(CY_SPC_FIRST_EE_ARRAYID, (uint16)rowNumber, dieTemperature[0u]
+ 195              		.loc 1 139 0
+ 196 0092 224B     		ldr	r3, .L20+4
+ 197 0094 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 198 0096 214B     		ldr	r3, .L20+4
+ 199 0098 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 200 009a 7989     		ldrh	r1, [r7, #10]
+ 201 009c 4020     		movs	r0, #64
+ 202 009e FFF7FEFF 		bl	CySpcWriteRow
+ 203 00a2 0346     		mov	r3, r0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 7
+
+
+ 204 00a4 072B     		cmp	r3, #7
+ 205 00a6 1BD1     		bne	.L11
+ 140:Generated_Source\PSoC5/EEPROM.c ****                     dieTemperature[1u]) == CYRET_STARTED)
+ 141:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 142:Generated_Source\PSoC5/EEPROM.c ****                         /* Plan for failure */
+ 143:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 206              		.loc 1 143 0
+ 207 00a8 4FF0FF33 		mov	r3, #-1
+ 208 00ac FB60     		str	r3, [r7, #12]
+ 144:Generated_Source\PSoC5/EEPROM.c **** 
+ 145:Generated_Source\PSoC5/EEPROM.c ****                         while(CY_SPC_BUSY)
+ 209              		.loc 1 145 0
+ 210 00ae 00BF     		nop
+ 211              	.L12:
+ 212              		.loc 1 145 0 is_stmt 0 discriminator 1
+ 213 00b0 194B     		ldr	r3, .L20
+ 214 00b2 1B78     		ldrb	r3, [r3]
+ 215 00b4 DBB2     		uxtb	r3, r3
+ 216 00b6 03F00203 		and	r3, r3, #2
+ 217 00ba 002B     		cmp	r3, #0
+ 218 00bc F8D0     		beq	.L12
+ 146:Generated_Source\PSoC5/EEPROM.c ****                         {
+ 147:Generated_Source\PSoC5/EEPROM.c ****                             /* Wait until SPC becomes idle */
+ 148:Generated_Source\PSoC5/EEPROM.c ****                         }
+ 149:Generated_Source\PSoC5/EEPROM.c **** 
+ 150:Generated_Source\PSoC5/EEPROM.c ****                         /* SPC is idle now */
+ 151:Generated_Source\PSoC5/EEPROM.c ****                         if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 219              		.loc 1 151 0 is_stmt 1
+ 220 00be 164B     		ldr	r3, .L20
+ 221 00c0 1B78     		ldrb	r3, [r3]
+ 222 00c2 DBB2     		uxtb	r3, r3
+ 223 00c4 03F00203 		and	r3, r3, #2
+ 224 00c8 002B     		cmp	r3, #0
+ 225 00ca 17D0     		beq	.L16
+ 226              		.loc 1 151 0 is_stmt 0 discriminator 1
+ 227 00cc 124B     		ldr	r3, .L20
+ 228 00ce 1B78     		ldrb	r3, [r3]
+ 229 00d0 DBB2     		uxtb	r3, r3
+ 230 00d2 9B08     		lsrs	r3, r3, #2
+ 231 00d4 DBB2     		uxtb	r3, r3
+ 232 00d6 002B     		cmp	r3, #0
+ 233 00d8 10D1     		bne	.L16
+ 152:Generated_Source\PSoC5/EEPROM.c ****                         {
+ 153:Generated_Source\PSoC5/EEPROM.c ****                             status = CYRET_SUCCESS;
+ 234              		.loc 1 153 0 is_stmt 1
+ 235 00da 0023     		movs	r3, #0
+ 236 00dc FB60     		str	r3, [r7, #12]
+ 237 00de 0DE0     		b	.L16
+ 238              	.L11:
+ 154:Generated_Source\PSoC5/EEPROM.c ****                         }
+ 155:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 156:Generated_Source\PSoC5/EEPROM.c ****                     else
+ 157:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 158:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 239              		.loc 1 158 0
+ 240 00e0 4FF0FF33 		mov	r3, #-1
+ 241 00e4 FB60     		str	r3, [r7, #12]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 8
+
+
+ 242 00e6 09E0     		b	.L16
+ 243              	.L10:
+ 159:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 160:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 161:Generated_Source\PSoC5/EEPROM.c ****                 else
+ 162:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 163:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_UNKNOWN;
+ 244              		.loc 1 163 0
+ 245 00e8 4FF0FF33 		mov	r3, #-1
+ 246 00ec FB60     		str	r3, [r7, #12]
+ 247 00ee 05E0     		b	.L16
+ 248              	.L7:
+ 164:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 165:Generated_Source\PSoC5/EEPROM.c ****             }
+ 166:Generated_Source\PSoC5/EEPROM.c ****             else
+ 167:Generated_Source\PSoC5/EEPROM.c ****             {
+ 168:Generated_Source\PSoC5/EEPROM.c ****                 if (CYRET_BAD_PARAM != status)
+ 249              		.loc 1 168 0
+ 250 00f0 FB68     		ldr	r3, [r7, #12]
+ 251 00f2 012B     		cmp	r3, #1
+ 252 00f4 02D0     		beq	.L16
+ 169:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 170:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_UNKNOWN;
+ 253              		.loc 1 170 0
+ 254 00f6 4FF0FF33 		mov	r3, #-1
+ 255 00fa FB60     		str	r3, [r7, #12]
+ 256              	.L16:
+ 171:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 172:Generated_Source\PSoC5/EEPROM.c ****             }
+ 173:Generated_Source\PSoC5/EEPROM.c ****             CySpcUnlock();
+ 257              		.loc 1 173 0
+ 258 00fc FFF7FEFF 		bl	CySpcUnlock
+ 259 0100 04E0     		b	.L18
+ 260              	.L6:
+ 174:Generated_Source\PSoC5/EEPROM.c ****         }
+ 175:Generated_Source\PSoC5/EEPROM.c ****         else
+ 176:Generated_Source\PSoC5/EEPROM.c ****         {
+ 177:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
+ 261              		.loc 1 177 0
+ 262 0102 0423     		movs	r3, #4
+ 263 0104 FB60     		str	r3, [r7, #12]
+ 264 0106 01E0     		b	.L18
+ 265              	.L5:
+ 178:Generated_Source\PSoC5/EEPROM.c ****         }
+ 179:Generated_Source\PSoC5/EEPROM.c ****     }
+ 180:Generated_Source\PSoC5/EEPROM.c ****     else
+ 181:Generated_Source\PSoC5/EEPROM.c ****     {
+ 182:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_BAD_PARAM;
+ 266              		.loc 1 182 0
+ 267 0108 0123     		movs	r3, #1
+ 268 010a FB60     		str	r3, [r7, #12]
+ 269              	.L18:
+ 183:Generated_Source\PSoC5/EEPROM.c ****     }
+ 184:Generated_Source\PSoC5/EEPROM.c **** 
+ 185:Generated_Source\PSoC5/EEPROM.c **** 
+ 186:Generated_Source\PSoC5/EEPROM.c ****     return (status);
+ 270              		.loc 1 186 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 9
+
+
+ 271 010c FB68     		ldr	r3, [r7, #12]
+ 187:Generated_Source\PSoC5/EEPROM.c **** }
+ 272              		.loc 1 187 0
+ 273 010e 1846     		mov	r0, r3
+ 274 0110 1037     		adds	r7, r7, #16
+ 275              		.cfi_def_cfa_offset 8
+ 276 0112 BD46     		mov	sp, r7
+ 277              		.cfi_def_cfa_register 13
+ 278              		@ sp needed
+ 279 0114 80BD     		pop	{r7, pc}
+ 280              	.L21:
+ 281 0116 00BF     		.align	2
+ 282              	.L20:
+ 283 0118 22470040 		.word	1073760034
+ 284 011c 00000000 		.word	dieTemperature
+ 285              		.cfi_endproc
+ 286              	.LFE3:
+ 287              		.size	EEPROM_WriteByte, .-EEPROM_WriteByte
+ 288              		.section	.text.EEPROM_ReadByte,"ax",%progbits
+ 289              		.align	2
+ 290              		.global	EEPROM_ReadByte
+ 291              		.thumb
+ 292              		.thumb_func
+ 293              		.type	EEPROM_ReadByte, %function
+ 294              	EEPROM_ReadByte:
+ 295              	.LFB4:
+ 188:Generated_Source\PSoC5/EEPROM.c **** 
+ 189:Generated_Source\PSoC5/EEPROM.c **** 
+ 190:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 191:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_ReadByte
+ 192:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 193:Generated_Source\PSoC5/EEPROM.c **** *
+ 194:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 195:Generated_Source\PSoC5/EEPROM.c **** *  Reads and returns a byte of data from the on-chip EEPROM memory. Although
+ 196:Generated_Source\PSoC5/EEPROM.c **** *  the data is present in the CPU memory space, this function provides an
+ 197:Generated_Source\PSoC5/EEPROM.c **** *  intuitive user interface, addressing the EEPROM memory as a separate block with
+ 198:Generated_Source\PSoC5/EEPROM.c **** *  the first EERPOM byte address equal to 0x0000.
+ 199:Generated_Source\PSoC5/EEPROM.c **** *
+ 200:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 201:Generated_Source\PSoC5/EEPROM.c **** *  address:   The address of data to be read. The maximum address is limited by the
+ 202:Generated_Source\PSoC5/EEPROM.c **** *             size of the EEPROM array on a specific device.
+ 203:Generated_Source\PSoC5/EEPROM.c **** *
+ 204:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 205:Generated_Source\PSoC5/EEPROM.c **** *  Data located at an address.
+ 206:Generated_Source\PSoC5/EEPROM.c **** *
+ 207:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 208:Generated_Source\PSoC5/EEPROM.c **** uint8 EEPROM_ReadByte(uint16 address) 
+ 209:Generated_Source\PSoC5/EEPROM.c **** {
+ 296              		.loc 1 209 0
+ 297              		.cfi_startproc
+ 298              		@ args = 0, pretend = 0, frame = 16
+ 299              		@ frame_needed = 1, uses_anonymous_args = 0
+ 300 0000 80B5     		push	{r7, lr}
+ 301              		.cfi_def_cfa_offset 8
+ 302              		.cfi_offset 7, -8
+ 303              		.cfi_offset 14, -4
+ 304 0002 84B0     		sub	sp, sp, #16
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 10
+
+
+ 305              		.cfi_def_cfa_offset 24
+ 306 0004 00AF     		add	r7, sp, #0
+ 307              		.cfi_def_cfa_register 7
+ 308 0006 0346     		mov	r3, r0
+ 309 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 210:Generated_Source\PSoC5/EEPROM.c ****     uint8 retByte;
+ 211:Generated_Source\PSoC5/EEPROM.c ****     uint8 interruptState;
+ 212:Generated_Source\PSoC5/EEPROM.c **** 
+ 213:Generated_Source\PSoC5/EEPROM.c ****     interruptState = CyEnterCriticalSection();
+ 310              		.loc 1 213 0
+ 311 000a FFF7FEFF 		bl	CyEnterCriticalSection
+ 312 000e 0346     		mov	r3, r0
+ 313 0010 FB73     		strb	r3, [r7, #15]
+ 214:Generated_Source\PSoC5/EEPROM.c **** 
+ 215:Generated_Source\PSoC5/EEPROM.c ****     /* Request access to EEPROM for reading.
+ 216:Generated_Source\PSoC5/EEPROM.c ****     This is needed to reserve PHUB for read operation from EEPROM */
+ 217:Generated_Source\PSoC5/EEPROM.c ****     CyEEPROM_ReadReserve();
+ 314              		.loc 1 217 0
+ 315 0012 FFF7FEFF 		bl	CyEEPROM_ReadReserve
+ 218:Generated_Source\PSoC5/EEPROM.c ****     
+ 219:Generated_Source\PSoC5/EEPROM.c ****     retByte = *((reg8 *) (CYDEV_EE_BASE + address));
+ 316              		.loc 1 219 0
+ 317 0016 FB88     		ldrh	r3, [r7, #6]
+ 318 0018 03F18043 		add	r3, r3, #1073741824
+ 319 001c 03F50043 		add	r3, r3, #32768
+ 320 0020 1B78     		ldrb	r3, [r3]
+ 321 0022 BB73     		strb	r3, [r7, #14]
+ 220:Generated_Source\PSoC5/EEPROM.c **** 
+ 221:Generated_Source\PSoC5/EEPROM.c ****     /* Release EEPROM array */
+ 222:Generated_Source\PSoC5/EEPROM.c ****     CyEEPROM_ReadRelease();
+ 322              		.loc 1 222 0
+ 323 0024 FFF7FEFF 		bl	CyEEPROM_ReadRelease
+ 223:Generated_Source\PSoC5/EEPROM.c ****     
+ 224:Generated_Source\PSoC5/EEPROM.c ****     CyExitCriticalSection(interruptState);
+ 324              		.loc 1 224 0
+ 325 0028 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 326 002a 1846     		mov	r0, r3
+ 327 002c FFF7FEFF 		bl	CyExitCriticalSection
+ 225:Generated_Source\PSoC5/EEPROM.c **** 
+ 226:Generated_Source\PSoC5/EEPROM.c ****     return (retByte);
+ 328              		.loc 1 226 0
+ 329 0030 BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ 227:Generated_Source\PSoC5/EEPROM.c **** }
+ 330              		.loc 1 227 0
+ 331 0032 1846     		mov	r0, r3
+ 332 0034 1037     		adds	r7, r7, #16
+ 333              		.cfi_def_cfa_offset 8
+ 334 0036 BD46     		mov	sp, r7
+ 335              		.cfi_def_cfa_register 13
+ 336              		@ sp needed
+ 337 0038 80BD     		pop	{r7, pc}
+ 338              		.cfi_endproc
+ 339              	.LFE4:
+ 340              		.size	EEPROM_ReadByte, .-EEPROM_ReadByte
+ 341 003a 00BF     		.section	.text.EEPROM_UpdateTemperature,"ax",%progbits
+ 342              		.align	2
+ 343              		.global	EEPROM_UpdateTemperature
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 11
+
+
+ 344              		.thumb
+ 345              		.thumb_func
+ 346              		.type	EEPROM_UpdateTemperature, %function
+ 347              	EEPROM_UpdateTemperature:
+ 348              	.LFB5:
+ 228:Generated_Source\PSoC5/EEPROM.c **** 
+ 229:Generated_Source\PSoC5/EEPROM.c **** 
+ 230:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 231:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_UpdateTemperature
+ 232:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 233:Generated_Source\PSoC5/EEPROM.c **** *
+ 234:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 235:Generated_Source\PSoC5/EEPROM.c **** *  Updates and stores the temperature value. This function should be called
+ 236:Generated_Source\PSoC5/EEPROM.c **** *  before EEPROM writes if the temperature may have been changed by more than
+ 237:Generated_Source\PSoC5/EEPROM.c **** *  10 degrees Celsius.
+ 238:Generated_Source\PSoC5/EEPROM.c **** *
+ 239:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 240:Generated_Source\PSoC5/EEPROM.c **** *  None
+ 241:Generated_Source\PSoC5/EEPROM.c **** *
+ 242:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 243:Generated_Source\PSoC5/EEPROM.c **** *  Status of operation, 0 if operation complete, non-zero value if error
+ 244:Generated_Source\PSoC5/EEPROM.c **** *  was detected.
+ 245:Generated_Source\PSoC5/EEPROM.c **** *
+ 246:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 247:Generated_Source\PSoC5/EEPROM.c **** uint8 EEPROM_UpdateTemperature(void) 
+ 248:Generated_Source\PSoC5/EEPROM.c **** {
+ 349              		.loc 1 248 0
+ 350              		.cfi_startproc
+ 351              		@ args = 0, pretend = 0, frame = 0
+ 352              		@ frame_needed = 1, uses_anonymous_args = 0
+ 353 0000 80B5     		push	{r7, lr}
+ 354              		.cfi_def_cfa_offset 8
+ 355              		.cfi_offset 7, -8
+ 356              		.cfi_offset 14, -4
+ 357 0002 00AF     		add	r7, sp, #0
+ 358              		.cfi_def_cfa_register 7
+ 249:Generated_Source\PSoC5/EEPROM.c ****     return ((uint8)CySetTemp());
+ 359              		.loc 1 249 0
+ 360 0004 FFF7FEFF 		bl	CySetTemp
+ 361 0008 0346     		mov	r3, r0
+ 362 000a DBB2     		uxtb	r3, r3
+ 250:Generated_Source\PSoC5/EEPROM.c **** }
+ 363              		.loc 1 250 0
+ 364 000c 1846     		mov	r0, r3
+ 365 000e 80BD     		pop	{r7, pc}
+ 366              		.cfi_endproc
+ 367              	.LFE5:
+ 368              		.size	EEPROM_UpdateTemperature, .-EEPROM_UpdateTemperature
+ 369              		.section	.text.EEPROM_EraseSector,"ax",%progbits
+ 370              		.align	2
+ 371              		.global	EEPROM_EraseSector
+ 372              		.thumb
+ 373              		.thumb_func
+ 374              		.type	EEPROM_EraseSector, %function
+ 375              	EEPROM_EraseSector:
+ 376              	.LFB6:
+ 251:Generated_Source\PSoC5/EEPROM.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 12
+
+
+ 252:Generated_Source\PSoC5/EEPROM.c **** 
+ 253:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 254:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_EraseSector
+ 255:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 256:Generated_Source\PSoC5/EEPROM.c **** *
+ 257:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 258:Generated_Source\PSoC5/EEPROM.c **** *  Erase an EEPROM sector (64 rows). This function blocks until the erase
+ 259:Generated_Source\PSoC5/EEPROM.c **** *  operation is complete. Using this API helps to erase the EEPROM sector at
+ 260:Generated_Source\PSoC5/EEPROM.c **** *  a time. This is faster than using individual writes but affects a cycle
+ 261:Generated_Source\PSoC5/EEPROM.c **** *  recourse of the whole EEPROM row.
+ 262:Generated_Source\PSoC5/EEPROM.c **** *
+ 263:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 264:Generated_Source\PSoC5/EEPROM.c **** *  sectorNumber:  The sector number to erase.
+ 265:Generated_Source\PSoC5/EEPROM.c **** *
+ 266:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 267:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_SUCCESS, if the operation was successful.
+ 268:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_BAD_PARAM, if the parameter sectorNumber is out of range.
+ 269:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_LOCKED, if the SPC is being used.
+ 270:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 271:Generated_Source\PSoC5/EEPROM.c **** *
+ 272:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 273:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_EraseSector(uint8 sectorNumber) 
+ 274:Generated_Source\PSoC5/EEPROM.c **** {
+ 377              		.loc 1 274 0
+ 378              		.cfi_startproc
+ 379              		@ args = 0, pretend = 0, frame = 16
+ 380              		@ frame_needed = 1, uses_anonymous_args = 0
+ 381 0000 80B5     		push	{r7, lr}
+ 382              		.cfi_def_cfa_offset 8
+ 383              		.cfi_offset 7, -8
+ 384              		.cfi_offset 14, -4
+ 385 0002 84B0     		sub	sp, sp, #16
+ 386              		.cfi_def_cfa_offset 24
+ 387 0004 00AF     		add	r7, sp, #0
+ 388              		.cfi_def_cfa_register 7
+ 389 0006 0346     		mov	r3, r0
+ 390 0008 FB71     		strb	r3, [r7, #7]
+ 275:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ 276:Generated_Source\PSoC5/EEPROM.c ****     
+ 277:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 391              		.loc 1 277 0
+ 392 000a FFF7FEFF 		bl	CySpcStart
+ 278:Generated_Source\PSoC5/EEPROM.c **** 
+ 279:Generated_Source\PSoC5/EEPROM.c ****     if(sectorNumber < (uint8) EEPROM_SECTORS_NUMBER)
+ 393              		.loc 1 279 0
+ 394 000e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 395 0010 012B     		cmp	r3, #1
+ 396 0012 31D8     		bhi	.L27
+ 280:Generated_Source\PSoC5/EEPROM.c ****     {
+ 281:Generated_Source\PSoC5/EEPROM.c ****         /* See if we can get SPC. */
+ 282:Generated_Source\PSoC5/EEPROM.c ****         if(CySpcLock() == CYRET_SUCCESS)
+ 397              		.loc 1 282 0
+ 398 0014 FFF7FEFF 		bl	CySpcLock
+ 399 0018 0346     		mov	r3, r0
+ 400 001a 002B     		cmp	r3, #0
+ 401 001c 29D1     		bne	.L28
+ 283:Generated_Source\PSoC5/EEPROM.c ****         {
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 13
+
+
+ 284:Generated_Source\PSoC5/EEPROM.c ****             if(CySpcEraseSector(CY_SPC_FIRST_EE_ARRAYID, sectorNumber) == CYRET_STARTED)
+ 402              		.loc 1 284 0
+ 403 001e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 404 0020 4020     		movs	r0, #64
+ 405 0022 1946     		mov	r1, r3
+ 406 0024 FFF7FEFF 		bl	CySpcEraseSector
+ 407 0028 0346     		mov	r3, r0
+ 408 002a 072B     		cmp	r3, #7
+ 409 002c 1BD1     		bne	.L29
+ 285:Generated_Source\PSoC5/EEPROM.c ****             {
+ 286:Generated_Source\PSoC5/EEPROM.c ****                 /* Plan for failure */
+ 287:Generated_Source\PSoC5/EEPROM.c ****                 status = CYRET_UNKNOWN;
+ 410              		.loc 1 287 0
+ 411 002e 4FF0FF33 		mov	r3, #-1
+ 412 0032 FB60     		str	r3, [r7, #12]
+ 288:Generated_Source\PSoC5/EEPROM.c **** 
+ 289:Generated_Source\PSoC5/EEPROM.c ****                 while(CY_SPC_BUSY)
+ 413              		.loc 1 289 0
+ 414 0034 00BF     		nop
+ 415              	.L30:
+ 416              		.loc 1 289 0 is_stmt 0 discriminator 1
+ 417 0036 144B     		ldr	r3, .L36
+ 418 0038 1B78     		ldrb	r3, [r3]
+ 419 003a DBB2     		uxtb	r3, r3
+ 420 003c 03F00203 		and	r3, r3, #2
+ 421 0040 002B     		cmp	r3, #0
+ 422 0042 F8D0     		beq	.L30
+ 290:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 291:Generated_Source\PSoC5/EEPROM.c ****                     /* Wait until SPC becomes idle */
+ 292:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 293:Generated_Source\PSoC5/EEPROM.c **** 
+ 294:Generated_Source\PSoC5/EEPROM.c ****                 /* SPC is idle now */
+ 295:Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 423              		.loc 1 295 0 is_stmt 1
+ 424 0044 104B     		ldr	r3, .L36
+ 425 0046 1B78     		ldrb	r3, [r3]
+ 426 0048 DBB2     		uxtb	r3, r3
+ 427 004a 03F00203 		and	r3, r3, #2
+ 428 004e 002B     		cmp	r3, #0
+ 429 0050 0CD0     		beq	.L32
+ 430              		.loc 1 295 0 is_stmt 0 discriminator 1
+ 431 0052 0D4B     		ldr	r3, .L36
+ 432 0054 1B78     		ldrb	r3, [r3]
+ 433 0056 DBB2     		uxtb	r3, r3
+ 434 0058 9B08     		lsrs	r3, r3, #2
+ 435 005a DBB2     		uxtb	r3, r3
+ 436 005c 002B     		cmp	r3, #0
+ 437 005e 05D1     		bne	.L32
+ 296:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 297:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_SUCCESS;
+ 438              		.loc 1 297 0 is_stmt 1
+ 439 0060 0023     		movs	r3, #0
+ 440 0062 FB60     		str	r3, [r7, #12]
+ 441 0064 02E0     		b	.L32
+ 442              	.L29:
+ 298:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 299:Generated_Source\PSoC5/EEPROM.c ****             }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 14
+
+
+ 300:Generated_Source\PSoC5/EEPROM.c ****             else
+ 301:Generated_Source\PSoC5/EEPROM.c ****             {
+ 302:Generated_Source\PSoC5/EEPROM.c ****                 status = CYRET_UNKNOWN;
+ 443              		.loc 1 302 0
+ 444 0066 4FF0FF33 		mov	r3, #-1
+ 445 006a FB60     		str	r3, [r7, #12]
+ 446              	.L32:
+ 303:Generated_Source\PSoC5/EEPROM.c ****             }
+ 304:Generated_Source\PSoC5/EEPROM.c **** 
+ 305:Generated_Source\PSoC5/EEPROM.c ****             /* Unlock SPC so that someone else can use it. */
+ 306:Generated_Source\PSoC5/EEPROM.c ****             CySpcUnlock();
+ 447              		.loc 1 306 0
+ 448 006c FFF7FEFF 		bl	CySpcUnlock
+ 449 0070 04E0     		b	.L34
+ 450              	.L28:
+ 307:Generated_Source\PSoC5/EEPROM.c ****         }
+ 308:Generated_Source\PSoC5/EEPROM.c ****         else
+ 309:Generated_Source\PSoC5/EEPROM.c ****         {
+ 310:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
+ 451              		.loc 1 310 0
+ 452 0072 0423     		movs	r3, #4
+ 453 0074 FB60     		str	r3, [r7, #12]
+ 454 0076 01E0     		b	.L34
+ 455              	.L27:
+ 311:Generated_Source\PSoC5/EEPROM.c ****         }
+ 312:Generated_Source\PSoC5/EEPROM.c ****     }
+ 313:Generated_Source\PSoC5/EEPROM.c ****     else
+ 314:Generated_Source\PSoC5/EEPROM.c ****     {
+ 315:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_BAD_PARAM;
+ 456              		.loc 1 315 0
+ 457 0078 0123     		movs	r3, #1
+ 458 007a FB60     		str	r3, [r7, #12]
+ 459              	.L34:
+ 316:Generated_Source\PSoC5/EEPROM.c ****     }
+ 317:Generated_Source\PSoC5/EEPROM.c **** 
+ 318:Generated_Source\PSoC5/EEPROM.c ****     return(status);
+ 460              		.loc 1 318 0
+ 461 007c FB68     		ldr	r3, [r7, #12]
+ 319:Generated_Source\PSoC5/EEPROM.c **** }
+ 462              		.loc 1 319 0
+ 463 007e 1846     		mov	r0, r3
+ 464 0080 1037     		adds	r7, r7, #16
+ 465              		.cfi_def_cfa_offset 8
+ 466 0082 BD46     		mov	sp, r7
+ 467              		.cfi_def_cfa_register 13
+ 468              		@ sp needed
+ 469 0084 80BD     		pop	{r7, pc}
+ 470              	.L37:
+ 471 0086 00BF     		.align	2
+ 472              	.L36:
+ 473 0088 22470040 		.word	1073760034
+ 474              		.cfi_endproc
+ 475              	.LFE6:
+ 476              		.size	EEPROM_EraseSector, .-EEPROM_EraseSector
+ 477              		.section	.text.EEPROM_Write,"ax",%progbits
+ 478              		.align	2
+ 479              		.global	EEPROM_Write
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 15
+
+
+ 480              		.thumb
+ 481              		.thumb_func
+ 482              		.type	EEPROM_Write, %function
+ 483              	EEPROM_Write:
+ 484              	.LFB7:
+ 320:Generated_Source\PSoC5/EEPROM.c **** 
+ 321:Generated_Source\PSoC5/EEPROM.c **** 
+ 322:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 323:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_Write
+ 324:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 325:Generated_Source\PSoC5/EEPROM.c **** *
+ 326:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 327:Generated_Source\PSoC5/EEPROM.c **** *  Writes a row (16 bytes) of data to the EEPROM. This function blocks until
+ 328:Generated_Source\PSoC5/EEPROM.c **** *  the write operation is complete. Compared to functions that write one byte,
+ 329:Generated_Source\PSoC5/EEPROM.c **** *  this function allows writing a whole row (16 bytes) at a time. For
+ 330:Generated_Source\PSoC5/EEPROM.c **** *  a reliable write procedure to occur you should call the
+ 331:Generated_Source\PSoC5/EEPROM.c **** *  EEPROM_UpdateTemperature() function if the temperature of the
+ 332:Generated_Source\PSoC5/EEPROM.c **** *  silicon has changed for more than 10C since component was started.
+ 333:Generated_Source\PSoC5/EEPROM.c **** *
+ 334:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 335:Generated_Source\PSoC5/EEPROM.c **** *  rowData:    The address of the data to write to the EEPROM.
+ 336:Generated_Source\PSoC5/EEPROM.c **** *  rowNumber:  The row number to write.
+ 337:Generated_Source\PSoC5/EEPROM.c **** *
+ 338:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 339:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_SUCCESS, if the operation was successful.
+ 340:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_BAD_PARAM, if the parameter rowNumber is out of range.
+ 341:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_LOCKED, if the SPC is being used.
+ 342:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 343:Generated_Source\PSoC5/EEPROM.c **** *
+ 344:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 345:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_Write(const uint8 * rowData, uint8 rowNumber) 
+ 346:Generated_Source\PSoC5/EEPROM.c **** {
+ 485              		.loc 1 346 0
+ 486              		.cfi_startproc
+ 487              		@ args = 0, pretend = 0, frame = 16
+ 488              		@ frame_needed = 1, uses_anonymous_args = 0
+ 489 0000 80B5     		push	{r7, lr}
+ 490              		.cfi_def_cfa_offset 8
+ 491              		.cfi_offset 7, -8
+ 492              		.cfi_offset 14, -4
+ 493 0002 84B0     		sub	sp, sp, #16
+ 494              		.cfi_def_cfa_offset 24
+ 495 0004 00AF     		add	r7, sp, #0
+ 496              		.cfi_def_cfa_register 7
+ 497 0006 7860     		str	r0, [r7, #4]
+ 498 0008 0B46     		mov	r3, r1
+ 499 000a FB70     		strb	r3, [r7, #3]
+ 347:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ 348:Generated_Source\PSoC5/EEPROM.c ****     
+ 349:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 500              		.loc 1 349 0
+ 501 000c FFF7FEFF 		bl	CySpcStart
+ 350:Generated_Source\PSoC5/EEPROM.c **** 
+ 351:Generated_Source\PSoC5/EEPROM.c ****     if(rowNumber < (uint8) CY_EEPROM_NUMBER_ROWS)
+ 502              		.loc 1 351 0
+ 503 0010 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 504 0012 5BB2     		sxtb	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 16
+
+
+ 505 0014 002B     		cmp	r3, #0
+ 506 0016 5FDB     		blt	.L39
+ 352:Generated_Source\PSoC5/EEPROM.c ****     {
+ 353:Generated_Source\PSoC5/EEPROM.c ****         /* See if we can get SPC. */
+ 354:Generated_Source\PSoC5/EEPROM.c ****         if(CySpcLock() == CYRET_SUCCESS)
+ 507              		.loc 1 354 0
+ 508 0018 FFF7FEFF 		bl	CySpcLock
+ 509 001c 0346     		mov	r3, r0
+ 510 001e 002B     		cmp	r3, #0
+ 511 0020 57D1     		bne	.L40
+ 355:Generated_Source\PSoC5/EEPROM.c ****         {
+ 356:Generated_Source\PSoC5/EEPROM.c ****             /* Plan for failure */
+ 357:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_UNKNOWN;
+ 512              		.loc 1 357 0
+ 513 0022 4FF0FF33 		mov	r3, #-1
+ 514 0026 FB60     		str	r3, [r7, #12]
+ 358:Generated_Source\PSoC5/EEPROM.c **** 
+ 359:Generated_Source\PSoC5/EEPROM.c ****             /* Command to load a row of data */
+ 360:Generated_Source\PSoC5/EEPROM.c ****             if(CySpcLoadRow(CY_SPC_FIRST_EE_ARRAYID, rowData, CYDEV_EEPROM_ROW_SIZE) == CYRET_START
+ 515              		.loc 1 360 0
+ 516 0028 4020     		movs	r0, #64
+ 517 002a 7968     		ldr	r1, [r7, #4]
+ 518 002c 1022     		movs	r2, #16
+ 519 002e FFF7FEFF 		bl	CySpcLoadRow
+ 520 0032 0346     		mov	r3, r0
+ 521 0034 072B     		cmp	r3, #7
+ 522 0036 49D1     		bne	.L41
+ 361:Generated_Source\PSoC5/EEPROM.c ****             {
+ 362:Generated_Source\PSoC5/EEPROM.c ****                 while(CY_SPC_BUSY)
+ 523              		.loc 1 362 0
+ 524 0038 00BF     		nop
+ 525              	.L42:
+ 526              		.loc 1 362 0 is_stmt 0 discriminator 1
+ 527 003a 2B4B     		ldr	r3, .L52
+ 528 003c 1B78     		ldrb	r3, [r3]
+ 529 003e DBB2     		uxtb	r3, r3
+ 530 0040 03F00203 		and	r3, r3, #2
+ 531 0044 002B     		cmp	r3, #0
+ 532 0046 F8D0     		beq	.L42
+ 363:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 364:Generated_Source\PSoC5/EEPROM.c ****                     /* Wait until SPC becomes idle */
+ 365:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 366:Generated_Source\PSoC5/EEPROM.c **** 
+ 367:Generated_Source\PSoC5/EEPROM.c ****                 /* SPC is idle now */
+ 368:Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 533              		.loc 1 368 0 is_stmt 1
+ 534 0048 274B     		ldr	r3, .L52
+ 535 004a 1B78     		ldrb	r3, [r3]
+ 536 004c DBB2     		uxtb	r3, r3
+ 537 004e 03F00203 		and	r3, r3, #2
+ 538 0052 002B     		cmp	r3, #0
+ 539 0054 08D0     		beq	.L43
+ 540              		.loc 1 368 0 is_stmt 0 discriminator 1
+ 541 0056 244B     		ldr	r3, .L52
+ 542 0058 1B78     		ldrb	r3, [r3]
+ 543 005a DBB2     		uxtb	r3, r3
+ 544 005c 9B08     		lsrs	r3, r3, #2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 17
+
+
+ 545 005e DBB2     		uxtb	r3, r3
+ 546 0060 002B     		cmp	r3, #0
+ 547 0062 01D1     		bne	.L43
+ 369:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 370:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_SUCCESS;
+ 548              		.loc 1 370 0 is_stmt 1
+ 549 0064 0023     		movs	r3, #0
+ 550 0066 FB60     		str	r3, [r7, #12]
+ 551              	.L43:
+ 371:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 372:Generated_Source\PSoC5/EEPROM.c **** 
+ 373:Generated_Source\PSoC5/EEPROM.c ****                 /* Command to erase and program the row. */
+ 374:Generated_Source\PSoC5/EEPROM.c ****                 if(status == CYRET_SUCCESS)
+ 552              		.loc 1 374 0
+ 553 0068 FB68     		ldr	r3, [r7, #12]
+ 554 006a 002B     		cmp	r3, #0
+ 555 006c 2BD1     		bne	.L44
+ 375:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 376:Generated_Source\PSoC5/EEPROM.c ****                     if(CySpcWriteRow(CY_SPC_FIRST_EE_ARRAYID, (uint16)rowNumber, dieTemperature[0u]
+ 556              		.loc 1 376 0
+ 557 006e FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 558 0070 99B2     		uxth	r1, r3
+ 559 0072 1E4B     		ldr	r3, .L52+4
+ 560 0074 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 561 0076 1D4B     		ldr	r3, .L52+4
+ 562 0078 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 563 007a 4020     		movs	r0, #64
+ 564 007c FFF7FEFF 		bl	CySpcWriteRow
+ 565 0080 0346     		mov	r3, r0
+ 566 0082 072B     		cmp	r3, #7
+ 567 0084 1BD1     		bne	.L45
+ 377:Generated_Source\PSoC5/EEPROM.c ****                     dieTemperature[1u]) == CYRET_STARTED)
+ 378:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 379:Generated_Source\PSoC5/EEPROM.c ****                         /* Plan for failure */
+ 380:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 568              		.loc 1 380 0
+ 569 0086 4FF0FF33 		mov	r3, #-1
+ 570 008a FB60     		str	r3, [r7, #12]
+ 381:Generated_Source\PSoC5/EEPROM.c **** 
+ 382:Generated_Source\PSoC5/EEPROM.c ****                         while(CY_SPC_BUSY)
+ 571              		.loc 1 382 0
+ 572 008c 00BF     		nop
+ 573              	.L46:
+ 574              		.loc 1 382 0 is_stmt 0 discriminator 1
+ 575 008e 164B     		ldr	r3, .L52
+ 576 0090 1B78     		ldrb	r3, [r3]
+ 577 0092 DBB2     		uxtb	r3, r3
+ 578 0094 03F00203 		and	r3, r3, #2
+ 579 0098 002B     		cmp	r3, #0
+ 580 009a F8D0     		beq	.L46
+ 383:Generated_Source\PSoC5/EEPROM.c ****                         {
+ 384:Generated_Source\PSoC5/EEPROM.c ****                             /* Wait until SPC becomes idle */
+ 385:Generated_Source\PSoC5/EEPROM.c ****                         }
+ 386:Generated_Source\PSoC5/EEPROM.c **** 
+ 387:Generated_Source\PSoC5/EEPROM.c ****                         /* SPC is idle now */
+ 388:Generated_Source\PSoC5/EEPROM.c ****                         if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 581              		.loc 1 388 0 is_stmt 1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 18
+
+
+ 582 009c 124B     		ldr	r3, .L52
+ 583 009e 1B78     		ldrb	r3, [r3]
+ 584 00a0 DBB2     		uxtb	r3, r3
+ 585 00a2 03F00203 		and	r3, r3, #2
+ 586 00a6 002B     		cmp	r3, #0
+ 587 00a8 10D0     		beq	.L41
+ 588              		.loc 1 388 0 is_stmt 0 discriminator 1
+ 589 00aa 0F4B     		ldr	r3, .L52
+ 590 00ac 1B78     		ldrb	r3, [r3]
+ 591 00ae DBB2     		uxtb	r3, r3
+ 592 00b0 9B08     		lsrs	r3, r3, #2
+ 593 00b2 DBB2     		uxtb	r3, r3
+ 594 00b4 002B     		cmp	r3, #0
+ 595 00b6 09D1     		bne	.L41
+ 389:Generated_Source\PSoC5/EEPROM.c ****                         {
+ 390:Generated_Source\PSoC5/EEPROM.c ****                             status = CYRET_SUCCESS;
+ 596              		.loc 1 390 0 is_stmt 1
+ 597 00b8 0023     		movs	r3, #0
+ 598 00ba FB60     		str	r3, [r7, #12]
+ 599 00bc 06E0     		b	.L41
+ 600              	.L45:
+ 391:Generated_Source\PSoC5/EEPROM.c ****                         }
+ 392:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 393:Generated_Source\PSoC5/EEPROM.c ****                     else
+ 394:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 395:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 601              		.loc 1 395 0
+ 602 00be 4FF0FF33 		mov	r3, #-1
+ 603 00c2 FB60     		str	r3, [r7, #12]
+ 604 00c4 02E0     		b	.L41
+ 605              	.L44:
+ 396:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 397:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 398:Generated_Source\PSoC5/EEPROM.c ****                 else
+ 399:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 400:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_UNKNOWN;
+ 606              		.loc 1 400 0
+ 607 00c6 4FF0FF33 		mov	r3, #-1
+ 608 00ca FB60     		str	r3, [r7, #12]
+ 609              	.L41:
+ 401:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 402:Generated_Source\PSoC5/EEPROM.c ****             }
+ 403:Generated_Source\PSoC5/EEPROM.c **** 
+ 404:Generated_Source\PSoC5/EEPROM.c ****             /* Unlock SPC so that someone else can use it. */
+ 405:Generated_Source\PSoC5/EEPROM.c ****             CySpcUnlock();
+ 610              		.loc 1 405 0
+ 611 00cc FFF7FEFF 		bl	CySpcUnlock
+ 612 00d0 04E0     		b	.L50
+ 613              	.L40:
+ 406:Generated_Source\PSoC5/EEPROM.c ****         }
+ 407:Generated_Source\PSoC5/EEPROM.c ****         else
+ 408:Generated_Source\PSoC5/EEPROM.c ****         {
+ 409:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
+ 614              		.loc 1 409 0
+ 615 00d2 0423     		movs	r3, #4
+ 616 00d4 FB60     		str	r3, [r7, #12]
+ 617 00d6 01E0     		b	.L50
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 19
+
+
+ 618              	.L39:
+ 410:Generated_Source\PSoC5/EEPROM.c ****         }
+ 411:Generated_Source\PSoC5/EEPROM.c ****     }
+ 412:Generated_Source\PSoC5/EEPROM.c ****     else
+ 413:Generated_Source\PSoC5/EEPROM.c ****     {
+ 414:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_BAD_PARAM;
+ 619              		.loc 1 414 0
+ 620 00d8 0123     		movs	r3, #1
+ 621 00da FB60     		str	r3, [r7, #12]
+ 622              	.L50:
+ 415:Generated_Source\PSoC5/EEPROM.c ****     }
+ 416:Generated_Source\PSoC5/EEPROM.c **** 
+ 417:Generated_Source\PSoC5/EEPROM.c ****     return(status);
+ 623              		.loc 1 417 0
+ 624 00dc FB68     		ldr	r3, [r7, #12]
+ 418:Generated_Source\PSoC5/EEPROM.c **** }
+ 625              		.loc 1 418 0
+ 626 00de 1846     		mov	r0, r3
+ 627 00e0 1037     		adds	r7, r7, #16
+ 628              		.cfi_def_cfa_offset 8
+ 629 00e2 BD46     		mov	sp, r7
+ 630              		.cfi_def_cfa_register 13
+ 631              		@ sp needed
+ 632 00e4 80BD     		pop	{r7, pc}
+ 633              	.L53:
+ 634 00e6 00BF     		.align	2
+ 635              	.L52:
+ 636 00e8 22470040 		.word	1073760034
+ 637 00ec 00000000 		.word	dieTemperature
+ 638              		.cfi_endproc
+ 639              	.LFE7:
+ 640              		.size	EEPROM_Write, .-EEPROM_Write
+ 641              		.section	.text.EEPROM_StartWrite,"ax",%progbits
+ 642              		.align	2
+ 643              		.global	EEPROM_StartWrite
+ 644              		.thumb
+ 645              		.thumb_func
+ 646              		.type	EEPROM_StartWrite, %function
+ 647              	EEPROM_StartWrite:
+ 648              	.LFB8:
+ 419:Generated_Source\PSoC5/EEPROM.c **** 
+ 420:Generated_Source\PSoC5/EEPROM.c **** 
+ 421:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 422:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_StartWrite
+ 423:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 424:Generated_Source\PSoC5/EEPROM.c **** *
+ 425:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 426:Generated_Source\PSoC5/EEPROM.c **** *  Starts a write of a row (16 bytes) of data to the EEPROM.
+ 427:Generated_Source\PSoC5/EEPROM.c **** *  This function does not block. The function returns once the SPC has begun
+ 428:Generated_Source\PSoC5/EEPROM.c **** *  writing the data. This function must be used in combination with
+ 429:Generated_Source\PSoC5/EEPROM.c **** *  EEPROM_Query(). EEPROM_Query() must be called
+ 430:Generated_Source\PSoC5/EEPROM.c **** *  until it returns a status other than CYRET_STARTED. That indicates that the
+ 431:Generated_Source\PSoC5/EEPROM.c **** *  write has completed. Until EEPROM_Query() detects that
+ 432:Generated_Source\PSoC5/EEPROM.c **** *  the write is complete, the SPC is marked as locked to prevent another
+ 433:Generated_Source\PSoC5/EEPROM.c **** *  SPC operation from being performed. For a reliable write procedure to occur
+ 434:Generated_Source\PSoC5/EEPROM.c **** *  you should call EEPROM_UpdateTemperature() API if the temperature
+ 435:Generated_Source\PSoC5/EEPROM.c **** *  of the silicon has changed for more than 10C since component was started.
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 20
+
+
+ 436:Generated_Source\PSoC5/EEPROM.c **** *
+ 437:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 438:Generated_Source\PSoC5/EEPROM.c **** *  rowData:    The address of the data to write to the EEPROM.
+ 439:Generated_Source\PSoC5/EEPROM.c **** *  rowNumber:  The row number to write.
+ 440:Generated_Source\PSoC5/EEPROM.c **** *
+ 441:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 442:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_STARTED, if the SPC command to write was successfully started.
+ 443:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_BAD_PARAM, if the parameter rowNumber is out of range.
+ 444:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_LOCKED, if the SPC is being used.
+ 445:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 446:Generated_Source\PSoC5/EEPROM.c **** *
+ 447:Generated_Source\PSoC5/EEPROM.c **** * Side effects:
+ 448:Generated_Source\PSoC5/EEPROM.c **** *  After calling this API, the device should not be powered down, reset or switched
+ 449:Generated_Source\PSoC5/EEPROM.c **** *  to low power modes until EEPROM operation is complete. 
+ 450:Generated_Source\PSoC5/EEPROM.c **** *  Ignoring this recommendation may lead to data corruption or silicon
+ 451:Generated_Source\PSoC5/EEPROM.c **** *  unexpected behavior.
+ 452:Generated_Source\PSoC5/EEPROM.c **** *
+ 453:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 454:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_StartWrite(const uint8 * rowData, uint8 rowNumber) \
+ 455:Generated_Source\PSoC5/EEPROM.c **** 
+ 456:Generated_Source\PSoC5/EEPROM.c **** {
+ 649              		.loc 1 456 0
+ 650              		.cfi_startproc
+ 651              		@ args = 0, pretend = 0, frame = 16
+ 652              		@ frame_needed = 1, uses_anonymous_args = 0
+ 653 0000 80B5     		push	{r7, lr}
+ 654              		.cfi_def_cfa_offset 8
+ 655              		.cfi_offset 7, -8
+ 656              		.cfi_offset 14, -4
+ 657 0002 84B0     		sub	sp, sp, #16
+ 658              		.cfi_def_cfa_offset 24
+ 659 0004 00AF     		add	r7, sp, #0
+ 660              		.cfi_def_cfa_register 7
+ 661 0006 7860     		str	r0, [r7, #4]
+ 662 0008 0B46     		mov	r3, r1
+ 663 000a FB70     		strb	r3, [r7, #3]
+ 457:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ 458:Generated_Source\PSoC5/EEPROM.c ****     
+ 459:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 664              		.loc 1 459 0
+ 665 000c FFF7FEFF 		bl	CySpcStart
+ 460:Generated_Source\PSoC5/EEPROM.c **** 
+ 461:Generated_Source\PSoC5/EEPROM.c ****     if(rowNumber < (uint8) CY_EEPROM_NUMBER_ROWS)
+ 666              		.loc 1 461 0
+ 667 0010 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 668 0012 5BB2     		sxtb	r3, r3
+ 669 0014 002B     		cmp	r3, #0
+ 670 0016 44DB     		blt	.L55
+ 462:Generated_Source\PSoC5/EEPROM.c ****     {
+ 463:Generated_Source\PSoC5/EEPROM.c ****         /* See if we can get SPC. */
+ 464:Generated_Source\PSoC5/EEPROM.c ****         if(CySpcLock() == CYRET_SUCCESS)
+ 671              		.loc 1 464 0
+ 672 0018 FFF7FEFF 		bl	CySpcLock
+ 673 001c 0346     		mov	r3, r0
+ 674 001e 002B     		cmp	r3, #0
+ 675 0020 3CD1     		bne	.L56
+ 465:Generated_Source\PSoC5/EEPROM.c ****         {
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 21
+
+
+ 466:Generated_Source\PSoC5/EEPROM.c ****             /* Plan for failure */
+ 467:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_UNKNOWN;
+ 676              		.loc 1 467 0
+ 677 0022 4FF0FF33 		mov	r3, #-1
+ 678 0026 FB60     		str	r3, [r7, #12]
+ 468:Generated_Source\PSoC5/EEPROM.c **** 
+ 469:Generated_Source\PSoC5/EEPROM.c ****             /* Command to load a row of data */
+ 470:Generated_Source\PSoC5/EEPROM.c ****             if(CySpcLoadRow(CY_SPC_FIRST_EE_ARRAYID, rowData, CYDEV_EEPROM_ROW_SIZE) == CYRET_START
+ 679              		.loc 1 470 0
+ 680 0028 4020     		movs	r0, #64
+ 681 002a 7968     		ldr	r1, [r7, #4]
+ 682 002c 1022     		movs	r2, #16
+ 683 002e FFF7FEFF 		bl	CySpcLoadRow
+ 684 0032 0346     		mov	r3, r0
+ 685 0034 072B     		cmp	r3, #7
+ 686 0036 36D1     		bne	.L64
+ 471:Generated_Source\PSoC5/EEPROM.c ****             {
+ 472:Generated_Source\PSoC5/EEPROM.c ****                 while(CY_SPC_BUSY)
+ 687              		.loc 1 472 0
+ 688 0038 00BF     		nop
+ 689              	.L58:
+ 690              		.loc 1 472 0 is_stmt 0 discriminator 1
+ 691 003a 1D4B     		ldr	r3, .L66
+ 692 003c 1B78     		ldrb	r3, [r3]
+ 693 003e DBB2     		uxtb	r3, r3
+ 694 0040 03F00203 		and	r3, r3, #2
+ 695 0044 002B     		cmp	r3, #0
+ 696 0046 F8D0     		beq	.L58
+ 473:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 474:Generated_Source\PSoC5/EEPROM.c ****                     /* Wait until SPC becomes idle */
+ 475:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 476:Generated_Source\PSoC5/EEPROM.c **** 
+ 477:Generated_Source\PSoC5/EEPROM.c ****                 /* SPC is idle now */
+ 478:Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 697              		.loc 1 478 0 is_stmt 1
+ 698 0048 194B     		ldr	r3, .L66
+ 699 004a 1B78     		ldrb	r3, [r3]
+ 700 004c DBB2     		uxtb	r3, r3
+ 701 004e 03F00203 		and	r3, r3, #2
+ 702 0052 002B     		cmp	r3, #0
+ 703 0054 08D0     		beq	.L59
+ 704              		.loc 1 478 0 is_stmt 0 discriminator 1
+ 705 0056 164B     		ldr	r3, .L66
+ 706 0058 1B78     		ldrb	r3, [r3]
+ 707 005a DBB2     		uxtb	r3, r3
+ 708 005c 9B08     		lsrs	r3, r3, #2
+ 709 005e DBB2     		uxtb	r3, r3
+ 710 0060 002B     		cmp	r3, #0
+ 711 0062 01D1     		bne	.L59
+ 479:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 480:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_SUCCESS;
+ 712              		.loc 1 480 0 is_stmt 1
+ 713 0064 0023     		movs	r3, #0
+ 714 0066 FB60     		str	r3, [r7, #12]
+ 715              	.L59:
+ 481:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 482:Generated_Source\PSoC5/EEPROM.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 22
+
+
+ 483:Generated_Source\PSoC5/EEPROM.c ****                 /* Command to erase and program the row. */
+ 484:Generated_Source\PSoC5/EEPROM.c ****                 if(status == CYRET_SUCCESS)
+ 716              		.loc 1 484 0
+ 717 0068 FB68     		ldr	r3, [r7, #12]
+ 718 006a 002B     		cmp	r3, #0
+ 719 006c 12D1     		bne	.L60
+ 485:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 486:Generated_Source\PSoC5/EEPROM.c ****                     if(CySpcWriteRow(CY_SPC_FIRST_EE_ARRAYID, (uint16)rowNumber, dieTemperature[0u]
+ 720              		.loc 1 486 0
+ 721 006e FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 722 0070 99B2     		uxth	r1, r3
+ 723 0072 104B     		ldr	r3, .L66+4
+ 724 0074 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 725 0076 0F4B     		ldr	r3, .L66+4
+ 726 0078 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 727 007a 4020     		movs	r0, #64
+ 728 007c FFF7FEFF 		bl	CySpcWriteRow
+ 729 0080 0346     		mov	r3, r0
+ 730 0082 072B     		cmp	r3, #7
+ 731 0084 02D1     		bne	.L61
+ 487:Generated_Source\PSoC5/EEPROM.c ****                     dieTemperature[1u]) == CYRET_STARTED)
+ 488:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 489:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_STARTED;
+ 732              		.loc 1 489 0
+ 733 0086 0723     		movs	r3, #7
+ 734 0088 FB60     		str	r3, [r7, #12]
+ 735 008a 0CE0     		b	.L64
+ 736              	.L61:
+ 490:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 491:Generated_Source\PSoC5/EEPROM.c ****                     else
+ 492:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 493:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 737              		.loc 1 493 0
+ 738 008c 4FF0FF33 		mov	r3, #-1
+ 739 0090 FB60     		str	r3, [r7, #12]
+ 740 0092 08E0     		b	.L64
+ 741              	.L60:
+ 494:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 495:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 496:Generated_Source\PSoC5/EEPROM.c ****                 else
+ 497:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 498:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_UNKNOWN;
+ 742              		.loc 1 498 0
+ 743 0094 4FF0FF33 		mov	r3, #-1
+ 744 0098 FB60     		str	r3, [r7, #12]
+ 745 009a 04E0     		b	.L64
+ 746              	.L56:
+ 499:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 500:Generated_Source\PSoC5/EEPROM.c ****             }
+ 501:Generated_Source\PSoC5/EEPROM.c ****         }
+ 502:Generated_Source\PSoC5/EEPROM.c ****         else
+ 503:Generated_Source\PSoC5/EEPROM.c ****         {
+ 504:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
+ 747              		.loc 1 504 0
+ 748 009c 0423     		movs	r3, #4
+ 749 009e FB60     		str	r3, [r7, #12]
+ 750 00a0 01E0     		b	.L64
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 23
+
+
+ 751              	.L55:
+ 505:Generated_Source\PSoC5/EEPROM.c ****         }
+ 506:Generated_Source\PSoC5/EEPROM.c ****     }
+ 507:Generated_Source\PSoC5/EEPROM.c ****     else
+ 508:Generated_Source\PSoC5/EEPROM.c ****     {
+ 509:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_BAD_PARAM;
+ 752              		.loc 1 509 0
+ 753 00a2 0123     		movs	r3, #1
+ 754 00a4 FB60     		str	r3, [r7, #12]
+ 755              	.L64:
+ 510:Generated_Source\PSoC5/EEPROM.c ****     }
+ 511:Generated_Source\PSoC5/EEPROM.c **** 
+ 512:Generated_Source\PSoC5/EEPROM.c ****     return(status);
+ 756              		.loc 1 512 0
+ 757 00a6 FB68     		ldr	r3, [r7, #12]
+ 513:Generated_Source\PSoC5/EEPROM.c **** }
+ 758              		.loc 1 513 0
+ 759 00a8 1846     		mov	r0, r3
+ 760 00aa 1037     		adds	r7, r7, #16
+ 761              		.cfi_def_cfa_offset 8
+ 762 00ac BD46     		mov	sp, r7
+ 763              		.cfi_def_cfa_register 13
+ 764              		@ sp needed
+ 765 00ae 80BD     		pop	{r7, pc}
+ 766              	.L67:
+ 767              		.align	2
+ 768              	.L66:
+ 769 00b0 22470040 		.word	1073760034
+ 770 00b4 00000000 		.word	dieTemperature
+ 771              		.cfi_endproc
+ 772              	.LFE8:
+ 773              		.size	EEPROM_StartWrite, .-EEPROM_StartWrite
+ 774              		.section	.text.EEPROM_StartErase,"ax",%progbits
+ 775              		.align	2
+ 776              		.global	EEPROM_StartErase
+ 777              		.thumb
+ 778              		.thumb_func
+ 779              		.type	EEPROM_StartErase, %function
+ 780              	EEPROM_StartErase:
+ 781              	.LFB9:
+ 514:Generated_Source\PSoC5/EEPROM.c **** 
+ 515:Generated_Source\PSoC5/EEPROM.c **** 
+ 516:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 517:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_StartErase
+ 518:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 519:Generated_Source\PSoC5/EEPROM.c **** *
+ 520:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 521:Generated_Source\PSoC5/EEPROM.c **** *  Starts the EEPROM sector erase. This function does not block.
+ 522:Generated_Source\PSoC5/EEPROM.c **** *  The function returns once the SPC has begun writing the data. This function
+ 523:Generated_Source\PSoC5/EEPROM.c **** *  must be used in combination with EEPROM_Query().
+ 524:Generated_Source\PSoC5/EEPROM.c **** *  EEPROM_Query() must be called until it returns a status
+ 525:Generated_Source\PSoC5/EEPROM.c **** *  other than CYRET_STARTED. That indicates the erase has been completed.
+ 526:Generated_Source\PSoC5/EEPROM.c **** *  Until EEPROM_Query() detects that the erase is
+ 527:Generated_Source\PSoC5/EEPROM.c **** *  complete, the SPC is marked as locked to prevent another SPC operation
+ 528:Generated_Source\PSoC5/EEPROM.c **** *  from being performed.
+ 529:Generated_Source\PSoC5/EEPROM.c **** *
+ 530:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 24
+
+
+ 531:Generated_Source\PSoC5/EEPROM.c **** *  sectorNumber:  The sector number to erase.
+ 532:Generated_Source\PSoC5/EEPROM.c **** *
+ 533:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 534:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_STARTED, if the SPC command to erase was successfully started.
+ 535:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_BAD_PARAM, if the parameter sectorNumber is out of range.
+ 536:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_LOCKED, if the SPC is being used.
+ 537:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 538:Generated_Source\PSoC5/EEPROM.c **** *
+ 539:Generated_Source\PSoC5/EEPROM.c **** * Side effects:
+ 540:Generated_Source\PSoC5/EEPROM.c **** *  After calling this API, the device should not be powered down, reset or switched
+ 541:Generated_Source\PSoC5/EEPROM.c **** *  to low power modes until EEPROM operation is complete.
+ 542:Generated_Source\PSoC5/EEPROM.c **** *  Ignoring this recommendation may lead to data corruption or silicon
+ 543:Generated_Source\PSoC5/EEPROM.c **** *  unexpected behavior.
+ 544:Generated_Source\PSoC5/EEPROM.c **** *
+ 545:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 546:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_StartErase(uint8 sectorNumber) 
+ 547:Generated_Source\PSoC5/EEPROM.c **** {
+ 782              		.loc 1 547 0
+ 783              		.cfi_startproc
+ 784              		@ args = 0, pretend = 0, frame = 16
+ 785              		@ frame_needed = 1, uses_anonymous_args = 0
+ 786 0000 80B5     		push	{r7, lr}
+ 787              		.cfi_def_cfa_offset 8
+ 788              		.cfi_offset 7, -8
+ 789              		.cfi_offset 14, -4
+ 790 0002 84B0     		sub	sp, sp, #16
+ 791              		.cfi_def_cfa_offset 24
+ 792 0004 00AF     		add	r7, sp, #0
+ 793              		.cfi_def_cfa_register 7
+ 794 0006 0346     		mov	r3, r0
+ 795 0008 FB71     		strb	r3, [r7, #7]
+ 548:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ 549:Generated_Source\PSoC5/EEPROM.c ****     
+ 550:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 796              		.loc 1 550 0
+ 797 000a FFF7FEFF 		bl	CySpcStart
+ 551:Generated_Source\PSoC5/EEPROM.c **** 
+ 552:Generated_Source\PSoC5/EEPROM.c ****     if(sectorNumber < (uint8) CY_EEPROM_NUMBER_ARRAYS)
+ 798              		.loc 1 552 0
+ 799 000e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 800 0010 002B     		cmp	r3, #0
+ 801 0012 15D1     		bne	.L69
+ 553:Generated_Source\PSoC5/EEPROM.c ****     {
+ 554:Generated_Source\PSoC5/EEPROM.c ****         /* See if we can get SPC. */
+ 555:Generated_Source\PSoC5/EEPROM.c ****         if(CySpcLock() == CYRET_SUCCESS)
+ 802              		.loc 1 555 0
+ 803 0014 FFF7FEFF 		bl	CySpcLock
+ 804 0018 0346     		mov	r3, r0
+ 805 001a 002B     		cmp	r3, #0
+ 806 001c 0DD1     		bne	.L70
+ 556:Generated_Source\PSoC5/EEPROM.c ****         {
+ 557:Generated_Source\PSoC5/EEPROM.c ****             /* Plan for failure */
+ 558:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_UNKNOWN;
+ 807              		.loc 1 558 0
+ 808 001e 4FF0FF33 		mov	r3, #-1
+ 809 0022 FB60     		str	r3, [r7, #12]
+ 559:Generated_Source\PSoC5/EEPROM.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 25
+
+
+ 560:Generated_Source\PSoC5/EEPROM.c ****             /* Command to load a row of data */
+ 561:Generated_Source\PSoC5/EEPROM.c ****             if(CySpcEraseSector(CY_SPC_FIRST_EE_ARRAYID, sectorNumber) == CYRET_STARTED)
+ 810              		.loc 1 561 0
+ 811 0024 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 812 0026 4020     		movs	r0, #64
+ 813 0028 1946     		mov	r1, r3
+ 814 002a FFF7FEFF 		bl	CySpcEraseSector
+ 815 002e 0346     		mov	r3, r0
+ 816 0030 072B     		cmp	r3, #7
+ 817 0032 07D1     		bne	.L73
+ 562:Generated_Source\PSoC5/EEPROM.c ****             {
+ 563:Generated_Source\PSoC5/EEPROM.c ****                 status = CYRET_SUCCESS;
+ 818              		.loc 1 563 0
+ 819 0034 0023     		movs	r3, #0
+ 820 0036 FB60     		str	r3, [r7, #12]
+ 821 0038 04E0     		b	.L73
+ 822              	.L70:
+ 564:Generated_Source\PSoC5/EEPROM.c ****             }
+ 565:Generated_Source\PSoC5/EEPROM.c ****         }
+ 566:Generated_Source\PSoC5/EEPROM.c ****         else
+ 567:Generated_Source\PSoC5/EEPROM.c ****         {
+ 568:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
+ 823              		.loc 1 568 0
+ 824 003a 0423     		movs	r3, #4
+ 825 003c FB60     		str	r3, [r7, #12]
+ 826 003e 01E0     		b	.L73
+ 827              	.L69:
+ 569:Generated_Source\PSoC5/EEPROM.c ****         }
+ 570:Generated_Source\PSoC5/EEPROM.c ****     }
+ 571:Generated_Source\PSoC5/EEPROM.c ****     else
+ 572:Generated_Source\PSoC5/EEPROM.c ****     {
+ 573:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_BAD_PARAM;
+ 828              		.loc 1 573 0
+ 829 0040 0123     		movs	r3, #1
+ 830 0042 FB60     		str	r3, [r7, #12]
+ 831              	.L73:
+ 574:Generated_Source\PSoC5/EEPROM.c ****     }
+ 575:Generated_Source\PSoC5/EEPROM.c **** 
+ 576:Generated_Source\PSoC5/EEPROM.c ****     return(status);
+ 832              		.loc 1 576 0
+ 833 0044 FB68     		ldr	r3, [r7, #12]
+ 577:Generated_Source\PSoC5/EEPROM.c **** }
+ 834              		.loc 1 577 0
+ 835 0046 1846     		mov	r0, r3
+ 836 0048 1037     		adds	r7, r7, #16
+ 837              		.cfi_def_cfa_offset 8
+ 838 004a BD46     		mov	sp, r7
+ 839              		.cfi_def_cfa_register 13
+ 840              		@ sp needed
+ 841 004c 80BD     		pop	{r7, pc}
+ 842              		.cfi_endproc
+ 843              	.LFE9:
+ 844              		.size	EEPROM_StartErase, .-EEPROM_StartErase
+ 845 004e 00BF     		.section	.text.EEPROM_Query,"ax",%progbits
+ 846              		.align	2
+ 847              		.global	EEPROM_Query
+ 848              		.thumb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 26
+
+
+ 849              		.thumb_func
+ 850              		.type	EEPROM_Query, %function
+ 851              	EEPROM_Query:
+ 852              	.LFB10:
+ 578:Generated_Source\PSoC5/EEPROM.c **** 
+ 579:Generated_Source\PSoC5/EEPROM.c **** 
+ 580:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 581:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_Query
+ 582:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 583:Generated_Source\PSoC5/EEPROM.c **** *
+ 584:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 585:Generated_Source\PSoC5/EEPROM.c **** *  Checks the status of an earlier call to EEPROM_StartWrite() or
+ 586:Generated_Source\PSoC5/EEPROM.c **** *  EEPROM_StartErase().
+ 587:Generated_Source\PSoC5/EEPROM.c **** *  This function must be called until it returns a value other than
+ 588:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_STARTED. Once that occurs, the write or erase has been completed and
+ 589:Generated_Source\PSoC5/EEPROM.c **** *  the SPC is unlocked.
+ 590:Generated_Source\PSoC5/EEPROM.c **** *
+ 591:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 592:Generated_Source\PSoC5/EEPROM.c **** *  None
+ 593:Generated_Source\PSoC5/EEPROM.c **** *
+ 594:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 595:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_STARTED, if the SPC command is still processing.
+ 596:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_SUCCESS, if the operation was completed successfully.
+ 597:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 598:Generated_Source\PSoC5/EEPROM.c **** *
+ 599:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 600:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_Query(void) 
+ 601:Generated_Source\PSoC5/EEPROM.c **** {
+ 853              		.loc 1 601 0
+ 854              		.cfi_startproc
+ 855              		@ args = 0, pretend = 0, frame = 8
+ 856              		@ frame_needed = 1, uses_anonymous_args = 0
+ 857 0000 80B5     		push	{r7, lr}
+ 858              		.cfi_def_cfa_offset 8
+ 859              		.cfi_offset 7, -8
+ 860              		.cfi_offset 14, -4
+ 861 0002 82B0     		sub	sp, sp, #8
+ 862              		.cfi_def_cfa_offset 16
+ 863 0004 00AF     		add	r7, sp, #0
+ 864              		.cfi_def_cfa_register 7
+ 602:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ 603:Generated_Source\PSoC5/EEPROM.c ****     
+ 604:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 865              		.loc 1 604 0
+ 866 0006 FFF7FEFF 		bl	CySpcStart
+ 605:Generated_Source\PSoC5/EEPROM.c **** 
+ 606:Generated_Source\PSoC5/EEPROM.c ****     /* Check if SPC is idle */
+ 607:Generated_Source\PSoC5/EEPROM.c ****     if(CY_SPC_IDLE)
+ 867              		.loc 1 607 0
+ 868 000a 124B     		ldr	r3, .L81
+ 869 000c 1B78     		ldrb	r3, [r3]
+ 870 000e DBB2     		uxtb	r3, r3
+ 871 0010 03F00203 		and	r3, r3, #2
+ 872 0014 002B     		cmp	r3, #0
+ 873 0016 16D0     		beq	.L76
+ 608:Generated_Source\PSoC5/EEPROM.c ****     {
+ 609:Generated_Source\PSoC5/EEPROM.c ****         /* SPC is idle now */
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 27
+
+
+ 610:Generated_Source\PSoC5/EEPROM.c ****         if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 874              		.loc 1 610 0
+ 875 0018 0E4B     		ldr	r3, .L81
+ 876 001a 1B78     		ldrb	r3, [r3]
+ 877 001c DBB2     		uxtb	r3, r3
+ 878 001e 03F00203 		and	r3, r3, #2
+ 879 0022 002B     		cmp	r3, #0
+ 880 0024 09D0     		beq	.L77
+ 881              		.loc 1 610 0 is_stmt 0 discriminator 1
+ 882 0026 0B4B     		ldr	r3, .L81
+ 883 0028 1B78     		ldrb	r3, [r3]
+ 884 002a DBB2     		uxtb	r3, r3
+ 885 002c 9B08     		lsrs	r3, r3, #2
+ 886 002e DBB2     		uxtb	r3, r3
+ 887 0030 002B     		cmp	r3, #0
+ 888 0032 02D1     		bne	.L77
+ 611:Generated_Source\PSoC5/EEPROM.c ****         {
+ 612:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_SUCCESS;
+ 889              		.loc 1 612 0 is_stmt 1
+ 890 0034 0023     		movs	r3, #0
+ 891 0036 7B60     		str	r3, [r7, #4]
+ 892 0038 02E0     		b	.L78
+ 893              	.L77:
+ 613:Generated_Source\PSoC5/EEPROM.c ****         }
+ 614:Generated_Source\PSoC5/EEPROM.c ****         else
+ 615:Generated_Source\PSoC5/EEPROM.c ****         {
+ 616:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_UNKNOWN;
+ 894              		.loc 1 616 0
+ 895 003a 4FF0FF33 		mov	r3, #-1
+ 896 003e 7B60     		str	r3, [r7, #4]
+ 897              	.L78:
+ 617:Generated_Source\PSoC5/EEPROM.c ****         }
+ 618:Generated_Source\PSoC5/EEPROM.c **** 
+ 619:Generated_Source\PSoC5/EEPROM.c ****         /* Unlock SPC so that someone else can use it. */
+ 620:Generated_Source\PSoC5/EEPROM.c ****         CySpcUnlock();
+ 898              		.loc 1 620 0
+ 899 0040 FFF7FEFF 		bl	CySpcUnlock
+ 900 0044 01E0     		b	.L79
+ 901              	.L76:
+ 621:Generated_Source\PSoC5/EEPROM.c ****     }
+ 622:Generated_Source\PSoC5/EEPROM.c ****     else
+ 623:Generated_Source\PSoC5/EEPROM.c ****     {
+ 624:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_STARTED;
+ 902              		.loc 1 624 0
+ 903 0046 0723     		movs	r3, #7
+ 904 0048 7B60     		str	r3, [r7, #4]
+ 905              	.L79:
+ 625:Generated_Source\PSoC5/EEPROM.c ****     }
+ 626:Generated_Source\PSoC5/EEPROM.c **** 
+ 627:Generated_Source\PSoC5/EEPROM.c ****     return(status);
+ 906              		.loc 1 627 0
+ 907 004a 7B68     		ldr	r3, [r7, #4]
+ 628:Generated_Source\PSoC5/EEPROM.c **** }
+ 908              		.loc 1 628 0
+ 909 004c 1846     		mov	r0, r3
+ 910 004e 0837     		adds	r7, r7, #8
+ 911              		.cfi_def_cfa_offset 8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 28
+
+
+ 912 0050 BD46     		mov	sp, r7
+ 913              		.cfi_def_cfa_register 13
+ 914              		@ sp needed
+ 915 0052 80BD     		pop	{r7, pc}
+ 916              	.L82:
+ 917              		.align	2
+ 918              	.L81:
+ 919 0054 22470040 		.word	1073760034
+ 920              		.cfi_endproc
+ 921              	.LFE10:
+ 922              		.size	EEPROM_Query, .-EEPROM_Query
+ 923              		.section	.text.EEPROM_ByteWritePos,"ax",%progbits
+ 924              		.align	2
+ 925              		.global	EEPROM_ByteWritePos
+ 926              		.thumb
+ 927              		.thumb_func
+ 928              		.type	EEPROM_ByteWritePos, %function
+ 929              	EEPROM_ByteWritePos:
+ 930              	.LFB11:
+ 629:Generated_Source\PSoC5/EEPROM.c **** 
+ 630:Generated_Source\PSoC5/EEPROM.c **** 
+ 631:Generated_Source\PSoC5/EEPROM.c **** /*******************************************************************************
+ 632:Generated_Source\PSoC5/EEPROM.c **** * Function Name: EEPROM_ByteWritePos
+ 633:Generated_Source\PSoC5/EEPROM.c **** ********************************************************************************
+ 634:Generated_Source\PSoC5/EEPROM.c **** *
+ 635:Generated_Source\PSoC5/EEPROM.c **** * Summary:
+ 636:Generated_Source\PSoC5/EEPROM.c **** *  Writes a byte of data to the EEPROM. This is a blocking call. It will not
+ 637:Generated_Source\PSoC5/EEPROM.c **** *  return until the write operation succeeds or fails.
+ 638:Generated_Source\PSoC5/EEPROM.c **** *
+ 639:Generated_Source\PSoC5/EEPROM.c **** * Parameters:
+ 640:Generated_Source\PSoC5/EEPROM.c **** *  dataByte:   The byte of data to write to the EEPROM.
+ 641:Generated_Source\PSoC5/EEPROM.c **** *  rowNumber:  The EEPROM row number to program.
+ 642:Generated_Source\PSoC5/EEPROM.c **** *  byteNumber: The byte number within the row to program.
+ 643:Generated_Source\PSoC5/EEPROM.c **** *
+ 644:Generated_Source\PSoC5/EEPROM.c **** * Return:
+ 645:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_SUCCESS, if the operation was successful.
+ 646:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_BAD_PARAM, if the parameter rowNumber or byteNumber is out of range.
+ 647:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_LOCKED, if the SPC is being used.
+ 648:Generated_Source\PSoC5/EEPROM.c **** *  CYRET_UNKNOWN, if there was an SPC error.
+ 649:Generated_Source\PSoC5/EEPROM.c **** *
+ 650:Generated_Source\PSoC5/EEPROM.c **** *******************************************************************************/
+ 651:Generated_Source\PSoC5/EEPROM.c **** cystatus EEPROM_ByteWritePos(uint8 dataByte, uint8 rowNumber, uint8 byteNumber) \
+ 652:Generated_Source\PSoC5/EEPROM.c **** 
+ 653:Generated_Source\PSoC5/EEPROM.c **** {
+ 931              		.loc 1 653 0
+ 932              		.cfi_startproc
+ 933              		@ args = 0, pretend = 0, frame = 16
+ 934              		@ frame_needed = 1, uses_anonymous_args = 0
+ 935 0000 80B5     		push	{r7, lr}
+ 936              		.cfi_def_cfa_offset 8
+ 937              		.cfi_offset 7, -8
+ 938              		.cfi_offset 14, -4
+ 939 0002 84B0     		sub	sp, sp, #16
+ 940              		.cfi_def_cfa_offset 24
+ 941 0004 00AF     		add	r7, sp, #0
+ 942              		.cfi_def_cfa_register 7
+ 943 0006 0346     		mov	r3, r0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 29
+
+
+ 944 0008 FB71     		strb	r3, [r7, #7]
+ 945 000a 0B46     		mov	r3, r1
+ 946 000c BB71     		strb	r3, [r7, #6]
+ 947 000e 1346     		mov	r3, r2
+ 948 0010 7B71     		strb	r3, [r7, #5]
+ 654:Generated_Source\PSoC5/EEPROM.c ****     cystatus status;
+ 655:Generated_Source\PSoC5/EEPROM.c **** 
+ 656:Generated_Source\PSoC5/EEPROM.c ****     /* Start SPC */
+ 657:Generated_Source\PSoC5/EEPROM.c ****     CySpcStart();
+ 949              		.loc 1 657 0
+ 950 0012 FFF7FEFF 		bl	CySpcStart
+ 658:Generated_Source\PSoC5/EEPROM.c **** 
+ 659:Generated_Source\PSoC5/EEPROM.c ****     if((rowNumber < (uint8) CY_EEPROM_NUMBER_ROWS) && (byteNumber < (uint8) SIZEOF_EEPROM_ROW))
+ 951              		.loc 1 659 0
+ 952 0016 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 953 0018 5BB2     		sxtb	r3, r3
+ 954 001a 002B     		cmp	r3, #0
+ 955 001c 66DB     		blt	.L84
+ 956              		.loc 1 659 0 is_stmt 0 discriminator 1
+ 957 001e 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 958 0020 0F2B     		cmp	r3, #15
+ 959 0022 63D8     		bhi	.L84
+ 660:Generated_Source\PSoC5/EEPROM.c ****     {
+ 661:Generated_Source\PSoC5/EEPROM.c ****         /* See if we can get SPC. */
+ 662:Generated_Source\PSoC5/EEPROM.c ****         if(CySpcLock() == CYRET_SUCCESS)
+ 960              		.loc 1 662 0 is_stmt 1
+ 961 0024 FFF7FEFF 		bl	CySpcLock
+ 962 0028 0346     		mov	r3, r0
+ 963 002a 002B     		cmp	r3, #0
+ 964 002c 5BD1     		bne	.L85
+ 663:Generated_Source\PSoC5/EEPROM.c ****         {
+ 664:Generated_Source\PSoC5/EEPROM.c ****             /* Plan for failure */
+ 665:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_UNKNOWN;
+ 965              		.loc 1 665 0
+ 966 002e 4FF0FF33 		mov	r3, #-1
+ 967 0032 FB60     		str	r3, [r7, #12]
+ 666:Generated_Source\PSoC5/EEPROM.c **** 
+ 667:Generated_Source\PSoC5/EEPROM.c ****             /* Command to load byte of data */
+ 668:Generated_Source\PSoC5/EEPROM.c ****             if(CySpcLoadMultiByte(CY_SPC_FIRST_EE_ARRAYID, (uint16)byteNumber, &dataByte,\
+ 968              		.loc 1 668 0
+ 969 0034 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 970 0036 9AB2     		uxth	r2, r3
+ 971 0038 FB1D     		adds	r3, r7, #7
+ 972 003a 4020     		movs	r0, #64
+ 973 003c 1146     		mov	r1, r2
+ 974 003e 1A46     		mov	r2, r3
+ 975 0040 0123     		movs	r3, #1
+ 976 0042 FFF7FEFF 		bl	CySpcLoadMultiByte
+ 977 0046 0346     		mov	r3, r0
+ 978 0048 072B     		cmp	r3, #7
+ 979 004a 49D1     		bne	.L86
+ 669:Generated_Source\PSoC5/EEPROM.c ****                                                                 EEPROM_SPC_BYTE_WRITE_SIZE) == CYRE
+ 670:Generated_Source\PSoC5/EEPROM.c ****             {
+ 671:Generated_Source\PSoC5/EEPROM.c ****                 while(CY_SPC_BUSY)
+ 980              		.loc 1 671 0
+ 981 004c 00BF     		nop
+ 982              	.L87:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 30
+
+
+ 983              		.loc 1 671 0 is_stmt 0 discriminator 1
+ 984 004e 2B4B     		ldr	r3, .L97
+ 985 0050 1B78     		ldrb	r3, [r3]
+ 986 0052 DBB2     		uxtb	r3, r3
+ 987 0054 03F00203 		and	r3, r3, #2
+ 988 0058 002B     		cmp	r3, #0
+ 989 005a F8D0     		beq	.L87
+ 672:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 673:Generated_Source\PSoC5/EEPROM.c ****                     /* Wait until SPC becomes idle */
+ 674:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 675:Generated_Source\PSoC5/EEPROM.c **** 
+ 676:Generated_Source\PSoC5/EEPROM.c ****                 /* SPC is idle now */
+ 677:Generated_Source\PSoC5/EEPROM.c ****                 if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 990              		.loc 1 677 0 is_stmt 1
+ 991 005c 274B     		ldr	r3, .L97
+ 992 005e 1B78     		ldrb	r3, [r3]
+ 993 0060 DBB2     		uxtb	r3, r3
+ 994 0062 03F00203 		and	r3, r3, #2
+ 995 0066 002B     		cmp	r3, #0
+ 996 0068 08D0     		beq	.L88
+ 997              		.loc 1 677 0 is_stmt 0 discriminator 1
+ 998 006a 244B     		ldr	r3, .L97
+ 999 006c 1B78     		ldrb	r3, [r3]
+ 1000 006e DBB2     		uxtb	r3, r3
+ 1001 0070 9B08     		lsrs	r3, r3, #2
+ 1002 0072 DBB2     		uxtb	r3, r3
+ 1003 0074 002B     		cmp	r3, #0
+ 1004 0076 01D1     		bne	.L88
+ 678:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 679:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_SUCCESS;
+ 1005              		.loc 1 679 0 is_stmt 1
+ 1006 0078 0023     		movs	r3, #0
+ 1007 007a FB60     		str	r3, [r7, #12]
+ 1008              	.L88:
+ 680:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 681:Generated_Source\PSoC5/EEPROM.c **** 
+ 682:Generated_Source\PSoC5/EEPROM.c ****                 /* Command to erase and program the row. */
+ 683:Generated_Source\PSoC5/EEPROM.c ****                 if(status == CYRET_SUCCESS)
+ 1009              		.loc 1 683 0
+ 1010 007c FB68     		ldr	r3, [r7, #12]
+ 1011 007e 002B     		cmp	r3, #0
+ 1012 0080 2BD1     		bne	.L89
+ 684:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 685:Generated_Source\PSoC5/EEPROM.c ****                     if(CySpcWriteRow(CY_SPC_FIRST_EE_ARRAYID, (uint16)rowNumber, dieTemperature[0u]
+ 1013              		.loc 1 685 0
+ 1014 0082 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1015 0084 99B2     		uxth	r1, r3
+ 1016 0086 1E4B     		ldr	r3, .L97+4
+ 1017 0088 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1018 008a 1D4B     		ldr	r3, .L97+4
+ 1019 008c 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 1020 008e 4020     		movs	r0, #64
+ 1021 0090 FFF7FEFF 		bl	CySpcWriteRow
+ 1022 0094 0346     		mov	r3, r0
+ 1023 0096 072B     		cmp	r3, #7
+ 1024 0098 1BD1     		bne	.L90
+ 686:Generated_Source\PSoC5/EEPROM.c ****                     dieTemperature[1u]) == CYRET_STARTED)
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 31
+
+
+ 687:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 688:Generated_Source\PSoC5/EEPROM.c ****                         /* Plan for failure */
+ 689:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 1025              		.loc 1 689 0
+ 1026 009a 4FF0FF33 		mov	r3, #-1
+ 1027 009e FB60     		str	r3, [r7, #12]
+ 690:Generated_Source\PSoC5/EEPROM.c **** 
+ 691:Generated_Source\PSoC5/EEPROM.c ****                         while(CY_SPC_BUSY)
+ 1028              		.loc 1 691 0
+ 1029 00a0 00BF     		nop
+ 1030              	.L91:
+ 1031              		.loc 1 691 0 is_stmt 0 discriminator 1
+ 1032 00a2 164B     		ldr	r3, .L97
+ 1033 00a4 1B78     		ldrb	r3, [r3]
+ 1034 00a6 DBB2     		uxtb	r3, r3
+ 1035 00a8 03F00203 		and	r3, r3, #2
+ 1036 00ac 002B     		cmp	r3, #0
+ 1037 00ae F8D0     		beq	.L91
+ 692:Generated_Source\PSoC5/EEPROM.c ****                         {
+ 693:Generated_Source\PSoC5/EEPROM.c ****                             /* Wait until SPC becomes idle */
+ 694:Generated_Source\PSoC5/EEPROM.c ****                         }
+ 695:Generated_Source\PSoC5/EEPROM.c **** 
+ 696:Generated_Source\PSoC5/EEPROM.c ****                         /* SPC is idle now */
+ 697:Generated_Source\PSoC5/EEPROM.c ****                         if(CY_SPC_STATUS_SUCCESS == CY_SPC_READ_STATUS)
+ 1038              		.loc 1 697 0 is_stmt 1
+ 1039 00b0 124B     		ldr	r3, .L97
+ 1040 00b2 1B78     		ldrb	r3, [r3]
+ 1041 00b4 DBB2     		uxtb	r3, r3
+ 1042 00b6 03F00203 		and	r3, r3, #2
+ 1043 00ba 002B     		cmp	r3, #0
+ 1044 00bc 10D0     		beq	.L86
+ 1045              		.loc 1 697 0 is_stmt 0 discriminator 1
+ 1046 00be 0F4B     		ldr	r3, .L97
+ 1047 00c0 1B78     		ldrb	r3, [r3]
+ 1048 00c2 DBB2     		uxtb	r3, r3
+ 1049 00c4 9B08     		lsrs	r3, r3, #2
+ 1050 00c6 DBB2     		uxtb	r3, r3
+ 1051 00c8 002B     		cmp	r3, #0
+ 1052 00ca 09D1     		bne	.L86
+ 698:Generated_Source\PSoC5/EEPROM.c ****                         {
+ 699:Generated_Source\PSoC5/EEPROM.c ****                             status = CYRET_SUCCESS;
+ 1053              		.loc 1 699 0 is_stmt 1
+ 1054 00cc 0023     		movs	r3, #0
+ 1055 00ce FB60     		str	r3, [r7, #12]
+ 1056 00d0 06E0     		b	.L86
+ 1057              	.L90:
+ 700:Generated_Source\PSoC5/EEPROM.c ****                         }
+ 701:Generated_Source\PSoC5/EEPROM.c ****                     }
+ 702:Generated_Source\PSoC5/EEPROM.c ****                     else
+ 703:Generated_Source\PSoC5/EEPROM.c ****                     {
+ 704:Generated_Source\PSoC5/EEPROM.c ****                         status = CYRET_UNKNOWN;
+ 1058              		.loc 1 704 0
+ 1059 00d2 4FF0FF33 		mov	r3, #-1
+ 1060 00d6 FB60     		str	r3, [r7, #12]
+ 1061 00d8 02E0     		b	.L86
+ 1062              	.L89:
+ 705:Generated_Source\PSoC5/EEPROM.c ****                     }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 32
+
+
+ 706:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 707:Generated_Source\PSoC5/EEPROM.c ****                 else
+ 708:Generated_Source\PSoC5/EEPROM.c ****                 {
+ 709:Generated_Source\PSoC5/EEPROM.c ****                     status = CYRET_UNKNOWN;
+ 1063              		.loc 1 709 0
+ 1064 00da 4FF0FF33 		mov	r3, #-1
+ 1065 00de FB60     		str	r3, [r7, #12]
+ 1066              	.L86:
+ 710:Generated_Source\PSoC5/EEPROM.c ****                 }
+ 711:Generated_Source\PSoC5/EEPROM.c ****             }
+ 712:Generated_Source\PSoC5/EEPROM.c **** 
+ 713:Generated_Source\PSoC5/EEPROM.c ****             /* Unlock SPC so that someone else can use it. */
+ 714:Generated_Source\PSoC5/EEPROM.c ****             CySpcUnlock();
+ 1067              		.loc 1 714 0
+ 1068 00e0 FFF7FEFF 		bl	CySpcUnlock
+ 662:Generated_Source\PSoC5/EEPROM.c ****         {
+ 1069              		.loc 1 662 0
+ 1070 00e4 04E0     		b	.L95
+ 1071              	.L85:
+ 715:Generated_Source\PSoC5/EEPROM.c ****         }
+ 716:Generated_Source\PSoC5/EEPROM.c ****         else
+ 717:Generated_Source\PSoC5/EEPROM.c ****         {
+ 718:Generated_Source\PSoC5/EEPROM.c ****             status = CYRET_LOCKED;
+ 1072              		.loc 1 718 0
+ 1073 00e6 0423     		movs	r3, #4
+ 1074 00e8 FB60     		str	r3, [r7, #12]
+ 662:Generated_Source\PSoC5/EEPROM.c ****         {
+ 1075              		.loc 1 662 0
+ 1076 00ea 01E0     		b	.L95
+ 1077              	.L84:
+ 719:Generated_Source\PSoC5/EEPROM.c ****         }
+ 720:Generated_Source\PSoC5/EEPROM.c ****     }
+ 721:Generated_Source\PSoC5/EEPROM.c ****     else
+ 722:Generated_Source\PSoC5/EEPROM.c ****     {
+ 723:Generated_Source\PSoC5/EEPROM.c ****         status = CYRET_BAD_PARAM;
+ 1078              		.loc 1 723 0
+ 1079 00ec 0123     		movs	r3, #1
+ 1080 00ee FB60     		str	r3, [r7, #12]
+ 1081              	.L95:
+ 724:Generated_Source\PSoC5/EEPROM.c ****     }
+ 725:Generated_Source\PSoC5/EEPROM.c **** 
+ 726:Generated_Source\PSoC5/EEPROM.c ****     return(status);
+ 1082              		.loc 1 726 0
+ 1083 00f0 FB68     		ldr	r3, [r7, #12]
+ 727:Generated_Source\PSoC5/EEPROM.c **** }
+ 1084              		.loc 1 727 0
+ 1085 00f2 1846     		mov	r0, r3
+ 1086 00f4 1037     		adds	r7, r7, #16
+ 1087              		.cfi_def_cfa_offset 8
+ 1088 00f6 BD46     		mov	sp, r7
+ 1089              		.cfi_def_cfa_register 13
+ 1090              		@ sp needed
+ 1091 00f8 80BD     		pop	{r7, pc}
+ 1092              	.L98:
+ 1093 00fa 00BF     		.align	2
+ 1094              	.L97:
+ 1095 00fc 22470040 		.word	1073760034
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 33
+
+
+ 1096 0100 00000000 		.word	dieTemperature
+ 1097              		.cfi_endproc
+ 1098              	.LFE11:
+ 1099              		.size	EEPROM_ByteWritePos, .-EEPROM_ByteWritePos
+ 1100              		.text
+ 1101              	.Letext0:
+ 1102              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 1103              		.file 3 "Generated_Source\\PSoC5\\CyFlash.h"
+ 1104              		.section	.debug_info,"",%progbits
+ 1105              	.Ldebug_info0:
+ 1106 0000 4C030000 		.4byte	0x34c
+ 1107 0004 0400     		.2byte	0x4
+ 1108 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1109 000a 04       		.byte	0x4
+ 1110 000b 01       		.uleb128 0x1
+ 1111 000c 2F000000 		.4byte	.LASF37
+ 1112 0010 01       		.byte	0x1
+ 1113 0011 09000000 		.4byte	.LASF38
+ 1114 0015 81010000 		.4byte	.LASF39
+ 1115 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1116 001d 00000000 		.4byte	0
+ 1117 0021 00000000 		.4byte	.Ldebug_line0
+ 1118 0025 02       		.uleb128 0x2
+ 1119 0026 01       		.byte	0x1
+ 1120 0027 06       		.byte	0x6
+ 1121 0028 97020000 		.4byte	.LASF0
+ 1122 002c 02       		.uleb128 0x2
+ 1123 002d 01       		.byte	0x1
+ 1124 002e 08       		.byte	0x8
+ 1125 002f EA000000 		.4byte	.LASF1
+ 1126 0033 02       		.uleb128 0x2
+ 1127 0034 02       		.byte	0x2
+ 1128 0035 05       		.byte	0x5
+ 1129 0036 5B020000 		.4byte	.LASF2
+ 1130 003a 02       		.uleb128 0x2
+ 1131 003b 02       		.byte	0x2
+ 1132 003c 07       		.byte	0x7
+ 1133 003d A3020000 		.4byte	.LASF3
+ 1134 0041 02       		.uleb128 0x2
+ 1135 0042 04       		.byte	0x4
+ 1136 0043 05       		.byte	0x5
+ 1137 0044 7F020000 		.4byte	.LASF4
+ 1138 0048 02       		.uleb128 0x2
+ 1139 0049 04       		.byte	0x4
+ 1140 004a 07       		.byte	0x7
+ 1141 004b 26010000 		.4byte	.LASF5
+ 1142 004f 02       		.uleb128 0x2
+ 1143 0050 08       		.byte	0x8
+ 1144 0051 05       		.byte	0x5
+ 1145 0052 34020000 		.4byte	.LASF6
+ 1146 0056 02       		.uleb128 0x2
+ 1147 0057 08       		.byte	0x8
+ 1148 0058 07       		.byte	0x7
+ 1149 0059 D8010000 		.4byte	.LASF7
+ 1150 005d 03       		.uleb128 0x3
+ 1151 005e 04       		.byte	0x4
+ 1152 005f 05       		.byte	0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 34
+
+
+ 1153 0060 696E7400 		.ascii	"int\000"
+ 1154 0064 02       		.uleb128 0x2
+ 1155 0065 04       		.byte	0x4
+ 1156 0066 07       		.byte	0x7
+ 1157 0067 C3010000 		.4byte	.LASF8
+ 1158 006b 04       		.uleb128 0x4
+ 1159 006c 38010000 		.4byte	.LASF9
+ 1160 0070 02       		.byte	0x2
+ 1161 0071 C2       		.byte	0xc2
+ 1162 0072 2C000000 		.4byte	0x2c
+ 1163 0076 04       		.uleb128 0x4
+ 1164 0077 BC010000 		.4byte	.LASF10
+ 1165 007b 02       		.byte	0x2
+ 1166 007c C3       		.byte	0xc3
+ 1167 007d 3A000000 		.4byte	0x3a
+ 1168 0081 02       		.uleb128 0x2
+ 1169 0082 04       		.byte	0x4
+ 1170 0083 04       		.byte	0x4
+ 1171 0084 29000000 		.4byte	.LASF11
+ 1172 0088 02       		.uleb128 0x2
+ 1173 0089 08       		.byte	0x8
+ 1174 008a 04       		.byte	0x4
+ 1175 008b 66010000 		.4byte	.LASF12
+ 1176 008f 02       		.uleb128 0x2
+ 1177 0090 01       		.byte	0x1
+ 1178 0091 08       		.byte	0x8
+ 1179 0092 88020000 		.4byte	.LASF13
+ 1180 0096 05       		.uleb128 0x5
+ 1181 0097 00000000 		.4byte	.LASF14
+ 1182 009b 02       		.byte	0x2
+ 1183 009c 6401     		.2byte	0x164
+ 1184 009e 48000000 		.4byte	0x48
+ 1185 00a2 05       		.uleb128 0x5
+ 1186 00a3 12010000 		.4byte	.LASF15
+ 1187 00a7 02       		.byte	0x2
+ 1188 00a8 6C01     		.2byte	0x16c
+ 1189 00aa AE000000 		.4byte	0xae
+ 1190 00ae 06       		.uleb128 0x6
+ 1191 00af 6B000000 		.4byte	0x6b
+ 1192 00b3 02       		.uleb128 0x2
+ 1193 00b4 04       		.byte	0x4
+ 1194 00b5 07       		.byte	0x7
+ 1195 00b6 2B020000 		.4byte	.LASF16
+ 1196 00ba 07       		.uleb128 0x7
+ 1197 00bb CF000000 		.4byte	.LASF17
+ 1198 00bf 01       		.byte	0x1
+ 1199 00c0 21       		.byte	0x21
+ 1200 00c1 00000000 		.4byte	.LFB0
+ 1201 00c5 0E000000 		.4byte	.LFE0-.LFB0
+ 1202 00c9 01       		.uleb128 0x1
+ 1203 00ca 9C       		.byte	0x9c
+ 1204 00cb 07       		.uleb128 0x7
+ 1205 00cc DD000000 		.4byte	.LASF18
+ 1206 00d0 01       		.byte	0x1
+ 1207 00d1 39       		.byte	0x39
+ 1208 00d2 00000000 		.4byte	.LFB1
+ 1209 00d6 0A000000 		.4byte	.LFE1-.LFB1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 35
+
+
+ 1210 00da 01       		.uleb128 0x1
+ 1211 00db 9C       		.byte	0x9c
+ 1212 00dc 07       		.uleb128 0x7
+ 1213 00dd 4F020000 		.4byte	.LASF19
+ 1214 00e1 01       		.byte	0x1
+ 1215 00e2 4D       		.byte	0x4d
+ 1216 00e3 00000000 		.4byte	.LFB2
+ 1217 00e7 0A000000 		.4byte	.LFE2-.LFB2
+ 1218 00eb 01       		.uleb128 0x1
+ 1219 00ec 9C       		.byte	0x9c
+ 1220 00ed 08       		.uleb128 0x8
+ 1221 00ee 01020000 		.4byte	.LASF25
+ 1222 00f2 01       		.byte	0x1
+ 1223 00f3 6A       		.byte	0x6a
+ 1224 00f4 96000000 		.4byte	0x96
+ 1225 00f8 00000000 		.4byte	.LFB3
+ 1226 00fc 20010000 		.4byte	.LFE3-.LFB3
+ 1227 0100 01       		.uleb128 0x1
+ 1228 0101 9C       		.byte	0x9c
+ 1229 0102 4D010000 		.4byte	0x14d
+ 1230 0106 09       		.uleb128 0x9
+ 1231 0107 4D010000 		.4byte	.LASF20
+ 1232 010b 01       		.byte	0x1
+ 1233 010c 6A       		.byte	0x6a
+ 1234 010d 6B000000 		.4byte	0x6b
+ 1235 0111 02       		.uleb128 0x2
+ 1236 0112 91       		.byte	0x91
+ 1237 0113 6F       		.sleb128 -17
+ 1238 0114 09       		.uleb128 0x9
+ 1239 0115 D0010000 		.4byte	.LASF21
+ 1240 0119 01       		.byte	0x1
+ 1241 011a 6A       		.byte	0x6a
+ 1242 011b 76000000 		.4byte	0x76
+ 1243 011f 02       		.uleb128 0x2
+ 1244 0120 91       		.byte	0x91
+ 1245 0121 6C       		.sleb128 -20
+ 1246 0122 0A       		.uleb128 0xa
+ 1247 0123 BD000000 		.4byte	.LASF22
+ 1248 0127 01       		.byte	0x1
+ 1249 0128 6C       		.byte	0x6c
+ 1250 0129 96000000 		.4byte	0x96
+ 1251 012d 02       		.uleb128 0x2
+ 1252 012e 91       		.byte	0x91
+ 1253 012f 74       		.sleb128 -12
+ 1254 0130 0A       		.uleb128 0xa
+ 1255 0131 8D020000 		.4byte	.LASF23
+ 1256 0135 01       		.byte	0x1
+ 1257 0136 6D       		.byte	0x6d
+ 1258 0137 76000000 		.4byte	0x76
+ 1259 013b 02       		.uleb128 0x2
+ 1260 013c 91       		.byte	0x91
+ 1261 013d 72       		.sleb128 -14
+ 1262 013e 0A       		.uleb128 0xa
+ 1263 013f C4000000 		.4byte	.LASF24
+ 1264 0143 01       		.byte	0x1
+ 1265 0144 6E       		.byte	0x6e
+ 1266 0145 76000000 		.4byte	0x76
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 36
+
+
+ 1267 0149 02       		.uleb128 0x2
+ 1268 014a 91       		.byte	0x91
+ 1269 014b 70       		.sleb128 -16
+ 1270 014c 00       		.byte	0
+ 1271 014d 08       		.uleb128 0x8
+ 1272 014e 56010000 		.4byte	.LASF26
+ 1273 0152 01       		.byte	0x1
+ 1274 0153 D0       		.byte	0xd0
+ 1275 0154 6B000000 		.4byte	0x6b
+ 1276 0158 00000000 		.4byte	.LFB4
+ 1277 015c 3A000000 		.4byte	.LFE4-.LFB4
+ 1278 0160 01       		.uleb128 0x1
+ 1279 0161 9C       		.byte	0x9c
+ 1280 0162 91010000 		.4byte	0x191
+ 1281 0166 09       		.uleb128 0x9
+ 1282 0167 D0010000 		.4byte	.LASF21
+ 1283 016b 01       		.byte	0x1
+ 1284 016c D0       		.byte	0xd0
+ 1285 016d 76000000 		.4byte	0x76
+ 1286 0171 02       		.uleb128 0x2
+ 1287 0172 91       		.byte	0x91
+ 1288 0173 6E       		.sleb128 -18
+ 1289 0174 0A       		.uleb128 0xa
+ 1290 0175 C9020000 		.4byte	.LASF27
+ 1291 0179 01       		.byte	0x1
+ 1292 017a D2       		.byte	0xd2
+ 1293 017b 6B000000 		.4byte	0x6b
+ 1294 017f 02       		.uleb128 0x2
+ 1295 0180 91       		.byte	0x91
+ 1296 0181 76       		.sleb128 -10
+ 1297 0182 0A       		.uleb128 0xa
+ 1298 0183 17010000 		.4byte	.LASF28
+ 1299 0187 01       		.byte	0x1
+ 1300 0188 D3       		.byte	0xd3
+ 1301 0189 6B000000 		.4byte	0x6b
+ 1302 018d 02       		.uleb128 0x2
+ 1303 018e 91       		.byte	0x91
+ 1304 018f 77       		.sleb128 -9
+ 1305 0190 00       		.byte	0
+ 1306 0191 0B       		.uleb128 0xb
+ 1307 0192 12020000 		.4byte	.LASF40
+ 1308 0196 01       		.byte	0x1
+ 1309 0197 F7       		.byte	0xf7
+ 1310 0198 6B000000 		.4byte	0x6b
+ 1311 019c 00000000 		.4byte	.LFB5
+ 1312 01a0 10000000 		.4byte	.LFE5-.LFB5
+ 1313 01a4 01       		.uleb128 0x1
+ 1314 01a5 9C       		.byte	0x9c
+ 1315 01a6 0C       		.uleb128 0xc
+ 1316 01a7 B6020000 		.4byte	.LASF29
+ 1317 01ab 01       		.byte	0x1
+ 1318 01ac 1101     		.2byte	0x111
+ 1319 01ae 96000000 		.4byte	0x96
+ 1320 01b2 00000000 		.4byte	.LFB6
+ 1321 01b6 8C000000 		.4byte	.LFE6-.LFB6
+ 1322 01ba 01       		.uleb128 0x1
+ 1323 01bb 9C       		.byte	0x9c
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 37
+
+
+ 1324 01bc DF010000 		.4byte	0x1df
+ 1325 01c0 0D       		.uleb128 0xd
+ 1326 01c1 65020000 		.4byte	.LASF30
+ 1327 01c5 01       		.byte	0x1
+ 1328 01c6 1101     		.2byte	0x111
+ 1329 01c8 6B000000 		.4byte	0x6b
+ 1330 01cc 02       		.uleb128 0x2
+ 1331 01cd 91       		.byte	0x91
+ 1332 01ce 6F       		.sleb128 -17
+ 1333 01cf 0E       		.uleb128 0xe
+ 1334 01d0 BD000000 		.4byte	.LASF22
+ 1335 01d4 01       		.byte	0x1
+ 1336 01d5 1301     		.2byte	0x113
+ 1337 01d7 96000000 		.4byte	0x96
+ 1338 01db 02       		.uleb128 0x2
+ 1339 01dc 91       		.byte	0x91
+ 1340 01dd 74       		.sleb128 -12
+ 1341 01de 00       		.byte	0
+ 1342 01df 0C       		.uleb128 0xc
+ 1343 01e0 72020000 		.4byte	.LASF31
+ 1344 01e4 01       		.byte	0x1
+ 1345 01e5 5901     		.2byte	0x159
+ 1346 01e7 96000000 		.4byte	0x96
+ 1347 01eb 00000000 		.4byte	.LFB7
+ 1348 01ef F0000000 		.4byte	.LFE7-.LFB7
+ 1349 01f3 01       		.uleb128 0x1
+ 1350 01f4 9C       		.byte	0x9c
+ 1351 01f5 27020000 		.4byte	0x227
+ 1352 01f9 0D       		.uleb128 0xd
+ 1353 01fa 0A010000 		.4byte	.LASF32
+ 1354 01fe 01       		.byte	0x1
+ 1355 01ff 5901     		.2byte	0x159
+ 1356 0201 27020000 		.4byte	0x227
+ 1357 0205 02       		.uleb128 0x2
+ 1358 0206 91       		.byte	0x91
+ 1359 0207 6C       		.sleb128 -20
+ 1360 0208 0D       		.uleb128 0xd
+ 1361 0209 8D020000 		.4byte	.LASF23
+ 1362 020d 01       		.byte	0x1
+ 1363 020e 5901     		.2byte	0x159
+ 1364 0210 6B000000 		.4byte	0x6b
+ 1365 0214 02       		.uleb128 0x2
+ 1366 0215 91       		.byte	0x91
+ 1367 0216 6B       		.sleb128 -21
+ 1368 0217 0E       		.uleb128 0xe
+ 1369 0218 BD000000 		.4byte	.LASF22
+ 1370 021c 01       		.byte	0x1
+ 1371 021d 5B01     		.2byte	0x15b
+ 1372 021f 96000000 		.4byte	0x96
+ 1373 0223 02       		.uleb128 0x2
+ 1374 0224 91       		.byte	0x91
+ 1375 0225 74       		.sleb128 -12
+ 1376 0226 00       		.byte	0
+ 1377 0227 0F       		.uleb128 0xf
+ 1378 0228 04       		.byte	0x4
+ 1379 0229 2D020000 		.4byte	0x22d
+ 1380 022d 10       		.uleb128 0x10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 38
+
+
+ 1381 022e 6B000000 		.4byte	0x6b
+ 1382 0232 0C       		.uleb128 0xc
+ 1383 0233 F8000000 		.4byte	.LASF33
+ 1384 0237 01       		.byte	0x1
+ 1385 0238 C601     		.2byte	0x1c6
+ 1386 023a 96000000 		.4byte	0x96
+ 1387 023e 00000000 		.4byte	.LFB8
+ 1388 0242 B8000000 		.4byte	.LFE8-.LFB8
+ 1389 0246 01       		.uleb128 0x1
+ 1390 0247 9C       		.byte	0x9c
+ 1391 0248 7A020000 		.4byte	0x27a
+ 1392 024c 0D       		.uleb128 0xd
+ 1393 024d 0A010000 		.4byte	.LASF32
+ 1394 0251 01       		.byte	0x1
+ 1395 0252 C601     		.2byte	0x1c6
+ 1396 0254 27020000 		.4byte	0x227
+ 1397 0258 02       		.uleb128 0x2
+ 1398 0259 91       		.byte	0x91
+ 1399 025a 6C       		.sleb128 -20
+ 1400 025b 0D       		.uleb128 0xd
+ 1401 025c 8D020000 		.4byte	.LASF23
+ 1402 0260 01       		.byte	0x1
+ 1403 0261 C601     		.2byte	0x1c6
+ 1404 0263 6B000000 		.4byte	0x6b
+ 1405 0267 02       		.uleb128 0x2
+ 1406 0268 91       		.byte	0x91
+ 1407 0269 6B       		.sleb128 -21
+ 1408 026a 0E       		.uleb128 0xe
+ 1409 026b BD000000 		.4byte	.LASF22
+ 1410 026f 01       		.byte	0x1
+ 1411 0270 C901     		.2byte	0x1c9
+ 1412 0272 96000000 		.4byte	0x96
+ 1413 0276 02       		.uleb128 0x2
+ 1414 0277 91       		.byte	0x91
+ 1415 0278 74       		.sleb128 -12
+ 1416 0279 00       		.byte	0
+ 1417 027a 0C       		.uleb128 0xc
+ 1418 027b EF010000 		.4byte	.LASF34
+ 1419 027f 01       		.byte	0x1
+ 1420 0280 2202     		.2byte	0x222
+ 1421 0282 96000000 		.4byte	0x96
+ 1422 0286 00000000 		.4byte	.LFB9
+ 1423 028a 4E000000 		.4byte	.LFE9-.LFB9
+ 1424 028e 01       		.uleb128 0x1
+ 1425 028f 9C       		.byte	0x9c
+ 1426 0290 B3020000 		.4byte	0x2b3
+ 1427 0294 0D       		.uleb128 0xd
+ 1428 0295 65020000 		.4byte	.LASF30
+ 1429 0299 01       		.byte	0x1
+ 1430 029a 2202     		.2byte	0x222
+ 1431 029c 6B000000 		.4byte	0x6b
+ 1432 02a0 02       		.uleb128 0x2
+ 1433 02a1 91       		.byte	0x91
+ 1434 02a2 6F       		.sleb128 -17
+ 1435 02a3 0E       		.uleb128 0xe
+ 1436 02a4 BD000000 		.4byte	.LASF22
+ 1437 02a8 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 39
+
+
+ 1438 02a9 2402     		.2byte	0x224
+ 1439 02ab 96000000 		.4byte	0x96
+ 1440 02af 02       		.uleb128 0x2
+ 1441 02b0 91       		.byte	0x91
+ 1442 02b1 74       		.sleb128 -12
+ 1443 02b2 00       		.byte	0
+ 1444 02b3 0C       		.uleb128 0xc
+ 1445 02b4 42020000 		.4byte	.LASF35
+ 1446 02b8 01       		.byte	0x1
+ 1447 02b9 5802     		.2byte	0x258
+ 1448 02bb 96000000 		.4byte	0x96
+ 1449 02bf 00000000 		.4byte	.LFB10
+ 1450 02c3 58000000 		.4byte	.LFE10-.LFB10
+ 1451 02c7 01       		.uleb128 0x1
+ 1452 02c8 9C       		.byte	0x9c
+ 1453 02c9 DD020000 		.4byte	0x2dd
+ 1454 02cd 0E       		.uleb128 0xe
+ 1455 02ce BD000000 		.4byte	.LASF22
+ 1456 02d2 01       		.byte	0x1
+ 1457 02d3 5A02     		.2byte	0x25a
+ 1458 02d5 96000000 		.4byte	0x96
+ 1459 02d9 02       		.uleb128 0x2
+ 1460 02da 91       		.byte	0x91
+ 1461 02db 74       		.sleb128 -12
+ 1462 02dc 00       		.byte	0
+ 1463 02dd 0C       		.uleb128 0xc
+ 1464 02de 6D010000 		.4byte	.LASF36
+ 1465 02e2 01       		.byte	0x1
+ 1466 02e3 8B02     		.2byte	0x28b
+ 1467 02e5 96000000 		.4byte	0x96
+ 1468 02e9 00000000 		.4byte	.LFB11
+ 1469 02ed 04010000 		.4byte	.LFE11-.LFB11
+ 1470 02f1 01       		.uleb128 0x1
+ 1471 02f2 9C       		.byte	0x9c
+ 1472 02f3 34030000 		.4byte	0x334
+ 1473 02f7 0D       		.uleb128 0xd
+ 1474 02f8 4D010000 		.4byte	.LASF20
+ 1475 02fc 01       		.byte	0x1
+ 1476 02fd 8B02     		.2byte	0x28b
+ 1477 02ff 6B000000 		.4byte	0x6b
+ 1478 0303 02       		.uleb128 0x2
+ 1479 0304 91       		.byte	0x91
+ 1480 0305 6F       		.sleb128 -17
+ 1481 0306 0D       		.uleb128 0xd
+ 1482 0307 8D020000 		.4byte	.LASF23
+ 1483 030b 01       		.byte	0x1
+ 1484 030c 8B02     		.2byte	0x28b
+ 1485 030e 6B000000 		.4byte	0x6b
+ 1486 0312 02       		.uleb128 0x2
+ 1487 0313 91       		.byte	0x91
+ 1488 0314 6E       		.sleb128 -18
+ 1489 0315 0D       		.uleb128 0xd
+ 1490 0316 C4000000 		.4byte	.LASF24
+ 1491 031a 01       		.byte	0x1
+ 1492 031b 8B02     		.2byte	0x28b
+ 1493 031d 6B000000 		.4byte	0x6b
+ 1494 0321 02       		.uleb128 0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 40
+
+
+ 1495 0322 91       		.byte	0x91
+ 1496 0323 6D       		.sleb128 -19
+ 1497 0324 0E       		.uleb128 0xe
+ 1498 0325 BD000000 		.4byte	.LASF22
+ 1499 0329 01       		.byte	0x1
+ 1500 032a 8E02     		.2byte	0x28e
+ 1501 032c 96000000 		.4byte	0x96
+ 1502 0330 02       		.uleb128 0x2
+ 1503 0331 91       		.byte	0x91
+ 1504 0332 74       		.sleb128 -12
+ 1505 0333 00       		.byte	0
+ 1506 0334 11       		.uleb128 0x11
+ 1507 0335 6B000000 		.4byte	0x6b
+ 1508 0339 44030000 		.4byte	0x344
+ 1509 033d 12       		.uleb128 0x12
+ 1510 033e B3000000 		.4byte	0xb3
+ 1511 0342 01       		.byte	0x1
+ 1512 0343 00       		.byte	0
+ 1513 0344 13       		.uleb128 0x13
+ 1514 0345 3E010000 		.4byte	.LASF41
+ 1515 0349 03       		.byte	0x3
+ 1516 034a 1D       		.byte	0x1d
+ 1517 034b 34030000 		.4byte	0x334
+ 1518 034f 00       		.byte	0
+ 1519              		.section	.debug_abbrev,"",%progbits
+ 1520              	.Ldebug_abbrev0:
+ 1521 0000 01       		.uleb128 0x1
+ 1522 0001 11       		.uleb128 0x11
+ 1523 0002 01       		.byte	0x1
+ 1524 0003 25       		.uleb128 0x25
+ 1525 0004 0E       		.uleb128 0xe
+ 1526 0005 13       		.uleb128 0x13
+ 1527 0006 0B       		.uleb128 0xb
+ 1528 0007 03       		.uleb128 0x3
+ 1529 0008 0E       		.uleb128 0xe
+ 1530 0009 1B       		.uleb128 0x1b
+ 1531 000a 0E       		.uleb128 0xe
+ 1532 000b 55       		.uleb128 0x55
+ 1533 000c 17       		.uleb128 0x17
+ 1534 000d 11       		.uleb128 0x11
+ 1535 000e 01       		.uleb128 0x1
+ 1536 000f 10       		.uleb128 0x10
+ 1537 0010 17       		.uleb128 0x17
+ 1538 0011 00       		.byte	0
+ 1539 0012 00       		.byte	0
+ 1540 0013 02       		.uleb128 0x2
+ 1541 0014 24       		.uleb128 0x24
+ 1542 0015 00       		.byte	0
+ 1543 0016 0B       		.uleb128 0xb
+ 1544 0017 0B       		.uleb128 0xb
+ 1545 0018 3E       		.uleb128 0x3e
+ 1546 0019 0B       		.uleb128 0xb
+ 1547 001a 03       		.uleb128 0x3
+ 1548 001b 0E       		.uleb128 0xe
+ 1549 001c 00       		.byte	0
+ 1550 001d 00       		.byte	0
+ 1551 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 41
+
+
+ 1552 001f 24       		.uleb128 0x24
+ 1553 0020 00       		.byte	0
+ 1554 0021 0B       		.uleb128 0xb
+ 1555 0022 0B       		.uleb128 0xb
+ 1556 0023 3E       		.uleb128 0x3e
+ 1557 0024 0B       		.uleb128 0xb
+ 1558 0025 03       		.uleb128 0x3
+ 1559 0026 08       		.uleb128 0x8
+ 1560 0027 00       		.byte	0
+ 1561 0028 00       		.byte	0
+ 1562 0029 04       		.uleb128 0x4
+ 1563 002a 16       		.uleb128 0x16
+ 1564 002b 00       		.byte	0
+ 1565 002c 03       		.uleb128 0x3
+ 1566 002d 0E       		.uleb128 0xe
+ 1567 002e 3A       		.uleb128 0x3a
+ 1568 002f 0B       		.uleb128 0xb
+ 1569 0030 3B       		.uleb128 0x3b
+ 1570 0031 0B       		.uleb128 0xb
+ 1571 0032 49       		.uleb128 0x49
+ 1572 0033 13       		.uleb128 0x13
+ 1573 0034 00       		.byte	0
+ 1574 0035 00       		.byte	0
+ 1575 0036 05       		.uleb128 0x5
+ 1576 0037 16       		.uleb128 0x16
+ 1577 0038 00       		.byte	0
+ 1578 0039 03       		.uleb128 0x3
+ 1579 003a 0E       		.uleb128 0xe
+ 1580 003b 3A       		.uleb128 0x3a
+ 1581 003c 0B       		.uleb128 0xb
+ 1582 003d 3B       		.uleb128 0x3b
+ 1583 003e 05       		.uleb128 0x5
+ 1584 003f 49       		.uleb128 0x49
+ 1585 0040 13       		.uleb128 0x13
+ 1586 0041 00       		.byte	0
+ 1587 0042 00       		.byte	0
+ 1588 0043 06       		.uleb128 0x6
+ 1589 0044 35       		.uleb128 0x35
+ 1590 0045 00       		.byte	0
+ 1591 0046 49       		.uleb128 0x49
+ 1592 0047 13       		.uleb128 0x13
+ 1593 0048 00       		.byte	0
+ 1594 0049 00       		.byte	0
+ 1595 004a 07       		.uleb128 0x7
+ 1596 004b 2E       		.uleb128 0x2e
+ 1597 004c 00       		.byte	0
+ 1598 004d 3F       		.uleb128 0x3f
+ 1599 004e 19       		.uleb128 0x19
+ 1600 004f 03       		.uleb128 0x3
+ 1601 0050 0E       		.uleb128 0xe
+ 1602 0051 3A       		.uleb128 0x3a
+ 1603 0052 0B       		.uleb128 0xb
+ 1604 0053 3B       		.uleb128 0x3b
+ 1605 0054 0B       		.uleb128 0xb
+ 1606 0055 27       		.uleb128 0x27
+ 1607 0056 19       		.uleb128 0x19
+ 1608 0057 11       		.uleb128 0x11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 42
+
+
+ 1609 0058 01       		.uleb128 0x1
+ 1610 0059 12       		.uleb128 0x12
+ 1611 005a 06       		.uleb128 0x6
+ 1612 005b 40       		.uleb128 0x40
+ 1613 005c 18       		.uleb128 0x18
+ 1614 005d 9642     		.uleb128 0x2116
+ 1615 005f 19       		.uleb128 0x19
+ 1616 0060 00       		.byte	0
+ 1617 0061 00       		.byte	0
+ 1618 0062 08       		.uleb128 0x8
+ 1619 0063 2E       		.uleb128 0x2e
+ 1620 0064 01       		.byte	0x1
+ 1621 0065 3F       		.uleb128 0x3f
+ 1622 0066 19       		.uleb128 0x19
+ 1623 0067 03       		.uleb128 0x3
+ 1624 0068 0E       		.uleb128 0xe
+ 1625 0069 3A       		.uleb128 0x3a
+ 1626 006a 0B       		.uleb128 0xb
+ 1627 006b 3B       		.uleb128 0x3b
+ 1628 006c 0B       		.uleb128 0xb
+ 1629 006d 27       		.uleb128 0x27
+ 1630 006e 19       		.uleb128 0x19
+ 1631 006f 49       		.uleb128 0x49
+ 1632 0070 13       		.uleb128 0x13
+ 1633 0071 11       		.uleb128 0x11
+ 1634 0072 01       		.uleb128 0x1
+ 1635 0073 12       		.uleb128 0x12
+ 1636 0074 06       		.uleb128 0x6
+ 1637 0075 40       		.uleb128 0x40
+ 1638 0076 18       		.uleb128 0x18
+ 1639 0077 9642     		.uleb128 0x2116
+ 1640 0079 19       		.uleb128 0x19
+ 1641 007a 01       		.uleb128 0x1
+ 1642 007b 13       		.uleb128 0x13
+ 1643 007c 00       		.byte	0
+ 1644 007d 00       		.byte	0
+ 1645 007e 09       		.uleb128 0x9
+ 1646 007f 05       		.uleb128 0x5
+ 1647 0080 00       		.byte	0
+ 1648 0081 03       		.uleb128 0x3
+ 1649 0082 0E       		.uleb128 0xe
+ 1650 0083 3A       		.uleb128 0x3a
+ 1651 0084 0B       		.uleb128 0xb
+ 1652 0085 3B       		.uleb128 0x3b
+ 1653 0086 0B       		.uleb128 0xb
+ 1654 0087 49       		.uleb128 0x49
+ 1655 0088 13       		.uleb128 0x13
+ 1656 0089 02       		.uleb128 0x2
+ 1657 008a 18       		.uleb128 0x18
+ 1658 008b 00       		.byte	0
+ 1659 008c 00       		.byte	0
+ 1660 008d 0A       		.uleb128 0xa
+ 1661 008e 34       		.uleb128 0x34
+ 1662 008f 00       		.byte	0
+ 1663 0090 03       		.uleb128 0x3
+ 1664 0091 0E       		.uleb128 0xe
+ 1665 0092 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 43
+
+
+ 1666 0093 0B       		.uleb128 0xb
+ 1667 0094 3B       		.uleb128 0x3b
+ 1668 0095 0B       		.uleb128 0xb
+ 1669 0096 49       		.uleb128 0x49
+ 1670 0097 13       		.uleb128 0x13
+ 1671 0098 02       		.uleb128 0x2
+ 1672 0099 18       		.uleb128 0x18
+ 1673 009a 00       		.byte	0
+ 1674 009b 00       		.byte	0
+ 1675 009c 0B       		.uleb128 0xb
+ 1676 009d 2E       		.uleb128 0x2e
+ 1677 009e 00       		.byte	0
+ 1678 009f 3F       		.uleb128 0x3f
+ 1679 00a0 19       		.uleb128 0x19
+ 1680 00a1 03       		.uleb128 0x3
+ 1681 00a2 0E       		.uleb128 0xe
+ 1682 00a3 3A       		.uleb128 0x3a
+ 1683 00a4 0B       		.uleb128 0xb
+ 1684 00a5 3B       		.uleb128 0x3b
+ 1685 00a6 0B       		.uleb128 0xb
+ 1686 00a7 27       		.uleb128 0x27
+ 1687 00a8 19       		.uleb128 0x19
+ 1688 00a9 49       		.uleb128 0x49
+ 1689 00aa 13       		.uleb128 0x13
+ 1690 00ab 11       		.uleb128 0x11
+ 1691 00ac 01       		.uleb128 0x1
+ 1692 00ad 12       		.uleb128 0x12
+ 1693 00ae 06       		.uleb128 0x6
+ 1694 00af 40       		.uleb128 0x40
+ 1695 00b0 18       		.uleb128 0x18
+ 1696 00b1 9642     		.uleb128 0x2116
+ 1697 00b3 19       		.uleb128 0x19
+ 1698 00b4 00       		.byte	0
+ 1699 00b5 00       		.byte	0
+ 1700 00b6 0C       		.uleb128 0xc
+ 1701 00b7 2E       		.uleb128 0x2e
+ 1702 00b8 01       		.byte	0x1
+ 1703 00b9 3F       		.uleb128 0x3f
+ 1704 00ba 19       		.uleb128 0x19
+ 1705 00bb 03       		.uleb128 0x3
+ 1706 00bc 0E       		.uleb128 0xe
+ 1707 00bd 3A       		.uleb128 0x3a
+ 1708 00be 0B       		.uleb128 0xb
+ 1709 00bf 3B       		.uleb128 0x3b
+ 1710 00c0 05       		.uleb128 0x5
+ 1711 00c1 27       		.uleb128 0x27
+ 1712 00c2 19       		.uleb128 0x19
+ 1713 00c3 49       		.uleb128 0x49
+ 1714 00c4 13       		.uleb128 0x13
+ 1715 00c5 11       		.uleb128 0x11
+ 1716 00c6 01       		.uleb128 0x1
+ 1717 00c7 12       		.uleb128 0x12
+ 1718 00c8 06       		.uleb128 0x6
+ 1719 00c9 40       		.uleb128 0x40
+ 1720 00ca 18       		.uleb128 0x18
+ 1721 00cb 9642     		.uleb128 0x2116
+ 1722 00cd 19       		.uleb128 0x19
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 44
+
+
+ 1723 00ce 01       		.uleb128 0x1
+ 1724 00cf 13       		.uleb128 0x13
+ 1725 00d0 00       		.byte	0
+ 1726 00d1 00       		.byte	0
+ 1727 00d2 0D       		.uleb128 0xd
+ 1728 00d3 05       		.uleb128 0x5
+ 1729 00d4 00       		.byte	0
+ 1730 00d5 03       		.uleb128 0x3
+ 1731 00d6 0E       		.uleb128 0xe
+ 1732 00d7 3A       		.uleb128 0x3a
+ 1733 00d8 0B       		.uleb128 0xb
+ 1734 00d9 3B       		.uleb128 0x3b
+ 1735 00da 05       		.uleb128 0x5
+ 1736 00db 49       		.uleb128 0x49
+ 1737 00dc 13       		.uleb128 0x13
+ 1738 00dd 02       		.uleb128 0x2
+ 1739 00de 18       		.uleb128 0x18
+ 1740 00df 00       		.byte	0
+ 1741 00e0 00       		.byte	0
+ 1742 00e1 0E       		.uleb128 0xe
+ 1743 00e2 34       		.uleb128 0x34
+ 1744 00e3 00       		.byte	0
+ 1745 00e4 03       		.uleb128 0x3
+ 1746 00e5 0E       		.uleb128 0xe
+ 1747 00e6 3A       		.uleb128 0x3a
+ 1748 00e7 0B       		.uleb128 0xb
+ 1749 00e8 3B       		.uleb128 0x3b
+ 1750 00e9 05       		.uleb128 0x5
+ 1751 00ea 49       		.uleb128 0x49
+ 1752 00eb 13       		.uleb128 0x13
+ 1753 00ec 02       		.uleb128 0x2
+ 1754 00ed 18       		.uleb128 0x18
+ 1755 00ee 00       		.byte	0
+ 1756 00ef 00       		.byte	0
+ 1757 00f0 0F       		.uleb128 0xf
+ 1758 00f1 0F       		.uleb128 0xf
+ 1759 00f2 00       		.byte	0
+ 1760 00f3 0B       		.uleb128 0xb
+ 1761 00f4 0B       		.uleb128 0xb
+ 1762 00f5 49       		.uleb128 0x49
+ 1763 00f6 13       		.uleb128 0x13
+ 1764 00f7 00       		.byte	0
+ 1765 00f8 00       		.byte	0
+ 1766 00f9 10       		.uleb128 0x10
+ 1767 00fa 26       		.uleb128 0x26
+ 1768 00fb 00       		.byte	0
+ 1769 00fc 49       		.uleb128 0x49
+ 1770 00fd 13       		.uleb128 0x13
+ 1771 00fe 00       		.byte	0
+ 1772 00ff 00       		.byte	0
+ 1773 0100 11       		.uleb128 0x11
+ 1774 0101 01       		.uleb128 0x1
+ 1775 0102 01       		.byte	0x1
+ 1776 0103 49       		.uleb128 0x49
+ 1777 0104 13       		.uleb128 0x13
+ 1778 0105 01       		.uleb128 0x1
+ 1779 0106 13       		.uleb128 0x13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 45
+
+
+ 1780 0107 00       		.byte	0
+ 1781 0108 00       		.byte	0
+ 1782 0109 12       		.uleb128 0x12
+ 1783 010a 21       		.uleb128 0x21
+ 1784 010b 00       		.byte	0
+ 1785 010c 49       		.uleb128 0x49
+ 1786 010d 13       		.uleb128 0x13
+ 1787 010e 2F       		.uleb128 0x2f
+ 1788 010f 0B       		.uleb128 0xb
+ 1789 0110 00       		.byte	0
+ 1790 0111 00       		.byte	0
+ 1791 0112 13       		.uleb128 0x13
+ 1792 0113 34       		.uleb128 0x34
+ 1793 0114 00       		.byte	0
+ 1794 0115 03       		.uleb128 0x3
+ 1795 0116 0E       		.uleb128 0xe
+ 1796 0117 3A       		.uleb128 0x3a
+ 1797 0118 0B       		.uleb128 0xb
+ 1798 0119 3B       		.uleb128 0x3b
+ 1799 011a 0B       		.uleb128 0xb
+ 1800 011b 49       		.uleb128 0x49
+ 1801 011c 13       		.uleb128 0x13
+ 1802 011d 3F       		.uleb128 0x3f
+ 1803 011e 19       		.uleb128 0x19
+ 1804 011f 3C       		.uleb128 0x3c
+ 1805 0120 19       		.uleb128 0x19
+ 1806 0121 00       		.byte	0
+ 1807 0122 00       		.byte	0
+ 1808 0123 00       		.byte	0
+ 1809              		.section	.debug_aranges,"",%progbits
+ 1810 0000 74000000 		.4byte	0x74
+ 1811 0004 0200     		.2byte	0x2
+ 1812 0006 00000000 		.4byte	.Ldebug_info0
+ 1813 000a 04       		.byte	0x4
+ 1814 000b 00       		.byte	0
+ 1815 000c 0000     		.2byte	0
+ 1816 000e 0000     		.2byte	0
+ 1817 0010 00000000 		.4byte	.LFB0
+ 1818 0014 0E000000 		.4byte	.LFE0-.LFB0
+ 1819 0018 00000000 		.4byte	.LFB1
+ 1820 001c 0A000000 		.4byte	.LFE1-.LFB1
+ 1821 0020 00000000 		.4byte	.LFB2
+ 1822 0024 0A000000 		.4byte	.LFE2-.LFB2
+ 1823 0028 00000000 		.4byte	.LFB3
+ 1824 002c 20010000 		.4byte	.LFE3-.LFB3
+ 1825 0030 00000000 		.4byte	.LFB4
+ 1826 0034 3A000000 		.4byte	.LFE4-.LFB4
+ 1827 0038 00000000 		.4byte	.LFB5
+ 1828 003c 10000000 		.4byte	.LFE5-.LFB5
+ 1829 0040 00000000 		.4byte	.LFB6
+ 1830 0044 8C000000 		.4byte	.LFE6-.LFB6
+ 1831 0048 00000000 		.4byte	.LFB7
+ 1832 004c F0000000 		.4byte	.LFE7-.LFB7
+ 1833 0050 00000000 		.4byte	.LFB8
+ 1834 0054 B8000000 		.4byte	.LFE8-.LFB8
+ 1835 0058 00000000 		.4byte	.LFB9
+ 1836 005c 4E000000 		.4byte	.LFE9-.LFB9
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 46
+
+
+ 1837 0060 00000000 		.4byte	.LFB10
+ 1838 0064 58000000 		.4byte	.LFE10-.LFB10
+ 1839 0068 00000000 		.4byte	.LFB11
+ 1840 006c 04010000 		.4byte	.LFE11-.LFB11
+ 1841 0070 00000000 		.4byte	0
+ 1842 0074 00000000 		.4byte	0
+ 1843              		.section	.debug_ranges,"",%progbits
+ 1844              	.Ldebug_ranges0:
+ 1845 0000 00000000 		.4byte	.LFB0
+ 1846 0004 0E000000 		.4byte	.LFE0
+ 1847 0008 00000000 		.4byte	.LFB1
+ 1848 000c 0A000000 		.4byte	.LFE1
+ 1849 0010 00000000 		.4byte	.LFB2
+ 1850 0014 0A000000 		.4byte	.LFE2
+ 1851 0018 00000000 		.4byte	.LFB3
+ 1852 001c 20010000 		.4byte	.LFE3
+ 1853 0020 00000000 		.4byte	.LFB4
+ 1854 0024 3A000000 		.4byte	.LFE4
+ 1855 0028 00000000 		.4byte	.LFB5
+ 1856 002c 10000000 		.4byte	.LFE5
+ 1857 0030 00000000 		.4byte	.LFB6
+ 1858 0034 8C000000 		.4byte	.LFE6
+ 1859 0038 00000000 		.4byte	.LFB7
+ 1860 003c F0000000 		.4byte	.LFE7
+ 1861 0040 00000000 		.4byte	.LFB8
+ 1862 0044 B8000000 		.4byte	.LFE8
+ 1863 0048 00000000 		.4byte	.LFB9
+ 1864 004c 4E000000 		.4byte	.LFE9
+ 1865 0050 00000000 		.4byte	.LFB10
+ 1866 0054 58000000 		.4byte	.LFE10
+ 1867 0058 00000000 		.4byte	.LFB11
+ 1868 005c 04010000 		.4byte	.LFE11
+ 1869 0060 00000000 		.4byte	0
+ 1870 0064 00000000 		.4byte	0
+ 1871              		.section	.debug_line,"",%progbits
+ 1872              	.Ldebug_line0:
+ 1873 0000 22020000 		.section	.debug_str,"MS",%progbits,1
+ 1873      02005000 
+ 1873      00000201 
+ 1873      FB0E0D00 
+ 1873      01010101 
+ 1874              	.LASF14:
+ 1875 0000 63797374 		.ascii	"cystatus\000"
+ 1875      61747573 
+ 1875      00
+ 1876              	.LASF38:
+ 1877 0009 47656E65 		.ascii	"Generated_Source\\PSoC5\\EEPROM.c\000"
+ 1877      72617465 
+ 1877      645F536F 
+ 1877      75726365 
+ 1877      5C50536F 
+ 1878              	.LASF11:
+ 1879 0029 666C6F61 		.ascii	"float\000"
+ 1879      7400
+ 1880              	.LASF37:
+ 1881 002f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1881      4320342E 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 47
+
+
+ 1881      392E3320 
+ 1881      32303135 
+ 1881      30333033 
+ 1882 0062 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1882      20726576 
+ 1882      6973696F 
+ 1882      6E203232 
+ 1882      31323230 
+ 1883 0095 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1883      66756E63 
+ 1883      74696F6E 
+ 1883      2D736563 
+ 1883      74696F6E 
+ 1884              	.LASF22:
+ 1885 00bd 73746174 		.ascii	"status\000"
+ 1885      757300
+ 1886              	.LASF24:
+ 1887 00c4 62797465 		.ascii	"byteNumber\000"
+ 1887      4E756D62 
+ 1887      657200
+ 1888              	.LASF17:
+ 1889 00cf 45455052 		.ascii	"EEPROM_Enable\000"
+ 1889      4F4D5F45 
+ 1889      6E61626C 
+ 1889      6500
+ 1890              	.LASF18:
+ 1891 00dd 45455052 		.ascii	"EEPROM_Start\000"
+ 1891      4F4D5F53 
+ 1891      74617274 
+ 1891      00
+ 1892              	.LASF1:
+ 1893 00ea 756E7369 		.ascii	"unsigned char\000"
+ 1893      676E6564 
+ 1893      20636861 
+ 1893      7200
+ 1894              	.LASF33:
+ 1895 00f8 45455052 		.ascii	"EEPROM_StartWrite\000"
+ 1895      4F4D5F53 
+ 1895      74617274 
+ 1895      57726974 
+ 1895      6500
+ 1896              	.LASF32:
+ 1897 010a 726F7744 		.ascii	"rowData\000"
+ 1897      61746100 
+ 1898              	.LASF15:
+ 1899 0112 72656738 		.ascii	"reg8\000"
+ 1899      00
+ 1900              	.LASF28:
+ 1901 0117 696E7465 		.ascii	"interruptState\000"
+ 1901      72727570 
+ 1901      74537461 
+ 1901      746500
+ 1902              	.LASF5:
+ 1903 0126 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1903      20756E73 
+ 1903      69676E65 
+ 1903      6420696E 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 48
+
+
+ 1903      7400
+ 1904              	.LASF9:
+ 1905 0138 75696E74 		.ascii	"uint8\000"
+ 1905      3800
+ 1906              	.LASF41:
+ 1907 013e 64696554 		.ascii	"dieTemperature\000"
+ 1907      656D7065 
+ 1907      72617475 
+ 1907      726500
+ 1908              	.LASF20:
+ 1909 014d 64617461 		.ascii	"dataByte\000"
+ 1909      42797465 
+ 1909      00
+ 1910              	.LASF26:
+ 1911 0156 45455052 		.ascii	"EEPROM_ReadByte\000"
+ 1911      4F4D5F52 
+ 1911      65616442 
+ 1911      79746500 
+ 1912              	.LASF12:
+ 1913 0166 646F7562 		.ascii	"double\000"
+ 1913      6C6500
+ 1914              	.LASF36:
+ 1915 016d 45455052 		.ascii	"EEPROM_ByteWritePos\000"
+ 1915      4F4D5F42 
+ 1915      79746557 
+ 1915      72697465 
+ 1915      506F7300 
+ 1916              	.LASF39:
+ 1917 0181 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 1917      6F726B73 
+ 1917      70616365 
+ 1917      5C50536F 
+ 1917      435F4372 
+ 1918 01b0 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 1918      392E6379 
+ 1918      64736E00 
+ 1919              	.LASF10:
+ 1920 01bc 75696E74 		.ascii	"uint16\000"
+ 1920      313600
+ 1921              	.LASF8:
+ 1922 01c3 756E7369 		.ascii	"unsigned int\000"
+ 1922      676E6564 
+ 1922      20696E74 
+ 1922      00
+ 1923              	.LASF21:
+ 1924 01d0 61646472 		.ascii	"address\000"
+ 1924      65737300 
+ 1925              	.LASF7:
+ 1926 01d8 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1926      206C6F6E 
+ 1926      6720756E 
+ 1926      7369676E 
+ 1926      65642069 
+ 1927              	.LASF34:
+ 1928 01ef 45455052 		.ascii	"EEPROM_StartErase\000"
+ 1928      4F4D5F53 
+ 1928      74617274 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 49
+
+
+ 1928      45726173 
+ 1928      6500
+ 1929              	.LASF25:
+ 1930 0201 45455052 		.ascii	"EEPROM_WriteByte\000"
+ 1930      4F4D5F57 
+ 1930      72697465 
+ 1930      42797465 
+ 1930      00
+ 1931              	.LASF40:
+ 1932 0212 45455052 		.ascii	"EEPROM_UpdateTemperature\000"
+ 1932      4F4D5F55 
+ 1932      70646174 
+ 1932      6554656D 
+ 1932      70657261 
+ 1933              	.LASF16:
+ 1934 022b 73697A65 		.ascii	"sizetype\000"
+ 1934      74797065 
+ 1934      00
+ 1935              	.LASF6:
+ 1936 0234 6C6F6E67 		.ascii	"long long int\000"
+ 1936      206C6F6E 
+ 1936      6720696E 
+ 1936      7400
+ 1937              	.LASF35:
+ 1938 0242 45455052 		.ascii	"EEPROM_Query\000"
+ 1938      4F4D5F51 
+ 1938      75657279 
+ 1938      00
+ 1939              	.LASF19:
+ 1940 024f 45455052 		.ascii	"EEPROM_Stop\000"
+ 1940      4F4D5F53 
+ 1940      746F7000 
+ 1941              	.LASF2:
+ 1942 025b 73686F72 		.ascii	"short int\000"
+ 1942      7420696E 
+ 1942      7400
+ 1943              	.LASF30:
+ 1944 0265 73656374 		.ascii	"sectorNumber\000"
+ 1944      6F724E75 
+ 1944      6D626572 
+ 1944      00
+ 1945              	.LASF31:
+ 1946 0272 45455052 		.ascii	"EEPROM_Write\000"
+ 1946      4F4D5F57 
+ 1946      72697465 
+ 1946      00
+ 1947              	.LASF4:
+ 1948 027f 6C6F6E67 		.ascii	"long int\000"
+ 1948      20696E74 
+ 1948      00
+ 1949              	.LASF13:
+ 1950 0288 63686172 		.ascii	"char\000"
+ 1950      00
+ 1951              	.LASF23:
+ 1952 028d 726F774E 		.ascii	"rowNumber\000"
+ 1952      756D6265 
+ 1952      7200
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccJYNvpW.s 			page 50
+
+
+ 1953              	.LASF0:
+ 1954 0297 7369676E 		.ascii	"signed char\000"
+ 1954      65642063 
+ 1954      68617200 
+ 1955              	.LASF3:
+ 1956 02a3 73686F72 		.ascii	"short unsigned int\000"
+ 1956      7420756E 
+ 1956      7369676E 
+ 1956      65642069 
+ 1956      6E7400
+ 1957              	.LASF29:
+ 1958 02b6 45455052 		.ascii	"EEPROM_EraseSector\000"
+ 1958      4F4D5F45 
+ 1958      72617365 
+ 1958      53656374 
+ 1958      6F7200
+ 1959              	.LASF27:
+ 1960 02c9 72657442 		.ascii	"retByte\000"
+ 1960      79746500 
+ 1961              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

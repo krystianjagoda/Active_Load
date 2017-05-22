@@ -1,0 +1,2413 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_Fan.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	PWM_Fan_initVar
+  19              		.bss
+  20              		.type	PWM_Fan_initVar, %object
+  21              		.size	PWM_Fan_initVar, 1
+  22              	PWM_Fan_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.PWM_Fan_Start,"ax",%progbits
+  25              		.align	2
+  26              		.global	PWM_Fan_Start
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	PWM_Fan_Start, %function
+  30              	PWM_Fan_Start:
+  31              	.LFB0:
+  32              		.file 1 "Generated_Source\\PSoC5\\PWM_Fan.c"
+   1:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/PWM_Fan.c **** * File Name: PWM_Fan.c
+   3:Generated_Source\PSoC5/PWM_Fan.c **** * Version 3.30
+   4:Generated_Source\PSoC5/PWM_Fan.c **** *
+   5:Generated_Source\PSoC5/PWM_Fan.c **** * Description:
+   6:Generated_Source\PSoC5/PWM_Fan.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:Generated_Source\PSoC5/PWM_Fan.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:Generated_Source\PSoC5/PWM_Fan.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:Generated_Source\PSoC5/PWM_Fan.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:Generated_Source\PSoC5/PWM_Fan.c **** *  The compare value output may be configured to be active when the present
+  11:Generated_Source\PSoC5/PWM_Fan.c **** *  counter is less than or less than/equal to the compare value.
+  12:Generated_Source\PSoC5/PWM_Fan.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:Generated_Source\PSoC5/PWM_Fan.c **** *  width wide when the counter is equal to zero.
+  14:Generated_Source\PSoC5/PWM_Fan.c **** *
+  15:Generated_Source\PSoC5/PWM_Fan.c **** * Note:
+  16:Generated_Source\PSoC5/PWM_Fan.c **** *
+  17:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************
+  18:Generated_Source\PSoC5/PWM_Fan.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:Generated_Source\PSoC5/PWM_Fan.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:Generated_Source\PSoC5/PWM_Fan.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:Generated_Source\PSoC5/PWM_Fan.c **** * the software package with which this file was provided.
+  22:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************/
+  23:Generated_Source\PSoC5/PWM_Fan.c **** 
+  24:Generated_Source\PSoC5/PWM_Fan.c **** #include "PWM_Fan.h"
+  25:Generated_Source\PSoC5/PWM_Fan.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 2
+
+
+  26:Generated_Source\PSoC5/PWM_Fan.c **** /* Error message for removed <resource> through optimization */
+  27:Generated_Source\PSoC5/PWM_Fan.c **** #ifdef PWM_Fan_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:Generated_Source\PSoC5/PWM_Fan.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:Generated_Source\PSoC5/PWM_Fan.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* PWM_Fan_PWMUDB_genblk1_ctrlreg__REMOVED */
+  31:Generated_Source\PSoC5/PWM_Fan.c **** 
+  32:Generated_Source\PSoC5/PWM_Fan.c **** uint8 PWM_Fan_initVar = 0u;
+  33:Generated_Source\PSoC5/PWM_Fan.c **** 
+  34:Generated_Source\PSoC5/PWM_Fan.c **** 
+  35:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+  36:Generated_Source\PSoC5/PWM_Fan.c **** * Function Name: PWM_Fan_Start
+  37:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************
+  38:Generated_Source\PSoC5/PWM_Fan.c **** *
+  39:Generated_Source\PSoC5/PWM_Fan.c **** * Summary:
+  40:Generated_Source\PSoC5/PWM_Fan.c **** *  The start function initializes the pwm with the default values, the
+  41:Generated_Source\PSoC5/PWM_Fan.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:Generated_Source\PSoC5/PWM_Fan.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:Generated_Source\PSoC5/PWM_Fan.c **** *
+  44:Generated_Source\PSoC5/PWM_Fan.c **** * Parameters:
+  45:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+  46:Generated_Source\PSoC5/PWM_Fan.c **** *
+  47:Generated_Source\PSoC5/PWM_Fan.c **** * Return:
+  48:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+  49:Generated_Source\PSoC5/PWM_Fan.c **** *
+  50:Generated_Source\PSoC5/PWM_Fan.c **** * Global variables:
+  51:Generated_Source\PSoC5/PWM_Fan.c **** *  PWM_Fan_initVar: Is modified when this function is called for the
+  52:Generated_Source\PSoC5/PWM_Fan.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:Generated_Source\PSoC5/PWM_Fan.c **** *
+  54:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************/
+  55:Generated_Source\PSoC5/PWM_Fan.c **** void PWM_Fan_Start(void) 
+  56:Generated_Source\PSoC5/PWM_Fan.c **** {
+  33              		.loc 1 56 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
+  57:Generated_Source\PSoC5/PWM_Fan.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:Generated_Source\PSoC5/PWM_Fan.c ****     if(PWM_Fan_initVar == 0u)
+  43              		.loc 1 58 0
+  44 0004 054B     		ldr	r3, .L3
+  45 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  46 0008 002B     		cmp	r3, #0
+  47 000a 04D1     		bne	.L2
+  59:Generated_Source\PSoC5/PWM_Fan.c ****     {
+  60:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_Init();
+  48              		.loc 1 60 0
+  49 000c FFF7FEFF 		bl	PWM_Fan_Init
+  61:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_initVar = 1u;
+  50              		.loc 1 61 0
+  51 0010 024B     		ldr	r3, .L3
+  52 0012 0122     		movs	r2, #1
+  53 0014 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 3
+
+
+  54              	.L2:
+  62:Generated_Source\PSoC5/PWM_Fan.c ****     }
+  63:Generated_Source\PSoC5/PWM_Fan.c ****     PWM_Fan_Enable();
+  55              		.loc 1 63 0
+  56 0016 FFF7FEFF 		bl	PWM_Fan_Enable
+  64:Generated_Source\PSoC5/PWM_Fan.c **** 
+  65:Generated_Source\PSoC5/PWM_Fan.c **** }
+  57              		.loc 1 65 0
+  58 001a 80BD     		pop	{r7, pc}
+  59              	.L4:
+  60              		.align	2
+  61              	.L3:
+  62 001c 00000000 		.word	PWM_Fan_initVar
+  63              		.cfi_endproc
+  64              	.LFE0:
+  65              		.size	PWM_Fan_Start, .-PWM_Fan_Start
+  66              		.section	.text.PWM_Fan_Init,"ax",%progbits
+  67              		.align	2
+  68              		.global	PWM_Fan_Init
+  69              		.thumb
+  70              		.thumb_func
+  71              		.type	PWM_Fan_Init, %function
+  72              	PWM_Fan_Init:
+  73              	.LFB1:
+  66:Generated_Source\PSoC5/PWM_Fan.c **** 
+  67:Generated_Source\PSoC5/PWM_Fan.c **** 
+  68:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+  69:Generated_Source\PSoC5/PWM_Fan.c **** * Function Name: PWM_Fan_Init
+  70:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************
+  71:Generated_Source\PSoC5/PWM_Fan.c **** *
+  72:Generated_Source\PSoC5/PWM_Fan.c **** * Summary:
+  73:Generated_Source\PSoC5/PWM_Fan.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:Generated_Source\PSoC5/PWM_Fan.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:Generated_Source\PSoC5/PWM_Fan.c **** *  PWM_Fan_Start().
+  76:Generated_Source\PSoC5/PWM_Fan.c **** *
+  77:Generated_Source\PSoC5/PWM_Fan.c **** * Parameters:
+  78:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+  79:Generated_Source\PSoC5/PWM_Fan.c **** *
+  80:Generated_Source\PSoC5/PWM_Fan.c **** * Return:
+  81:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+  82:Generated_Source\PSoC5/PWM_Fan.c **** *
+  83:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************/
+  84:Generated_Source\PSoC5/PWM_Fan.c **** void PWM_Fan_Init(void) 
+  85:Generated_Source\PSoC5/PWM_Fan.c **** {
+  74              		.loc 1 85 0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 8
+  77              		@ frame_needed = 1, uses_anonymous_args = 0
+  78 0000 80B5     		push	{r7, lr}
+  79              		.cfi_def_cfa_offset 8
+  80              		.cfi_offset 7, -8
+  81              		.cfi_offset 14, -4
+  82 0002 82B0     		sub	sp, sp, #8
+  83              		.cfi_def_cfa_offset 16
+  84 0004 00AF     		add	r7, sp, #0
+  85              		.cfi_def_cfa_register 7
+  86:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UsingFixedFunction || PWM_Fan_UseControl)
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 4
+
+
+  87:Generated_Source\PSoC5/PWM_Fan.c ****         uint8 ctrl;
+  88:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction || PWM_Fan_UseControl) */
+  89:Generated_Source\PSoC5/PWM_Fan.c **** 
+  90:Generated_Source\PSoC5/PWM_Fan.c ****     #if(!PWM_Fan_UsingFixedFunction)
+  91:Generated_Source\PSoC5/PWM_Fan.c ****         #if(PWM_Fan_UseStatus)
+  92:Generated_Source\PSoC5/PWM_Fan.c ****             /* Interrupt State Backup for Critical Region*/
+  93:Generated_Source\PSoC5/PWM_Fan.c ****             uint8 PWM_Fan_interruptState;
+  94:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UseStatus) */
+  95:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (!PWM_Fan_UsingFixedFunction) */
+  96:Generated_Source\PSoC5/PWM_Fan.c **** 
+  97:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UsingFixedFunction)
+  98:Generated_Source\PSoC5/PWM_Fan.c ****         /* You are allowed to write the compare value (FF only) */
+  99:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_CONTROL |= PWM_Fan_CFG0_MODE;
+ 100:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_DeadBand2_4)
+ 101:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_CONTROL |= PWM_Fan_CFG0_DB;
+ 102:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_DeadBand2_4) */
+ 103:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 104:Generated_Source\PSoC5/PWM_Fan.c ****         ctrl = PWM_Fan_CONTROL3 & ((uint8 )(~PWM_Fan_CTRL_CMPMODE1_MASK));
+ 105:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_CONTROL3 = ctrl | PWM_Fan_DEFAULT_COMPARE1_MODE;
+ 106:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 107:Generated_Source\PSoC5/PWM_Fan.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_RT1 &= ((uint8)(~PWM_Fan_RT1_MASK));
+ 109:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_RT1 |= PWM_Fan_SYNC;
+ 110:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 111:Generated_Source\PSoC5/PWM_Fan.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_RT1 &= ((uint8)(~PWM_Fan_SYNCDSI_MASK));
+ 113:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_RT1 |= PWM_Fan_SYNCDSI_EN;
+ 114:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 115:Generated_Source\PSoC5/PWM_Fan.c ****     #elif (PWM_Fan_UseControl)
+ 116:Generated_Source\PSoC5/PWM_Fan.c ****         /* Set the default compare mode defined in the parameter */
+ 117:Generated_Source\PSoC5/PWM_Fan.c ****         ctrl = PWM_Fan_CONTROL & ((uint8)(~PWM_Fan_CTRL_CMPMODE2_MASK)) &
+  86              		.loc 1 117 0
+  87 0006 104B     		ldr	r3, .L6
+  88 0008 1B78     		ldrb	r3, [r3]
+  89 000a DBB2     		uxtb	r3, r3
+  90 000c 23F03F03 		bic	r3, r3, #63
+  91 0010 FB71     		strb	r3, [r7, #7]
+ 118:Generated_Source\PSoC5/PWM_Fan.c ****                 ((uint8)(~PWM_Fan_CTRL_CMPMODE1_MASK));
+ 119:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_CONTROL = ctrl | PWM_Fan_DEFAULT_COMPARE2_MODE |
+  92              		.loc 1 119 0
+  93 0012 0D4A     		ldr	r2, .L6
+  94 0014 FB79     		ldrb	r3, [r7, #7]
+  95 0016 43F00903 		orr	r3, r3, #9
+  96 001a DBB2     		uxtb	r3, r3
+  97 001c 1370     		strb	r3, [r2]
+ 120:Generated_Source\PSoC5/PWM_Fan.c ****                                    PWM_Fan_DEFAULT_COMPARE1_MODE;
+ 121:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction) */
+ 122:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 123:Generated_Source\PSoC5/PWM_Fan.c ****     #if (!PWM_Fan_UsingFixedFunction)
+ 124:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_Resolution == 8)
+ 125:Generated_Source\PSoC5/PWM_Fan.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_AUX_CONTROLDP0 |= (PWM_Fan_AUX_CTRL_FIFO0_CLR);
+  98              		.loc 1 126 0
+  99 001e 0B4A     		ldr	r2, .L6+4
+ 100 0020 0A4B     		ldr	r3, .L6+4
+ 101 0022 1B78     		ldrb	r3, [r3]
+ 102 0024 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 5
+
+
+ 103 0026 43F00103 		orr	r3, r3, #1
+ 104 002a DBB2     		uxtb	r3, r3
+ 105 002c 1370     		strb	r3, [r2]
+ 127:Generated_Source\PSoC5/PWM_Fan.c ****         #else /* (PWM_Fan_Resolution == 16)*/
+ 128:Generated_Source\PSoC5/PWM_Fan.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_AUX_CONTROLDP0 |= (PWM_Fan_AUX_CTRL_FIFO0_CLR);
+ 130:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_AUX_CONTROLDP1 |= (PWM_Fan_AUX_CTRL_FIFO0_CLR);
+ 131:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_Resolution == 8) */
+ 132:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 133:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_WriteCounter(PWM_Fan_INIT_PERIOD_VALUE);
+ 106              		.loc 1 133 0
+ 107 002e FF20     		movs	r0, #255
+ 108 0030 FFF7FEFF 		bl	PWM_Fan_WriteCounter
+ 134:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (!PWM_Fan_UsingFixedFunction) */
+ 135:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 136:Generated_Source\PSoC5/PWM_Fan.c ****     PWM_Fan_WritePeriod(PWM_Fan_INIT_PERIOD_VALUE);
+ 109              		.loc 1 136 0
+ 110 0034 FF20     		movs	r0, #255
+ 111 0036 FFF7FEFF 		bl	PWM_Fan_WritePeriod
+ 137:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 138:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_UseOneCompareMode)
+ 139:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_WriteCompare(PWM_Fan_INIT_COMPARE_VALUE1);
+ 112              		.loc 1 139 0
+ 113 003a 0020     		movs	r0, #0
+ 114 003c FFF7FEFF 		bl	PWM_Fan_WriteCompare
+ 140:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 141:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_WriteCompare1(PWM_Fan_INIT_COMPARE_VALUE1);
+ 142:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_WriteCompare2(PWM_Fan_INIT_COMPARE_VALUE2);
+ 143:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UseOneCompareMode) */
+ 144:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 145:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_KillModeMinTime)
+ 146:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_WriteKillTime(PWM_Fan_MinimumKillTime);
+ 147:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_KillModeMinTime) */
+ 148:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 149:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_DeadBandUsed)
+ 150:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_WriteDeadTime(PWM_Fan_INIT_DEAD_TIME);
+ 151:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_DeadBandUsed) */
+ 152:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 153:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UseStatus || PWM_Fan_UsingFixedFunction)
+ 154:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_SetInterruptMode(PWM_Fan_INIT_INTERRUPTS_MODE);
+ 155:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UseStatus || PWM_Fan_UsingFixedFunction) */
+ 156:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 157:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UsingFixedFunction)
+ 158:Generated_Source\PSoC5/PWM_Fan.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_GLOBAL_ENABLE |= PWM_Fan_BLOCK_EN_MASK;
+ 160:Generated_Source\PSoC5/PWM_Fan.c ****         /* Set the Interrupt source to come from the status register */
+ 161:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_CONTROL2 |= PWM_Fan_CTRL2_IRQ_SEL;
+ 162:Generated_Source\PSoC5/PWM_Fan.c ****     #else
+ 163:Generated_Source\PSoC5/PWM_Fan.c ****         #if(PWM_Fan_UseStatus)
+ 164:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 165:Generated_Source\PSoC5/PWM_Fan.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:Generated_Source\PSoC5/PWM_Fan.c ****             /* Enter Critical Region*/
+ 167:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_interruptState = CyEnterCriticalSection();
+ 168:Generated_Source\PSoC5/PWM_Fan.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_STATUS_AUX_CTRL |= PWM_Fan_STATUS_ACTL_INT_EN_MASK;
+ 170:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 171:Generated_Source\PSoC5/PWM_Fan.c ****              /* Exit Critical Region*/
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 6
+
+
+ 172:Generated_Source\PSoC5/PWM_Fan.c ****             CyExitCriticalSection(PWM_Fan_interruptState);
+ 173:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 174:Generated_Source\PSoC5/PWM_Fan.c ****             /* Clear the FIFO to enable the PWM_Fan_STATUS_FIFOFULL
+ 175:Generated_Source\PSoC5/PWM_Fan.c ****                    bit to be set on FIFO full. */
+ 176:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_ClearFIFO();
+ 177:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UseStatus) */
+ 178:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction) */
+ 179:Generated_Source\PSoC5/PWM_Fan.c **** }
+ 115              		.loc 1 179 0
+ 116 0040 0837     		adds	r7, r7, #8
+ 117              		.cfi_def_cfa_offset 8
+ 118 0042 BD46     		mov	sp, r7
+ 119              		.cfi_def_cfa_register 13
+ 120              		@ sp needed
+ 121 0044 80BD     		pop	{r7, pc}
+ 122              	.L7:
+ 123 0046 00BF     		.align	2
+ 124              	.L6:
+ 125 0048 76650040 		.word	1073767798
+ 126 004c 91640040 		.word	1073767569
+ 127              		.cfi_endproc
+ 128              	.LFE1:
+ 129              		.size	PWM_Fan_Init, .-PWM_Fan_Init
+ 130              		.section	.text.PWM_Fan_Enable,"ax",%progbits
+ 131              		.align	2
+ 132              		.global	PWM_Fan_Enable
+ 133              		.thumb
+ 134              		.thumb_func
+ 135              		.type	PWM_Fan_Enable, %function
+ 136              	PWM_Fan_Enable:
+ 137              	.LFB2:
+ 180:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 181:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 182:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+ 183:Generated_Source\PSoC5/PWM_Fan.c **** * Function Name: PWM_Fan_Enable
+ 184:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************
+ 185:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 186:Generated_Source\PSoC5/PWM_Fan.c **** * Summary:
+ 187:Generated_Source\PSoC5/PWM_Fan.c **** *  Enables the PWM block operation
+ 188:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 189:Generated_Source\PSoC5/PWM_Fan.c **** * Parameters:
+ 190:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+ 191:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 192:Generated_Source\PSoC5/PWM_Fan.c **** * Return:
+ 193:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+ 194:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 195:Generated_Source\PSoC5/PWM_Fan.c **** * Side Effects:
+ 196:Generated_Source\PSoC5/PWM_Fan.c **** *  This works only if software enable mode is chosen
+ 197:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 198:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC5/PWM_Fan.c **** void PWM_Fan_Enable(void) 
+ 200:Generated_Source\PSoC5/PWM_Fan.c **** {
+ 138              		.loc 1 200 0
+ 139              		.cfi_startproc
+ 140              		@ args = 0, pretend = 0, frame = 0
+ 141              		@ frame_needed = 1, uses_anonymous_args = 0
+ 142              		@ link register save eliminated.
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 7
+
+
+ 143 0000 80B4     		push	{r7}
+ 144              		.cfi_def_cfa_offset 4
+ 145              		.cfi_offset 7, -4
+ 146 0002 00AF     		add	r7, sp, #0
+ 147              		.cfi_def_cfa_register 7
+ 201:Generated_Source\PSoC5/PWM_Fan.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UsingFixedFunction)
+ 203:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_GLOBAL_ENABLE |= PWM_Fan_BLOCK_EN_MASK;
+ 204:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_GLOBAL_STBY_ENABLE |= PWM_Fan_BLOCK_STBY_EN_MASK;
+ 205:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction) */
+ 206:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 207:Generated_Source\PSoC5/PWM_Fan.c ****     /* Enable the PWM from the control register  */
+ 208:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UseControl || PWM_Fan_UsingFixedFunction)
+ 209:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_CONTROL |= PWM_Fan_CTRL_ENABLE;
+ 148              		.loc 1 209 0
+ 149 0004 054A     		ldr	r2, .L9
+ 150 0006 054B     		ldr	r3, .L9
+ 151 0008 1B78     		ldrb	r3, [r3]
+ 152 000a DBB2     		uxtb	r3, r3
+ 153 000c 63F07F03 		orn	r3, r3, #127
+ 154 0010 DBB2     		uxtb	r3, r3
+ 155 0012 1370     		strb	r3, [r2]
+ 210:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UseControl || PWM_Fan_UsingFixedFunction) */
+ 211:Generated_Source\PSoC5/PWM_Fan.c **** }
+ 156              		.loc 1 211 0
+ 157 0014 BD46     		mov	sp, r7
+ 158              		.cfi_def_cfa_register 13
+ 159              		@ sp needed
+ 160 0016 5DF8047B 		ldr	r7, [sp], #4
+ 161              		.cfi_restore 7
+ 162              		.cfi_def_cfa_offset 0
+ 163 001a 7047     		bx	lr
+ 164              	.L10:
+ 165              		.align	2
+ 166              	.L9:
+ 167 001c 76650040 		.word	1073767798
+ 168              		.cfi_endproc
+ 169              	.LFE2:
+ 170              		.size	PWM_Fan_Enable, .-PWM_Fan_Enable
+ 171              		.section	.text.PWM_Fan_Stop,"ax",%progbits
+ 172              		.align	2
+ 173              		.global	PWM_Fan_Stop
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.type	PWM_Fan_Stop, %function
+ 177              	PWM_Fan_Stop:
+ 178              	.LFB3:
+ 212:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 213:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 214:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+ 215:Generated_Source\PSoC5/PWM_Fan.c **** * Function Name: PWM_Fan_Stop
+ 216:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************
+ 217:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 218:Generated_Source\PSoC5/PWM_Fan.c **** * Summary:
+ 219:Generated_Source\PSoC5/PWM_Fan.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:Generated_Source\PSoC5/PWM_Fan.c **** *  interrupts.
+ 221:Generated_Source\PSoC5/PWM_Fan.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 8
+
+
+ 222:Generated_Source\PSoC5/PWM_Fan.c **** * Parameters:
+ 223:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+ 224:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 225:Generated_Source\PSoC5/PWM_Fan.c **** * Return:
+ 226:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+ 227:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 228:Generated_Source\PSoC5/PWM_Fan.c **** * Side Effects:
+ 229:Generated_Source\PSoC5/PWM_Fan.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:Generated_Source\PSoC5/PWM_Fan.c **** *  has no effect on the operation of the PWM
+ 231:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 232:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************/
+ 233:Generated_Source\PSoC5/PWM_Fan.c **** void PWM_Fan_Stop(void) 
+ 234:Generated_Source\PSoC5/PWM_Fan.c **** {
+ 179              		.loc 1 234 0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 1, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 184 0000 80B4     		push	{r7}
+ 185              		.cfi_def_cfa_offset 4
+ 186              		.cfi_offset 7, -4
+ 187 0002 00AF     		add	r7, sp, #0
+ 188              		.cfi_def_cfa_register 7
+ 235:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UseControl || PWM_Fan_UsingFixedFunction)
+ 236:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_CONTROL &= ((uint8)(~PWM_Fan_CTRL_ENABLE));
+ 189              		.loc 1 236 0
+ 190 0004 054A     		ldr	r2, .L12
+ 191 0006 054B     		ldr	r3, .L12
+ 192 0008 1B78     		ldrb	r3, [r3]
+ 193 000a DBB2     		uxtb	r3, r3
+ 194 000c 03F07F03 		and	r3, r3, #127
+ 195 0010 DBB2     		uxtb	r3, r3
+ 196 0012 1370     		strb	r3, [r2]
+ 237:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UseControl || PWM_Fan_UsingFixedFunction) */
+ 238:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 239:Generated_Source\PSoC5/PWM_Fan.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UsingFixedFunction)
+ 241:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_GLOBAL_ENABLE &= ((uint8)(~PWM_Fan_BLOCK_EN_MASK));
+ 242:Generated_Source\PSoC5/PWM_Fan.c ****         PWM_Fan_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_Fan_BLOCK_STBY_EN_MASK));
+ 243:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction) */
+ 244:Generated_Source\PSoC5/PWM_Fan.c **** }
+ 197              		.loc 1 244 0
+ 198 0014 BD46     		mov	sp, r7
+ 199              		.cfi_def_cfa_register 13
+ 200              		@ sp needed
+ 201 0016 5DF8047B 		ldr	r7, [sp], #4
+ 202              		.cfi_restore 7
+ 203              		.cfi_def_cfa_offset 0
+ 204 001a 7047     		bx	lr
+ 205              	.L13:
+ 206              		.align	2
+ 207              	.L12:
+ 208 001c 76650040 		.word	1073767798
+ 209              		.cfi_endproc
+ 210              	.LFE3:
+ 211              		.size	PWM_Fan_Stop, .-PWM_Fan_Stop
+ 212              		.section	.text.PWM_Fan_WriteCounter,"ax",%progbits
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 9
+
+
+ 213              		.align	2
+ 214              		.global	PWM_Fan_WriteCounter
+ 215              		.thumb
+ 216              		.thumb_func
+ 217              		.type	PWM_Fan_WriteCounter, %function
+ 218              	PWM_Fan_WriteCounter:
+ 219              	.LFB4:
+ 245:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 246:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_UseOneCompareMode)
+ 247:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_CompareMode1SW)
+ 248:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 249:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 250:Generated_Source\PSoC5/PWM_Fan.c ****         /*******************************************************************************
+ 251:Generated_Source\PSoC5/PWM_Fan.c ****         * Function Name: PWM_Fan_SetCompareMode
+ 252:Generated_Source\PSoC5/PWM_Fan.c ****         ********************************************************************************
+ 253:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 254:Generated_Source\PSoC5/PWM_Fan.c ****         * Summary:
+ 255:Generated_Source\PSoC5/PWM_Fan.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:Generated_Source\PSoC5/PWM_Fan.c ****         *  Center Align Mode or One Output Mode.
+ 257:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 258:Generated_Source\PSoC5/PWM_Fan.c ****         * Parameters:
+ 259:Generated_Source\PSoC5/PWM_Fan.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:Generated_Source\PSoC5/PWM_Fan.c ****         *                defined in the H file as input arguments.
+ 261:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 262:Generated_Source\PSoC5/PWM_Fan.c ****         * Return:
+ 263:Generated_Source\PSoC5/PWM_Fan.c ****         *  None
+ 264:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 265:Generated_Source\PSoC5/PWM_Fan.c ****         *******************************************************************************/
+ 266:Generated_Source\PSoC5/PWM_Fan.c ****         void PWM_Fan_SetCompareMode(uint8 comparemode) 
+ 267:Generated_Source\PSoC5/PWM_Fan.c ****         {
+ 268:Generated_Source\PSoC5/PWM_Fan.c ****             #if(PWM_Fan_UsingFixedFunction)
+ 269:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 270:Generated_Source\PSoC5/PWM_Fan.c ****                 #if(0 != PWM_Fan_CTRL_CMPMODE1_SHIFT)
+ 271:Generated_Source\PSoC5/PWM_Fan.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Fan_CTRL_CMPMODE1_
+ 272:Generated_Source\PSoC5/PWM_Fan.c ****                 #else
+ 273:Generated_Source\PSoC5/PWM_Fan.c ****                     uint8 comparemodemasked = comparemode;
+ 274:Generated_Source\PSoC5/PWM_Fan.c ****                 #endif /* (0 != PWM_Fan_CTRL_CMPMODE1_SHIFT) */
+ 275:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 276:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_CONTROL3 &= ((uint8)(~PWM_Fan_CTRL_CMPMODE1_MASK)); /*Clear Existing Data *
+ 277:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_CONTROL3 |= comparemodemasked;
+ 278:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 279:Generated_Source\PSoC5/PWM_Fan.c ****             #elif (PWM_Fan_UseControl)
+ 280:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 281:Generated_Source\PSoC5/PWM_Fan.c ****                 #if(0 != PWM_Fan_CTRL_CMPMODE1_SHIFT)
+ 282:Generated_Source\PSoC5/PWM_Fan.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_Fan_CTRL_CMPMODE1
+ 283:Generated_Source\PSoC5/PWM_Fan.c ****                                                 PWM_Fan_CTRL_CMPMODE1_MASK;
+ 284:Generated_Source\PSoC5/PWM_Fan.c ****                 #else
+ 285:Generated_Source\PSoC5/PWM_Fan.c ****                     uint8 comparemode1masked = comparemode & PWM_Fan_CTRL_CMPMODE1_MASK;
+ 286:Generated_Source\PSoC5/PWM_Fan.c ****                 #endif /* (0 != PWM_Fan_CTRL_CMPMODE1_SHIFT) */
+ 287:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 288:Generated_Source\PSoC5/PWM_Fan.c ****                 #if(0 != PWM_Fan_CTRL_CMPMODE2_SHIFT)
+ 289:Generated_Source\PSoC5/PWM_Fan.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << PWM_Fan_CTRL_CMPMODE2
+ 290:Generated_Source\PSoC5/PWM_Fan.c ****                                                PWM_Fan_CTRL_CMPMODE2_MASK;
+ 291:Generated_Source\PSoC5/PWM_Fan.c ****                 #else
+ 292:Generated_Source\PSoC5/PWM_Fan.c ****                     uint8 comparemode2masked = comparemode & PWM_Fan_CTRL_CMPMODE2_MASK;
+ 293:Generated_Source\PSoC5/PWM_Fan.c ****                 #endif /* (0 != PWM_Fan_CTRL_CMPMODE2_SHIFT) */
+ 294:Generated_Source\PSoC5/PWM_Fan.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 10
+
+
+ 295:Generated_Source\PSoC5/PWM_Fan.c ****                 /*Clear existing mode */
+ 296:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_CONTROL &= ((uint8)(~(PWM_Fan_CTRL_CMPMODE1_MASK |
+ 297:Generated_Source\PSoC5/PWM_Fan.c ****                                             PWM_Fan_CTRL_CMPMODE2_MASK)));
+ 298:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 300:Generated_Source\PSoC5/PWM_Fan.c ****             #else
+ 301:Generated_Source\PSoC5/PWM_Fan.c ****                 uint8 temp = comparemode;
+ 302:Generated_Source\PSoC5/PWM_Fan.c ****             #endif /* (PWM_Fan_UsingFixedFunction) */
+ 303:Generated_Source\PSoC5/PWM_Fan.c ****         }
+ 304:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* PWM_Fan_CompareMode1SW */
+ 305:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 306:Generated_Source\PSoC5/PWM_Fan.c **** #else /* UseOneCompareMode */
+ 307:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 308:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_CompareMode1SW)
+ 309:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 310:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 311:Generated_Source\PSoC5/PWM_Fan.c ****         /*******************************************************************************
+ 312:Generated_Source\PSoC5/PWM_Fan.c ****         * Function Name: PWM_Fan_SetCompareMode1
+ 313:Generated_Source\PSoC5/PWM_Fan.c ****         ********************************************************************************
+ 314:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 315:Generated_Source\PSoC5/PWM_Fan.c ****         * Summary:
+ 316:Generated_Source\PSoC5/PWM_Fan.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 318:Generated_Source\PSoC5/PWM_Fan.c ****         * Parameters:
+ 319:Generated_Source\PSoC5/PWM_Fan.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:Generated_Source\PSoC5/PWM_Fan.c ****         *                defined in the H file as input arguments.
+ 321:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 322:Generated_Source\PSoC5/PWM_Fan.c ****         * Return:
+ 323:Generated_Source\PSoC5/PWM_Fan.c ****         *  None
+ 324:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 325:Generated_Source\PSoC5/PWM_Fan.c ****         *******************************************************************************/
+ 326:Generated_Source\PSoC5/PWM_Fan.c ****         void PWM_Fan_SetCompareMode1(uint8 comparemode) 
+ 327:Generated_Source\PSoC5/PWM_Fan.c ****         {
+ 328:Generated_Source\PSoC5/PWM_Fan.c ****             #if(0 != PWM_Fan_CTRL_CMPMODE1_SHIFT)
+ 329:Generated_Source\PSoC5/PWM_Fan.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Fan_CTRL_CMPMODE1_SHIF
+ 330:Generated_Source\PSoC5/PWM_Fan.c ****                                            PWM_Fan_CTRL_CMPMODE1_MASK;
+ 331:Generated_Source\PSoC5/PWM_Fan.c ****             #else
+ 332:Generated_Source\PSoC5/PWM_Fan.c ****                 uint8 comparemodemasked = comparemode & PWM_Fan_CTRL_CMPMODE1_MASK;
+ 333:Generated_Source\PSoC5/PWM_Fan.c ****             #endif /* (0 != PWM_Fan_CTRL_CMPMODE1_SHIFT) */
+ 334:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 335:Generated_Source\PSoC5/PWM_Fan.c ****             #if (PWM_Fan_UseControl)
+ 336:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_CONTROL &= ((uint8)(~PWM_Fan_CTRL_CMPMODE1_MASK)); /*Clear existing mode */
+ 337:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_CONTROL |= comparemodemasked;
+ 338:Generated_Source\PSoC5/PWM_Fan.c ****             #endif /* (PWM_Fan_UseControl) */
+ 339:Generated_Source\PSoC5/PWM_Fan.c ****         }
+ 340:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* PWM_Fan_CompareMode1SW */
+ 341:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 342:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_CompareMode2SW)
+ 343:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 344:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 345:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 346:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_SetCompareMode2
+ 347:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 348:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 349:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 350:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 11
+
+
+ 352:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 353:Generated_Source\PSoC5/PWM_Fan.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:Generated_Source\PSoC5/PWM_Fan.c ****     *                defined in the H file as input arguments.
+ 355:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 356:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 357:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 358:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 359:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 360:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_SetCompareMode2(uint8 comparemode) 
+ 361:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 362:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 363:Generated_Source\PSoC5/PWM_Fan.c ****         #if(0 != PWM_Fan_CTRL_CMPMODE2_SHIFT)
+ 364:Generated_Source\PSoC5/PWM_Fan.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Fan_CTRL_CMPMODE2_SHIFT)) 
+ 365:Generated_Source\PSoC5/PWM_Fan.c ****                                                  PWM_Fan_CTRL_CMPMODE2_MASK;
+ 366:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 367:Generated_Source\PSoC5/PWM_Fan.c ****             uint8 comparemodemasked = comparemode & PWM_Fan_CTRL_CMPMODE2_MASK;
+ 368:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (0 != PWM_Fan_CTRL_CMPMODE2_SHIFT) */
+ 369:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 370:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_UseControl)
+ 371:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_CONTROL &= ((uint8)(~PWM_Fan_CTRL_CMPMODE2_MASK)); /*Clear existing mode */
+ 372:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_CONTROL |= comparemodemasked;
+ 373:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UseControl) */
+ 374:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 375:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /*PWM_Fan_CompareMode2SW */
+ 376:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 377:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* UseOneCompareMode */
+ 378:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 379:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 380:Generated_Source\PSoC5/PWM_Fan.c **** #if (!PWM_Fan_UsingFixedFunction)
+ 381:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 382:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 383:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 384:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_WriteCounter
+ 385:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 386:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 387:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 388:Generated_Source\PSoC5/PWM_Fan.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:Generated_Source\PSoC5/PWM_Fan.c ****     *  implemented for that currently running period and only that period. This API
+ 390:Generated_Source\PSoC5/PWM_Fan.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:Generated_Source\PSoC5/PWM_Fan.c ****     *  PWM implementation.
+ 392:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 393:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 394:Generated_Source\PSoC5/PWM_Fan.c ****     *  counter:  The period new period counter value.
+ 395:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 396:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 397:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 398:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 399:Generated_Source\PSoC5/PWM_Fan.c ****     * Side Effects:
+ 400:Generated_Source\PSoC5/PWM_Fan.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 402:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 403:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_WriteCounter(uint8 counter) \
+ 404:Generated_Source\PSoC5/PWM_Fan.c ****                                        
+ 405:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 220              		.loc 1 405 0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 12
+
+
+ 223              		@ frame_needed = 1, uses_anonymous_args = 0
+ 224              		@ link register save eliminated.
+ 225 0000 80B4     		push	{r7}
+ 226              		.cfi_def_cfa_offset 4
+ 227              		.cfi_offset 7, -4
+ 228 0002 83B0     		sub	sp, sp, #12
+ 229              		.cfi_def_cfa_offset 16
+ 230 0004 00AF     		add	r7, sp, #0
+ 231              		.cfi_def_cfa_register 7
+ 232 0006 0346     		mov	r3, r0
+ 233 0008 FB71     		strb	r3, [r7, #7]
+ 406:Generated_Source\PSoC5/PWM_Fan.c ****         CY_SET_REG8(PWM_Fan_COUNTER_LSB_PTR, counter);
+ 234              		.loc 1 406 0
+ 235 000a 044A     		ldr	r2, .L15
+ 236 000c FB79     		ldrb	r3, [r7, #7]
+ 237 000e 1370     		strb	r3, [r2]
+ 407:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 238              		.loc 1 407 0
+ 239 0010 0C37     		adds	r7, r7, #12
+ 240              		.cfi_def_cfa_offset 4
+ 241 0012 BD46     		mov	sp, r7
+ 242              		.cfi_def_cfa_register 13
+ 243              		@ sp needed
+ 244 0014 5DF8047B 		ldr	r7, [sp], #4
+ 245              		.cfi_restore 7
+ 246              		.cfi_def_cfa_offset 0
+ 247 0018 7047     		bx	lr
+ 248              	.L16:
+ 249 001a 00BF     		.align	2
+ 250              	.L15:
+ 251 001c 01640040 		.word	1073767425
+ 252              		.cfi_endproc
+ 253              	.LFE4:
+ 254              		.size	PWM_Fan_WriteCounter, .-PWM_Fan_WriteCounter
+ 255              		.section	.text.PWM_Fan_ReadCounter,"ax",%progbits
+ 256              		.align	2
+ 257              		.global	PWM_Fan_ReadCounter
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.type	PWM_Fan_ReadCounter, %function
+ 261              	PWM_Fan_ReadCounter:
+ 262              	.LFB5:
+ 408:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 409:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 410:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 411:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadCounter
+ 412:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 413:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 414:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 415:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:Generated_Source\PSoC5/PWM_Fan.c ****     *  if the counter is enabled or running.
+ 417:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 418:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 419:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 420:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 421:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 422:Generated_Source\PSoC5/PWM_Fan.c ****     *  The current value of the counter.
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 13
+
+
+ 423:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 424:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 425:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadCounter(void) 
+ 426:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 263              		.loc 1 426 0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 1, uses_anonymous_args = 0
+ 267              		@ link register save eliminated.
+ 268 0000 80B4     		push	{r7}
+ 269              		.cfi_def_cfa_offset 4
+ 270              		.cfi_offset 7, -4
+ 271 0002 00AF     		add	r7, sp, #0
+ 272              		.cfi_def_cfa_register 7
+ 427:Generated_Source\PSoC5/PWM_Fan.c ****         /* Force capture by reading Accumulator */
+ 428:Generated_Source\PSoC5/PWM_Fan.c ****         /* Must first do a software capture to be able to read the counter */
+ 429:Generated_Source\PSoC5/PWM_Fan.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:Generated_Source\PSoC5/PWM_Fan.c ****           (void)CY_GET_REG8(PWM_Fan_COUNTERCAP_LSB_PTR_8BIT);
+ 273              		.loc 1 430 0
+ 274 0004 044B     		ldr	r3, .L19
+ 275 0006 1B78     		ldrb	r3, [r3]
+ 431:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 432:Generated_Source\PSoC5/PWM_Fan.c ****         /* Read the data from the FIFO */
+ 433:Generated_Source\PSoC5/PWM_Fan.c ****         return (CY_GET_REG8(PWM_Fan_CAPTURE_LSB_PTR));
+ 276              		.loc 1 433 0
+ 277 0008 044B     		ldr	r3, .L19+4
+ 278 000a 1B78     		ldrb	r3, [r3]
+ 279 000c DBB2     		uxtb	r3, r3
+ 434:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 280              		.loc 1 434 0
+ 281 000e 1846     		mov	r0, r3
+ 282 0010 BD46     		mov	sp, r7
+ 283              		.cfi_def_cfa_register 13
+ 284              		@ sp needed
+ 285 0012 5DF8047B 		ldr	r7, [sp], #4
+ 286              		.cfi_restore 7
+ 287              		.cfi_def_cfa_offset 0
+ 288 0016 7047     		bx	lr
+ 289              	.L20:
+ 290              		.align	2
+ 291              	.L19:
+ 292 0018 11640040 		.word	1073767441
+ 293 001c 51640040 		.word	1073767505
+ 294              		.cfi_endproc
+ 295              	.LFE5:
+ 296              		.size	PWM_Fan_ReadCounter, .-PWM_Fan_ReadCounter
+ 297              		.section	.text.PWM_Fan_WritePeriod,"ax",%progbits
+ 298              		.align	2
+ 299              		.global	PWM_Fan_WritePeriod
+ 300              		.thumb
+ 301              		.thumb_func
+ 302              		.type	PWM_Fan_WritePeriod, %function
+ 303              	PWM_Fan_WritePeriod:
+ 304              	.LFB6:
+ 435:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 436:Generated_Source\PSoC5/PWM_Fan.c ****     #if (PWM_Fan_UseStatus)
+ 437:Generated_Source\PSoC5/PWM_Fan.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 14
+
+
+ 438:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 439:Generated_Source\PSoC5/PWM_Fan.c ****         /*******************************************************************************
+ 440:Generated_Source\PSoC5/PWM_Fan.c ****         * Function Name: PWM_Fan_ClearFIFO
+ 441:Generated_Source\PSoC5/PWM_Fan.c ****         ********************************************************************************
+ 442:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 443:Generated_Source\PSoC5/PWM_Fan.c ****         * Summary:
+ 444:Generated_Source\PSoC5/PWM_Fan.c ****         *  This function clears all capture data from the capture FIFO
+ 445:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 446:Generated_Source\PSoC5/PWM_Fan.c ****         * Parameters:
+ 447:Generated_Source\PSoC5/PWM_Fan.c ****         *  None
+ 448:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 449:Generated_Source\PSoC5/PWM_Fan.c ****         * Return:
+ 450:Generated_Source\PSoC5/PWM_Fan.c ****         *  None
+ 451:Generated_Source\PSoC5/PWM_Fan.c ****         *
+ 452:Generated_Source\PSoC5/PWM_Fan.c ****         *******************************************************************************/
+ 453:Generated_Source\PSoC5/PWM_Fan.c ****         void PWM_Fan_ClearFIFO(void) 
+ 454:Generated_Source\PSoC5/PWM_Fan.c ****         {
+ 455:Generated_Source\PSoC5/PWM_Fan.c ****             while(0u != (PWM_Fan_ReadStatusRegister() & PWM_Fan_STATUS_FIFONEMPTY))
+ 456:Generated_Source\PSoC5/PWM_Fan.c ****             {
+ 457:Generated_Source\PSoC5/PWM_Fan.c ****                 (void)PWM_Fan_ReadCapture();
+ 458:Generated_Source\PSoC5/PWM_Fan.c ****             }
+ 459:Generated_Source\PSoC5/PWM_Fan.c ****         }
+ 460:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 461:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* PWM_Fan_UseStatus */
+ 462:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 463:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* !PWM_Fan_UsingFixedFunction */
+ 464:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 465:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 466:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+ 467:Generated_Source\PSoC5/PWM_Fan.c **** * Function Name: PWM_Fan_WritePeriod
+ 468:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************
+ 469:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 470:Generated_Source\PSoC5/PWM_Fan.c **** * Summary:
+ 471:Generated_Source\PSoC5/PWM_Fan.c **** *  This function is used to change the period of the counter.  The new period
+ 472:Generated_Source\PSoC5/PWM_Fan.c **** *  will be loaded the next time terminal count is detected.
+ 473:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 474:Generated_Source\PSoC5/PWM_Fan.c **** * Parameters:
+ 475:Generated_Source\PSoC5/PWM_Fan.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:Generated_Source\PSoC5/PWM_Fan.c **** *           will result in the counter remaining at zero.
+ 477:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 478:Generated_Source\PSoC5/PWM_Fan.c **** * Return:
+ 479:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+ 480:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 481:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************/
+ 482:Generated_Source\PSoC5/PWM_Fan.c **** void PWM_Fan_WritePeriod(uint8 period) 
+ 483:Generated_Source\PSoC5/PWM_Fan.c **** {
+ 305              		.loc 1 483 0
+ 306              		.cfi_startproc
+ 307              		@ args = 0, pretend = 0, frame = 8
+ 308              		@ frame_needed = 1, uses_anonymous_args = 0
+ 309              		@ link register save eliminated.
+ 310 0000 80B4     		push	{r7}
+ 311              		.cfi_def_cfa_offset 4
+ 312              		.cfi_offset 7, -4
+ 313 0002 83B0     		sub	sp, sp, #12
+ 314              		.cfi_def_cfa_offset 16
+ 315 0004 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 15
+
+
+ 316              		.cfi_def_cfa_register 7
+ 317 0006 0346     		mov	r3, r0
+ 318 0008 FB71     		strb	r3, [r7, #7]
+ 484:Generated_Source\PSoC5/PWM_Fan.c ****     #if(PWM_Fan_UsingFixedFunction)
+ 485:Generated_Source\PSoC5/PWM_Fan.c ****         CY_SET_REG16(PWM_Fan_PERIOD_LSB_PTR, (uint16)period);
+ 486:Generated_Source\PSoC5/PWM_Fan.c ****     #else
+ 487:Generated_Source\PSoC5/PWM_Fan.c ****         CY_SET_REG8(PWM_Fan_PERIOD_LSB_PTR, period);
+ 319              		.loc 1 487 0
+ 320 000a 044A     		ldr	r2, .L22
+ 321 000c FB79     		ldrb	r3, [r7, #7]
+ 322 000e 1370     		strb	r3, [r2]
+ 488:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction) */
+ 489:Generated_Source\PSoC5/PWM_Fan.c **** }
+ 323              		.loc 1 489 0
+ 324 0010 0C37     		adds	r7, r7, #12
+ 325              		.cfi_def_cfa_offset 4
+ 326 0012 BD46     		mov	sp, r7
+ 327              		.cfi_def_cfa_register 13
+ 328              		@ sp needed
+ 329 0014 5DF8047B 		ldr	r7, [sp], #4
+ 330              		.cfi_restore 7
+ 331              		.cfi_def_cfa_offset 0
+ 332 0018 7047     		bx	lr
+ 333              	.L23:
+ 334 001a 00BF     		.align	2
+ 335              	.L22:
+ 336 001c 41640040 		.word	1073767489
+ 337              		.cfi_endproc
+ 338              	.LFE6:
+ 339              		.size	PWM_Fan_WritePeriod, .-PWM_Fan_WritePeriod
+ 340              		.section	.text.PWM_Fan_WriteCompare,"ax",%progbits
+ 341              		.align	2
+ 342              		.global	PWM_Fan_WriteCompare
+ 343              		.thumb
+ 344              		.thumb_func
+ 345              		.type	PWM_Fan_WriteCompare, %function
+ 346              	PWM_Fan_WriteCompare:
+ 347              	.LFB7:
+ 490:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 491:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_UseOneCompareMode)
+ 492:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 493:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 494:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 495:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_WriteCompare
+ 496:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 497:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 498:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 499:Generated_Source\PSoC5/PWM_Fan.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:Generated_Source\PSoC5/PWM_Fan.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:Generated_Source\PSoC5/PWM_Fan.c ****     *  The compare output will be driven high when the present counter value is
+ 502:Generated_Source\PSoC5/PWM_Fan.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:Generated_Source\PSoC5/PWM_Fan.c ****     *  Dither Mode.
+ 504:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 505:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 506:Generated_Source\PSoC5/PWM_Fan.c ****     *  compare:  New compare value.
+ 507:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 508:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 16
+
+
+ 509:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 510:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 511:Generated_Source\PSoC5/PWM_Fan.c ****     * Side Effects:
+ 512:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:Generated_Source\PSoC5/PWM_Fan.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 515:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 516:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_WriteCompare(uint8 compare) \
+ 517:Generated_Source\PSoC5/PWM_Fan.c ****                                        
+ 518:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 348              		.loc 1 518 0
+ 349              		.cfi_startproc
+ 350              		@ args = 0, pretend = 0, frame = 8
+ 351              		@ frame_needed = 1, uses_anonymous_args = 0
+ 352              		@ link register save eliminated.
+ 353 0000 80B4     		push	{r7}
+ 354              		.cfi_def_cfa_offset 4
+ 355              		.cfi_offset 7, -4
+ 356 0002 83B0     		sub	sp, sp, #12
+ 357              		.cfi_def_cfa_offset 16
+ 358 0004 00AF     		add	r7, sp, #0
+ 359              		.cfi_def_cfa_register 7
+ 360 0006 0346     		mov	r3, r0
+ 361 0008 FB71     		strb	r3, [r7, #7]
+ 519:Generated_Source\PSoC5/PWM_Fan.c ****         #if(PWM_Fan_UsingFixedFunction)
+ 520:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG16(PWM_Fan_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 522:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG8(PWM_Fan_COMPARE1_LSB_PTR, compare);
+ 362              		.loc 1 522 0
+ 363 000a 044A     		ldr	r2, .L25
+ 364 000c FB79     		ldrb	r3, [r7, #7]
+ 365 000e 1370     		strb	r3, [r2]
+ 523:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UsingFixedFunction) */
+ 524:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 525:Generated_Source\PSoC5/PWM_Fan.c ****         #if (PWM_Fan_PWMMode == PWM_Fan__B_PWM__DITHER)
+ 526:Generated_Source\PSoC5/PWM_Fan.c ****             #if(PWM_Fan_UsingFixedFunction)
+ 527:Generated_Source\PSoC5/PWM_Fan.c ****                 CY_SET_REG16(PWM_Fan_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ 528:Generated_Source\PSoC5/PWM_Fan.c ****             #else
+ 529:Generated_Source\PSoC5/PWM_Fan.c ****                 CY_SET_REG8(PWM_Fan_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:Generated_Source\PSoC5/PWM_Fan.c ****             #endif /* (PWM_Fan_UsingFixedFunction) */
+ 531:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_PWMMode == PWM_Fan__B_PWM__DITHER) */
+ 532:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 366              		.loc 1 532 0
+ 367 0010 0C37     		adds	r7, r7, #12
+ 368              		.cfi_def_cfa_offset 4
+ 369 0012 BD46     		mov	sp, r7
+ 370              		.cfi_def_cfa_register 13
+ 371              		@ sp needed
+ 372 0014 5DF8047B 		ldr	r7, [sp], #4
+ 373              		.cfi_restore 7
+ 374              		.cfi_def_cfa_offset 0
+ 375 0018 7047     		bx	lr
+ 376              	.L26:
+ 377 001a 00BF     		.align	2
+ 378              	.L25:
+ 379 001c 21640040 		.word	1073767457
+ 380              		.cfi_endproc
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 17
+
+
+ 381              	.LFE7:
+ 382              		.size	PWM_Fan_WriteCompare, .-PWM_Fan_WriteCompare
+ 383              		.section	.text.PWM_Fan_ReadControlRegister,"ax",%progbits
+ 384              		.align	2
+ 385              		.global	PWM_Fan_ReadControlRegister
+ 386              		.thumb
+ 387              		.thumb_func
+ 388              		.type	PWM_Fan_ReadControlRegister, %function
+ 389              	PWM_Fan_ReadControlRegister:
+ 390              	.LFB8:
+ 533:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 534:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 535:Generated_Source\PSoC5/PWM_Fan.c **** #else
+ 536:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 537:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 538:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 539:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_WriteCompare1
+ 540:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 541:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 542:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 543:Generated_Source\PSoC5/PWM_Fan.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ 544:Generated_Source\PSoC5/PWM_Fan.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:Generated_Source\PSoC5/PWM_Fan.c ****     *  driven high when the present counter value is less than or less than or
+ 546:Generated_Source\PSoC5/PWM_Fan.c ****     *  equal to the compare register, depending on the mode.
+ 547:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 548:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 549:Generated_Source\PSoC5/PWM_Fan.c ****     *  compare:  New compare value.
+ 550:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 551:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 552:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 553:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 554:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 555:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_WriteCompare1(uint8 compare) \
+ 556:Generated_Source\PSoC5/PWM_Fan.c ****                                         
+ 557:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 558:Generated_Source\PSoC5/PWM_Fan.c ****         #if(PWM_Fan_UsingFixedFunction)
+ 559:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG16(PWM_Fan_COMPARE1_LSB_PTR, (uint16)compare);
+ 560:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 561:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG8(PWM_Fan_COMPARE1_LSB_PTR, compare);
+ 562:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UsingFixedFunction) */
+ 563:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 564:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 565:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 566:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 567:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_WriteCompare2
+ 568:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 569:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 570:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 571:Generated_Source\PSoC5/PWM_Fan.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:Generated_Source\PSoC5/PWM_Fan.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:Generated_Source\PSoC5/PWM_Fan.c ****     *  The compare output will be driven high when the present counter value is
+ 574:Generated_Source\PSoC5/PWM_Fan.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:Generated_Source\PSoC5/PWM_Fan.c ****     *  mode.
+ 576:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 577:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 578:Generated_Source\PSoC5/PWM_Fan.c ****     *  compare:  New compare value.
+ 579:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 18
+
+
+ 580:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 581:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 582:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 583:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 584:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_WriteCompare2(uint8 compare) \
+ 585:Generated_Source\PSoC5/PWM_Fan.c ****                                         
+ 586:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 587:Generated_Source\PSoC5/PWM_Fan.c ****         #if(PWM_Fan_UsingFixedFunction)
+ 588:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG16(PWM_Fan_COMPARE2_LSB_PTR, compare);
+ 589:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 590:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG8(PWM_Fan_COMPARE2_LSB_PTR, compare);
+ 591:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UsingFixedFunction) */
+ 592:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 593:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* UseOneCompareMode */
+ 594:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 595:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_DeadBandUsed)
+ 596:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 597:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 598:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 599:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_WriteDeadTime
+ 600:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 601:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 602:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 603:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 605:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 606:Generated_Source\PSoC5/PWM_Fan.c ****     *  deadtime:  Number of counts for dead time
+ 607:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 608:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 609:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 610:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 611:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 612:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_WriteDeadTime(uint8 deadtime) 
+ 613:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 614:Generated_Source\PSoC5/PWM_Fan.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:Generated_Source\PSoC5/PWM_Fan.c ****         #if(!PWM_Fan_DeadBand2_4)
+ 616:Generated_Source\PSoC5/PWM_Fan.c ****             CY_SET_REG8(PWM_Fan_DEADBAND_COUNT_PTR, deadtime);
+ 617:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 618:Generated_Source\PSoC5/PWM_Fan.c ****             /* Otherwise the data has to be masked and offset */
+ 619:Generated_Source\PSoC5/PWM_Fan.c ****             /* Clear existing data */
+ 620:Generated_Source\PSoC5/PWM_Fan.c ****             PWM_Fan_DEADBAND_COUNT &= ((uint8)(~PWM_Fan_DEADBAND_COUNT_MASK));
+ 621:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 622:Generated_Source\PSoC5/PWM_Fan.c ****             /* Set new dead time */
+ 623:Generated_Source\PSoC5/PWM_Fan.c ****             #if(PWM_Fan_DEADBAND_COUNT_SHIFT)
+ 624:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << PWM_Fan_DEADBAND_COUNT_SHIFT)
+ 625:Generated_Source\PSoC5/PWM_Fan.c ****                                                     PWM_Fan_DEADBAND_COUNT_MASK;
+ 626:Generated_Source\PSoC5/PWM_Fan.c ****             #else
+ 627:Generated_Source\PSoC5/PWM_Fan.c ****                 PWM_Fan_DEADBAND_COUNT |= deadtime & PWM_Fan_DEADBAND_COUNT_MASK;
+ 628:Generated_Source\PSoC5/PWM_Fan.c ****             #endif /* (PWM_Fan_DEADBAND_COUNT_SHIFT) */
+ 629:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 630:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (!PWM_Fan_DeadBand2_4) */
+ 631:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 632:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 633:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 634:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 635:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadDeadTime
+ 636:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 19
+
+
+ 637:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 638:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 639:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 641:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 642:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 643:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 644:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 645:Generated_Source\PSoC5/PWM_Fan.c ****     *  Dead Band Counts
+ 646:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 647:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 648:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadDeadTime(void) 
+ 649:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 650:Generated_Source\PSoC5/PWM_Fan.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:Generated_Source\PSoC5/PWM_Fan.c ****         #if(!PWM_Fan_DeadBand2_4)
+ 652:Generated_Source\PSoC5/PWM_Fan.c ****             return (CY_GET_REG8(PWM_Fan_DEADBAND_COUNT_PTR));
+ 653:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 654:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 655:Generated_Source\PSoC5/PWM_Fan.c ****             /* Otherwise the data has to be masked and offset */
+ 656:Generated_Source\PSoC5/PWM_Fan.c ****             #if(PWM_Fan_DEADBAND_COUNT_SHIFT)
+ 657:Generated_Source\PSoC5/PWM_Fan.c ****                 return ((uint8)(((uint8)(PWM_Fan_DEADBAND_COUNT & PWM_Fan_DEADBAND_COUNT_MASK)) >>
+ 658:Generated_Source\PSoC5/PWM_Fan.c ****                                                                            PWM_Fan_DEADBAND_COUNT_S
+ 659:Generated_Source\PSoC5/PWM_Fan.c ****             #else
+ 660:Generated_Source\PSoC5/PWM_Fan.c ****                 return (PWM_Fan_DEADBAND_COUNT & PWM_Fan_DEADBAND_COUNT_MASK);
+ 661:Generated_Source\PSoC5/PWM_Fan.c ****             #endif /* (PWM_Fan_DEADBAND_COUNT_SHIFT) */
+ 662:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (!PWM_Fan_DeadBand2_4) */
+ 663:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 664:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* DeadBandUsed */
+ 665:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 666:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_UseStatus || PWM_Fan_UsingFixedFunction)
+ 667:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 668:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 669:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 670:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_SetInterruptMode
+ 671:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 672:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 673:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 674:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:Generated_Source\PSoC5/PWM_Fan.c ****     *  source status register.
+ 676:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 677:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 678:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ 679:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 680:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 681:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 682:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 683:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 684:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_SetInterruptMode(uint8 interruptMode) 
+ 685:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 686:Generated_Source\PSoC5/PWM_Fan.c ****         CY_SET_REG8(PWM_Fan_STATUS_MASK_PTR, interruptMode);
+ 687:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 688:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 689:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 690:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 691:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadStatusRegister
+ 692:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 693:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 20
+
+
+ 694:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 695:Generated_Source\PSoC5/PWM_Fan.c ****     *  This function returns the current state of the status register.
+ 696:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 697:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 698:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 699:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 700:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 701:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:Generated_Source\PSoC5/PWM_Fan.c ****     *  [7:6] : Unused(0)
+ 703:Generated_Source\PSoC5/PWM_Fan.c ****     *  [5]   : Kill event output
+ 704:Generated_Source\PSoC5/PWM_Fan.c ****     *  [4]   : FIFO not empty
+ 705:Generated_Source\PSoC5/PWM_Fan.c ****     *  [3]   : FIFO full
+ 706:Generated_Source\PSoC5/PWM_Fan.c ****     *  [2]   : Terminal count
+ 707:Generated_Source\PSoC5/PWM_Fan.c ****     *  [1]   : Compare output 2
+ 708:Generated_Source\PSoC5/PWM_Fan.c ****     *  [0]   : Compare output 1
+ 709:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 710:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 711:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadStatusRegister(void) 
+ 712:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 713:Generated_Source\PSoC5/PWM_Fan.c ****         return (CY_GET_REG8(PWM_Fan_STATUS_PTR));
+ 714:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 715:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 716:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* (PWM_Fan_UseStatus || PWM_Fan_UsingFixedFunction) */
+ 717:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 718:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 719:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_UseControl)
+ 720:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 721:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 722:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 723:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadControlRegister
+ 724:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 725:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 726:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 727:Generated_Source\PSoC5/PWM_Fan.c ****     *  Returns the current state of the control register. This API is available
+ 728:Generated_Source\PSoC5/PWM_Fan.c ****     *  only if the control register is not removed.
+ 729:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 730:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 731:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 732:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 733:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 734:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8 : Current control register value
+ 735:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 736:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 737:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadControlRegister(void) 
+ 738:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 391              		.loc 1 738 0
+ 392              		.cfi_startproc
+ 393              		@ args = 0, pretend = 0, frame = 8
+ 394              		@ frame_needed = 1, uses_anonymous_args = 0
+ 395              		@ link register save eliminated.
+ 396 0000 80B4     		push	{r7}
+ 397              		.cfi_def_cfa_offset 4
+ 398              		.cfi_offset 7, -4
+ 399 0002 83B0     		sub	sp, sp, #12
+ 400              		.cfi_def_cfa_offset 16
+ 401 0004 00AF     		add	r7, sp, #0
+ 402              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 21
+
+
+ 739:Generated_Source\PSoC5/PWM_Fan.c ****         uint8 result;
+ 740:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 741:Generated_Source\PSoC5/PWM_Fan.c ****         result = CY_GET_REG8(PWM_Fan_CONTROL_PTR);
+ 403              		.loc 1 741 0
+ 404 0006 054B     		ldr	r3, .L29
+ 405 0008 1B78     		ldrb	r3, [r3]
+ 406 000a FB71     		strb	r3, [r7, #7]
+ 742:Generated_Source\PSoC5/PWM_Fan.c ****         return (result);
+ 407              		.loc 1 742 0
+ 408 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 743:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 409              		.loc 1 743 0
+ 410 000e 1846     		mov	r0, r3
+ 411 0010 0C37     		adds	r7, r7, #12
+ 412              		.cfi_def_cfa_offset 4
+ 413 0012 BD46     		mov	sp, r7
+ 414              		.cfi_def_cfa_register 13
+ 415              		@ sp needed
+ 416 0014 5DF8047B 		ldr	r7, [sp], #4
+ 417              		.cfi_restore 7
+ 418              		.cfi_def_cfa_offset 0
+ 419 0018 7047     		bx	lr
+ 420              	.L30:
+ 421 001a 00BF     		.align	2
+ 422              	.L29:
+ 423 001c 76650040 		.word	1073767798
+ 424              		.cfi_endproc
+ 425              	.LFE8:
+ 426              		.size	PWM_Fan_ReadControlRegister, .-PWM_Fan_ReadControlRegister
+ 427              		.section	.text.PWM_Fan_WriteControlRegister,"ax",%progbits
+ 428              		.align	2
+ 429              		.global	PWM_Fan_WriteControlRegister
+ 430              		.thumb
+ 431              		.thumb_func
+ 432              		.type	PWM_Fan_WriteControlRegister, %function
+ 433              	PWM_Fan_WriteControlRegister:
+ 434              	.LFB9:
+ 744:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 745:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 746:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 747:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_WriteControlRegister
+ 748:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 749:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 750:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 751:Generated_Source\PSoC5/PWM_Fan.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:Generated_Source\PSoC5/PWM_Fan.c ****     *  the control register is not removed.
+ 753:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 754:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 755:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:Generated_Source\PSoC5/PWM_Fan.c ****     *  [7]   : PWM Enable
+ 757:Generated_Source\PSoC5/PWM_Fan.c ****     *  [6]   : Reset
+ 758:Generated_Source\PSoC5/PWM_Fan.c ****     *  [5:3] : Compare Mode2
+ 759:Generated_Source\PSoC5/PWM_Fan.c ****     *  [2:0] : Compare Mode2
+ 760:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 761:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 762:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 763:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 22
+
+
+ 764:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 765:Generated_Source\PSoC5/PWM_Fan.c ****     void PWM_Fan_WriteControlRegister(uint8 control) 
+ 766:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 435              		.loc 1 766 0
+ 436              		.cfi_startproc
+ 437              		@ args = 0, pretend = 0, frame = 8
+ 438              		@ frame_needed = 1, uses_anonymous_args = 0
+ 439              		@ link register save eliminated.
+ 440 0000 80B4     		push	{r7}
+ 441              		.cfi_def_cfa_offset 4
+ 442              		.cfi_offset 7, -4
+ 443 0002 83B0     		sub	sp, sp, #12
+ 444              		.cfi_def_cfa_offset 16
+ 445 0004 00AF     		add	r7, sp, #0
+ 446              		.cfi_def_cfa_register 7
+ 447 0006 0346     		mov	r3, r0
+ 448 0008 FB71     		strb	r3, [r7, #7]
+ 767:Generated_Source\PSoC5/PWM_Fan.c ****         CY_SET_REG8(PWM_Fan_CONTROL_PTR, control);
+ 449              		.loc 1 767 0
+ 450 000a 044A     		ldr	r2, .L32
+ 451 000c FB79     		ldrb	r3, [r7, #7]
+ 452 000e 1370     		strb	r3, [r2]
+ 768:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 453              		.loc 1 768 0
+ 454 0010 0C37     		adds	r7, r7, #12
+ 455              		.cfi_def_cfa_offset 4
+ 456 0012 BD46     		mov	sp, r7
+ 457              		.cfi_def_cfa_register 13
+ 458              		@ sp needed
+ 459 0014 5DF8047B 		ldr	r7, [sp], #4
+ 460              		.cfi_restore 7
+ 461              		.cfi_def_cfa_offset 0
+ 462 0018 7047     		bx	lr
+ 463              	.L33:
+ 464 001a 00BF     		.align	2
+ 465              	.L32:
+ 466 001c 76650040 		.word	1073767798
+ 467              		.cfi_endproc
+ 468              	.LFE9:
+ 469              		.size	PWM_Fan_WriteControlRegister, .-PWM_Fan_WriteControlRegister
+ 470              		.section	.text.PWM_Fan_ReadCapture,"ax",%progbits
+ 471              		.align	2
+ 472              		.global	PWM_Fan_ReadCapture
+ 473              		.thumb
+ 474              		.thumb_func
+ 475              		.type	PWM_Fan_ReadCapture, %function
+ 476              	PWM_Fan_ReadCapture:
+ 477              	.LFB10:
+ 769:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 770:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* (PWM_Fan_UseControl) */
+ 771:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 772:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 773:Generated_Source\PSoC5/PWM_Fan.c **** #if (!PWM_Fan_UsingFixedFunction)
+ 774:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 775:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 776:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 777:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadCapture
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 23
+
+
+ 778:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 779:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 780:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 781:Generated_Source\PSoC5/PWM_Fan.c ****     *  Reads the capture value from the capture FIFO.
+ 782:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 783:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 784:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 785:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 786:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 787:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8/uint16: The current capture value
+ 788:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 789:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 790:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadCapture(void) 
+ 791:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 478              		.loc 1 791 0
+ 479              		.cfi_startproc
+ 480              		@ args = 0, pretend = 0, frame = 0
+ 481              		@ frame_needed = 1, uses_anonymous_args = 0
+ 482              		@ link register save eliminated.
+ 483 0000 80B4     		push	{r7}
+ 484              		.cfi_def_cfa_offset 4
+ 485              		.cfi_offset 7, -4
+ 486 0002 00AF     		add	r7, sp, #0
+ 487              		.cfi_def_cfa_register 7
+ 792:Generated_Source\PSoC5/PWM_Fan.c ****         return (CY_GET_REG8(PWM_Fan_CAPTURE_LSB_PTR));
+ 488              		.loc 1 792 0
+ 489 0004 034B     		ldr	r3, .L36
+ 490 0006 1B78     		ldrb	r3, [r3]
+ 491 0008 DBB2     		uxtb	r3, r3
+ 793:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 492              		.loc 1 793 0
+ 493 000a 1846     		mov	r0, r3
+ 494 000c BD46     		mov	sp, r7
+ 495              		.cfi_def_cfa_register 13
+ 496              		@ sp needed
+ 497 000e 5DF8047B 		ldr	r7, [sp], #4
+ 498              		.cfi_restore 7
+ 499              		.cfi_def_cfa_offset 0
+ 500 0012 7047     		bx	lr
+ 501              	.L37:
+ 502              		.align	2
+ 503              	.L36:
+ 504 0014 51640040 		.word	1073767505
+ 505              		.cfi_endproc
+ 506              	.LFE10:
+ 507              		.size	PWM_Fan_ReadCapture, .-PWM_Fan_ReadCapture
+ 508              		.section	.text.PWM_Fan_ReadCompare,"ax",%progbits
+ 509              		.align	2
+ 510              		.global	PWM_Fan_ReadCompare
+ 511              		.thumb
+ 512              		.thumb_func
+ 513              		.type	PWM_Fan_ReadCompare, %function
+ 514              	PWM_Fan_ReadCompare:
+ 515              	.LFB11:
+ 794:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 795:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* (!PWM_Fan_UsingFixedFunction) */
+ 796:Generated_Source\PSoC5/PWM_Fan.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 24
+
+
+ 797:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 798:Generated_Source\PSoC5/PWM_Fan.c **** #if (PWM_Fan_UseOneCompareMode)
+ 799:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 800:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 801:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 802:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadCompare
+ 803:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 804:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 805:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 806:Generated_Source\PSoC5/PWM_Fan.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:Generated_Source\PSoC5/PWM_Fan.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 809:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 810:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 811:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 812:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 813:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8/uint16: Current compare value
+ 814:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 815:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 816:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadCompare(void) 
+ 817:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 516              		.loc 1 817 0
+ 517              		.cfi_startproc
+ 518              		@ args = 0, pretend = 0, frame = 0
+ 519              		@ frame_needed = 1, uses_anonymous_args = 0
+ 520              		@ link register save eliminated.
+ 521 0000 80B4     		push	{r7}
+ 522              		.cfi_def_cfa_offset 4
+ 523              		.cfi_offset 7, -4
+ 524 0002 00AF     		add	r7, sp, #0
+ 525              		.cfi_def_cfa_register 7
+ 818:Generated_Source\PSoC5/PWM_Fan.c ****         #if(PWM_Fan_UsingFixedFunction)
+ 819:Generated_Source\PSoC5/PWM_Fan.c ****             return ((uint8)CY_GET_REG16(PWM_Fan_COMPARE1_LSB_PTR));
+ 820:Generated_Source\PSoC5/PWM_Fan.c ****         #else
+ 821:Generated_Source\PSoC5/PWM_Fan.c ****             return (CY_GET_REG8(PWM_Fan_COMPARE1_LSB_PTR));
+ 526              		.loc 1 821 0
+ 527 0004 034B     		ldr	r3, .L40
+ 528 0006 1B78     		ldrb	r3, [r3]
+ 529 0008 DBB2     		uxtb	r3, r3
+ 822:Generated_Source\PSoC5/PWM_Fan.c ****         #endif /* (PWM_Fan_UsingFixedFunction) */
+ 823:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 530              		.loc 1 823 0
+ 531 000a 1846     		mov	r0, r3
+ 532 000c BD46     		mov	sp, r7
+ 533              		.cfi_def_cfa_register 13
+ 534              		@ sp needed
+ 535 000e 5DF8047B 		ldr	r7, [sp], #4
+ 536              		.cfi_restore 7
+ 537              		.cfi_def_cfa_offset 0
+ 538 0012 7047     		bx	lr
+ 539              	.L41:
+ 540              		.align	2
+ 541              	.L40:
+ 542 0014 21640040 		.word	1073767457
+ 543              		.cfi_endproc
+ 544              	.LFE11:
+ 545              		.size	PWM_Fan_ReadCompare, .-PWM_Fan_ReadCompare
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 25
+
+
+ 546              		.section	.text.PWM_Fan_ReadPeriod,"ax",%progbits
+ 547              		.align	2
+ 548              		.global	PWM_Fan_ReadPeriod
+ 549              		.thumb
+ 550              		.thumb_func
+ 551              		.type	PWM_Fan_ReadPeriod, %function
+ 552              	PWM_Fan_ReadPeriod:
+ 553              	.LFB12:
+ 824:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 825:Generated_Source\PSoC5/PWM_Fan.c **** #else
+ 826:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 827:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 828:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 829:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadCompare1
+ 830:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 831:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 832:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 833:Generated_Source\PSoC5/PWM_Fan.c ****     *  Reads the compare value for the compare1 output.
+ 834:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 835:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 836:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 837:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 838:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 839:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8/uint16: Current compare value.
+ 840:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 841:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 842:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadCompare1(void) 
+ 843:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 844:Generated_Source\PSoC5/PWM_Fan.c ****         return (CY_GET_REG8(PWM_Fan_COMPARE1_LSB_PTR));
+ 845:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 846:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 847:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 848:Generated_Source\PSoC5/PWM_Fan.c ****     /*******************************************************************************
+ 849:Generated_Source\PSoC5/PWM_Fan.c ****     * Function Name: PWM_Fan_ReadCompare2
+ 850:Generated_Source\PSoC5/PWM_Fan.c ****     ********************************************************************************
+ 851:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 852:Generated_Source\PSoC5/PWM_Fan.c ****     * Summary:
+ 853:Generated_Source\PSoC5/PWM_Fan.c ****     *  Reads the compare value for the compare2 output.
+ 854:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 855:Generated_Source\PSoC5/PWM_Fan.c ****     * Parameters:
+ 856:Generated_Source\PSoC5/PWM_Fan.c ****     *  None
+ 857:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 858:Generated_Source\PSoC5/PWM_Fan.c ****     * Return:
+ 859:Generated_Source\PSoC5/PWM_Fan.c ****     *  uint8/uint16: Current compare value.
+ 860:Generated_Source\PSoC5/PWM_Fan.c ****     *
+ 861:Generated_Source\PSoC5/PWM_Fan.c ****     *******************************************************************************/
+ 862:Generated_Source\PSoC5/PWM_Fan.c ****     uint8 PWM_Fan_ReadCompare2(void) 
+ 863:Generated_Source\PSoC5/PWM_Fan.c ****     {
+ 864:Generated_Source\PSoC5/PWM_Fan.c ****         return (CY_GET_REG8(PWM_Fan_COMPARE2_LSB_PTR));
+ 865:Generated_Source\PSoC5/PWM_Fan.c ****     }
+ 866:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 867:Generated_Source\PSoC5/PWM_Fan.c **** #endif /* (PWM_Fan_UseOneCompareMode) */
+ 868:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 869:Generated_Source\PSoC5/PWM_Fan.c **** 
+ 870:Generated_Source\PSoC5/PWM_Fan.c **** /*******************************************************************************
+ 871:Generated_Source\PSoC5/PWM_Fan.c **** * Function Name: PWM_Fan_ReadPeriod
+ 872:Generated_Source\PSoC5/PWM_Fan.c **** ********************************************************************************
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 26
+
+
+ 873:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 874:Generated_Source\PSoC5/PWM_Fan.c **** * Summary:
+ 875:Generated_Source\PSoC5/PWM_Fan.c **** *  Reads the period value used by the PWM hardware.
+ 876:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 877:Generated_Source\PSoC5/PWM_Fan.c **** * Parameters:
+ 878:Generated_Source\PSoC5/PWM_Fan.c **** *  None
+ 879:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 880:Generated_Source\PSoC5/PWM_Fan.c **** * Return:
+ 881:Generated_Source\PSoC5/PWM_Fan.c **** *  uint8/16: Period value
+ 882:Generated_Source\PSoC5/PWM_Fan.c **** *
+ 883:Generated_Source\PSoC5/PWM_Fan.c **** *******************************************************************************/
+ 884:Generated_Source\PSoC5/PWM_Fan.c **** uint8 PWM_Fan_ReadPeriod(void) 
+ 885:Generated_Source\PSoC5/PWM_Fan.c **** {
+ 554              		.loc 1 885 0
+ 555              		.cfi_startproc
+ 556              		@ args = 0, pretend = 0, frame = 0
+ 557              		@ frame_needed = 1, uses_anonymous_args = 0
+ 558              		@ link register save eliminated.
+ 559 0000 80B4     		push	{r7}
+ 560              		.cfi_def_cfa_offset 4
+ 561              		.cfi_offset 7, -4
+ 562 0002 00AF     		add	r7, sp, #0
+ 563              		.cfi_def_cfa_register 7
+ 886:Generated_Source\PSoC5/PWM_Fan.c ****     #if(PWM_Fan_UsingFixedFunction)
+ 887:Generated_Source\PSoC5/PWM_Fan.c ****         return ((uint8)CY_GET_REG16(PWM_Fan_PERIOD_LSB_PTR));
+ 888:Generated_Source\PSoC5/PWM_Fan.c ****     #else
+ 889:Generated_Source\PSoC5/PWM_Fan.c ****         return (CY_GET_REG8(PWM_Fan_PERIOD_LSB_PTR));
+ 564              		.loc 1 889 0
+ 565 0004 034B     		ldr	r3, .L44
+ 566 0006 1B78     		ldrb	r3, [r3]
+ 567 0008 DBB2     		uxtb	r3, r3
+ 890:Generated_Source\PSoC5/PWM_Fan.c ****     #endif /* (PWM_Fan_UsingFixedFunction) */
+ 891:Generated_Source\PSoC5/PWM_Fan.c **** }
+ 568              		.loc 1 891 0
+ 569 000a 1846     		mov	r0, r3
+ 570 000c BD46     		mov	sp, r7
+ 571              		.cfi_def_cfa_register 13
+ 572              		@ sp needed
+ 573 000e 5DF8047B 		ldr	r7, [sp], #4
+ 574              		.cfi_restore 7
+ 575              		.cfi_def_cfa_offset 0
+ 576 0012 7047     		bx	lr
+ 577              	.L45:
+ 578              		.align	2
+ 579              	.L44:
+ 580 0014 41640040 		.word	1073767489
+ 581              		.cfi_endproc
+ 582              	.LFE12:
+ 583              		.size	PWM_Fan_ReadPeriod, .-PWM_Fan_ReadPeriod
+ 584              		.text
+ 585              	.Letext0:
+ 586              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 587              		.section	.debug_info,"",%progbits
+ 588              	.Ldebug_info0:
+ 589 0000 22020000 		.4byte	0x222
+ 590 0004 0400     		.2byte	0x4
+ 591 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 27
+
+
+ 592 000a 04       		.byte	0x4
+ 593 000b 01       		.uleb128 0x1
+ 594 000c 53000000 		.4byte	.LASF33
+ 595 0010 01       		.byte	0x1
+ 596 0011 F2010000 		.4byte	.LASF34
+ 597 0015 77010000 		.4byte	.LASF35
+ 598 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 599 001d 00000000 		.4byte	0
+ 600 0021 00000000 		.4byte	.Ldebug_line0
+ 601 0025 02       		.uleb128 0x2
+ 602 0026 01       		.byte	0x1
+ 603 0027 06       		.byte	0x6
+ 604 0028 91020000 		.4byte	.LASF0
+ 605 002c 02       		.uleb128 0x2
+ 606 002d 01       		.byte	0x1
+ 607 002e 08       		.byte	0x8
+ 608 002f 02010000 		.4byte	.LASF1
+ 609 0033 02       		.uleb128 0x2
+ 610 0034 02       		.byte	0x2
+ 611 0035 05       		.byte	0x5
+ 612 0036 65020000 		.4byte	.LASF2
+ 613 003a 02       		.uleb128 0x2
+ 614 003b 02       		.byte	0x2
+ 615 003c 07       		.byte	0x7
+ 616 003d A5020000 		.4byte	.LASF3
+ 617 0041 02       		.uleb128 0x2
+ 618 0042 04       		.byte	0x4
+ 619 0043 05       		.byte	0x5
+ 620 0044 88020000 		.4byte	.LASF4
+ 621 0048 02       		.uleb128 0x2
+ 622 0049 04       		.byte	0x4
+ 623 004a 07       		.byte	0x7
+ 624 004b 25010000 		.4byte	.LASF5
+ 625 004f 02       		.uleb128 0x2
+ 626 0050 08       		.byte	0x8
+ 627 0051 05       		.byte	0x5
+ 628 0052 35020000 		.4byte	.LASF6
+ 629 0056 02       		.uleb128 0x2
+ 630 0057 08       		.byte	0x8
+ 631 0058 07       		.byte	0x7
+ 632 0059 DB010000 		.4byte	.LASF7
+ 633 005d 03       		.uleb128 0x3
+ 634 005e 04       		.byte	0x4
+ 635 005f 05       		.byte	0x5
+ 636 0060 696E7400 		.ascii	"int\000"
+ 637 0064 02       		.uleb128 0x2
+ 638 0065 04       		.byte	0x4
+ 639 0066 07       		.byte	0x7
+ 640 0067 CE010000 		.4byte	.LASF8
+ 641 006b 04       		.uleb128 0x4
+ 642 006c 37010000 		.4byte	.LASF12
+ 643 0070 02       		.byte	0x2
+ 644 0071 C2       		.byte	0xc2
+ 645 0072 2C000000 		.4byte	0x2c
+ 646 0076 02       		.uleb128 0x2
+ 647 0077 04       		.byte	0x4
+ 648 0078 04       		.byte	0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 28
+
+
+ 649 0079 F4000000 		.4byte	.LASF9
+ 650 007d 02       		.uleb128 0x2
+ 651 007e 08       		.byte	0x8
+ 652 007f 04       		.byte	0x4
+ 653 0080 63010000 		.4byte	.LASF10
+ 654 0084 02       		.uleb128 0x2
+ 655 0085 01       		.byte	0x1
+ 656 0086 08       		.byte	0x8
+ 657 0087 43020000 		.4byte	.LASF11
+ 658 008b 05       		.uleb128 0x5
+ 659 008c 27020000 		.4byte	.LASF13
+ 660 0090 02       		.byte	0x2
+ 661 0091 6C01     		.2byte	0x16c
+ 662 0093 97000000 		.4byte	0x97
+ 663 0097 06       		.uleb128 0x6
+ 664 0098 6B000000 		.4byte	0x6b
+ 665 009c 02       		.uleb128 0x2
+ 666 009d 04       		.byte	0x4
+ 667 009e 07       		.byte	0x7
+ 668 009f 2C020000 		.4byte	.LASF14
+ 669 00a3 07       		.uleb128 0x7
+ 670 00a4 55010000 		.4byte	.LASF15
+ 671 00a8 01       		.byte	0x1
+ 672 00a9 37       		.byte	0x37
+ 673 00aa 00000000 		.4byte	.LFB0
+ 674 00ae 20000000 		.4byte	.LFE0-.LFB0
+ 675 00b2 01       		.uleb128 0x1
+ 676 00b3 9C       		.byte	0x9c
+ 677 00b4 08       		.uleb128 0x8
+ 678 00b5 00000000 		.4byte	.LASF18
+ 679 00b9 01       		.byte	0x1
+ 680 00ba 54       		.byte	0x54
+ 681 00bb 00000000 		.4byte	.LFB1
+ 682 00bf 50000000 		.4byte	.LFE1-.LFB1
+ 683 00c3 01       		.uleb128 0x1
+ 684 00c4 9C       		.byte	0x9c
+ 685 00c5 D8000000 		.4byte	0xd8
+ 686 00c9 09       		.uleb128 0x9
+ 687 00ca 6F020000 		.4byte	.LASF25
+ 688 00ce 01       		.byte	0x1
+ 689 00cf 57       		.byte	0x57
+ 690 00d0 6B000000 		.4byte	0x6b
+ 691 00d4 02       		.uleb128 0x2
+ 692 00d5 91       		.byte	0x91
+ 693 00d6 77       		.sleb128 -9
+ 694 00d7 00       		.byte	0
+ 695 00d8 0A       		.uleb128 0xa
+ 696 00d9 30000000 		.4byte	.LASF16
+ 697 00dd 01       		.byte	0x1
+ 698 00de C7       		.byte	0xc7
+ 699 00df 00000000 		.4byte	.LFB2
+ 700 00e3 20000000 		.4byte	.LFE2-.LFB2
+ 701 00e7 01       		.uleb128 0x1
+ 702 00e8 9C       		.byte	0x9c
+ 703 00e9 0A       		.uleb128 0xa
+ 704 00ea 6A010000 		.4byte	.LASF17
+ 705 00ee 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 29
+
+
+ 706 00ef E9       		.byte	0xe9
+ 707 00f0 00000000 		.4byte	.LFB3
+ 708 00f4 20000000 		.4byte	.LFE3-.LFB3
+ 709 00f8 01       		.uleb128 0x1
+ 710 00f9 9C       		.byte	0x9c
+ 711 00fa 0B       		.uleb128 0xb
+ 712 00fb 10010000 		.4byte	.LASF19
+ 713 00ff 01       		.byte	0x1
+ 714 0100 9301     		.2byte	0x193
+ 715 0102 00000000 		.4byte	.LFB4
+ 716 0106 20000000 		.4byte	.LFE4-.LFB4
+ 717 010a 01       		.uleb128 0x1
+ 718 010b 9C       		.byte	0x9c
+ 719 010c 20010000 		.4byte	0x120
+ 720 0110 0C       		.uleb128 0xc
+ 721 0111 FA000000 		.4byte	.LASF21
+ 722 0115 01       		.byte	0x1
+ 723 0116 9301     		.2byte	0x193
+ 724 0118 6B000000 		.4byte	0x6b
+ 725 011c 02       		.uleb128 0x2
+ 726 011d 91       		.byte	0x91
+ 727 011e 77       		.sleb128 -9
+ 728 011f 00       		.byte	0
+ 729 0120 0D       		.uleb128 0xd
+ 730 0121 74020000 		.4byte	.LASF29
+ 731 0125 01       		.byte	0x1
+ 732 0126 A901     		.2byte	0x1a9
+ 733 0128 6B000000 		.4byte	0x6b
+ 734 012c 00000000 		.4byte	.LFB5
+ 735 0130 20000000 		.4byte	.LFE5-.LFB5
+ 736 0134 01       		.uleb128 0x1
+ 737 0135 9C       		.byte	0x9c
+ 738 0136 0B       		.uleb128 0xb
+ 739 0137 3F000000 		.4byte	.LASF20
+ 740 013b 01       		.byte	0x1
+ 741 013c E201     		.2byte	0x1e2
+ 742 013e 00000000 		.4byte	.LFB6
+ 743 0142 20000000 		.4byte	.LFE6-.LFB6
+ 744 0146 01       		.uleb128 0x1
+ 745 0147 9C       		.byte	0x9c
+ 746 0148 5C010000 		.4byte	0x15c
+ 747 014c 0C       		.uleb128 0xc
+ 748 014d 29000000 		.4byte	.LASF22
+ 749 0151 01       		.byte	0x1
+ 750 0152 E201     		.2byte	0x1e2
+ 751 0154 6B000000 		.4byte	0x6b
+ 752 0158 02       		.uleb128 0x2
+ 753 0159 91       		.byte	0x91
+ 754 015a 77       		.sleb128 -9
+ 755 015b 00       		.byte	0
+ 756 015c 0B       		.uleb128 0xb
+ 757 015d 14000000 		.4byte	.LASF23
+ 758 0161 01       		.byte	0x1
+ 759 0162 0402     		.2byte	0x204
+ 760 0164 00000000 		.4byte	.LFB7
+ 761 0168 20000000 		.4byte	.LFE7-.LFB7
+ 762 016c 01       		.uleb128 0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 30
+
+
+ 763 016d 9C       		.byte	0x9c
+ 764 016e 82010000 		.4byte	0x182
+ 765 0172 0C       		.uleb128 0xc
+ 766 0173 9D020000 		.4byte	.LASF24
+ 767 0177 01       		.byte	0x1
+ 768 0178 0402     		.2byte	0x204
+ 769 017a 6B000000 		.4byte	0x6b
+ 770 017e 02       		.uleb128 0x2
+ 771 017f 91       		.byte	0x91
+ 772 0180 77       		.sleb128 -9
+ 773 0181 00       		.byte	0
+ 774 0182 0E       		.uleb128 0xe
+ 775 0183 B2010000 		.4byte	.LASF36
+ 776 0187 01       		.byte	0x1
+ 777 0188 E102     		.2byte	0x2e1
+ 778 018a 6B000000 		.4byte	0x6b
+ 779 018e 00000000 		.4byte	.LFB8
+ 780 0192 20000000 		.4byte	.LFE8-.LFB8
+ 781 0196 01       		.uleb128 0x1
+ 782 0197 9C       		.byte	0x9c
+ 783 0198 AC010000 		.4byte	0x1ac
+ 784 019c 0F       		.uleb128 0xf
+ 785 019d 0D000000 		.4byte	.LASF26
+ 786 01a1 01       		.byte	0x1
+ 787 01a2 E302     		.2byte	0x2e3
+ 788 01a4 6B000000 		.4byte	0x6b
+ 789 01a8 02       		.uleb128 0x2
+ 790 01a9 91       		.byte	0x91
+ 791 01aa 77       		.sleb128 -9
+ 792 01ab 00       		.byte	0
+ 793 01ac 0B       		.uleb128 0xb
+ 794 01ad 48020000 		.4byte	.LASF27
+ 795 01b1 01       		.byte	0x1
+ 796 01b2 FD02     		.2byte	0x2fd
+ 797 01b4 00000000 		.4byte	.LFB9
+ 798 01b8 20000000 		.4byte	.LFE9-.LFB9
+ 799 01bc 01       		.uleb128 0x1
+ 800 01bd 9C       		.byte	0x9c
+ 801 01be D2010000 		.4byte	0x1d2
+ 802 01c2 0C       		.uleb128 0xc
+ 803 01c3 3D010000 		.4byte	.LASF28
+ 804 01c7 01       		.byte	0x1
+ 805 01c8 FD02     		.2byte	0x2fd
+ 806 01ca 6B000000 		.4byte	0x6b
+ 807 01ce 02       		.uleb128 0x2
+ 808 01cf 91       		.byte	0x91
+ 809 01d0 77       		.sleb128 -9
+ 810 01d1 00       		.byte	0
+ 811 01d2 0D       		.uleb128 0xd
+ 812 01d3 13020000 		.4byte	.LASF30
+ 813 01d7 01       		.byte	0x1
+ 814 01d8 1603     		.2byte	0x316
+ 815 01da 6B000000 		.4byte	0x6b
+ 816 01de 00000000 		.4byte	.LFB10
+ 817 01e2 18000000 		.4byte	.LFE10-.LFB10
+ 818 01e6 01       		.uleb128 0x1
+ 819 01e7 9C       		.byte	0x9c
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 31
+
+
+ 820 01e8 0D       		.uleb128 0xd
+ 821 01e9 B8020000 		.4byte	.LASF31
+ 822 01ed 01       		.byte	0x1
+ 823 01ee 3003     		.2byte	0x330
+ 824 01f0 6B000000 		.4byte	0x6b
+ 825 01f4 00000000 		.4byte	.LFB11
+ 826 01f8 18000000 		.4byte	.LFE11-.LFB11
+ 827 01fc 01       		.uleb128 0x1
+ 828 01fd 9C       		.byte	0x9c
+ 829 01fe 0D       		.uleb128 0xd
+ 830 01ff E1000000 		.4byte	.LASF32
+ 831 0203 01       		.byte	0x1
+ 832 0204 7403     		.2byte	0x374
+ 833 0206 6B000000 		.4byte	0x6b
+ 834 020a 00000000 		.4byte	.LFB12
+ 835 020e 18000000 		.4byte	.LFE12-.LFB12
+ 836 0212 01       		.uleb128 0x1
+ 837 0213 9C       		.byte	0x9c
+ 838 0214 10       		.uleb128 0x10
+ 839 0215 45010000 		.4byte	.LASF37
+ 840 0219 01       		.byte	0x1
+ 841 021a 20       		.byte	0x20
+ 842 021b 6B000000 		.4byte	0x6b
+ 843 021f 05       		.uleb128 0x5
+ 844 0220 03       		.byte	0x3
+ 845 0221 00000000 		.4byte	PWM_Fan_initVar
+ 846 0225 00       		.byte	0
+ 847              		.section	.debug_abbrev,"",%progbits
+ 848              	.Ldebug_abbrev0:
+ 849 0000 01       		.uleb128 0x1
+ 850 0001 11       		.uleb128 0x11
+ 851 0002 01       		.byte	0x1
+ 852 0003 25       		.uleb128 0x25
+ 853 0004 0E       		.uleb128 0xe
+ 854 0005 13       		.uleb128 0x13
+ 855 0006 0B       		.uleb128 0xb
+ 856 0007 03       		.uleb128 0x3
+ 857 0008 0E       		.uleb128 0xe
+ 858 0009 1B       		.uleb128 0x1b
+ 859 000a 0E       		.uleb128 0xe
+ 860 000b 55       		.uleb128 0x55
+ 861 000c 17       		.uleb128 0x17
+ 862 000d 11       		.uleb128 0x11
+ 863 000e 01       		.uleb128 0x1
+ 864 000f 10       		.uleb128 0x10
+ 865 0010 17       		.uleb128 0x17
+ 866 0011 00       		.byte	0
+ 867 0012 00       		.byte	0
+ 868 0013 02       		.uleb128 0x2
+ 869 0014 24       		.uleb128 0x24
+ 870 0015 00       		.byte	0
+ 871 0016 0B       		.uleb128 0xb
+ 872 0017 0B       		.uleb128 0xb
+ 873 0018 3E       		.uleb128 0x3e
+ 874 0019 0B       		.uleb128 0xb
+ 875 001a 03       		.uleb128 0x3
+ 876 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 32
+
+
+ 877 001c 00       		.byte	0
+ 878 001d 00       		.byte	0
+ 879 001e 03       		.uleb128 0x3
+ 880 001f 24       		.uleb128 0x24
+ 881 0020 00       		.byte	0
+ 882 0021 0B       		.uleb128 0xb
+ 883 0022 0B       		.uleb128 0xb
+ 884 0023 3E       		.uleb128 0x3e
+ 885 0024 0B       		.uleb128 0xb
+ 886 0025 03       		.uleb128 0x3
+ 887 0026 08       		.uleb128 0x8
+ 888 0027 00       		.byte	0
+ 889 0028 00       		.byte	0
+ 890 0029 04       		.uleb128 0x4
+ 891 002a 16       		.uleb128 0x16
+ 892 002b 00       		.byte	0
+ 893 002c 03       		.uleb128 0x3
+ 894 002d 0E       		.uleb128 0xe
+ 895 002e 3A       		.uleb128 0x3a
+ 896 002f 0B       		.uleb128 0xb
+ 897 0030 3B       		.uleb128 0x3b
+ 898 0031 0B       		.uleb128 0xb
+ 899 0032 49       		.uleb128 0x49
+ 900 0033 13       		.uleb128 0x13
+ 901 0034 00       		.byte	0
+ 902 0035 00       		.byte	0
+ 903 0036 05       		.uleb128 0x5
+ 904 0037 16       		.uleb128 0x16
+ 905 0038 00       		.byte	0
+ 906 0039 03       		.uleb128 0x3
+ 907 003a 0E       		.uleb128 0xe
+ 908 003b 3A       		.uleb128 0x3a
+ 909 003c 0B       		.uleb128 0xb
+ 910 003d 3B       		.uleb128 0x3b
+ 911 003e 05       		.uleb128 0x5
+ 912 003f 49       		.uleb128 0x49
+ 913 0040 13       		.uleb128 0x13
+ 914 0041 00       		.byte	0
+ 915 0042 00       		.byte	0
+ 916 0043 06       		.uleb128 0x6
+ 917 0044 35       		.uleb128 0x35
+ 918 0045 00       		.byte	0
+ 919 0046 49       		.uleb128 0x49
+ 920 0047 13       		.uleb128 0x13
+ 921 0048 00       		.byte	0
+ 922 0049 00       		.byte	0
+ 923 004a 07       		.uleb128 0x7
+ 924 004b 2E       		.uleb128 0x2e
+ 925 004c 00       		.byte	0
+ 926 004d 3F       		.uleb128 0x3f
+ 927 004e 19       		.uleb128 0x19
+ 928 004f 03       		.uleb128 0x3
+ 929 0050 0E       		.uleb128 0xe
+ 930 0051 3A       		.uleb128 0x3a
+ 931 0052 0B       		.uleb128 0xb
+ 932 0053 3B       		.uleb128 0x3b
+ 933 0054 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 33
+
+
+ 934 0055 27       		.uleb128 0x27
+ 935 0056 19       		.uleb128 0x19
+ 936 0057 11       		.uleb128 0x11
+ 937 0058 01       		.uleb128 0x1
+ 938 0059 12       		.uleb128 0x12
+ 939 005a 06       		.uleb128 0x6
+ 940 005b 40       		.uleb128 0x40
+ 941 005c 18       		.uleb128 0x18
+ 942 005d 9642     		.uleb128 0x2116
+ 943 005f 19       		.uleb128 0x19
+ 944 0060 00       		.byte	0
+ 945 0061 00       		.byte	0
+ 946 0062 08       		.uleb128 0x8
+ 947 0063 2E       		.uleb128 0x2e
+ 948 0064 01       		.byte	0x1
+ 949 0065 3F       		.uleb128 0x3f
+ 950 0066 19       		.uleb128 0x19
+ 951 0067 03       		.uleb128 0x3
+ 952 0068 0E       		.uleb128 0xe
+ 953 0069 3A       		.uleb128 0x3a
+ 954 006a 0B       		.uleb128 0xb
+ 955 006b 3B       		.uleb128 0x3b
+ 956 006c 0B       		.uleb128 0xb
+ 957 006d 27       		.uleb128 0x27
+ 958 006e 19       		.uleb128 0x19
+ 959 006f 11       		.uleb128 0x11
+ 960 0070 01       		.uleb128 0x1
+ 961 0071 12       		.uleb128 0x12
+ 962 0072 06       		.uleb128 0x6
+ 963 0073 40       		.uleb128 0x40
+ 964 0074 18       		.uleb128 0x18
+ 965 0075 9642     		.uleb128 0x2116
+ 966 0077 19       		.uleb128 0x19
+ 967 0078 01       		.uleb128 0x1
+ 968 0079 13       		.uleb128 0x13
+ 969 007a 00       		.byte	0
+ 970 007b 00       		.byte	0
+ 971 007c 09       		.uleb128 0x9
+ 972 007d 34       		.uleb128 0x34
+ 973 007e 00       		.byte	0
+ 974 007f 03       		.uleb128 0x3
+ 975 0080 0E       		.uleb128 0xe
+ 976 0081 3A       		.uleb128 0x3a
+ 977 0082 0B       		.uleb128 0xb
+ 978 0083 3B       		.uleb128 0x3b
+ 979 0084 0B       		.uleb128 0xb
+ 980 0085 49       		.uleb128 0x49
+ 981 0086 13       		.uleb128 0x13
+ 982 0087 02       		.uleb128 0x2
+ 983 0088 18       		.uleb128 0x18
+ 984 0089 00       		.byte	0
+ 985 008a 00       		.byte	0
+ 986 008b 0A       		.uleb128 0xa
+ 987 008c 2E       		.uleb128 0x2e
+ 988 008d 00       		.byte	0
+ 989 008e 3F       		.uleb128 0x3f
+ 990 008f 19       		.uleb128 0x19
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 34
+
+
+ 991 0090 03       		.uleb128 0x3
+ 992 0091 0E       		.uleb128 0xe
+ 993 0092 3A       		.uleb128 0x3a
+ 994 0093 0B       		.uleb128 0xb
+ 995 0094 3B       		.uleb128 0x3b
+ 996 0095 0B       		.uleb128 0xb
+ 997 0096 27       		.uleb128 0x27
+ 998 0097 19       		.uleb128 0x19
+ 999 0098 11       		.uleb128 0x11
+ 1000 0099 01       		.uleb128 0x1
+ 1001 009a 12       		.uleb128 0x12
+ 1002 009b 06       		.uleb128 0x6
+ 1003 009c 40       		.uleb128 0x40
+ 1004 009d 18       		.uleb128 0x18
+ 1005 009e 9742     		.uleb128 0x2117
+ 1006 00a0 19       		.uleb128 0x19
+ 1007 00a1 00       		.byte	0
+ 1008 00a2 00       		.byte	0
+ 1009 00a3 0B       		.uleb128 0xb
+ 1010 00a4 2E       		.uleb128 0x2e
+ 1011 00a5 01       		.byte	0x1
+ 1012 00a6 3F       		.uleb128 0x3f
+ 1013 00a7 19       		.uleb128 0x19
+ 1014 00a8 03       		.uleb128 0x3
+ 1015 00a9 0E       		.uleb128 0xe
+ 1016 00aa 3A       		.uleb128 0x3a
+ 1017 00ab 0B       		.uleb128 0xb
+ 1018 00ac 3B       		.uleb128 0x3b
+ 1019 00ad 05       		.uleb128 0x5
+ 1020 00ae 27       		.uleb128 0x27
+ 1021 00af 19       		.uleb128 0x19
+ 1022 00b0 11       		.uleb128 0x11
+ 1023 00b1 01       		.uleb128 0x1
+ 1024 00b2 12       		.uleb128 0x12
+ 1025 00b3 06       		.uleb128 0x6
+ 1026 00b4 40       		.uleb128 0x40
+ 1027 00b5 18       		.uleb128 0x18
+ 1028 00b6 9742     		.uleb128 0x2117
+ 1029 00b8 19       		.uleb128 0x19
+ 1030 00b9 01       		.uleb128 0x1
+ 1031 00ba 13       		.uleb128 0x13
+ 1032 00bb 00       		.byte	0
+ 1033 00bc 00       		.byte	0
+ 1034 00bd 0C       		.uleb128 0xc
+ 1035 00be 05       		.uleb128 0x5
+ 1036 00bf 00       		.byte	0
+ 1037 00c0 03       		.uleb128 0x3
+ 1038 00c1 0E       		.uleb128 0xe
+ 1039 00c2 3A       		.uleb128 0x3a
+ 1040 00c3 0B       		.uleb128 0xb
+ 1041 00c4 3B       		.uleb128 0x3b
+ 1042 00c5 05       		.uleb128 0x5
+ 1043 00c6 49       		.uleb128 0x49
+ 1044 00c7 13       		.uleb128 0x13
+ 1045 00c8 02       		.uleb128 0x2
+ 1046 00c9 18       		.uleb128 0x18
+ 1047 00ca 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 35
+
+
+ 1048 00cb 00       		.byte	0
+ 1049 00cc 0D       		.uleb128 0xd
+ 1050 00cd 2E       		.uleb128 0x2e
+ 1051 00ce 00       		.byte	0
+ 1052 00cf 3F       		.uleb128 0x3f
+ 1053 00d0 19       		.uleb128 0x19
+ 1054 00d1 03       		.uleb128 0x3
+ 1055 00d2 0E       		.uleb128 0xe
+ 1056 00d3 3A       		.uleb128 0x3a
+ 1057 00d4 0B       		.uleb128 0xb
+ 1058 00d5 3B       		.uleb128 0x3b
+ 1059 00d6 05       		.uleb128 0x5
+ 1060 00d7 27       		.uleb128 0x27
+ 1061 00d8 19       		.uleb128 0x19
+ 1062 00d9 49       		.uleb128 0x49
+ 1063 00da 13       		.uleb128 0x13
+ 1064 00db 11       		.uleb128 0x11
+ 1065 00dc 01       		.uleb128 0x1
+ 1066 00dd 12       		.uleb128 0x12
+ 1067 00de 06       		.uleb128 0x6
+ 1068 00df 40       		.uleb128 0x40
+ 1069 00e0 18       		.uleb128 0x18
+ 1070 00e1 9742     		.uleb128 0x2117
+ 1071 00e3 19       		.uleb128 0x19
+ 1072 00e4 00       		.byte	0
+ 1073 00e5 00       		.byte	0
+ 1074 00e6 0E       		.uleb128 0xe
+ 1075 00e7 2E       		.uleb128 0x2e
+ 1076 00e8 01       		.byte	0x1
+ 1077 00e9 3F       		.uleb128 0x3f
+ 1078 00ea 19       		.uleb128 0x19
+ 1079 00eb 03       		.uleb128 0x3
+ 1080 00ec 0E       		.uleb128 0xe
+ 1081 00ed 3A       		.uleb128 0x3a
+ 1082 00ee 0B       		.uleb128 0xb
+ 1083 00ef 3B       		.uleb128 0x3b
+ 1084 00f0 05       		.uleb128 0x5
+ 1085 00f1 27       		.uleb128 0x27
+ 1086 00f2 19       		.uleb128 0x19
+ 1087 00f3 49       		.uleb128 0x49
+ 1088 00f4 13       		.uleb128 0x13
+ 1089 00f5 11       		.uleb128 0x11
+ 1090 00f6 01       		.uleb128 0x1
+ 1091 00f7 12       		.uleb128 0x12
+ 1092 00f8 06       		.uleb128 0x6
+ 1093 00f9 40       		.uleb128 0x40
+ 1094 00fa 18       		.uleb128 0x18
+ 1095 00fb 9742     		.uleb128 0x2117
+ 1096 00fd 19       		.uleb128 0x19
+ 1097 00fe 01       		.uleb128 0x1
+ 1098 00ff 13       		.uleb128 0x13
+ 1099 0100 00       		.byte	0
+ 1100 0101 00       		.byte	0
+ 1101 0102 0F       		.uleb128 0xf
+ 1102 0103 34       		.uleb128 0x34
+ 1103 0104 00       		.byte	0
+ 1104 0105 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 36
+
+
+ 1105 0106 0E       		.uleb128 0xe
+ 1106 0107 3A       		.uleb128 0x3a
+ 1107 0108 0B       		.uleb128 0xb
+ 1108 0109 3B       		.uleb128 0x3b
+ 1109 010a 05       		.uleb128 0x5
+ 1110 010b 49       		.uleb128 0x49
+ 1111 010c 13       		.uleb128 0x13
+ 1112 010d 02       		.uleb128 0x2
+ 1113 010e 18       		.uleb128 0x18
+ 1114 010f 00       		.byte	0
+ 1115 0110 00       		.byte	0
+ 1116 0111 10       		.uleb128 0x10
+ 1117 0112 34       		.uleb128 0x34
+ 1118 0113 00       		.byte	0
+ 1119 0114 03       		.uleb128 0x3
+ 1120 0115 0E       		.uleb128 0xe
+ 1121 0116 3A       		.uleb128 0x3a
+ 1122 0117 0B       		.uleb128 0xb
+ 1123 0118 3B       		.uleb128 0x3b
+ 1124 0119 0B       		.uleb128 0xb
+ 1125 011a 49       		.uleb128 0x49
+ 1126 011b 13       		.uleb128 0x13
+ 1127 011c 3F       		.uleb128 0x3f
+ 1128 011d 19       		.uleb128 0x19
+ 1129 011e 02       		.uleb128 0x2
+ 1130 011f 18       		.uleb128 0x18
+ 1131 0120 00       		.byte	0
+ 1132 0121 00       		.byte	0
+ 1133 0122 00       		.byte	0
+ 1134              		.section	.debug_aranges,"",%progbits
+ 1135 0000 7C000000 		.4byte	0x7c
+ 1136 0004 0200     		.2byte	0x2
+ 1137 0006 00000000 		.4byte	.Ldebug_info0
+ 1138 000a 04       		.byte	0x4
+ 1139 000b 00       		.byte	0
+ 1140 000c 0000     		.2byte	0
+ 1141 000e 0000     		.2byte	0
+ 1142 0010 00000000 		.4byte	.LFB0
+ 1143 0014 20000000 		.4byte	.LFE0-.LFB0
+ 1144 0018 00000000 		.4byte	.LFB1
+ 1145 001c 50000000 		.4byte	.LFE1-.LFB1
+ 1146 0020 00000000 		.4byte	.LFB2
+ 1147 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1148 0028 00000000 		.4byte	.LFB3
+ 1149 002c 20000000 		.4byte	.LFE3-.LFB3
+ 1150 0030 00000000 		.4byte	.LFB4
+ 1151 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1152 0038 00000000 		.4byte	.LFB5
+ 1153 003c 20000000 		.4byte	.LFE5-.LFB5
+ 1154 0040 00000000 		.4byte	.LFB6
+ 1155 0044 20000000 		.4byte	.LFE6-.LFB6
+ 1156 0048 00000000 		.4byte	.LFB7
+ 1157 004c 20000000 		.4byte	.LFE7-.LFB7
+ 1158 0050 00000000 		.4byte	.LFB8
+ 1159 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1160 0058 00000000 		.4byte	.LFB9
+ 1161 005c 20000000 		.4byte	.LFE9-.LFB9
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 37
+
+
+ 1162 0060 00000000 		.4byte	.LFB10
+ 1163 0064 18000000 		.4byte	.LFE10-.LFB10
+ 1164 0068 00000000 		.4byte	.LFB11
+ 1165 006c 18000000 		.4byte	.LFE11-.LFB11
+ 1166 0070 00000000 		.4byte	.LFB12
+ 1167 0074 18000000 		.4byte	.LFE12-.LFB12
+ 1168 0078 00000000 		.4byte	0
+ 1169 007c 00000000 		.4byte	0
+ 1170              		.section	.debug_ranges,"",%progbits
+ 1171              	.Ldebug_ranges0:
+ 1172 0000 00000000 		.4byte	.LFB0
+ 1173 0004 20000000 		.4byte	.LFE0
+ 1174 0008 00000000 		.4byte	.LFB1
+ 1175 000c 50000000 		.4byte	.LFE1
+ 1176 0010 00000000 		.4byte	.LFB2
+ 1177 0014 20000000 		.4byte	.LFE2
+ 1178 0018 00000000 		.4byte	.LFB3
+ 1179 001c 20000000 		.4byte	.LFE3
+ 1180 0020 00000000 		.4byte	.LFB4
+ 1181 0024 20000000 		.4byte	.LFE4
+ 1182 0028 00000000 		.4byte	.LFB5
+ 1183 002c 20000000 		.4byte	.LFE5
+ 1184 0030 00000000 		.4byte	.LFB6
+ 1185 0034 20000000 		.4byte	.LFE6
+ 1186 0038 00000000 		.4byte	.LFB7
+ 1187 003c 20000000 		.4byte	.LFE7
+ 1188 0040 00000000 		.4byte	.LFB8
+ 1189 0044 20000000 		.4byte	.LFE8
+ 1190 0048 00000000 		.4byte	.LFB9
+ 1191 004c 20000000 		.4byte	.LFE9
+ 1192 0050 00000000 		.4byte	.LFB10
+ 1193 0054 18000000 		.4byte	.LFE10
+ 1194 0058 00000000 		.4byte	.LFB11
+ 1195 005c 18000000 		.4byte	.LFE11
+ 1196 0060 00000000 		.4byte	.LFB12
+ 1197 0064 18000000 		.4byte	.LFE12
+ 1198 0068 00000000 		.4byte	0
+ 1199 006c 00000000 		.4byte	0
+ 1200              		.section	.debug_line,"",%progbits
+ 1201              	.Ldebug_line0:
+ 1202 0000 45010000 		.section	.debug_str,"MS",%progbits,1
+ 1202      02004400 
+ 1202      00000201 
+ 1202      FB0E0D00 
+ 1202      01010101 
+ 1203              	.LASF18:
+ 1204 0000 50574D5F 		.ascii	"PWM_Fan_Init\000"
+ 1204      46616E5F 
+ 1204      496E6974 
+ 1204      00
+ 1205              	.LASF26:
+ 1206 000d 72657375 		.ascii	"result\000"
+ 1206      6C7400
+ 1207              	.LASF23:
+ 1208 0014 50574D5F 		.ascii	"PWM_Fan_WriteCompare\000"
+ 1208      46616E5F 
+ 1208      57726974 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 38
+
+
+ 1208      65436F6D 
+ 1208      70617265 
+ 1209              	.LASF22:
+ 1210 0029 70657269 		.ascii	"period\000"
+ 1210      6F6400
+ 1211              	.LASF16:
+ 1212 0030 50574D5F 		.ascii	"PWM_Fan_Enable\000"
+ 1212      46616E5F 
+ 1212      456E6162 
+ 1212      6C6500
+ 1213              	.LASF20:
+ 1214 003f 50574D5F 		.ascii	"PWM_Fan_WritePeriod\000"
+ 1214      46616E5F 
+ 1214      57726974 
+ 1214      65506572 
+ 1214      696F6400 
+ 1215              	.LASF33:
+ 1216 0053 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1216      4320342E 
+ 1216      392E3320 
+ 1216      32303135 
+ 1216      30333033 
+ 1217 0086 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1217      20726576 
+ 1217      6973696F 
+ 1217      6E203232 
+ 1217      31323230 
+ 1218 00b9 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1218      66756E63 
+ 1218      74696F6E 
+ 1218      2D736563 
+ 1218      74696F6E 
+ 1219              	.LASF32:
+ 1220 00e1 50574D5F 		.ascii	"PWM_Fan_ReadPeriod\000"
+ 1220      46616E5F 
+ 1220      52656164 
+ 1220      50657269 
+ 1220      6F6400
+ 1221              	.LASF9:
+ 1222 00f4 666C6F61 		.ascii	"float\000"
+ 1222      7400
+ 1223              	.LASF21:
+ 1224 00fa 636F756E 		.ascii	"counter\000"
+ 1224      74657200 
+ 1225              	.LASF1:
+ 1226 0102 756E7369 		.ascii	"unsigned char\000"
+ 1226      676E6564 
+ 1226      20636861 
+ 1226      7200
+ 1227              	.LASF19:
+ 1228 0110 50574D5F 		.ascii	"PWM_Fan_WriteCounter\000"
+ 1228      46616E5F 
+ 1228      57726974 
+ 1228      65436F75 
+ 1228      6E746572 
+ 1229              	.LASF5:
+ 1230 0125 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 39
+
+
+ 1230      20756E73 
+ 1230      69676E65 
+ 1230      6420696E 
+ 1230      7400
+ 1231              	.LASF12:
+ 1232 0137 75696E74 		.ascii	"uint8\000"
+ 1232      3800
+ 1233              	.LASF28:
+ 1234 013d 636F6E74 		.ascii	"control\000"
+ 1234      726F6C00 
+ 1235              	.LASF37:
+ 1236 0145 50574D5F 		.ascii	"PWM_Fan_initVar\000"
+ 1236      46616E5F 
+ 1236      696E6974 
+ 1236      56617200 
+ 1237              	.LASF15:
+ 1238 0155 50574D5F 		.ascii	"PWM_Fan_Start\000"
+ 1238      46616E5F 
+ 1238      53746172 
+ 1238      7400
+ 1239              	.LASF10:
+ 1240 0163 646F7562 		.ascii	"double\000"
+ 1240      6C6500
+ 1241              	.LASF17:
+ 1242 016a 50574D5F 		.ascii	"PWM_Fan_Stop\000"
+ 1242      46616E5F 
+ 1242      53746F70 
+ 1242      00
+ 1243              	.LASF35:
+ 1244 0177 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 1244      6F726B73 
+ 1244      70616365 
+ 1244      5C50536F 
+ 1244      435F4372 
+ 1245 01a6 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 1245      392E6379 
+ 1245      64736E00 
+ 1246              	.LASF36:
+ 1247 01b2 50574D5F 		.ascii	"PWM_Fan_ReadControlRegister\000"
+ 1247      46616E5F 
+ 1247      52656164 
+ 1247      436F6E74 
+ 1247      726F6C52 
+ 1248              	.LASF8:
+ 1249 01ce 756E7369 		.ascii	"unsigned int\000"
+ 1249      676E6564 
+ 1249      20696E74 
+ 1249      00
+ 1250              	.LASF7:
+ 1251 01db 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1251      206C6F6E 
+ 1251      6720756E 
+ 1251      7369676E 
+ 1251      65642069 
+ 1252              	.LASF34:
+ 1253 01f2 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_Fan.c\000"
+ 1253      72617465 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 40
+
+
+ 1253      645F536F 
+ 1253      75726365 
+ 1253      5C50536F 
+ 1254              	.LASF30:
+ 1255 0213 50574D5F 		.ascii	"PWM_Fan_ReadCapture\000"
+ 1255      46616E5F 
+ 1255      52656164 
+ 1255      43617074 
+ 1255      75726500 
+ 1256              	.LASF13:
+ 1257 0227 72656738 		.ascii	"reg8\000"
+ 1257      00
+ 1258              	.LASF14:
+ 1259 022c 73697A65 		.ascii	"sizetype\000"
+ 1259      74797065 
+ 1259      00
+ 1260              	.LASF6:
+ 1261 0235 6C6F6E67 		.ascii	"long long int\000"
+ 1261      206C6F6E 
+ 1261      6720696E 
+ 1261      7400
+ 1262              	.LASF11:
+ 1263 0243 63686172 		.ascii	"char\000"
+ 1263      00
+ 1264              	.LASF27:
+ 1265 0248 50574D5F 		.ascii	"PWM_Fan_WriteControlRegister\000"
+ 1265      46616E5F 
+ 1265      57726974 
+ 1265      65436F6E 
+ 1265      74726F6C 
+ 1266              	.LASF2:
+ 1267 0265 73686F72 		.ascii	"short int\000"
+ 1267      7420696E 
+ 1267      7400
+ 1268              	.LASF25:
+ 1269 026f 6374726C 		.ascii	"ctrl\000"
+ 1269      00
+ 1270              	.LASF29:
+ 1271 0274 50574D5F 		.ascii	"PWM_Fan_ReadCounter\000"
+ 1271      46616E5F 
+ 1271      52656164 
+ 1271      436F756E 
+ 1271      74657200 
+ 1272              	.LASF4:
+ 1273 0288 6C6F6E67 		.ascii	"long int\000"
+ 1273      20696E74 
+ 1273      00
+ 1274              	.LASF0:
+ 1275 0291 7369676E 		.ascii	"signed char\000"
+ 1275      65642063 
+ 1275      68617200 
+ 1276              	.LASF24:
+ 1277 029d 636F6D70 		.ascii	"compare\000"
+ 1277      61726500 
+ 1278              	.LASF3:
+ 1279 02a5 73686F72 		.ascii	"short unsigned int\000"
+ 1279      7420756E 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccc2JwxF.s 			page 41
+
+
+ 1279      7369676E 
+ 1279      65642069 
+ 1279      6E7400
+ 1280              	.LASF31:
+ 1281 02b8 50574D5F 		.ascii	"PWM_Fan_ReadCompare\000"
+ 1281      46616E5F 
+ 1281      52656164 
+ 1281      436F6D70 
+ 1281      61726500 
+ 1282              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

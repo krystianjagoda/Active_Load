@@ -1,0 +1,1657 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"QD.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	QD_initVar
+  19              		.bss
+  20              		.type	QD_initVar, %object
+  21              		.size	QD_initVar, 1
+  22              	QD_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.QD_Init,"ax",%progbits
+  25              		.align	2
+  26              		.global	QD_Init
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	QD_Init, %function
+  30              	QD_Init:
+  31              	.LFB0:
+  32              		.file 1 "Generated_Source\\PSoC5\\QD.c"
+   1:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/QD.c **** * File Name: QD.c  
+   3:Generated_Source\PSoC5/QD.c **** * Version 3.0
+   4:Generated_Source\PSoC5/QD.c **** *
+   5:Generated_Source\PSoC5/QD.c **** * Description:
+   6:Generated_Source\PSoC5/QD.c **** *  This file provides the source code to the API for the Quadrature Decoder
+   7:Generated_Source\PSoC5/QD.c **** *  component.
+   8:Generated_Source\PSoC5/QD.c **** *
+   9:Generated_Source\PSoC5/QD.c **** * Note:
+  10:Generated_Source\PSoC5/QD.c **** *  None.
+  11:Generated_Source\PSoC5/QD.c **** *   
+  12:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+  13:Generated_Source\PSoC5/QD.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC5/QD.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:Generated_Source\PSoC5/QD.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:Generated_Source\PSoC5/QD.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+  18:Generated_Source\PSoC5/QD.c **** 
+  19:Generated_Source\PSoC5/QD.c **** #include "QD.h"
+  20:Generated_Source\PSoC5/QD.c **** 
+  21:Generated_Source\PSoC5/QD.c **** #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+  22:Generated_Source\PSoC5/QD.c ****     #include "QD_PVT.h"
+  23:Generated_Source\PSoC5/QD.c **** #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */
+  24:Generated_Source\PSoC5/QD.c **** 
+  25:Generated_Source\PSoC5/QD.c **** uint8 QD_initVar = 0u;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 2
+
+
+  26:Generated_Source\PSoC5/QD.c **** 
+  27:Generated_Source\PSoC5/QD.c **** 
+  28:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+  29:Generated_Source\PSoC5/QD.c **** * Function Name: QD_Init
+  30:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+  31:Generated_Source\PSoC5/QD.c **** *
+  32:Generated_Source\PSoC5/QD.c **** * Summary:
+  33:Generated_Source\PSoC5/QD.c **** *  Inits/Restores default QuadDec configuration provided with customizer.
+  34:Generated_Source\PSoC5/QD.c **** *
+  35:Generated_Source\PSoC5/QD.c **** * Parameters:
+  36:Generated_Source\PSoC5/QD.c **** *  None.
+  37:Generated_Source\PSoC5/QD.c **** *
+  38:Generated_Source\PSoC5/QD.c **** * Return:
+  39:Generated_Source\PSoC5/QD.c **** *  None.
+  40:Generated_Source\PSoC5/QD.c **** *
+  41:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+  42:Generated_Source\PSoC5/QD.c **** void QD_Init(void) 
+  43:Generated_Source\PSoC5/QD.c **** {
+  33              		.loc 1 43 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37              		@ link register save eliminated.
+  38 0000 80B4     		push	{r7}
+  39              		.cfi_def_cfa_offset 4
+  40              		.cfi_offset 7, -4
+  41 0002 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
+  44:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+  45:Generated_Source\PSoC5/QD.c ****         /* Disable Interrupt. */
+  46:Generated_Source\PSoC5/QD.c ****         CyIntDisable(QD_ISR_NUMBER);
+  47:Generated_Source\PSoC5/QD.c ****         /* Set the ISR to point to the QD_isr Interrupt. */
+  48:Generated_Source\PSoC5/QD.c ****         (void) CyIntSetVector(QD_ISR_NUMBER, & QD_ISR);
+  49:Generated_Source\PSoC5/QD.c ****         /* Set the priority. */
+  50:Generated_Source\PSoC5/QD.c ****         CyIntSetPriority(QD_ISR_NUMBER, QD_ISR_PRIORITY);
+  51:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */
+  52:Generated_Source\PSoC5/QD.c **** }
+  43              		.loc 1 52 0
+  44 0004 BD46     		mov	sp, r7
+  45              		.cfi_def_cfa_register 13
+  46              		@ sp needed
+  47 0006 5DF8047B 		ldr	r7, [sp], #4
+  48              		.cfi_restore 7
+  49              		.cfi_def_cfa_offset 0
+  50 000a 7047     		bx	lr
+  51              		.cfi_endproc
+  52              	.LFE0:
+  53              		.size	QD_Init, .-QD_Init
+  54              		.section	.text.QD_Enable,"ax",%progbits
+  55              		.align	2
+  56              		.global	QD_Enable
+  57              		.thumb
+  58              		.thumb_func
+  59              		.type	QD_Enable, %function
+  60              	QD_Enable:
+  61              	.LFB1:
+  53:Generated_Source\PSoC5/QD.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 3
+
+
+  54:Generated_Source\PSoC5/QD.c **** 
+  55:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+  56:Generated_Source\PSoC5/QD.c **** * Function Name: QD_Enable
+  57:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+  58:Generated_Source\PSoC5/QD.c **** *
+  59:Generated_Source\PSoC5/QD.c **** * Summary:
+  60:Generated_Source\PSoC5/QD.c **** *  This function enable interrupts from Component and also enable Component's
+  61:Generated_Source\PSoC5/QD.c **** *  ISR in case of 32-bit counter.
+  62:Generated_Source\PSoC5/QD.c **** *
+  63:Generated_Source\PSoC5/QD.c **** * Parameters:
+  64:Generated_Source\PSoC5/QD.c **** *  None.
+  65:Generated_Source\PSoC5/QD.c **** *
+  66:Generated_Source\PSoC5/QD.c **** * Return:
+  67:Generated_Source\PSoC5/QD.c **** *  None.
+  68:Generated_Source\PSoC5/QD.c **** *
+  69:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+  70:Generated_Source\PSoC5/QD.c **** void QD_Enable(void) 
+  71:Generated_Source\PSoC5/QD.c **** {
+  62              		.loc 1 71 0
+  63              		.cfi_startproc
+  64              		@ args = 0, pretend = 0, frame = 8
+  65              		@ frame_needed = 1, uses_anonymous_args = 0
+  66 0000 80B5     		push	{r7, lr}
+  67              		.cfi_def_cfa_offset 8
+  68              		.cfi_offset 7, -8
+  69              		.cfi_offset 14, -4
+  70 0002 82B0     		sub	sp, sp, #8
+  71              		.cfi_def_cfa_offset 16
+  72 0004 00AF     		add	r7, sp, #0
+  73              		.cfi_def_cfa_register 7
+  72:Generated_Source\PSoC5/QD.c ****     uint8 enableInterrupts;
+  73:Generated_Source\PSoC5/QD.c **** 
+  74:Generated_Source\PSoC5/QD.c ****     QD_SetInterruptMask(QD_INIT_INT_MASK);
+  74              		.loc 1 74 0
+  75 0006 0F20     		movs	r0, #15
+  76 0008 FFF7FEFF 		bl	QD_SetInterruptMask
+  75:Generated_Source\PSoC5/QD.c **** 
+  76:Generated_Source\PSoC5/QD.c ****     /* Clear pending interrupts. */
+  77:Generated_Source\PSoC5/QD.c ****     (void) QD_GetEvents();
+  77              		.loc 1 77 0
+  78 000c FFF7FEFF 		bl	QD_GetEvents
+  78:Generated_Source\PSoC5/QD.c ****     
+  79:Generated_Source\PSoC5/QD.c ****     enableInterrupts = CyEnterCriticalSection();
+  79              		.loc 1 79 0
+  80 0010 FFF7FEFF 		bl	CyEnterCriticalSection
+  81 0014 0346     		mov	r3, r0
+  82 0016 FB71     		strb	r3, [r7, #7]
+  80:Generated_Source\PSoC5/QD.c **** 
+  81:Generated_Source\PSoC5/QD.c ****     /* Enable interrupts from Statusi register */
+  82:Generated_Source\PSoC5/QD.c ****     QD_SR_AUX_CONTROL |= QD_INTERRUPTS_ENABLE;
+  83              		.loc 1 82 0
+  84 0018 074A     		ldr	r2, .L3
+  85 001a 074B     		ldr	r3, .L3
+  86 001c 1B78     		ldrb	r3, [r3]
+  87 001e DBB2     		uxtb	r3, r3
+  88 0020 43F01003 		orr	r3, r3, #16
+  89 0024 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 4
+
+
+  90 0026 1370     		strb	r3, [r2]
+  83:Generated_Source\PSoC5/QD.c **** 
+  84:Generated_Source\PSoC5/QD.c ****     CyExitCriticalSection(enableInterrupts);        
+  91              		.loc 1 84 0
+  92 0028 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  93 002a 1846     		mov	r0, r3
+  94 002c FFF7FEFF 		bl	CyExitCriticalSection
+  85:Generated_Source\PSoC5/QD.c **** 
+  86:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+  87:Generated_Source\PSoC5/QD.c ****         /* Enable Component interrupts */
+  88:Generated_Source\PSoC5/QD.c ****         CyIntEnable(QD_ISR_NUMBER);
+  89:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */
+  90:Generated_Source\PSoC5/QD.c **** }
+  95              		.loc 1 90 0
+  96 0030 0837     		adds	r7, r7, #8
+  97              		.cfi_def_cfa_offset 8
+  98 0032 BD46     		mov	sp, r7
+  99              		.cfi_def_cfa_register 13
+ 100              		@ sp needed
+ 101 0034 80BD     		pop	{r7, pc}
+ 102              	.L4:
+ 103 0036 00BF     		.align	2
+ 104              	.L3:
+ 105 0038 9C640040 		.word	1073767580
+ 106              		.cfi_endproc
+ 107              	.LFE1:
+ 108              		.size	QD_Enable, .-QD_Enable
+ 109              		.section	.text.QD_Start,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	QD_Start
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	QD_Start, %function
+ 115              	QD_Start:
+ 116              	.LFB2:
+  91:Generated_Source\PSoC5/QD.c **** 
+  92:Generated_Source\PSoC5/QD.c **** 
+  93:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+  94:Generated_Source\PSoC5/QD.c **** * Function Name: QD_Start
+  95:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+  96:Generated_Source\PSoC5/QD.c **** *
+  97:Generated_Source\PSoC5/QD.c **** * Summary:
+  98:Generated_Source\PSoC5/QD.c **** *  Initializes UDBs and other relevant hardware.
+  99:Generated_Source\PSoC5/QD.c **** *  Resets counter, enables or disables all relevant interrupts.
+ 100:Generated_Source\PSoC5/QD.c **** *  Starts monitoring the inputs and counting.
+ 101:Generated_Source\PSoC5/QD.c **** *
+ 102:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 103:Generated_Source\PSoC5/QD.c **** *  None.
+ 104:Generated_Source\PSoC5/QD.c **** *
+ 105:Generated_Source\PSoC5/QD.c **** * Return:
+ 106:Generated_Source\PSoC5/QD.c **** *  None.
+ 107:Generated_Source\PSoC5/QD.c **** *
+ 108:Generated_Source\PSoC5/QD.c **** * Global variables:
+ 109:Generated_Source\PSoC5/QD.c **** *  QD_initVar - used to check initial configuration, modified on
+ 110:Generated_Source\PSoC5/QD.c **** *  first function call.
+ 111:Generated_Source\PSoC5/QD.c **** *
+ 112:Generated_Source\PSoC5/QD.c **** * Reentrant:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 5
+
+
+ 113:Generated_Source\PSoC5/QD.c **** *  No.
+ 114:Generated_Source\PSoC5/QD.c **** *
+ 115:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 116:Generated_Source\PSoC5/QD.c **** void QD_Start(void) 
+ 117:Generated_Source\PSoC5/QD.c **** {
+ 117              		.loc 1 117 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 0
+ 120              		@ frame_needed = 1, uses_anonymous_args = 0
+ 121 0000 80B5     		push	{r7, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 7, -8
+ 124              		.cfi_offset 14, -4
+ 125 0002 00AF     		add	r7, sp, #0
+ 126              		.cfi_def_cfa_register 7
+ 118:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+ 119:Generated_Source\PSoC5/QD.c ****         QD_Cnt8_Start();
+ 120:Generated_Source\PSoC5/QD.c ****         QD_Cnt8_WriteCounter(QD_COUNTER_INIT_VALUE);
+ 121:Generated_Source\PSoC5/QD.c ****     #else
+ 122:Generated_Source\PSoC5/QD.c ****         /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) || 
+ 123:Generated_Source\PSoC5/QD.c ****         *  (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT) 
+ 124:Generated_Source\PSoC5/QD.c ****         */
+ 125:Generated_Source\PSoC5/QD.c ****         QD_Cnt16_Start();
+ 127              		.loc 1 125 0
+ 128 0004 FFF7FEFF 		bl	QD_Cnt16_Start
+ 126:Generated_Source\PSoC5/QD.c ****         QD_Cnt16_WriteCounter(QD_COUNTER_INIT_VALUE);
+ 129              		.loc 1 126 0
+ 130 0008 4FF40040 		mov	r0, #32768
+ 131 000c FFF7FEFF 		bl	QD_Cnt16_WriteCounter
+ 127:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT */
+ 128:Generated_Source\PSoC5/QD.c ****     
+ 129:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)        
+ 130:Generated_Source\PSoC5/QD.c ****        QD_count32SoftPart = 0;
+ 131:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */
+ 132:Generated_Source\PSoC5/QD.c **** 
+ 133:Generated_Source\PSoC5/QD.c ****     if (QD_initVar == 0u)
+ 132              		.loc 1 133 0
+ 133 0010 054B     		ldr	r3, .L7
+ 134 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 135 0014 002B     		cmp	r3, #0
+ 136 0016 04D1     		bne	.L6
+ 134:Generated_Source\PSoC5/QD.c ****     {
+ 135:Generated_Source\PSoC5/QD.c ****         QD_Init();
+ 137              		.loc 1 135 0
+ 138 0018 FFF7FEFF 		bl	QD_Init
+ 136:Generated_Source\PSoC5/QD.c ****         QD_initVar = 1u;
+ 139              		.loc 1 136 0
+ 140 001c 024B     		ldr	r3, .L7
+ 141 001e 0122     		movs	r2, #1
+ 142 0020 1A70     		strb	r2, [r3]
+ 143              	.L6:
+ 137:Generated_Source\PSoC5/QD.c ****     }
+ 138:Generated_Source\PSoC5/QD.c **** 
+ 139:Generated_Source\PSoC5/QD.c ****     QD_Enable();
+ 144              		.loc 1 139 0
+ 145 0022 FFF7FEFF 		bl	QD_Enable
+ 140:Generated_Source\PSoC5/QD.c **** }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 6
+
+
+ 146              		.loc 1 140 0
+ 147 0026 80BD     		pop	{r7, pc}
+ 148              	.L8:
+ 149              		.align	2
+ 150              	.L7:
+ 151 0028 00000000 		.word	QD_initVar
+ 152              		.cfi_endproc
+ 153              	.LFE2:
+ 154              		.size	QD_Start, .-QD_Start
+ 155              		.section	.text.QD_Stop,"ax",%progbits
+ 156              		.align	2
+ 157              		.global	QD_Stop
+ 158              		.thumb
+ 159              		.thumb_func
+ 160              		.type	QD_Stop, %function
+ 161              	QD_Stop:
+ 162              	.LFB3:
+ 141:Generated_Source\PSoC5/QD.c **** 
+ 142:Generated_Source\PSoC5/QD.c **** 
+ 143:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+ 144:Generated_Source\PSoC5/QD.c **** * Function Name: QD_Stop
+ 145:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+ 146:Generated_Source\PSoC5/QD.c **** *
+ 147:Generated_Source\PSoC5/QD.c **** * Summary:
+ 148:Generated_Source\PSoC5/QD.c **** *  Turns off UDBs and other relevant hardware.
+ 149:Generated_Source\PSoC5/QD.c **** *
+ 150:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 151:Generated_Source\PSoC5/QD.c **** *  None.
+ 152:Generated_Source\PSoC5/QD.c **** *
+ 153:Generated_Source\PSoC5/QD.c **** * Return:
+ 154:Generated_Source\PSoC5/QD.c **** *  None.
+ 155:Generated_Source\PSoC5/QD.c **** *
+ 156:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 157:Generated_Source\PSoC5/QD.c **** void QD_Stop(void) 
+ 158:Generated_Source\PSoC5/QD.c **** {
+ 163              		.loc 1 158 0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 8
+ 166              		@ frame_needed = 1, uses_anonymous_args = 0
+ 167 0000 80B5     		push	{r7, lr}
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 7, -8
+ 170              		.cfi_offset 14, -4
+ 171 0002 82B0     		sub	sp, sp, #8
+ 172              		.cfi_def_cfa_offset 16
+ 173 0004 00AF     		add	r7, sp, #0
+ 174              		.cfi_def_cfa_register 7
+ 159:Generated_Source\PSoC5/QD.c ****     uint8 enableInterrupts;
+ 160:Generated_Source\PSoC5/QD.c **** 
+ 161:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+ 162:Generated_Source\PSoC5/QD.c ****         QD_Cnt8_Stop();
+ 163:Generated_Source\PSoC5/QD.c ****     #else 
+ 164:Generated_Source\PSoC5/QD.c ****         /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) ||
+ 165:Generated_Source\PSoC5/QD.c ****         *  (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+ 166:Generated_Source\PSoC5/QD.c ****         */
+ 167:Generated_Source\PSoC5/QD.c ****         QD_Cnt16_Stop();    /* counter disable */
+ 175              		.loc 1 167 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 7
+
+
+ 176 0006 FFF7FEFF 		bl	QD_Cnt16_Stop
+ 168:Generated_Source\PSoC5/QD.c ****     #endif /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) */
+ 169:Generated_Source\PSoC5/QD.c ****  
+ 170:Generated_Source\PSoC5/QD.c ****     enableInterrupts = CyEnterCriticalSection();
+ 177              		.loc 1 170 0
+ 178 000a FFF7FEFF 		bl	CyEnterCriticalSection
+ 179 000e 0346     		mov	r3, r0
+ 180 0010 FB71     		strb	r3, [r7, #7]
+ 171:Generated_Source\PSoC5/QD.c **** 
+ 172:Generated_Source\PSoC5/QD.c ****     /* Disable interrupts interrupts from Statusi register */
+ 173:Generated_Source\PSoC5/QD.c ****     QD_SR_AUX_CONTROL &= (uint8) (~QD_INTERRUPTS_ENABLE);
+ 181              		.loc 1 173 0
+ 182 0012 074A     		ldr	r2, .L10
+ 183 0014 064B     		ldr	r3, .L10
+ 184 0016 1B78     		ldrb	r3, [r3]
+ 185 0018 DBB2     		uxtb	r3, r3
+ 186 001a 23F01003 		bic	r3, r3, #16
+ 187 001e DBB2     		uxtb	r3, r3
+ 188 0020 1370     		strb	r3, [r2]
+ 174:Generated_Source\PSoC5/QD.c **** 
+ 175:Generated_Source\PSoC5/QD.c ****     CyExitCriticalSection(enableInterrupts);
+ 189              		.loc 1 175 0
+ 190 0022 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 191 0024 1846     		mov	r0, r3
+ 192 0026 FFF7FEFF 		bl	CyExitCriticalSection
+ 176:Generated_Source\PSoC5/QD.c **** 
+ 177:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+ 178:Generated_Source\PSoC5/QD.c ****         CyIntDisable(QD_ISR_NUMBER);    /* interrupt disable */
+ 179:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */
+ 180:Generated_Source\PSoC5/QD.c **** }
+ 193              		.loc 1 180 0
+ 194 002a 0837     		adds	r7, r7, #8
+ 195              		.cfi_def_cfa_offset 8
+ 196 002c BD46     		mov	sp, r7
+ 197              		.cfi_def_cfa_register 13
+ 198              		@ sp needed
+ 199 002e 80BD     		pop	{r7, pc}
+ 200              	.L11:
+ 201              		.align	2
+ 202              	.L10:
+ 203 0030 9C640040 		.word	1073767580
+ 204              		.cfi_endproc
+ 205              	.LFE3:
+ 206              		.size	QD_Stop, .-QD_Stop
+ 207              		.section	.text.QD_GetCounter,"ax",%progbits
+ 208              		.align	2
+ 209              		.global	QD_GetCounter
+ 210              		.thumb
+ 211              		.thumb_func
+ 212              		.type	QD_GetCounter, %function
+ 213              	QD_GetCounter:
+ 214              	.LFB4:
+ 181:Generated_Source\PSoC5/QD.c **** 
+ 182:Generated_Source\PSoC5/QD.c **** 
+ 183:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+ 184:Generated_Source\PSoC5/QD.c **** * Function Name: QD_GetCounter
+ 185:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 8
+
+
+ 186:Generated_Source\PSoC5/QD.c **** *
+ 187:Generated_Source\PSoC5/QD.c **** * Summary:
+ 188:Generated_Source\PSoC5/QD.c **** *  Reports the current value of the counter.
+ 189:Generated_Source\PSoC5/QD.c **** *
+ 190:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 191:Generated_Source\PSoC5/QD.c **** *  None.
+ 192:Generated_Source\PSoC5/QD.c **** *
+ 193:Generated_Source\PSoC5/QD.c **** * Return:
+ 194:Generated_Source\PSoC5/QD.c **** *  The counter value. Return type is signed and per the counter size setting.
+ 195:Generated_Source\PSoC5/QD.c **** *  A positive value indicates clockwise movement (B before A).
+ 196:Generated_Source\PSoC5/QD.c **** *
+ 197:Generated_Source\PSoC5/QD.c **** * Global variables:
+ 198:Generated_Source\PSoC5/QD.c **** *  QD_count32SoftPart - used to get hi 16 bit for current value
+ 199:Generated_Source\PSoC5/QD.c **** *  of the 32-bit counter, when Counter size equal 32-bit.
+ 200:Generated_Source\PSoC5/QD.c **** *
+ 201:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 202:Generated_Source\PSoC5/QD.c **** int16 QD_GetCounter(void) 
+ 203:Generated_Source\PSoC5/QD.c **** {
+ 215              		.loc 1 203 0
+ 216              		.cfi_startproc
+ 217              		@ args = 0, pretend = 0, frame = 8
+ 218              		@ frame_needed = 1, uses_anonymous_args = 0
+ 219 0000 80B5     		push	{r7, lr}
+ 220              		.cfi_def_cfa_offset 8
+ 221              		.cfi_offset 7, -8
+ 222              		.cfi_offset 14, -4
+ 223 0002 82B0     		sub	sp, sp, #8
+ 224              		.cfi_def_cfa_offset 16
+ 225 0004 00AF     		add	r7, sp, #0
+ 226              		.cfi_def_cfa_register 7
+ 204:Generated_Source\PSoC5/QD.c ****     int16 count;
+ 205:Generated_Source\PSoC5/QD.c ****     uint16 tmpCnt;
+ 206:Generated_Source\PSoC5/QD.c **** 
+ 207:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+ 208:Generated_Source\PSoC5/QD.c ****         int16 hwCount;
+ 209:Generated_Source\PSoC5/QD.c **** 
+ 210:Generated_Source\PSoC5/QD.c ****         CyIntDisable(QD_ISR_NUMBER);
+ 211:Generated_Source\PSoC5/QD.c **** 
+ 212:Generated_Source\PSoC5/QD.c ****         tmpCnt = QD_Cnt16_ReadCounter();
+ 213:Generated_Source\PSoC5/QD.c ****         hwCount = (int16) ((int32) tmpCnt - (int32) QD_COUNTER_INIT_VALUE);
+ 214:Generated_Source\PSoC5/QD.c ****         count = QD_count32SoftPart + hwCount;
+ 215:Generated_Source\PSoC5/QD.c **** 
+ 216:Generated_Source\PSoC5/QD.c ****         CyIntEnable(QD_ISR_NUMBER);
+ 217:Generated_Source\PSoC5/QD.c ****     #else 
+ 218:Generated_Source\PSoC5/QD.c ****         /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) || 
+ 219:Generated_Source\PSoC5/QD.c ****         *  (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT)
+ 220:Generated_Source\PSoC5/QD.c ****         */
+ 221:Generated_Source\PSoC5/QD.c ****         #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+ 222:Generated_Source\PSoC5/QD.c ****             tmpCnt = QD_Cnt8_ReadCounter();
+ 223:Generated_Source\PSoC5/QD.c ****         #else /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) */
+ 224:Generated_Source\PSoC5/QD.c ****             tmpCnt = QD_Cnt16_ReadCounter();
+ 227              		.loc 1 224 0
+ 228 0006 FFF7FEFF 		bl	QD_Cnt16_ReadCounter
+ 229 000a 0346     		mov	r3, r0
+ 230 000c FB80     		strh	r3, [r7, #6]	@ movhi
+ 225:Generated_Source\PSoC5/QD.c ****         #endif  /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT */
+ 226:Generated_Source\PSoC5/QD.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 9
+
+
+ 227:Generated_Source\PSoC5/QD.c ****         count = (int16) ((int32) tmpCnt -
+ 231              		.loc 1 227 0
+ 232 000e FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 233 0010 A3F50043 		sub	r3, r3, #32768
+ 234 0014 9BB2     		uxth	r3, r3
+ 235 0016 BB80     		strh	r3, [r7, #4]	@ movhi
+ 228:Generated_Source\PSoC5/QD.c ****                 (int32) QD_COUNTER_INIT_VALUE);
+ 229:Generated_Source\PSoC5/QD.c **** 
+ 230:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */ 
+ 231:Generated_Source\PSoC5/QD.c **** 
+ 232:Generated_Source\PSoC5/QD.c ****     return (count);
+ 236              		.loc 1 232 0
+ 237 0018 BB88     		ldrh	r3, [r7, #4]
+ 238 001a 1BB2     		sxth	r3, r3
+ 233:Generated_Source\PSoC5/QD.c **** }
+ 239              		.loc 1 233 0
+ 240 001c 1846     		mov	r0, r3
+ 241 001e 0837     		adds	r7, r7, #8
+ 242              		.cfi_def_cfa_offset 8
+ 243 0020 BD46     		mov	sp, r7
+ 244              		.cfi_def_cfa_register 13
+ 245              		@ sp needed
+ 246 0022 80BD     		pop	{r7, pc}
+ 247              		.cfi_endproc
+ 248              	.LFE4:
+ 249              		.size	QD_GetCounter, .-QD_GetCounter
+ 250              		.section	.text.QD_SetCounter,"ax",%progbits
+ 251              		.align	2
+ 252              		.global	QD_SetCounter
+ 253              		.thumb
+ 254              		.thumb_func
+ 255              		.type	QD_SetCounter, %function
+ 256              	QD_SetCounter:
+ 257              	.LFB5:
+ 234:Generated_Source\PSoC5/QD.c **** 
+ 235:Generated_Source\PSoC5/QD.c **** 
+ 236:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+ 237:Generated_Source\PSoC5/QD.c **** * Function Name: QD_SetCounter
+ 238:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+ 239:Generated_Source\PSoC5/QD.c **** *
+ 240:Generated_Source\PSoC5/QD.c **** * Summary:
+ 241:Generated_Source\PSoC5/QD.c **** *  Sets the current value of the counter.
+ 242:Generated_Source\PSoC5/QD.c **** *
+ 243:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 244:Generated_Source\PSoC5/QD.c **** *  value:  The new value. Parameter type is signed and per the counter size
+ 245:Generated_Source\PSoC5/QD.c **** *  setting.
+ 246:Generated_Source\PSoC5/QD.c **** *
+ 247:Generated_Source\PSoC5/QD.c **** * Return:
+ 248:Generated_Source\PSoC5/QD.c **** *  None.
+ 249:Generated_Source\PSoC5/QD.c **** *
+ 250:Generated_Source\PSoC5/QD.c **** * Global variables:
+ 251:Generated_Source\PSoC5/QD.c **** *  QD_count32SoftPart - modified to set hi 16 bit for current
+ 252:Generated_Source\PSoC5/QD.c **** *  value of the 32-bit counter, when Counter size equal 32-bit.
+ 253:Generated_Source\PSoC5/QD.c **** *
+ 254:Generated_Source\PSoC5/QD.c **** * Reentrant:
+ 255:Generated_Source\PSoC5/QD.c **** *  No.
+ 256:Generated_Source\PSoC5/QD.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 10
+
+
+ 257:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 258:Generated_Source\PSoC5/QD.c **** void QD_SetCounter(int16 value) 
+ 259:Generated_Source\PSoC5/QD.c **** {
+ 258              		.loc 1 259 0
+ 259              		.cfi_startproc
+ 260              		@ args = 0, pretend = 0, frame = 16
+ 261              		@ frame_needed = 1, uses_anonymous_args = 0
+ 262 0000 80B5     		push	{r7, lr}
+ 263              		.cfi_def_cfa_offset 8
+ 264              		.cfi_offset 7, -8
+ 265              		.cfi_offset 14, -4
+ 266 0002 84B0     		sub	sp, sp, #16
+ 267              		.cfi_def_cfa_offset 24
+ 268 0004 00AF     		add	r7, sp, #0
+ 269              		.cfi_def_cfa_register 7
+ 270 0006 0346     		mov	r3, r0
+ 271 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 260:Generated_Source\PSoC5/QD.c ****     #if ((QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) || \
+ 261:Generated_Source\PSoC5/QD.c ****          (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT))
+ 262:Generated_Source\PSoC5/QD.c ****         uint16 count;
+ 263:Generated_Source\PSoC5/QD.c ****         
+ 264:Generated_Source\PSoC5/QD.c ****         if (value >= 0)
+ 272              		.loc 1 264 0
+ 273 000a B7F90630 		ldrsh	r3, [r7, #6]
+ 274 000e 002B     		cmp	r3, #0
+ 275 0010 04DB     		blt	.L15
+ 265:Generated_Source\PSoC5/QD.c ****         {
+ 266:Generated_Source\PSoC5/QD.c ****             count = (uint16) value + QD_COUNTER_INIT_VALUE;
+ 276              		.loc 1 266 0
+ 277 0012 FB88     		ldrh	r3, [r7, #6]
+ 278 0014 A3F50043 		sub	r3, r3, #32768
+ 279 0018 FB81     		strh	r3, [r7, #14]	@ movhi
+ 280 001a 03E0     		b	.L16
+ 281              	.L15:
+ 267:Generated_Source\PSoC5/QD.c ****         }
+ 268:Generated_Source\PSoC5/QD.c ****         else
+ 269:Generated_Source\PSoC5/QD.c ****         {
+ 270:Generated_Source\PSoC5/QD.c ****             count = QD_COUNTER_INIT_VALUE - (uint16)(-value);
+ 282              		.loc 1 270 0
+ 283 001c FB88     		ldrh	r3, [r7, #6]
+ 284 001e A3F50043 		sub	r3, r3, #32768
+ 285 0022 FB81     		strh	r3, [r7, #14]	@ movhi
+ 286              	.L16:
+ 271:Generated_Source\PSoC5/QD.c ****         }
+ 272:Generated_Source\PSoC5/QD.c ****         #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+ 273:Generated_Source\PSoC5/QD.c ****             QD_Cnt8_WriteCounter(count);
+ 274:Generated_Source\PSoC5/QD.c ****         #else /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) */
+ 275:Generated_Source\PSoC5/QD.c ****             QD_Cnt16_WriteCounter(count);
+ 287              		.loc 1 275 0
+ 288 0024 FB89     		ldrh	r3, [r7, #14]
+ 289 0026 1846     		mov	r0, r3
+ 290 0028 FFF7FEFF 		bl	QD_Cnt16_WriteCounter
+ 276:Generated_Source\PSoC5/QD.c ****         #endif  /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT */
+ 277:Generated_Source\PSoC5/QD.c ****     #else /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT) */
+ 278:Generated_Source\PSoC5/QD.c ****         CyIntDisable(QD_ISR_NUMBER);
+ 279:Generated_Source\PSoC5/QD.c **** 
+ 280:Generated_Source\PSoC5/QD.c ****         QD_Cnt16_WriteCounter(QD_COUNTER_INIT_VALUE);
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 11
+
+
+ 281:Generated_Source\PSoC5/QD.c ****         QD_count32SoftPart = value;
+ 282:Generated_Source\PSoC5/QD.c **** 
+ 283:Generated_Source\PSoC5/QD.c ****         CyIntEnable(QD_ISR_NUMBER);
+ 284:Generated_Source\PSoC5/QD.c ****     #endif  /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) ||
+ 285:Generated_Source\PSoC5/QD.c ****              * (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT)
+ 286:Generated_Source\PSoC5/QD.c ****              */
+ 287:Generated_Source\PSoC5/QD.c **** }
+ 291              		.loc 1 287 0
+ 292 002c 1037     		adds	r7, r7, #16
+ 293              		.cfi_def_cfa_offset 8
+ 294 002e BD46     		mov	sp, r7
+ 295              		.cfi_def_cfa_register 13
+ 296              		@ sp needed
+ 297 0030 80BD     		pop	{r7, pc}
+ 298              		.cfi_endproc
+ 299              	.LFE5:
+ 300              		.size	QD_SetCounter, .-QD_SetCounter
+ 301 0032 00BF     		.section	.text.QD_GetEvents,"ax",%progbits
+ 302              		.align	2
+ 303              		.global	QD_GetEvents
+ 304              		.thumb
+ 305              		.thumb_func
+ 306              		.type	QD_GetEvents, %function
+ 307              	QD_GetEvents:
+ 308              	.LFB6:
+ 288:Generated_Source\PSoC5/QD.c **** 
+ 289:Generated_Source\PSoC5/QD.c **** 
+ 290:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+ 291:Generated_Source\PSoC5/QD.c **** * Function Name: QD_GetEvents
+ 292:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+ 293:Generated_Source\PSoC5/QD.c **** * 
+ 294:Generated_Source\PSoC5/QD.c **** * Summary:
+ 295:Generated_Source\PSoC5/QD.c **** *   Reports the current status of events. This function clears the bits of the 
+ 296:Generated_Source\PSoC5/QD.c **** *   status register.
+ 297:Generated_Source\PSoC5/QD.c **** *
+ 298:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 299:Generated_Source\PSoC5/QD.c **** *  None.
+ 300:Generated_Source\PSoC5/QD.c **** *
+ 301:Generated_Source\PSoC5/QD.c **** * Return:
+ 302:Generated_Source\PSoC5/QD.c **** *  The events, as bits in an unsigned 8-bit value:
+ 303:Generated_Source\PSoC5/QD.c **** *    Bit      Description
+ 304:Generated_Source\PSoC5/QD.c **** *     0        Counter overflow.
+ 305:Generated_Source\PSoC5/QD.c **** *     1        Counter underflow.
+ 306:Generated_Source\PSoC5/QD.c **** *     2        Counter reset due to index, if index input is used.
+ 307:Generated_Source\PSoC5/QD.c **** *     3        Invalid A, B inputs state transition.
+ 308:Generated_Source\PSoC5/QD.c **** *
+ 309:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 310:Generated_Source\PSoC5/QD.c **** uint8 QD_GetEvents(void) 
+ 311:Generated_Source\PSoC5/QD.c **** {
+ 309              		.loc 1 311 0
+ 310              		.cfi_startproc
+ 311              		@ args = 0, pretend = 0, frame = 0
+ 312              		@ frame_needed = 1, uses_anonymous_args = 0
+ 313              		@ link register save eliminated.
+ 314 0000 80B4     		push	{r7}
+ 315              		.cfi_def_cfa_offset 4
+ 316              		.cfi_offset 7, -4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 12
+
+
+ 317 0002 00AF     		add	r7, sp, #0
+ 318              		.cfi_def_cfa_register 7
+ 312:Generated_Source\PSoC5/QD.c ****     return (QD_STATUS_REG & QD_INIT_INT_MASK);
+ 319              		.loc 1 312 0
+ 320 0004 054B     		ldr	r3, .L19
+ 321 0006 1B78     		ldrb	r3, [r3]
+ 322 0008 DBB2     		uxtb	r3, r3
+ 323 000a 03F00F03 		and	r3, r3, #15
+ 324 000e DBB2     		uxtb	r3, r3
+ 313:Generated_Source\PSoC5/QD.c **** }
+ 325              		.loc 1 313 0
+ 326 0010 1846     		mov	r0, r3
+ 327 0012 BD46     		mov	sp, r7
+ 328              		.cfi_def_cfa_register 13
+ 329              		@ sp needed
+ 330 0014 5DF8047B 		ldr	r7, [sp], #4
+ 331              		.cfi_restore 7
+ 332              		.cfi_def_cfa_offset 0
+ 333 0018 7047     		bx	lr
+ 334              	.L20:
+ 335 001a 00BF     		.align	2
+ 336              	.L19:
+ 337 001c 6C640040 		.word	1073767532
+ 338              		.cfi_endproc
+ 339              	.LFE6:
+ 340              		.size	QD_GetEvents, .-QD_GetEvents
+ 341              		.section	.text.QD_SetInterruptMask,"ax",%progbits
+ 342              		.align	2
+ 343              		.global	QD_SetInterruptMask
+ 344              		.thumb
+ 345              		.thumb_func
+ 346              		.type	QD_SetInterruptMask, %function
+ 347              	QD_SetInterruptMask:
+ 348              	.LFB7:
+ 314:Generated_Source\PSoC5/QD.c **** 
+ 315:Generated_Source\PSoC5/QD.c **** 
+ 316:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+ 317:Generated_Source\PSoC5/QD.c **** * Function Name: QD_SetInterruptMask
+ 318:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+ 319:Generated_Source\PSoC5/QD.c **** *
+ 320:Generated_Source\PSoC5/QD.c **** * Summary:
+ 321:Generated_Source\PSoC5/QD.c **** *  Enables / disables interrupts due to the events.
+ 322:Generated_Source\PSoC5/QD.c **** *  For the 32-bit counter, the overflow, underflow and reset interrupts cannot
+ 323:Generated_Source\PSoC5/QD.c **** *  be disabled, these bits are ignored.
+ 324:Generated_Source\PSoC5/QD.c **** *
+ 325:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 326:Generated_Source\PSoC5/QD.c **** *  mask: Enable / disable bits in an 8-bit value, where 1 enables the interrupt.
+ 327:Generated_Source\PSoC5/QD.c **** *
+ 328:Generated_Source\PSoC5/QD.c **** * Return:
+ 329:Generated_Source\PSoC5/QD.c **** *  None.
+ 330:Generated_Source\PSoC5/QD.c **** *
+ 331:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 332:Generated_Source\PSoC5/QD.c **** void QD_SetInterruptMask(uint8 mask) 
+ 333:Generated_Source\PSoC5/QD.c **** {
+ 349              		.loc 1 333 0
+ 350              		.cfi_startproc
+ 351              		@ args = 0, pretend = 0, frame = 8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 13
+
+
+ 352              		@ frame_needed = 1, uses_anonymous_args = 0
+ 353              		@ link register save eliminated.
+ 354 0000 80B4     		push	{r7}
+ 355              		.cfi_def_cfa_offset 4
+ 356              		.cfi_offset 7, -4
+ 357 0002 83B0     		sub	sp, sp, #12
+ 358              		.cfi_def_cfa_offset 16
+ 359 0004 00AF     		add	r7, sp, #0
+ 360              		.cfi_def_cfa_register 7
+ 361 0006 0346     		mov	r3, r0
+ 362 0008 FB71     		strb	r3, [r7, #7]
+ 334:Generated_Source\PSoC5/QD.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+ 335:Generated_Source\PSoC5/QD.c ****         /* Underflow, Overflow and Reset interrupts for 32-bit Counter are always enable */
+ 336:Generated_Source\PSoC5/QD.c ****         mask |= (QD_COUNTER_OVERFLOW | QD_COUNTER_UNDERFLOW |
+ 337:Generated_Source\PSoC5/QD.c ****                  QD_COUNTER_RESET);
+ 338:Generated_Source\PSoC5/QD.c ****     #endif /* QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT */
+ 339:Generated_Source\PSoC5/QD.c **** 
+ 340:Generated_Source\PSoC5/QD.c ****     QD_STATUS_MASK = mask;
+ 363              		.loc 1 340 0
+ 364 000a 044A     		ldr	r2, .L22
+ 365 000c FB79     		ldrb	r3, [r7, #7]
+ 366 000e 1370     		strb	r3, [r2]
+ 341:Generated_Source\PSoC5/QD.c **** }
+ 367              		.loc 1 341 0
+ 368 0010 0C37     		adds	r7, r7, #12
+ 369              		.cfi_def_cfa_offset 4
+ 370 0012 BD46     		mov	sp, r7
+ 371              		.cfi_def_cfa_register 13
+ 372              		@ sp needed
+ 373 0014 5DF8047B 		ldr	r7, [sp], #4
+ 374              		.cfi_restore 7
+ 375              		.cfi_def_cfa_offset 0
+ 376 0018 7047     		bx	lr
+ 377              	.L23:
+ 378 001a 00BF     		.align	2
+ 379              	.L22:
+ 380 001c 8C640040 		.word	1073767564
+ 381              		.cfi_endproc
+ 382              	.LFE7:
+ 383              		.size	QD_SetInterruptMask, .-QD_SetInterruptMask
+ 384              		.section	.text.QD_GetInterruptMask,"ax",%progbits
+ 385              		.align	2
+ 386              		.global	QD_GetInterruptMask
+ 387              		.thumb
+ 388              		.thumb_func
+ 389              		.type	QD_GetInterruptMask, %function
+ 390              	QD_GetInterruptMask:
+ 391              	.LFB8:
+ 342:Generated_Source\PSoC5/QD.c **** 
+ 343:Generated_Source\PSoC5/QD.c **** 
+ 344:Generated_Source\PSoC5/QD.c **** /*******************************************************************************
+ 345:Generated_Source\PSoC5/QD.c **** * Function Name: QD_GetInterruptMask
+ 346:Generated_Source\PSoC5/QD.c **** ********************************************************************************
+ 347:Generated_Source\PSoC5/QD.c **** *
+ 348:Generated_Source\PSoC5/QD.c **** * Summary:
+ 349:Generated_Source\PSoC5/QD.c **** *  Reports the current interrupt mask settings.
+ 350:Generated_Source\PSoC5/QD.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 14
+
+
+ 351:Generated_Source\PSoC5/QD.c **** * Parameters:
+ 352:Generated_Source\PSoC5/QD.c **** *  None.
+ 353:Generated_Source\PSoC5/QD.c **** *
+ 354:Generated_Source\PSoC5/QD.c **** * Return:
+ 355:Generated_Source\PSoC5/QD.c **** *  Enable / disable bits in an 8-bit value, where 1 enables the interrupt.
+ 356:Generated_Source\PSoC5/QD.c **** *  For the 32-bit counter, the overflow, underflow and reset enable bits are
+ 357:Generated_Source\PSoC5/QD.c **** *  always set.
+ 358:Generated_Source\PSoC5/QD.c **** *
+ 359:Generated_Source\PSoC5/QD.c **** *******************************************************************************/
+ 360:Generated_Source\PSoC5/QD.c **** uint8 QD_GetInterruptMask(void) 
+ 361:Generated_Source\PSoC5/QD.c **** {
+ 392              		.loc 1 361 0
+ 393              		.cfi_startproc
+ 394              		@ args = 0, pretend = 0, frame = 0
+ 395              		@ frame_needed = 1, uses_anonymous_args = 0
+ 396              		@ link register save eliminated.
+ 397 0000 80B4     		push	{r7}
+ 398              		.cfi_def_cfa_offset 4
+ 399              		.cfi_offset 7, -4
+ 400 0002 00AF     		add	r7, sp, #0
+ 401              		.cfi_def_cfa_register 7
+ 362:Generated_Source\PSoC5/QD.c ****     return (QD_STATUS_MASK & QD_INIT_INT_MASK);
+ 402              		.loc 1 362 0
+ 403 0004 054B     		ldr	r3, .L26
+ 404 0006 1B78     		ldrb	r3, [r3]
+ 405 0008 DBB2     		uxtb	r3, r3
+ 406 000a 03F00F03 		and	r3, r3, #15
+ 407 000e DBB2     		uxtb	r3, r3
+ 363:Generated_Source\PSoC5/QD.c **** }
+ 408              		.loc 1 363 0
+ 409 0010 1846     		mov	r0, r3
+ 410 0012 BD46     		mov	sp, r7
+ 411              		.cfi_def_cfa_register 13
+ 412              		@ sp needed
+ 413 0014 5DF8047B 		ldr	r7, [sp], #4
+ 414              		.cfi_restore 7
+ 415              		.cfi_def_cfa_offset 0
+ 416 0018 7047     		bx	lr
+ 417              	.L27:
+ 418 001a 00BF     		.align	2
+ 419              	.L26:
+ 420 001c 8C640040 		.word	1073767564
+ 421              		.cfi_endproc
+ 422              	.LFE8:
+ 423              		.size	QD_GetInterruptMask, .-QD_GetInterruptMask
+ 424              		.text
+ 425              	.Letext0:
+ 426              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 427              		.section	.debug_info,"",%progbits
+ 428              	.Ldebug_info0:
+ 429 0000 F9010000 		.4byte	0x1f9
+ 430 0004 0400     		.2byte	0x4
+ 431 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 432 000a 04       		.byte	0x4
+ 433 000b 01       		.uleb128 0x1
+ 434 000c 22000000 		.4byte	.LASF31
+ 435 0010 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 15
+
+
+ 436 0011 25010000 		.4byte	.LASF32
+ 437 0015 41010000 		.4byte	.LASF33
+ 438 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 439 001d 00000000 		.4byte	0
+ 440 0021 00000000 		.4byte	.Ldebug_line0
+ 441 0025 02       		.uleb128 0x2
+ 442 0026 04       		.byte	0x4
+ 443 0027 05       		.byte	0x5
+ 444 0028 696E7400 		.ascii	"int\000"
+ 445 002c 03       		.uleb128 0x3
+ 446 002d 04       		.byte	0x4
+ 447 002e 07       		.byte	0x7
+ 448 002f 83010000 		.4byte	.LASF0
+ 449 0033 03       		.uleb128 0x3
+ 450 0034 01       		.byte	0x1
+ 451 0035 06       		.byte	0x6
+ 452 0036 2B020000 		.4byte	.LASF1
+ 453 003a 03       		.uleb128 0x3
+ 454 003b 01       		.byte	0x1
+ 455 003c 08       		.byte	0x8
+ 456 003d CD000000 		.4byte	.LASF2
+ 457 0041 03       		.uleb128 0x3
+ 458 0042 02       		.byte	0x2
+ 459 0043 05       		.byte	0x5
+ 460 0044 F9010000 		.4byte	.LASF3
+ 461 0048 03       		.uleb128 0x3
+ 462 0049 02       		.byte	0x2
+ 463 004a 07       		.byte	0x7
+ 464 004b 37020000 		.4byte	.LASF4
+ 465 004f 03       		.uleb128 0x3
+ 466 0050 04       		.byte	0x4
+ 467 0051 05       		.byte	0x5
+ 468 0052 09020000 		.4byte	.LASF5
+ 469 0056 03       		.uleb128 0x3
+ 470 0057 04       		.byte	0x4
+ 471 0058 07       		.byte	0x7
+ 472 0059 E6000000 		.4byte	.LASF6
+ 473 005d 03       		.uleb128 0x3
+ 474 005e 08       		.byte	0x8
+ 475 005f 05       		.byte	0x5
+ 476 0060 C7010000 		.4byte	.LASF7
+ 477 0064 03       		.uleb128 0x3
+ 478 0065 08       		.byte	0x8
+ 479 0066 07       		.byte	0x7
+ 480 0067 9E010000 		.4byte	.LASF8
+ 481 006b 03       		.uleb128 0x3
+ 482 006c 04       		.byte	0x4
+ 483 006d 07       		.byte	0x7
+ 484 006e BE010000 		.4byte	.LASF9
+ 485 0072 03       		.uleb128 0x3
+ 486 0073 01       		.byte	0x1
+ 487 0074 08       		.byte	0x8
+ 488 0075 12020000 		.4byte	.LASF10
+ 489 0079 04       		.uleb128 0x4
+ 490 007a 03020000 		.4byte	.LASF11
+ 491 007e 02       		.byte	0x2
+ 492 007f C2       		.byte	0xc2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 16
+
+
+ 493 0080 3A000000 		.4byte	0x3a
+ 494 0084 04       		.uleb128 0x4
+ 495 0085 7C010000 		.4byte	.LASF12
+ 496 0089 02       		.byte	0x2
+ 497 008a C3       		.byte	0xc3
+ 498 008b 48000000 		.4byte	0x48
+ 499 008f 04       		.uleb128 0x4
+ 500 0090 E0000000 		.4byte	.LASF13
+ 501 0094 02       		.byte	0x2
+ 502 0095 C6       		.byte	0xc6
+ 503 0096 41000000 		.4byte	0x41
+ 504 009a 04       		.uleb128 0x4
+ 505 009b F8000000 		.4byte	.LASF14
+ 506 009f 02       		.byte	0x2
+ 507 00a0 C7       		.byte	0xc7
+ 508 00a1 4F000000 		.4byte	0x4f
+ 509 00a5 03       		.uleb128 0x3
+ 510 00a6 04       		.byte	0x4
+ 511 00a7 04       		.byte	0x4
+ 512 00a8 C7000000 		.4byte	.LASF15
+ 513 00ac 03       		.uleb128 0x3
+ 514 00ad 08       		.byte	0x8
+ 515 00ae 04       		.byte	0x4
+ 516 00af 1E010000 		.4byte	.LASF16
+ 517 00b3 05       		.uleb128 0x5
+ 518 00b4 DB000000 		.4byte	.LASF17
+ 519 00b8 02       		.byte	0x2
+ 520 00b9 6C01     		.2byte	0x16c
+ 521 00bb BF000000 		.4byte	0xbf
+ 522 00bf 06       		.uleb128 0x6
+ 523 00c0 79000000 		.4byte	0x79
+ 524 00c4 07       		.uleb128 0x7
+ 525 00c5 0E000000 		.4byte	.LASF18
+ 526 00c9 01       		.byte	0x1
+ 527 00ca 2A       		.byte	0x2a
+ 528 00cb 00000000 		.4byte	.LFB0
+ 529 00cf 0C000000 		.4byte	.LFE0-.LFB0
+ 530 00d3 01       		.uleb128 0x1
+ 531 00d4 9C       		.byte	0x9c
+ 532 00d5 08       		.uleb128 0x8
+ 533 00d6 BD000000 		.4byte	.LASF20
+ 534 00da 01       		.byte	0x1
+ 535 00db 46       		.byte	0x46
+ 536 00dc 00000000 		.4byte	.LFB1
+ 537 00e0 3C000000 		.4byte	.LFE1-.LFB1
+ 538 00e4 01       		.uleb128 0x1
+ 539 00e5 9C       		.byte	0x9c
+ 540 00e6 F9000000 		.4byte	0xf9
+ 541 00ea 09       		.uleb128 0x9
+ 542 00eb 06010000 		.4byte	.LASF22
+ 543 00ef 01       		.byte	0x1
+ 544 00f0 48       		.byte	0x48
+ 545 00f1 79000000 		.4byte	0x79
+ 546 00f5 02       		.uleb128 0x2
+ 547 00f6 91       		.byte	0x91
+ 548 00f7 77       		.sleb128 -9
+ 549 00f8 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 17
+
+
+ 550 00f9 0A       		.uleb128 0xa
+ 551 00fa B5010000 		.4byte	.LASF19
+ 552 00fe 01       		.byte	0x1
+ 553 00ff 74       		.byte	0x74
+ 554 0100 00000000 		.4byte	.LFB2
+ 555 0104 2C000000 		.4byte	.LFE2-.LFB2
+ 556 0108 01       		.uleb128 0x1
+ 557 0109 9C       		.byte	0x9c
+ 558 010a 08       		.uleb128 0x8
+ 559 010b FE000000 		.4byte	.LASF21
+ 560 010f 01       		.byte	0x1
+ 561 0110 9D       		.byte	0x9d
+ 562 0111 00000000 		.4byte	.LFB3
+ 563 0115 34000000 		.4byte	.LFE3-.LFB3
+ 564 0119 01       		.uleb128 0x1
+ 565 011a 9C       		.byte	0x9c
+ 566 011b 2E010000 		.4byte	0x12e
+ 567 011f 09       		.uleb128 0x9
+ 568 0120 06010000 		.4byte	.LASF22
+ 569 0124 01       		.byte	0x1
+ 570 0125 9F       		.byte	0x9f
+ 571 0126 79000000 		.4byte	0x79
+ 572 012a 02       		.uleb128 0x2
+ 573 012b 91       		.byte	0x91
+ 574 012c 77       		.sleb128 -9
+ 575 012d 00       		.byte	0
+ 576 012e 0B       		.uleb128 0xb
+ 577 012f 00000000 		.4byte	.LASF34
+ 578 0133 01       		.byte	0x1
+ 579 0134 CA       		.byte	0xca
+ 580 0135 8F000000 		.4byte	0x8f
+ 581 0139 00000000 		.4byte	.LFB4
+ 582 013d 24000000 		.4byte	.LFE4-.LFB4
+ 583 0141 01       		.uleb128 0x1
+ 584 0142 9C       		.byte	0x9c
+ 585 0143 64010000 		.4byte	0x164
+ 586 0147 09       		.uleb128 0x9
+ 587 0148 1C000000 		.4byte	.LASF23
+ 588 014c 01       		.byte	0x1
+ 589 014d CC       		.byte	0xcc
+ 590 014e 8F000000 		.4byte	0x8f
+ 591 0152 02       		.uleb128 0x2
+ 592 0153 91       		.byte	0x91
+ 593 0154 74       		.sleb128 -12
+ 594 0155 09       		.uleb128 0x9
+ 595 0156 17010000 		.4byte	.LASF24
+ 596 015a 01       		.byte	0x1
+ 597 015b CD       		.byte	0xcd
+ 598 015c 84000000 		.4byte	0x84
+ 599 0160 02       		.uleb128 0x2
+ 600 0161 91       		.byte	0x91
+ 601 0162 76       		.sleb128 -10
+ 602 0163 00       		.byte	0
+ 603 0164 0C       		.uleb128 0xc
+ 604 0165 90010000 		.4byte	.LASF25
+ 605 0169 01       		.byte	0x1
+ 606 016a 0201     		.2byte	0x102
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 18
+
+
+ 607 016c 00000000 		.4byte	.LFB5
+ 608 0170 32000000 		.4byte	.LFE5-.LFB5
+ 609 0174 01       		.uleb128 0x1
+ 610 0175 9C       		.byte	0x9c
+ 611 0176 99010000 		.4byte	0x199
+ 612 017a 0D       		.uleb128 0xd
+ 613 017b 16000000 		.4byte	.LASF27
+ 614 017f 01       		.byte	0x1
+ 615 0180 0201     		.2byte	0x102
+ 616 0182 8F000000 		.4byte	0x8f
+ 617 0186 02       		.uleb128 0x2
+ 618 0187 91       		.byte	0x91
+ 619 0188 6E       		.sleb128 -18
+ 620 0189 0E       		.uleb128 0xe
+ 621 018a 1C000000 		.4byte	.LASF23
+ 622 018e 01       		.byte	0x1
+ 623 018f 0601     		.2byte	0x106
+ 624 0191 84000000 		.4byte	0x84
+ 625 0195 02       		.uleb128 0x2
+ 626 0196 91       		.byte	0x91
+ 627 0197 76       		.sleb128 -10
+ 628 0198 00       		.byte	0
+ 629 0199 0F       		.uleb128 0xf
+ 630 019a B0000000 		.4byte	.LASF29
+ 631 019e 01       		.byte	0x1
+ 632 019f 3601     		.2byte	0x136
+ 633 01a1 79000000 		.4byte	0x79
+ 634 01a5 00000000 		.4byte	.LFB6
+ 635 01a9 20000000 		.4byte	.LFE6-.LFB6
+ 636 01ad 01       		.uleb128 0x1
+ 637 01ae 9C       		.byte	0x9c
+ 638 01af 10       		.uleb128 0x10
+ 639 01b0 E5010000 		.4byte	.LASF26
+ 640 01b4 01       		.byte	0x1
+ 641 01b5 4C01     		.2byte	0x14c
+ 642 01b7 00000000 		.4byte	.LFB7
+ 643 01bb 20000000 		.4byte	.LFE7-.LFB7
+ 644 01bf 01       		.uleb128 0x1
+ 645 01c0 9C       		.byte	0x9c
+ 646 01c1 D5010000 		.4byte	0x1d5
+ 647 01c5 0D       		.uleb128 0xd
+ 648 01c6 D5010000 		.4byte	.LASF28
+ 649 01ca 01       		.byte	0x1
+ 650 01cb 4C01     		.2byte	0x14c
+ 651 01cd 79000000 		.4byte	0x79
+ 652 01d1 02       		.uleb128 0x2
+ 653 01d2 91       		.byte	0x91
+ 654 01d3 77       		.sleb128 -9
+ 655 01d4 00       		.byte	0
+ 656 01d5 0F       		.uleb128 0xf
+ 657 01d6 17020000 		.4byte	.LASF30
+ 658 01da 01       		.byte	0x1
+ 659 01db 6801     		.2byte	0x168
+ 660 01dd 79000000 		.4byte	0x79
+ 661 01e1 00000000 		.4byte	.LFB8
+ 662 01e5 20000000 		.4byte	.LFE8-.LFB8
+ 663 01e9 01       		.uleb128 0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 19
+
+
+ 664 01ea 9C       		.byte	0x9c
+ 665 01eb 11       		.uleb128 0x11
+ 666 01ec DA010000 		.4byte	.LASF35
+ 667 01f0 01       		.byte	0x1
+ 668 01f1 19       		.byte	0x19
+ 669 01f2 79000000 		.4byte	0x79
+ 670 01f6 05       		.uleb128 0x5
+ 671 01f7 03       		.byte	0x3
+ 672 01f8 00000000 		.4byte	QD_initVar
+ 673 01fc 00       		.byte	0
+ 674              		.section	.debug_abbrev,"",%progbits
+ 675              	.Ldebug_abbrev0:
+ 676 0000 01       		.uleb128 0x1
+ 677 0001 11       		.uleb128 0x11
+ 678 0002 01       		.byte	0x1
+ 679 0003 25       		.uleb128 0x25
+ 680 0004 0E       		.uleb128 0xe
+ 681 0005 13       		.uleb128 0x13
+ 682 0006 0B       		.uleb128 0xb
+ 683 0007 03       		.uleb128 0x3
+ 684 0008 0E       		.uleb128 0xe
+ 685 0009 1B       		.uleb128 0x1b
+ 686 000a 0E       		.uleb128 0xe
+ 687 000b 55       		.uleb128 0x55
+ 688 000c 17       		.uleb128 0x17
+ 689 000d 11       		.uleb128 0x11
+ 690 000e 01       		.uleb128 0x1
+ 691 000f 10       		.uleb128 0x10
+ 692 0010 17       		.uleb128 0x17
+ 693 0011 00       		.byte	0
+ 694 0012 00       		.byte	0
+ 695 0013 02       		.uleb128 0x2
+ 696 0014 24       		.uleb128 0x24
+ 697 0015 00       		.byte	0
+ 698 0016 0B       		.uleb128 0xb
+ 699 0017 0B       		.uleb128 0xb
+ 700 0018 3E       		.uleb128 0x3e
+ 701 0019 0B       		.uleb128 0xb
+ 702 001a 03       		.uleb128 0x3
+ 703 001b 08       		.uleb128 0x8
+ 704 001c 00       		.byte	0
+ 705 001d 00       		.byte	0
+ 706 001e 03       		.uleb128 0x3
+ 707 001f 24       		.uleb128 0x24
+ 708 0020 00       		.byte	0
+ 709 0021 0B       		.uleb128 0xb
+ 710 0022 0B       		.uleb128 0xb
+ 711 0023 3E       		.uleb128 0x3e
+ 712 0024 0B       		.uleb128 0xb
+ 713 0025 03       		.uleb128 0x3
+ 714 0026 0E       		.uleb128 0xe
+ 715 0027 00       		.byte	0
+ 716 0028 00       		.byte	0
+ 717 0029 04       		.uleb128 0x4
+ 718 002a 16       		.uleb128 0x16
+ 719 002b 00       		.byte	0
+ 720 002c 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 20
+
+
+ 721 002d 0E       		.uleb128 0xe
+ 722 002e 3A       		.uleb128 0x3a
+ 723 002f 0B       		.uleb128 0xb
+ 724 0030 3B       		.uleb128 0x3b
+ 725 0031 0B       		.uleb128 0xb
+ 726 0032 49       		.uleb128 0x49
+ 727 0033 13       		.uleb128 0x13
+ 728 0034 00       		.byte	0
+ 729 0035 00       		.byte	0
+ 730 0036 05       		.uleb128 0x5
+ 731 0037 16       		.uleb128 0x16
+ 732 0038 00       		.byte	0
+ 733 0039 03       		.uleb128 0x3
+ 734 003a 0E       		.uleb128 0xe
+ 735 003b 3A       		.uleb128 0x3a
+ 736 003c 0B       		.uleb128 0xb
+ 737 003d 3B       		.uleb128 0x3b
+ 738 003e 05       		.uleb128 0x5
+ 739 003f 49       		.uleb128 0x49
+ 740 0040 13       		.uleb128 0x13
+ 741 0041 00       		.byte	0
+ 742 0042 00       		.byte	0
+ 743 0043 06       		.uleb128 0x6
+ 744 0044 35       		.uleb128 0x35
+ 745 0045 00       		.byte	0
+ 746 0046 49       		.uleb128 0x49
+ 747 0047 13       		.uleb128 0x13
+ 748 0048 00       		.byte	0
+ 749 0049 00       		.byte	0
+ 750 004a 07       		.uleb128 0x7
+ 751 004b 2E       		.uleb128 0x2e
+ 752 004c 00       		.byte	0
+ 753 004d 3F       		.uleb128 0x3f
+ 754 004e 19       		.uleb128 0x19
+ 755 004f 03       		.uleb128 0x3
+ 756 0050 0E       		.uleb128 0xe
+ 757 0051 3A       		.uleb128 0x3a
+ 758 0052 0B       		.uleb128 0xb
+ 759 0053 3B       		.uleb128 0x3b
+ 760 0054 0B       		.uleb128 0xb
+ 761 0055 27       		.uleb128 0x27
+ 762 0056 19       		.uleb128 0x19
+ 763 0057 11       		.uleb128 0x11
+ 764 0058 01       		.uleb128 0x1
+ 765 0059 12       		.uleb128 0x12
+ 766 005a 06       		.uleb128 0x6
+ 767 005b 40       		.uleb128 0x40
+ 768 005c 18       		.uleb128 0x18
+ 769 005d 9742     		.uleb128 0x2117
+ 770 005f 19       		.uleb128 0x19
+ 771 0060 00       		.byte	0
+ 772 0061 00       		.byte	0
+ 773 0062 08       		.uleb128 0x8
+ 774 0063 2E       		.uleb128 0x2e
+ 775 0064 01       		.byte	0x1
+ 776 0065 3F       		.uleb128 0x3f
+ 777 0066 19       		.uleb128 0x19
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 21
+
+
+ 778 0067 03       		.uleb128 0x3
+ 779 0068 0E       		.uleb128 0xe
+ 780 0069 3A       		.uleb128 0x3a
+ 781 006a 0B       		.uleb128 0xb
+ 782 006b 3B       		.uleb128 0x3b
+ 783 006c 0B       		.uleb128 0xb
+ 784 006d 27       		.uleb128 0x27
+ 785 006e 19       		.uleb128 0x19
+ 786 006f 11       		.uleb128 0x11
+ 787 0070 01       		.uleb128 0x1
+ 788 0071 12       		.uleb128 0x12
+ 789 0072 06       		.uleb128 0x6
+ 790 0073 40       		.uleb128 0x40
+ 791 0074 18       		.uleb128 0x18
+ 792 0075 9642     		.uleb128 0x2116
+ 793 0077 19       		.uleb128 0x19
+ 794 0078 01       		.uleb128 0x1
+ 795 0079 13       		.uleb128 0x13
+ 796 007a 00       		.byte	0
+ 797 007b 00       		.byte	0
+ 798 007c 09       		.uleb128 0x9
+ 799 007d 34       		.uleb128 0x34
+ 800 007e 00       		.byte	0
+ 801 007f 03       		.uleb128 0x3
+ 802 0080 0E       		.uleb128 0xe
+ 803 0081 3A       		.uleb128 0x3a
+ 804 0082 0B       		.uleb128 0xb
+ 805 0083 3B       		.uleb128 0x3b
+ 806 0084 0B       		.uleb128 0xb
+ 807 0085 49       		.uleb128 0x49
+ 808 0086 13       		.uleb128 0x13
+ 809 0087 02       		.uleb128 0x2
+ 810 0088 18       		.uleb128 0x18
+ 811 0089 00       		.byte	0
+ 812 008a 00       		.byte	0
+ 813 008b 0A       		.uleb128 0xa
+ 814 008c 2E       		.uleb128 0x2e
+ 815 008d 00       		.byte	0
+ 816 008e 3F       		.uleb128 0x3f
+ 817 008f 19       		.uleb128 0x19
+ 818 0090 03       		.uleb128 0x3
+ 819 0091 0E       		.uleb128 0xe
+ 820 0092 3A       		.uleb128 0x3a
+ 821 0093 0B       		.uleb128 0xb
+ 822 0094 3B       		.uleb128 0x3b
+ 823 0095 0B       		.uleb128 0xb
+ 824 0096 27       		.uleb128 0x27
+ 825 0097 19       		.uleb128 0x19
+ 826 0098 11       		.uleb128 0x11
+ 827 0099 01       		.uleb128 0x1
+ 828 009a 12       		.uleb128 0x12
+ 829 009b 06       		.uleb128 0x6
+ 830 009c 40       		.uleb128 0x40
+ 831 009d 18       		.uleb128 0x18
+ 832 009e 9642     		.uleb128 0x2116
+ 833 00a0 19       		.uleb128 0x19
+ 834 00a1 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 22
+
+
+ 835 00a2 00       		.byte	0
+ 836 00a3 0B       		.uleb128 0xb
+ 837 00a4 2E       		.uleb128 0x2e
+ 838 00a5 01       		.byte	0x1
+ 839 00a6 3F       		.uleb128 0x3f
+ 840 00a7 19       		.uleb128 0x19
+ 841 00a8 03       		.uleb128 0x3
+ 842 00a9 0E       		.uleb128 0xe
+ 843 00aa 3A       		.uleb128 0x3a
+ 844 00ab 0B       		.uleb128 0xb
+ 845 00ac 3B       		.uleb128 0x3b
+ 846 00ad 0B       		.uleb128 0xb
+ 847 00ae 27       		.uleb128 0x27
+ 848 00af 19       		.uleb128 0x19
+ 849 00b0 49       		.uleb128 0x49
+ 850 00b1 13       		.uleb128 0x13
+ 851 00b2 11       		.uleb128 0x11
+ 852 00b3 01       		.uleb128 0x1
+ 853 00b4 12       		.uleb128 0x12
+ 854 00b5 06       		.uleb128 0x6
+ 855 00b6 40       		.uleb128 0x40
+ 856 00b7 18       		.uleb128 0x18
+ 857 00b8 9642     		.uleb128 0x2116
+ 858 00ba 19       		.uleb128 0x19
+ 859 00bb 01       		.uleb128 0x1
+ 860 00bc 13       		.uleb128 0x13
+ 861 00bd 00       		.byte	0
+ 862 00be 00       		.byte	0
+ 863 00bf 0C       		.uleb128 0xc
+ 864 00c0 2E       		.uleb128 0x2e
+ 865 00c1 01       		.byte	0x1
+ 866 00c2 3F       		.uleb128 0x3f
+ 867 00c3 19       		.uleb128 0x19
+ 868 00c4 03       		.uleb128 0x3
+ 869 00c5 0E       		.uleb128 0xe
+ 870 00c6 3A       		.uleb128 0x3a
+ 871 00c7 0B       		.uleb128 0xb
+ 872 00c8 3B       		.uleb128 0x3b
+ 873 00c9 05       		.uleb128 0x5
+ 874 00ca 27       		.uleb128 0x27
+ 875 00cb 19       		.uleb128 0x19
+ 876 00cc 11       		.uleb128 0x11
+ 877 00cd 01       		.uleb128 0x1
+ 878 00ce 12       		.uleb128 0x12
+ 879 00cf 06       		.uleb128 0x6
+ 880 00d0 40       		.uleb128 0x40
+ 881 00d1 18       		.uleb128 0x18
+ 882 00d2 9642     		.uleb128 0x2116
+ 883 00d4 19       		.uleb128 0x19
+ 884 00d5 01       		.uleb128 0x1
+ 885 00d6 13       		.uleb128 0x13
+ 886 00d7 00       		.byte	0
+ 887 00d8 00       		.byte	0
+ 888 00d9 0D       		.uleb128 0xd
+ 889 00da 05       		.uleb128 0x5
+ 890 00db 00       		.byte	0
+ 891 00dc 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 23
+
+
+ 892 00dd 0E       		.uleb128 0xe
+ 893 00de 3A       		.uleb128 0x3a
+ 894 00df 0B       		.uleb128 0xb
+ 895 00e0 3B       		.uleb128 0x3b
+ 896 00e1 05       		.uleb128 0x5
+ 897 00e2 49       		.uleb128 0x49
+ 898 00e3 13       		.uleb128 0x13
+ 899 00e4 02       		.uleb128 0x2
+ 900 00e5 18       		.uleb128 0x18
+ 901 00e6 00       		.byte	0
+ 902 00e7 00       		.byte	0
+ 903 00e8 0E       		.uleb128 0xe
+ 904 00e9 34       		.uleb128 0x34
+ 905 00ea 00       		.byte	0
+ 906 00eb 03       		.uleb128 0x3
+ 907 00ec 0E       		.uleb128 0xe
+ 908 00ed 3A       		.uleb128 0x3a
+ 909 00ee 0B       		.uleb128 0xb
+ 910 00ef 3B       		.uleb128 0x3b
+ 911 00f0 05       		.uleb128 0x5
+ 912 00f1 49       		.uleb128 0x49
+ 913 00f2 13       		.uleb128 0x13
+ 914 00f3 02       		.uleb128 0x2
+ 915 00f4 18       		.uleb128 0x18
+ 916 00f5 00       		.byte	0
+ 917 00f6 00       		.byte	0
+ 918 00f7 0F       		.uleb128 0xf
+ 919 00f8 2E       		.uleb128 0x2e
+ 920 00f9 00       		.byte	0
+ 921 00fa 3F       		.uleb128 0x3f
+ 922 00fb 19       		.uleb128 0x19
+ 923 00fc 03       		.uleb128 0x3
+ 924 00fd 0E       		.uleb128 0xe
+ 925 00fe 3A       		.uleb128 0x3a
+ 926 00ff 0B       		.uleb128 0xb
+ 927 0100 3B       		.uleb128 0x3b
+ 928 0101 05       		.uleb128 0x5
+ 929 0102 27       		.uleb128 0x27
+ 930 0103 19       		.uleb128 0x19
+ 931 0104 49       		.uleb128 0x49
+ 932 0105 13       		.uleb128 0x13
+ 933 0106 11       		.uleb128 0x11
+ 934 0107 01       		.uleb128 0x1
+ 935 0108 12       		.uleb128 0x12
+ 936 0109 06       		.uleb128 0x6
+ 937 010a 40       		.uleb128 0x40
+ 938 010b 18       		.uleb128 0x18
+ 939 010c 9742     		.uleb128 0x2117
+ 940 010e 19       		.uleb128 0x19
+ 941 010f 00       		.byte	0
+ 942 0110 00       		.byte	0
+ 943 0111 10       		.uleb128 0x10
+ 944 0112 2E       		.uleb128 0x2e
+ 945 0113 01       		.byte	0x1
+ 946 0114 3F       		.uleb128 0x3f
+ 947 0115 19       		.uleb128 0x19
+ 948 0116 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 24
+
+
+ 949 0117 0E       		.uleb128 0xe
+ 950 0118 3A       		.uleb128 0x3a
+ 951 0119 0B       		.uleb128 0xb
+ 952 011a 3B       		.uleb128 0x3b
+ 953 011b 05       		.uleb128 0x5
+ 954 011c 27       		.uleb128 0x27
+ 955 011d 19       		.uleb128 0x19
+ 956 011e 11       		.uleb128 0x11
+ 957 011f 01       		.uleb128 0x1
+ 958 0120 12       		.uleb128 0x12
+ 959 0121 06       		.uleb128 0x6
+ 960 0122 40       		.uleb128 0x40
+ 961 0123 18       		.uleb128 0x18
+ 962 0124 9742     		.uleb128 0x2117
+ 963 0126 19       		.uleb128 0x19
+ 964 0127 01       		.uleb128 0x1
+ 965 0128 13       		.uleb128 0x13
+ 966 0129 00       		.byte	0
+ 967 012a 00       		.byte	0
+ 968 012b 11       		.uleb128 0x11
+ 969 012c 34       		.uleb128 0x34
+ 970 012d 00       		.byte	0
+ 971 012e 03       		.uleb128 0x3
+ 972 012f 0E       		.uleb128 0xe
+ 973 0130 3A       		.uleb128 0x3a
+ 974 0131 0B       		.uleb128 0xb
+ 975 0132 3B       		.uleb128 0x3b
+ 976 0133 0B       		.uleb128 0xb
+ 977 0134 49       		.uleb128 0x49
+ 978 0135 13       		.uleb128 0x13
+ 979 0136 3F       		.uleb128 0x3f
+ 980 0137 19       		.uleb128 0x19
+ 981 0138 02       		.uleb128 0x2
+ 982 0139 18       		.uleb128 0x18
+ 983 013a 00       		.byte	0
+ 984 013b 00       		.byte	0
+ 985 013c 00       		.byte	0
+ 986              		.section	.debug_aranges,"",%progbits
+ 987 0000 5C000000 		.4byte	0x5c
+ 988 0004 0200     		.2byte	0x2
+ 989 0006 00000000 		.4byte	.Ldebug_info0
+ 990 000a 04       		.byte	0x4
+ 991 000b 00       		.byte	0
+ 992 000c 0000     		.2byte	0
+ 993 000e 0000     		.2byte	0
+ 994 0010 00000000 		.4byte	.LFB0
+ 995 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 996 0018 00000000 		.4byte	.LFB1
+ 997 001c 3C000000 		.4byte	.LFE1-.LFB1
+ 998 0020 00000000 		.4byte	.LFB2
+ 999 0024 2C000000 		.4byte	.LFE2-.LFB2
+ 1000 0028 00000000 		.4byte	.LFB3
+ 1001 002c 34000000 		.4byte	.LFE3-.LFB3
+ 1002 0030 00000000 		.4byte	.LFB4
+ 1003 0034 24000000 		.4byte	.LFE4-.LFB4
+ 1004 0038 00000000 		.4byte	.LFB5
+ 1005 003c 32000000 		.4byte	.LFE5-.LFB5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 25
+
+
+ 1006 0040 00000000 		.4byte	.LFB6
+ 1007 0044 20000000 		.4byte	.LFE6-.LFB6
+ 1008 0048 00000000 		.4byte	.LFB7
+ 1009 004c 20000000 		.4byte	.LFE7-.LFB7
+ 1010 0050 00000000 		.4byte	.LFB8
+ 1011 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1012 0058 00000000 		.4byte	0
+ 1013 005c 00000000 		.4byte	0
+ 1014              		.section	.debug_ranges,"",%progbits
+ 1015              	.Ldebug_ranges0:
+ 1016 0000 00000000 		.4byte	.LFB0
+ 1017 0004 0C000000 		.4byte	.LFE0
+ 1018 0008 00000000 		.4byte	.LFB1
+ 1019 000c 3C000000 		.4byte	.LFE1
+ 1020 0010 00000000 		.4byte	.LFB2
+ 1021 0014 2C000000 		.4byte	.LFE2
+ 1022 0018 00000000 		.4byte	.LFB3
+ 1023 001c 34000000 		.4byte	.LFE3
+ 1024 0020 00000000 		.4byte	.LFB4
+ 1025 0024 24000000 		.4byte	.LFE4
+ 1026 0028 00000000 		.4byte	.LFB5
+ 1027 002c 32000000 		.4byte	.LFE5
+ 1028 0030 00000000 		.4byte	.LFB6
+ 1029 0034 20000000 		.4byte	.LFE6
+ 1030 0038 00000000 		.4byte	.LFB7
+ 1031 003c 20000000 		.4byte	.LFE7
+ 1032 0040 00000000 		.4byte	.LFB8
+ 1033 0044 20000000 		.4byte	.LFE8
+ 1034 0048 00000000 		.4byte	0
+ 1035 004c 00000000 		.4byte	0
+ 1036              		.section	.debug_line,"",%progbits
+ 1037              	.Ldebug_line0:
+ 1038 0000 FE000000 		.section	.debug_str,"MS",%progbits,1
+ 1038      02003F00 
+ 1038      00000201 
+ 1038      FB0E0D00 
+ 1038      01010101 
+ 1039              	.LASF34:
+ 1040 0000 51445F47 		.ascii	"QD_GetCounter\000"
+ 1040      6574436F 
+ 1040      756E7465 
+ 1040      7200
+ 1041              	.LASF18:
+ 1042 000e 51445F49 		.ascii	"QD_Init\000"
+ 1042      6E697400 
+ 1043              	.LASF27:
+ 1044 0016 76616C75 		.ascii	"value\000"
+ 1044      6500
+ 1045              	.LASF23:
+ 1046 001c 636F756E 		.ascii	"count\000"
+ 1046      7400
+ 1047              	.LASF31:
+ 1048 0022 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1048      4320342E 
+ 1048      392E3320 
+ 1048      32303135 
+ 1048      30333033 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 26
+
+
+ 1049 0055 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1049      20726576 
+ 1049      6973696F 
+ 1049      6E203232 
+ 1049      31323230 
+ 1050 0088 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1050      66756E63 
+ 1050      74696F6E 
+ 1050      2D736563 
+ 1050      74696F6E 
+ 1051              	.LASF29:
+ 1052 00b0 51445F47 		.ascii	"QD_GetEvents\000"
+ 1052      65744576 
+ 1052      656E7473 
+ 1052      00
+ 1053              	.LASF20:
+ 1054 00bd 51445F45 		.ascii	"QD_Enable\000"
+ 1054      6E61626C 
+ 1054      6500
+ 1055              	.LASF15:
+ 1056 00c7 666C6F61 		.ascii	"float\000"
+ 1056      7400
+ 1057              	.LASF2:
+ 1058 00cd 756E7369 		.ascii	"unsigned char\000"
+ 1058      676E6564 
+ 1058      20636861 
+ 1058      7200
+ 1059              	.LASF17:
+ 1060 00db 72656738 		.ascii	"reg8\000"
+ 1060      00
+ 1061              	.LASF13:
+ 1062 00e0 696E7431 		.ascii	"int16\000"
+ 1062      3600
+ 1063              	.LASF6:
+ 1064 00e6 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1064      20756E73 
+ 1064      69676E65 
+ 1064      6420696E 
+ 1064      7400
+ 1065              	.LASF14:
+ 1066 00f8 696E7433 		.ascii	"int32\000"
+ 1066      3200
+ 1067              	.LASF21:
+ 1068 00fe 51445F53 		.ascii	"QD_Stop\000"
+ 1068      746F7000 
+ 1069              	.LASF22:
+ 1070 0106 656E6162 		.ascii	"enableInterrupts\000"
+ 1070      6C65496E 
+ 1070      74657272 
+ 1070      75707473 
+ 1070      00
+ 1071              	.LASF24:
+ 1072 0117 746D7043 		.ascii	"tmpCnt\000"
+ 1072      6E7400
+ 1073              	.LASF16:
+ 1074 011e 646F7562 		.ascii	"double\000"
+ 1074      6C6500
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 27
+
+
+ 1075              	.LASF32:
+ 1076 0125 47656E65 		.ascii	"Generated_Source\\PSoC5\\QD.c\000"
+ 1076      72617465 
+ 1076      645F536F 
+ 1076      75726365 
+ 1076      5C50536F 
+ 1077              	.LASF33:
+ 1078 0141 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 1078      6F726B73 
+ 1078      70616365 
+ 1078      5C50536F 
+ 1078      435F4372 
+ 1079 0170 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 1079      392E6379 
+ 1079      64736E00 
+ 1080              	.LASF12:
+ 1081 017c 75696E74 		.ascii	"uint16\000"
+ 1081      313600
+ 1082              	.LASF0:
+ 1083 0183 756E7369 		.ascii	"unsigned int\000"
+ 1083      676E6564 
+ 1083      20696E74 
+ 1083      00
+ 1084              	.LASF25:
+ 1085 0190 51445F53 		.ascii	"QD_SetCounter\000"
+ 1085      6574436F 
+ 1085      756E7465 
+ 1085      7200
+ 1086              	.LASF8:
+ 1087 019e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1087      206C6F6E 
+ 1087      6720756E 
+ 1087      7369676E 
+ 1087      65642069 
+ 1088              	.LASF19:
+ 1089 01b5 51445F53 		.ascii	"QD_Start\000"
+ 1089      74617274 
+ 1089      00
+ 1090              	.LASF9:
+ 1091 01be 73697A65 		.ascii	"sizetype\000"
+ 1091      74797065 
+ 1091      00
+ 1092              	.LASF7:
+ 1093 01c7 6C6F6E67 		.ascii	"long long int\000"
+ 1093      206C6F6E 
+ 1093      6720696E 
+ 1093      7400
+ 1094              	.LASF28:
+ 1095 01d5 6D61736B 		.ascii	"mask\000"
+ 1095      00
+ 1096              	.LASF35:
+ 1097 01da 51445F69 		.ascii	"QD_initVar\000"
+ 1097      6E697456 
+ 1097      617200
+ 1098              	.LASF26:
+ 1099 01e5 51445F53 		.ascii	"QD_SetInterruptMask\000"
+ 1099      6574496E 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUzfj3h.s 			page 28
+
+
+ 1099      74657272 
+ 1099      7570744D 
+ 1099      61736B00 
+ 1100              	.LASF3:
+ 1101 01f9 73686F72 		.ascii	"short int\000"
+ 1101      7420696E 
+ 1101      7400
+ 1102              	.LASF11:
+ 1103 0203 75696E74 		.ascii	"uint8\000"
+ 1103      3800
+ 1104              	.LASF5:
+ 1105 0209 6C6F6E67 		.ascii	"long int\000"
+ 1105      20696E74 
+ 1105      00
+ 1106              	.LASF10:
+ 1107 0212 63686172 		.ascii	"char\000"
+ 1107      00
+ 1108              	.LASF30:
+ 1109 0217 51445F47 		.ascii	"QD_GetInterruptMask\000"
+ 1109      6574496E 
+ 1109      74657272 
+ 1109      7570744D 
+ 1109      61736B00 
+ 1110              	.LASF1:
+ 1111 022b 7369676E 		.ascii	"signed char\000"
+ 1111      65642063 
+ 1111      68617200 
+ 1112              	.LASF4:
+ 1113 0237 73686F72 		.ascii	"short unsigned int\000"
+ 1113      7420756E 
+ 1113      7369676E 
+ 1113      65642069 
+ 1113      6E7400
+ 1114              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

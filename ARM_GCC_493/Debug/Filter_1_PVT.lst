@@ -1,0 +1,635 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Filter_1_PVT.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.Filter_1_SetInterruptMode,"ax",%progbits
+  19              		.align	2
+  20              		.global	Filter_1_SetInterruptMode
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	Filter_1_SetInterruptMode, %function
+  24              	Filter_1_SetInterruptMode:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\Filter_1_PVT.c"
+   1:.\Generated_Source\PSoC5/Filter_1_PVT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * File Name: Filter_1_PVT.c
+   3:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Version 2.30
+   4:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+   5:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Description:
+   6:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  This file provides source code for FILT component internal functions.
+   7:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+   8:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Note:
+   9:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  
+  10:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *******************************************************************************
+  11:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Copyright 2008-2013, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/Filter_1_PVT.c **** ********************************************************************************/
+  16:.\Generated_Source\PSoC5/Filter_1_PVT.c **** 
+  17:.\Generated_Source\PSoC5/Filter_1_PVT.c **** #include "Filter_1_PVT.h"
+  18:.\Generated_Source\PSoC5/Filter_1_PVT.c **** 
+  19:.\Generated_Source\PSoC5/Filter_1_PVT.c **** 
+  20:.\Generated_Source\PSoC5/Filter_1_PVT.c **** /*******************************************************************************
+  21:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Function Name: Filter_1_SetInterruptMode
+  22:.\Generated_Source\PSoC5/Filter_1_PVT.c **** ********************************************************************************
+  23:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  24:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Summary:
+  25:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  Assign the events which will trigger a DFB interrupt to be triggered. 
+  26:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  27:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Parameters:  
+  28:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  events:  Bits [0:5] of events represent the events which will trigger DFB
+  29:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *           interrupts.
+  30:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            Bit 0 - Output value ready in the holding register on channel A
+  31:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            Bit 1 - Output value ready in the holding register on channel B
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            Bit 2 - '1' written to Semaphore 0  - See Note
+  33:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            Bit 3 - '1' written to Semaphore 1  - See Note
+  34:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            Bit 4 - '1' written to Semaphore 2
+  35:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  36:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Return: 
+  37:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  void
+  38:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  39:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Note:
+  40:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  Semaphore 0 and Semaphore 1 should not be configured as both a DMA request 
+  41:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  and an interrupt event, because, after one clock cycle, the system 
+  42:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  automatically clears any semaphore which triggered a DMA request.
+  43:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  44:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *******************************************************************************/
+  45:.\Generated_Source\PSoC5/Filter_1_PVT.c **** void Filter_1_SetInterruptMode(uint8 events) 
+  46:.\Generated_Source\PSoC5/Filter_1_PVT.c **** {
+  27              		.loc 1 46 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 83B0     		sub	sp, sp, #12
+  36              		.cfi_def_cfa_offset 16
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  39 0006 0346     		mov	r3, r0
+  40 0008 FB71     		strb	r3, [r7, #7]
+  47:.\Generated_Source\PSoC5/Filter_1_PVT.c ****     events &= Filter_1_EVENT_MASK;
+  41              		.loc 1 47 0
+  42 000a FB79     		ldrb	r3, [r7, #7]
+  43 000c 03F01F03 		and	r3, r3, #31
+  44 0010 FB71     		strb	r3, [r7, #7]
+  48:.\Generated_Source\PSoC5/Filter_1_PVT.c ****     Filter_1_INT_CTRL_REG = events;
+  45              		.loc 1 48 0
+  46 0012 044A     		ldr	r2, .L2
+  47 0014 FB79     		ldrb	r3, [r7, #7]
+  48 0016 1370     		strb	r3, [r2]
+  49:.\Generated_Source\PSoC5/Filter_1_PVT.c **** }
+  49              		.loc 1 49 0
+  50 0018 0C37     		adds	r7, r7, #12
+  51              		.cfi_def_cfa_offset 4
+  52 001a BD46     		mov	sp, r7
+  53              		.cfi_def_cfa_register 13
+  54              		@ sp needed
+  55 001c 5DF8047B 		ldr	r7, [sp], #4
+  56              		.cfi_restore 7
+  57              		.cfi_def_cfa_offset 0
+  58 0020 7047     		bx	lr
+  59              	.L3:
+  60 0022 00BF     		.align	2
+  61              	.L2:
+  62 0024 98C70040 		.word	1073792920
+  63              		.cfi_endproc
+  64              	.LFE0:
+  65              		.size	Filter_1_SetInterruptMode, .-Filter_1_SetInterruptMode
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 3
+
+
+  66              		.section	.text.Filter_1_SetDMAMode,"ax",%progbits
+  67              		.align	2
+  68              		.global	Filter_1_SetDMAMode
+  69              		.thumb
+  70              		.thumb_func
+  71              		.type	Filter_1_SetDMAMode, %function
+  72              	Filter_1_SetDMAMode:
+  73              	.LFB1:
+  50:.\Generated_Source\PSoC5/Filter_1_PVT.c **** 
+  51:.\Generated_Source\PSoC5/Filter_1_PVT.c **** 
+  52:.\Generated_Source\PSoC5/Filter_1_PVT.c **** /*******************************************************************************
+  53:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Function Name: Filter_1_SetDMAMode
+  54:.\Generated_Source\PSoC5/Filter_1_PVT.c **** ********************************************************************************
+  55:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  56:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Summary:
+  57:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  Assign the events which will trigger a DMA request for the DFB.  There are 
+  58:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  two different DMA requests that can be triggered.
+  59:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  60:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Parameters:  
+  61:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  events:  A set of 4 bits which configure what event, if any, triggers a DMA 
+  62:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *           request for the DFB.  
+  63:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *           Bits [0:1] configure the trigger for DMA Request 1
+  64:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *           Bits [2:3] configure the trigger for DMA Request 2
+  65:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            DMA Request 1: 
+  66:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               0 - no request will be generated
+  67:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               1 - Output value ready in the holding register on channel A
+  68:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               2 - Semaphore 0
+  69:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               3 - Sempahore 1
+  70:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *            DMA Request 2: 
+  71:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               0 - no request will be generated
+  72:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               1 - Output value ready in the holding register on channel B
+  73:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               2 - Semaphore 0
+  74:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *               3 - Sempahore 1
+  75:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  76:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Return: 
+  77:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  void
+  78:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  79:.\Generated_Source\PSoC5/Filter_1_PVT.c **** * Note:
+  80:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  Semaphore 0 and Semaphore 1 should not be configured as both a DMA request 
+  81:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  and an interrupt event, because, after one clock cycle, the system 
+  82:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *  automatically clears any semaphore which triggered a DMA request.
+  83:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *
+  84:.\Generated_Source\PSoC5/Filter_1_PVT.c **** *******************************************************************************/
+  85:.\Generated_Source\PSoC5/Filter_1_PVT.c **** void Filter_1_SetDMAMode(uint8 events) 
+  86:.\Generated_Source\PSoC5/Filter_1_PVT.c **** {
+  74              		.loc 1 86 0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 8
+  77              		@ frame_needed = 1, uses_anonymous_args = 0
+  78              		@ link register save eliminated.
+  79 0000 80B4     		push	{r7}
+  80              		.cfi_def_cfa_offset 4
+  81              		.cfi_offset 7, -4
+  82 0002 83B0     		sub	sp, sp, #12
+  83              		.cfi_def_cfa_offset 16
+  84 0004 00AF     		add	r7, sp, #0
+  85              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 4
+
+
+  86 0006 0346     		mov	r3, r0
+  87 0008 FB71     		strb	r3, [r7, #7]
+  87:.\Generated_Source\PSoC5/Filter_1_PVT.c ****     events &= Filter_1_DMA_CTRL_MASK;
+  88              		.loc 1 87 0
+  89 000a FB79     		ldrb	r3, [r7, #7]
+  90 000c 03F00F03 		and	r3, r3, #15
+  91 0010 FB71     		strb	r3, [r7, #7]
+  88:.\Generated_Source\PSoC5/Filter_1_PVT.c ****     Filter_1_DMA_CTRL_REG = events;
+  92              		.loc 1 88 0
+  93 0012 044A     		ldr	r2, .L5
+  94 0014 FB79     		ldrb	r3, [r7, #7]
+  95 0016 1370     		strb	r3, [r2]
+  89:.\Generated_Source\PSoC5/Filter_1_PVT.c **** }
+  96              		.loc 1 89 0
+  97 0018 0C37     		adds	r7, r7, #12
+  98              		.cfi_def_cfa_offset 4
+  99 001a BD46     		mov	sp, r7
+ 100              		.cfi_def_cfa_register 13
+ 101              		@ sp needed
+ 102 001c 5DF8047B 		ldr	r7, [sp], #4
+ 103              		.cfi_restore 7
+ 104              		.cfi_def_cfa_offset 0
+ 105 0020 7047     		bx	lr
+ 106              	.L6:
+ 107 0022 00BF     		.align	2
+ 108              	.L5:
+ 109 0024 9CC70040 		.word	1073792924
+ 110              		.cfi_endproc
+ 111              	.LFE1:
+ 112              		.size	Filter_1_SetDMAMode, .-Filter_1_SetDMAMode
+ 113              		.text
+ 114              	.Letext0:
+ 115              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 116              		.section	.debug_info,"",%progbits
+ 117              	.Ldebug_info0:
+ 118 0000 E4000000 		.4byte	0xe4
+ 119 0004 0400     		.2byte	0x4
+ 120 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 121 000a 04       		.byte	0x4
+ 122 000b 01       		.uleb128 0x1
+ 123 000c C3000000 		.4byte	.LASF16
+ 124 0010 01       		.byte	0x1
+ 125 0011 35000000 		.4byte	.LASF17
+ 126 0015 81010000 		.4byte	.LASF18
+ 127 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 128 001d 00000000 		.4byte	0
+ 129 0021 00000000 		.4byte	.Ldebug_line0
+ 130 0025 02       		.uleb128 0x2
+ 131 0026 04       		.byte	0x4
+ 132 0027 05       		.byte	0x5
+ 133 0028 696E7400 		.ascii	"int\000"
+ 134 002c 03       		.uleb128 0x3
+ 135 002d 04       		.byte	0x4
+ 136 002e 07       		.byte	0x7
+ 137 002f 0E000000 		.4byte	.LASF0
+ 138 0033 03       		.uleb128 0x3
+ 139 0034 01       		.byte	0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 5
+
+
+ 140 0035 06       		.byte	0x6
+ 141 0036 75010000 		.4byte	.LASF1
+ 142 003a 03       		.uleb128 0x3
+ 143 003b 01       		.byte	0x1
+ 144 003c 08       		.byte	0x8
+ 145 003d A7000000 		.4byte	.LASF2
+ 146 0041 03       		.uleb128 0x3
+ 147 0042 02       		.byte	0x2
+ 148 0043 05       		.byte	0x5
+ 149 0044 51010000 		.4byte	.LASF3
+ 150 0048 03       		.uleb128 0x3
+ 151 0049 02       		.byte	0x2
+ 152 004a 07       		.byte	0x7
+ 153 004b 62010000 		.4byte	.LASF4
+ 154 004f 03       		.uleb128 0x3
+ 155 0050 04       		.byte	0x4
+ 156 0051 05       		.byte	0x5
+ 157 0052 BA000000 		.4byte	.LASF5
+ 158 0056 03       		.uleb128 0x3
+ 159 0057 04       		.byte	0x4
+ 160 0058 07       		.byte	0x7
+ 161 0059 63000000 		.4byte	.LASF6
+ 162 005d 03       		.uleb128 0x3
+ 163 005e 08       		.byte	0x8
+ 164 005f 05       		.byte	0x5
+ 165 0060 00000000 		.4byte	.LASF7
+ 166 0064 03       		.uleb128 0x3
+ 167 0065 08       		.byte	0x8
+ 168 0066 07       		.byte	0x7
+ 169 0067 75000000 		.4byte	.LASF8
+ 170 006b 03       		.uleb128 0x3
+ 171 006c 04       		.byte	0x4
+ 172 006d 07       		.byte	0x7
+ 173 006e C7010000 		.4byte	.LASF9
+ 174 0072 03       		.uleb128 0x3
+ 175 0073 01       		.byte	0x1
+ 176 0074 08       		.byte	0x8
+ 177 0075 B5000000 		.4byte	.LASF10
+ 178 0079 04       		.uleb128 0x4
+ 179 007a 5D000000 		.4byte	.LASF13
+ 180 007e 02       		.byte	0x2
+ 181 007f C2       		.byte	0xc2
+ 182 0080 3A000000 		.4byte	0x3a
+ 183 0084 03       		.uleb128 0x3
+ 184 0085 04       		.byte	0x4
+ 185 0086 04       		.byte	0x4
+ 186 0087 BC010000 		.4byte	.LASF11
+ 187 008b 03       		.uleb128 0x3
+ 188 008c 08       		.byte	0x8
+ 189 008d 04       		.byte	0x4
+ 190 008e 5B010000 		.4byte	.LASF12
+ 191 0092 05       		.uleb128 0x5
+ 192 0093 C2010000 		.4byte	.LASF14
+ 193 0097 02       		.byte	0x2
+ 194 0098 6C01     		.2byte	0x16c
+ 195 009a 9E000000 		.4byte	0x9e
+ 196 009e 06       		.uleb128 0x6
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 6
+
+
+ 197 009f 79000000 		.4byte	0x79
+ 198 00a3 07       		.uleb128 0x7
+ 199 00a4 1B000000 		.4byte	.LASF19
+ 200 00a8 01       		.byte	0x1
+ 201 00a9 2D       		.byte	0x2d
+ 202 00aa 00000000 		.4byte	.LFB0
+ 203 00ae 28000000 		.4byte	.LFE0-.LFB0
+ 204 00b2 01       		.uleb128 0x1
+ 205 00b3 9C       		.byte	0x9c
+ 206 00b4 C7000000 		.4byte	0xc7
+ 207 00b8 08       		.uleb128 0x8
+ 208 00b9 8C000000 		.4byte	.LASF15
+ 209 00bd 01       		.byte	0x1
+ 210 00be 2D       		.byte	0x2d
+ 211 00bf 79000000 		.4byte	0x79
+ 212 00c3 02       		.uleb128 0x2
+ 213 00c4 91       		.byte	0x91
+ 214 00c5 77       		.sleb128 -9
+ 215 00c6 00       		.byte	0
+ 216 00c7 09       		.uleb128 0x9
+ 217 00c8 93000000 		.4byte	.LASF20
+ 218 00cc 01       		.byte	0x1
+ 219 00cd 55       		.byte	0x55
+ 220 00ce 00000000 		.4byte	.LFB1
+ 221 00d2 28000000 		.4byte	.LFE1-.LFB1
+ 222 00d6 01       		.uleb128 0x1
+ 223 00d7 9C       		.byte	0x9c
+ 224 00d8 08       		.uleb128 0x8
+ 225 00d9 8C000000 		.4byte	.LASF15
+ 226 00dd 01       		.byte	0x1
+ 227 00de 55       		.byte	0x55
+ 228 00df 79000000 		.4byte	0x79
+ 229 00e3 02       		.uleb128 0x2
+ 230 00e4 91       		.byte	0x91
+ 231 00e5 77       		.sleb128 -9
+ 232 00e6 00       		.byte	0
+ 233 00e7 00       		.byte	0
+ 234              		.section	.debug_abbrev,"",%progbits
+ 235              	.Ldebug_abbrev0:
+ 236 0000 01       		.uleb128 0x1
+ 237 0001 11       		.uleb128 0x11
+ 238 0002 01       		.byte	0x1
+ 239 0003 25       		.uleb128 0x25
+ 240 0004 0E       		.uleb128 0xe
+ 241 0005 13       		.uleb128 0x13
+ 242 0006 0B       		.uleb128 0xb
+ 243 0007 03       		.uleb128 0x3
+ 244 0008 0E       		.uleb128 0xe
+ 245 0009 1B       		.uleb128 0x1b
+ 246 000a 0E       		.uleb128 0xe
+ 247 000b 55       		.uleb128 0x55
+ 248 000c 17       		.uleb128 0x17
+ 249 000d 11       		.uleb128 0x11
+ 250 000e 01       		.uleb128 0x1
+ 251 000f 10       		.uleb128 0x10
+ 252 0010 17       		.uleb128 0x17
+ 253 0011 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 7
+
+
+ 254 0012 00       		.byte	0
+ 255 0013 02       		.uleb128 0x2
+ 256 0014 24       		.uleb128 0x24
+ 257 0015 00       		.byte	0
+ 258 0016 0B       		.uleb128 0xb
+ 259 0017 0B       		.uleb128 0xb
+ 260 0018 3E       		.uleb128 0x3e
+ 261 0019 0B       		.uleb128 0xb
+ 262 001a 03       		.uleb128 0x3
+ 263 001b 08       		.uleb128 0x8
+ 264 001c 00       		.byte	0
+ 265 001d 00       		.byte	0
+ 266 001e 03       		.uleb128 0x3
+ 267 001f 24       		.uleb128 0x24
+ 268 0020 00       		.byte	0
+ 269 0021 0B       		.uleb128 0xb
+ 270 0022 0B       		.uleb128 0xb
+ 271 0023 3E       		.uleb128 0x3e
+ 272 0024 0B       		.uleb128 0xb
+ 273 0025 03       		.uleb128 0x3
+ 274 0026 0E       		.uleb128 0xe
+ 275 0027 00       		.byte	0
+ 276 0028 00       		.byte	0
+ 277 0029 04       		.uleb128 0x4
+ 278 002a 16       		.uleb128 0x16
+ 279 002b 00       		.byte	0
+ 280 002c 03       		.uleb128 0x3
+ 281 002d 0E       		.uleb128 0xe
+ 282 002e 3A       		.uleb128 0x3a
+ 283 002f 0B       		.uleb128 0xb
+ 284 0030 3B       		.uleb128 0x3b
+ 285 0031 0B       		.uleb128 0xb
+ 286 0032 49       		.uleb128 0x49
+ 287 0033 13       		.uleb128 0x13
+ 288 0034 00       		.byte	0
+ 289 0035 00       		.byte	0
+ 290 0036 05       		.uleb128 0x5
+ 291 0037 16       		.uleb128 0x16
+ 292 0038 00       		.byte	0
+ 293 0039 03       		.uleb128 0x3
+ 294 003a 0E       		.uleb128 0xe
+ 295 003b 3A       		.uleb128 0x3a
+ 296 003c 0B       		.uleb128 0xb
+ 297 003d 3B       		.uleb128 0x3b
+ 298 003e 05       		.uleb128 0x5
+ 299 003f 49       		.uleb128 0x49
+ 300 0040 13       		.uleb128 0x13
+ 301 0041 00       		.byte	0
+ 302 0042 00       		.byte	0
+ 303 0043 06       		.uleb128 0x6
+ 304 0044 35       		.uleb128 0x35
+ 305 0045 00       		.byte	0
+ 306 0046 49       		.uleb128 0x49
+ 307 0047 13       		.uleb128 0x13
+ 308 0048 00       		.byte	0
+ 309 0049 00       		.byte	0
+ 310 004a 07       		.uleb128 0x7
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 8
+
+
+ 311 004b 2E       		.uleb128 0x2e
+ 312 004c 01       		.byte	0x1
+ 313 004d 3F       		.uleb128 0x3f
+ 314 004e 19       		.uleb128 0x19
+ 315 004f 03       		.uleb128 0x3
+ 316 0050 0E       		.uleb128 0xe
+ 317 0051 3A       		.uleb128 0x3a
+ 318 0052 0B       		.uleb128 0xb
+ 319 0053 3B       		.uleb128 0x3b
+ 320 0054 0B       		.uleb128 0xb
+ 321 0055 27       		.uleb128 0x27
+ 322 0056 19       		.uleb128 0x19
+ 323 0057 11       		.uleb128 0x11
+ 324 0058 01       		.uleb128 0x1
+ 325 0059 12       		.uleb128 0x12
+ 326 005a 06       		.uleb128 0x6
+ 327 005b 40       		.uleb128 0x40
+ 328 005c 18       		.uleb128 0x18
+ 329 005d 9742     		.uleb128 0x2117
+ 330 005f 19       		.uleb128 0x19
+ 331 0060 01       		.uleb128 0x1
+ 332 0061 13       		.uleb128 0x13
+ 333 0062 00       		.byte	0
+ 334 0063 00       		.byte	0
+ 335 0064 08       		.uleb128 0x8
+ 336 0065 05       		.uleb128 0x5
+ 337 0066 00       		.byte	0
+ 338 0067 03       		.uleb128 0x3
+ 339 0068 0E       		.uleb128 0xe
+ 340 0069 3A       		.uleb128 0x3a
+ 341 006a 0B       		.uleb128 0xb
+ 342 006b 3B       		.uleb128 0x3b
+ 343 006c 0B       		.uleb128 0xb
+ 344 006d 49       		.uleb128 0x49
+ 345 006e 13       		.uleb128 0x13
+ 346 006f 02       		.uleb128 0x2
+ 347 0070 18       		.uleb128 0x18
+ 348 0071 00       		.byte	0
+ 349 0072 00       		.byte	0
+ 350 0073 09       		.uleb128 0x9
+ 351 0074 2E       		.uleb128 0x2e
+ 352 0075 01       		.byte	0x1
+ 353 0076 3F       		.uleb128 0x3f
+ 354 0077 19       		.uleb128 0x19
+ 355 0078 03       		.uleb128 0x3
+ 356 0079 0E       		.uleb128 0xe
+ 357 007a 3A       		.uleb128 0x3a
+ 358 007b 0B       		.uleb128 0xb
+ 359 007c 3B       		.uleb128 0x3b
+ 360 007d 0B       		.uleb128 0xb
+ 361 007e 27       		.uleb128 0x27
+ 362 007f 19       		.uleb128 0x19
+ 363 0080 11       		.uleb128 0x11
+ 364 0081 01       		.uleb128 0x1
+ 365 0082 12       		.uleb128 0x12
+ 366 0083 06       		.uleb128 0x6
+ 367 0084 40       		.uleb128 0x40
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 9
+
+
+ 368 0085 18       		.uleb128 0x18
+ 369 0086 9742     		.uleb128 0x2117
+ 370 0088 19       		.uleb128 0x19
+ 371 0089 00       		.byte	0
+ 372 008a 00       		.byte	0
+ 373 008b 00       		.byte	0
+ 374              		.section	.debug_aranges,"",%progbits
+ 375 0000 24000000 		.4byte	0x24
+ 376 0004 0200     		.2byte	0x2
+ 377 0006 00000000 		.4byte	.Ldebug_info0
+ 378 000a 04       		.byte	0x4
+ 379 000b 00       		.byte	0
+ 380 000c 0000     		.2byte	0
+ 381 000e 0000     		.2byte	0
+ 382 0010 00000000 		.4byte	.LFB0
+ 383 0014 28000000 		.4byte	.LFE0-.LFB0
+ 384 0018 00000000 		.4byte	.LFB1
+ 385 001c 28000000 		.4byte	.LFE1-.LFB1
+ 386 0020 00000000 		.4byte	0
+ 387 0024 00000000 		.4byte	0
+ 388              		.section	.debug_ranges,"",%progbits
+ 389              	.Ldebug_ranges0:
+ 390 0000 00000000 		.4byte	.LFB0
+ 391 0004 28000000 		.4byte	.LFE0
+ 392 0008 00000000 		.4byte	.LFB1
+ 393 000c 28000000 		.4byte	.LFE1
+ 394 0010 00000000 		.4byte	0
+ 395 0014 00000000 		.4byte	0
+ 396              		.section	.debug_line,"",%progbits
+ 397              	.Ldebug_line0:
+ 398 0000 76000000 		.section	.debug_str,"MS",%progbits,1
+ 398      02004B00 
+ 398      00000201 
+ 398      FB0E0D00 
+ 398      01010101 
+ 399              	.LASF7:
+ 400 0000 6C6F6E67 		.ascii	"long long int\000"
+ 400      206C6F6E 
+ 400      6720696E 
+ 400      7400
+ 401              	.LASF0:
+ 402 000e 756E7369 		.ascii	"unsigned int\000"
+ 402      676E6564 
+ 402      20696E74 
+ 402      00
+ 403              	.LASF19:
+ 404 001b 46696C74 		.ascii	"Filter_1_SetInterruptMode\000"
+ 404      65725F31 
+ 404      5F536574 
+ 404      496E7465 
+ 404      72727570 
+ 405              	.LASF17:
+ 406 0035 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Filter_1_PVT.c\000"
+ 406      6E657261 
+ 406      7465645F 
+ 406      536F7572 
+ 406      63655C50 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 10
+
+
+ 407              	.LASF13:
+ 408 005d 75696E74 		.ascii	"uint8\000"
+ 408      3800
+ 409              	.LASF6:
+ 410 0063 6C6F6E67 		.ascii	"long unsigned int\000"
+ 410      20756E73 
+ 410      69676E65 
+ 410      6420696E 
+ 410      7400
+ 411              	.LASF8:
+ 412 0075 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 412      206C6F6E 
+ 412      6720756E 
+ 412      7369676E 
+ 412      65642069 
+ 413              	.LASF15:
+ 414 008c 6576656E 		.ascii	"events\000"
+ 414      747300
+ 415              	.LASF20:
+ 416 0093 46696C74 		.ascii	"Filter_1_SetDMAMode\000"
+ 416      65725F31 
+ 416      5F536574 
+ 416      444D414D 
+ 416      6F646500 
+ 417              	.LASF2:
+ 418 00a7 756E7369 		.ascii	"unsigned char\000"
+ 418      676E6564 
+ 418      20636861 
+ 418      7200
+ 419              	.LASF10:
+ 420 00b5 63686172 		.ascii	"char\000"
+ 420      00
+ 421              	.LASF5:
+ 422 00ba 6C6F6E67 		.ascii	"long int\000"
+ 422      20696E74 
+ 422      00
+ 423              	.LASF16:
+ 424 00c3 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 424      4320342E 
+ 424      392E3320 
+ 424      32303135 
+ 424      30333033 
+ 425 00f6 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 425      20726576 
+ 425      6973696F 
+ 425      6E203232 
+ 425      31323230 
+ 426 0129 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 426      66756E63 
+ 426      74696F6E 
+ 426      2D736563 
+ 426      74696F6E 
+ 427              	.LASF3:
+ 428 0151 73686F72 		.ascii	"short int\000"
+ 428      7420696E 
+ 428      7400
+ 429              	.LASF12:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc0CgyNK.s 			page 11
+
+
+ 430 015b 646F7562 		.ascii	"double\000"
+ 430      6C6500
+ 431              	.LASF4:
+ 432 0162 73686F72 		.ascii	"short unsigned int\000"
+ 432      7420756E 
+ 432      7369676E 
+ 432      65642069 
+ 432      6E7400
+ 433              	.LASF1:
+ 434 0175 7369676E 		.ascii	"signed char\000"
+ 434      65642063 
+ 434      68617200 
+ 435              	.LASF18:
+ 436 0181 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 436      6F726B73 
+ 436      70616365 
+ 436      5C50536F 
+ 436      435F4372 
+ 437 01b0 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 437      392E6379 
+ 437      64736E00 
+ 438              	.LASF11:
+ 439 01bc 666C6F61 		.ascii	"float\000"
+ 439      7400
+ 440              	.LASF14:
+ 441 01c2 72656738 		.ascii	"reg8\000"
+ 441      00
+ 442              	.LASF9:
+ 443 01c7 73697A65 		.ascii	"sizetype\000"
+ 443      74797065 
+ 443      00
+ 444              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

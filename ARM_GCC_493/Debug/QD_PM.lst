@@ -1,0 +1,803 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"QD_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	QD_backup:
+  21 0000 00       		.space	1
+  22 0001 000000   		.section	.text.QD_SaveConfig,"ax",%progbits
+  23              		.align	2
+  24              		.global	QD_SaveConfig
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	QD_SaveConfig, %function
+  28              	QD_SaveConfig:
+  29              	.LFB0:
+  30              		.file 1 "Generated_Source\\PSoC5\\QD_PM.c"
+   1:Generated_Source\PSoC5/QD_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/QD_PM.c **** * File Name: QD_PM.c
+   3:Generated_Source\PSoC5/QD_PM.c **** * Version 3.0
+   4:Generated_Source\PSoC5/QD_PM.c **** *
+   5:Generated_Source\PSoC5/QD_PM.c **** * Description:
+   6:Generated_Source\PSoC5/QD_PM.c **** *  This file contains the setup, control and status commands to support 
+   7:Generated_Source\PSoC5/QD_PM.c **** *  component operations in low power mode.  
+   8:Generated_Source\PSoC5/QD_PM.c **** *
+   9:Generated_Source\PSoC5/QD_PM.c **** * Note:
+  10:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  11:Generated_Source\PSoC5/QD_PM.c **** *
+  12:Generated_Source\PSoC5/QD_PM.c **** ********************************************************************************
+  13:Generated_Source\PSoC5/QD_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC5/QD_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  15:Generated_Source\PSoC5/QD_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:Generated_Source\PSoC5/QD_PM.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC5/QD_PM.c **** *******************************************************************************/
+  18:Generated_Source\PSoC5/QD_PM.c **** 
+  19:Generated_Source\PSoC5/QD_PM.c **** #include "QD.h"
+  20:Generated_Source\PSoC5/QD_PM.c **** 
+  21:Generated_Source\PSoC5/QD_PM.c **** static QD_BACKUP_STRUCT QD_backup = {0u};
+  22:Generated_Source\PSoC5/QD_PM.c **** 
+  23:Generated_Source\PSoC5/QD_PM.c **** 
+  24:Generated_Source\PSoC5/QD_PM.c **** /*******************************************************************************
+  25:Generated_Source\PSoC5/QD_PM.c **** * Function Name: QD_SaveConfig
+  26:Generated_Source\PSoC5/QD_PM.c **** ********************************************************************************
+  27:Generated_Source\PSoC5/QD_PM.c **** * Summary:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 2
+
+
+  28:Generated_Source\PSoC5/QD_PM.c **** *  Saves the current user configuration of the component.
+  29:Generated_Source\PSoC5/QD_PM.c **** *
+  30:Generated_Source\PSoC5/QD_PM.c **** * Parameters:
+  31:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  32:Generated_Source\PSoC5/QD_PM.c **** *
+  33:Generated_Source\PSoC5/QD_PM.c **** * Return:
+  34:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  35:Generated_Source\PSoC5/QD_PM.c **** *
+  36:Generated_Source\PSoC5/QD_PM.c **** *******************************************************************************/
+  37:Generated_Source\PSoC5/QD_PM.c **** void QD_SaveConfig(void) 
+  38:Generated_Source\PSoC5/QD_PM.c **** {
+  31              		.loc 1 38 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  39:Generated_Source\PSoC5/QD_PM.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+  40:Generated_Source\PSoC5/QD_PM.c ****         QD_Cnt8_SaveConfig();
+  41:Generated_Source\PSoC5/QD_PM.c ****     #else 
+  42:Generated_Source\PSoC5/QD_PM.c ****         /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) || 
+  43:Generated_Source\PSoC5/QD_PM.c ****          * (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT)
+  44:Generated_Source\PSoC5/QD_PM.c ****          */
+  45:Generated_Source\PSoC5/QD_PM.c ****         QD_Cnt16_SaveConfig();
+  41              		.loc 1 45 0
+  42 0004 FFF7FEFF 		bl	QD_Cnt16_SaveConfig
+  46:Generated_Source\PSoC5/QD_PM.c ****     #endif /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) */
+  47:Generated_Source\PSoC5/QD_PM.c **** }
+  43              		.loc 1 47 0
+  44 0008 80BD     		pop	{r7, pc}
+  45              		.cfi_endproc
+  46              	.LFE0:
+  47              		.size	QD_SaveConfig, .-QD_SaveConfig
+  48 000a 00BF     		.section	.text.QD_RestoreConfig,"ax",%progbits
+  49              		.align	2
+  50              		.global	QD_RestoreConfig
+  51              		.thumb
+  52              		.thumb_func
+  53              		.type	QD_RestoreConfig, %function
+  54              	QD_RestoreConfig:
+  55              	.LFB1:
+  48:Generated_Source\PSoC5/QD_PM.c **** 
+  49:Generated_Source\PSoC5/QD_PM.c **** 
+  50:Generated_Source\PSoC5/QD_PM.c **** /*******************************************************************************
+  51:Generated_Source\PSoC5/QD_PM.c **** * Function Name: QD_RestoreConfig
+  52:Generated_Source\PSoC5/QD_PM.c **** ********************************************************************************
+  53:Generated_Source\PSoC5/QD_PM.c **** * Summary:
+  54:Generated_Source\PSoC5/QD_PM.c **** *  Restores the current user configuration of the component.
+  55:Generated_Source\PSoC5/QD_PM.c **** *
+  56:Generated_Source\PSoC5/QD_PM.c **** * Parameters:
+  57:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  58:Generated_Source\PSoC5/QD_PM.c **** *
+  59:Generated_Source\PSoC5/QD_PM.c **** * Return:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 3
+
+
+  60:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  61:Generated_Source\PSoC5/QD_PM.c **** *
+  62:Generated_Source\PSoC5/QD_PM.c **** *******************************************************************************/
+  63:Generated_Source\PSoC5/QD_PM.c **** void QD_RestoreConfig(void) 
+  64:Generated_Source\PSoC5/QD_PM.c **** {
+  56              		.loc 1 64 0
+  57              		.cfi_startproc
+  58              		@ args = 0, pretend = 0, frame = 0
+  59              		@ frame_needed = 1, uses_anonymous_args = 0
+  60 0000 80B5     		push	{r7, lr}
+  61              		.cfi_def_cfa_offset 8
+  62              		.cfi_offset 7, -8
+  63              		.cfi_offset 14, -4
+  64 0002 00AF     		add	r7, sp, #0
+  65              		.cfi_def_cfa_register 7
+  65:Generated_Source\PSoC5/QD_PM.c ****     #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+  66:Generated_Source\PSoC5/QD_PM.c ****         QD_Cnt8_RestoreConfig();
+  67:Generated_Source\PSoC5/QD_PM.c ****     #else 
+  68:Generated_Source\PSoC5/QD_PM.c ****         /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) || 
+  69:Generated_Source\PSoC5/QD_PM.c ****          * (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT) 
+  70:Generated_Source\PSoC5/QD_PM.c ****          */
+  71:Generated_Source\PSoC5/QD_PM.c ****         QD_Cnt16_RestoreConfig();
+  66              		.loc 1 71 0
+  67 0004 FFF7FEFF 		bl	QD_Cnt16_RestoreConfig
+  72:Generated_Source\PSoC5/QD_PM.c ****     #endif /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) */
+  73:Generated_Source\PSoC5/QD_PM.c **** }
+  68              		.loc 1 73 0
+  69 0008 80BD     		pop	{r7, pc}
+  70              		.cfi_endproc
+  71              	.LFE1:
+  72              		.size	QD_RestoreConfig, .-QD_RestoreConfig
+  73 000a 00BF     		.section	.text.QD_Sleep,"ax",%progbits
+  74              		.align	2
+  75              		.global	QD_Sleep
+  76              		.thumb
+  77              		.thumb_func
+  78              		.type	QD_Sleep, %function
+  79              	QD_Sleep:
+  80              	.LFB2:
+  74:Generated_Source\PSoC5/QD_PM.c **** 
+  75:Generated_Source\PSoC5/QD_PM.c **** 
+  76:Generated_Source\PSoC5/QD_PM.c **** /*******************************************************************************
+  77:Generated_Source\PSoC5/QD_PM.c **** * Function Name: QD_Sleep
+  78:Generated_Source\PSoC5/QD_PM.c **** ********************************************************************************
+  79:Generated_Source\PSoC5/QD_PM.c **** * 
+  80:Generated_Source\PSoC5/QD_PM.c **** * Summary:
+  81:Generated_Source\PSoC5/QD_PM.c **** *  Prepare Quadrature Decoder Component goes to sleep.
+  82:Generated_Source\PSoC5/QD_PM.c **** *
+  83:Generated_Source\PSoC5/QD_PM.c **** * Parameters:
+  84:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  85:Generated_Source\PSoC5/QD_PM.c **** *
+  86:Generated_Source\PSoC5/QD_PM.c **** * Return:
+  87:Generated_Source\PSoC5/QD_PM.c **** *  None.
+  88:Generated_Source\PSoC5/QD_PM.c **** *
+  89:Generated_Source\PSoC5/QD_PM.c **** * Global Variables:
+  90:Generated_Source\PSoC5/QD_PM.c **** *  QD_backup - modified when non-retention registers are saved.
+  91:Generated_Source\PSoC5/QD_PM.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 4
+
+
+  92:Generated_Source\PSoC5/QD_PM.c **** * Reentrant:
+  93:Generated_Source\PSoC5/QD_PM.c **** *  No.
+  94:Generated_Source\PSoC5/QD_PM.c **** *
+  95:Generated_Source\PSoC5/QD_PM.c **** *******************************************************************************/
+  96:Generated_Source\PSoC5/QD_PM.c **** void QD_Sleep(void) 
+  97:Generated_Source\PSoC5/QD_PM.c **** {
+  81              		.loc 1 97 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 1, uses_anonymous_args = 0
+  85 0000 80B5     		push	{r7, lr}
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 7, -8
+  88              		.cfi_offset 14, -4
+  89 0002 00AF     		add	r7, sp, #0
+  90              		.cfi_def_cfa_register 7
+  98:Generated_Source\PSoC5/QD_PM.c ****     if (0u != (QD_SR_AUX_CONTROL & QD_INTERRUPTS_ENABLE))
+  91              		.loc 1 98 0
+  92 0004 094B     		ldr	r3, .L6
+  93 0006 1B78     		ldrb	r3, [r3]
+  94 0008 DBB2     		uxtb	r3, r3
+  95 000a 03F01003 		and	r3, r3, #16
+  96 000e 002B     		cmp	r3, #0
+  97 0010 03D0     		beq	.L4
+  99:Generated_Source\PSoC5/QD_PM.c ****     {
+ 100:Generated_Source\PSoC5/QD_PM.c ****         QD_backup.enableState = 1u;
+  98              		.loc 1 100 0
+  99 0012 074B     		ldr	r3, .L6+4
+ 100 0014 0122     		movs	r2, #1
+ 101 0016 1A70     		strb	r2, [r3]
+ 102 0018 02E0     		b	.L5
+ 103              	.L4:
+ 101:Generated_Source\PSoC5/QD_PM.c ****     }
+ 102:Generated_Source\PSoC5/QD_PM.c ****     else /* The Quadrature Decoder Component is disabled */
+ 103:Generated_Source\PSoC5/QD_PM.c ****     {
+ 104:Generated_Source\PSoC5/QD_PM.c ****         QD_backup.enableState = 0u;
+ 104              		.loc 1 104 0
+ 105 001a 054B     		ldr	r3, .L6+4
+ 106 001c 0022     		movs	r2, #0
+ 107 001e 1A70     		strb	r2, [r3]
+ 108              	.L5:
+ 105:Generated_Source\PSoC5/QD_PM.c ****     }
+ 106:Generated_Source\PSoC5/QD_PM.c **** 
+ 107:Generated_Source\PSoC5/QD_PM.c ****     QD_Stop();
+ 109              		.loc 1 107 0
+ 110 0020 FFF7FEFF 		bl	QD_Stop
+ 108:Generated_Source\PSoC5/QD_PM.c ****     QD_SaveConfig();
+ 111              		.loc 1 108 0
+ 112 0024 FFF7FEFF 		bl	QD_SaveConfig
+ 109:Generated_Source\PSoC5/QD_PM.c **** }
+ 113              		.loc 1 109 0
+ 114 0028 80BD     		pop	{r7, pc}
+ 115              	.L7:
+ 116 002a 00BF     		.align	2
+ 117              	.L6:
+ 118 002c 9C640040 		.word	1073767580
+ 119 0030 00000000 		.word	QD_backup
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 5
+
+
+ 120              		.cfi_endproc
+ 121              	.LFE2:
+ 122              		.size	QD_Sleep, .-QD_Sleep
+ 123              		.section	.text.QD_Wakeup,"ax",%progbits
+ 124              		.align	2
+ 125              		.global	QD_Wakeup
+ 126              		.thumb
+ 127              		.thumb_func
+ 128              		.type	QD_Wakeup, %function
+ 129              	QD_Wakeup:
+ 130              	.LFB3:
+ 110:Generated_Source\PSoC5/QD_PM.c **** 
+ 111:Generated_Source\PSoC5/QD_PM.c **** 
+ 112:Generated_Source\PSoC5/QD_PM.c **** /*******************************************************************************
+ 113:Generated_Source\PSoC5/QD_PM.c **** * Function Name: QD_Wakeup
+ 114:Generated_Source\PSoC5/QD_PM.c **** ********************************************************************************
+ 115:Generated_Source\PSoC5/QD_PM.c **** *
+ 116:Generated_Source\PSoC5/QD_PM.c **** * Summary:
+ 117:Generated_Source\PSoC5/QD_PM.c **** *  Prepare Quadrature Decoder Component to wake up.
+ 118:Generated_Source\PSoC5/QD_PM.c **** *
+ 119:Generated_Source\PSoC5/QD_PM.c **** * Parameters:
+ 120:Generated_Source\PSoC5/QD_PM.c **** *  None.
+ 121:Generated_Source\PSoC5/QD_PM.c **** *
+ 122:Generated_Source\PSoC5/QD_PM.c **** * Return:
+ 123:Generated_Source\PSoC5/QD_PM.c **** *  None.
+ 124:Generated_Source\PSoC5/QD_PM.c **** *
+ 125:Generated_Source\PSoC5/QD_PM.c **** * Global Variables:
+ 126:Generated_Source\PSoC5/QD_PM.c **** *  QD_backup - used when non-retention registers are restored.
+ 127:Generated_Source\PSoC5/QD_PM.c **** *
+ 128:Generated_Source\PSoC5/QD_PM.c **** *******************************************************************************/
+ 129:Generated_Source\PSoC5/QD_PM.c **** void QD_Wakeup(void) 
+ 130:Generated_Source\PSoC5/QD_PM.c **** {
+ 131              		.loc 1 130 0
+ 132              		.cfi_startproc
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 1, uses_anonymous_args = 0
+ 135 0000 80B5     		push	{r7, lr}
+ 136              		.cfi_def_cfa_offset 8
+ 137              		.cfi_offset 7, -8
+ 138              		.cfi_offset 14, -4
+ 139 0002 00AF     		add	r7, sp, #0
+ 140              		.cfi_def_cfa_register 7
+ 131:Generated_Source\PSoC5/QD_PM.c ****     QD_RestoreConfig();
+ 141              		.loc 1 131 0
+ 142 0004 FFF7FEFF 		bl	QD_RestoreConfig
+ 132:Generated_Source\PSoC5/QD_PM.c **** 
+ 133:Generated_Source\PSoC5/QD_PM.c ****     if (QD_backup.enableState != 0u)
+ 143              		.loc 1 133 0
+ 144 0008 044B     		ldr	r3, .L10
+ 145 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 146 000c 002B     		cmp	r3, #0
+ 147 000e 03D0     		beq	.L8
+ 134:Generated_Source\PSoC5/QD_PM.c ****     {
+ 135:Generated_Source\PSoC5/QD_PM.c ****         #if (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT)
+ 136:Generated_Source\PSoC5/QD_PM.c ****             QD_Cnt8_Enable();
+ 137:Generated_Source\PSoC5/QD_PM.c ****         #else 
+ 138:Generated_Source\PSoC5/QD_PM.c ****             /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_16_BIT) || 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 6
+
+
+ 139:Generated_Source\PSoC5/QD_PM.c ****             *  (QD_COUNTER_SIZE == QD_COUNTER_SIZE_32_BIT) 
+ 140:Generated_Source\PSoC5/QD_PM.c ****             */
+ 141:Generated_Source\PSoC5/QD_PM.c ****             QD_Cnt16_Enable();
+ 148              		.loc 1 141 0
+ 149 0010 FFF7FEFF 		bl	QD_Cnt16_Enable
+ 142:Generated_Source\PSoC5/QD_PM.c ****         #endif /* (QD_COUNTER_SIZE == QD_COUNTER_SIZE_8_BIT) */
+ 143:Generated_Source\PSoC5/QD_PM.c **** 
+ 144:Generated_Source\PSoC5/QD_PM.c ****         /* Enable component's operation */
+ 145:Generated_Source\PSoC5/QD_PM.c ****         QD_Enable();
+ 150              		.loc 1 145 0
+ 151 0014 FFF7FEFF 		bl	QD_Enable
+ 152              	.L8:
+ 146:Generated_Source\PSoC5/QD_PM.c ****     } /* Do nothing if component's block was disabled before */
+ 147:Generated_Source\PSoC5/QD_PM.c **** }
+ 153              		.loc 1 147 0
+ 154 0018 80BD     		pop	{r7, pc}
+ 155              	.L11:
+ 156 001a 00BF     		.align	2
+ 157              	.L10:
+ 158 001c 00000000 		.word	QD_backup
+ 159              		.cfi_endproc
+ 160              	.LFE3:
+ 161              		.size	QD_Wakeup, .-QD_Wakeup
+ 162              		.text
+ 163              	.Letext0:
+ 164              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 165              		.file 3 "Generated_Source\\PSoC5\\QD.h"
+ 166              		.section	.debug_info,"",%progbits
+ 167              	.Ldebug_info0:
+ 168 0000 15010000 		.4byte	0x115
+ 169 0004 0400     		.2byte	0x4
+ 170 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 171 000a 04       		.byte	0x4
+ 172 000b 01       		.uleb128 0x1
+ 173 000c AF000000 		.4byte	.LASF20
+ 174 0010 01       		.byte	0x1
+ 175 0011 63010000 		.4byte	.LASF21
+ 176 0015 8C010000 		.4byte	.LASF22
+ 177 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 178 001d 00000000 		.4byte	0
+ 179 0021 00000000 		.4byte	.Ldebug_line0
+ 180 0025 02       		.uleb128 0x2
+ 181 0026 04       		.byte	0x4
+ 182 0027 05       		.byte	0x5
+ 183 0028 696E7400 		.ascii	"int\000"
+ 184 002c 03       		.uleb128 0x3
+ 185 002d 04       		.byte	0x4
+ 186 002e 07       		.byte	0x7
+ 187 002f 1A000000 		.4byte	.LASF0
+ 188 0033 03       		.uleb128 0x3
+ 189 0034 01       		.byte	0x1
+ 190 0035 06       		.byte	0x6
+ 191 0036 57010000 		.4byte	.LASF1
+ 192 003a 03       		.uleb128 0x3
+ 193 003b 01       		.byte	0x1
+ 194 003c 08       		.byte	0x8
+ 195 003d 93000000 		.4byte	.LASF2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 7
+
+
+ 196 0041 03       		.uleb128 0x3
+ 197 0042 02       		.byte	0x2
+ 198 0043 05       		.byte	0x5
+ 199 0044 82010000 		.4byte	.LASF3
+ 200 0048 03       		.uleb128 0x3
+ 201 0049 02       		.byte	0x2
+ 202 004a 07       		.byte	0x7
+ 203 004b 44010000 		.4byte	.LASF4
+ 204 004f 03       		.uleb128 0x3
+ 205 0050 04       		.byte	0x4
+ 206 0051 05       		.byte	0x5
+ 207 0052 A6000000 		.4byte	.LASF5
+ 208 0056 03       		.uleb128 0x3
+ 209 0057 04       		.byte	0x4
+ 210 0058 07       		.byte	0x7
+ 211 0059 40000000 		.4byte	.LASF6
+ 212 005d 03       		.uleb128 0x3
+ 213 005e 08       		.byte	0x8
+ 214 005f 05       		.byte	0x5
+ 215 0060 00000000 		.4byte	.LASF7
+ 216 0064 03       		.uleb128 0x3
+ 217 0065 08       		.byte	0x8
+ 218 0066 07       		.byte	0x7
+ 219 0067 52000000 		.4byte	.LASF8
+ 220 006b 03       		.uleb128 0x3
+ 221 006c 04       		.byte	0x4
+ 222 006d 07       		.byte	0x7
+ 223 006e D8010000 		.4byte	.LASF9
+ 224 0072 03       		.uleb128 0x3
+ 225 0073 01       		.byte	0x1
+ 226 0074 08       		.byte	0x8
+ 227 0075 A1000000 		.4byte	.LASF10
+ 228 0079 04       		.uleb128 0x4
+ 229 007a 3A000000 		.4byte	.LASF13
+ 230 007e 02       		.byte	0x2
+ 231 007f C2       		.byte	0xc2
+ 232 0080 3A000000 		.4byte	0x3a
+ 233 0084 03       		.uleb128 0x3
+ 234 0085 04       		.byte	0x4
+ 235 0086 04       		.byte	0x4
+ 236 0087 73000000 		.4byte	.LASF11
+ 237 008b 03       		.uleb128 0x3
+ 238 008c 08       		.byte	0x8
+ 239 008d 04       		.byte	0x4
+ 240 008e 3D010000 		.4byte	.LASF12
+ 241 0092 05       		.uleb128 0x5
+ 242 0093 35000000 		.4byte	.LASF14
+ 243 0097 02       		.byte	0x2
+ 244 0098 6C01     		.2byte	0x16c
+ 245 009a 9E000000 		.4byte	0x9e
+ 246 009e 06       		.uleb128 0x6
+ 247 009f 79000000 		.4byte	0x79
+ 248 00a3 07       		.uleb128 0x7
+ 249 00a4 01       		.byte	0x1
+ 250 00a5 03       		.byte	0x3
+ 251 00a6 3D       		.byte	0x3d
+ 252 00a7 B8000000 		.4byte	0xb8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 8
+
+
+ 253 00ab 08       		.uleb128 0x8
+ 254 00ac 0E000000 		.4byte	.LASF23
+ 255 00b0 03       		.byte	0x3
+ 256 00b1 3F       		.byte	0x3f
+ 257 00b2 79000000 		.4byte	0x79
+ 258 00b6 00       		.byte	0
+ 259 00b7 00       		.byte	0
+ 260 00b8 04       		.uleb128 0x4
+ 261 00b9 79000000 		.4byte	.LASF15
+ 262 00bd 03       		.byte	0x3
+ 263 00be 40       		.byte	0x40
+ 264 00bf A3000000 		.4byte	0xa3
+ 265 00c3 09       		.uleb128 0x9
+ 266 00c4 27000000 		.4byte	.LASF16
+ 267 00c8 01       		.byte	0x1
+ 268 00c9 25       		.byte	0x25
+ 269 00ca 00000000 		.4byte	.LFB0
+ 270 00ce 0A000000 		.4byte	.LFE0-.LFB0
+ 271 00d2 01       		.uleb128 0x1
+ 272 00d3 9C       		.byte	0x9c
+ 273 00d4 09       		.uleb128 0x9
+ 274 00d5 C7010000 		.4byte	.LASF17
+ 275 00d9 01       		.byte	0x1
+ 276 00da 3F       		.byte	0x3f
+ 277 00db 00000000 		.4byte	.LFB1
+ 278 00df 0A000000 		.4byte	.LFE1-.LFB1
+ 279 00e3 01       		.uleb128 0x1
+ 280 00e4 9C       		.byte	0x9c
+ 281 00e5 09       		.uleb128 0x9
+ 282 00e6 8A000000 		.4byte	.LASF18
+ 283 00ea 01       		.byte	0x1
+ 284 00eb 60       		.byte	0x60
+ 285 00ec 00000000 		.4byte	.LFB2
+ 286 00f0 34000000 		.4byte	.LFE2-.LFB2
+ 287 00f4 01       		.uleb128 0x1
+ 288 00f5 9C       		.byte	0x9c
+ 289 00f6 09       		.uleb128 0x9
+ 290 00f7 69000000 		.4byte	.LASF19
+ 291 00fb 01       		.byte	0x1
+ 292 00fc 81       		.byte	0x81
+ 293 00fd 00000000 		.4byte	.LFB3
+ 294 0101 20000000 		.4byte	.LFE3-.LFB3
+ 295 0105 01       		.uleb128 0x1
+ 296 0106 9C       		.byte	0x9c
+ 297 0107 0A       		.uleb128 0xa
+ 298 0108 E1010000 		.4byte	.LASF24
+ 299 010c 01       		.byte	0x1
+ 300 010d 15       		.byte	0x15
+ 301 010e B8000000 		.4byte	0xb8
+ 302 0112 05       		.uleb128 0x5
+ 303 0113 03       		.byte	0x3
+ 304 0114 00000000 		.4byte	QD_backup
+ 305 0118 00       		.byte	0
+ 306              		.section	.debug_abbrev,"",%progbits
+ 307              	.Ldebug_abbrev0:
+ 308 0000 01       		.uleb128 0x1
+ 309 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 9
+
+
+ 310 0002 01       		.byte	0x1
+ 311 0003 25       		.uleb128 0x25
+ 312 0004 0E       		.uleb128 0xe
+ 313 0005 13       		.uleb128 0x13
+ 314 0006 0B       		.uleb128 0xb
+ 315 0007 03       		.uleb128 0x3
+ 316 0008 0E       		.uleb128 0xe
+ 317 0009 1B       		.uleb128 0x1b
+ 318 000a 0E       		.uleb128 0xe
+ 319 000b 55       		.uleb128 0x55
+ 320 000c 17       		.uleb128 0x17
+ 321 000d 11       		.uleb128 0x11
+ 322 000e 01       		.uleb128 0x1
+ 323 000f 10       		.uleb128 0x10
+ 324 0010 17       		.uleb128 0x17
+ 325 0011 00       		.byte	0
+ 326 0012 00       		.byte	0
+ 327 0013 02       		.uleb128 0x2
+ 328 0014 24       		.uleb128 0x24
+ 329 0015 00       		.byte	0
+ 330 0016 0B       		.uleb128 0xb
+ 331 0017 0B       		.uleb128 0xb
+ 332 0018 3E       		.uleb128 0x3e
+ 333 0019 0B       		.uleb128 0xb
+ 334 001a 03       		.uleb128 0x3
+ 335 001b 08       		.uleb128 0x8
+ 336 001c 00       		.byte	0
+ 337 001d 00       		.byte	0
+ 338 001e 03       		.uleb128 0x3
+ 339 001f 24       		.uleb128 0x24
+ 340 0020 00       		.byte	0
+ 341 0021 0B       		.uleb128 0xb
+ 342 0022 0B       		.uleb128 0xb
+ 343 0023 3E       		.uleb128 0x3e
+ 344 0024 0B       		.uleb128 0xb
+ 345 0025 03       		.uleb128 0x3
+ 346 0026 0E       		.uleb128 0xe
+ 347 0027 00       		.byte	0
+ 348 0028 00       		.byte	0
+ 349 0029 04       		.uleb128 0x4
+ 350 002a 16       		.uleb128 0x16
+ 351 002b 00       		.byte	0
+ 352 002c 03       		.uleb128 0x3
+ 353 002d 0E       		.uleb128 0xe
+ 354 002e 3A       		.uleb128 0x3a
+ 355 002f 0B       		.uleb128 0xb
+ 356 0030 3B       		.uleb128 0x3b
+ 357 0031 0B       		.uleb128 0xb
+ 358 0032 49       		.uleb128 0x49
+ 359 0033 13       		.uleb128 0x13
+ 360 0034 00       		.byte	0
+ 361 0035 00       		.byte	0
+ 362 0036 05       		.uleb128 0x5
+ 363 0037 16       		.uleb128 0x16
+ 364 0038 00       		.byte	0
+ 365 0039 03       		.uleb128 0x3
+ 366 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 10
+
+
+ 367 003b 3A       		.uleb128 0x3a
+ 368 003c 0B       		.uleb128 0xb
+ 369 003d 3B       		.uleb128 0x3b
+ 370 003e 05       		.uleb128 0x5
+ 371 003f 49       		.uleb128 0x49
+ 372 0040 13       		.uleb128 0x13
+ 373 0041 00       		.byte	0
+ 374 0042 00       		.byte	0
+ 375 0043 06       		.uleb128 0x6
+ 376 0044 35       		.uleb128 0x35
+ 377 0045 00       		.byte	0
+ 378 0046 49       		.uleb128 0x49
+ 379 0047 13       		.uleb128 0x13
+ 380 0048 00       		.byte	0
+ 381 0049 00       		.byte	0
+ 382 004a 07       		.uleb128 0x7
+ 383 004b 13       		.uleb128 0x13
+ 384 004c 01       		.byte	0x1
+ 385 004d 0B       		.uleb128 0xb
+ 386 004e 0B       		.uleb128 0xb
+ 387 004f 3A       		.uleb128 0x3a
+ 388 0050 0B       		.uleb128 0xb
+ 389 0051 3B       		.uleb128 0x3b
+ 390 0052 0B       		.uleb128 0xb
+ 391 0053 01       		.uleb128 0x1
+ 392 0054 13       		.uleb128 0x13
+ 393 0055 00       		.byte	0
+ 394 0056 00       		.byte	0
+ 395 0057 08       		.uleb128 0x8
+ 396 0058 0D       		.uleb128 0xd
+ 397 0059 00       		.byte	0
+ 398 005a 03       		.uleb128 0x3
+ 399 005b 0E       		.uleb128 0xe
+ 400 005c 3A       		.uleb128 0x3a
+ 401 005d 0B       		.uleb128 0xb
+ 402 005e 3B       		.uleb128 0x3b
+ 403 005f 0B       		.uleb128 0xb
+ 404 0060 49       		.uleb128 0x49
+ 405 0061 13       		.uleb128 0x13
+ 406 0062 38       		.uleb128 0x38
+ 407 0063 0B       		.uleb128 0xb
+ 408 0064 00       		.byte	0
+ 409 0065 00       		.byte	0
+ 410 0066 09       		.uleb128 0x9
+ 411 0067 2E       		.uleb128 0x2e
+ 412 0068 00       		.byte	0
+ 413 0069 3F       		.uleb128 0x3f
+ 414 006a 19       		.uleb128 0x19
+ 415 006b 03       		.uleb128 0x3
+ 416 006c 0E       		.uleb128 0xe
+ 417 006d 3A       		.uleb128 0x3a
+ 418 006e 0B       		.uleb128 0xb
+ 419 006f 3B       		.uleb128 0x3b
+ 420 0070 0B       		.uleb128 0xb
+ 421 0071 27       		.uleb128 0x27
+ 422 0072 19       		.uleb128 0x19
+ 423 0073 11       		.uleb128 0x11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 11
+
+
+ 424 0074 01       		.uleb128 0x1
+ 425 0075 12       		.uleb128 0x12
+ 426 0076 06       		.uleb128 0x6
+ 427 0077 40       		.uleb128 0x40
+ 428 0078 18       		.uleb128 0x18
+ 429 0079 9642     		.uleb128 0x2116
+ 430 007b 19       		.uleb128 0x19
+ 431 007c 00       		.byte	0
+ 432 007d 00       		.byte	0
+ 433 007e 0A       		.uleb128 0xa
+ 434 007f 34       		.uleb128 0x34
+ 435 0080 00       		.byte	0
+ 436 0081 03       		.uleb128 0x3
+ 437 0082 0E       		.uleb128 0xe
+ 438 0083 3A       		.uleb128 0x3a
+ 439 0084 0B       		.uleb128 0xb
+ 440 0085 3B       		.uleb128 0x3b
+ 441 0086 0B       		.uleb128 0xb
+ 442 0087 49       		.uleb128 0x49
+ 443 0088 13       		.uleb128 0x13
+ 444 0089 02       		.uleb128 0x2
+ 445 008a 18       		.uleb128 0x18
+ 446 008b 00       		.byte	0
+ 447 008c 00       		.byte	0
+ 448 008d 00       		.byte	0
+ 449              		.section	.debug_aranges,"",%progbits
+ 450 0000 34000000 		.4byte	0x34
+ 451 0004 0200     		.2byte	0x2
+ 452 0006 00000000 		.4byte	.Ldebug_info0
+ 453 000a 04       		.byte	0x4
+ 454 000b 00       		.byte	0
+ 455 000c 0000     		.2byte	0
+ 456 000e 0000     		.2byte	0
+ 457 0010 00000000 		.4byte	.LFB0
+ 458 0014 0A000000 		.4byte	.LFE0-.LFB0
+ 459 0018 00000000 		.4byte	.LFB1
+ 460 001c 0A000000 		.4byte	.LFE1-.LFB1
+ 461 0020 00000000 		.4byte	.LFB2
+ 462 0024 34000000 		.4byte	.LFE2-.LFB2
+ 463 0028 00000000 		.4byte	.LFB3
+ 464 002c 20000000 		.4byte	.LFE3-.LFB3
+ 465 0030 00000000 		.4byte	0
+ 466 0034 00000000 		.4byte	0
+ 467              		.section	.debug_ranges,"",%progbits
+ 468              	.Ldebug_ranges0:
+ 469 0000 00000000 		.4byte	.LFB0
+ 470 0004 0A000000 		.4byte	.LFE0
+ 471 0008 00000000 		.4byte	.LFB1
+ 472 000c 0A000000 		.4byte	.LFE1
+ 473 0010 00000000 		.4byte	.LFB2
+ 474 0014 34000000 		.4byte	.LFE2
+ 475 0018 00000000 		.4byte	.LFB3
+ 476 001c 20000000 		.4byte	.LFE3
+ 477 0020 00000000 		.4byte	0
+ 478 0024 00000000 		.4byte	0
+ 479              		.section	.debug_line,"",%progbits
+ 480              	.Ldebug_line0:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 12
+
+
+ 481 0000 9D000000 		.section	.debug_str,"MS",%progbits,1
+ 481      02004A00 
+ 481      00000201 
+ 481      FB0E0D00 
+ 481      01010101 
+ 482              	.LASF7:
+ 483 0000 6C6F6E67 		.ascii	"long long int\000"
+ 483      206C6F6E 
+ 483      6720696E 
+ 483      7400
+ 484              	.LASF23:
+ 485 000e 656E6162 		.ascii	"enableState\000"
+ 485      6C655374 
+ 485      61746500 
+ 486              	.LASF0:
+ 487 001a 756E7369 		.ascii	"unsigned int\000"
+ 487      676E6564 
+ 487      20696E74 
+ 487      00
+ 488              	.LASF16:
+ 489 0027 51445F53 		.ascii	"QD_SaveConfig\000"
+ 489      61766543 
+ 489      6F6E6669 
+ 489      6700
+ 490              	.LASF14:
+ 491 0035 72656738 		.ascii	"reg8\000"
+ 491      00
+ 492              	.LASF13:
+ 493 003a 75696E74 		.ascii	"uint8\000"
+ 493      3800
+ 494              	.LASF6:
+ 495 0040 6C6F6E67 		.ascii	"long unsigned int\000"
+ 495      20756E73 
+ 495      69676E65 
+ 495      6420696E 
+ 495      7400
+ 496              	.LASF8:
+ 497 0052 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 497      206C6F6E 
+ 497      6720756E 
+ 497      7369676E 
+ 497      65642069 
+ 498              	.LASF19:
+ 499 0069 51445F57 		.ascii	"QD_Wakeup\000"
+ 499      616B6575 
+ 499      7000
+ 500              	.LASF11:
+ 501 0073 666C6F61 		.ascii	"float\000"
+ 501      7400
+ 502              	.LASF15:
+ 503 0079 51445F42 		.ascii	"QD_BACKUP_STRUCT\000"
+ 503      41434B55 
+ 503      505F5354 
+ 503      52554354 
+ 503      00
+ 504              	.LASF18:
+ 505 008a 51445F53 		.ascii	"QD_Sleep\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 13
+
+
+ 505      6C656570 
+ 505      00
+ 506              	.LASF2:
+ 507 0093 756E7369 		.ascii	"unsigned char\000"
+ 507      676E6564 
+ 507      20636861 
+ 507      7200
+ 508              	.LASF10:
+ 509 00a1 63686172 		.ascii	"char\000"
+ 509      00
+ 510              	.LASF5:
+ 511 00a6 6C6F6E67 		.ascii	"long int\000"
+ 511      20696E74 
+ 511      00
+ 512              	.LASF20:
+ 513 00af 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 513      4320342E 
+ 513      392E3320 
+ 513      32303135 
+ 513      30333033 
+ 514 00e2 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 514      20726576 
+ 514      6973696F 
+ 514      6E203232 
+ 514      31323230 
+ 515 0115 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 515      66756E63 
+ 515      74696F6E 
+ 515      2D736563 
+ 515      74696F6E 
+ 516              	.LASF12:
+ 517 013d 646F7562 		.ascii	"double\000"
+ 517      6C6500
+ 518              	.LASF4:
+ 519 0144 73686F72 		.ascii	"short unsigned int\000"
+ 519      7420756E 
+ 519      7369676E 
+ 519      65642069 
+ 519      6E7400
+ 520              	.LASF1:
+ 521 0157 7369676E 		.ascii	"signed char\000"
+ 521      65642063 
+ 521      68617200 
+ 522              	.LASF21:
+ 523 0163 47656E65 		.ascii	"Generated_Source\\PSoC5\\QD_PM.c\000"
+ 523      72617465 
+ 523      645F536F 
+ 523      75726365 
+ 523      5C50536F 
+ 524              	.LASF3:
+ 525 0182 73686F72 		.ascii	"short int\000"
+ 525      7420696E 
+ 525      7400
+ 526              	.LASF22:
+ 527 018c 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 527      6F726B73 
+ 527      70616365 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccioaeQo.s 			page 14
+
+
+ 527      5C50536F 
+ 527      435F4372 
+ 528 01bb 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 528      392E6379 
+ 528      64736E00 
+ 529              	.LASF17:
+ 530 01c7 51445F52 		.ascii	"QD_RestoreConfig\000"
+ 530      6573746F 
+ 530      7265436F 
+ 530      6E666967 
+ 530      00
+ 531              	.LASF9:
+ 532 01d8 73697A65 		.ascii	"sizetype\000"
+ 532      74797065 
+ 532      00
+ 533              	.LASF24:
+ 534 01e1 51445F62 		.ascii	"QD_backup\000"
+ 534      61636B75 
+ 534      7000
+ 535              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

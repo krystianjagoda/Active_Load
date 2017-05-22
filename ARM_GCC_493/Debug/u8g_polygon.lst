@@ -1,0 +1,4185 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"u8g_polygon.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.pge_Next,"ax",%progbits
+  19              		.align	2
+  20              		.thumb
+  21              		.thumb_func
+  22              		.type	pge_Next, %function
+  23              	pge_Next:
+  24              	.LFB0:
+  25              		.file 1 "u8glib_arm_v1.18.1\\src\\u8g_polygon.c"
+   1:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /*
+   2:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+   3:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   u8g_polygon.c
+   4:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+   5:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Implementation of a polygon draw algorithm for "convex" polygons. 
+   6:u8glib_arm_v1.18.1\src/u8g_polygon.c ****  
+   7:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Universal 8bit Graphics Library
+   8:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+   9:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Copyright (c) 2013, olikraus@gmail.com
+  10:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   All rights reserved.
+  11:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  12:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  13:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   are permitted provided that the following conditions are met:
+  14:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  15:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  16:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     of conditions and the following disclaimer.
+  17:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     
+  18:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  19:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  20:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     materials provided with the distribution.
+  21:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  22:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  23:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  24:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  25:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  26:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  27:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  28:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  29:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  30:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  31:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  32:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 2
+
+
+  33:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  34:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  35:u8glib_arm_v1.18.1\src/u8g_polygon.c ****  
+  36:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   See also:
+  37:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   http://www.angelfire.com/linux/myp/ConvexPolRas/ConvexPolRas.html
+  38:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Computer Graphics, Principles and Practice, Foley, van Dam, Feiner, Hughes (pp 92)
+  39:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Michael Abrash's Graphics Programming Black Book, Special Edition (Chapter 38 and 39)
+  40:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  41:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   Optimized for embedded systems
+  42:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   - static memory usage only
+  43:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   - consistent data types
+  44:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   - low flash ROM consumption
+  45:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+  46:u8glib_arm_v1.18.1\src/u8g_polygon.c **** */
+  47:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  48:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  49:u8glib_arm_v1.18.1\src/u8g_polygon.c **** #include "u8g.h"
+  50:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  51:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  52:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  53:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  54:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /*===========================================*/
+  55:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /* procedures, which should not be inlined (save as much flash ROM as possible */
+  56:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  57:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pge_Next(struct pg_edge_struct *pge) PG_NOINLINE;
+  58:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pg_inc(pg_struct *pg, uint8_t i) PG_NOINLINE;
+  59:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pg_dec(pg_struct *pg, uint8_t i) PG_NOINLINE;
+  60:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pg_expand_min_y(pg_struct *pg, pg_word_t min_y, uint8_t pge_idx) PG_NOINLINE;
+  61:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pg_line_init(pg_struct * const pg, uint8_t pge_index) PG_NOINLINE;
+  62:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  63:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /*===========================================*/
+  64:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /* line draw algorithm */
+  65:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  66:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pge_Next(struct pg_edge_struct *pge)
+  67:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+  26              		.loc 1 67 0
+  27              		.cfi_startproc
+  28              		@ args = 0, pretend = 0, frame = 8
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30              		@ link register save eliminated.
+  31 0000 80B4     		push	{r7}
+  32              		.cfi_def_cfa_offset 4
+  33              		.cfi_offset 7, -4
+  34 0002 83B0     		sub	sp, sp, #12
+  35              		.cfi_def_cfa_offset 16
+  36 0004 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  38 0006 7860     		str	r0, [r7, #4]
+  68:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pge->current_y >= pge->max_y )
+  39              		.loc 1 68 0
+  40 0008 7B68     		ldr	r3, [r7, #4]
+  41 000a 1A89     		ldrh	r2, [r3, #8]
+  42 000c 7B68     		ldr	r3, [r7, #4]
+  43 000e 5B89     		ldrh	r3, [r3, #10]
+  44 0010 12B2     		sxth	r2, r2
+  45 0012 1BB2     		sxth	r3, r3
+  46 0014 9A42     		cmp	r2, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 3
+
+
+  47 0016 01DB     		blt	.L2
+  69:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return 0;
+  48              		.loc 1 69 0
+  49 0018 0023     		movs	r3, #0
+  50 001a 3AE0     		b	.L3
+  51              	.L2:
+  70:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+  71:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->current_x += pge->current_x_offset;
+  52              		.loc 1 71 0
+  53 001c 7B68     		ldr	r3, [r7, #4]
+  54 001e 9B89     		ldrh	r3, [r3, #12]
+  55 0020 9AB2     		uxth	r2, r3
+  56 0022 7B68     		ldr	r3, [r7, #4]
+  57 0024 9B88     		ldrh	r3, [r3, #4]
+  58 0026 9BB2     		uxth	r3, r3
+  59 0028 1344     		add	r3, r3, r2
+  60 002a 9BB2     		uxth	r3, r3
+  61 002c 9AB2     		uxth	r2, r3
+  62 002e 7B68     		ldr	r3, [r7, #4]
+  63 0030 9A81     		strh	r2, [r3, #12]	@ movhi
+  72:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->error += pge->error_offset;
+  64              		.loc 1 72 0
+  65 0032 7B68     		ldr	r3, [r7, #4]
+  66 0034 DB89     		ldrh	r3, [r3, #14]
+  67 0036 9AB2     		uxth	r2, r3
+  68 0038 7B68     		ldr	r3, [r7, #4]
+  69 003a DB88     		ldrh	r3, [r3, #6]
+  70 003c 9BB2     		uxth	r3, r3
+  71 003e 1344     		add	r3, r3, r2
+  72 0040 9BB2     		uxth	r3, r3
+  73 0042 9AB2     		uxth	r2, r3
+  74 0044 7B68     		ldr	r3, [r7, #4]
+  75 0046 DA81     		strh	r2, [r3, #14]	@ movhi
+  73:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pge->error > 0 )
+  76              		.loc 1 73 0
+  77 0048 7B68     		ldr	r3, [r7, #4]
+  78 004a DB89     		ldrh	r3, [r3, #14]
+  79 004c 1BB2     		sxth	r3, r3
+  80 004e 002B     		cmp	r3, #0
+  81 0050 15DD     		ble	.L4
+  74:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+  75:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge->current_x += pge->x_direction;
+  82              		.loc 1 75 0
+  83 0052 7B68     		ldr	r3, [r7, #4]
+  84 0054 9B89     		ldrh	r3, [r3, #12]
+  85 0056 9AB2     		uxth	r2, r3
+  86 0058 7B68     		ldr	r3, [r7, #4]
+  87 005a 1B88     		ldrh	r3, [r3]
+  88 005c 9BB2     		uxth	r3, r3
+  89 005e 1344     		add	r3, r3, r2
+  90 0060 9BB2     		uxth	r3, r3
+  91 0062 9AB2     		uxth	r2, r3
+  92 0064 7B68     		ldr	r3, [r7, #4]
+  93 0066 9A81     		strh	r2, [r3, #12]	@ movhi
+  76:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge->error -= pge->height;
+  94              		.loc 1 76 0
+  95 0068 7B68     		ldr	r3, [r7, #4]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 4
+
+
+  96 006a DB89     		ldrh	r3, [r3, #14]
+  97 006c 9AB2     		uxth	r2, r3
+  98 006e 7B68     		ldr	r3, [r7, #4]
+  99 0070 5B88     		ldrh	r3, [r3, #2]
+ 100 0072 9BB2     		uxth	r3, r3
+ 101 0074 D31A     		subs	r3, r2, r3
+ 102 0076 9BB2     		uxth	r3, r3
+ 103 0078 9AB2     		uxth	r2, r3
+ 104 007a 7B68     		ldr	r3, [r7, #4]
+ 105 007c DA81     		strh	r2, [r3, #14]	@ movhi
+ 106              	.L4:
+  77:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }  
+  78:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+  79:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->current_y++;
+ 107              		.loc 1 79 0
+ 108 007e 7B68     		ldr	r3, [r7, #4]
+ 109 0080 1B89     		ldrh	r3, [r3, #8]
+ 110 0082 9BB2     		uxth	r3, r3
+ 111 0084 9BB2     		uxth	r3, r3
+ 112 0086 0133     		adds	r3, r3, #1
+ 113 0088 9BB2     		uxth	r3, r3
+ 114 008a 9AB2     		uxth	r2, r3
+ 115 008c 7B68     		ldr	r3, [r7, #4]
+ 116 008e 1A81     		strh	r2, [r3, #8]	@ movhi
+  80:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   return 1;
+ 117              		.loc 1 80 0
+ 118 0090 0123     		movs	r3, #1
+ 119              	.L3:
+  81:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 120              		.loc 1 81 0
+ 121 0092 1846     		mov	r0, r3
+ 122 0094 0C37     		adds	r7, r7, #12
+ 123              		.cfi_def_cfa_offset 4
+ 124 0096 BD46     		mov	sp, r7
+ 125              		.cfi_def_cfa_register 13
+ 126              		@ sp needed
+ 127 0098 5DF8047B 		ldr	r7, [sp], #4
+ 128              		.cfi_restore 7
+ 129              		.cfi_def_cfa_offset 0
+ 130 009c 7047     		bx	lr
+ 131              		.cfi_endproc
+ 132              	.LFE0:
+ 133              		.size	pge_Next, .-pge_Next
+ 134 009e 00BF     		.section	.text.pge_Init,"ax",%progbits
+ 135              		.align	2
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.type	pge_Init, %function
+ 139              	pge_Init:
+ 140              	.LFB1:
+  82:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  83:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /* assumes y2 > y1 */
+  84:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pge_Init(struct pg_edge_struct *pge, pg_word_t x1, pg_word_t y1, pg_word_t x2, pg_word_
+  85:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 141              		.loc 1 85 0
+ 142              		.cfi_startproc
+ 143              		@ args = 4, pretend = 0, frame = 24
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 5
+
+
+ 144              		@ frame_needed = 1, uses_anonymous_args = 0
+ 145              		@ link register save eliminated.
+ 146 0000 80B4     		push	{r7}
+ 147              		.cfi_def_cfa_offset 4
+ 148              		.cfi_offset 7, -4
+ 149 0002 87B0     		sub	sp, sp, #28
+ 150              		.cfi_def_cfa_offset 32
+ 151 0004 00AF     		add	r7, sp, #0
+ 152              		.cfi_def_cfa_register 7
+ 153 0006 F860     		str	r0, [r7, #12]
+ 154 0008 0846     		mov	r0, r1
+ 155 000a 1146     		mov	r1, r2
+ 156 000c 1A46     		mov	r2, r3
+ 157 000e 0346     		mov	r3, r0	@ movhi
+ 158 0010 7B81     		strh	r3, [r7, #10]	@ movhi
+ 159 0012 0B46     		mov	r3, r1	@ movhi
+ 160 0014 3B81     		strh	r3, [r7, #8]	@ movhi
+ 161 0016 1346     		mov	r3, r2	@ movhi
+ 162 0018 FB80     		strh	r3, [r7, #6]	@ movhi
+  86:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t dx = x2 - x1;
+ 163              		.loc 1 86 0
+ 164 001a FA88     		ldrh	r2, [r7, #6]
+ 165 001c 7B89     		ldrh	r3, [r7, #10]
+ 166 001e D31A     		subs	r3, r2, r3
+ 167 0020 9BB2     		uxth	r3, r3
+ 168 0022 BB82     		strh	r3, [r7, #20]	@ movhi
+  87:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t width;
+  88:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  89:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->height = y2 - y1;
+ 169              		.loc 1 89 0
+ 170 0024 3A8C     		ldrh	r2, [r7, #32]
+ 171 0026 3B89     		ldrh	r3, [r7, #8]
+ 172 0028 D31A     		subs	r3, r2, r3
+ 173 002a 9BB2     		uxth	r3, r3
+ 174 002c 9AB2     		uxth	r2, r3
+ 175 002e FB68     		ldr	r3, [r7, #12]
+ 176 0030 5A80     		strh	r2, [r3, #2]	@ movhi
+  90:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->max_y = y2;
+ 177              		.loc 1 90 0
+ 178 0032 FB68     		ldr	r3, [r7, #12]
+ 179 0034 3A8C     		ldrh	r2, [r7, #32]	@ movhi
+ 180 0036 5A81     		strh	r2, [r3, #10]	@ movhi
+  91:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->current_y = y1;
+ 181              		.loc 1 91 0
+ 182 0038 FB68     		ldr	r3, [r7, #12]
+ 183 003a 3A89     		ldrh	r2, [r7, #8]	@ movhi
+ 184 003c 1A81     		strh	r2, [r3, #8]	@ movhi
+  92:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->current_x = x1;
+ 185              		.loc 1 92 0
+ 186 003e FB68     		ldr	r3, [r7, #12]
+ 187 0040 7A89     		ldrh	r2, [r7, #10]	@ movhi
+ 188 0042 9A81     		strh	r2, [r3, #12]	@ movhi
+  93:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+  94:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( dx >= 0 )
+ 189              		.loc 1 94 0
+ 190 0044 B7F91430 		ldrsh	r3, [r7, #20]
+ 191 0048 002B     		cmp	r3, #0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 6
+
+
+ 192 004a 08DB     		blt	.L6
+  95:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+  96:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge->x_direction = 1;
+ 193              		.loc 1 96 0
+ 194 004c FB68     		ldr	r3, [r7, #12]
+ 195 004e 0122     		movs	r2, #1
+ 196 0050 1A80     		strh	r2, [r3]	@ movhi
+  97:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     width = dx;
+ 197              		.loc 1 97 0
+ 198 0052 BB8A     		ldrh	r3, [r7, #20]	@ movhi
+ 199 0054 FB82     		strh	r3, [r7, #22]	@ movhi
+  98:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge->error = 0;
+ 200              		.loc 1 98 0
+ 201 0056 FB68     		ldr	r3, [r7, #12]
+ 202 0058 0022     		movs	r2, #0
+ 203 005a DA81     		strh	r2, [r3, #14]	@ movhi
+ 204 005c 10E0     		b	.L7
+ 205              	.L6:
+  99:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 100:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   else
+ 101:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 102:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge->x_direction = -1;
+ 206              		.loc 1 102 0
+ 207 005e FB68     		ldr	r3, [r7, #12]
+ 208 0060 4FF6FF72 		movw	r2, #65535
+ 209 0064 1A80     		strh	r2, [r3]	@ movhi
+ 103:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     width = -dx;
+ 210              		.loc 1 103 0
+ 211 0066 BB8A     		ldrh	r3, [r7, #20]
+ 212 0068 5B42     		negs	r3, r3
+ 213 006a 9BB2     		uxth	r3, r3
+ 214 006c FB82     		strh	r3, [r7, #22]	@ movhi
+ 104:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge->error = 1 - pge->height;
+ 215              		.loc 1 104 0
+ 216 006e FB68     		ldr	r3, [r7, #12]
+ 217 0070 5B88     		ldrh	r3, [r3, #2]
+ 218 0072 9BB2     		uxth	r3, r3
+ 219 0074 C3F10103 		rsb	r3, r3, #1
+ 220 0078 9BB2     		uxth	r3, r3
+ 221 007a 9AB2     		uxth	r2, r3
+ 222 007c FB68     		ldr	r3, [r7, #12]
+ 223 007e DA81     		strh	r2, [r3, #14]	@ movhi
+ 224              	.L7:
+ 105:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 106:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 107:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->current_x_offset = dx / pge->height;
+ 225              		.loc 1 107 0
+ 226 0080 B7F91420 		ldrsh	r2, [r7, #20]
+ 227 0084 FB68     		ldr	r3, [r7, #12]
+ 228 0086 5B88     		ldrh	r3, [r3, #2]
+ 229 0088 1BB2     		sxth	r3, r3
+ 230 008a 92FBF3F3 		sdiv	r3, r2, r3
+ 231 008e 9AB2     		uxth	r2, r3
+ 232 0090 FB68     		ldr	r3, [r7, #12]
+ 233 0092 9A80     		strh	r2, [r3, #4]	@ movhi
+ 108:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->error_offset = width % pge->height;
+ 234              		.loc 1 108 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 7
+
+
+ 235 0094 B7F91630 		ldrsh	r3, [r7, #22]
+ 236 0098 FA68     		ldr	r2, [r7, #12]
+ 237 009a 5288     		ldrh	r2, [r2, #2]
+ 238 009c 12B2     		sxth	r2, r2
+ 239 009e 93FBF2F1 		sdiv	r1, r3, r2
+ 240 00a2 02FB01F2 		mul	r2, r2, r1
+ 241 00a6 9B1A     		subs	r3, r3, r2
+ 242 00a8 9AB2     		uxth	r2, r3
+ 243 00aa FB68     		ldr	r3, [r7, #12]
+ 244 00ac DA80     		strh	r2, [r3, #6]	@ movhi
+ 109:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 245              		.loc 1 109 0
+ 246 00ae 1C37     		adds	r7, r7, #28
+ 247              		.cfi_def_cfa_offset 4
+ 248 00b0 BD46     		mov	sp, r7
+ 249              		.cfi_def_cfa_register 13
+ 250              		@ sp needed
+ 251 00b2 5DF8047B 		ldr	r7, [sp], #4
+ 252              		.cfi_restore 7
+ 253              		.cfi_def_cfa_offset 0
+ 254 00b6 7047     		bx	lr
+ 255              		.cfi_endproc
+ 256              	.LFE1:
+ 257              		.size	pge_Init, .-pge_Init
+ 258              		.section	.text.pg_inc,"ax",%progbits
+ 259              		.align	2
+ 260              		.thumb
+ 261              		.thumb_func
+ 262              		.type	pg_inc, %function
+ 263              	pg_inc:
+ 264              	.LFB2:
+ 110:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 111:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /*===========================================*/
+ 112:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /* convex polygon algorithm */
+ 113:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 114:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pg_inc(pg_struct *pg, uint8_t i)
+ 115:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 265              		.loc 1 115 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 8
+ 268              		@ frame_needed = 1, uses_anonymous_args = 0
+ 269              		@ link register save eliminated.
+ 270 0000 80B4     		push	{r7}
+ 271              		.cfi_def_cfa_offset 4
+ 272              		.cfi_offset 7, -4
+ 273 0002 83B0     		sub	sp, sp, #12
+ 274              		.cfi_def_cfa_offset 16
+ 275 0004 00AF     		add	r7, sp, #0
+ 276              		.cfi_def_cfa_register 7
+ 277 0006 7860     		str	r0, [r7, #4]
+ 278 0008 0B46     		mov	r3, r1
+ 279 000a FB70     		strb	r3, [r7, #3]
+ 116:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     i++;
+ 280              		.loc 1 116 0
+ 281 000c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 282 000e 0133     		adds	r3, r3, #1
+ 283 0010 FB70     		strb	r3, [r7, #3]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 8
+
+
+ 117:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( i >= pg->cnt )
+ 284              		.loc 1 117 0
+ 285 0012 7B68     		ldr	r3, [r7, #4]
+ 286 0014 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 287 0016 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 288 0018 9A42     		cmp	r2, r3
+ 289 001a 01D3     		bcc	.L9
+ 118:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       i = 0;
+ 290              		.loc 1 118 0
+ 291 001c 0023     		movs	r3, #0
+ 292 001e FB70     		strb	r3, [r7, #3]
+ 293              	.L9:
+ 119:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return i;
+ 294              		.loc 1 119 0
+ 295 0020 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 120:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 296              		.loc 1 120 0
+ 297 0022 1846     		mov	r0, r3
+ 298 0024 0C37     		adds	r7, r7, #12
+ 299              		.cfi_def_cfa_offset 4
+ 300 0026 BD46     		mov	sp, r7
+ 301              		.cfi_def_cfa_register 13
+ 302              		@ sp needed
+ 303 0028 5DF8047B 		ldr	r7, [sp], #4
+ 304              		.cfi_restore 7
+ 305              		.cfi_def_cfa_offset 0
+ 306 002c 7047     		bx	lr
+ 307              		.cfi_endproc
+ 308              	.LFE2:
+ 309              		.size	pg_inc, .-pg_inc
+ 310 002e 00BF     		.section	.text.pg_dec,"ax",%progbits
+ 311              		.align	2
+ 312              		.thumb
+ 313              		.thumb_func
+ 314              		.type	pg_dec, %function
+ 315              	pg_dec:
+ 316              	.LFB3:
+ 121:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 122:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pg_dec(pg_struct *pg, uint8_t i)
+ 123:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 317              		.loc 1 123 0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 8
+ 320              		@ frame_needed = 1, uses_anonymous_args = 0
+ 321              		@ link register save eliminated.
+ 322 0000 80B4     		push	{r7}
+ 323              		.cfi_def_cfa_offset 4
+ 324              		.cfi_offset 7, -4
+ 325 0002 83B0     		sub	sp, sp, #12
+ 326              		.cfi_def_cfa_offset 16
+ 327 0004 00AF     		add	r7, sp, #0
+ 328              		.cfi_def_cfa_register 7
+ 329 0006 7860     		str	r0, [r7, #4]
+ 330 0008 0B46     		mov	r3, r1
+ 331 000a FB70     		strb	r3, [r7, #3]
+ 124:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     i--;
+ 332              		.loc 1 124 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 9
+
+
+ 333 000c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 334 000e 013B     		subs	r3, r3, #1
+ 335 0010 FB70     		strb	r3, [r7, #3]
+ 125:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( i >= pg->cnt )
+ 336              		.loc 1 125 0
+ 337 0012 7B68     		ldr	r3, [r7, #4]
+ 338 0014 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 339 0016 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+ 340 0018 9A42     		cmp	r2, r3
+ 341 001a 03D3     		bcc	.L12
+ 126:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       i = pg->cnt-1;
+ 342              		.loc 1 126 0
+ 343 001c 7B68     		ldr	r3, [r7, #4]
+ 344 001e 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 345 0020 013B     		subs	r3, r3, #1
+ 346 0022 FB70     		strb	r3, [r7, #3]
+ 347              	.L12:
+ 127:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return i;
+ 348              		.loc 1 127 0
+ 349 0024 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 128:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 350              		.loc 1 128 0
+ 351 0026 1846     		mov	r0, r3
+ 352 0028 0C37     		adds	r7, r7, #12
+ 353              		.cfi_def_cfa_offset 4
+ 354 002a BD46     		mov	sp, r7
+ 355              		.cfi_def_cfa_register 13
+ 356              		@ sp needed
+ 357 002c 5DF8047B 		ldr	r7, [sp], #4
+ 358              		.cfi_restore 7
+ 359              		.cfi_def_cfa_offset 0
+ 360 0030 7047     		bx	lr
+ 361              		.cfi_endproc
+ 362              	.LFE3:
+ 363              		.size	pg_dec, .-pg_dec
+ 364 0032 00BF     		.section	.text.pg_expand_min_y,"ax",%progbits
+ 365              		.align	2
+ 366              		.thumb
+ 367              		.thumb_func
+ 368              		.type	pg_expand_min_y, %function
+ 369              	pg_expand_min_y:
+ 370              	.LFB4:
+ 129:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 130:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pg_expand_min_y(pg_struct *pg, pg_word_t min_y, uint8_t pge_idx)
+ 131:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 371              		.loc 1 131 0
+ 372              		.cfi_startproc
+ 373              		@ args = 0, pretend = 0, frame = 16
+ 374              		@ frame_needed = 1, uses_anonymous_args = 0
+ 375 0000 80B5     		push	{r7, lr}
+ 376              		.cfi_def_cfa_offset 8
+ 377              		.cfi_offset 7, -8
+ 378              		.cfi_offset 14, -4
+ 379 0002 84B0     		sub	sp, sp, #16
+ 380              		.cfi_def_cfa_offset 24
+ 381 0004 00AF     		add	r7, sp, #0
+ 382              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 10
+
+
+ 383 0006 7860     		str	r0, [r7, #4]
+ 384 0008 0B46     		mov	r3, r1
+ 385 000a 7B80     		strh	r3, [r7, #2]	@ movhi
+ 386 000c 1346     		mov	r3, r2
+ 387 000e 7B70     		strb	r3, [r7, #1]
+ 132:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   uint8_t i = pg->pge[pge_idx].curr_idx;
+ 388              		.loc 1 132 0
+ 389 0010 7A78     		ldrb	r2, [r7, #1]	@ zero_extendqisi2
+ 390 0012 7968     		ldr	r1, [r7, #4]
+ 391 0014 1346     		mov	r3, r2
+ 392 0016 5B00     		lsls	r3, r3, #1
+ 393 0018 1344     		add	r3, r3, r2
+ 394 001a DB00     		lsls	r3, r3, #3
+ 395 001c 0B44     		add	r3, r3, r1
+ 396 001e 2833     		adds	r3, r3, #40
+ 397 0020 1B7A     		ldrb	r3, [r3, #8]
+ 398 0022 FB73     		strb	r3, [r7, #15]
+ 399              	.L17:
+ 133:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   for(;;)
+ 134:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 135:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     i = pg->pge[pge_idx].next_idx_fn(pg, i);
+ 400              		.loc 1 135 0
+ 401 0024 7A78     		ldrb	r2, [r7, #1]	@ zero_extendqisi2
+ 402 0026 7968     		ldr	r1, [r7, #4]
+ 403 0028 1346     		mov	r3, r2
+ 404 002a 5B00     		lsls	r3, r3, #1
+ 405 002c 1344     		add	r3, r3, r2
+ 406 002e DB00     		lsls	r3, r3, #3
+ 407 0030 0B44     		add	r3, r3, r1
+ 408 0032 2833     		adds	r3, r3, #40
+ 409 0034 5B68     		ldr	r3, [r3, #4]
+ 410 0036 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 411 0038 7868     		ldr	r0, [r7, #4]
+ 412 003a 1146     		mov	r1, r2
+ 413 003c 9847     		blx	r3
+ 414 003e 0346     		mov	r3, r0
+ 415 0040 FB73     		strb	r3, [r7, #15]
+ 136:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( pg->list[i].y != min_y )
+ 416              		.loc 1 136 0
+ 417 0042 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 418 0044 7A68     		ldr	r2, [r7, #4]
+ 419 0046 9B00     		lsls	r3, r3, #2
+ 420 0048 1344     		add	r3, r3, r2
+ 421 004a 5B88     		ldrh	r3, [r3, #2]
+ 422 004c B7F90220 		ldrsh	r2, [r7, #2]
+ 423 0050 1BB2     		sxth	r3, r3
+ 424 0052 9A42     		cmp	r2, r3
+ 425 0054 00D0     		beq	.L15
+ 137:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       break;	
+ 426              		.loc 1 137 0
+ 427 0056 0AE0     		b	.L18
+ 428              	.L15:
+ 138:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg->pge[pge_idx].curr_idx = i;
+ 429              		.loc 1 138 0
+ 430 0058 7A78     		ldrb	r2, [r7, #1]	@ zero_extendqisi2
+ 431 005a 7968     		ldr	r1, [r7, #4]
+ 432 005c 1346     		mov	r3, r2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 11
+
+
+ 433 005e 5B00     		lsls	r3, r3, #1
+ 434 0060 1344     		add	r3, r3, r2
+ 435 0062 DB00     		lsls	r3, r3, #3
+ 436 0064 0B44     		add	r3, r3, r1
+ 437 0066 2833     		adds	r3, r3, #40
+ 438 0068 FA7B     		ldrb	r2, [r7, #15]
+ 439 006a 1A72     		strb	r2, [r3, #8]
+ 139:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 440              		.loc 1 139 0
+ 441 006c DAE7     		b	.L17
+ 442              	.L18:
+ 140:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 443              		.loc 1 140 0
+ 444 006e 1037     		adds	r7, r7, #16
+ 445              		.cfi_def_cfa_offset 8
+ 446 0070 BD46     		mov	sp, r7
+ 447              		.cfi_def_cfa_register 13
+ 448              		@ sp needed
+ 449 0072 80BD     		pop	{r7, pc}
+ 450              		.cfi_endproc
+ 451              	.LFE4:
+ 452              		.size	pg_expand_min_y, .-pg_expand_min_y
+ 453              		.section	.text.pg_prepare,"ax",%progbits
+ 454              		.align	2
+ 455              		.thumb
+ 456              		.thumb_func
+ 457              		.type	pg_prepare, %function
+ 458              	pg_prepare:
+ 459              	.LFB5:
+ 141:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 142:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static uint8_t pg_prepare(pg_struct *pg)
+ 143:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 460              		.loc 1 143 0
+ 461              		.cfi_startproc
+ 462              		@ args = 0, pretend = 0, frame = 16
+ 463              		@ frame_needed = 1, uses_anonymous_args = 0
+ 464 0000 80B5     		push	{r7, lr}
+ 465              		.cfi_def_cfa_offset 8
+ 466              		.cfi_offset 7, -8
+ 467              		.cfi_offset 14, -4
+ 468 0002 84B0     		sub	sp, sp, #16
+ 469              		.cfi_def_cfa_offset 24
+ 470 0004 00AF     		add	r7, sp, #0
+ 471              		.cfi_def_cfa_register 7
+ 472 0006 7860     		str	r0, [r7, #4]
+ 144:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t max_y;
+ 145:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t min_y;
+ 146:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   uint8_t i;
+ 147:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 148:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* setup the next index procedures */
+ 149:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->pge[PG_RIGHT].next_idx_fn = pg_inc;
+ 473              		.loc 1 149 0
+ 474 0008 7B68     		ldr	r3, [r7, #4]
+ 475 000a 484A     		ldr	r2, .L28
+ 476 000c 5A64     		str	r2, [r3, #68]
+ 150:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->pge[PG_LEFT].next_idx_fn = pg_dec;
+ 477              		.loc 1 150 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 12
+
+
+ 478 000e 7B68     		ldr	r3, [r7, #4]
+ 479 0010 474A     		ldr	r2, .L28+4
+ 480 0012 DA62     		str	r2, [r3, #44]
+ 151:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 152:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* search for highest and lowest point */
+ 153:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   max_y = pg->list[0].y;
+ 481              		.loc 1 153 0
+ 482 0014 7B68     		ldr	r3, [r7, #4]
+ 483 0016 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 484 0018 FB81     		strh	r3, [r7, #14]	@ movhi
+ 154:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   min_y = pg->list[0].y;
+ 485              		.loc 1 154 0
+ 486 001a 7B68     		ldr	r3, [r7, #4]
+ 487 001c 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 488 001e BB81     		strh	r3, [r7, #12]	@ movhi
+ 155:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->pge[PG_LEFT].curr_idx = 0;
+ 489              		.loc 1 155 0
+ 490 0020 7B68     		ldr	r3, [r7, #4]
+ 491 0022 0022     		movs	r2, #0
+ 492 0024 83F83020 		strb	r2, [r3, #48]
+ 156:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   for( i = 1; i < pg->cnt; i++ )
+ 493              		.loc 1 156 0
+ 494 0028 0123     		movs	r3, #1
+ 495 002a FB72     		strb	r3, [r7, #11]
+ 496 002c 26E0     		b	.L20
+ 497              	.L23:
+ 157:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 158:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( max_y < pg->list[i].y )
+ 498              		.loc 1 158 0
+ 499 002e FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 500 0030 7A68     		ldr	r2, [r7, #4]
+ 501 0032 9B00     		lsls	r3, r3, #2
+ 502 0034 1344     		add	r3, r3, r2
+ 503 0036 5B88     		ldrh	r3, [r3, #2]
+ 504 0038 B7F90E20 		ldrsh	r2, [r7, #14]
+ 505 003c 1BB2     		sxth	r3, r3
+ 506 003e 9A42     		cmp	r2, r3
+ 507 0040 05DA     		bge	.L21
+ 159:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     {
+ 160:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       max_y = pg->list[i].y;
+ 508              		.loc 1 160 0
+ 509 0042 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 510 0044 7A68     		ldr	r2, [r7, #4]
+ 511 0046 9B00     		lsls	r3, r3, #2
+ 512 0048 1344     		add	r3, r3, r2
+ 513 004a 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 514 004c FB81     		strh	r3, [r7, #14]	@ movhi
+ 515              	.L21:
+ 161:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     }
+ 162:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( min_y > pg->list[i].y )
+ 516              		.loc 1 162 0
+ 517 004e FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 518 0050 7A68     		ldr	r2, [r7, #4]
+ 519 0052 9B00     		lsls	r3, r3, #2
+ 520 0054 1344     		add	r3, r3, r2
+ 521 0056 5B88     		ldrh	r3, [r3, #2]
+ 522 0058 B7F90C20 		ldrsh	r2, [r7, #12]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 13
+
+
+ 523 005c 1BB2     		sxth	r3, r3
+ 524 005e 9A42     		cmp	r2, r3
+ 525 0060 09DD     		ble	.L22
+ 163:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     {
+ 164:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       pg->pge[PG_LEFT].curr_idx = i;
+ 526              		.loc 1 164 0
+ 527 0062 7B68     		ldr	r3, [r7, #4]
+ 528 0064 FA7A     		ldrb	r2, [r7, #11]
+ 529 0066 83F83020 		strb	r2, [r3, #48]
+ 165:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       min_y = pg->list[i].y;
+ 530              		.loc 1 165 0
+ 531 006a FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 532 006c 7A68     		ldr	r2, [r7, #4]
+ 533 006e 9B00     		lsls	r3, r3, #2
+ 534 0070 1344     		add	r3, r3, r2
+ 535 0072 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 536 0074 BB81     		strh	r3, [r7, #12]	@ movhi
+ 537              	.L22:
+ 156:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 538              		.loc 1 156 0 discriminator 2
+ 539 0076 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 540 0078 0133     		adds	r3, r3, #1
+ 541 007a FB72     		strb	r3, [r7, #11]
+ 542              	.L20:
+ 156:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 543              		.loc 1 156 0 is_stmt 0 discriminator 1
+ 544 007c 7B68     		ldr	r3, [r7, #4]
+ 545 007e 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 546 0080 FA7A     		ldrb	r2, [r7, #11]	@ zero_extendqisi2
+ 547 0082 9A42     		cmp	r2, r3
+ 548 0084 D3D3     		bcc	.L23
+ 166:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     }
+ 167:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 168:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 169:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* calculate total number of scan lines */
+ 170:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->total_scan_line_cnt = max_y;
+ 549              		.loc 1 170 0 is_stmt 1
+ 550 0086 7B68     		ldr	r3, [r7, #4]
+ 551 0088 FA89     		ldrh	r2, [r7, #14]	@ movhi
+ 552 008a 5A83     		strh	r2, [r3, #26]	@ movhi
+ 171:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->total_scan_line_cnt -= min_y;
+ 553              		.loc 1 171 0
+ 554 008c 7B68     		ldr	r3, [r7, #4]
+ 555 008e 5B8B     		ldrh	r3, [r3, #26]
+ 556 0090 9AB2     		uxth	r2, r3
+ 557 0092 BB89     		ldrh	r3, [r7, #12]
+ 558 0094 D31A     		subs	r3, r2, r3
+ 559 0096 9BB2     		uxth	r3, r3
+ 560 0098 9AB2     		uxth	r2, r3
+ 561 009a 7B68     		ldr	r3, [r7, #4]
+ 562 009c 5A83     		strh	r2, [r3, #26]	@ movhi
+ 172:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 173:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* exit if polygon height is zero */
+ 174:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pg->total_scan_line_cnt == 0 )
+ 563              		.loc 1 174 0
+ 564 009e 7B68     		ldr	r3, [r7, #4]
+ 565 00a0 5B8B     		ldrh	r3, [r3, #26]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 14
+
+
+ 566 00a2 002B     		cmp	r3, #0
+ 567 00a4 01D1     		bne	.L24
+ 175:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return 0;
+ 568              		.loc 1 175 0
+ 569 00a6 0023     		movs	r3, #0
+ 570 00a8 3CE0     		b	.L25
+ 571              	.L24:
+ 176:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 177:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* if the minimum y side is flat, try to find the lowest and highest x points */
+ 178:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->pge[PG_RIGHT].curr_idx = pg->pge[PG_LEFT].curr_idx;  
+ 572              		.loc 1 178 0
+ 573 00aa 7B68     		ldr	r3, [r7, #4]
+ 574 00ac 93F83020 		ldrb	r2, [r3, #48]	@ zero_extendqisi2
+ 575 00b0 7B68     		ldr	r3, [r7, #4]
+ 576 00b2 83F84820 		strb	r2, [r3, #72]
+ 179:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_expand_min_y(pg, min_y, PG_RIGHT);
+ 577              		.loc 1 179 0
+ 578 00b6 B7F90C30 		ldrsh	r3, [r7, #12]
+ 579 00ba 7868     		ldr	r0, [r7, #4]
+ 580 00bc 1946     		mov	r1, r3
+ 581 00be 0122     		movs	r2, #1
+ 582 00c0 FFF7FEFF 		bl	pg_expand_min_y
+ 180:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_expand_min_y(pg, min_y, PG_LEFT);
+ 583              		.loc 1 180 0
+ 584 00c4 B7F90C30 		ldrsh	r3, [r7, #12]
+ 585 00c8 7868     		ldr	r0, [r7, #4]
+ 586 00ca 1946     		mov	r1, r3
+ 587 00cc 0022     		movs	r2, #0
+ 588 00ce FFF7FEFF 		bl	pg_expand_min_y
+ 181:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 182:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* check if the min side is really flat (depends on the x values) */
+ 183:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->is_min_y_not_flat = 1;
+ 589              		.loc 1 183 0
+ 590 00d2 7B68     		ldr	r3, [r7, #4]
+ 591 00d4 0122     		movs	r2, #1
+ 592 00d6 5A76     		strb	r2, [r3, #25]
+ 184:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pg->list[pg->pge[PG_LEFT].curr_idx].x != pg->list[pg->pge[PG_RIGHT].curr_idx].x )
+ 593              		.loc 1 184 0
+ 594 00d8 7B68     		ldr	r3, [r7, #4]
+ 595 00da 93F83030 		ldrb	r3, [r3, #48]	@ zero_extendqisi2
+ 596 00de 1A46     		mov	r2, r3
+ 597 00e0 7B68     		ldr	r3, [r7, #4]
+ 598 00e2 33F82220 		ldrh	r2, [r3, r2, lsl #2]
+ 599 00e6 7B68     		ldr	r3, [r7, #4]
+ 600 00e8 93F84830 		ldrb	r3, [r3, #72]	@ zero_extendqisi2
+ 601 00ec 1946     		mov	r1, r3
+ 602 00ee 7B68     		ldr	r3, [r7, #4]
+ 603 00f0 33F82130 		ldrh	r3, [r3, r1, lsl #2]
+ 604 00f4 12B2     		sxth	r2, r2
+ 605 00f6 1BB2     		sxth	r3, r3
+ 606 00f8 9A42     		cmp	r2, r3
+ 607 00fa 03D0     		beq	.L26
+ 185:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 186:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg->is_min_y_not_flat = 0;
+ 608              		.loc 1 186 0
+ 609 00fc 7B68     		ldr	r3, [r7, #4]
+ 610 00fe 0022     		movs	r2, #0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 15
+
+
+ 611 0100 5A76     		strb	r2, [r3, #25]
+ 612 0102 0EE0     		b	.L27
+ 613              	.L26:
+ 187:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 188:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   else
+ 189:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 190:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg->total_scan_line_cnt--;
+ 614              		.loc 1 190 0
+ 615 0104 7B68     		ldr	r3, [r7, #4]
+ 616 0106 5B8B     		ldrh	r3, [r3, #26]
+ 617 0108 9BB2     		uxth	r3, r3
+ 618 010a 9BB2     		uxth	r3, r3
+ 619 010c 013B     		subs	r3, r3, #1
+ 620 010e 9BB2     		uxth	r3, r3
+ 621 0110 9AB2     		uxth	r2, r3
+ 622 0112 7B68     		ldr	r3, [r7, #4]
+ 623 0114 5A83     		strh	r2, [r3, #26]	@ movhi
+ 191:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( pg->total_scan_line_cnt == 0 )
+ 624              		.loc 1 191 0
+ 625 0116 7B68     		ldr	r3, [r7, #4]
+ 626 0118 5B8B     		ldrh	r3, [r3, #26]
+ 627 011a 002B     		cmp	r3, #0
+ 628 011c 01D1     		bne	.L27
+ 192:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       return 0;
+ 629              		.loc 1 192 0
+ 630 011e 0023     		movs	r3, #0
+ 631 0120 00E0     		b	.L25
+ 632              	.L27:
+ 193:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 194:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 195:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   return 1;
+ 633              		.loc 1 195 0
+ 634 0122 0123     		movs	r3, #1
+ 635              	.L25:
+ 196:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 636              		.loc 1 196 0
+ 637 0124 1846     		mov	r0, r3
+ 638 0126 1037     		adds	r7, r7, #16
+ 639              		.cfi_def_cfa_offset 8
+ 640 0128 BD46     		mov	sp, r7
+ 641              		.cfi_def_cfa_register 13
+ 642              		@ sp needed
+ 643 012a 80BD     		pop	{r7, pc}
+ 644              	.L29:
+ 645              		.align	2
+ 646              	.L28:
+ 647 012c 00000000 		.word	pg_inc
+ 648 0130 00000000 		.word	pg_dec
+ 649              		.cfi_endproc
+ 650              	.LFE5:
+ 651              		.size	pg_prepare, .-pg_prepare
+ 652              		.section	.text.pg_hline,"ax",%progbits
+ 653              		.align	2
+ 654              		.thumb
+ 655              		.thumb_func
+ 656              		.type	pg_hline, %function
+ 657              	pg_hline:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 16
+
+
+ 658              	.LFB6:
+ 197:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 198:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pg_hline(pg_struct *pg, u8g_t *u8g)
+ 199:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 659              		.loc 1 199 0
+ 660              		.cfi_startproc
+ 661              		@ args = 0, pretend = 0, frame = 16
+ 662              		@ frame_needed = 1, uses_anonymous_args = 0
+ 663 0000 90B5     		push	{r4, r7, lr}
+ 664              		.cfi_def_cfa_offset 12
+ 665              		.cfi_offset 4, -12
+ 666              		.cfi_offset 7, -8
+ 667              		.cfi_offset 14, -4
+ 668 0002 85B0     		sub	sp, sp, #20
+ 669              		.cfi_def_cfa_offset 32
+ 670 0004 00AF     		add	r7, sp, #0
+ 671              		.cfi_def_cfa_register 7
+ 672 0006 7860     		str	r0, [r7, #4]
+ 673 0008 3960     		str	r1, [r7]
+ 200:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t x1, x2, y;
+ 201:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   x1 = pg->pge[PG_LEFT].current_x;
+ 674              		.loc 1 201 0
+ 675 000a 7B68     		ldr	r3, [r7, #4]
+ 676 000c 1B8D     		ldrh	r3, [r3, #40]	@ movhi
+ 677 000e FB81     		strh	r3, [r7, #14]	@ movhi
+ 202:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   x2 = pg->pge[PG_RIGHT].current_x;
+ 678              		.loc 1 202 0
+ 679 0010 7B68     		ldr	r3, [r7, #4]
+ 680 0012 B3F84030 		ldrh	r3, [r3, #64]	@ movhi
+ 681 0016 BB81     		strh	r3, [r7, #12]	@ movhi
+ 203:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   y = pg->pge[PG_RIGHT].current_y;
+ 682              		.loc 1 203 0
+ 683 0018 7B68     		ldr	r3, [r7, #4]
+ 684 001a 9B8F     		ldrh	r3, [r3, #60]	@ movhi
+ 685 001c 7B81     		strh	r3, [r7, #10]	@ movhi
+ 204:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 205:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( y < 0 )
+ 686              		.loc 1 205 0
+ 687 001e B7F90A30 		ldrsh	r3, [r7, #10]
+ 688 0022 002B     		cmp	r3, #0
+ 689 0024 00DA     		bge	.L31
+ 206:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return;
+ 690              		.loc 1 206 0
+ 691 0026 5FE0     		b	.L30
+ 692              	.L31:
+ 207:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( y >= u8g_GetHeight(u8g) )
+ 693              		.loc 1 207 0
+ 694 0028 B7F90A30 		ldrsh	r3, [r7, #10]
+ 695 002c 3A68     		ldr	r2, [r7]
+ 696 002e 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 697 0030 9342     		cmp	r3, r2
+ 698 0032 00DB     		blt	.L33
+ 208:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return;
+ 699              		.loc 1 208 0 discriminator 2
+ 700 0034 58E0     		b	.L30
+ 701              	.L33:
+ 209:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( x1 < x2 )
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 17
+
+
+ 702              		.loc 1 209 0
+ 703 0036 B7F90E20 		ldrsh	r2, [r7, #14]
+ 704 003a B7F90C30 		ldrsh	r3, [r7, #12]
+ 705 003e 9A42     		cmp	r2, r3
+ 706 0040 29DA     		bge	.L34
+ 210:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 211:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x2 < 0 )
+ 707              		.loc 1 211 0
+ 708 0042 B7F90C30 		ldrsh	r3, [r7, #12]
+ 709 0046 002B     		cmp	r3, #0
+ 710 0048 00DA     		bge	.L35
+ 212:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       return;
+ 711              		.loc 1 212 0 discriminator 3
+ 712 004a 4DE0     		b	.L30
+ 713              	.L35:
+ 213:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x1 >= u8g_GetWidth(u8g) )
+ 714              		.loc 1 213 0
+ 715 004c B7F90E30 		ldrsh	r3, [r7, #14]
+ 716 0050 3A68     		ldr	r2, [r7]
+ 717 0052 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 718 0054 9342     		cmp	r3, r2
+ 719 0056 00DB     		blt	.L36
+ 214:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       return;
+ 720              		.loc 1 214 0 discriminator 4
+ 721 0058 46E0     		b	.L30
+ 722              	.L36:
+ 215:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x1 < 0 )
+ 723              		.loc 1 215 0
+ 724 005a B7F90E30 		ldrsh	r3, [r7, #14]
+ 725 005e 002B     		cmp	r3, #0
+ 726 0060 01DA     		bge	.L37
+ 216:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       x1 = 0;
+ 727              		.loc 1 216 0
+ 728 0062 0023     		movs	r3, #0
+ 729 0064 FB81     		strh	r3, [r7, #14]	@ movhi
+ 730              	.L37:
+ 217:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x2 >= u8g_GetWidth(u8g) )
+ 731              		.loc 1 217 0
+ 732 0066 B7F90C30 		ldrsh	r3, [r7, #12]
+ 733 006a 3A68     		ldr	r2, [r7]
+ 734 006c 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 735 006e 9342     		cmp	r3, r2
+ 736 0070 02DB     		blt	.L38
+ 218:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       x2 = u8g_GetWidth(u8g);
+ 737              		.loc 1 218 0
+ 738 0072 3B68     		ldr	r3, [r7]
+ 739 0074 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 740 0076 BB81     		strh	r3, [r7, #12]	@ movhi
+ 741              	.L38:
+ 219:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     u8g_DrawHLine(u8g, x1, y, x2 - x1);
+ 742              		.loc 1 219 0
+ 743 0078 FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 744 007a D9B2     		uxtb	r1, r3
+ 745 007c 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 746 007e DCB2     		uxtb	r4, r3
+ 747 0080 BB89     		ldrh	r3, [r7, #12]	@ movhi
+ 748 0082 DAB2     		uxtb	r2, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 18
+
+
+ 749 0084 FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 750 0086 DBB2     		uxtb	r3, r3
+ 751 0088 D31A     		subs	r3, r2, r3
+ 752 008a DBB2     		uxtb	r3, r3
+ 753 008c 3868     		ldr	r0, [r7]
+ 754 008e 2246     		mov	r2, r4
+ 755 0090 FFF7FEFF 		bl	u8g_DrawHLine
+ 756 0094 28E0     		b	.L30
+ 757              	.L34:
+ 220:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 221:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   else
+ 222:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 223:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x1 < 0 )
+ 758              		.loc 1 223 0
+ 759 0096 B7F90E30 		ldrsh	r3, [r7, #14]
+ 760 009a 002B     		cmp	r3, #0
+ 761 009c 00DA     		bge	.L39
+ 224:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       return;
+ 762              		.loc 1 224 0 discriminator 5
+ 763 009e 23E0     		b	.L30
+ 764              	.L39:
+ 225:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x2 >= u8g_GetWidth(u8g) )
+ 765              		.loc 1 225 0
+ 766 00a0 B7F90C30 		ldrsh	r3, [r7, #12]
+ 767 00a4 3A68     		ldr	r2, [r7]
+ 768 00a6 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 769 00a8 9342     		cmp	r3, r2
+ 770 00aa 00DB     		blt	.L40
+ 226:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       return;
+ 771              		.loc 1 226 0 discriminator 6
+ 772 00ac 1CE0     		b	.L30
+ 773              	.L40:
+ 227:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x2 < 0 )
+ 774              		.loc 1 227 0
+ 775 00ae B7F90C30 		ldrsh	r3, [r7, #12]
+ 776 00b2 002B     		cmp	r3, #0
+ 777 00b4 01DA     		bge	.L41
+ 228:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       x1 = 0;
+ 778              		.loc 1 228 0
+ 779 00b6 0023     		movs	r3, #0
+ 780 00b8 FB81     		strh	r3, [r7, #14]	@ movhi
+ 781              	.L41:
+ 229:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     if ( x1 >= u8g_GetWidth(u8g) )
+ 782              		.loc 1 229 0
+ 783 00ba B7F90E30 		ldrsh	r3, [r7, #14]
+ 784 00be 3A68     		ldr	r2, [r7]
+ 785 00c0 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 786 00c2 9342     		cmp	r3, r2
+ 787 00c4 02DB     		blt	.L42
+ 230:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       x1 = u8g_GetWidth(u8g);
+ 788              		.loc 1 230 0
+ 789 00c6 3B68     		ldr	r3, [r7]
+ 790 00c8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 791 00ca FB81     		strh	r3, [r7, #14]	@ movhi
+ 792              	.L42:
+ 231:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     u8g_DrawHLine(u8g, x2, y, x1 - x2);
+ 793              		.loc 1 231 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 19
+
+
+ 794 00cc BB89     		ldrh	r3, [r7, #12]	@ movhi
+ 795 00ce D9B2     		uxtb	r1, r3
+ 796 00d0 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 797 00d2 DCB2     		uxtb	r4, r3
+ 798 00d4 FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 799 00d6 DAB2     		uxtb	r2, r3
+ 800 00d8 BB89     		ldrh	r3, [r7, #12]	@ movhi
+ 801 00da DBB2     		uxtb	r3, r3
+ 802 00dc D31A     		subs	r3, r2, r3
+ 803 00de DBB2     		uxtb	r3, r3
+ 804 00e0 3868     		ldr	r0, [r7]
+ 805 00e2 2246     		mov	r2, r4
+ 806 00e4 FFF7FEFF 		bl	u8g_DrawHLine
+ 807              	.L30:
+ 232:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 233:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 808              		.loc 1 233 0
+ 809 00e8 1437     		adds	r7, r7, #20
+ 810              		.cfi_def_cfa_offset 12
+ 811 00ea BD46     		mov	sp, r7
+ 812              		.cfi_def_cfa_register 13
+ 813              		@ sp needed
+ 814 00ec 90BD     		pop	{r4, r7, pc}
+ 815              		.cfi_endproc
+ 816              	.LFE6:
+ 817              		.size	pg_hline, .-pg_hline
+ 818 00ee 00BF     		.section	.text.pg_line_init,"ax",%progbits
+ 819              		.align	2
+ 820              		.thumb
+ 821              		.thumb_func
+ 822              		.type	pg_line_init, %function
+ 823              	pg_line_init:
+ 824              	.LFB7:
+ 234:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 235:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pg_line_init(pg_struct * pg, uint8_t pge_index)
+ 236:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 825              		.loc 1 236 0
+ 826              		.cfi_startproc
+ 827              		@ args = 0, pretend = 0, frame = 24
+ 828              		@ frame_needed = 1, uses_anonymous_args = 0
+ 829 0000 90B5     		push	{r4, r7, lr}
+ 830              		.cfi_def_cfa_offset 12
+ 831              		.cfi_offset 4, -12
+ 832              		.cfi_offset 7, -8
+ 833              		.cfi_offset 14, -4
+ 834 0002 89B0     		sub	sp, sp, #36
+ 835              		.cfi_def_cfa_offset 48
+ 836 0004 02AF     		add	r7, sp, #8
+ 837              		.cfi_def_cfa 7, 40
+ 838 0006 7860     		str	r0, [r7, #4]
+ 839 0008 0B46     		mov	r3, r1
+ 840 000a FB70     		strb	r3, [r7, #3]
+ 237:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   struct pg_edge_struct  *pge = pg->pge+pge_index;
+ 841              		.loc 1 237 0
+ 842 000c FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+ 843 000e 5A1C     		adds	r2, r3, #1
+ 844 0010 1346     		mov	r3, r2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 20
+
+
+ 845 0012 5B00     		lsls	r3, r3, #1
+ 846 0014 1344     		add	r3, r3, r2
+ 847 0016 DB00     		lsls	r3, r3, #3
+ 848 0018 7A68     		ldr	r2, [r7, #4]
+ 849 001a 1344     		add	r3, r3, r2
+ 850 001c 0433     		adds	r3, r3, #4
+ 851 001e 7B61     		str	r3, [r7, #20]
+ 238:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   uint8_t idx;  
+ 239:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t x1;
+ 240:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t y1;
+ 241:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t x2;
+ 242:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t y2;
+ 243:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 244:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   idx = pge->curr_idx;  
+ 852              		.loc 1 244 0
+ 853 0020 7B69     		ldr	r3, [r7, #20]
+ 854 0022 1B7D     		ldrb	r3, [r3, #20]
+ 855 0024 FB74     		strb	r3, [r7, #19]
+ 245:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   y1 = pg->list[idx].y;
+ 856              		.loc 1 245 0
+ 857 0026 FB7C     		ldrb	r3, [r7, #19]	@ zero_extendqisi2
+ 858 0028 7A68     		ldr	r2, [r7, #4]
+ 859 002a 9B00     		lsls	r3, r3, #2
+ 860 002c 1344     		add	r3, r3, r2
+ 861 002e 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 862 0030 3B82     		strh	r3, [r7, #16]	@ movhi
+ 246:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   x1 = pg->list[idx].x;
+ 863              		.loc 1 246 0
+ 864 0032 FA7C     		ldrb	r2, [r7, #19]	@ zero_extendqisi2
+ 865 0034 7B68     		ldr	r3, [r7, #4]
+ 866 0036 33F82230 		ldrh	r3, [r3, r2, lsl #2]	@ movhi
+ 867 003a FB81     		strh	r3, [r7, #14]	@ movhi
+ 247:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   idx = pge->next_idx_fn(pg, idx);
+ 868              		.loc 1 247 0
+ 869 003c 7B69     		ldr	r3, [r7, #20]
+ 870 003e 1B69     		ldr	r3, [r3, #16]
+ 871 0040 FA7C     		ldrb	r2, [r7, #19]	@ zero_extendqisi2
+ 872 0042 7868     		ldr	r0, [r7, #4]
+ 873 0044 1146     		mov	r1, r2
+ 874 0046 9847     		blx	r3
+ 875 0048 0346     		mov	r3, r0
+ 876 004a FB74     		strb	r3, [r7, #19]
+ 248:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   y2 = pg->list[idx].y;
+ 877              		.loc 1 248 0
+ 878 004c FB7C     		ldrb	r3, [r7, #19]	@ zero_extendqisi2
+ 879 004e 7A68     		ldr	r2, [r7, #4]
+ 880 0050 9B00     		lsls	r3, r3, #2
+ 881 0052 1344     		add	r3, r3, r2
+ 882 0054 5B88     		ldrh	r3, [r3, #2]	@ movhi
+ 883 0056 BB81     		strh	r3, [r7, #12]	@ movhi
+ 249:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   x2 = pg->list[idx].x; 
+ 884              		.loc 1 249 0
+ 885 0058 FA7C     		ldrb	r2, [r7, #19]	@ zero_extendqisi2
+ 886 005a 7B68     		ldr	r3, [r7, #4]
+ 887 005c 33F82230 		ldrh	r3, [r3, r2, lsl #2]	@ movhi
+ 888 0060 7B81     		strh	r3, [r7, #10]	@ movhi
+ 250:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge->curr_idx = idx;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 21
+
+
+ 889              		.loc 1 250 0
+ 890 0062 7B69     		ldr	r3, [r7, #20]
+ 891 0064 FA7C     		ldrb	r2, [r7, #19]
+ 892 0066 1A75     		strb	r2, [r3, #20]
+ 251:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 252:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pge_Init(pge, x1, y1, x2, y2);
+ 893              		.loc 1 252 0
+ 894 0068 B7F90E10 		ldrsh	r1, [r7, #14]
+ 895 006c B7F91020 		ldrsh	r2, [r7, #16]
+ 896 0070 B7F90A40 		ldrsh	r4, [r7, #10]
+ 897 0074 B7F90C30 		ldrsh	r3, [r7, #12]
+ 898 0078 0093     		str	r3, [sp]
+ 899 007a 7869     		ldr	r0, [r7, #20]
+ 900 007c 2346     		mov	r3, r4
+ 901 007e FFF7FEFF 		bl	pge_Init
+ 253:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 902              		.loc 1 253 0
+ 903 0082 1C37     		adds	r7, r7, #28
+ 904              		.cfi_def_cfa_offset 12
+ 905 0084 BD46     		mov	sp, r7
+ 906              		.cfi_def_cfa_register 13
+ 907              		@ sp needed
+ 908 0086 90BD     		pop	{r4, r7, pc}
+ 909              		.cfi_endproc
+ 910              	.LFE7:
+ 911              		.size	pg_line_init, .-pg_line_init
+ 912              		.section	.text.pg_exec,"ax",%progbits
+ 913              		.align	2
+ 914              		.thumb
+ 915              		.thumb_func
+ 916              		.type	pg_exec, %function
+ 917              	pg_exec:
+ 918              	.LFB8:
+ 254:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 255:u8glib_arm_v1.18.1\src/u8g_polygon.c **** static void pg_exec(pg_struct *pg, u8g_t *u8g)
+ 256:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 919              		.loc 1 256 0
+ 920              		.cfi_startproc
+ 921              		@ args = 0, pretend = 0, frame = 16
+ 922              		@ frame_needed = 1, uses_anonymous_args = 0
+ 923 0000 80B5     		push	{r7, lr}
+ 924              		.cfi_def_cfa_offset 8
+ 925              		.cfi_offset 7, -8
+ 926              		.cfi_offset 14, -4
+ 927 0002 84B0     		sub	sp, sp, #16
+ 928              		.cfi_def_cfa_offset 24
+ 929 0004 00AF     		add	r7, sp, #0
+ 930              		.cfi_def_cfa_register 7
+ 931 0006 7860     		str	r0, [r7, #4]
+ 932 0008 3960     		str	r1, [r7]
+ 257:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_word_t i = pg->total_scan_line_cnt;
+ 933              		.loc 1 257 0
+ 934 000a 7B68     		ldr	r3, [r7, #4]
+ 935 000c 5B8B     		ldrh	r3, [r3, #26]	@ movhi
+ 936 000e FB81     		strh	r3, [r7, #14]	@ movhi
+ 258:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 259:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   /* first line is skipped if the min y line is not flat */
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 22
+
+
+ 260:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_line_init(pg, PG_LEFT);		
+ 937              		.loc 1 260 0
+ 938 0010 7868     		ldr	r0, [r7, #4]
+ 939 0012 0021     		movs	r1, #0
+ 940 0014 FFF7FEFF 		bl	pg_line_init
+ 261:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_line_init(pg, PG_RIGHT);
+ 941              		.loc 1 261 0
+ 942 0018 7868     		ldr	r0, [r7, #4]
+ 943 001a 0121     		movs	r1, #1
+ 944 001c FFF7FEFF 		bl	pg_line_init
+ 262:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   
+ 263:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pg->is_min_y_not_flat != 0 )
+ 945              		.loc 1 263 0
+ 946 0020 7B68     		ldr	r3, [r7, #4]
+ 947 0022 5B7E     		ldrb	r3, [r3, #25]	@ zero_extendqisi2
+ 948 0024 002B     		cmp	r3, #0
+ 949 0026 09D0     		beq	.L45
+ 264:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 265:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge_Next(&(pg->pge[PG_LEFT])); 
+ 950              		.loc 1 265 0
+ 951 0028 7B68     		ldr	r3, [r7, #4]
+ 952 002a 1C33     		adds	r3, r3, #28
+ 953 002c 1846     		mov	r0, r3
+ 954 002e FFF7FEFF 		bl	pge_Next
+ 266:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pge_Next(&(pg->pge[PG_RIGHT]));
+ 955              		.loc 1 266 0
+ 956 0032 7B68     		ldr	r3, [r7, #4]
+ 957 0034 3433     		adds	r3, r3, #52
+ 958 0036 1846     		mov	r0, r3
+ 959 0038 FFF7FEFF 		bl	pge_Next
+ 960              	.L45:
+ 267:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 268:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 269:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   do
+ 270:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 271:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg_hline(pg, u8g);
+ 961              		.loc 1 271 0
+ 962 003c 7868     		ldr	r0, [r7, #4]
+ 963 003e 3968     		ldr	r1, [r7]
+ 964 0040 FFF7FEFF 		bl	pg_hline
+ 272:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     while ( pge_Next(&(pg->pge[PG_LEFT])) == 0 )
+ 965              		.loc 1 272 0
+ 966 0044 03E0     		b	.L46
+ 967              	.L47:
+ 273:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     {
+ 274:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       pg_line_init(pg, PG_LEFT);
+ 968              		.loc 1 274 0
+ 969 0046 7868     		ldr	r0, [r7, #4]
+ 970 0048 0021     		movs	r1, #0
+ 971 004a FFF7FEFF 		bl	pg_line_init
+ 972              	.L46:
+ 272:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     while ( pge_Next(&(pg->pge[PG_LEFT])) == 0 )
+ 973              		.loc 1 272 0
+ 974 004e 7B68     		ldr	r3, [r7, #4]
+ 975 0050 1C33     		adds	r3, r3, #28
+ 976 0052 1846     		mov	r0, r3
+ 977 0054 FFF7FEFF 		bl	pge_Next
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 23
+
+
+ 978 0058 0346     		mov	r3, r0
+ 979 005a 002B     		cmp	r3, #0
+ 980 005c F3D0     		beq	.L47
+ 275:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     }
+ 276:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     while ( pge_Next(&(pg->pge[PG_RIGHT])) == 0 )
+ 981              		.loc 1 276 0
+ 982 005e 03E0     		b	.L48
+ 983              	.L49:
+ 277:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     {
+ 278:u8glib_arm_v1.18.1\src/u8g_polygon.c ****       pg_line_init(pg, PG_RIGHT);
+ 984              		.loc 1 278 0
+ 985 0060 7868     		ldr	r0, [r7, #4]
+ 986 0062 0121     		movs	r1, #1
+ 987 0064 FFF7FEFF 		bl	pg_line_init
+ 988              	.L48:
+ 276:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     {
+ 989              		.loc 1 276 0
+ 990 0068 7B68     		ldr	r3, [r7, #4]
+ 991 006a 3433     		adds	r3, r3, #52
+ 992 006c 1846     		mov	r0, r3
+ 993 006e FFF7FEFF 		bl	pge_Next
+ 994 0072 0346     		mov	r3, r0
+ 995 0074 002B     		cmp	r3, #0
+ 996 0076 F3D0     		beq	.L49
+ 279:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     }
+ 280:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     i--;
+ 997              		.loc 1 280 0
+ 998 0078 FB89     		ldrh	r3, [r7, #14]
+ 999 007a 9BB2     		uxth	r3, r3
+ 1000 007c 013B     		subs	r3, r3, #1
+ 1001 007e 9BB2     		uxth	r3, r3
+ 1002 0080 FB81     		strh	r3, [r7, #14]	@ movhi
+ 281:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   } while( i > 0 );
+ 1003              		.loc 1 281 0
+ 1004 0082 B7F90E30 		ldrsh	r3, [r7, #14]
+ 1005 0086 002B     		cmp	r3, #0
+ 1006 0088 D8DC     		bgt	.L45
+ 282:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1007              		.loc 1 282 0
+ 1008 008a 1037     		adds	r7, r7, #16
+ 1009              		.cfi_def_cfa_offset 8
+ 1010 008c BD46     		mov	sp, r7
+ 1011              		.cfi_def_cfa_register 13
+ 1012              		@ sp needed
+ 1013 008e 80BD     		pop	{r7, pc}
+ 1014              		.cfi_endproc
+ 1015              	.LFE8:
+ 1016              		.size	pg_exec, .-pg_exec
+ 1017              		.section	.text.pg_ClearPolygonXY,"ax",%progbits
+ 1018              		.align	2
+ 1019              		.global	pg_ClearPolygonXY
+ 1020              		.thumb
+ 1021              		.thumb_func
+ 1022              		.type	pg_ClearPolygonXY, %function
+ 1023              	pg_ClearPolygonXY:
+ 1024              	.LFB9:
+ 283:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 24
+
+
+ 284:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /*===========================================*/
+ 285:u8glib_arm_v1.18.1\src/u8g_polygon.c **** /* API procedures */
+ 286:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 287:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void pg_ClearPolygonXY(pg_struct *pg)
+ 288:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1025              		.loc 1 288 0
+ 1026              		.cfi_startproc
+ 1027              		@ args = 0, pretend = 0, frame = 8
+ 1028              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1029              		@ link register save eliminated.
+ 1030 0000 80B4     		push	{r7}
+ 1031              		.cfi_def_cfa_offset 4
+ 1032              		.cfi_offset 7, -4
+ 1033 0002 83B0     		sub	sp, sp, #12
+ 1034              		.cfi_def_cfa_offset 16
+ 1035 0004 00AF     		add	r7, sp, #0
+ 1036              		.cfi_def_cfa_register 7
+ 1037 0006 7860     		str	r0, [r7, #4]
+ 289:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg->cnt = 0;
+ 1038              		.loc 1 289 0
+ 1039 0008 7B68     		ldr	r3, [r7, #4]
+ 1040 000a 0022     		movs	r2, #0
+ 1041 000c 1A76     		strb	r2, [r3, #24]
+ 290:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1042              		.loc 1 290 0
+ 1043 000e 0C37     		adds	r7, r7, #12
+ 1044              		.cfi_def_cfa_offset 4
+ 1045 0010 BD46     		mov	sp, r7
+ 1046              		.cfi_def_cfa_register 13
+ 1047              		@ sp needed
+ 1048 0012 5DF8047B 		ldr	r7, [sp], #4
+ 1049              		.cfi_restore 7
+ 1050              		.cfi_def_cfa_offset 0
+ 1051 0016 7047     		bx	lr
+ 1052              		.cfi_endproc
+ 1053              	.LFE9:
+ 1054              		.size	pg_ClearPolygonXY, .-pg_ClearPolygonXY
+ 1055              		.section	.text.pg_AddPolygonXY,"ax",%progbits
+ 1056              		.align	2
+ 1057              		.global	pg_AddPolygonXY
+ 1058              		.thumb
+ 1059              		.thumb_func
+ 1060              		.type	pg_AddPolygonXY, %function
+ 1061              	pg_AddPolygonXY:
+ 1062              	.LFB10:
+ 291:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 292:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void pg_AddPolygonXY(pg_struct *pg, u8g_t *u8g, int16_t x, int16_t y)
+ 293:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1063              		.loc 1 293 0
+ 1064              		.cfi_startproc
+ 1065              		@ args = 0, pretend = 0, frame = 16
+ 1066              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1067              		@ link register save eliminated.
+ 1068 0000 80B4     		push	{r7}
+ 1069              		.cfi_def_cfa_offset 4
+ 1070              		.cfi_offset 7, -4
+ 1071 0002 85B0     		sub	sp, sp, #20
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 25
+
+
+ 1072              		.cfi_def_cfa_offset 24
+ 1073 0004 00AF     		add	r7, sp, #0
+ 1074              		.cfi_def_cfa_register 7
+ 1075 0006 F860     		str	r0, [r7, #12]
+ 1076 0008 B960     		str	r1, [r7, #8]
+ 1077 000a 1146     		mov	r1, r2
+ 1078 000c 1A46     		mov	r2, r3
+ 1079 000e 0B46     		mov	r3, r1	@ movhi
+ 1080 0010 FB80     		strh	r3, [r7, #6]	@ movhi
+ 1081 0012 1346     		mov	r3, r2	@ movhi
+ 1082 0014 BB80     		strh	r3, [r7, #4]	@ movhi
+ 294:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pg->cnt < PG_MAX_POINTS )
+ 1083              		.loc 1 294 0
+ 1084 0016 FB68     		ldr	r3, [r7, #12]
+ 1085 0018 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 1086 001a 052B     		cmp	r3, #5
+ 1087 001c 13D8     		bhi	.L51
+ 295:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   {
+ 296:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg->list[pg->cnt].x = x;
+ 1088              		.loc 1 296 0
+ 1089 001e FB68     		ldr	r3, [r7, #12]
+ 1090 0020 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 1091 0022 1946     		mov	r1, r3
+ 1092 0024 FB68     		ldr	r3, [r7, #12]
+ 1093 0026 FA88     		ldrh	r2, [r7, #6]	@ movhi
+ 1094 0028 23F82120 		strh	r2, [r3, r1, lsl #2]	@ movhi
+ 297:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg->list[pg->cnt].y = y;
+ 1095              		.loc 1 297 0
+ 1096 002c FB68     		ldr	r3, [r7, #12]
+ 1097 002e 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 1098 0030 FA68     		ldr	r2, [r7, #12]
+ 1099 0032 9B00     		lsls	r3, r3, #2
+ 1100 0034 1344     		add	r3, r3, r2
+ 1101 0036 BA88     		ldrh	r2, [r7, #4]	@ movhi
+ 1102 0038 5A80     		strh	r2, [r3, #2]	@ movhi
+ 298:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     pg->cnt++;
+ 1103              		.loc 1 298 0
+ 1104 003a FB68     		ldr	r3, [r7, #12]
+ 1105 003c 1B7E     		ldrb	r3, [r3, #24]	@ zero_extendqisi2
+ 1106 003e 0133     		adds	r3, r3, #1
+ 1107 0040 DAB2     		uxtb	r2, r3
+ 1108 0042 FB68     		ldr	r3, [r7, #12]
+ 1109 0044 1A76     		strb	r2, [r3, #24]
+ 1110              	.L51:
+ 299:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   }
+ 300:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1111              		.loc 1 300 0
+ 1112 0046 1437     		adds	r7, r7, #20
+ 1113              		.cfi_def_cfa_offset 4
+ 1114 0048 BD46     		mov	sp, r7
+ 1115              		.cfi_def_cfa_register 13
+ 1116              		@ sp needed
+ 1117 004a 5DF8047B 		ldr	r7, [sp], #4
+ 1118              		.cfi_restore 7
+ 1119              		.cfi_def_cfa_offset 0
+ 1120 004e 7047     		bx	lr
+ 1121              		.cfi_endproc
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 26
+
+
+ 1122              	.LFE10:
+ 1123              		.size	pg_AddPolygonXY, .-pg_AddPolygonXY
+ 1124              		.section	.text.pg_DrawPolygon,"ax",%progbits
+ 1125              		.align	2
+ 1126              		.global	pg_DrawPolygon
+ 1127              		.thumb
+ 1128              		.thumb_func
+ 1129              		.type	pg_DrawPolygon, %function
+ 1130              	pg_DrawPolygon:
+ 1131              	.LFB11:
+ 301:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 302:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void pg_DrawPolygon(pg_struct *pg, u8g_t *u8g)
+ 303:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1132              		.loc 1 303 0
+ 1133              		.cfi_startproc
+ 1134              		@ args = 0, pretend = 0, frame = 8
+ 1135              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1136 0000 80B5     		push	{r7, lr}
+ 1137              		.cfi_def_cfa_offset 8
+ 1138              		.cfi_offset 7, -8
+ 1139              		.cfi_offset 14, -4
+ 1140 0002 82B0     		sub	sp, sp, #8
+ 1141              		.cfi_def_cfa_offset 16
+ 1142 0004 00AF     		add	r7, sp, #0
+ 1143              		.cfi_def_cfa_register 7
+ 1144 0006 7860     		str	r0, [r7, #4]
+ 1145 0008 3960     		str	r1, [r7]
+ 304:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   if ( pg_prepare(pg) == 0 )
+ 1146              		.loc 1 304 0
+ 1147 000a 7868     		ldr	r0, [r7, #4]
+ 1148 000c FFF7FEFF 		bl	pg_prepare
+ 1149 0010 0346     		mov	r3, r0
+ 1150 0012 002B     		cmp	r3, #0
+ 1151 0014 00D1     		bne	.L54
+ 305:u8glib_arm_v1.18.1\src/u8g_polygon.c ****     return;
+ 1152              		.loc 1 305 0
+ 1153 0016 03E0     		b	.L53
+ 1154              	.L54:
+ 306:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_exec(pg, u8g);
+ 1155              		.loc 1 306 0
+ 1156 0018 7868     		ldr	r0, [r7, #4]
+ 1157 001a 3968     		ldr	r1, [r7]
+ 1158 001c FFF7FEFF 		bl	pg_exec
+ 1159              	.L53:
+ 307:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1160              		.loc 1 307 0
+ 1161 0020 0837     		adds	r7, r7, #8
+ 1162              		.cfi_def_cfa_offset 8
+ 1163 0022 BD46     		mov	sp, r7
+ 1164              		.cfi_def_cfa_register 13
+ 1165              		@ sp needed
+ 1166 0024 80BD     		pop	{r7, pc}
+ 1167              		.cfi_endproc
+ 1168              	.LFE11:
+ 1169              		.size	pg_DrawPolygon, .-pg_DrawPolygon
+ 1170              		.comm	u8g_pg,76,4
+ 1171              		.section	.text.u8g_ClearPolygonXY,"ax",%progbits
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 27
+
+
+ 1172              		.align	2
+ 1173              		.global	u8g_ClearPolygonXY
+ 1174              		.thumb
+ 1175              		.thumb_func
+ 1176              		.type	u8g_ClearPolygonXY, %function
+ 1177              	u8g_ClearPolygonXY:
+ 1178              	.LFB12:
+ 308:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 309:u8glib_arm_v1.18.1\src/u8g_polygon.c **** pg_struct u8g_pg;
+ 310:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 311:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void u8g_ClearPolygonXY(void)
+ 312:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1179              		.loc 1 312 0
+ 1180              		.cfi_startproc
+ 1181              		@ args = 0, pretend = 0, frame = 0
+ 1182              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1183 0000 80B5     		push	{r7, lr}
+ 1184              		.cfi_def_cfa_offset 8
+ 1185              		.cfi_offset 7, -8
+ 1186              		.cfi_offset 14, -4
+ 1187 0002 00AF     		add	r7, sp, #0
+ 1188              		.cfi_def_cfa_register 7
+ 313:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_ClearPolygonXY(&u8g_pg);
+ 1189              		.loc 1 313 0
+ 1190 0004 0148     		ldr	r0, .L57
+ 1191 0006 FFF7FEFF 		bl	pg_ClearPolygonXY
+ 314:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1192              		.loc 1 314 0
+ 1193 000a 80BD     		pop	{r7, pc}
+ 1194              	.L58:
+ 1195              		.align	2
+ 1196              	.L57:
+ 1197 000c 00000000 		.word	u8g_pg
+ 1198              		.cfi_endproc
+ 1199              	.LFE12:
+ 1200              		.size	u8g_ClearPolygonXY, .-u8g_ClearPolygonXY
+ 1201              		.section	.text.u8g_AddPolygonXY,"ax",%progbits
+ 1202              		.align	2
+ 1203              		.global	u8g_AddPolygonXY
+ 1204              		.thumb
+ 1205              		.thumb_func
+ 1206              		.type	u8g_AddPolygonXY, %function
+ 1207              	u8g_AddPolygonXY:
+ 1208              	.LFB13:
+ 315:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 316:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void u8g_AddPolygonXY(u8g_t *u8g, int16_t x, int16_t y)
+ 317:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1209              		.loc 1 317 0
+ 1210              		.cfi_startproc
+ 1211              		@ args = 0, pretend = 0, frame = 8
+ 1212              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1213 0000 80B5     		push	{r7, lr}
+ 1214              		.cfi_def_cfa_offset 8
+ 1215              		.cfi_offset 7, -8
+ 1216              		.cfi_offset 14, -4
+ 1217 0002 82B0     		sub	sp, sp, #8
+ 1218              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 28
+
+
+ 1219 0004 00AF     		add	r7, sp, #0
+ 1220              		.cfi_def_cfa_register 7
+ 1221 0006 7860     		str	r0, [r7, #4]
+ 1222 0008 0B46     		mov	r3, r1
+ 1223 000a 7B80     		strh	r3, [r7, #2]	@ movhi
+ 1224 000c 1346     		mov	r3, r2	@ movhi
+ 1225 000e 3B80     		strh	r3, [r7]	@ movhi
+ 318:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_AddPolygonXY(&u8g_pg, u8g, x, y);
+ 1226              		.loc 1 318 0
+ 1227 0010 B7F90220 		ldrsh	r2, [r7, #2]
+ 1228 0014 B7F90030 		ldrsh	r3, [r7]
+ 1229 0018 0348     		ldr	r0, .L60
+ 1230 001a 7968     		ldr	r1, [r7, #4]
+ 1231 001c FFF7FEFF 		bl	pg_AddPolygonXY
+ 319:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1232              		.loc 1 319 0
+ 1233 0020 0837     		adds	r7, r7, #8
+ 1234              		.cfi_def_cfa_offset 8
+ 1235 0022 BD46     		mov	sp, r7
+ 1236              		.cfi_def_cfa_register 13
+ 1237              		@ sp needed
+ 1238 0024 80BD     		pop	{r7, pc}
+ 1239              	.L61:
+ 1240 0026 00BF     		.align	2
+ 1241              	.L60:
+ 1242 0028 00000000 		.word	u8g_pg
+ 1243              		.cfi_endproc
+ 1244              	.LFE13:
+ 1245              		.size	u8g_AddPolygonXY, .-u8g_AddPolygonXY
+ 1246              		.section	.text.u8g_DrawPolygon,"ax",%progbits
+ 1247              		.align	2
+ 1248              		.global	u8g_DrawPolygon
+ 1249              		.thumb
+ 1250              		.thumb_func
+ 1251              		.type	u8g_DrawPolygon, %function
+ 1252              	u8g_DrawPolygon:
+ 1253              	.LFB14:
+ 320:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 321:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void u8g_DrawPolygon(u8g_t *u8g)
+ 322:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1254              		.loc 1 322 0
+ 1255              		.cfi_startproc
+ 1256              		@ args = 0, pretend = 0, frame = 8
+ 1257              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1258 0000 80B5     		push	{r7, lr}
+ 1259              		.cfi_def_cfa_offset 8
+ 1260              		.cfi_offset 7, -8
+ 1261              		.cfi_offset 14, -4
+ 1262 0002 82B0     		sub	sp, sp, #8
+ 1263              		.cfi_def_cfa_offset 16
+ 1264 0004 00AF     		add	r7, sp, #0
+ 1265              		.cfi_def_cfa_register 7
+ 1266 0006 7860     		str	r0, [r7, #4]
+ 323:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   pg_DrawPolygon(&u8g_pg, u8g);
+ 1267              		.loc 1 323 0
+ 1268 0008 0348     		ldr	r0, .L63
+ 1269 000a 7968     		ldr	r1, [r7, #4]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 29
+
+
+ 1270 000c FFF7FEFF 		bl	pg_DrawPolygon
+ 324:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1271              		.loc 1 324 0
+ 1272 0010 0837     		adds	r7, r7, #8
+ 1273              		.cfi_def_cfa_offset 8
+ 1274 0012 BD46     		mov	sp, r7
+ 1275              		.cfi_def_cfa_register 13
+ 1276              		@ sp needed
+ 1277 0014 80BD     		pop	{r7, pc}
+ 1278              	.L64:
+ 1279 0016 00BF     		.align	2
+ 1280              	.L63:
+ 1281 0018 00000000 		.word	u8g_pg
+ 1282              		.cfi_endproc
+ 1283              	.LFE14:
+ 1284              		.size	u8g_DrawPolygon, .-u8g_DrawPolygon
+ 1285              		.section	.text.u8g_DrawTriangle,"ax",%progbits
+ 1286              		.align	2
+ 1287              		.global	u8g_DrawTriangle
+ 1288              		.thumb
+ 1289              		.thumb_func
+ 1290              		.type	u8g_DrawTriangle, %function
+ 1291              	u8g_DrawTriangle:
+ 1292              	.LFB15:
+ 325:u8glib_arm_v1.18.1\src/u8g_polygon.c **** 
+ 326:u8glib_arm_v1.18.1\src/u8g_polygon.c **** void u8g_DrawTriangle(u8g_t *u8g, int16_t x0, int16_t y0, int16_t x1, int16_t y1, int16_t x2, int16
+ 327:u8glib_arm_v1.18.1\src/u8g_polygon.c **** {
+ 1293              		.loc 1 327 0
+ 1294              		.cfi_startproc
+ 1295              		@ args = 12, pretend = 0, frame = 16
+ 1296              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1297 0000 80B5     		push	{r7, lr}
+ 1298              		.cfi_def_cfa_offset 8
+ 1299              		.cfi_offset 7, -8
+ 1300              		.cfi_offset 14, -4
+ 1301 0002 84B0     		sub	sp, sp, #16
+ 1302              		.cfi_def_cfa_offset 24
+ 1303 0004 00AF     		add	r7, sp, #0
+ 1304              		.cfi_def_cfa_register 7
+ 1305 0006 F860     		str	r0, [r7, #12]
+ 1306 0008 0846     		mov	r0, r1
+ 1307 000a 1146     		mov	r1, r2
+ 1308 000c 1A46     		mov	r2, r3
+ 1309 000e 0346     		mov	r3, r0	@ movhi
+ 1310 0010 7B81     		strh	r3, [r7, #10]	@ movhi
+ 1311 0012 0B46     		mov	r3, r1	@ movhi
+ 1312 0014 3B81     		strh	r3, [r7, #8]	@ movhi
+ 1313 0016 1346     		mov	r3, r2	@ movhi
+ 1314 0018 FB80     		strh	r3, [r7, #6]	@ movhi
+ 328:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   u8g_ClearPolygonXY();
+ 1315              		.loc 1 328 0
+ 1316 001a FFF7FEFF 		bl	u8g_ClearPolygonXY
+ 329:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   u8g_AddPolygonXY(u8g, x0, y0);
+ 1317              		.loc 1 329 0
+ 1318 001e B7F90A20 		ldrsh	r2, [r7, #10]
+ 1319 0022 B7F90830 		ldrsh	r3, [r7, #8]
+ 1320 0026 F868     		ldr	r0, [r7, #12]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 30
+
+
+ 1321 0028 1146     		mov	r1, r2
+ 1322 002a 1A46     		mov	r2, r3
+ 1323 002c FFF7FEFF 		bl	u8g_AddPolygonXY
+ 330:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   u8g_AddPolygonXY(u8g, x1, y1);
+ 1324              		.loc 1 330 0
+ 1325 0030 B7F90620 		ldrsh	r2, [r7, #6]
+ 1326 0034 B7F91830 		ldrsh	r3, [r7, #24]
+ 1327 0038 F868     		ldr	r0, [r7, #12]
+ 1328 003a 1146     		mov	r1, r2
+ 1329 003c 1A46     		mov	r2, r3
+ 1330 003e FFF7FEFF 		bl	u8g_AddPolygonXY
+ 331:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   u8g_AddPolygonXY(u8g, x2, y2);
+ 1331              		.loc 1 331 0
+ 1332 0042 B7F91C20 		ldrsh	r2, [r7, #28]
+ 1333 0046 B7F92030 		ldrsh	r3, [r7, #32]
+ 1334 004a F868     		ldr	r0, [r7, #12]
+ 1335 004c 1146     		mov	r1, r2
+ 1336 004e 1A46     		mov	r2, r3
+ 1337 0050 FFF7FEFF 		bl	u8g_AddPolygonXY
+ 332:u8glib_arm_v1.18.1\src/u8g_polygon.c ****   u8g_DrawPolygon(u8g);
+ 1338              		.loc 1 332 0
+ 1339 0054 F868     		ldr	r0, [r7, #12]
+ 1340 0056 FFF7FEFF 		bl	u8g_DrawPolygon
+ 333:u8glib_arm_v1.18.1\src/u8g_polygon.c **** }
+ 1341              		.loc 1 333 0
+ 1342 005a 1037     		adds	r7, r7, #16
+ 1343              		.cfi_def_cfa_offset 8
+ 1344 005c BD46     		mov	sp, r7
+ 1345              		.cfi_def_cfa_register 13
+ 1346              		@ sp needed
+ 1347 005e 80BD     		pop	{r7, pc}
+ 1348              		.cfi_endproc
+ 1349              	.LFE15:
+ 1350              		.size	u8g_DrawTriangle, .-u8g_DrawTriangle
+ 1351              		.text
+ 1352              	.Letext0:
+ 1353              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1354              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1355              		.file 4 "u8glib_arm_v1.18.1\\src\\u8g.h"
+ 1356              		.section	.debug_info,"",%progbits
+ 1357              	.Ldebug_info0:
+ 1358 0000 B6090000 		.4byte	0x9b6
+ 1359 0004 0400     		.2byte	0x4
+ 1360 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1361 000a 04       		.byte	0x4
+ 1362 000b 01       		.uleb128 0x1
+ 1363 000c 75010000 		.4byte	.LASF98
+ 1364 0010 01       		.byte	0x1
+ 1365 0011 B8040000 		.4byte	.LASF99
+ 1366 0015 16050000 		.4byte	.LASF100
+ 1367 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1368 001d 00000000 		.4byte	0
+ 1369 0021 00000000 		.4byte	.Ldebug_line0
+ 1370 0025 02       		.uleb128 0x2
+ 1371 0026 04       		.byte	0x4
+ 1372 0027 05       		.byte	0x5
+ 1373 0028 696E7400 		.ascii	"int\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 31
+
+
+ 1374 002c 03       		.uleb128 0x3
+ 1375 002d 04       		.byte	0x4
+ 1376 002e 07       		.byte	0x7
+ 1377 002f 10030000 		.4byte	.LASF0
+ 1378 0033 04       		.uleb128 0x4
+ 1379 0034 78030000 		.4byte	.LASF2
+ 1380 0038 02       		.byte	0x2
+ 1381 0039 1B       		.byte	0x1b
+ 1382 003a 3E000000 		.4byte	0x3e
+ 1383 003e 03       		.uleb128 0x3
+ 1384 003f 01       		.byte	0x1
+ 1385 0040 06       		.byte	0x6
+ 1386 0041 DC020000 		.4byte	.LASF1
+ 1387 0045 04       		.uleb128 0x4
+ 1388 0046 2D020000 		.4byte	.LASF3
+ 1389 004a 02       		.byte	0x2
+ 1390 004b 1D       		.byte	0x1d
+ 1391 004c 50000000 		.4byte	0x50
+ 1392 0050 03       		.uleb128 0x3
+ 1393 0051 01       		.byte	0x1
+ 1394 0052 08       		.byte	0x8
+ 1395 0053 B7020000 		.4byte	.LASF4
+ 1396 0057 04       		.uleb128 0x4
+ 1397 0058 5E040000 		.4byte	.LASF5
+ 1398 005c 02       		.byte	0x2
+ 1399 005d 29       		.byte	0x29
+ 1400 005e 62000000 		.4byte	0x62
+ 1401 0062 03       		.uleb128 0x3
+ 1402 0063 02       		.byte	0x2
+ 1403 0064 05       		.byte	0x5
+ 1404 0065 40000000 		.4byte	.LASF6
+ 1405 0069 03       		.uleb128 0x3
+ 1406 006a 02       		.byte	0x2
+ 1407 006b 07       		.byte	0x7
+ 1408 006c 65030000 		.4byte	.LASF7
+ 1409 0070 03       		.uleb128 0x3
+ 1410 0071 04       		.byte	0x4
+ 1411 0072 05       		.byte	0x5
+ 1412 0073 94030000 		.4byte	.LASF8
+ 1413 0077 03       		.uleb128 0x3
+ 1414 0078 04       		.byte	0x4
+ 1415 0079 07       		.byte	0x7
+ 1416 007a FD030000 		.4byte	.LASF9
+ 1417 007e 03       		.uleb128 0x3
+ 1418 007f 08       		.byte	0x8
+ 1419 0080 05       		.byte	0x5
+ 1420 0081 3F010000 		.4byte	.LASF10
+ 1421 0085 03       		.uleb128 0x3
+ 1422 0086 08       		.byte	0x8
+ 1423 0087 07       		.byte	0x7
+ 1424 0088 F2020000 		.4byte	.LASF11
+ 1425 008c 04       		.uleb128 0x4
+ 1426 008d 2D000000 		.4byte	.LASF12
+ 1427 0091 03       		.byte	0x3
+ 1428 0092 14       		.byte	0x14
+ 1429 0093 33000000 		.4byte	0x33
+ 1430 0097 04       		.uleb128 0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 32
+
+
+ 1431 0098 FA000000 		.4byte	.LASF13
+ 1432 009c 03       		.byte	0x3
+ 1433 009d 15       		.byte	0x15
+ 1434 009e 45000000 		.4byte	0x45
+ 1435 00a2 04       		.uleb128 0x4
+ 1436 00a3 B8030000 		.4byte	.LASF14
+ 1437 00a7 03       		.byte	0x3
+ 1438 00a8 20       		.byte	0x20
+ 1439 00a9 57000000 		.4byte	0x57
+ 1440 00ad 04       		.uleb128 0x4
+ 1441 00ae 17000000 		.4byte	.LASF15
+ 1442 00b2 04       		.byte	0x4
+ 1443 00b3 80       		.byte	0x80
+ 1444 00b4 97000000 		.4byte	0x97
+ 1445 00b8 04       		.uleb128 0x4
+ 1446 00b9 00000000 		.4byte	.LASF16
+ 1447 00bd 04       		.byte	0x4
+ 1448 00be A0       		.byte	0xa0
+ 1449 00bf C3000000 		.4byte	0xc3
+ 1450 00c3 05       		.uleb128 0x5
+ 1451 00c4 6D000000 		.4byte	.LASF43
+ 1452 00c8 3C       		.byte	0x3c
+ 1453 00c9 04       		.byte	0x4
+ 1454 00ca 4B04     		.2byte	0x44b
+ 1455 00cc 23020000 		.4byte	0x223
+ 1456 00d0 06       		.uleb128 0x6
+ 1457 00d1 1B010000 		.4byte	.LASF17
+ 1458 00d5 04       		.byte	0x4
+ 1459 00d6 4D04     		.2byte	0x44d
+ 1460 00d8 18030000 		.4byte	0x318
+ 1461 00dc 00       		.byte	0
+ 1462 00dd 06       		.uleb128 0x6
+ 1463 00de 09030000 		.4byte	.LASF18
+ 1464 00e2 04       		.byte	0x4
+ 1465 00e3 4E04     		.2byte	0x44e
+ 1466 00e5 18030000 		.4byte	0x318
+ 1467 00e9 01       		.byte	0x1
+ 1468 00ea 07       		.uleb128 0x7
+ 1469 00eb 64657600 		.ascii	"dev\000"
+ 1470 00ef 04       		.byte	0x4
+ 1471 00f0 5104     		.2byte	0x451
+ 1472 00f2 58030000 		.4byte	0x358
+ 1473 00f6 04       		.byte	0x4
+ 1474 00f7 06       		.uleb128 0x6
+ 1475 00f8 3B000000 		.4byte	.LASF19
+ 1476 00fc 04       		.byte	0x4
+ 1477 00fd 5204     		.2byte	0x452
+ 1478 00ff EA030000 		.4byte	0x3ea
+ 1479 0103 08       		.byte	0x8
+ 1480 0104 06       		.uleb128 0x6
+ 1481 0105 9D040000 		.4byte	.LASF20
+ 1482 0109 04       		.byte	0x4
+ 1483 010a 5304     		.2byte	0x453
+ 1484 010c EA030000 		.4byte	0x3ea
+ 1485 0110 0C       		.byte	0xc
+ 1486 0111 06       		.uleb128 0x6
+ 1487 0112 BE000000 		.4byte	.LASF21
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 33
+
+
+ 1488 0116 04       		.byte	0x4
+ 1489 0117 5404     		.2byte	0x454
+ 1490 0119 97000000 		.4byte	0x97
+ 1491 011d 10       		.byte	0x10
+ 1492 011e 06       		.uleb128 0x6
+ 1493 011f 0B010000 		.4byte	.LASF22
+ 1494 0123 04       		.byte	0x4
+ 1495 0124 5404     		.2byte	0x454
+ 1496 0126 97000000 		.4byte	0x97
+ 1497 012a 11       		.byte	0x11
+ 1498 012b 06       		.uleb128 0x6
+ 1499 012c A7020000 		.4byte	.LASF23
+ 1500 0130 04       		.byte	0x4
+ 1501 0131 5504     		.2byte	0x455
+ 1502 0133 97000000 		.4byte	0x97
+ 1503 0137 12       		.byte	0x12
+ 1504 0138 06       		.uleb128 0x6
+ 1505 0139 B3030000 		.4byte	.LASF24
+ 1506 013d 04       		.byte	0x4
+ 1507 013e 5604     		.2byte	0x456
+ 1508 0140 97000000 		.4byte	0x97
+ 1509 0144 13       		.byte	0x13
+ 1510 0145 06       		.uleb128 0x6
+ 1511 0146 74000000 		.4byte	.LASF25
+ 1512 014a 04       		.byte	0x4
+ 1513 014b 5704     		.2byte	0x457
+ 1514 014d 18030000 		.4byte	0x318
+ 1515 0151 14       		.byte	0x14
+ 1516 0152 06       		.uleb128 0x6
+ 1517 0153 7D000000 		.4byte	.LASF26
+ 1518 0157 04       		.byte	0x4
+ 1519 0158 5804     		.2byte	0x458
+ 1520 015a 18030000 		.4byte	0x318
+ 1521 015e 15       		.byte	0x15
+ 1522 015f 06       		.uleb128 0x6
+ 1523 0160 45030000 		.4byte	.LASF27
+ 1524 0164 04       		.byte	0x4
+ 1525 0165 5904     		.2byte	0x459
+ 1526 0167 8F030000 		.4byte	0x38f
+ 1527 016b 18       		.byte	0x18
+ 1528 016c 06       		.uleb128 0x6
+ 1529 016d 02010000 		.4byte	.LASF28
+ 1530 0171 04       		.byte	0x4
+ 1531 0172 5B04     		.2byte	0x45b
+ 1532 0174 8C000000 		.4byte	0x8c
+ 1533 0178 1C       		.byte	0x1c
+ 1534 0179 06       		.uleb128 0x6
+ 1535 017a 37020000 		.4byte	.LASF29
+ 1536 017e 04       		.byte	0x4
+ 1537 017f 5C04     		.2byte	0x45c
+ 1538 0181 8C000000 		.4byte	0x8c
+ 1539 0185 1D       		.byte	0x1d
+ 1540 0186 06       		.uleb128 0x6
+ 1541 0187 3F020000 		.4byte	.LASF30
+ 1542 018b 04       		.byte	0x4
+ 1543 018c 5D04     		.2byte	0x45d
+ 1544 018e 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 34
+
+
+ 1545 0192 1E       		.byte	0x1e
+ 1546 0193 06       		.uleb128 0x6
+ 1547 0194 5B050000 		.4byte	.LASF31
+ 1548 0198 04       		.byte	0x4
+ 1549 0199 5E04     		.2byte	0x45e
+ 1550 019b 97000000 		.4byte	0x97
+ 1551 019f 1F       		.byte	0x1f
+ 1552 01a0 06       		.uleb128 0x6
+ 1553 01a1 C5020000 		.4byte	.LASF32
+ 1554 01a5 04       		.byte	0x4
+ 1555 01a6 5F04     		.2byte	0x45f
+ 1556 01a8 97000000 		.4byte	0x97
+ 1557 01ac 20       		.byte	0x20
+ 1558 01ad 06       		.uleb128 0x6
+ 1559 01ae A9040000 		.4byte	.LASF33
+ 1560 01b2 04       		.byte	0x4
+ 1561 01b3 6104     		.2byte	0x461
+ 1562 01b5 AC030000 		.4byte	0x3ac
+ 1563 01b9 24       		.byte	0x24
+ 1564 01ba 06       		.uleb128 0x6
+ 1565 01bb EA040000 		.4byte	.LASF34
+ 1566 01bf 04       		.byte	0x4
+ 1567 01c0 6204     		.2byte	0x462
+ 1568 01c2 97000000 		.4byte	0x97
+ 1569 01c6 28       		.byte	0x28
+ 1570 01c7 06       		.uleb128 0x6
+ 1571 01c8 EA000000 		.4byte	.LASF35
+ 1572 01cc 04       		.byte	0x4
+ 1573 01cd 6304     		.2byte	0x463
+ 1574 01cf 8C000000 		.4byte	0x8c
+ 1575 01d3 29       		.byte	0x29
+ 1576 01d4 06       		.uleb128 0x6
+ 1577 01d5 4D040000 		.4byte	.LASF36
+ 1578 01d9 04       		.byte	0x4
+ 1579 01da 6404     		.2byte	0x464
+ 1580 01dc 8C000000 		.4byte	0x8c
+ 1581 01e0 2A       		.byte	0x2a
+ 1582 01e1 06       		.uleb128 0x6
+ 1583 01e2 72040000 		.4byte	.LASF37
+ 1584 01e6 04       		.byte	0x4
+ 1585 01e7 6504     		.2byte	0x465
+ 1586 01e9 97000000 		.4byte	0x97
+ 1587 01ed 2B       		.byte	0x2b
+ 1588 01ee 06       		.uleb128 0x6
+ 1589 01ef DD000000 		.4byte	.LASF38
+ 1590 01f3 04       		.byte	0x4
+ 1591 01f4 6604     		.2byte	0x466
+ 1592 01f6 97000000 		.4byte	0x97
+ 1593 01fa 2C       		.byte	0x2c
+ 1594 01fb 06       		.uleb128 0x6
+ 1595 01fc D2020000 		.4byte	.LASF39
+ 1596 0200 04       		.byte	0x4
+ 1597 0201 6804     		.2byte	0x468
+ 1598 0203 5F020000 		.4byte	0x25f
+ 1599 0207 2D       		.byte	0x2d
+ 1600 0208 06       		.uleb128 0x6
+ 1601 0209 95000000 		.4byte	.LASF40
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 35
+
+
+ 1602 020d 04       		.byte	0x4
+ 1603 020e 6F04     		.2byte	0x46f
+ 1604 0210 CD030000 		.4byte	0x3cd
+ 1605 0214 34       		.byte	0x34
+ 1606 0215 06       		.uleb128 0x6
+ 1607 0216 68010000 		.4byte	.LASF41
+ 1608 021a 04       		.byte	0x4
+ 1609 021b 7104     		.2byte	0x471
+ 1610 021d CF020000 		.4byte	0x2cf
+ 1611 0221 38       		.byte	0x38
+ 1612 0222 00       		.byte	0
+ 1613 0223 04       		.uleb128 0x4
+ 1614 0224 CE000000 		.4byte	.LASF42
+ 1615 0228 04       		.byte	0x4
+ 1616 0229 A1       		.byte	0xa1
+ 1617 022a 2E020000 		.4byte	0x22e
+ 1618 022e 08       		.uleb128 0x8
+ 1619 022f 67050000 		.4byte	.LASF44
+ 1620 0233 0C       		.byte	0xc
+ 1621 0234 04       		.byte	0x4
+ 1622 0235 CF       		.byte	0xcf
+ 1623 0236 5F020000 		.4byte	0x25f
+ 1624 023a 09       		.uleb128 0x9
+ 1625 023b C0030000 		.4byte	.LASF45
+ 1626 023f 04       		.byte	0x4
+ 1627 0240 D1       		.byte	0xd1
+ 1628 0241 23030000 		.4byte	0x323
+ 1629 0245 00       		.byte	0
+ 1630 0246 09       		.uleb128 0x9
+ 1631 0247 95040000 		.4byte	.LASF46
+ 1632 024b 04       		.byte	0x4
+ 1633 024c D2       		.byte	0xd2
+ 1634 024d 5E030000 		.4byte	0x35e
+ 1635 0251 04       		.byte	0x4
+ 1636 0252 09       		.uleb128 0x9
+ 1637 0253 86050000 		.4byte	.LASF47
+ 1638 0257 04       		.byte	0x4
+ 1639 0258 D3       		.byte	0xd3
+ 1640 0259 60030000 		.4byte	0x360
+ 1641 025d 08       		.byte	0x8
+ 1642 025e 00       		.byte	0
+ 1643 025f 04       		.uleb128 0x4
+ 1644 0260 87020000 		.4byte	.LASF48
+ 1645 0264 04       		.byte	0x4
+ 1646 0265 A3       		.byte	0xa3
+ 1647 0266 6A020000 		.4byte	0x26a
+ 1648 026a 05       		.uleb128 0x5
+ 1649 026b 2A010000 		.4byte	.LASF49
+ 1650 026f 07       		.byte	0x7
+ 1651 0270 04       		.byte	0x4
+ 1652 0271 1D02     		.2byte	0x21d
+ 1653 0273 CF020000 		.4byte	0x2cf
+ 1654 0277 07       		.uleb128 0x7
+ 1655 0278 7800     		.ascii	"x\000"
+ 1656 027a 04       		.byte	0x4
+ 1657 027b 1F02     		.2byte	0x21f
+ 1658 027d 18030000 		.4byte	0x318
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 36
+
+
+ 1659 0281 00       		.byte	0
+ 1660 0282 07       		.uleb128 0x7
+ 1661 0283 7900     		.ascii	"y\000"
+ 1662 0285 04       		.byte	0x4
+ 1663 0286 1F02     		.2byte	0x21f
+ 1664 0288 18030000 		.4byte	0x318
+ 1665 028c 01       		.byte	0x1
+ 1666 028d 06       		.uleb128 0x6
+ 1667 028e 27000000 		.4byte	.LASF50
+ 1668 0292 04       		.byte	0x4
+ 1669 0293 2002     		.2byte	0x220
+ 1670 0295 97000000 		.4byte	0x97
+ 1671 0299 02       		.byte	0x2
+ 1672 029a 07       		.uleb128 0x7
+ 1673 029b 64697200 		.ascii	"dir\000"
+ 1674 029f 04       		.byte	0x4
+ 1675 02a0 2102     		.2byte	0x221
+ 1676 02a2 97000000 		.4byte	0x97
+ 1677 02a6 03       		.byte	0x3
+ 1678 02a7 06       		.uleb128 0x6
+ 1679 02a8 4A000000 		.4byte	.LASF51
+ 1680 02ac 04       		.byte	0x4
+ 1681 02ad 2202     		.2byte	0x222
+ 1682 02af 97000000 		.4byte	0x97
+ 1683 02b3 04       		.byte	0x4
+ 1684 02b4 06       		.uleb128 0x6
+ 1685 02b5 21010000 		.4byte	.LASF52
+ 1686 02b9 04       		.byte	0x4
+ 1687 02ba 2302     		.2byte	0x223
+ 1688 02bc 97000000 		.4byte	0x97
+ 1689 02c0 05       		.byte	0x5
+ 1690 02c1 06       		.uleb128 0x6
+ 1691 02c2 D8000000 		.4byte	.LASF53
+ 1692 02c6 04       		.byte	0x4
+ 1693 02c7 2402     		.2byte	0x224
+ 1694 02c9 97000000 		.4byte	0x97
+ 1695 02cd 06       		.byte	0x6
+ 1696 02ce 00       		.byte	0
+ 1697 02cf 04       		.uleb128 0x4
+ 1698 02d0 8B040000 		.4byte	.LASF54
+ 1699 02d4 04       		.byte	0x4
+ 1700 02d5 A5       		.byte	0xa5
+ 1701 02d6 DA020000 		.4byte	0x2da
+ 1702 02da 05       		.uleb128 0x5
+ 1703 02db 81030000 		.4byte	.LASF55
+ 1704 02df 04       		.byte	0x4
+ 1705 02e0 04       		.byte	0x4
+ 1706 02e1 3102     		.2byte	0x231
+ 1707 02e3 18030000 		.4byte	0x318
+ 1708 02e7 07       		.uleb128 0x7
+ 1709 02e8 783000   		.ascii	"x0\000"
+ 1710 02eb 04       		.byte	0x4
+ 1711 02ec 3302     		.2byte	0x233
+ 1712 02ee 18030000 		.4byte	0x318
+ 1713 02f2 00       		.byte	0
+ 1714 02f3 07       		.uleb128 0x7
+ 1715 02f4 793000   		.ascii	"y0\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 37
+
+
+ 1716 02f7 04       		.byte	0x4
+ 1717 02f8 3302     		.2byte	0x233
+ 1718 02fa 18030000 		.4byte	0x318
+ 1719 02fe 01       		.byte	0x1
+ 1720 02ff 07       		.uleb128 0x7
+ 1721 0300 783100   		.ascii	"x1\000"
+ 1722 0303 04       		.byte	0x4
+ 1723 0304 3302     		.2byte	0x233
+ 1724 0306 18030000 		.4byte	0x318
+ 1725 030a 02       		.byte	0x2
+ 1726 030b 07       		.uleb128 0x7
+ 1727 030c 793100   		.ascii	"y1\000"
+ 1728 030f 04       		.byte	0x4
+ 1729 0310 3302     		.2byte	0x233
+ 1730 0312 18030000 		.4byte	0x318
+ 1731 0316 03       		.byte	0x3
+ 1732 0317 00       		.byte	0
+ 1733 0318 04       		.uleb128 0x4
+ 1734 0319 5A030000 		.4byte	.LASF56
+ 1735 031d 04       		.byte	0x4
+ 1736 031e AF       		.byte	0xaf
+ 1737 031f 97000000 		.4byte	0x97
+ 1738 0323 04       		.uleb128 0x4
+ 1739 0324 1F020000 		.4byte	.LASF57
+ 1740 0328 04       		.byte	0x4
+ 1741 0329 C7       		.byte	0xc7
+ 1742 032a 2E030000 		.4byte	0x32e
+ 1743 032e 0A       		.uleb128 0xa
+ 1744 032f 04       		.byte	0x4
+ 1745 0330 34030000 		.4byte	0x334
+ 1746 0334 0B       		.uleb128 0xb
+ 1747 0335 97000000 		.4byte	0x97
+ 1748 0339 52030000 		.4byte	0x352
+ 1749 033d 0C       		.uleb128 0xc
+ 1750 033e 52030000 		.4byte	0x352
+ 1751 0342 0C       		.uleb128 0xc
+ 1752 0343 58030000 		.4byte	0x358
+ 1753 0347 0C       		.uleb128 0xc
+ 1754 0348 97000000 		.4byte	0x97
+ 1755 034c 0C       		.uleb128 0xc
+ 1756 034d 5E030000 		.4byte	0x35e
+ 1757 0351 00       		.byte	0
+ 1758 0352 0A       		.uleb128 0xa
+ 1759 0353 04       		.byte	0x4
+ 1760 0354 B8000000 		.4byte	0xb8
+ 1761 0358 0A       		.uleb128 0xa
+ 1762 0359 04       		.byte	0x4
+ 1763 035a 23020000 		.4byte	0x223
+ 1764 035e 0D       		.uleb128 0xd
+ 1765 035f 04       		.byte	0x4
+ 1766 0360 04       		.uleb128 0x4
+ 1767 0361 5A020000 		.4byte	.LASF58
+ 1768 0365 04       		.byte	0x4
+ 1769 0366 CA       		.byte	0xca
+ 1770 0367 6B030000 		.4byte	0x36b
+ 1771 036b 0A       		.uleb128 0xa
+ 1772 036c 04       		.byte	0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 38
+
+
+ 1773 036d 71030000 		.4byte	0x371
+ 1774 0371 0B       		.uleb128 0xb
+ 1775 0372 97000000 		.4byte	0x97
+ 1776 0376 8F030000 		.4byte	0x38f
+ 1777 037a 0C       		.uleb128 0xc
+ 1778 037b 52030000 		.4byte	0x352
+ 1779 037f 0C       		.uleb128 0xc
+ 1780 0380 97000000 		.4byte	0x97
+ 1781 0384 0C       		.uleb128 0xc
+ 1782 0385 97000000 		.4byte	0x97
+ 1783 0389 0C       		.uleb128 0xc
+ 1784 038a 5E030000 		.4byte	0x35e
+ 1785 038e 00       		.byte	0
+ 1786 038f 0E       		.uleb128 0xe
+ 1787 0390 03020000 		.4byte	.LASF59
+ 1788 0394 04       		.byte	0x4
+ 1789 0395 0D04     		.2byte	0x40d
+ 1790 0397 9B030000 		.4byte	0x39b
+ 1791 039b 0A       		.uleb128 0xa
+ 1792 039c 04       		.byte	0x4
+ 1793 039d A1030000 		.4byte	0x3a1
+ 1794 03a1 0F       		.uleb128 0xf
+ 1795 03a2 AC030000 		.4byte	0x3ac
+ 1796 03a6 0C       		.uleb128 0xc
+ 1797 03a7 52030000 		.4byte	0x352
+ 1798 03ab 00       		.byte	0
+ 1799 03ac 0E       		.uleb128 0xe
+ 1800 03ad A5000000 		.4byte	.LASF60
+ 1801 03b1 04       		.byte	0x4
+ 1802 03b2 1004     		.2byte	0x410
+ 1803 03b4 B8030000 		.4byte	0x3b8
+ 1804 03b8 0A       		.uleb128 0xa
+ 1805 03b9 04       		.byte	0x4
+ 1806 03ba BE030000 		.4byte	0x3be
+ 1807 03be 0B       		.uleb128 0xb
+ 1808 03bf 18030000 		.4byte	0x318
+ 1809 03c3 CD030000 		.4byte	0x3cd
+ 1810 03c7 0C       		.uleb128 0xc
+ 1811 03c8 52030000 		.4byte	0x352
+ 1812 03cc 00       		.byte	0
+ 1813 03cd 0E       		.uleb128 0xe
+ 1814 03ce 60000000 		.4byte	.LASF61
+ 1815 03d2 04       		.byte	0x4
+ 1816 03d3 1304     		.2byte	0x413
+ 1817 03d5 D9030000 		.4byte	0x3d9
+ 1818 03d9 0A       		.uleb128 0xa
+ 1819 03da 04       		.byte	0x4
+ 1820 03db DF030000 		.4byte	0x3df
+ 1821 03df 0F       		.uleb128 0xf
+ 1822 03e0 EA030000 		.4byte	0x3ea
+ 1823 03e4 0C       		.uleb128 0xc
+ 1824 03e5 97000000 		.4byte	0x97
+ 1825 03e9 00       		.byte	0
+ 1826 03ea 0A       		.uleb128 0xa
+ 1827 03eb 04       		.byte	0x4
+ 1828 03ec F0030000 		.4byte	0x3f0
+ 1829 03f0 10       		.uleb128 0x10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 39
+
+
+ 1830 03f1 AD000000 		.4byte	0xad
+ 1831 03f5 0E       		.uleb128 0xe
+ 1832 03f6 E8020000 		.4byte	.LASF62
+ 1833 03fa 04       		.byte	0x4
+ 1834 03fb 7105     		.2byte	0x571
+ 1835 03fd A2000000 		.4byte	0xa2
+ 1836 0401 05       		.uleb128 0x5
+ 1837 0402 50000000 		.4byte	.LASF63
+ 1838 0406 04       		.byte	0x4
+ 1839 0407 04       		.byte	0x4
+ 1840 0408 7505     		.2byte	0x575
+ 1841 040a 25040000 		.4byte	0x425
+ 1842 040e 07       		.uleb128 0x7
+ 1843 040f 7800     		.ascii	"x\000"
+ 1844 0411 04       		.byte	0x4
+ 1845 0412 7705     		.2byte	0x577
+ 1846 0414 F5030000 		.4byte	0x3f5
+ 1847 0418 00       		.byte	0
+ 1848 0419 07       		.uleb128 0x7
+ 1849 041a 7900     		.ascii	"y\000"
+ 1850 041c 04       		.byte	0x4
+ 1851 041d 7805     		.2byte	0x578
+ 1852 041f F5030000 		.4byte	0x3f5
+ 1853 0423 02       		.byte	0x2
+ 1854 0424 00       		.byte	0
+ 1855 0425 0E       		.uleb128 0xe
+ 1856 0426 5E010000 		.4byte	.LASF64
+ 1857 042a 04       		.byte	0x4
+ 1858 042b 7B05     		.2byte	0x57b
+ 1859 042d 31040000 		.4byte	0x431
+ 1860 0431 05       		.uleb128 0x5
+ 1861 0432 1D030000 		.4byte	.LASF65
+ 1862 0436 4C       		.byte	0x4c
+ 1863 0437 04       		.byte	0x4
+ 1864 0438 9805     		.2byte	0x598
+ 1865 043a 80040000 		.4byte	0x480
+ 1866 043e 06       		.uleb128 0x6
+ 1867 043f AE030000 		.4byte	.LASF66
+ 1868 0443 04       		.byte	0x4
+ 1869 0444 9A05     		.2byte	0x59a
+ 1870 0446 30050000 		.4byte	0x530
+ 1871 044a 00       		.byte	0
+ 1872 044b 07       		.uleb128 0x7
+ 1873 044c 636E7400 		.ascii	"cnt\000"
+ 1874 0450 04       		.byte	0x4
+ 1875 0451 9B05     		.2byte	0x59b
+ 1876 0453 97000000 		.4byte	0x97
+ 1877 0457 18       		.byte	0x18
+ 1878 0458 06       		.uleb128 0x6
+ 1879 0459 FB040000 		.4byte	.LASF67
+ 1880 045d 04       		.byte	0x4
+ 1881 045e 9C05     		.2byte	0x59c
+ 1882 0460 97000000 		.4byte	0x97
+ 1883 0464 19       		.byte	0x19
+ 1884 0465 06       		.uleb128 0x6
+ 1885 0466 72050000 		.4byte	.LASF68
+ 1886 046a 04       		.byte	0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 40
+
+
+ 1887 046b 9D05     		.2byte	0x59d
+ 1888 046d F5030000 		.4byte	0x3f5
+ 1889 0471 1A       		.byte	0x1a
+ 1890 0472 07       		.uleb128 0x7
+ 1891 0473 70676500 		.ascii	"pge\000"
+ 1892 0477 04       		.byte	0x4
+ 1893 0478 9E05     		.2byte	0x59e
+ 1894 047a 47050000 		.4byte	0x547
+ 1895 047e 1C       		.byte	0x1c
+ 1896 047f 00       		.byte	0
+ 1897 0480 05       		.uleb128 0x5
+ 1898 0481 68020000 		.4byte	.LASF69
+ 1899 0485 18       		.byte	0x18
+ 1900 0486 04       		.byte	0x4
+ 1901 0487 7D05     		.2byte	0x57d
+ 1902 0489 10050000 		.4byte	0x510
+ 1903 048d 06       		.uleb128 0x6
+ 1904 048e F1030000 		.4byte	.LASF70
+ 1905 0492 04       		.byte	0x4
+ 1906 0493 7F05     		.2byte	0x57f
+ 1907 0495 F5030000 		.4byte	0x3f5
+ 1908 0499 00       		.byte	0
+ 1909 049a 06       		.uleb128 0x6
+ 1910 049b 09030000 		.4byte	.LASF18
+ 1911 049f 04       		.byte	0x4
+ 1912 04a0 8005     		.2byte	0x580
+ 1913 04a2 F5030000 		.4byte	0x3f5
+ 1914 04a6 02       		.byte	0x2
+ 1915 04a7 06       		.uleb128 0x6
+ 1916 04a8 4D010000 		.4byte	.LASF71
+ 1917 04ac 04       		.byte	0x4
+ 1918 04ad 8105     		.2byte	0x581
+ 1919 04af F5030000 		.4byte	0x3f5
+ 1920 04b3 04       		.byte	0x4
+ 1921 04b4 06       		.uleb128 0x6
+ 1922 04b5 36040000 		.4byte	.LASF72
+ 1923 04b9 04       		.byte	0x4
+ 1924 04ba 8205     		.2byte	0x582
+ 1925 04bc F5030000 		.4byte	0x3f5
+ 1926 04c0 06       		.byte	0x6
+ 1927 04c1 06       		.uleb128 0x6
+ 1928 04c2 43040000 		.4byte	.LASF73
+ 1929 04c6 04       		.byte	0x4
+ 1930 04c7 8505     		.2byte	0x585
+ 1931 04c9 F5030000 		.4byte	0x3f5
+ 1932 04cd 08       		.byte	0x8
+ 1933 04ce 06       		.uleb128 0x6
+ 1934 04cf 9B020000 		.4byte	.LASF74
+ 1935 04d3 04       		.byte	0x4
+ 1936 04d4 8605     		.2byte	0x586
+ 1937 04d6 F5030000 		.4byte	0x3f5
+ 1938 04da 0A       		.byte	0xa
+ 1939 04db 06       		.uleb128 0x6
+ 1940 04dc 51050000 		.4byte	.LASF75
+ 1941 04e0 04       		.byte	0x4
+ 1942 04e1 8705     		.2byte	0x587
+ 1943 04e3 F5030000 		.4byte	0x3f5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 41
+
+
+ 1944 04e7 0C       		.byte	0xc
+ 1945 04e8 06       		.uleb128 0x6
+ 1946 04e9 DD040000 		.4byte	.LASF76
+ 1947 04ed 04       		.byte	0x4
+ 1948 04ee 8805     		.2byte	0x588
+ 1949 04f0 F5030000 		.4byte	0x3f5
+ 1950 04f4 0E       		.byte	0xe
+ 1951 04f5 06       		.uleb128 0x6
+ 1952 04f6 0F040000 		.4byte	.LASF77
+ 1953 04fa 04       		.byte	0x4
+ 1954 04fb 8B05     		.2byte	0x58b
+ 1955 04fd 2A050000 		.4byte	0x52a
+ 1956 0501 10       		.byte	0x10
+ 1957 0502 06       		.uleb128 0x6
+ 1958 0503 0E000000 		.4byte	.LASF78
+ 1959 0507 04       		.byte	0x4
+ 1960 0508 8C05     		.2byte	0x58c
+ 1961 050a 97000000 		.4byte	0x97
+ 1962 050e 14       		.byte	0x14
+ 1963 050f 00       		.byte	0
+ 1964 0510 0B       		.uleb128 0xb
+ 1965 0511 97000000 		.4byte	0x97
+ 1966 0515 24050000 		.4byte	0x524
+ 1967 0519 0C       		.uleb128 0xc
+ 1968 051a 24050000 		.4byte	0x524
+ 1969 051e 0C       		.uleb128 0xc
+ 1970 051f 97000000 		.4byte	0x97
+ 1971 0523 00       		.byte	0
+ 1972 0524 0A       		.uleb128 0xa
+ 1973 0525 04       		.byte	0x4
+ 1974 0526 25040000 		.4byte	0x425
+ 1975 052a 0A       		.uleb128 0xa
+ 1976 052b 04       		.byte	0x4
+ 1977 052c 10050000 		.4byte	0x510
+ 1978 0530 11       		.uleb128 0x11
+ 1979 0531 01040000 		.4byte	0x401
+ 1980 0535 40050000 		.4byte	0x540
+ 1981 0539 12       		.uleb128 0x12
+ 1982 053a 40050000 		.4byte	0x540
+ 1983 053e 05       		.byte	0x5
+ 1984 053f 00       		.byte	0
+ 1985 0540 03       		.uleb128 0x3
+ 1986 0541 04       		.byte	0x4
+ 1987 0542 07       		.byte	0x7
+ 1988 0543 16020000 		.4byte	.LASF79
+ 1989 0547 11       		.uleb128 0x11
+ 1990 0548 80040000 		.4byte	0x480
+ 1991 054c 57050000 		.4byte	0x557
+ 1992 0550 12       		.uleb128 0x12
+ 1993 0551 40050000 		.4byte	0x540
+ 1994 0555 01       		.byte	0x1
+ 1995 0556 00       		.byte	0
+ 1996 0557 13       		.uleb128 0x13
+ 1997 0558 C7030000 		.4byte	.LASF80
+ 1998 055c 01       		.byte	0x1
+ 1999 055d 42       		.byte	0x42
+ 2000 055e 97000000 		.4byte	0x97
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 42
+
+
+ 2001 0562 00000000 		.4byte	.LFB0
+ 2002 0566 9E000000 		.4byte	.LFE0-.LFB0
+ 2003 056a 01       		.uleb128 0x1
+ 2004 056b 9C       		.byte	0x9c
+ 2005 056c 7F050000 		.4byte	0x57f
+ 2006 0570 14       		.uleb128 0x14
+ 2007 0571 70676500 		.ascii	"pge\000"
+ 2008 0575 01       		.byte	0x1
+ 2009 0576 42       		.byte	0x42
+ 2010 0577 7F050000 		.4byte	0x57f
+ 2011 057b 02       		.uleb128 0x2
+ 2012 057c 91       		.byte	0x91
+ 2013 057d 74       		.sleb128 -12
+ 2014 057e 00       		.byte	0
+ 2015 057f 0A       		.uleb128 0xa
+ 2016 0580 04       		.byte	0x4
+ 2017 0581 80040000 		.4byte	0x480
+ 2018 0585 15       		.uleb128 0x15
+ 2019 0586 2D040000 		.4byte	.LASF83
+ 2020 058a 01       		.byte	0x1
+ 2021 058b 54       		.byte	0x54
+ 2022 058c 00000000 		.4byte	.LFB1
+ 2023 0590 B8000000 		.4byte	.LFE1-.LFB1
+ 2024 0594 01       		.uleb128 0x1
+ 2025 0595 9C       		.byte	0x9c
+ 2026 0596 F8050000 		.4byte	0x5f8
+ 2027 059a 14       		.uleb128 0x14
+ 2028 059b 70676500 		.ascii	"pge\000"
+ 2029 059f 01       		.byte	0x1
+ 2030 05a0 54       		.byte	0x54
+ 2031 05a1 7F050000 		.4byte	0x57f
+ 2032 05a5 02       		.uleb128 0x2
+ 2033 05a6 91       		.byte	0x91
+ 2034 05a7 6C       		.sleb128 -20
+ 2035 05a8 14       		.uleb128 0x14
+ 2036 05a9 783100   		.ascii	"x1\000"
+ 2037 05ac 01       		.byte	0x1
+ 2038 05ad 54       		.byte	0x54
+ 2039 05ae F5030000 		.4byte	0x3f5
+ 2040 05b2 02       		.uleb128 0x2
+ 2041 05b3 91       		.byte	0x91
+ 2042 05b4 6A       		.sleb128 -22
+ 2043 05b5 14       		.uleb128 0x14
+ 2044 05b6 793100   		.ascii	"y1\000"
+ 2045 05b9 01       		.byte	0x1
+ 2046 05ba 54       		.byte	0x54
+ 2047 05bb F5030000 		.4byte	0x3f5
+ 2048 05bf 02       		.uleb128 0x2
+ 2049 05c0 91       		.byte	0x91
+ 2050 05c1 68       		.sleb128 -24
+ 2051 05c2 14       		.uleb128 0x14
+ 2052 05c3 783200   		.ascii	"x2\000"
+ 2053 05c6 01       		.byte	0x1
+ 2054 05c7 54       		.byte	0x54
+ 2055 05c8 F5030000 		.4byte	0x3f5
+ 2056 05cc 02       		.uleb128 0x2
+ 2057 05cd 91       		.byte	0x91
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 43
+
+
+ 2058 05ce 66       		.sleb128 -26
+ 2059 05cf 14       		.uleb128 0x14
+ 2060 05d0 793200   		.ascii	"y2\000"
+ 2061 05d3 01       		.byte	0x1
+ 2062 05d4 54       		.byte	0x54
+ 2063 05d5 F5030000 		.4byte	0x3f5
+ 2064 05d9 02       		.uleb128 0x2
+ 2065 05da 91       		.byte	0x91
+ 2066 05db 00       		.sleb128 0
+ 2067 05dc 16       		.uleb128 0x16
+ 2068 05dd 647800   		.ascii	"dx\000"
+ 2069 05e0 01       		.byte	0x1
+ 2070 05e1 56       		.byte	0x56
+ 2071 05e2 F5030000 		.4byte	0x3f5
+ 2072 05e6 02       		.uleb128 0x2
+ 2073 05e7 91       		.byte	0x91
+ 2074 05e8 74       		.sleb128 -12
+ 2075 05e9 17       		.uleb128 0x17
+ 2076 05ea 1B010000 		.4byte	.LASF17
+ 2077 05ee 01       		.byte	0x1
+ 2078 05ef 57       		.byte	0x57
+ 2079 05f0 F5030000 		.4byte	0x3f5
+ 2080 05f4 02       		.uleb128 0x2
+ 2081 05f5 91       		.byte	0x91
+ 2082 05f6 76       		.sleb128 -10
+ 2083 05f7 00       		.byte	0
+ 2084 05f8 13       		.uleb128 0x13
+ 2085 05f9 E3040000 		.4byte	.LASF81
+ 2086 05fd 01       		.byte	0x1
+ 2087 05fe 72       		.byte	0x72
+ 2088 05ff 97000000 		.4byte	0x97
+ 2089 0603 00000000 		.4byte	.LFB2
+ 2090 0607 2E000000 		.4byte	.LFE2-.LFB2
+ 2091 060b 01       		.uleb128 0x1
+ 2092 060c 9C       		.byte	0x9c
+ 2093 060d 2B060000 		.4byte	0x62b
+ 2094 0611 14       		.uleb128 0x14
+ 2095 0612 706700   		.ascii	"pg\000"
+ 2096 0615 01       		.byte	0x1
+ 2097 0616 72       		.byte	0x72
+ 2098 0617 24050000 		.4byte	0x524
+ 2099 061b 02       		.uleb128 0x2
+ 2100 061c 91       		.byte	0x91
+ 2101 061d 74       		.sleb128 -12
+ 2102 061e 14       		.uleb128 0x14
+ 2103 061f 6900     		.ascii	"i\000"
+ 2104 0621 01       		.byte	0x1
+ 2105 0622 72       		.byte	0x72
+ 2106 0623 97000000 		.4byte	0x97
+ 2107 0627 02       		.uleb128 0x2
+ 2108 0628 91       		.byte	0x91
+ 2109 0629 73       		.sleb128 -13
+ 2110 062a 00       		.byte	0
+ 2111 062b 13       		.uleb128 0x13
+ 2112 062c 34000000 		.4byte	.LASF82
+ 2113 0630 01       		.byte	0x1
+ 2114 0631 7A       		.byte	0x7a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 44
+
+
+ 2115 0632 97000000 		.4byte	0x97
+ 2116 0636 00000000 		.4byte	.LFB3
+ 2117 063a 32000000 		.4byte	.LFE3-.LFB3
+ 2118 063e 01       		.uleb128 0x1
+ 2119 063f 9C       		.byte	0x9c
+ 2120 0640 5E060000 		.4byte	0x65e
+ 2121 0644 14       		.uleb128 0x14
+ 2122 0645 706700   		.ascii	"pg\000"
+ 2123 0648 01       		.byte	0x1
+ 2124 0649 7A       		.byte	0x7a
+ 2125 064a 24050000 		.4byte	0x524
+ 2126 064e 02       		.uleb128 0x2
+ 2127 064f 91       		.byte	0x91
+ 2128 0650 74       		.sleb128 -12
+ 2129 0651 14       		.uleb128 0x14
+ 2130 0652 6900     		.ascii	"i\000"
+ 2131 0654 01       		.byte	0x1
+ 2132 0655 7A       		.byte	0x7a
+ 2133 0656 97000000 		.4byte	0x97
+ 2134 065a 02       		.uleb128 0x2
+ 2135 065b 91       		.byte	0x91
+ 2136 065c 73       		.sleb128 -13
+ 2137 065d 00       		.byte	0
+ 2138 065e 18       		.uleb128 0x18
+ 2139 065f 35030000 		.4byte	.LASF84
+ 2140 0663 01       		.byte	0x1
+ 2141 0664 82       		.byte	0x82
+ 2142 0665 00000000 		.4byte	.LFB4
+ 2143 0669 74000000 		.4byte	.LFE4-.LFB4
+ 2144 066d 01       		.uleb128 0x1
+ 2145 066e 9C       		.byte	0x9c
+ 2146 066f A9060000 		.4byte	0x6a9
+ 2147 0673 14       		.uleb128 0x14
+ 2148 0674 706700   		.ascii	"pg\000"
+ 2149 0677 01       		.byte	0x1
+ 2150 0678 82       		.byte	0x82
+ 2151 0679 24050000 		.4byte	0x524
+ 2152 067d 02       		.uleb128 0x2
+ 2153 067e 91       		.byte	0x91
+ 2154 067f 6C       		.sleb128 -20
+ 2155 0680 19       		.uleb128 0x19
+ 2156 0681 A1020000 		.4byte	.LASF85
+ 2157 0685 01       		.byte	0x1
+ 2158 0686 82       		.byte	0x82
+ 2159 0687 F5030000 		.4byte	0x3f5
+ 2160 068b 02       		.uleb128 0x2
+ 2161 068c 91       		.byte	0x91
+ 2162 068d 6A       		.sleb128 -22
+ 2163 068e 19       		.uleb128 0x19
+ 2164 068f 06000000 		.4byte	.LASF86
+ 2165 0693 01       		.byte	0x1
+ 2166 0694 82       		.byte	0x82
+ 2167 0695 97000000 		.4byte	0x97
+ 2168 0699 02       		.uleb128 0x2
+ 2169 069a 91       		.byte	0x91
+ 2170 069b 69       		.sleb128 -23
+ 2171 069c 16       		.uleb128 0x16
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 45
+
+
+ 2172 069d 6900     		.ascii	"i\000"
+ 2173 069f 01       		.byte	0x1
+ 2174 06a0 84       		.byte	0x84
+ 2175 06a1 97000000 		.4byte	0x97
+ 2176 06a5 02       		.uleb128 0x2
+ 2177 06a6 91       		.byte	0x91
+ 2178 06a7 77       		.sleb128 -9
+ 2179 06a8 00       		.byte	0
+ 2180 06a9 1A       		.uleb128 0x1a
+ 2181 06aa 4F030000 		.4byte	.LASF87
+ 2182 06ae 01       		.byte	0x1
+ 2183 06af 8E       		.byte	0x8e
+ 2184 06b0 97000000 		.4byte	0x97
+ 2185 06b4 00000000 		.4byte	.LFB5
+ 2186 06b8 34010000 		.4byte	.LFE5-.LFB5
+ 2187 06bc 01       		.uleb128 0x1
+ 2188 06bd 9C       		.byte	0x9c
+ 2189 06be F8060000 		.4byte	0x6f8
+ 2190 06c2 14       		.uleb128 0x14
+ 2191 06c3 706700   		.ascii	"pg\000"
+ 2192 06c6 01       		.byte	0x1
+ 2193 06c7 8E       		.byte	0x8e
+ 2194 06c8 24050000 		.4byte	0x524
+ 2195 06cc 02       		.uleb128 0x2
+ 2196 06cd 91       		.byte	0x91
+ 2197 06ce 6C       		.sleb128 -20
+ 2198 06cf 17       		.uleb128 0x17
+ 2199 06d0 9B020000 		.4byte	.LASF74
+ 2200 06d4 01       		.byte	0x1
+ 2201 06d5 90       		.byte	0x90
+ 2202 06d6 F5030000 		.4byte	0x3f5
+ 2203 06da 02       		.uleb128 0x2
+ 2204 06db 91       		.byte	0x91
+ 2205 06dc 76       		.sleb128 -10
+ 2206 06dd 17       		.uleb128 0x17
+ 2207 06de A1020000 		.4byte	.LASF85
+ 2208 06e2 01       		.byte	0x1
+ 2209 06e3 91       		.byte	0x91
+ 2210 06e4 F5030000 		.4byte	0x3f5
+ 2211 06e8 02       		.uleb128 0x2
+ 2212 06e9 91       		.byte	0x91
+ 2213 06ea 74       		.sleb128 -12
+ 2214 06eb 16       		.uleb128 0x16
+ 2215 06ec 6900     		.ascii	"i\000"
+ 2216 06ee 01       		.byte	0x1
+ 2217 06ef 92       		.byte	0x92
+ 2218 06f0 97000000 		.4byte	0x97
+ 2219 06f4 02       		.uleb128 0x2
+ 2220 06f5 91       		.byte	0x91
+ 2221 06f6 73       		.sleb128 -13
+ 2222 06f7 00       		.byte	0
+ 2223 06f8 18       		.uleb128 0x18
+ 2224 06f9 0D050000 		.4byte	.LASF88
+ 2225 06fd 01       		.byte	0x1
+ 2226 06fe C6       		.byte	0xc6
+ 2227 06ff 00000000 		.4byte	.LFB6
+ 2228 0703 EE000000 		.4byte	.LFE6-.LFB6
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 46
+
+
+ 2229 0707 01       		.uleb128 0x1
+ 2230 0708 9C       		.byte	0x9c
+ 2231 0709 4F070000 		.4byte	0x74f
+ 2232 070d 14       		.uleb128 0x14
+ 2233 070e 706700   		.ascii	"pg\000"
+ 2234 0711 01       		.byte	0x1
+ 2235 0712 C6       		.byte	0xc6
+ 2236 0713 24050000 		.4byte	0x524
+ 2237 0717 02       		.uleb128 0x2
+ 2238 0718 91       		.byte	0x91
+ 2239 0719 64       		.sleb128 -28
+ 2240 071a 14       		.uleb128 0x14
+ 2241 071b 75386700 		.ascii	"u8g\000"
+ 2242 071f 01       		.byte	0x1
+ 2243 0720 C6       		.byte	0xc6
+ 2244 0721 52030000 		.4byte	0x352
+ 2245 0725 02       		.uleb128 0x2
+ 2246 0726 91       		.byte	0x91
+ 2247 0727 60       		.sleb128 -32
+ 2248 0728 16       		.uleb128 0x16
+ 2249 0729 783100   		.ascii	"x1\000"
+ 2250 072c 01       		.byte	0x1
+ 2251 072d C8       		.byte	0xc8
+ 2252 072e F5030000 		.4byte	0x3f5
+ 2253 0732 02       		.uleb128 0x2
+ 2254 0733 91       		.byte	0x91
+ 2255 0734 6E       		.sleb128 -18
+ 2256 0735 16       		.uleb128 0x16
+ 2257 0736 783200   		.ascii	"x2\000"
+ 2258 0739 01       		.byte	0x1
+ 2259 073a C8       		.byte	0xc8
+ 2260 073b F5030000 		.4byte	0x3f5
+ 2261 073f 02       		.uleb128 0x2
+ 2262 0740 91       		.byte	0x91
+ 2263 0741 6C       		.sleb128 -20
+ 2264 0742 16       		.uleb128 0x16
+ 2265 0743 7900     		.ascii	"y\000"
+ 2266 0745 01       		.byte	0x1
+ 2267 0746 C8       		.byte	0xc8
+ 2268 0747 F5030000 		.4byte	0x3f5
+ 2269 074b 02       		.uleb128 0x2
+ 2270 074c 91       		.byte	0x91
+ 2271 074d 6A       		.sleb128 -22
+ 2272 074e 00       		.byte	0
+ 2273 074f 18       		.uleb128 0x18
+ 2274 0750 28030000 		.4byte	.LASF89
+ 2275 0754 01       		.byte	0x1
+ 2276 0755 EB       		.byte	0xeb
+ 2277 0756 00000000 		.4byte	.LFB7
+ 2278 075a 88000000 		.4byte	.LFE7-.LFB7
+ 2279 075e 01       		.uleb128 0x1
+ 2280 075f 9C       		.byte	0x9c
+ 2281 0760 D0070000 		.4byte	0x7d0
+ 2282 0764 14       		.uleb128 0x14
+ 2283 0765 706700   		.ascii	"pg\000"
+ 2284 0768 01       		.byte	0x1
+ 2285 0769 EB       		.byte	0xeb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 47
+
+
+ 2286 076a 24050000 		.4byte	0x524
+ 2287 076e 02       		.uleb128 0x2
+ 2288 076f 91       		.byte	0x91
+ 2289 0770 5C       		.sleb128 -36
+ 2290 0771 19       		.uleb128 0x19
+ 2291 0772 68040000 		.4byte	.LASF90
+ 2292 0776 01       		.byte	0x1
+ 2293 0777 EB       		.byte	0xeb
+ 2294 0778 97000000 		.4byte	0x97
+ 2295 077c 02       		.uleb128 0x2
+ 2296 077d 91       		.byte	0x91
+ 2297 077e 5B       		.sleb128 -37
+ 2298 077f 16       		.uleb128 0x16
+ 2299 0780 70676500 		.ascii	"pge\000"
+ 2300 0784 01       		.byte	0x1
+ 2301 0785 ED       		.byte	0xed
+ 2302 0786 7F050000 		.4byte	0x57f
+ 2303 078a 02       		.uleb128 0x2
+ 2304 078b 91       		.byte	0x91
+ 2305 078c 6C       		.sleb128 -20
+ 2306 078d 16       		.uleb128 0x16
+ 2307 078e 69647800 		.ascii	"idx\000"
+ 2308 0792 01       		.byte	0x1
+ 2309 0793 EE       		.byte	0xee
+ 2310 0794 97000000 		.4byte	0x97
+ 2311 0798 02       		.uleb128 0x2
+ 2312 0799 91       		.byte	0x91
+ 2313 079a 6B       		.sleb128 -21
+ 2314 079b 16       		.uleb128 0x16
+ 2315 079c 783100   		.ascii	"x1\000"
+ 2316 079f 01       		.byte	0x1
+ 2317 07a0 EF       		.byte	0xef
+ 2318 07a1 F5030000 		.4byte	0x3f5
+ 2319 07a5 02       		.uleb128 0x2
+ 2320 07a6 91       		.byte	0x91
+ 2321 07a7 66       		.sleb128 -26
+ 2322 07a8 16       		.uleb128 0x16
+ 2323 07a9 793100   		.ascii	"y1\000"
+ 2324 07ac 01       		.byte	0x1
+ 2325 07ad F0       		.byte	0xf0
+ 2326 07ae F5030000 		.4byte	0x3f5
+ 2327 07b2 02       		.uleb128 0x2
+ 2328 07b3 91       		.byte	0x91
+ 2329 07b4 68       		.sleb128 -24
+ 2330 07b5 16       		.uleb128 0x16
+ 2331 07b6 783200   		.ascii	"x2\000"
+ 2332 07b9 01       		.byte	0x1
+ 2333 07ba F1       		.byte	0xf1
+ 2334 07bb F5030000 		.4byte	0x3f5
+ 2335 07bf 02       		.uleb128 0x2
+ 2336 07c0 91       		.byte	0x91
+ 2337 07c1 62       		.sleb128 -30
+ 2338 07c2 16       		.uleb128 0x16
+ 2339 07c3 793200   		.ascii	"y2\000"
+ 2340 07c6 01       		.byte	0x1
+ 2341 07c7 F2       		.byte	0xf2
+ 2342 07c8 F5030000 		.4byte	0x3f5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 48
+
+
+ 2343 07cc 02       		.uleb128 0x2
+ 2344 07cd 91       		.byte	0x91
+ 2345 07ce 64       		.sleb128 -28
+ 2346 07cf 00       		.byte	0
+ 2347 07d0 18       		.uleb128 0x18
+ 2348 07d1 8C030000 		.4byte	.LASF91
+ 2349 07d5 01       		.byte	0x1
+ 2350 07d6 FF       		.byte	0xff
+ 2351 07d7 00000000 		.4byte	.LFB8
+ 2352 07db 90000000 		.4byte	.LFE8-.LFB8
+ 2353 07df 01       		.uleb128 0x1
+ 2354 07e0 9C       		.byte	0x9c
+ 2355 07e1 0E080000 		.4byte	0x80e
+ 2356 07e5 14       		.uleb128 0x14
+ 2357 07e6 706700   		.ascii	"pg\000"
+ 2358 07e9 01       		.byte	0x1
+ 2359 07ea FF       		.byte	0xff
+ 2360 07eb 24050000 		.4byte	0x524
+ 2361 07ef 02       		.uleb128 0x2
+ 2362 07f0 91       		.byte	0x91
+ 2363 07f1 6C       		.sleb128 -20
+ 2364 07f2 14       		.uleb128 0x14
+ 2365 07f3 75386700 		.ascii	"u8g\000"
+ 2366 07f7 01       		.byte	0x1
+ 2367 07f8 FF       		.byte	0xff
+ 2368 07f9 52030000 		.4byte	0x352
+ 2369 07fd 02       		.uleb128 0x2
+ 2370 07fe 91       		.byte	0x91
+ 2371 07ff 68       		.sleb128 -24
+ 2372 0800 1B       		.uleb128 0x1b
+ 2373 0801 6900     		.ascii	"i\000"
+ 2374 0803 01       		.byte	0x1
+ 2375 0804 0101     		.2byte	0x101
+ 2376 0806 F5030000 		.4byte	0x3f5
+ 2377 080a 02       		.uleb128 0x2
+ 2378 080b 91       		.byte	0x91
+ 2379 080c 76       		.sleb128 -10
+ 2380 080d 00       		.byte	0
+ 2381 080e 1C       		.uleb128 0x1c
+ 2382 080f 1B040000 		.4byte	.LASF92
+ 2383 0813 01       		.byte	0x1
+ 2384 0814 1F01     		.2byte	0x11f
+ 2385 0816 00000000 		.4byte	.LFB9
+ 2386 081a 18000000 		.4byte	.LFE9-.LFB9
+ 2387 081e 01       		.uleb128 0x1
+ 2388 081f 9C       		.byte	0x9c
+ 2389 0820 33080000 		.4byte	0x833
+ 2390 0824 1D       		.uleb128 0x1d
+ 2391 0825 706700   		.ascii	"pg\000"
+ 2392 0828 01       		.byte	0x1
+ 2393 0829 1F01     		.2byte	0x11f
+ 2394 082b 24050000 		.4byte	0x524
+ 2395 082f 02       		.uleb128 0x2
+ 2396 0830 91       		.byte	0x91
+ 2397 0831 74       		.sleb128 -12
+ 2398 0832 00       		.byte	0
+ 2399 0833 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 49
+
+
+ 2400 0834 E1030000 		.4byte	.LASF93
+ 2401 0838 01       		.byte	0x1
+ 2402 0839 2401     		.2byte	0x124
+ 2403 083b 00000000 		.4byte	.LFB10
+ 2404 083f 50000000 		.4byte	.LFE10-.LFB10
+ 2405 0843 01       		.uleb128 0x1
+ 2406 0844 9C       		.byte	0x9c
+ 2407 0845 81080000 		.4byte	0x881
+ 2408 0849 1D       		.uleb128 0x1d
+ 2409 084a 706700   		.ascii	"pg\000"
+ 2410 084d 01       		.byte	0x1
+ 2411 084e 2401     		.2byte	0x124
+ 2412 0850 24050000 		.4byte	0x524
+ 2413 0854 02       		.uleb128 0x2
+ 2414 0855 91       		.byte	0x91
+ 2415 0856 74       		.sleb128 -12
+ 2416 0857 1D       		.uleb128 0x1d
+ 2417 0858 75386700 		.ascii	"u8g\000"
+ 2418 085c 01       		.byte	0x1
+ 2419 085d 2401     		.2byte	0x124
+ 2420 085f 52030000 		.4byte	0x352
+ 2421 0863 02       		.uleb128 0x2
+ 2422 0864 91       		.byte	0x91
+ 2423 0865 70       		.sleb128 -16
+ 2424 0866 1D       		.uleb128 0x1d
+ 2425 0867 7800     		.ascii	"x\000"
+ 2426 0869 01       		.byte	0x1
+ 2427 086a 2401     		.2byte	0x124
+ 2428 086c A2000000 		.4byte	0xa2
+ 2429 0870 02       		.uleb128 0x2
+ 2430 0871 91       		.byte	0x91
+ 2431 0872 6E       		.sleb128 -18
+ 2432 0873 1D       		.uleb128 0x1d
+ 2433 0874 7900     		.ascii	"y\000"
+ 2434 0876 01       		.byte	0x1
+ 2435 0877 2401     		.2byte	0x124
+ 2436 0879 A2000000 		.4byte	0xa2
+ 2437 087d 02       		.uleb128 0x2
+ 2438 087e 91       		.byte	0x91
+ 2439 087f 6C       		.sleb128 -20
+ 2440 0880 00       		.byte	0
+ 2441 0881 1E       		.uleb128 0x1e
+ 2442 0882 86000000 		.4byte	.LASF94
+ 2443 0886 01       		.byte	0x1
+ 2444 0887 2E01     		.2byte	0x12e
+ 2445 0889 00000000 		.4byte	.LFB11
+ 2446 088d 26000000 		.4byte	.LFE11-.LFB11
+ 2447 0891 01       		.uleb128 0x1
+ 2448 0892 9C       		.byte	0x9c
+ 2449 0893 B5080000 		.4byte	0x8b5
+ 2450 0897 1D       		.uleb128 0x1d
+ 2451 0898 706700   		.ascii	"pg\000"
+ 2452 089b 01       		.byte	0x1
+ 2453 089c 2E01     		.2byte	0x12e
+ 2454 089e 24050000 		.4byte	0x524
+ 2455 08a2 02       		.uleb128 0x2
+ 2456 08a3 91       		.byte	0x91
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 50
+
+
+ 2457 08a4 74       		.sleb128 -12
+ 2458 08a5 1D       		.uleb128 0x1d
+ 2459 08a6 75386700 		.ascii	"u8g\000"
+ 2460 08aa 01       		.byte	0x1
+ 2461 08ab 2E01     		.2byte	0x12e
+ 2462 08ad 52030000 		.4byte	0x352
+ 2463 08b1 02       		.uleb128 0x2
+ 2464 08b2 91       		.byte	0x91
+ 2465 08b3 70       		.sleb128 -16
+ 2466 08b4 00       		.byte	0
+ 2467 08b5 1F       		.uleb128 0x1f
+ 2468 08b6 47020000 		.4byte	.LASF101
+ 2469 08ba 01       		.byte	0x1
+ 2470 08bb 3701     		.2byte	0x137
+ 2471 08bd 00000000 		.4byte	.LFB12
+ 2472 08c1 10000000 		.4byte	.LFE12-.LFB12
+ 2473 08c5 01       		.uleb128 0x1
+ 2474 08c6 9C       		.byte	0x9c
+ 2475 08c7 1E       		.uleb128 0x1e
+ 2476 08c8 D0030000 		.4byte	.LASF95
+ 2477 08cc 01       		.byte	0x1
+ 2478 08cd 3C01     		.2byte	0x13c
+ 2479 08cf 00000000 		.4byte	.LFB13
+ 2480 08d3 2C000000 		.4byte	.LFE13-.LFB13
+ 2481 08d7 01       		.uleb128 0x1
+ 2482 08d8 9C       		.byte	0x9c
+ 2483 08d9 07090000 		.4byte	0x907
+ 2484 08dd 1D       		.uleb128 0x1d
+ 2485 08de 75386700 		.ascii	"u8g\000"
+ 2486 08e2 01       		.byte	0x1
+ 2487 08e3 3C01     		.2byte	0x13c
+ 2488 08e5 52030000 		.4byte	0x352
+ 2489 08e9 02       		.uleb128 0x2
+ 2490 08ea 91       		.byte	0x91
+ 2491 08eb 74       		.sleb128 -12
+ 2492 08ec 1D       		.uleb128 0x1d
+ 2493 08ed 7800     		.ascii	"x\000"
+ 2494 08ef 01       		.byte	0x1
+ 2495 08f0 3C01     		.2byte	0x13c
+ 2496 08f2 A2000000 		.4byte	0xa2
+ 2497 08f6 02       		.uleb128 0x2
+ 2498 08f7 91       		.byte	0x91
+ 2499 08f8 72       		.sleb128 -14
+ 2500 08f9 1D       		.uleb128 0x1d
+ 2501 08fa 7900     		.ascii	"y\000"
+ 2502 08fc 01       		.byte	0x1
+ 2503 08fd 3C01     		.2byte	0x13c
+ 2504 08ff A2000000 		.4byte	0xa2
+ 2505 0903 02       		.uleb128 0x2
+ 2506 0904 91       		.byte	0x91
+ 2507 0905 70       		.sleb128 -16
+ 2508 0906 00       		.byte	0
+ 2509 0907 1E       		.uleb128 0x1e
+ 2510 0908 77020000 		.4byte	.LASF96
+ 2511 090c 01       		.byte	0x1
+ 2512 090d 4101     		.2byte	0x141
+ 2513 090f 00000000 		.4byte	.LFB14
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 51
+
+
+ 2514 0913 1C000000 		.4byte	.LFE14-.LFB14
+ 2515 0917 01       		.uleb128 0x1
+ 2516 0918 9C       		.byte	0x9c
+ 2517 0919 2D090000 		.4byte	0x92d
+ 2518 091d 1D       		.uleb128 0x1d
+ 2519 091e 75386700 		.ascii	"u8g\000"
+ 2520 0922 01       		.byte	0x1
+ 2521 0923 4101     		.2byte	0x141
+ 2522 0925 52030000 		.4byte	0x352
+ 2523 0929 02       		.uleb128 0x2
+ 2524 092a 91       		.byte	0x91
+ 2525 092b 74       		.sleb128 -12
+ 2526 092c 00       		.byte	0
+ 2527 092d 1E       		.uleb128 0x1e
+ 2528 092e 9D030000 		.4byte	.LASF97
+ 2529 0932 01       		.byte	0x1
+ 2530 0933 4601     		.2byte	0x146
+ 2531 0935 00000000 		.4byte	.LFB15
+ 2532 0939 60000000 		.4byte	.LFE15-.LFB15
+ 2533 093d 01       		.uleb128 0x1
+ 2534 093e 9C       		.byte	0x9c
+ 2535 093f A7090000 		.4byte	0x9a7
+ 2536 0943 1D       		.uleb128 0x1d
+ 2537 0944 75386700 		.ascii	"u8g\000"
+ 2538 0948 01       		.byte	0x1
+ 2539 0949 4601     		.2byte	0x146
+ 2540 094b 52030000 		.4byte	0x352
+ 2541 094f 02       		.uleb128 0x2
+ 2542 0950 91       		.byte	0x91
+ 2543 0951 74       		.sleb128 -12
+ 2544 0952 1D       		.uleb128 0x1d
+ 2545 0953 783000   		.ascii	"x0\000"
+ 2546 0956 01       		.byte	0x1
+ 2547 0957 4601     		.2byte	0x146
+ 2548 0959 A2000000 		.4byte	0xa2
+ 2549 095d 02       		.uleb128 0x2
+ 2550 095e 91       		.byte	0x91
+ 2551 095f 72       		.sleb128 -14
+ 2552 0960 1D       		.uleb128 0x1d
+ 2553 0961 793000   		.ascii	"y0\000"
+ 2554 0964 01       		.byte	0x1
+ 2555 0965 4601     		.2byte	0x146
+ 2556 0967 A2000000 		.4byte	0xa2
+ 2557 096b 02       		.uleb128 0x2
+ 2558 096c 91       		.byte	0x91
+ 2559 096d 70       		.sleb128 -16
+ 2560 096e 1D       		.uleb128 0x1d
+ 2561 096f 783100   		.ascii	"x1\000"
+ 2562 0972 01       		.byte	0x1
+ 2563 0973 4601     		.2byte	0x146
+ 2564 0975 A2000000 		.4byte	0xa2
+ 2565 0979 02       		.uleb128 0x2
+ 2566 097a 91       		.byte	0x91
+ 2567 097b 6E       		.sleb128 -18
+ 2568 097c 1D       		.uleb128 0x1d
+ 2569 097d 793100   		.ascii	"y1\000"
+ 2570 0980 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 52
+
+
+ 2571 0981 4601     		.2byte	0x146
+ 2572 0983 A2000000 		.4byte	0xa2
+ 2573 0987 02       		.uleb128 0x2
+ 2574 0988 91       		.byte	0x91
+ 2575 0989 00       		.sleb128 0
+ 2576 098a 1D       		.uleb128 0x1d
+ 2577 098b 783200   		.ascii	"x2\000"
+ 2578 098e 01       		.byte	0x1
+ 2579 098f 4601     		.2byte	0x146
+ 2580 0991 A2000000 		.4byte	0xa2
+ 2581 0995 02       		.uleb128 0x2
+ 2582 0996 91       		.byte	0x91
+ 2583 0997 04       		.sleb128 4
+ 2584 0998 1D       		.uleb128 0x1d
+ 2585 0999 793200   		.ascii	"y2\000"
+ 2586 099c 01       		.byte	0x1
+ 2587 099d 4601     		.2byte	0x146
+ 2588 099f A2000000 		.4byte	0xa2
+ 2589 09a3 02       		.uleb128 0x2
+ 2590 09a4 91       		.byte	0x91
+ 2591 09a5 08       		.sleb128 8
+ 2592 09a6 00       		.byte	0
+ 2593 09a7 20       		.uleb128 0x20
+ 2594 09a8 9E000000 		.4byte	.LASF102
+ 2595 09ac 01       		.byte	0x1
+ 2596 09ad 3501     		.2byte	0x135
+ 2597 09af 25040000 		.4byte	0x425
+ 2598 09b3 05       		.uleb128 0x5
+ 2599 09b4 03       		.byte	0x3
+ 2600 09b5 00000000 		.4byte	u8g_pg
+ 2601 09b9 00       		.byte	0
+ 2602              		.section	.debug_abbrev,"",%progbits
+ 2603              	.Ldebug_abbrev0:
+ 2604 0000 01       		.uleb128 0x1
+ 2605 0001 11       		.uleb128 0x11
+ 2606 0002 01       		.byte	0x1
+ 2607 0003 25       		.uleb128 0x25
+ 2608 0004 0E       		.uleb128 0xe
+ 2609 0005 13       		.uleb128 0x13
+ 2610 0006 0B       		.uleb128 0xb
+ 2611 0007 03       		.uleb128 0x3
+ 2612 0008 0E       		.uleb128 0xe
+ 2613 0009 1B       		.uleb128 0x1b
+ 2614 000a 0E       		.uleb128 0xe
+ 2615 000b 55       		.uleb128 0x55
+ 2616 000c 17       		.uleb128 0x17
+ 2617 000d 11       		.uleb128 0x11
+ 2618 000e 01       		.uleb128 0x1
+ 2619 000f 10       		.uleb128 0x10
+ 2620 0010 17       		.uleb128 0x17
+ 2621 0011 00       		.byte	0
+ 2622 0012 00       		.byte	0
+ 2623 0013 02       		.uleb128 0x2
+ 2624 0014 24       		.uleb128 0x24
+ 2625 0015 00       		.byte	0
+ 2626 0016 0B       		.uleb128 0xb
+ 2627 0017 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 53
+
+
+ 2628 0018 3E       		.uleb128 0x3e
+ 2629 0019 0B       		.uleb128 0xb
+ 2630 001a 03       		.uleb128 0x3
+ 2631 001b 08       		.uleb128 0x8
+ 2632 001c 00       		.byte	0
+ 2633 001d 00       		.byte	0
+ 2634 001e 03       		.uleb128 0x3
+ 2635 001f 24       		.uleb128 0x24
+ 2636 0020 00       		.byte	0
+ 2637 0021 0B       		.uleb128 0xb
+ 2638 0022 0B       		.uleb128 0xb
+ 2639 0023 3E       		.uleb128 0x3e
+ 2640 0024 0B       		.uleb128 0xb
+ 2641 0025 03       		.uleb128 0x3
+ 2642 0026 0E       		.uleb128 0xe
+ 2643 0027 00       		.byte	0
+ 2644 0028 00       		.byte	0
+ 2645 0029 04       		.uleb128 0x4
+ 2646 002a 16       		.uleb128 0x16
+ 2647 002b 00       		.byte	0
+ 2648 002c 03       		.uleb128 0x3
+ 2649 002d 0E       		.uleb128 0xe
+ 2650 002e 3A       		.uleb128 0x3a
+ 2651 002f 0B       		.uleb128 0xb
+ 2652 0030 3B       		.uleb128 0x3b
+ 2653 0031 0B       		.uleb128 0xb
+ 2654 0032 49       		.uleb128 0x49
+ 2655 0033 13       		.uleb128 0x13
+ 2656 0034 00       		.byte	0
+ 2657 0035 00       		.byte	0
+ 2658 0036 05       		.uleb128 0x5
+ 2659 0037 13       		.uleb128 0x13
+ 2660 0038 01       		.byte	0x1
+ 2661 0039 03       		.uleb128 0x3
+ 2662 003a 0E       		.uleb128 0xe
+ 2663 003b 0B       		.uleb128 0xb
+ 2664 003c 0B       		.uleb128 0xb
+ 2665 003d 3A       		.uleb128 0x3a
+ 2666 003e 0B       		.uleb128 0xb
+ 2667 003f 3B       		.uleb128 0x3b
+ 2668 0040 05       		.uleb128 0x5
+ 2669 0041 01       		.uleb128 0x1
+ 2670 0042 13       		.uleb128 0x13
+ 2671 0043 00       		.byte	0
+ 2672 0044 00       		.byte	0
+ 2673 0045 06       		.uleb128 0x6
+ 2674 0046 0D       		.uleb128 0xd
+ 2675 0047 00       		.byte	0
+ 2676 0048 03       		.uleb128 0x3
+ 2677 0049 0E       		.uleb128 0xe
+ 2678 004a 3A       		.uleb128 0x3a
+ 2679 004b 0B       		.uleb128 0xb
+ 2680 004c 3B       		.uleb128 0x3b
+ 2681 004d 05       		.uleb128 0x5
+ 2682 004e 49       		.uleb128 0x49
+ 2683 004f 13       		.uleb128 0x13
+ 2684 0050 38       		.uleb128 0x38
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 54
+
+
+ 2685 0051 0B       		.uleb128 0xb
+ 2686 0052 00       		.byte	0
+ 2687 0053 00       		.byte	0
+ 2688 0054 07       		.uleb128 0x7
+ 2689 0055 0D       		.uleb128 0xd
+ 2690 0056 00       		.byte	0
+ 2691 0057 03       		.uleb128 0x3
+ 2692 0058 08       		.uleb128 0x8
+ 2693 0059 3A       		.uleb128 0x3a
+ 2694 005a 0B       		.uleb128 0xb
+ 2695 005b 3B       		.uleb128 0x3b
+ 2696 005c 05       		.uleb128 0x5
+ 2697 005d 49       		.uleb128 0x49
+ 2698 005e 13       		.uleb128 0x13
+ 2699 005f 38       		.uleb128 0x38
+ 2700 0060 0B       		.uleb128 0xb
+ 2701 0061 00       		.byte	0
+ 2702 0062 00       		.byte	0
+ 2703 0063 08       		.uleb128 0x8
+ 2704 0064 13       		.uleb128 0x13
+ 2705 0065 01       		.byte	0x1
+ 2706 0066 03       		.uleb128 0x3
+ 2707 0067 0E       		.uleb128 0xe
+ 2708 0068 0B       		.uleb128 0xb
+ 2709 0069 0B       		.uleb128 0xb
+ 2710 006a 3A       		.uleb128 0x3a
+ 2711 006b 0B       		.uleb128 0xb
+ 2712 006c 3B       		.uleb128 0x3b
+ 2713 006d 0B       		.uleb128 0xb
+ 2714 006e 01       		.uleb128 0x1
+ 2715 006f 13       		.uleb128 0x13
+ 2716 0070 00       		.byte	0
+ 2717 0071 00       		.byte	0
+ 2718 0072 09       		.uleb128 0x9
+ 2719 0073 0D       		.uleb128 0xd
+ 2720 0074 00       		.byte	0
+ 2721 0075 03       		.uleb128 0x3
+ 2722 0076 0E       		.uleb128 0xe
+ 2723 0077 3A       		.uleb128 0x3a
+ 2724 0078 0B       		.uleb128 0xb
+ 2725 0079 3B       		.uleb128 0x3b
+ 2726 007a 0B       		.uleb128 0xb
+ 2727 007b 49       		.uleb128 0x49
+ 2728 007c 13       		.uleb128 0x13
+ 2729 007d 38       		.uleb128 0x38
+ 2730 007e 0B       		.uleb128 0xb
+ 2731 007f 00       		.byte	0
+ 2732 0080 00       		.byte	0
+ 2733 0081 0A       		.uleb128 0xa
+ 2734 0082 0F       		.uleb128 0xf
+ 2735 0083 00       		.byte	0
+ 2736 0084 0B       		.uleb128 0xb
+ 2737 0085 0B       		.uleb128 0xb
+ 2738 0086 49       		.uleb128 0x49
+ 2739 0087 13       		.uleb128 0x13
+ 2740 0088 00       		.byte	0
+ 2741 0089 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 55
+
+
+ 2742 008a 0B       		.uleb128 0xb
+ 2743 008b 15       		.uleb128 0x15
+ 2744 008c 01       		.byte	0x1
+ 2745 008d 27       		.uleb128 0x27
+ 2746 008e 19       		.uleb128 0x19
+ 2747 008f 49       		.uleb128 0x49
+ 2748 0090 13       		.uleb128 0x13
+ 2749 0091 01       		.uleb128 0x1
+ 2750 0092 13       		.uleb128 0x13
+ 2751 0093 00       		.byte	0
+ 2752 0094 00       		.byte	0
+ 2753 0095 0C       		.uleb128 0xc
+ 2754 0096 05       		.uleb128 0x5
+ 2755 0097 00       		.byte	0
+ 2756 0098 49       		.uleb128 0x49
+ 2757 0099 13       		.uleb128 0x13
+ 2758 009a 00       		.byte	0
+ 2759 009b 00       		.byte	0
+ 2760 009c 0D       		.uleb128 0xd
+ 2761 009d 0F       		.uleb128 0xf
+ 2762 009e 00       		.byte	0
+ 2763 009f 0B       		.uleb128 0xb
+ 2764 00a0 0B       		.uleb128 0xb
+ 2765 00a1 00       		.byte	0
+ 2766 00a2 00       		.byte	0
+ 2767 00a3 0E       		.uleb128 0xe
+ 2768 00a4 16       		.uleb128 0x16
+ 2769 00a5 00       		.byte	0
+ 2770 00a6 03       		.uleb128 0x3
+ 2771 00a7 0E       		.uleb128 0xe
+ 2772 00a8 3A       		.uleb128 0x3a
+ 2773 00a9 0B       		.uleb128 0xb
+ 2774 00aa 3B       		.uleb128 0x3b
+ 2775 00ab 05       		.uleb128 0x5
+ 2776 00ac 49       		.uleb128 0x49
+ 2777 00ad 13       		.uleb128 0x13
+ 2778 00ae 00       		.byte	0
+ 2779 00af 00       		.byte	0
+ 2780 00b0 0F       		.uleb128 0xf
+ 2781 00b1 15       		.uleb128 0x15
+ 2782 00b2 01       		.byte	0x1
+ 2783 00b3 27       		.uleb128 0x27
+ 2784 00b4 19       		.uleb128 0x19
+ 2785 00b5 01       		.uleb128 0x1
+ 2786 00b6 13       		.uleb128 0x13
+ 2787 00b7 00       		.byte	0
+ 2788 00b8 00       		.byte	0
+ 2789 00b9 10       		.uleb128 0x10
+ 2790 00ba 26       		.uleb128 0x26
+ 2791 00bb 00       		.byte	0
+ 2792 00bc 49       		.uleb128 0x49
+ 2793 00bd 13       		.uleb128 0x13
+ 2794 00be 00       		.byte	0
+ 2795 00bf 00       		.byte	0
+ 2796 00c0 11       		.uleb128 0x11
+ 2797 00c1 01       		.uleb128 0x1
+ 2798 00c2 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 56
+
+
+ 2799 00c3 49       		.uleb128 0x49
+ 2800 00c4 13       		.uleb128 0x13
+ 2801 00c5 01       		.uleb128 0x1
+ 2802 00c6 13       		.uleb128 0x13
+ 2803 00c7 00       		.byte	0
+ 2804 00c8 00       		.byte	0
+ 2805 00c9 12       		.uleb128 0x12
+ 2806 00ca 21       		.uleb128 0x21
+ 2807 00cb 00       		.byte	0
+ 2808 00cc 49       		.uleb128 0x49
+ 2809 00cd 13       		.uleb128 0x13
+ 2810 00ce 2F       		.uleb128 0x2f
+ 2811 00cf 0B       		.uleb128 0xb
+ 2812 00d0 00       		.byte	0
+ 2813 00d1 00       		.byte	0
+ 2814 00d2 13       		.uleb128 0x13
+ 2815 00d3 2E       		.uleb128 0x2e
+ 2816 00d4 01       		.byte	0x1
+ 2817 00d5 03       		.uleb128 0x3
+ 2818 00d6 0E       		.uleb128 0xe
+ 2819 00d7 3A       		.uleb128 0x3a
+ 2820 00d8 0B       		.uleb128 0xb
+ 2821 00d9 3B       		.uleb128 0x3b
+ 2822 00da 0B       		.uleb128 0xb
+ 2823 00db 27       		.uleb128 0x27
+ 2824 00dc 19       		.uleb128 0x19
+ 2825 00dd 49       		.uleb128 0x49
+ 2826 00de 13       		.uleb128 0x13
+ 2827 00df 11       		.uleb128 0x11
+ 2828 00e0 01       		.uleb128 0x1
+ 2829 00e1 12       		.uleb128 0x12
+ 2830 00e2 06       		.uleb128 0x6
+ 2831 00e3 40       		.uleb128 0x40
+ 2832 00e4 18       		.uleb128 0x18
+ 2833 00e5 9742     		.uleb128 0x2117
+ 2834 00e7 19       		.uleb128 0x19
+ 2835 00e8 01       		.uleb128 0x1
+ 2836 00e9 13       		.uleb128 0x13
+ 2837 00ea 00       		.byte	0
+ 2838 00eb 00       		.byte	0
+ 2839 00ec 14       		.uleb128 0x14
+ 2840 00ed 05       		.uleb128 0x5
+ 2841 00ee 00       		.byte	0
+ 2842 00ef 03       		.uleb128 0x3
+ 2843 00f0 08       		.uleb128 0x8
+ 2844 00f1 3A       		.uleb128 0x3a
+ 2845 00f2 0B       		.uleb128 0xb
+ 2846 00f3 3B       		.uleb128 0x3b
+ 2847 00f4 0B       		.uleb128 0xb
+ 2848 00f5 49       		.uleb128 0x49
+ 2849 00f6 13       		.uleb128 0x13
+ 2850 00f7 02       		.uleb128 0x2
+ 2851 00f8 18       		.uleb128 0x18
+ 2852 00f9 00       		.byte	0
+ 2853 00fa 00       		.byte	0
+ 2854 00fb 15       		.uleb128 0x15
+ 2855 00fc 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 57
+
+
+ 2856 00fd 01       		.byte	0x1
+ 2857 00fe 03       		.uleb128 0x3
+ 2858 00ff 0E       		.uleb128 0xe
+ 2859 0100 3A       		.uleb128 0x3a
+ 2860 0101 0B       		.uleb128 0xb
+ 2861 0102 3B       		.uleb128 0x3b
+ 2862 0103 0B       		.uleb128 0xb
+ 2863 0104 27       		.uleb128 0x27
+ 2864 0105 19       		.uleb128 0x19
+ 2865 0106 11       		.uleb128 0x11
+ 2866 0107 01       		.uleb128 0x1
+ 2867 0108 12       		.uleb128 0x12
+ 2868 0109 06       		.uleb128 0x6
+ 2869 010a 40       		.uleb128 0x40
+ 2870 010b 18       		.uleb128 0x18
+ 2871 010c 9742     		.uleb128 0x2117
+ 2872 010e 19       		.uleb128 0x19
+ 2873 010f 01       		.uleb128 0x1
+ 2874 0110 13       		.uleb128 0x13
+ 2875 0111 00       		.byte	0
+ 2876 0112 00       		.byte	0
+ 2877 0113 16       		.uleb128 0x16
+ 2878 0114 34       		.uleb128 0x34
+ 2879 0115 00       		.byte	0
+ 2880 0116 03       		.uleb128 0x3
+ 2881 0117 08       		.uleb128 0x8
+ 2882 0118 3A       		.uleb128 0x3a
+ 2883 0119 0B       		.uleb128 0xb
+ 2884 011a 3B       		.uleb128 0x3b
+ 2885 011b 0B       		.uleb128 0xb
+ 2886 011c 49       		.uleb128 0x49
+ 2887 011d 13       		.uleb128 0x13
+ 2888 011e 02       		.uleb128 0x2
+ 2889 011f 18       		.uleb128 0x18
+ 2890 0120 00       		.byte	0
+ 2891 0121 00       		.byte	0
+ 2892 0122 17       		.uleb128 0x17
+ 2893 0123 34       		.uleb128 0x34
+ 2894 0124 00       		.byte	0
+ 2895 0125 03       		.uleb128 0x3
+ 2896 0126 0E       		.uleb128 0xe
+ 2897 0127 3A       		.uleb128 0x3a
+ 2898 0128 0B       		.uleb128 0xb
+ 2899 0129 3B       		.uleb128 0x3b
+ 2900 012a 0B       		.uleb128 0xb
+ 2901 012b 49       		.uleb128 0x49
+ 2902 012c 13       		.uleb128 0x13
+ 2903 012d 02       		.uleb128 0x2
+ 2904 012e 18       		.uleb128 0x18
+ 2905 012f 00       		.byte	0
+ 2906 0130 00       		.byte	0
+ 2907 0131 18       		.uleb128 0x18
+ 2908 0132 2E       		.uleb128 0x2e
+ 2909 0133 01       		.byte	0x1
+ 2910 0134 03       		.uleb128 0x3
+ 2911 0135 0E       		.uleb128 0xe
+ 2912 0136 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 58
+
+
+ 2913 0137 0B       		.uleb128 0xb
+ 2914 0138 3B       		.uleb128 0x3b
+ 2915 0139 0B       		.uleb128 0xb
+ 2916 013a 27       		.uleb128 0x27
+ 2917 013b 19       		.uleb128 0x19
+ 2918 013c 11       		.uleb128 0x11
+ 2919 013d 01       		.uleb128 0x1
+ 2920 013e 12       		.uleb128 0x12
+ 2921 013f 06       		.uleb128 0x6
+ 2922 0140 40       		.uleb128 0x40
+ 2923 0141 18       		.uleb128 0x18
+ 2924 0142 9642     		.uleb128 0x2116
+ 2925 0144 19       		.uleb128 0x19
+ 2926 0145 01       		.uleb128 0x1
+ 2927 0146 13       		.uleb128 0x13
+ 2928 0147 00       		.byte	0
+ 2929 0148 00       		.byte	0
+ 2930 0149 19       		.uleb128 0x19
+ 2931 014a 05       		.uleb128 0x5
+ 2932 014b 00       		.byte	0
+ 2933 014c 03       		.uleb128 0x3
+ 2934 014d 0E       		.uleb128 0xe
+ 2935 014e 3A       		.uleb128 0x3a
+ 2936 014f 0B       		.uleb128 0xb
+ 2937 0150 3B       		.uleb128 0x3b
+ 2938 0151 0B       		.uleb128 0xb
+ 2939 0152 49       		.uleb128 0x49
+ 2940 0153 13       		.uleb128 0x13
+ 2941 0154 02       		.uleb128 0x2
+ 2942 0155 18       		.uleb128 0x18
+ 2943 0156 00       		.byte	0
+ 2944 0157 00       		.byte	0
+ 2945 0158 1A       		.uleb128 0x1a
+ 2946 0159 2E       		.uleb128 0x2e
+ 2947 015a 01       		.byte	0x1
+ 2948 015b 03       		.uleb128 0x3
+ 2949 015c 0E       		.uleb128 0xe
+ 2950 015d 3A       		.uleb128 0x3a
+ 2951 015e 0B       		.uleb128 0xb
+ 2952 015f 3B       		.uleb128 0x3b
+ 2953 0160 0B       		.uleb128 0xb
+ 2954 0161 27       		.uleb128 0x27
+ 2955 0162 19       		.uleb128 0x19
+ 2956 0163 49       		.uleb128 0x49
+ 2957 0164 13       		.uleb128 0x13
+ 2958 0165 11       		.uleb128 0x11
+ 2959 0166 01       		.uleb128 0x1
+ 2960 0167 12       		.uleb128 0x12
+ 2961 0168 06       		.uleb128 0x6
+ 2962 0169 40       		.uleb128 0x40
+ 2963 016a 18       		.uleb128 0x18
+ 2964 016b 9642     		.uleb128 0x2116
+ 2965 016d 19       		.uleb128 0x19
+ 2966 016e 01       		.uleb128 0x1
+ 2967 016f 13       		.uleb128 0x13
+ 2968 0170 00       		.byte	0
+ 2969 0171 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 59
+
+
+ 2970 0172 1B       		.uleb128 0x1b
+ 2971 0173 34       		.uleb128 0x34
+ 2972 0174 00       		.byte	0
+ 2973 0175 03       		.uleb128 0x3
+ 2974 0176 08       		.uleb128 0x8
+ 2975 0177 3A       		.uleb128 0x3a
+ 2976 0178 0B       		.uleb128 0xb
+ 2977 0179 3B       		.uleb128 0x3b
+ 2978 017a 05       		.uleb128 0x5
+ 2979 017b 49       		.uleb128 0x49
+ 2980 017c 13       		.uleb128 0x13
+ 2981 017d 02       		.uleb128 0x2
+ 2982 017e 18       		.uleb128 0x18
+ 2983 017f 00       		.byte	0
+ 2984 0180 00       		.byte	0
+ 2985 0181 1C       		.uleb128 0x1c
+ 2986 0182 2E       		.uleb128 0x2e
+ 2987 0183 01       		.byte	0x1
+ 2988 0184 3F       		.uleb128 0x3f
+ 2989 0185 19       		.uleb128 0x19
+ 2990 0186 03       		.uleb128 0x3
+ 2991 0187 0E       		.uleb128 0xe
+ 2992 0188 3A       		.uleb128 0x3a
+ 2993 0189 0B       		.uleb128 0xb
+ 2994 018a 3B       		.uleb128 0x3b
+ 2995 018b 05       		.uleb128 0x5
+ 2996 018c 27       		.uleb128 0x27
+ 2997 018d 19       		.uleb128 0x19
+ 2998 018e 11       		.uleb128 0x11
+ 2999 018f 01       		.uleb128 0x1
+ 3000 0190 12       		.uleb128 0x12
+ 3001 0191 06       		.uleb128 0x6
+ 3002 0192 40       		.uleb128 0x40
+ 3003 0193 18       		.uleb128 0x18
+ 3004 0194 9742     		.uleb128 0x2117
+ 3005 0196 19       		.uleb128 0x19
+ 3006 0197 01       		.uleb128 0x1
+ 3007 0198 13       		.uleb128 0x13
+ 3008 0199 00       		.byte	0
+ 3009 019a 00       		.byte	0
+ 3010 019b 1D       		.uleb128 0x1d
+ 3011 019c 05       		.uleb128 0x5
+ 3012 019d 00       		.byte	0
+ 3013 019e 03       		.uleb128 0x3
+ 3014 019f 08       		.uleb128 0x8
+ 3015 01a0 3A       		.uleb128 0x3a
+ 3016 01a1 0B       		.uleb128 0xb
+ 3017 01a2 3B       		.uleb128 0x3b
+ 3018 01a3 05       		.uleb128 0x5
+ 3019 01a4 49       		.uleb128 0x49
+ 3020 01a5 13       		.uleb128 0x13
+ 3021 01a6 02       		.uleb128 0x2
+ 3022 01a7 18       		.uleb128 0x18
+ 3023 01a8 00       		.byte	0
+ 3024 01a9 00       		.byte	0
+ 3025 01aa 1E       		.uleb128 0x1e
+ 3026 01ab 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 60
+
+
+ 3027 01ac 01       		.byte	0x1
+ 3028 01ad 3F       		.uleb128 0x3f
+ 3029 01ae 19       		.uleb128 0x19
+ 3030 01af 03       		.uleb128 0x3
+ 3031 01b0 0E       		.uleb128 0xe
+ 3032 01b1 3A       		.uleb128 0x3a
+ 3033 01b2 0B       		.uleb128 0xb
+ 3034 01b3 3B       		.uleb128 0x3b
+ 3035 01b4 05       		.uleb128 0x5
+ 3036 01b5 27       		.uleb128 0x27
+ 3037 01b6 19       		.uleb128 0x19
+ 3038 01b7 11       		.uleb128 0x11
+ 3039 01b8 01       		.uleb128 0x1
+ 3040 01b9 12       		.uleb128 0x12
+ 3041 01ba 06       		.uleb128 0x6
+ 3042 01bb 40       		.uleb128 0x40
+ 3043 01bc 18       		.uleb128 0x18
+ 3044 01bd 9642     		.uleb128 0x2116
+ 3045 01bf 19       		.uleb128 0x19
+ 3046 01c0 01       		.uleb128 0x1
+ 3047 01c1 13       		.uleb128 0x13
+ 3048 01c2 00       		.byte	0
+ 3049 01c3 00       		.byte	0
+ 3050 01c4 1F       		.uleb128 0x1f
+ 3051 01c5 2E       		.uleb128 0x2e
+ 3052 01c6 00       		.byte	0
+ 3053 01c7 3F       		.uleb128 0x3f
+ 3054 01c8 19       		.uleb128 0x19
+ 3055 01c9 03       		.uleb128 0x3
+ 3056 01ca 0E       		.uleb128 0xe
+ 3057 01cb 3A       		.uleb128 0x3a
+ 3058 01cc 0B       		.uleb128 0xb
+ 3059 01cd 3B       		.uleb128 0x3b
+ 3060 01ce 05       		.uleb128 0x5
+ 3061 01cf 27       		.uleb128 0x27
+ 3062 01d0 19       		.uleb128 0x19
+ 3063 01d1 11       		.uleb128 0x11
+ 3064 01d2 01       		.uleb128 0x1
+ 3065 01d3 12       		.uleb128 0x12
+ 3066 01d4 06       		.uleb128 0x6
+ 3067 01d5 40       		.uleb128 0x40
+ 3068 01d6 18       		.uleb128 0x18
+ 3069 01d7 9642     		.uleb128 0x2116
+ 3070 01d9 19       		.uleb128 0x19
+ 3071 01da 00       		.byte	0
+ 3072 01db 00       		.byte	0
+ 3073 01dc 20       		.uleb128 0x20
+ 3074 01dd 34       		.uleb128 0x34
+ 3075 01de 00       		.byte	0
+ 3076 01df 03       		.uleb128 0x3
+ 3077 01e0 0E       		.uleb128 0xe
+ 3078 01e1 3A       		.uleb128 0x3a
+ 3079 01e2 0B       		.uleb128 0xb
+ 3080 01e3 3B       		.uleb128 0x3b
+ 3081 01e4 05       		.uleb128 0x5
+ 3082 01e5 49       		.uleb128 0x49
+ 3083 01e6 13       		.uleb128 0x13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 61
+
+
+ 3084 01e7 3F       		.uleb128 0x3f
+ 3085 01e8 19       		.uleb128 0x19
+ 3086 01e9 02       		.uleb128 0x2
+ 3087 01ea 18       		.uleb128 0x18
+ 3088 01eb 00       		.byte	0
+ 3089 01ec 00       		.byte	0
+ 3090 01ed 00       		.byte	0
+ 3091              		.section	.debug_aranges,"",%progbits
+ 3092 0000 94000000 		.4byte	0x94
+ 3093 0004 0200     		.2byte	0x2
+ 3094 0006 00000000 		.4byte	.Ldebug_info0
+ 3095 000a 04       		.byte	0x4
+ 3096 000b 00       		.byte	0
+ 3097 000c 0000     		.2byte	0
+ 3098 000e 0000     		.2byte	0
+ 3099 0010 00000000 		.4byte	.LFB0
+ 3100 0014 9E000000 		.4byte	.LFE0-.LFB0
+ 3101 0018 00000000 		.4byte	.LFB1
+ 3102 001c B8000000 		.4byte	.LFE1-.LFB1
+ 3103 0020 00000000 		.4byte	.LFB2
+ 3104 0024 2E000000 		.4byte	.LFE2-.LFB2
+ 3105 0028 00000000 		.4byte	.LFB3
+ 3106 002c 32000000 		.4byte	.LFE3-.LFB3
+ 3107 0030 00000000 		.4byte	.LFB4
+ 3108 0034 74000000 		.4byte	.LFE4-.LFB4
+ 3109 0038 00000000 		.4byte	.LFB5
+ 3110 003c 34010000 		.4byte	.LFE5-.LFB5
+ 3111 0040 00000000 		.4byte	.LFB6
+ 3112 0044 EE000000 		.4byte	.LFE6-.LFB6
+ 3113 0048 00000000 		.4byte	.LFB7
+ 3114 004c 88000000 		.4byte	.LFE7-.LFB7
+ 3115 0050 00000000 		.4byte	.LFB8
+ 3116 0054 90000000 		.4byte	.LFE8-.LFB8
+ 3117 0058 00000000 		.4byte	.LFB9
+ 3118 005c 18000000 		.4byte	.LFE9-.LFB9
+ 3119 0060 00000000 		.4byte	.LFB10
+ 3120 0064 50000000 		.4byte	.LFE10-.LFB10
+ 3121 0068 00000000 		.4byte	.LFB11
+ 3122 006c 26000000 		.4byte	.LFE11-.LFB11
+ 3123 0070 00000000 		.4byte	.LFB12
+ 3124 0074 10000000 		.4byte	.LFE12-.LFB12
+ 3125 0078 00000000 		.4byte	.LFB13
+ 3126 007c 2C000000 		.4byte	.LFE13-.LFB13
+ 3127 0080 00000000 		.4byte	.LFB14
+ 3128 0084 1C000000 		.4byte	.LFE14-.LFB14
+ 3129 0088 00000000 		.4byte	.LFB15
+ 3130 008c 60000000 		.4byte	.LFE15-.LFB15
+ 3131 0090 00000000 		.4byte	0
+ 3132 0094 00000000 		.4byte	0
+ 3133              		.section	.debug_ranges,"",%progbits
+ 3134              	.Ldebug_ranges0:
+ 3135 0000 00000000 		.4byte	.LFB0
+ 3136 0004 9E000000 		.4byte	.LFE0
+ 3137 0008 00000000 		.4byte	.LFB1
+ 3138 000c B8000000 		.4byte	.LFE1
+ 3139 0010 00000000 		.4byte	.LFB2
+ 3140 0014 2E000000 		.4byte	.LFE2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 62
+
+
+ 3141 0018 00000000 		.4byte	.LFB3
+ 3142 001c 32000000 		.4byte	.LFE3
+ 3143 0020 00000000 		.4byte	.LFB4
+ 3144 0024 74000000 		.4byte	.LFE4
+ 3145 0028 00000000 		.4byte	.LFB5
+ 3146 002c 34010000 		.4byte	.LFE5
+ 3147 0030 00000000 		.4byte	.LFB6
+ 3148 0034 EE000000 		.4byte	.LFE6
+ 3149 0038 00000000 		.4byte	.LFB7
+ 3150 003c 88000000 		.4byte	.LFE7
+ 3151 0040 00000000 		.4byte	.LFB8
+ 3152 0044 90000000 		.4byte	.LFE8
+ 3153 0048 00000000 		.4byte	.LFB9
+ 3154 004c 18000000 		.4byte	.LFE9
+ 3155 0050 00000000 		.4byte	.LFB10
+ 3156 0054 50000000 		.4byte	.LFE10
+ 3157 0058 00000000 		.4byte	.LFB11
+ 3158 005c 26000000 		.4byte	.LFE11
+ 3159 0060 00000000 		.4byte	.LFB12
+ 3160 0064 10000000 		.4byte	.LFE12
+ 3161 0068 00000000 		.4byte	.LFB13
+ 3162 006c 2C000000 		.4byte	.LFE13
+ 3163 0070 00000000 		.4byte	.LFB14
+ 3164 0074 1C000000 		.4byte	.LFE14
+ 3165 0078 00000000 		.4byte	.LFB15
+ 3166 007c 60000000 		.4byte	.LFE15
+ 3167 0080 00000000 		.4byte	0
+ 3168 0084 00000000 		.4byte	0
+ 3169              		.section	.debug_line,"",%progbits
+ 3170              	.Ldebug_line0:
+ 3171 0000 F7020000 		.section	.debug_str,"MS",%progbits,1
+ 3171      02003C01 
+ 3171      00000201 
+ 3171      FB0E0D00 
+ 3171      01010101 
+ 3172              	.LASF16:
+ 3173 0000 7538675F 		.ascii	"u8g_t\000"
+ 3173      7400
+ 3174              	.LASF86:
+ 3175 0006 7067655F 		.ascii	"pge_idx\000"
+ 3175      69647800 
+ 3176              	.LASF78:
+ 3177 000e 63757272 		.ascii	"curr_idx\000"
+ 3177      5F696478 
+ 3177      00
+ 3178              	.LASF15:
+ 3179 0017 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 3179      70676D5F 
+ 3179      75696E74 
+ 3179      385F7400 
+ 3180              	.LASF50:
+ 3181 0027 70697865 		.ascii	"pixel\000"
+ 3181      6C00
+ 3182              	.LASF12:
+ 3183 002d 696E7438 		.ascii	"int8_t\000"
+ 3183      5F7400
+ 3184              	.LASF82:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 63
+
+
+ 3185 0034 70675F64 		.ascii	"pg_dec\000"
+ 3185      656300
+ 3186              	.LASF19:
+ 3187 003b 666F6E74 		.ascii	"font\000"
+ 3187      00
+ 3188              	.LASF6:
+ 3189 0040 73686F72 		.ascii	"short int\000"
+ 3189      7420696E 
+ 3189      7400
+ 3190              	.LASF51:
+ 3191 004a 636F6C6F 		.ascii	"color\000"
+ 3191      7200
+ 3192              	.LASF63:
+ 3193 0050 70675F70 		.ascii	"pg_point_struct\000"
+ 3193      6F696E74 
+ 3193      5F737472 
+ 3193      75637400 
+ 3194              	.LASF61:
+ 3195 0060 7538675F 		.ascii	"u8g_state_cb\000"
+ 3195      73746174 
+ 3195      655F6362 
+ 3195      00
+ 3196              	.LASF43:
+ 3197 006d 5F753867 		.ascii	"_u8g_t\000"
+ 3197      5F7400
+ 3198              	.LASF25:
+ 3199 0074 63757273 		.ascii	"cursor_x\000"
+ 3199      6F725F78 
+ 3199      00
+ 3200              	.LASF26:
+ 3201 007d 63757273 		.ascii	"cursor_y\000"
+ 3201      6F725F79 
+ 3201      00
+ 3202              	.LASF94:
+ 3203 0086 70675F44 		.ascii	"pg_DrawPolygon\000"
+ 3203      72617750 
+ 3203      6F6C7967 
+ 3203      6F6E00
+ 3204              	.LASF40:
+ 3205 0095 73746174 		.ascii	"state_cb\000"
+ 3205      655F6362 
+ 3205      00
+ 3206              	.LASF102:
+ 3207 009e 7538675F 		.ascii	"u8g_pg\000"
+ 3207      706700
+ 3208              	.LASF60:
+ 3209 00a5 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 3209      666F6E74 
+ 3209      5F63616C 
+ 3209      635F7672 
+ 3209      65665F66 
+ 3210              	.LASF21:
+ 3211 00be 63757273 		.ascii	"cursor_fg_color\000"
+ 3211      6F725F66 
+ 3211      675F636F 
+ 3211      6C6F7200 
+ 3212              	.LASF42:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 64
+
+
+ 3213 00ce 7538675F 		.ascii	"u8g_dev_t\000"
+ 3213      6465765F 
+ 3213      7400
+ 3214              	.LASF53:
+ 3215 00d8 626C7565 		.ascii	"blue\000"
+ 3215      00
+ 3216              	.LASF38:
+ 3217 00dd 6C696E65 		.ascii	"line_spacing\000"
+ 3217      5F737061 
+ 3217      63696E67 
+ 3217      00
+ 3218              	.LASF35:
+ 3219 00ea 666F6E74 		.ascii	"font_ref_ascent\000"
+ 3219      5F726566 
+ 3219      5F617363 
+ 3219      656E7400 
+ 3220              	.LASF13:
+ 3221 00fa 75696E74 		.ascii	"uint8_t\000"
+ 3221      385F7400 
+ 3222              	.LASF28:
+ 3223 0102 676C7970 		.ascii	"glyph_dx\000"
+ 3223      685F6478 
+ 3223      00
+ 3224              	.LASF22:
+ 3225 010b 63757273 		.ascii	"cursor_bg_color\000"
+ 3225      6F725F62 
+ 3225      675F636F 
+ 3225      6C6F7200 
+ 3226              	.LASF17:
+ 3227 011b 77696474 		.ascii	"width\000"
+ 3227      6800
+ 3228              	.LASF52:
+ 3229 0121 68695F63 		.ascii	"hi_color\000"
+ 3229      6F6C6F72 
+ 3229      00
+ 3230              	.LASF49:
+ 3231 012a 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 3231      5F646576 
+ 3231      5F617267 
+ 3231      5F706978 
+ 3231      656C5F74 
+ 3232              	.LASF10:
+ 3233 013f 6C6F6E67 		.ascii	"long long int\000"
+ 3233      206C6F6E 
+ 3233      6720696E 
+ 3233      7400
+ 3234              	.LASF71:
+ 3235 014d 63757272 		.ascii	"current_x_offset\000"
+ 3235      656E745F 
+ 3235      785F6F66 
+ 3235      66736574 
+ 3235      00
+ 3236              	.LASF64:
+ 3237 015e 70675F73 		.ascii	"pg_struct\000"
+ 3237      74727563 
+ 3237      7400
+ 3238              	.LASF41:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 65
+
+
+ 3239 0168 63757272 		.ascii	"current_page\000"
+ 3239      656E745F 
+ 3239      70616765 
+ 3239      00
+ 3240              	.LASF98:
+ 3241 0175 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3241      4320342E 
+ 3241      392E3320 
+ 3241      32303135 
+ 3241      30333033 
+ 3242 01a8 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3242      20726576 
+ 3242      6973696F 
+ 3242      6E203232 
+ 3242      31323230 
+ 3243 01db 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 3243      66756E63 
+ 3243      74696F6E 
+ 3243      2D736563 
+ 3243      74696F6E 
+ 3244              	.LASF59:
+ 3245 0203 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 3245      64726177 
+ 3245      5F637572 
+ 3245      736F725F 
+ 3245      666E00
+ 3246              	.LASF79:
+ 3247 0216 73697A65 		.ascii	"sizetype\000"
+ 3247      74797065 
+ 3247      00
+ 3248              	.LASF57:
+ 3249 021f 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 3249      6465765F 
+ 3249      666E7074 
+ 3249      7200
+ 3250              	.LASF3:
+ 3251 022d 5F5F7569 		.ascii	"__uint8_t\000"
+ 3251      6E74385F 
+ 3251      7400
+ 3252              	.LASF29:
+ 3253 0237 676C7970 		.ascii	"glyph_x\000"
+ 3253      685F7800 
+ 3254              	.LASF30:
+ 3255 023f 676C7970 		.ascii	"glyph_y\000"
+ 3255      685F7900 
+ 3256              	.LASF101:
+ 3257 0247 7538675F 		.ascii	"u8g_ClearPolygonXY\000"
+ 3257      436C6561 
+ 3257      72506F6C 
+ 3257      79676F6E 
+ 3257      585900
+ 3258              	.LASF58:
+ 3259 025a 7538675F 		.ascii	"u8g_com_fnptr\000"
+ 3259      636F6D5F 
+ 3259      666E7074 
+ 3259      7200
+ 3260              	.LASF69:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 66
+
+
+ 3261 0268 70675F65 		.ascii	"pg_edge_struct\000"
+ 3261      6467655F 
+ 3261      73747275 
+ 3261      637400
+ 3262              	.LASF96:
+ 3263 0277 7538675F 		.ascii	"u8g_DrawPolygon\000"
+ 3263      44726177 
+ 3263      506F6C79 
+ 3263      676F6E00 
+ 3264              	.LASF48:
+ 3265 0287 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 3265      6465765F 
+ 3265      6172675F 
+ 3265      70697865 
+ 3265      6C5F7400 
+ 3266              	.LASF74:
+ 3267 029b 6D61785F 		.ascii	"max_y\000"
+ 3267      7900
+ 3268              	.LASF85:
+ 3269 02a1 6D696E5F 		.ascii	"min_y\000"
+ 3269      7900
+ 3270              	.LASF23:
+ 3271 02a7 63757273 		.ascii	"cursor_encoding\000"
+ 3271      6F725F65 
+ 3271      6E636F64 
+ 3271      696E6700 
+ 3272              	.LASF4:
+ 3273 02b7 756E7369 		.ascii	"unsigned char\000"
+ 3273      676E6564 
+ 3273      20636861 
+ 3273      7200
+ 3274              	.LASF32:
+ 3275 02c5 676C7970 		.ascii	"glyph_height\000"
+ 3275      685F6865 
+ 3275      69676874 
+ 3275      00
+ 3276              	.LASF39:
+ 3277 02d2 6172675F 		.ascii	"arg_pixel\000"
+ 3277      70697865 
+ 3277      6C00
+ 3278              	.LASF1:
+ 3279 02dc 7369676E 		.ascii	"signed char\000"
+ 3279      65642063 
+ 3279      68617200 
+ 3280              	.LASF62:
+ 3281 02e8 70675F77 		.ascii	"pg_word_t\000"
+ 3281      6F72645F 
+ 3281      7400
+ 3282              	.LASF11:
+ 3283 02f2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3283      206C6F6E 
+ 3283      6720756E 
+ 3283      7369676E 
+ 3283      65642069 
+ 3284              	.LASF18:
+ 3285 0309 68656967 		.ascii	"height\000"
+ 3285      687400
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 67
+
+
+ 3286              	.LASF0:
+ 3287 0310 756E7369 		.ascii	"unsigned int\000"
+ 3287      676E6564 
+ 3287      20696E74 
+ 3287      00
+ 3288              	.LASF65:
+ 3289 031d 5F70675F 		.ascii	"_pg_struct\000"
+ 3289      73747275 
+ 3289      637400
+ 3290              	.LASF89:
+ 3291 0328 70675F6C 		.ascii	"pg_line_init\000"
+ 3291      696E655F 
+ 3291      696E6974 
+ 3291      00
+ 3292              	.LASF84:
+ 3293 0335 70675F65 		.ascii	"pg_expand_min_y\000"
+ 3293      7870616E 
+ 3293      645F6D69 
+ 3293      6E5F7900 
+ 3294              	.LASF27:
+ 3295 0345 63757273 		.ascii	"cursor_fn\000"
+ 3295      6F725F66 
+ 3295      6E00
+ 3296              	.LASF87:
+ 3297 034f 70675F70 		.ascii	"pg_prepare\000"
+ 3297      72657061 
+ 3297      726500
+ 3298              	.LASF56:
+ 3299 035a 7538675F 		.ascii	"u8g_uint_t\000"
+ 3299      75696E74 
+ 3299      5F7400
+ 3300              	.LASF7:
+ 3301 0365 73686F72 		.ascii	"short unsigned int\000"
+ 3301      7420756E 
+ 3301      7369676E 
+ 3301      65642069 
+ 3301      6E7400
+ 3302              	.LASF2:
+ 3303 0378 5F5F696E 		.ascii	"__int8_t\000"
+ 3303      74385F74 
+ 3303      00
+ 3304              	.LASF55:
+ 3305 0381 5F753867 		.ascii	"_u8g_box_t\000"
+ 3305      5F626F78 
+ 3305      5F7400
+ 3306              	.LASF91:
+ 3307 038c 70675F65 		.ascii	"pg_exec\000"
+ 3307      78656300 
+ 3308              	.LASF8:
+ 3309 0394 6C6F6E67 		.ascii	"long int\000"
+ 3309      20696E74 
+ 3309      00
+ 3310              	.LASF97:
+ 3311 039d 7538675F 		.ascii	"u8g_DrawTriangle\000"
+ 3311      44726177 
+ 3311      54726961 
+ 3311      6E676C65 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 68
+
+
+ 3311      00
+ 3312              	.LASF66:
+ 3313 03ae 6C697374 		.ascii	"list\000"
+ 3313      00
+ 3314              	.LASF24:
+ 3315 03b3 6D6F6465 		.ascii	"mode\000"
+ 3315      00
+ 3316              	.LASF14:
+ 3317 03b8 696E7431 		.ascii	"int16_t\000"
+ 3317      365F7400 
+ 3318              	.LASF45:
+ 3319 03c0 6465765F 		.ascii	"dev_fn\000"
+ 3319      666E00
+ 3320              	.LASF80:
+ 3321 03c7 7067655F 		.ascii	"pge_Next\000"
+ 3321      4E657874 
+ 3321      00
+ 3322              	.LASF95:
+ 3323 03d0 7538675F 		.ascii	"u8g_AddPolygonXY\000"
+ 3323      41646450 
+ 3323      6F6C7967 
+ 3323      6F6E5859 
+ 3323      00
+ 3324              	.LASF93:
+ 3325 03e1 70675F41 		.ascii	"pg_AddPolygonXY\000"
+ 3325      6464506F 
+ 3325      6C79676F 
+ 3325      6E585900 
+ 3326              	.LASF70:
+ 3327 03f1 785F6469 		.ascii	"x_direction\000"
+ 3327      72656374 
+ 3327      696F6E00 
+ 3328              	.LASF9:
+ 3329 03fd 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3329      20756E73 
+ 3329      69676E65 
+ 3329      6420696E 
+ 3329      7400
+ 3330              	.LASF77:
+ 3331 040f 6E657874 		.ascii	"next_idx_fn\000"
+ 3331      5F696478 
+ 3331      5F666E00 
+ 3332              	.LASF92:
+ 3333 041b 70675F43 		.ascii	"pg_ClearPolygonXY\000"
+ 3333      6C656172 
+ 3333      506F6C79 
+ 3333      676F6E58 
+ 3333      5900
+ 3334              	.LASF83:
+ 3335 042d 7067655F 		.ascii	"pge_Init\000"
+ 3335      496E6974 
+ 3335      00
+ 3336              	.LASF72:
+ 3337 0436 6572726F 		.ascii	"error_offset\000"
+ 3337      725F6F66 
+ 3337      66736574 
+ 3337      00
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 69
+
+
+ 3338              	.LASF73:
+ 3339 0443 63757272 		.ascii	"current_y\000"
+ 3339      656E745F 
+ 3339      7900
+ 3340              	.LASF36:
+ 3341 044d 666F6E74 		.ascii	"font_ref_descent\000"
+ 3341      5F726566 
+ 3341      5F646573 
+ 3341      63656E74 
+ 3341      00
+ 3342              	.LASF5:
+ 3343 045e 5F5F696E 		.ascii	"__int16_t\000"
+ 3343      7431365F 
+ 3343      7400
+ 3344              	.LASF90:
+ 3345 0468 7067655F 		.ascii	"pge_index\000"
+ 3345      696E6465 
+ 3345      7800
+ 3346              	.LASF37:
+ 3347 0472 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 3347      5F6C696E 
+ 3347      655F7370 
+ 3347      6163696E 
+ 3347      675F6661 
+ 3348              	.LASF54:
+ 3349 048b 7538675F 		.ascii	"u8g_box_t\000"
+ 3349      626F785F 
+ 3349      7400
+ 3350              	.LASF46:
+ 3351 0495 6465765F 		.ascii	"dev_mem\000"
+ 3351      6D656D00 
+ 3352              	.LASF20:
+ 3353 049d 63757273 		.ascii	"cursor_font\000"
+ 3353      6F725F66 
+ 3353      6F6E7400 
+ 3354              	.LASF33:
+ 3355 04a9 666F6E74 		.ascii	"font_calc_vref\000"
+ 3355      5F63616C 
+ 3355      635F7672 
+ 3355      656600
+ 3356              	.LASF99:
+ 3357 04b8 7538676C 		.ascii	"u8glib_arm_v1.18.1\\src\\u8g_polygon.c\000"
+ 3357      69625F61 
+ 3357      726D5F76 
+ 3357      312E3138 
+ 3357      2E315C73 
+ 3358              	.LASF76:
+ 3359 04dd 6572726F 		.ascii	"error\000"
+ 3359      7200
+ 3360              	.LASF81:
+ 3361 04e3 70675F69 		.ascii	"pg_inc\000"
+ 3361      6E6300
+ 3362              	.LASF34:
+ 3363 04ea 666F6E74 		.ascii	"font_height_mode\000"
+ 3363      5F686569 
+ 3363      6768745F 
+ 3363      6D6F6465 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccmudFrT.s 			page 70
+
+
+ 3363      00
+ 3364              	.LASF67:
+ 3365 04fb 69735F6D 		.ascii	"is_min_y_not_flat\000"
+ 3365      696E5F79 
+ 3365      5F6E6F74 
+ 3365      5F666C61 
+ 3365      7400
+ 3366              	.LASF88:
+ 3367 050d 70675F68 		.ascii	"pg_hline\000"
+ 3367      6C696E65 
+ 3367      00
+ 3368              	.LASF100:
+ 3369 0516 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 3369      6F726B73 
+ 3369      70616365 
+ 3369      5C50536F 
+ 3369      435F4372 
+ 3370 0545 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 3370      392E6379 
+ 3370      64736E00 
+ 3371              	.LASF75:
+ 3372 0551 63757272 		.ascii	"current_x\000"
+ 3372      656E745F 
+ 3372      7800
+ 3373              	.LASF31:
+ 3374 055b 676C7970 		.ascii	"glyph_width\000"
+ 3374      685F7769 
+ 3374      64746800 
+ 3375              	.LASF44:
+ 3376 0567 5F753867 		.ascii	"_u8g_dev_t\000"
+ 3376      5F646576 
+ 3376      5F7400
+ 3377              	.LASF68:
+ 3378 0572 746F7461 		.ascii	"total_scan_line_cnt\000"
+ 3378      6C5F7363 
+ 3378      616E5F6C 
+ 3378      696E655F 
+ 3378      636E7400 
+ 3379              	.LASF47:
+ 3380 0586 636F6D5F 		.ascii	"com_fn\000"
+ 3380      666E00
+ 3381              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

@@ -1,0 +1,3509 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"temp_manage.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	deltaT,1,1
+  19              		.comm	Avarage_FET_Temp,4,4
+  20              		.comm	Current_DIE_Temp,2,2
+  21              		.comm	Current_DIE_TempString,8,4
+  22              		.comm	Current_FET_Temp,1,1
+  23              		.comm	Current_FET_TempString,8,4
+  24              		.comm	Current_State,1,1
+  25              		.comm	Previous_State,1,1
+  26              		.comm	Sound_Enable,1,1
+  27              		.comm	Current_Menu_Position,1,1
+  28              		.comm	CurrentBacklightValue,1,1
+  29              		.comm	CurrentBacklightValueString,8,4
+  30              		.comm	CurrentVolumeValue,1,1
+  31              		.comm	CurrentVolumeValueString,8,4
+  32              		.comm	Current_Calibration_Range1,4,4
+  33              		.comm	Current_Calibration_Range2,4,4
+  34              		.comm	Current_Calibration_Range3,4,4
+  35              		.comm	LEM_Offset_Value,1,1
+  36              		.comm	Two_Wire_Range,4,4
+  37              		.comm	Four_Wire_Range,4,4
+  38              		.comm	Four_Wire_Method,1,1
+  39              		.comm	Actual_Range,1,1
+  40              		.comm	View_Mode,1,1
+  41              		.comm	qdCount,2,2
+  42              		.comm	Last_qdCount,2,2
+  43              		.comm	button1,1,1
+  44              		.comm	button2,1,1
+  45              		.comm	button3,1,1
+  46              		.comm	button4,1,1
+  47              		.comm	button5,1,1
+  48              		.comm	button6,1,1
+  49              		.comm	push,1,1
+  50              		.comm	OutputEnable,1,1
+  51              		.comm	u8g,60,4
+  52              		.comm	Push_Buzzer__Default_Lenght,4,4
+  53              		.comm	Rotate_Buzzer__Default_Lenght,4,4
+  54              		.comm	Edit_Value_Mode,1,1
+  55              		.comm	cVoltage_Actual,16,4
+  56              		.comm	cCurrent_Actual,16,4
+  57              		.comm	cPower_Actual,16,4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 2
+
+
+  58              		.comm	cResist_Actual,16,4
+  59              		.comm	cVoltage_Set,16,4
+  60              		.comm	cCurrent_Set,16,4
+  61              		.comm	cPower_Set,16,4
+  62              		.comm	cResist_Set,16,4
+  63              		.comm	TestChar,16,4
+  64              		.comm	XPosition,2,2
+  65              		.comm	cXPosition,16,4
+  66              		.comm	YPosition,2,2
+  67              		.comm	cYPosition,16,4
+  68              		.comm	Touched,1,1
+  69              		.comm	MeasuredVoltage,2,2
+  70              		.comm	fVoltage,4,4
+  71              		.comm	MeasuredCurrent,2,2
+  72              		.comm	fCurrent,4,4
+  73              		.comm	Power,2,2
+  74              		.comm	fPower,4,4
+  75              		.comm	Resist,2,2
+  76              		.comm	fResist,4,4
+  77              		.comm	Set_Voltage,4,4
+  78              		.comm	Set_Current,4,4
+  79              		.comm	Set_Current_Temporary_Value,4,4
+  80              		.comm	Set_Power,4,4
+  81              		.comm	Set_Power_Temporary_Value,4,4
+  82              		.comm	Set_Resist,4,4
+  83              		.comm	Set_Resist_Temporary_Value,4,4
+  84              		.comm	Position_Number,1,1
+  85              		.comm	MaxPower,4,4
+  86              		.comm	MaxVoltage,4,4
+  87              		.comm	MaxCurrent,4,4
+  88              		.comm	MinResistance,4,4
+  89              		.comm	MaxResistance,4,4
+  90              		.comm	C_Kp,4,4
+  91              		.comm	C_Ki,4,4
+  92              		.comm	C_Kd,4,4
+  93              		.comm	Max_FET_Temp,1,1
+  94              		.comm	OverTemperature,1,1
+  95              		.comm	Set_Ampl,2,2
+  96              		.comm	Set_Ampl_Temporary_Value,2,2
+  97              		.comm	Set_Freq,2,2
+  98              		.comm	Set_Freq_Temporary_Value,4,4
+  99              		.comm	Set_Duty,1,1
+ 100              		.comm	Set_Duty_Temporary_Value,1,1
+ 101              		.comm	cSet_Ampl,16,4
+ 102              		.comm	cSet_Freq,16,4
+ 103              		.comm	cSet_Duty,16,4
+ 104              		.comm	Current_Edit_Value,1,1
+ 105              		.comm	Actual_Multiplier_Value,1,1
+ 106              		.comm	cCounter,32,4
+ 107              		.comm	Status,4,4
+ 108              		.section	.text.Temp_Management,"ax",%progbits
+ 109              		.align	2
+ 110              		.global	Temp_Management
+ 111              		.thumb
+ 112              		.thumb_func
+ 113              		.type	Temp_Management, %function
+ 114              	Temp_Management:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 3
+
+
+ 115              	.LFB63:
+ 116              		.file 1 "temp_manage.c"
+   1:temp_manage.c **** #include "temp_manage.h"
+   2:temp_manage.c **** #include "global_variables.h"
+   3:temp_manage.c **** #include "state_machine.h"
+   4:temp_manage.c **** 
+   5:temp_manage.c **** 
+   6:temp_manage.c **** cystatus Status;
+   7:temp_manage.c **** 
+   8:temp_manage.c **** 
+   9:temp_manage.c **** void Temp_Management(uint8 MaxTemp){
+ 117              		.loc 1 9 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 8
+ 120              		@ frame_needed = 1, uses_anonymous_args = 0
+ 121 0000 80B5     		push	{r7, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 7, -8
+ 124              		.cfi_offset 14, -4
+ 125 0002 82B0     		sub	sp, sp, #8
+ 126              		.cfi_def_cfa_offset 16
+ 127 0004 00AF     		add	r7, sp, #0
+ 128              		.cfi_def_cfa_register 7
+ 129 0006 0346     		mov	r3, r0
+ 130 0008 FB71     		strb	r3, [r7, #7]
+  10:temp_manage.c ****     TempRead_FET();
+ 131              		.loc 1 10 0
+ 132 000a FFF7FEFF 		bl	TempRead_FET
+  11:temp_manage.c ****     if(Current_FET_Temp == 0){
+ 133              		.loc 1 11 0
+ 134 000e 114B     		ldr	r3, .L5
+ 135 0010 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 136 0012 002B     		cmp	r3, #0
+ 137 0014 03D1     		bne	.L2
+  12:temp_manage.c ****         OverTemperature = 1;  
+ 138              		.loc 1 12 0
+ 139 0016 104B     		ldr	r3, .L5+4
+ 140 0018 0122     		movs	r2, #1
+ 141 001a 1A70     		strb	r2, [r3]
+ 142 001c 0CE0     		b	.L3
+ 143              	.L2:
+  13:temp_manage.c ****     }
+  14:temp_manage.c ****     else if(Current_FET_Temp >= MaxTemp){
+ 144              		.loc 1 14 0
+ 145 001e 0D4B     		ldr	r3, .L5
+ 146 0020 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 147 0022 5AB2     		sxtb	r2, r3
+ 148 0024 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 149 0026 9A42     		cmp	r2, r3
+ 150 0028 03DB     		blt	.L4
+  15:temp_manage.c ****         OverTemperature = 1;
+ 151              		.loc 1 15 0
+ 152 002a 0B4B     		ldr	r3, .L5+4
+ 153 002c 0122     		movs	r2, #1
+ 154 002e 1A70     		strb	r2, [r3]
+ 155 0030 02E0     		b	.L3
+ 156              	.L4:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 4
+
+
+  16:temp_manage.c ****     }
+  17:temp_manage.c ****     else OverTemperature = 0;
+ 157              		.loc 1 17 0
+ 158 0032 094B     		ldr	r3, .L5+4
+ 159 0034 0022     		movs	r2, #0
+ 160 0036 1A70     		strb	r2, [r3]
+ 161              	.L3:
+  18:temp_manage.c **** 
+  19:temp_manage.c ****     Temp_Regulator(MaxTemp-20, Current_FET_Temp);
+ 162              		.loc 1 19 0
+ 163 0038 FB79     		ldrb	r3, [r7, #7]
+ 164 003a 143B     		subs	r3, r3, #20
+ 165 003c DAB2     		uxtb	r2, r3
+ 166 003e 054B     		ldr	r3, .L5
+ 167 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 168 0042 DBB2     		uxtb	r3, r3
+ 169 0044 1046     		mov	r0, r2
+ 170 0046 1946     		mov	r1, r3
+ 171 0048 FFF7FEFF 		bl	Temp_Regulator
+  20:temp_manage.c ****     
+  21:temp_manage.c **** }
+ 172              		.loc 1 21 0
+ 173 004c 0837     		adds	r7, r7, #8
+ 174              		.cfi_def_cfa_offset 8
+ 175 004e BD46     		mov	sp, r7
+ 176              		.cfi_def_cfa_register 13
+ 177              		@ sp needed
+ 178 0050 80BD     		pop	{r7, pc}
+ 179              	.L6:
+ 180 0052 00BF     		.align	2
+ 181              	.L5:
+ 182 0054 00000000 		.word	Current_FET_Temp
+ 183 0058 00000000 		.word	OverTemperature
+ 184              		.cfi_endproc
+ 185              	.LFE63:
+ 186              		.size	Temp_Management, .-Temp_Management
+ 187              		.section	.rodata
+ 188              		.align	2
+ 189              	.LC0:
+ 190 0000 25642043 		.ascii	"%d C\000"
+ 190      00
+ 191 0005 000000   		.section	.text.TempRead_FET,"ax",%progbits
+ 192              		.align	2
+ 193              		.global	TempRead_FET
+ 194              		.thumb
+ 195              		.thumb_func
+ 196              		.type	TempRead_FET, %function
+ 197              	TempRead_FET:
+ 198              	.LFB64:
+  22:temp_manage.c **** 
+  23:temp_manage.c **** 
+  24:temp_manage.c **** void TempRead_FET(void){
+ 199              		.loc 1 24 0
+ 200              		.cfi_startproc
+ 201              		@ args = 0, pretend = 0, frame = 0
+ 202              		@ frame_needed = 1, uses_anonymous_args = 0
+ 203 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 5
+
+
+ 204              		.cfi_def_cfa_offset 8
+ 205              		.cfi_offset 7, -8
+ 206              		.cfi_offset 14, -4
+ 207 0002 00AF     		add	r7, sp, #0
+ 208              		.cfi_def_cfa_register 7
+  25:temp_manage.c ****         deltaT = 10;
+ 209              		.loc 1 25 0
+ 210 0004 1F4B     		ldr	r3, .L9
+ 211 0006 0A22     		movs	r2, #10
+ 212 0008 1A70     		strb	r2, [r3]
+  26:temp_manage.c ****         Status = I2C_MasterSendStart(I2C_SLAVE_ADDRESS, I2C_READ_XFER_MODE);
+ 213              		.loc 1 26 0
+ 214 000a 4820     		movs	r0, #72
+ 215 000c 0121     		movs	r1, #1
+ 216 000e FFF7FEFF 		bl	I2C_MasterSendStart
+ 217 0012 0346     		mov	r3, r0
+ 218 0014 1A46     		mov	r2, r3
+ 219 0016 1C4B     		ldr	r3, .L9+4
+ 220 0018 1A60     		str	r2, [r3]
+  27:temp_manage.c ****         if(I2C_MSTR_NO_ERROR == Status) /* Check if transfer completed without errors */
+ 221              		.loc 1 27 0
+ 222 001a 1B4B     		ldr	r3, .L9+4
+ 223 001c 1B68     		ldr	r3, [r3]
+ 224 001e 002B     		cmp	r3, #0
+ 225 0020 06D1     		bne	.L8
+  28:temp_manage.c ****         Current_FET_Temp = I2C_MasterReadByte(I2C_NAK_DATA);
+ 226              		.loc 1 28 0
+ 227 0022 0020     		movs	r0, #0
+ 228 0024 FFF7FEFF 		bl	I2C_MasterReadByte
+ 229 0028 0346     		mov	r3, r0
+ 230 002a DAB2     		uxtb	r2, r3
+ 231 002c 174B     		ldr	r3, .L9+8
+ 232 002e 1A70     		strb	r2, [r3]
+ 233              	.L8:
+  29:temp_manage.c ****         I2C_MasterSendStop(); /* Send Stop */
+ 234              		.loc 1 29 0
+ 235 0030 FFF7FEFF 		bl	I2C_MasterSendStop
+  30:temp_manage.c ****         
+  31:temp_manage.c ****         Avarage_FET_Temp = Avarage_FET_Temp*deltaT;
+ 236              		.loc 1 31 0
+ 237 0034 134B     		ldr	r3, .L9
+ 238 0036 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 239 0038 1A46     		mov	r2, r3
+ 240 003a 154B     		ldr	r3, .L9+12
+ 241 003c 1B68     		ldr	r3, [r3]
+ 242 003e 03FB02F3 		mul	r3, r3, r2
+ 243 0042 134A     		ldr	r2, .L9+12
+ 244 0044 1360     		str	r3, [r2]
+  32:temp_manage.c ****         Avarage_FET_Temp = Avarage_FET_Temp + Current_FET_Temp;
+ 245              		.loc 1 32 0
+ 246 0046 114B     		ldr	r3, .L9+8
+ 247 0048 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 248 004a 5AB2     		sxtb	r2, r3
+ 249 004c 104B     		ldr	r3, .L9+12
+ 250 004e 1B68     		ldr	r3, [r3]
+ 251 0050 1344     		add	r3, r3, r2
+ 252 0052 0F4A     		ldr	r2, .L9+12
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 6
+
+
+ 253 0054 1360     		str	r3, [r2]
+  33:temp_manage.c ****         Avarage_FET_Temp = Avarage_FET_Temp / (deltaT+1);
+ 254              		.loc 1 33 0
+ 255 0056 0E4B     		ldr	r3, .L9+12
+ 256 0058 1B68     		ldr	r3, [r3]
+ 257 005a 0A4A     		ldr	r2, .L9
+ 258 005c 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 259 005e 0132     		adds	r2, r2, #1
+ 260 0060 B3FBF2F3 		udiv	r3, r3, r2
+ 261 0064 0A4A     		ldr	r2, .L9+12
+ 262 0066 1360     		str	r3, [r2]
+  34:temp_manage.c ****         Current_FET_Temp = Avarage_FET_Temp;
+ 263              		.loc 1 34 0
+ 264 0068 094B     		ldr	r3, .L9+12
+ 265 006a 1B68     		ldr	r3, [r3]
+ 266 006c DAB2     		uxtb	r2, r3
+ 267 006e 074B     		ldr	r3, .L9+8
+ 268 0070 1A70     		strb	r2, [r3]
+  35:temp_manage.c ****         
+  36:temp_manage.c ****         sprintf((char *)Current_FET_TempString,"%d C",Current_FET_Temp); 
+ 269              		.loc 1 36 0
+ 270 0072 064B     		ldr	r3, .L9+8
+ 271 0074 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 272 0076 5BB2     		sxtb	r3, r3
+ 273 0078 0648     		ldr	r0, .L9+16
+ 274 007a 0749     		ldr	r1, .L9+20
+ 275 007c 1A46     		mov	r2, r3
+ 276 007e FFF7FEFF 		bl	sprintf
+  37:temp_manage.c **** }
+ 277              		.loc 1 37 0
+ 278 0082 80BD     		pop	{r7, pc}
+ 279              	.L10:
+ 280              		.align	2
+ 281              	.L9:
+ 282 0084 00000000 		.word	deltaT
+ 283 0088 00000000 		.word	Status
+ 284 008c 00000000 		.word	Current_FET_Temp
+ 285 0090 00000000 		.word	Avarage_FET_Temp
+ 286 0094 00000000 		.word	Current_FET_TempString
+ 287 0098 00000000 		.word	.LC0
+ 288              		.cfi_endproc
+ 289              	.LFE64:
+ 290              		.size	TempRead_FET, .-TempRead_FET
+ 291              		.section	.text.TempRead_DIE,"ax",%progbits
+ 292              		.align	2
+ 293              		.global	TempRead_DIE
+ 294              		.thumb
+ 295              		.thumb_func
+ 296              		.type	TempRead_DIE, %function
+ 297              	TempRead_DIE:
+ 298              	.LFB65:
+  38:temp_manage.c **** 
+  39:temp_manage.c **** void TempRead_DIE(void){  
+ 299              		.loc 1 39 0
+ 300              		.cfi_startproc
+ 301              		@ args = 0, pretend = 0, frame = 0
+ 302              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 7
+
+
+ 303 0000 80B5     		push	{r7, lr}
+ 304              		.cfi_def_cfa_offset 8
+ 305              		.cfi_offset 7, -8
+ 306              		.cfi_offset 14, -4
+ 307 0002 00AF     		add	r7, sp, #0
+ 308              		.cfi_def_cfa_register 7
+  40:temp_manage.c ****     Status = DieTemp_GetTemp(&Current_DIE_Temp);
+ 309              		.loc 1 40 0
+ 310 0004 0748     		ldr	r0, .L12
+ 311 0006 FFF7FEFF 		bl	DieTemp_GetTemp
+ 312 000a 0246     		mov	r2, r0
+ 313 000c 064B     		ldr	r3, .L12+4
+ 314 000e 1A60     		str	r2, [r3]
+  41:temp_manage.c ****     sprintf((char *)Current_DIE_TempString,"%d C",Current_DIE_Temp); 
+ 315              		.loc 1 41 0
+ 316 0010 044B     		ldr	r3, .L12
+ 317 0012 1B88     		ldrh	r3, [r3]
+ 318 0014 1BB2     		sxth	r3, r3
+ 319 0016 0548     		ldr	r0, .L12+8
+ 320 0018 0549     		ldr	r1, .L12+12
+ 321 001a 1A46     		mov	r2, r3
+ 322 001c FFF7FEFF 		bl	sprintf
+  42:temp_manage.c **** }
+ 323              		.loc 1 42 0
+ 324 0020 80BD     		pop	{r7, pc}
+ 325              	.L13:
+ 326 0022 00BF     		.align	2
+ 327              	.L12:
+ 328 0024 00000000 		.word	Current_DIE_Temp
+ 329 0028 00000000 		.word	Status
+ 330 002c 00000000 		.word	Current_DIE_TempString
+ 331 0030 00000000 		.word	.LC0
+ 332              		.cfi_endproc
+ 333              	.LFE65:
+ 334              		.size	TempRead_DIE, .-TempRead_DIE
+ 335              		.section	.text.FAN_Speed,"ax",%progbits
+ 336              		.align	2
+ 337              		.global	FAN_Speed
+ 338              		.thumb
+ 339              		.thumb_func
+ 340              		.type	FAN_Speed, %function
+ 341              	FAN_Speed:
+ 342              	.LFB66:
+  43:temp_manage.c **** 
+  44:temp_manage.c **** void FAN_Speed(uint8 Speed){    
+ 343              		.loc 1 44 0
+ 344              		.cfi_startproc
+ 345              		@ args = 0, pretend = 0, frame = 8
+ 346              		@ frame_needed = 1, uses_anonymous_args = 0
+ 347 0000 80B5     		push	{r7, lr}
+ 348              		.cfi_def_cfa_offset 8
+ 349              		.cfi_offset 7, -8
+ 350              		.cfi_offset 14, -4
+ 351 0002 82B0     		sub	sp, sp, #8
+ 352              		.cfi_def_cfa_offset 16
+ 353 0004 00AF     		add	r7, sp, #0
+ 354              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 8
+
+
+ 355 0006 0346     		mov	r3, r0
+ 356 0008 FB71     		strb	r3, [r7, #7]
+  45:temp_manage.c ****     if(Speed == 0){
+ 357              		.loc 1 45 0
+ 358 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 359 000c 002B     		cmp	r3, #0
+ 360 000e 02D1     		bne	.L15
+  46:temp_manage.c ****         PWM_Fan_Stop();
+ 361              		.loc 1 46 0
+ 362 0010 FFF7FEFF 		bl	PWM_Fan_Stop
+ 363 0014 05E0     		b	.L14
+ 364              	.L15:
+  47:temp_manage.c ****     }
+  48:temp_manage.c ****     else{
+  49:temp_manage.c ****         PWM_Fan_Start();
+ 365              		.loc 1 49 0
+ 366 0016 FFF7FEFF 		bl	PWM_Fan_Start
+  50:temp_manage.c ****         PWM_Fan_WriteCompare(Speed);
+ 367              		.loc 1 50 0
+ 368 001a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 369 001c 1846     		mov	r0, r3
+ 370 001e FFF7FEFF 		bl	PWM_Fan_WriteCompare
+ 371              	.L14:
+  51:temp_manage.c ****     }
+  52:temp_manage.c **** }
+ 372              		.loc 1 52 0
+ 373 0022 0837     		adds	r7, r7, #8
+ 374              		.cfi_def_cfa_offset 8
+ 375 0024 BD46     		mov	sp, r7
+ 376              		.cfi_def_cfa_register 13
+ 377              		@ sp needed
+ 378 0026 80BD     		pop	{r7, pc}
+ 379              		.cfi_endproc
+ 380              	.LFE66:
+ 381              		.size	FAN_Speed, .-FAN_Speed
+ 382              		.section	.text.Temp_Regulator,"ax",%progbits
+ 383              		.align	2
+ 384              		.global	Temp_Regulator
+ 385              		.thumb
+ 386              		.thumb_func
+ 387              		.type	Temp_Regulator, %function
+ 388              	Temp_Regulator:
+ 389              	.LFB67:
+  53:temp_manage.c **** 
+  54:temp_manage.c **** void Temp_Regulator(uint8 Set_Temp_Value, uint8 Actual_Temp_Value){
+ 390              		.loc 1 54 0
+ 391              		.cfi_startproc
+ 392              		@ args = 0, pretend = 0, frame = 16
+ 393              		@ frame_needed = 1, uses_anonymous_args = 0
+ 394 0000 80B5     		push	{r7, lr}
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 7, -8
+ 397              		.cfi_offset 14, -4
+ 398 0002 84B0     		sub	sp, sp, #16
+ 399              		.cfi_def_cfa_offset 24
+ 400 0004 00AF     		add	r7, sp, #0
+ 401              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 9
+
+
+ 402 0006 0346     		mov	r3, r0
+ 403 0008 0A46     		mov	r2, r1
+ 404 000a FB71     		strb	r3, [r7, #7]
+ 405 000c 1346     		mov	r3, r2
+ 406 000e BB71     		strb	r3, [r7, #6]
+  55:temp_manage.c ****     
+  56:temp_manage.c ****     uint16 Hist = 2;
+ 407              		.loc 1 56 0
+ 408 0010 0223     		movs	r3, #2
+ 409 0012 7B81     		strh	r3, [r7, #10]	@ movhi
+  57:temp_manage.c ****     uint8 K = 30;
+ 410              		.loc 1 57 0
+ 411 0014 1E23     		movs	r3, #30
+ 412 0016 7B72     		strb	r3, [r7, #9]
+  58:temp_manage.c ****     
+  59:temp_manage.c ****     int16  Error = Actual_Temp_Value - Set_Temp_Value;
+ 413              		.loc 1 59 0
+ 414 0018 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 415 001a 9AB2     		uxth	r2, r3
+ 416 001c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 417 001e 9BB2     		uxth	r3, r3
+ 418 0020 D31A     		subs	r3, r2, r3
+ 419 0022 9BB2     		uxth	r3, r3
+ 420 0024 FB81     		strh	r3, [r7, #14]	@ movhi
+  60:temp_manage.c ****     
+  61:temp_manage.c ****     if(Error < Hist) Error = 0;
+ 421              		.loc 1 61 0
+ 422 0026 B7F90E20 		ldrsh	r2, [r7, #14]
+ 423 002a 7B89     		ldrh	r3, [r7, #10]
+ 424 002c 9A42     		cmp	r2, r3
+ 425 002e 01DA     		bge	.L18
+ 426              		.loc 1 61 0 is_stmt 0 discriminator 1
+ 427 0030 0023     		movs	r3, #0
+ 428 0032 FB81     		strh	r3, [r7, #14]	@ movhi
+ 429              	.L18:
+  62:temp_manage.c ****     if(Error > 255) Error = 255;
+ 430              		.loc 1 62 0 is_stmt 1
+ 431 0034 B7F90E30 		ldrsh	r3, [r7, #14]
+ 432 0038 FF2B     		cmp	r3, #255
+ 433 003a 01DD     		ble	.L19
+ 434              		.loc 1 62 0 is_stmt 0 discriminator 1
+ 435 003c FF23     		movs	r3, #255
+ 436 003e FB81     		strh	r3, [r7, #14]	@ movhi
+ 437              	.L19:
+  63:temp_manage.c ****     
+  64:temp_manage.c ****     uint16 Drive = Error*K;
+ 438              		.loc 1 64 0 is_stmt 1
+ 439 0040 7B7A     		ldrb	r3, [r7, #9]	@ zero_extendqisi2
+ 440 0042 9BB2     		uxth	r3, r3
+ 441 0044 FA89     		ldrh	r2, [r7, #14]
+ 442 0046 02FB03F3 		mul	r3, r2, r3
+ 443 004a BB81     		strh	r3, [r7, #12]	@ movhi
+  65:temp_manage.c ****     
+  66:temp_manage.c ****     if(Drive >255) Drive = 255;
+ 444              		.loc 1 66 0
+ 445 004c BB89     		ldrh	r3, [r7, #12]
+ 446 004e FF2B     		cmp	r3, #255
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 10
+
+
+ 447 0050 01D9     		bls	.L20
+ 448              		.loc 1 66 0 is_stmt 0 discriminator 1
+ 449 0052 FF23     		movs	r3, #255
+ 450 0054 BB81     		strh	r3, [r7, #12]	@ movhi
+ 451              	.L20:
+  67:temp_manage.c ****     if(Drive <35) Drive = 0;
+ 452              		.loc 1 67 0 is_stmt 1
+ 453 0056 BB89     		ldrh	r3, [r7, #12]
+ 454 0058 222B     		cmp	r3, #34
+ 455 005a 01D8     		bhi	.L21
+ 456              		.loc 1 67 0 is_stmt 0 discriminator 1
+ 457 005c 0023     		movs	r3, #0
+ 458 005e BB81     		strh	r3, [r7, #12]	@ movhi
+ 459              	.L21:
+  68:temp_manage.c ****     
+  69:temp_manage.c ****     FAN_Speed(Drive);        
+ 460              		.loc 1 69 0 is_stmt 1
+ 461 0060 BB89     		ldrh	r3, [r7, #12]	@ movhi
+ 462 0062 DBB2     		uxtb	r3, r3
+ 463 0064 1846     		mov	r0, r3
+ 464 0066 FFF7FEFF 		bl	FAN_Speed
+  70:temp_manage.c **** }...
+ 465              		.loc 1 70 0
+ 466 006a 1037     		adds	r7, r7, #16
+ 467              		.cfi_def_cfa_offset 8
+ 468 006c BD46     		mov	sp, r7
+ 469              		.cfi_def_cfa_register 13
+ 470              		@ sp needed
+ 471 006e 80BD     		pop	{r7, pc}
+ 472              		.cfi_endproc
+ 473              	.LFE67:
+ 474              		.size	Temp_Regulator, .-Temp_Regulator
+ 475              		.text
+ 476              	.Letext0:
+ 477              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 478              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 479              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 480              		.file 5 "u8g.h"
+ 481              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 482              		.file 7 "temp_manage.h"
+ 483              		.file 8 "global_variables.h"
+ 484              		.section	.debug_info,"",%progbits
+ 485              	.Ldebug_info0:
+ 486 0000 030C0000 		.4byte	0xc03
+ 487 0004 0400     		.2byte	0x4
+ 488 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 489 000a 04       		.byte	0x4
+ 490 000b 01       		.uleb128 0x1
+ 491 000c CB050000 		.4byte	.LASF195
+ 492 0010 01       		.byte	0x1
+ 493 0011 7F010000 		.4byte	.LASF196
+ 494 0015 30020000 		.4byte	.LASF197
+ 495 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 496 001d 00000000 		.4byte	0
+ 497 0021 00000000 		.4byte	.Ldebug_line0
+ 498 0025 02       		.uleb128 0x2
+ 499 0026 9C060000 		.4byte	.LASF0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 11
+
+
+ 500 002a 02       		.byte	0x2
+ 501 002b 1B       		.byte	0x1b
+ 502 002c 30000000 		.4byte	0x30
+ 503 0030 03       		.uleb128 0x3
+ 504 0031 01       		.byte	0x1
+ 505 0032 06       		.byte	0x6
+ 506 0033 8A090000 		.4byte	.LASF2
+ 507 0037 02       		.uleb128 0x2
+ 508 0038 17080000 		.4byte	.LASF1
+ 509 003c 02       		.byte	0x2
+ 510 003d 1D       		.byte	0x1d
+ 511 003e 42000000 		.4byte	0x42
+ 512 0042 03       		.uleb128 0x3
+ 513 0043 01       		.byte	0x1
+ 514 0044 08       		.byte	0x8
+ 515 0045 CC080000 		.4byte	.LASF3
+ 516 0049 03       		.uleb128 0x3
+ 517 004a 02       		.byte	0x2
+ 518 004b 05       		.byte	0x5
+ 519 004c 1C070000 		.4byte	.LASF4
+ 520 0050 03       		.uleb128 0x3
+ 521 0051 02       		.byte	0x2
+ 522 0052 07       		.byte	0x7
+ 523 0053 96090000 		.4byte	.LASF5
+ 524 0057 02       		.uleb128 0x2
+ 525 0058 0D010000 		.4byte	.LASF6
+ 526 005c 02       		.byte	0x2
+ 527 005d 3F       		.byte	0x3f
+ 528 005e 62000000 		.4byte	0x62
+ 529 0062 03       		.uleb128 0x3
+ 530 0063 04       		.byte	0x4
+ 531 0064 05       		.byte	0x5
+ 532 0065 26070000 		.4byte	.LASF7
+ 533 0069 03       		.uleb128 0x3
+ 534 006a 04       		.byte	0x4
+ 535 006b 07       		.byte	0x7
+ 536 006c 44080000 		.4byte	.LASF8
+ 537 0070 03       		.uleb128 0x3
+ 538 0071 08       		.byte	0x8
+ 539 0072 05       		.byte	0x5
+ 540 0073 2A050000 		.4byte	.LASF9
+ 541 0077 03       		.uleb128 0x3
+ 542 0078 08       		.byte	0x8
+ 543 0079 07       		.byte	0x7
+ 544 007a 22030000 		.4byte	.LASF10
+ 545 007e 04       		.uleb128 0x4
+ 546 007f 04       		.byte	0x4
+ 547 0080 05       		.byte	0x5
+ 548 0081 696E7400 		.ascii	"int\000"
+ 549 0085 03       		.uleb128 0x3
+ 550 0086 04       		.byte	0x4
+ 551 0087 07       		.byte	0x7
+ 552 0088 BE000000 		.4byte	.LASF11
+ 553 008c 02       		.uleb128 0x2
+ 554 008d 7E020000 		.4byte	.LASF12
+ 555 0091 03       		.byte	0x3
+ 556 0092 14       		.byte	0x14
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 12
+
+
+ 557 0093 25000000 		.4byte	0x25
+ 558 0097 02       		.uleb128 0x2
+ 559 0098 E5040000 		.4byte	.LASF13
+ 560 009c 03       		.byte	0x3
+ 561 009d 15       		.byte	0x15
+ 562 009e 37000000 		.4byte	0x37
+ 563 00a2 02       		.uleb128 0x2
+ 564 00a3 67080000 		.4byte	.LASF14
+ 565 00a7 03       		.byte	0x3
+ 566 00a8 2C       		.byte	0x2c
+ 567 00a9 57000000 		.4byte	0x57
+ 568 00ad 02       		.uleb128 0x2
+ 569 00ae D5090000 		.4byte	.LASF15
+ 570 00b2 04       		.byte	0x4
+ 571 00b3 C2       		.byte	0xc2
+ 572 00b4 42000000 		.4byte	0x42
+ 573 00b8 02       		.uleb128 0x2
+ 574 00b9 D9040000 		.4byte	.LASF16
+ 575 00bd 04       		.byte	0x4
+ 576 00be C3       		.byte	0xc3
+ 577 00bf 50000000 		.4byte	0x50
+ 578 00c3 02       		.uleb128 0x2
+ 579 00c4 7F060000 		.4byte	.LASF17
+ 580 00c8 04       		.byte	0x4
+ 581 00c9 C4       		.byte	0xc4
+ 582 00ca 69000000 		.4byte	0x69
+ 583 00ce 02       		.uleb128 0x2
+ 584 00cf E0040000 		.4byte	.LASF18
+ 585 00d3 04       		.byte	0x4
+ 586 00d4 C5       		.byte	0xc5
+ 587 00d5 30000000 		.4byte	0x30
+ 588 00d9 02       		.uleb128 0x2
+ 589 00da 17010000 		.4byte	.LASF19
+ 590 00de 04       		.byte	0x4
+ 591 00df C6       		.byte	0xc6
+ 592 00e0 49000000 		.4byte	0x49
+ 593 00e4 02       		.uleb128 0x2
+ 594 00e5 D5020000 		.4byte	.LASF20
+ 595 00e9 04       		.byte	0x4
+ 596 00ea C7       		.byte	0xc7
+ 597 00eb 62000000 		.4byte	0x62
+ 598 00ef 03       		.uleb128 0x3
+ 599 00f0 04       		.byte	0x4
+ 600 00f1 04       		.byte	0x4
+ 601 00f2 BA020000 		.4byte	.LASF21
+ 602 00f6 03       		.uleb128 0x3
+ 603 00f7 08       		.byte	0x8
+ 604 00f8 04       		.byte	0x4
+ 605 00f9 DB090000 		.4byte	.LASF22
+ 606 00fd 02       		.uleb128 0x2
+ 607 00fe ED040000 		.4byte	.LASF23
+ 608 0102 04       		.byte	0x4
+ 609 0103 D3       		.byte	0xd3
+ 610 0104 08010000 		.4byte	0x108
+ 611 0108 03       		.uleb128 0x3
+ 612 0109 01       		.byte	0x1
+ 613 010a 08       		.byte	0x8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 13
+
+
+ 614 010b 9C040000 		.4byte	.LASF24
+ 615 010f 05       		.uleb128 0x5
+ 616 0110 AF080000 		.4byte	.LASF25
+ 617 0114 04       		.byte	0x4
+ 618 0115 6401     		.2byte	0x164
+ 619 0117 69000000 		.4byte	0x69
+ 620 011b 03       		.uleb128 0x3
+ 621 011c 04       		.byte	0x4
+ 622 011d 07       		.byte	0x7
+ 623 011e 31080000 		.4byte	.LASF26
+ 624 0122 06       		.uleb128 0x6
+ 625 0123 04       		.byte	0x4
+ 626 0124 02       		.uleb128 0x2
+ 627 0125 00000000 		.4byte	.LASF27
+ 628 0129 05       		.byte	0x5
+ 629 012a 80       		.byte	0x80
+ 630 012b 97000000 		.4byte	0x97
+ 631 012f 02       		.uleb128 0x2
+ 632 0130 86060000 		.4byte	.LASF28
+ 633 0134 05       		.byte	0x5
+ 634 0135 A0       		.byte	0xa0
+ 635 0136 3A010000 		.4byte	0x13a
+ 636 013a 07       		.uleb128 0x7
+ 637 013b 8D070000 		.4byte	.LASF55
+ 638 013f 3C       		.byte	0x3c
+ 639 0140 05       		.byte	0x5
+ 640 0141 4B04     		.2byte	0x44b
+ 641 0143 9A020000 		.4byte	0x29a
+ 642 0147 08       		.uleb128 0x8
+ 643 0148 BE030000 		.4byte	.LASF29
+ 644 014c 05       		.byte	0x5
+ 645 014d 4D04     		.2byte	0x44d
+ 646 014f 8F030000 		.4byte	0x38f
+ 647 0153 00       		.byte	0
+ 648 0154 08       		.uleb128 0x8
+ 649 0155 8C060000 		.4byte	.LASF30
+ 650 0159 05       		.byte	0x5
+ 651 015a 4E04     		.2byte	0x44e
+ 652 015c 8F030000 		.4byte	0x38f
+ 653 0160 01       		.byte	0x1
+ 654 0161 09       		.uleb128 0x9
+ 655 0162 64657600 		.ascii	"dev\000"
+ 656 0166 05       		.byte	0x5
+ 657 0167 5104     		.2byte	0x451
+ 658 0169 CF030000 		.4byte	0x3cf
+ 659 016d 04       		.byte	0x4
+ 660 016e 08       		.uleb128 0x8
+ 661 016f 2C080000 		.4byte	.LASF31
+ 662 0173 05       		.byte	0x5
+ 663 0174 5204     		.2byte	0x452
+ 664 0176 5F040000 		.4byte	0x45f
+ 665 017a 08       		.byte	0x8
+ 666 017b 08       		.uleb128 0x8
+ 667 017c 60090000 		.4byte	.LASF32
+ 668 0180 05       		.byte	0x5
+ 669 0181 5304     		.2byte	0x453
+ 670 0183 5F040000 		.4byte	0x45f
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 14
+
+
+ 671 0187 0C       		.byte	0xc
+ 672 0188 08       		.uleb128 0x8
+ 673 0189 38050000 		.4byte	.LASF33
+ 674 018d 05       		.byte	0x5
+ 675 018e 5404     		.2byte	0x454
+ 676 0190 97000000 		.4byte	0x97
+ 677 0194 10       		.byte	0x10
+ 678 0195 08       		.uleb128 0x8
+ 679 0196 40010000 		.4byte	.LASF34
+ 680 019a 05       		.byte	0x5
+ 681 019b 5404     		.2byte	0x454
+ 682 019d 97000000 		.4byte	0x97
+ 683 01a1 11       		.byte	0x11
+ 684 01a2 08       		.uleb128 0x8
+ 685 01a3 AA070000 		.4byte	.LASF35
+ 686 01a7 05       		.byte	0x5
+ 687 01a8 5504     		.2byte	0x455
+ 688 01aa 97000000 		.4byte	0x97
+ 689 01ae 12       		.byte	0x12
+ 690 01af 08       		.uleb128 0x8
+ 691 01b0 E5010000 		.4byte	.LASF36
+ 692 01b4 05       		.byte	0x5
+ 693 01b5 5604     		.2byte	0x456
+ 694 01b7 97000000 		.4byte	0x97
+ 695 01bb 13       		.byte	0x13
+ 696 01bc 08       		.uleb128 0x8
+ 697 01bd DB020000 		.4byte	.LASF37
+ 698 01c1 05       		.byte	0x5
+ 699 01c2 5704     		.2byte	0x457
+ 700 01c4 8F030000 		.4byte	0x38f
+ 701 01c8 14       		.byte	0x14
+ 702 01c9 08       		.uleb128 0x8
+ 703 01ca E4020000 		.4byte	.LASF38
+ 704 01ce 05       		.byte	0x5
+ 705 01cf 5804     		.2byte	0x458
+ 706 01d1 8F030000 		.4byte	0x38f
+ 707 01d5 15       		.byte	0x15
+ 708 01d6 08       		.uleb128 0x8
+ 709 01d7 B7060000 		.4byte	.LASF39
+ 710 01db 05       		.byte	0x5
+ 711 01dc 5904     		.2byte	0x459
+ 712 01de 04040000 		.4byte	0x404
+ 713 01e2 18       		.byte	0x18
+ 714 01e3 08       		.uleb128 0x8
+ 715 01e4 93060000 		.4byte	.LASF40
+ 716 01e8 05       		.byte	0x5
+ 717 01e9 5B04     		.2byte	0x45b
+ 718 01eb 8C000000 		.4byte	0x8c
+ 719 01ef 1C       		.byte	0x1c
+ 720 01f0 08       		.uleb128 0x8
+ 721 01f1 28040000 		.4byte	.LASF41
+ 722 01f5 05       		.byte	0x5
+ 723 01f6 5C04     		.2byte	0x45c
+ 724 01f8 8C000000 		.4byte	0x8c
+ 725 01fc 1D       		.byte	0x1d
+ 726 01fd 08       		.uleb128 0x8
+ 727 01fe 30040000 		.4byte	.LASF42
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 15
+
+
+ 728 0202 05       		.byte	0x5
+ 729 0203 5D04     		.2byte	0x45d
+ 730 0205 8C000000 		.4byte	0x8c
+ 731 0209 1E       		.byte	0x1e
+ 732 020a 08       		.uleb128 0x8
+ 733 020b 54090000 		.4byte	.LASF43
+ 734 020f 05       		.byte	0x5
+ 735 0210 5E04     		.2byte	0x45e
+ 736 0212 97000000 		.4byte	0x97
+ 737 0216 1F       		.byte	0x1f
+ 738 0217 08       		.uleb128 0x8
+ 739 0218 B1030000 		.4byte	.LASF44
+ 740 021c 05       		.byte	0x5
+ 741 021d 5F04     		.2byte	0x45f
+ 742 021f 97000000 		.4byte	0x97
+ 743 0223 20       		.byte	0x20
+ 744 0224 08       		.uleb128 0x8
+ 745 0225 EA010000 		.4byte	.LASF45
+ 746 0229 05       		.byte	0x5
+ 747 022a 6104     		.2byte	0x461
+ 748 022c 21040000 		.4byte	0x421
+ 749 0230 24       		.byte	0x24
+ 750 0231 08       		.uleb128 0x8
+ 751 0232 0B070000 		.4byte	.LASF46
+ 752 0236 05       		.byte	0x5
+ 753 0237 6204     		.2byte	0x462
+ 754 0239 97000000 		.4byte	0x97
+ 755 023d 28       		.byte	0x28
+ 756 023e 08       		.uleb128 0x8
+ 757 023f 3D000000 		.4byte	.LASF47
+ 758 0243 05       		.byte	0x5
+ 759 0244 6304     		.2byte	0x463
+ 760 0246 8C000000 		.4byte	0x8c
+ 761 024a 29       		.byte	0x29
+ 762 024b 08       		.uleb128 0x8
+ 763 024c F6070000 		.4byte	.LASF48
+ 764 0250 05       		.byte	0x5
+ 765 0251 6404     		.2byte	0x464
+ 766 0253 8C000000 		.4byte	0x8c
+ 767 0257 2A       		.byte	0x2a
+ 768 0258 08       		.uleb128 0x8
+ 769 0259 96080000 		.4byte	.LASF49
+ 770 025d 05       		.byte	0x5
+ 771 025e 6504     		.2byte	0x465
+ 772 0260 97000000 		.4byte	0x97
+ 773 0264 2B       		.byte	0x2b
+ 774 0265 08       		.uleb128 0x8
+ 775 0266 E4060000 		.4byte	.LASF50
+ 776 026a 05       		.byte	0x5
+ 777 026b 6604     		.2byte	0x466
+ 778 026d 97000000 		.4byte	0x97
+ 779 0271 2C       		.byte	0x2c
+ 780 0272 08       		.uleb128 0x8
+ 781 0273 50010000 		.4byte	.LASF51
+ 782 0277 05       		.byte	0x5
+ 783 0278 6804     		.2byte	0x468
+ 784 027a D6020000 		.4byte	0x2d6
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 16
+
+
+ 785 027e 2D       		.byte	0x2d
+ 786 027f 08       		.uleb128 0x8
+ 787 0280 84070000 		.4byte	.LASF52
+ 788 0284 05       		.byte	0x5
+ 789 0285 6F04     		.2byte	0x46f
+ 790 0287 42040000 		.4byte	0x442
+ 791 028b 34       		.byte	0x34
+ 792 028c 08       		.uleb128 0x8
+ 793 028d C3040000 		.4byte	.LASF53
+ 794 0291 05       		.byte	0x5
+ 795 0292 7104     		.2byte	0x471
+ 796 0294 46030000 		.4byte	0x346
+ 797 0298 38       		.byte	0x38
+ 798 0299 00       		.byte	0
+ 799 029a 02       		.uleb128 0x2
+ 800 029b 88050000 		.4byte	.LASF54
+ 801 029f 05       		.byte	0x5
+ 802 02a0 A1       		.byte	0xa1
+ 803 02a1 A5020000 		.4byte	0x2a5
+ 804 02a5 0A       		.uleb128 0xa
+ 805 02a6 21080000 		.4byte	.LASF56
+ 806 02aa 0C       		.byte	0xc
+ 807 02ab 05       		.byte	0x5
+ 808 02ac CF       		.byte	0xcf
+ 809 02ad D6020000 		.4byte	0x2d6
+ 810 02b1 0B       		.uleb128 0xb
+ 811 02b2 BC040000 		.4byte	.LASF57
+ 812 02b6 05       		.byte	0x5
+ 813 02b7 D1       		.byte	0xd1
+ 814 02b8 9A030000 		.4byte	0x39a
+ 815 02bc 00       		.byte	0
+ 816 02bd 0B       		.uleb128 0xb
+ 817 02be 25000000 		.4byte	.LASF58
+ 818 02c2 05       		.byte	0x5
+ 819 02c3 D2       		.byte	0xd2
+ 820 02c4 22010000 		.4byte	0x122
+ 821 02c8 04       		.byte	0x4
+ 822 02c9 0B       		.uleb128 0xb
+ 823 02ca 78010000 		.4byte	.LASF59
+ 824 02ce 05       		.byte	0x5
+ 825 02cf D3       		.byte	0xd3
+ 826 02d0 D5030000 		.4byte	0x3d5
+ 827 02d4 08       		.byte	0x8
+ 828 02d5 00       		.byte	0
+ 829 02d6 02       		.uleb128 0x2
+ 830 02d7 B7050000 		.4byte	.LASF60
+ 831 02db 05       		.byte	0x5
+ 832 02dc A3       		.byte	0xa3
+ 833 02dd E1020000 		.4byte	0x2e1
+ 834 02e1 07       		.uleb128 0x7
+ 835 02e2 92020000 		.4byte	.LASF61
+ 836 02e6 07       		.byte	0x7
+ 837 02e7 05       		.byte	0x5
+ 838 02e8 1D02     		.2byte	0x21d
+ 839 02ea 46030000 		.4byte	0x346
+ 840 02ee 09       		.uleb128 0x9
+ 841 02ef 7800     		.ascii	"x\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 17
+
+
+ 842 02f1 05       		.byte	0x5
+ 843 02f2 1F02     		.2byte	0x21f
+ 844 02f4 8F030000 		.4byte	0x38f
+ 845 02f8 00       		.byte	0
+ 846 02f9 09       		.uleb128 0x9
+ 847 02fa 7900     		.ascii	"y\000"
+ 848 02fc 05       		.byte	0x5
+ 849 02fd 1F02     		.2byte	0x21f
+ 850 02ff 8F030000 		.4byte	0x38f
+ 851 0303 01       		.byte	0x1
+ 852 0304 08       		.uleb128 0x8
+ 853 0305 B8080000 		.4byte	.LASF62
+ 854 0309 05       		.byte	0x5
+ 855 030a 2002     		.2byte	0x220
+ 856 030c 97000000 		.4byte	0x97
+ 857 0310 02       		.byte	0x2
+ 858 0311 09       		.uleb128 0x9
+ 859 0312 64697200 		.ascii	"dir\000"
+ 860 0316 05       		.byte	0x5
+ 861 0317 2102     		.2byte	0x221
+ 862 0319 97000000 		.4byte	0x97
+ 863 031d 03       		.byte	0x3
+ 864 031e 08       		.uleb128 0x8
+ 865 031f 94070000 		.4byte	.LASF63
+ 866 0323 05       		.byte	0x5
+ 867 0324 2202     		.2byte	0x222
+ 868 0326 97000000 		.4byte	0x97
+ 869 032a 04       		.byte	0x4
+ 870 032b 08       		.uleb128 0x8
+ 871 032c CB000000 		.4byte	.LASF64
+ 872 0330 05       		.byte	0x5
+ 873 0331 2302     		.2byte	0x223
+ 874 0333 97000000 		.4byte	0x97
+ 875 0337 05       		.byte	0x5
+ 876 0338 08       		.uleb128 0x8
+ 877 0339 73010000 		.4byte	.LASF65
+ 878 033d 05       		.byte	0x5
+ 879 033e 2402     		.2byte	0x224
+ 880 0340 97000000 		.4byte	0x97
+ 881 0344 06       		.byte	0x6
+ 882 0345 00       		.byte	0
+ 883 0346 02       		.uleb128 0x2
+ 884 0347 3A080000 		.4byte	.LASF66
+ 885 034b 05       		.byte	0x5
+ 886 034c A5       		.byte	0xa5
+ 887 034d 51030000 		.4byte	0x351
+ 888 0351 07       		.uleb128 0x7
+ 889 0352 1F050000 		.4byte	.LASF67
+ 890 0356 04       		.byte	0x4
+ 891 0357 05       		.byte	0x5
+ 892 0358 3102     		.2byte	0x231
+ 893 035a 8F030000 		.4byte	0x38f
+ 894 035e 09       		.uleb128 0x9
+ 895 035f 783000   		.ascii	"x0\000"
+ 896 0362 05       		.byte	0x5
+ 897 0363 3302     		.2byte	0x233
+ 898 0365 8F030000 		.4byte	0x38f
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 18
+
+
+ 899 0369 00       		.byte	0
+ 900 036a 09       		.uleb128 0x9
+ 901 036b 793000   		.ascii	"y0\000"
+ 902 036e 05       		.byte	0x5
+ 903 036f 3302     		.2byte	0x233
+ 904 0371 8F030000 		.4byte	0x38f
+ 905 0375 01       		.byte	0x1
+ 906 0376 09       		.uleb128 0x9
+ 907 0377 783100   		.ascii	"x1\000"
+ 908 037a 05       		.byte	0x5
+ 909 037b 3302     		.2byte	0x233
+ 910 037d 8F030000 		.4byte	0x38f
+ 911 0381 02       		.byte	0x2
+ 912 0382 09       		.uleb128 0x9
+ 913 0383 793100   		.ascii	"y1\000"
+ 914 0386 05       		.byte	0x5
+ 915 0387 3302     		.2byte	0x233
+ 916 0389 8F030000 		.4byte	0x38f
+ 917 038d 03       		.byte	0x3
+ 918 038e 00       		.byte	0
+ 919 038f 02       		.uleb128 0x2
+ 920 0390 14050000 		.4byte	.LASF68
+ 921 0394 05       		.byte	0x5
+ 922 0395 AF       		.byte	0xaf
+ 923 0396 97000000 		.4byte	0x97
+ 924 039a 02       		.uleb128 0x2
+ 925 039b 5D030000 		.4byte	.LASF69
+ 926 039f 05       		.byte	0x5
+ 927 03a0 C7       		.byte	0xc7
+ 928 03a1 A5030000 		.4byte	0x3a5
+ 929 03a5 0C       		.uleb128 0xc
+ 930 03a6 04       		.byte	0x4
+ 931 03a7 AB030000 		.4byte	0x3ab
+ 932 03ab 0D       		.uleb128 0xd
+ 933 03ac 97000000 		.4byte	0x97
+ 934 03b0 C9030000 		.4byte	0x3c9
+ 935 03b4 0E       		.uleb128 0xe
+ 936 03b5 C9030000 		.4byte	0x3c9
+ 937 03b9 0E       		.uleb128 0xe
+ 938 03ba CF030000 		.4byte	0x3cf
+ 939 03be 0E       		.uleb128 0xe
+ 940 03bf 97000000 		.4byte	0x97
+ 941 03c3 0E       		.uleb128 0xe
+ 942 03c4 22010000 		.4byte	0x122
+ 943 03c8 00       		.byte	0
+ 944 03c9 0C       		.uleb128 0xc
+ 945 03ca 04       		.byte	0x4
+ 946 03cb 2F010000 		.4byte	0x12f
+ 947 03cf 0C       		.uleb128 0xc
+ 948 03d0 04       		.byte	0x4
+ 949 03d1 9A020000 		.4byte	0x29a
+ 950 03d5 02       		.uleb128 0x2
+ 951 03d6 7C030000 		.4byte	.LASF70
+ 952 03da 05       		.byte	0x5
+ 953 03db CA       		.byte	0xca
+ 954 03dc E0030000 		.4byte	0x3e0
+ 955 03e0 0C       		.uleb128 0xc
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 19
+
+
+ 956 03e1 04       		.byte	0x4
+ 957 03e2 E6030000 		.4byte	0x3e6
+ 958 03e6 0D       		.uleb128 0xd
+ 959 03e7 97000000 		.4byte	0x97
+ 960 03eb 04040000 		.4byte	0x404
+ 961 03ef 0E       		.uleb128 0xe
+ 962 03f0 C9030000 		.4byte	0x3c9
+ 963 03f4 0E       		.uleb128 0xe
+ 964 03f5 97000000 		.4byte	0x97
+ 965 03f9 0E       		.uleb128 0xe
+ 966 03fa 97000000 		.4byte	0x97
+ 967 03fe 0E       		.uleb128 0xe
+ 968 03ff 22010000 		.4byte	0x122
+ 969 0403 00       		.byte	0
+ 970 0404 05       		.uleb128 0x5
+ 971 0405 040A0000 		.4byte	.LASF71
+ 972 0409 05       		.byte	0x5
+ 973 040a 0D04     		.2byte	0x40d
+ 974 040c 10040000 		.4byte	0x410
+ 975 0410 0C       		.uleb128 0xc
+ 976 0411 04       		.byte	0x4
+ 977 0412 16040000 		.4byte	0x416
+ 978 0416 0F       		.uleb128 0xf
+ 979 0417 21040000 		.4byte	0x421
+ 980 041b 0E       		.uleb128 0xe
+ 981 041c C9030000 		.4byte	0x3c9
+ 982 0420 00       		.byte	0
+ 983 0421 05       		.uleb128 0x5
+ 984 0422 0F090000 		.4byte	.LASF72
+ 985 0426 05       		.byte	0x5
+ 986 0427 1004     		.2byte	0x410
+ 987 0429 2D040000 		.4byte	0x42d
+ 988 042d 0C       		.uleb128 0xc
+ 989 042e 04       		.byte	0x4
+ 990 042f 33040000 		.4byte	0x433
+ 991 0433 0D       		.uleb128 0xd
+ 992 0434 8F030000 		.4byte	0x38f
+ 993 0438 42040000 		.4byte	0x442
+ 994 043c 0E       		.uleb128 0xe
+ 995 043d C9030000 		.4byte	0x3c9
+ 996 0441 00       		.byte	0
+ 997 0442 05       		.uleb128 0x5
+ 998 0443 AA050000 		.4byte	.LASF73
+ 999 0447 05       		.byte	0x5
+ 1000 0448 1304     		.2byte	0x413
+ 1001 044a 4E040000 		.4byte	0x44e
+ 1002 044e 0C       		.uleb128 0xc
+ 1003 044f 04       		.byte	0x4
+ 1004 0450 54040000 		.4byte	0x454
+ 1005 0454 0F       		.uleb128 0xf
+ 1006 0455 5F040000 		.4byte	0x45f
+ 1007 0459 0E       		.uleb128 0xe
+ 1008 045a 97000000 		.4byte	0x97
+ 1009 045e 00       		.byte	0
+ 1010 045f 0C       		.uleb128 0xc
+ 1011 0460 04       		.byte	0x4
+ 1012 0461 65040000 		.4byte	0x465
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 20
+
+
+ 1013 0465 10       		.uleb128 0x10
+ 1014 0466 24010000 		.4byte	0x124
+ 1015 046a 11       		.uleb128 0x11
+ 1016 046b DF010000 		.4byte	.LASF198
+ 1017 046f 01       		.byte	0x1
+ 1018 0470 08       		.byte	0x8
+ 1019 0471 05       		.byte	0x5
+ 1020 0472 E9040000 		.4byte	0x4e9
+ 1021 0476 12       		.uleb128 0x12
+ 1022 0477 82090000 		.4byte	.LASF74
+ 1023 047b 00       		.sleb128 0
+ 1024 047c 12       		.uleb128 0x12
+ 1025 047d 42040000 		.4byte	.LASF75
+ 1026 0481 01       		.sleb128 1
+ 1027 0482 12       		.uleb128 0x12
+ 1028 0483 170A0000 		.4byte	.LASF76
+ 1029 0487 02       		.sleb128 2
+ 1030 0488 12       		.uleb128 0x12
+ 1031 0489 22020000 		.4byte	.LASF77
+ 1032 048d 03       		.sleb128 3
+ 1033 048e 12       		.uleb128 0x12
+ 1034 048f F1060000 		.4byte	.LASF78
+ 1035 0493 04       		.sleb128 4
+ 1036 0494 12       		.uleb128 0x12
+ 1037 0495 80080000 		.4byte	.LASF79
+ 1038 0499 05       		.sleb128 5
+ 1039 049a 12       		.uleb128 0x12
+ 1040 049b C4090000 		.4byte	.LASF80
+ 1041 049f 06       		.sleb128 6
+ 1042 04a0 12       		.uleb128 0x12
+ 1043 04a1 BA070000 		.4byte	.LASF81
+ 1044 04a5 07       		.sleb128 7
+ 1045 04a6 12       		.uleb128 0x12
+ 1046 04a7 59060000 		.4byte	.LASF82
+ 1047 04ab 08       		.sleb128 8
+ 1048 04ac 12       		.uleb128 0x12
+ 1049 04ad 28090000 		.4byte	.LASF83
+ 1050 04b1 09       		.sleb128 9
+ 1051 04b2 12       		.uleb128 0x12
+ 1052 04b3 65060000 		.4byte	.LASF84
+ 1053 04b7 0A       		.sleb128 10
+ 1054 04b8 12       		.uleb128 0x12
+ 1055 04b9 90030000 		.4byte	.LASF85
+ 1056 04bd 0B       		.sleb128 11
+ 1057 04be 12       		.uleb128 0x12
+ 1058 04bf 37010000 		.4byte	.LASF86
+ 1059 04c3 0C       		.sleb128 12
+ 1060 04c4 12       		.uleb128 0x12
+ 1061 04c5 1C000000 		.4byte	.LASF87
+ 1062 04c9 0D       		.sleb128 13
+ 1063 04ca 12       		.uleb128 0x12
+ 1064 04cb 2E010000 		.4byte	.LASF88
+ 1065 04cf 0E       		.sleb128 14
+ 1066 04d0 12       		.uleb128 0x12
+ 1067 04d1 04010000 		.4byte	.LASF89
+ 1068 04d5 0F       		.sleb128 15
+ 1069 04d6 12       		.uleb128 0x12
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 21
+
+
+ 1070 04d7 BE080000 		.4byte	.LASF90
+ 1071 04db 10       		.sleb128 16
+ 1072 04dc 12       		.uleb128 0x12
+ 1073 04dd A5060000 		.4byte	.LASF91
+ 1074 04e1 11       		.sleb128 17
+ 1075 04e2 12       		.uleb128 0x12
+ 1076 04e3 3C070000 		.4byte	.LASF92
+ 1077 04e7 12       		.sleb128 18
+ 1078 04e8 00       		.byte	0
+ 1079 04e9 13       		.uleb128 0x13
+ 1080 04ea A6040000 		.4byte	.LASF95
+ 1081 04ee 01       		.byte	0x1
+ 1082 04ef 09       		.byte	0x9
+ 1083 04f0 00000000 		.4byte	.LFB63
+ 1084 04f4 5C000000 		.4byte	.LFE63-.LFB63
+ 1085 04f8 01       		.uleb128 0x1
+ 1086 04f9 9C       		.byte	0x9c
+ 1087 04fa 0D050000 		.4byte	0x50d
+ 1088 04fe 14       		.uleb128 0x14
+ 1089 04ff BA010000 		.4byte	.LASF97
+ 1090 0503 01       		.byte	0x1
+ 1091 0504 09       		.byte	0x9
+ 1092 0505 AD000000 		.4byte	0xad
+ 1093 0509 02       		.uleb128 0x2
+ 1094 050a 91       		.byte	0x91
+ 1095 050b 77       		.sleb128 -9
+ 1096 050c 00       		.byte	0
+ 1097 050d 15       		.uleb128 0x15
+ 1098 050e 0B040000 		.4byte	.LASF93
+ 1099 0512 01       		.byte	0x1
+ 1100 0513 18       		.byte	0x18
+ 1101 0514 00000000 		.4byte	.LFB64
+ 1102 0518 9C000000 		.4byte	.LFE64-.LFB64
+ 1103 051c 01       		.uleb128 0x1
+ 1104 051d 9C       		.byte	0x9c
+ 1105 051e 15       		.uleb128 0x15
+ 1106 051f 89080000 		.4byte	.LASF94
+ 1107 0523 01       		.byte	0x1
+ 1108 0524 27       		.byte	0x27
+ 1109 0525 00000000 		.4byte	.LFB65
+ 1110 0529 34000000 		.4byte	.LFE65-.LFB65
+ 1111 052d 01       		.uleb128 0x1
+ 1112 052e 9C       		.byte	0x9c
+ 1113 052f 13       		.uleb128 0x13
+ 1114 0530 C0020000 		.4byte	.LASF96
+ 1115 0534 01       		.byte	0x1
+ 1116 0535 2C       		.byte	0x2c
+ 1117 0536 00000000 		.4byte	.LFB66
+ 1118 053a 28000000 		.4byte	.LFE66-.LFB66
+ 1119 053e 01       		.uleb128 0x1
+ 1120 053f 9C       		.byte	0x9c
+ 1121 0540 53050000 		.4byte	0x553
+ 1122 0544 14       		.uleb128 0x14
+ 1123 0545 B6040000 		.4byte	.LASF98
+ 1124 0549 01       		.byte	0x1
+ 1125 054a 2C       		.byte	0x2c
+ 1126 054b AD000000 		.4byte	0xad
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 22
+
+
+ 1127 054f 02       		.uleb128 0x2
+ 1128 0550 91       		.byte	0x91
+ 1129 0551 77       		.sleb128 -9
+ 1130 0552 00       		.byte	0
+ 1131 0553 13       		.uleb128 0x13
+ 1132 0554 EC030000 		.4byte	.LASF99
+ 1133 0558 01       		.byte	0x1
+ 1134 0559 36       		.byte	0x36
+ 1135 055a 00000000 		.4byte	.LFB67
+ 1136 055e 70000000 		.4byte	.LFE67-.LFB67
+ 1137 0562 01       		.uleb128 0x1
+ 1138 0563 9C       		.byte	0x9c
+ 1139 0564 BB050000 		.4byte	0x5bb
+ 1140 0568 14       		.uleb128 0x14
+ 1141 0569 5E000000 		.4byte	.LASF100
+ 1142 056d 01       		.byte	0x1
+ 1143 056e 36       		.byte	0x36
+ 1144 056f AD000000 		.4byte	0xad
+ 1145 0573 02       		.uleb128 0x2
+ 1146 0574 91       		.byte	0x91
+ 1147 0575 6F       		.sleb128 -17
+ 1148 0576 14       		.uleb128 0x14
+ 1149 0577 8D010000 		.4byte	.LASF101
+ 1150 057b 01       		.byte	0x1
+ 1151 057c 36       		.byte	0x36
+ 1152 057d AD000000 		.4byte	0xad
+ 1153 0581 02       		.uleb128 0x2
+ 1154 0582 91       		.byte	0x91
+ 1155 0583 6E       		.sleb128 -18
+ 1156 0584 16       		.uleb128 0x16
+ 1157 0585 A1040000 		.4byte	.LASF102
+ 1158 0589 01       		.byte	0x1
+ 1159 058a 38       		.byte	0x38
+ 1160 058b B8000000 		.4byte	0xb8
+ 1161 058f 02       		.uleb128 0x2
+ 1162 0590 91       		.byte	0x91
+ 1163 0591 72       		.sleb128 -14
+ 1164 0592 17       		.uleb128 0x17
+ 1165 0593 4B00     		.ascii	"K\000"
+ 1166 0595 01       		.byte	0x1
+ 1167 0596 39       		.byte	0x39
+ 1168 0597 AD000000 		.4byte	0xad
+ 1169 059b 02       		.uleb128 0x2
+ 1170 059c 91       		.byte	0x91
+ 1171 059d 71       		.sleb128 -15
+ 1172 059e 16       		.uleb128 0x16
+ 1173 059f 8A030000 		.4byte	.LASF103
+ 1174 05a3 01       		.byte	0x1
+ 1175 05a4 3B       		.byte	0x3b
+ 1176 05a5 D9000000 		.4byte	0xd9
+ 1177 05a9 02       		.uleb128 0x2
+ 1178 05aa 91       		.byte	0x91
+ 1179 05ab 76       		.sleb128 -10
+ 1180 05ac 16       		.uleb128 0x16
+ 1181 05ad 5D050000 		.4byte	.LASF104
+ 1182 05b1 01       		.byte	0x1
+ 1183 05b2 40       		.byte	0x40
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 23
+
+
+ 1184 05b3 B8000000 		.4byte	0xb8
+ 1185 05b7 02       		.uleb128 0x2
+ 1186 05b8 91       		.byte	0x91
+ 1187 05b9 74       		.sleb128 -12
+ 1188 05ba 00       		.byte	0
+ 1189 05bb 18       		.uleb128 0x18
+ 1190 05bc 2F070000 		.4byte	.LASF105
+ 1191 05c0 06       		.byte	0x6
+ 1192 05c1 2A06     		.2byte	0x62a
+ 1193 05c3 C7050000 		.4byte	0x5c7
+ 1194 05c7 19       		.uleb128 0x19
+ 1195 05c8 A2000000 		.4byte	0xa2
+ 1196 05cc 1A       		.uleb128 0x1a
+ 1197 05cd DD060000 		.4byte	.LASF106
+ 1198 05d1 07       		.byte	0x7
+ 1199 05d2 0D       		.byte	0xd
+ 1200 05d3 AD000000 		.4byte	0xad
+ 1201 05d7 05       		.uleb128 0x5
+ 1202 05d8 03       		.byte	0x3
+ 1203 05d9 00000000 		.4byte	deltaT
+ 1204 05dd 1A       		.uleb128 0x1a
+ 1205 05de 36090000 		.4byte	.LASF107
+ 1206 05e2 07       		.byte	0x7
+ 1207 05e3 0E       		.byte	0xe
+ 1208 05e4 C3000000 		.4byte	0xc3
+ 1209 05e8 05       		.uleb128 0x5
+ 1210 05e9 03       		.byte	0x3
+ 1211 05ea 00000000 		.4byte	Avarage_FET_Temp
+ 1212 05ee 1A       		.uleb128 0x1a
+ 1213 05ef 6B030000 		.4byte	.LASF108
+ 1214 05f3 07       		.byte	0x7
+ 1215 05f4 0F       		.byte	0xf
+ 1216 05f5 D9000000 		.4byte	0xd9
+ 1217 05f9 05       		.uleb128 0x5
+ 1218 05fa 03       		.byte	0x3
+ 1219 05fb 00000000 		.4byte	Current_DIE_Temp
+ 1220 05ff 1B       		.uleb128 0x1b
+ 1221 0600 FD000000 		.4byte	0xfd
+ 1222 0604 0F060000 		.4byte	0x60f
+ 1223 0608 1C       		.uleb128 0x1c
+ 1224 0609 1B010000 		.4byte	0x11b
+ 1225 060d 07       		.byte	0x7
+ 1226 060e 00       		.byte	0
+ 1227 060f 1A       		.uleb128 0x1a
+ 1228 0610 ED090000 		.4byte	.LASF109
+ 1229 0614 07       		.byte	0x7
+ 1230 0615 10       		.byte	0x10
+ 1231 0616 FF050000 		.4byte	0x5ff
+ 1232 061a 05       		.uleb128 0x5
+ 1233 061b 03       		.byte	0x3
+ 1234 061c 00000000 		.4byte	Current_DIE_TempString
+ 1235 0620 1A       		.uleb128 0x1a
+ 1236 0621 6F080000 		.4byte	.LASF110
+ 1237 0625 07       		.byte	0x7
+ 1238 0626 11       		.byte	0x11
+ 1239 0627 CE000000 		.4byte	0xce
+ 1240 062b 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 24
+
+
+ 1241 062c 03       		.byte	0x3
+ 1242 062d 00000000 		.4byte	Current_FET_Temp
+ 1243 0631 1A       		.uleb128 0x1a
+ 1244 0632 0B030000 		.4byte	.LASF111
+ 1245 0636 07       		.byte	0x7
+ 1246 0637 12       		.byte	0x12
+ 1247 0638 FF050000 		.4byte	0x5ff
+ 1248 063c 05       		.uleb128 0x5
+ 1249 063d 03       		.byte	0x3
+ 1250 063e 00000000 		.4byte	Current_FET_TempString
+ 1251 0642 1A       		.uleb128 0x1a
+ 1252 0643 9F010000 		.4byte	.LASF112
+ 1253 0647 08       		.byte	0x8
+ 1254 0648 09       		.byte	0x9
+ 1255 0649 6A040000 		.4byte	0x46a
+ 1256 064d 05       		.uleb128 0x5
+ 1257 064e 03       		.byte	0x3
+ 1258 064f 00000000 		.4byte	Current_State
+ 1259 0653 1A       		.uleb128 0x1a
+ 1260 0654 FC020000 		.4byte	.LASF113
+ 1261 0658 08       		.byte	0x8
+ 1262 0659 0A       		.byte	0xa
+ 1263 065a 6A040000 		.4byte	0x46a
+ 1264 065e 05       		.uleb128 0x5
+ 1265 065f 03       		.byte	0x3
+ 1266 0660 00000000 		.4byte	Previous_State
+ 1267 0664 1A       		.uleb128 0x1a
+ 1268 0665 AD010000 		.4byte	.LASF114
+ 1269 0669 08       		.byte	0x8
+ 1270 066a 0C       		.byte	0xc
+ 1271 066b AD000000 		.4byte	0xad
+ 1272 066f 05       		.uleb128 0x5
+ 1273 0670 03       		.byte	0x3
+ 1274 0671 00000000 		.4byte	Sound_Enable
+ 1275 0675 1A       		.uleb128 0x1a
+ 1276 0676 7C040000 		.4byte	.LASF115
+ 1277 067a 08       		.byte	0x8
+ 1278 067b 0E       		.byte	0xe
+ 1279 067c AD000000 		.4byte	0xad
+ 1280 0680 05       		.uleb128 0x5
+ 1281 0681 03       		.byte	0x3
+ 1282 0682 00000000 		.4byte	Current_Menu_Position
+ 1283 0686 1A       		.uleb128 0x1a
+ 1284 0687 6C090000 		.4byte	.LASF116
+ 1285 068b 08       		.byte	0x8
+ 1286 068c 11       		.byte	0x11
+ 1287 068d AD000000 		.4byte	0xad
+ 1288 0691 05       		.uleb128 0x5
+ 1289 0692 03       		.byte	0x3
+ 1290 0693 00000000 		.4byte	CurrentBacklightValue
+ 1291 0697 1A       		.uleb128 0x1a
+ 1292 0698 F9010000 		.4byte	.LASF117
+ 1293 069c 08       		.byte	0x8
+ 1294 069d 12       		.byte	0x12
+ 1295 069e FF050000 		.4byte	0x5ff
+ 1296 06a2 05       		.uleb128 0x5
+ 1297 06a3 03       		.byte	0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 25
+
+
+ 1298 06a4 00000000 		.4byte	CurrentBacklightValueString
+ 1299 06a8 1A       		.uleb128 0x1a
+ 1300 06a9 A7020000 		.4byte	.LASF118
+ 1301 06ad 08       		.byte	0x8
+ 1302 06ae 14       		.byte	0x14
+ 1303 06af AD000000 		.4byte	0xad
+ 1304 06b3 05       		.uleb128 0x5
+ 1305 06b4 03       		.byte	0x3
+ 1306 06b5 00000000 		.4byte	CurrentVolumeValue
+ 1307 06b9 1A       		.uleb128 0x1a
+ 1308 06ba FB040000 		.4byte	.LASF119
+ 1309 06be 08       		.byte	0x8
+ 1310 06bf 15       		.byte	0x15
+ 1311 06c0 FF050000 		.4byte	0x5ff
+ 1312 06c4 05       		.uleb128 0x5
+ 1313 06c5 03       		.byte	0x3
+ 1314 06c6 00000000 		.4byte	CurrentVolumeValueString
+ 1315 06ca 1A       		.uleb128 0x1a
+ 1316 06cb 6D000000 		.4byte	.LASF120
+ 1317 06cf 08       		.byte	0x8
+ 1318 06d0 17       		.byte	0x17
+ 1319 06d1 EF000000 		.4byte	0xef
+ 1320 06d5 05       		.uleb128 0x5
+ 1321 06d6 03       		.byte	0x3
+ 1322 06d7 00000000 		.4byte	Current_Calibration_Range1
+ 1323 06db 1A       		.uleb128 0x1a
+ 1324 06dc 88000000 		.4byte	.LASF121
+ 1325 06e0 08       		.byte	0x8
+ 1326 06e1 18       		.byte	0x18
+ 1327 06e2 EF000000 		.4byte	0xef
+ 1328 06e6 05       		.uleb128 0x5
+ 1329 06e7 03       		.byte	0x3
+ 1330 06e8 00000000 		.4byte	Current_Calibration_Range2
+ 1331 06ec 1A       		.uleb128 0x1a
+ 1332 06ed A3000000 		.4byte	.LASF122
+ 1333 06f1 08       		.byte	0x8
+ 1334 06f2 19       		.byte	0x19
+ 1335 06f3 EF000000 		.4byte	0xef
+ 1336 06f7 05       		.uleb128 0x5
+ 1337 06f8 03       		.byte	0x3
+ 1338 06f9 00000000 		.4byte	Current_Calibration_Range3
+ 1339 06fd 1A       		.uleb128 0x1a
+ 1340 06fe 1D010000 		.4byte	.LASF123
+ 1341 0702 08       		.byte	0x8
+ 1342 0703 1B       		.byte	0x1b
+ 1343 0704 AD000000 		.4byte	0xad
+ 1344 0708 05       		.uleb128 0x5
+ 1345 0709 03       		.byte	0x3
+ 1346 070a 00000000 		.4byte	LEM_Offset_Value
+ 1347 070e 1A       		.uleb128 0x1a
+ 1348 070f 240A0000 		.4byte	.LASF124
+ 1349 0713 08       		.byte	0x8
+ 1350 0714 1D       		.byte	0x1d
+ 1351 0715 EF000000 		.4byte	0xef
+ 1352 0719 05       		.uleb128 0x5
+ 1353 071a 03       		.byte	0x3
+ 1354 071b 00000000 		.4byte	Two_Wire_Range
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 26
+
+
+ 1355 071f 1A       		.uleb128 0x1a
+ 1356 0720 4B0A0000 		.4byte	.LASF125
+ 1357 0724 08       		.byte	0x8
+ 1358 0725 1E       		.byte	0x1e
+ 1359 0726 EF000000 		.4byte	0xef
+ 1360 072a 05       		.uleb128 0x5
+ 1361 072b 03       		.byte	0x3
+ 1362 072c 00000000 		.4byte	Four_Wire_Range
+ 1363 0730 1A       		.uleb128 0x1a
+ 1364 0731 56080000 		.4byte	.LASF126
+ 1365 0735 08       		.byte	0x8
+ 1366 0736 1F       		.byte	0x1f
+ 1367 0737 AD000000 		.4byte	0xad
+ 1368 073b 05       		.uleb128 0x5
+ 1369 073c 03       		.byte	0x3
+ 1370 073d 00000000 		.4byte	Four_Wire_Method
+ 1371 0741 1A       		.uleb128 0x1a
+ 1372 0742 D0070000 		.4byte	.LASF127
+ 1373 0746 08       		.byte	0x8
+ 1374 0747 21       		.byte	0x21
+ 1375 0748 AD000000 		.4byte	0xad
+ 1376 074c 05       		.uleb128 0x5
+ 1377 074d 03       		.byte	0x3
+ 1378 074e 00000000 		.4byte	Actual_Range
+ 1379 0752 1A       		.uleb128 0x1a
+ 1380 0753 6B020000 		.4byte	.LASF128
+ 1381 0757 08       		.byte	0x8
+ 1382 0758 22       		.byte	0x22
+ 1383 0759 AD000000 		.4byte	0xad
+ 1384 075d 05       		.uleb128 0x5
+ 1385 075e 03       		.byte	0x3
+ 1386 075f 00000000 		.4byte	View_Mode
+ 1387 0763 1A       		.uleb128 0x1a
+ 1388 0764 48050000 		.4byte	.LASF129
+ 1389 0768 08       		.byte	0x8
+ 1390 0769 25       		.byte	0x25
+ 1391 076a B8000000 		.4byte	0xb8
+ 1392 076e 05       		.uleb128 0x5
+ 1393 076f 03       		.byte	0x3
+ 1394 0770 00000000 		.4byte	qdCount
+ 1395 0774 1A       		.uleb128 0x1a
+ 1396 0775 15020000 		.4byte	.LASF130
+ 1397 0779 08       		.byte	0x8
+ 1398 077a 26       		.byte	0x26
+ 1399 077b B8000000 		.4byte	0xb8
+ 1400 077f 05       		.uleb128 0x5
+ 1401 0780 03       		.byte	0x3
+ 1402 0781 00000000 		.4byte	Last_qdCount
+ 1403 0785 1A       		.uleb128 0x1a
+ 1404 0786 9A070000 		.4byte	.LASF131
+ 1405 078a 08       		.byte	0x8
+ 1406 078b 28       		.byte	0x28
+ 1407 078c AD000000 		.4byte	0xad
+ 1408 0790 05       		.uleb128 0x5
+ 1409 0791 03       		.byte	0x3
+ 1410 0792 00000000 		.4byte	button1
+ 1411 0796 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 27
+
+
+ 1412 0797 A2070000 		.4byte	.LASF132
+ 1413 079b 08       		.byte	0x8
+ 1414 079c 28       		.byte	0x28
+ 1415 079d AD000000 		.4byte	0xad
+ 1416 07a1 05       		.uleb128 0x5
+ 1417 07a2 03       		.byte	0x3
+ 1418 07a3 00000000 		.4byte	button2
+ 1419 07a7 1A       		.uleb128 0x1a
+ 1420 07a8 78050000 		.4byte	.LASF133
+ 1421 07ac 08       		.byte	0x8
+ 1422 07ad 28       		.byte	0x28
+ 1423 07ae AD000000 		.4byte	0xad
+ 1424 07b2 05       		.uleb128 0x5
+ 1425 07b3 03       		.byte	0x3
+ 1426 07b4 00000000 		.4byte	button3
+ 1427 07b8 1A       		.uleb128 0x1a
+ 1428 07b9 80050000 		.4byte	.LASF134
+ 1429 07bd 08       		.byte	0x8
+ 1430 07be 28       		.byte	0x28
+ 1431 07bf AD000000 		.4byte	0xad
+ 1432 07c3 05       		.uleb128 0x5
+ 1433 07c4 03       		.byte	0x3
+ 1434 07c5 00000000 		.4byte	button4
+ 1435 07c9 1A       		.uleb128 0x1a
+ 1436 07ca C8070000 		.4byte	.LASF135
+ 1437 07ce 08       		.byte	0x8
+ 1438 07cf 28       		.byte	0x28
+ 1439 07d0 AD000000 		.4byte	0xad
+ 1440 07d4 05       		.uleb128 0x5
+ 1441 07d5 03       		.byte	0x3
+ 1442 07d6 00000000 		.4byte	button5
+ 1443 07da 1A       		.uleb128 0x1a
+ 1444 07db A2050000 		.4byte	.LASF136
+ 1445 07df 08       		.byte	0x8
+ 1446 07e0 28       		.byte	0x28
+ 1447 07e1 AD000000 		.4byte	0xad
+ 1448 07e5 05       		.uleb128 0x5
+ 1449 07e6 03       		.byte	0x3
+ 1450 07e7 00000000 		.4byte	button6
+ 1451 07eb 1A       		.uleb128 0x1a
+ 1452 07ec F7020000 		.4byte	.LASF137
+ 1453 07f0 08       		.byte	0x8
+ 1454 07f1 28       		.byte	0x28
+ 1455 07f2 AD000000 		.4byte	0xad
+ 1456 07f6 05       		.uleb128 0x5
+ 1457 07f7 03       		.byte	0x3
+ 1458 07f8 00000000 		.4byte	push
+ 1459 07fc 1A       		.uleb128 0x1a
+ 1460 07fd 47090000 		.4byte	.LASF138
+ 1461 0801 08       		.byte	0x8
+ 1462 0802 2A       		.byte	0x2a
+ 1463 0803 AD000000 		.4byte	0xad
+ 1464 0807 05       		.uleb128 0x5
+ 1465 0808 03       		.byte	0x3
+ 1466 0809 00000000 		.4byte	OutputEnable
+ 1467 080d 1D       		.uleb128 0x1d
+ 1468 080e 75386700 		.ascii	"u8g\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 28
+
+
+ 1469 0812 08       		.byte	0x8
+ 1470 0813 2C       		.byte	0x2c
+ 1471 0814 2F010000 		.4byte	0x12f
+ 1472 0818 05       		.uleb128 0x5
+ 1473 0819 03       		.byte	0x3
+ 1474 081a 00000000 		.4byte	u8g
+ 1475 081e 1A       		.uleb128 0x1a
+ 1476 081f 5B0A0000 		.4byte	.LASF139
+ 1477 0823 08       		.byte	0x8
+ 1478 0824 2E       		.byte	0x2e
+ 1479 0825 C3000000 		.4byte	0xc3
+ 1480 0829 05       		.uleb128 0x5
+ 1481 082a 03       		.byte	0x3
+ 1482 082b 00000000 		.4byte	Push_Buzzer__Default_Lenght
+ 1483 082f 1A       		.uleb128 0x1a
+ 1484 0830 56070000 		.4byte	.LASF140
+ 1485 0834 08       		.byte	0x8
+ 1486 0835 2F       		.byte	0x2f
+ 1487 0836 C3000000 		.4byte	0xc3
+ 1488 083a 05       		.uleb128 0x5
+ 1489 083b 03       		.byte	0x3
+ 1490 083c 00000000 		.4byte	Rotate_Buzzer__Default_Lenght
+ 1491 0840 1A       		.uleb128 0x1a
+ 1492 0841 2D000000 		.4byte	.LASF141
+ 1493 0845 08       		.byte	0x8
+ 1494 0846 3C       		.byte	0x3c
+ 1495 0847 AD000000 		.4byte	0xad
+ 1496 084b 05       		.uleb128 0x5
+ 1497 084c 03       		.byte	0x3
+ 1498 084d 00000000 		.4byte	Edit_Value_Mode
+ 1499 0851 1B       		.uleb128 0x1b
+ 1500 0852 FD000000 		.4byte	0xfd
+ 1501 0856 61080000 		.4byte	0x861
+ 1502 085a 1C       		.uleb128 0x1c
+ 1503 085b 1B010000 		.4byte	0x11b
+ 1504 085f 0F       		.byte	0xf
+ 1505 0860 00       		.byte	0
+ 1506 0861 1A       		.uleb128 0x1a
+ 1507 0862 D4000000 		.4byte	.LASF142
+ 1508 0866 08       		.byte	0x8
+ 1509 0867 3E       		.byte	0x3e
+ 1510 0868 51080000 		.4byte	0x851
+ 1511 086c 05       		.uleb128 0x5
+ 1512 086d 03       		.byte	0x3
+ 1513 086e 00000000 		.4byte	cVoltage_Actual
+ 1514 0872 1A       		.uleb128 0x1a
+ 1515 0873 C2010000 		.4byte	.LASF143
+ 1516 0877 08       		.byte	0x8
+ 1517 0878 3F       		.byte	0x3f
+ 1518 0879 51080000 		.4byte	0x851
+ 1519 087d 05       		.uleb128 0x5
+ 1520 087e 03       		.byte	0x3
+ 1521 087f 00000000 		.4byte	cCurrent_Actual
+ 1522 0883 1A       		.uleb128 0x1a
+ 1523 0884 C4030000 		.4byte	.LASF144
+ 1524 0888 08       		.byte	0x8
+ 1525 0889 40       		.byte	0x40
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 29
+
+
+ 1526 088a 51080000 		.4byte	0x851
+ 1527 088e 05       		.uleb128 0x5
+ 1528 088f 03       		.byte	0x3
+ 1529 0890 00000000 		.4byte	cPower_Actual
+ 1530 0894 1B       		.uleb128 0x1b
+ 1531 0895 08010000 		.4byte	0x108
+ 1532 0899 A4080000 		.4byte	0x8a4
+ 1533 089d 1C       		.uleb128 0x1c
+ 1534 089e 1B010000 		.4byte	0x11b
+ 1535 08a2 0F       		.byte	0xf
+ 1536 08a3 00       		.byte	0
+ 1537 08a4 1A       		.uleb128 0x1a
+ 1538 08a5 99030000 		.4byte	.LASF145
+ 1539 08a9 08       		.byte	0x8
+ 1540 08aa 41       		.byte	0x41
+ 1541 08ab 94080000 		.4byte	0x894
+ 1542 08af 05       		.uleb128 0x5
+ 1543 08b0 03       		.byte	0x3
+ 1544 08b1 00000000 		.4byte	cResist_Actual
+ 1545 08b5 1A       		.uleb128 0x1a
+ 1546 08b6 85020000 		.4byte	.LASF146
+ 1547 08ba 08       		.byte	0x8
+ 1548 08bb 43       		.byte	0x43
+ 1549 08bc 51080000 		.4byte	0x851
+ 1550 08c0 05       		.uleb128 0x5
+ 1551 08c1 03       		.byte	0x3
+ 1552 08c2 00000000 		.4byte	cVoltage_Set
+ 1553 08c6 1A       		.uleb128 0x1a
+ 1554 08c7 D2010000 		.4byte	.LASF147
+ 1555 08cb 08       		.byte	0x8
+ 1556 08cc 44       		.byte	0x44
+ 1557 08cd 51080000 		.4byte	0x851
+ 1558 08d1 05       		.uleb128 0x5
+ 1559 08d2 03       		.byte	0x3
+ 1560 08d3 00000000 		.4byte	cCurrent_Set
+ 1561 08d7 1A       		.uleb128 0x1a
+ 1562 08d8 CA020000 		.4byte	.LASF148
+ 1563 08dc 08       		.byte	0x8
+ 1564 08dd 45       		.byte	0x45
+ 1565 08de 51080000 		.4byte	0x851
+ 1566 08e2 05       		.uleb128 0x5
+ 1567 08e3 03       		.byte	0x3
+ 1568 08e4 00000000 		.4byte	cPower_Set
+ 1569 08e8 1A       		.uleb128 0x1a
+ 1570 08e9 10000000 		.4byte	.LASF149
+ 1571 08ed 08       		.byte	0x8
+ 1572 08ee 46       		.byte	0x46
+ 1573 08ef 51080000 		.4byte	0x851
+ 1574 08f3 05       		.uleb128 0x5
+ 1575 08f4 03       		.byte	0x3
+ 1576 08f5 00000000 		.4byte	cResist_Set
+ 1577 08f9 1A       		.uleb128 0x1a
+ 1578 08fa E2080000 		.4byte	.LASF150
+ 1579 08fe 08       		.byte	0x8
+ 1580 08ff 48       		.byte	0x48
+ 1581 0900 51080000 		.4byte	0x851
+ 1582 0904 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 30
+
+
+ 1583 0905 03       		.byte	0x3
+ 1584 0906 00000000 		.4byte	TestChar
+ 1585 090a 1A       		.uleb128 0x1a
+ 1586 090b ED020000 		.4byte	.LASF151
+ 1587 090f 08       		.byte	0x8
+ 1588 0910 4C       		.byte	0x4c
+ 1589 0911 D9000000 		.4byte	0xd9
+ 1590 0915 05       		.uleb128 0x5
+ 1591 0916 03       		.byte	0x3
+ 1592 0917 00000000 		.4byte	XPosition
+ 1593 091b 1A       		.uleb128 0x1a
+ 1594 091c E2090000 		.4byte	.LASF152
+ 1595 0920 08       		.byte	0x8
+ 1596 0921 4D       		.byte	0x4d
+ 1597 0922 51080000 		.4byte	0x851
+ 1598 0926 05       		.uleb128 0x5
+ 1599 0927 03       		.byte	0x3
+ 1600 0928 00000000 		.4byte	cXPosition
+ 1601 092c 1A       		.uleb128 0x1a
+ 1602 092d 63050000 		.4byte	.LASF153
+ 1603 0931 08       		.byte	0x8
+ 1604 0932 4E       		.byte	0x4e
+ 1605 0933 D9000000 		.4byte	0xd9
+ 1606 0937 05       		.uleb128 0x5
+ 1607 0938 03       		.byte	0x3
+ 1608 0939 00000000 		.4byte	YPosition
+ 1609 093d 1A       		.uleb128 0x1a
+ 1610 093e 50040000 		.4byte	.LASF154
+ 1611 0942 08       		.byte	0x8
+ 1612 0943 4F       		.byte	0x4f
+ 1613 0944 51080000 		.4byte	0x851
+ 1614 0948 05       		.uleb128 0x5
+ 1615 0949 03       		.byte	0x3
+ 1616 094a 00000000 		.4byte	cYPosition
+ 1617 094e 1A       		.uleb128 0x1a
+ 1618 094f DA080000 		.4byte	.LASF155
+ 1619 0953 08       		.byte	0x8
+ 1620 0954 50       		.byte	0x50
+ 1621 0955 AD000000 		.4byte	0xad
+ 1622 0959 05       		.uleb128 0x5
+ 1623 095a 03       		.byte	0x3
+ 1624 095b 00000000 		.4byte	Touched
+ 1625 095f 1A       		.uleb128 0x1a
+ 1626 0960 74070000 		.4byte	.LASF156
+ 1627 0964 08       		.byte	0x8
+ 1628 0965 52       		.byte	0x52
+ 1629 0966 B8000000 		.4byte	0xb8
+ 1630 096a 05       		.uleb128 0x5
+ 1631 096b 03       		.byte	0x3
+ 1632 096c 00000000 		.4byte	MeasuredVoltage
+ 1633 0970 1A       		.uleb128 0x1a
+ 1634 0971 39030000 		.4byte	.LASF157
+ 1635 0975 08       		.byte	0x8
+ 1636 0976 53       		.byte	0x53
+ 1637 0977 EF000000 		.4byte	0xef
+ 1638 097b 05       		.uleb128 0x5
+ 1639 097c 03       		.byte	0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 31
+
+
+ 1640 097d 00000000 		.4byte	fVoltage
+ 1641 0981 1A       		.uleb128 0x1a
+ 1642 0982 92050000 		.4byte	.LASF158
+ 1643 0986 08       		.byte	0x8
+ 1644 0987 54       		.byte	0x54
+ 1645 0988 D9000000 		.4byte	0xd9
+ 1646 098c 05       		.uleb128 0x5
+ 1647 098d 03       		.byte	0x3
+ 1648 098e 00000000 		.4byte	MeasuredCurrent
+ 1649 0992 1A       		.uleb128 0x1a
+ 1650 0993 AE060000 		.4byte	.LASF159
+ 1651 0997 08       		.byte	0x8
+ 1652 0998 55       		.byte	0x55
+ 1653 0999 EF000000 		.4byte	0xef
+ 1654 099d 05       		.uleb128 0x5
+ 1655 099e 03       		.byte	0x3
+ 1656 099f 00000000 		.4byte	fCurrent
+ 1657 09a3 1A       		.uleb128 0x1a
+ 1658 09a4 4D000000 		.4byte	.LASF160
+ 1659 09a8 08       		.byte	0x8
+ 1660 09a9 56       		.byte	0x56
+ 1661 09aa D9000000 		.4byte	0xd9
+ 1662 09ae 05       		.uleb128 0x5
+ 1663 09af 03       		.byte	0x3
+ 1664 09b0 00000000 		.4byte	Power
+ 1665 09b4 1A       		.uleb128 0x1a
+ 1666 09b5 04040000 		.4byte	.LASF161
+ 1667 09b9 08       		.byte	0x8
+ 1668 09ba 57       		.byte	0x57
+ 1669 09bb EF000000 		.4byte	0xef
+ 1670 09bf 05       		.uleb128 0x5
+ 1671 09c0 03       		.byte	0x3
+ 1672 09c1 00000000 		.4byte	fPower
+ 1673 09c5 1A       		.uleb128 0x1a
+ 1674 09c6 78060000 		.4byte	.LASF162
+ 1675 09ca 08       		.byte	0x8
+ 1676 09cb 58       		.byte	0x58
+ 1677 09cc D9000000 		.4byte	0xd9
+ 1678 09d0 05       		.uleb128 0x5
+ 1679 09d1 03       		.byte	0x3
+ 1680 09d2 00000000 		.4byte	Resist
+ 1681 09d6 1A       		.uleb128 0x1a
+ 1682 09d7 F3040000 		.4byte	.LASF163
+ 1683 09db 08       		.byte	0x8
+ 1684 09dc 59       		.byte	0x59
+ 1685 09dd EF000000 		.4byte	0xef
+ 1686 09e1 05       		.uleb128 0x5
+ 1687 09e2 03       		.byte	0x3
+ 1688 09e3 00000000 		.4byte	fResist
+ 1689 09e7 1A       		.uleb128 0x1a
+ 1690 09e8 B8090000 		.4byte	.LASF164
+ 1691 09ec 08       		.byte	0x8
+ 1692 09ed 5C       		.byte	0x5c
+ 1693 09ee EF000000 		.4byte	0xef
+ 1694 09f2 05       		.uleb128 0x5
+ 1695 09f3 03       		.byte	0x3
+ 1696 09f4 00000000 		.4byte	Set_Voltage
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 32
+
+
+ 1697 09f8 1A       		.uleb128 0x1a
+ 1698 09f9 EB080000 		.4byte	.LASF165
+ 1699 09fd 08       		.byte	0x8
+ 1700 09fe 5D       		.byte	0x5d
+ 1701 09ff EF000000 		.4byte	0xef
+ 1702 0a03 05       		.uleb128 0x5
+ 1703 0a04 03       		.byte	0x3
+ 1704 0a05 00000000 		.4byte	Set_Current
+ 1705 0a09 1A       		.uleb128 0x1a
+ 1706 0a0a C1060000 		.4byte	.LASF166
+ 1707 0a0e 08       		.byte	0x8
+ 1708 0a0f 5E       		.byte	0x5e
+ 1709 0a10 EF000000 		.4byte	0xef
+ 1710 0a14 05       		.uleb128 0x5
+ 1711 0a15 03       		.byte	0x3
+ 1712 0a16 00000000 		.4byte	Set_Current_Temporary_Value
+ 1713 0a1a 1A       		.uleb128 0x1a
+ 1714 0a1b 05090000 		.4byte	.LASF167
+ 1715 0a1f 08       		.byte	0x8
+ 1716 0a20 5F       		.byte	0x5f
+ 1717 0a21 EF000000 		.4byte	0xef
+ 1718 0a25 05       		.uleb128 0x5
+ 1719 0a26 03       		.byte	0x3
+ 1720 0a27 00000000 		.4byte	Set_Power
+ 1721 0a2b 1A       		.uleb128 0x1a
+ 1722 0a2c D2030000 		.4byte	.LASF168
+ 1723 0a30 08       		.byte	0x8
+ 1724 0a31 60       		.byte	0x60
+ 1725 0a32 EF000000 		.4byte	0xef
+ 1726 0a36 05       		.uleb128 0x5
+ 1727 0a37 03       		.byte	0x3
+ 1728 0a38 00000000 		.4byte	Set_Power_Temporary_Value
+ 1729 0a3c 1A       		.uleb128 0x1a
+ 1730 0a3d 53000000 		.4byte	.LASF169
+ 1731 0a41 08       		.byte	0x8
+ 1732 0a42 61       		.byte	0x61
+ 1733 0a43 EF000000 		.4byte	0xef
+ 1734 0a47 05       		.uleb128 0x5
+ 1735 0a48 03       		.byte	0x3
+ 1736 0a49 00000000 		.4byte	Set_Resist
+ 1737 0a4d 1A       		.uleb128 0x1a
+ 1738 0a4e 42030000 		.4byte	.LASF170
+ 1739 0a52 08       		.byte	0x8
+ 1740 0a53 62       		.byte	0x62
+ 1741 0a54 EF000000 		.4byte	0xef
+ 1742 0a58 05       		.uleb128 0x5
+ 1743 0a59 03       		.byte	0x3
+ 1744 0a5a 00000000 		.4byte	Set_Resist_Temporary_Value
+ 1745 0a5e 1A       		.uleb128 0x1a
+ 1746 0a5f 18040000 		.4byte	.LASF171
+ 1747 0a63 08       		.byte	0x8
+ 1748 0a64 64       		.byte	0x64
+ 1749 0a65 CE000000 		.4byte	0xce
+ 1750 0a69 05       		.uleb128 0x5
+ 1751 0a6a 03       		.byte	0x3
+ 1752 0a6b 00000000 		.4byte	Position_Number
+ 1753 0a6f 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 33
+
+
+ 1754 0a70 A8030000 		.4byte	.LASF172
+ 1755 0a74 08       		.byte	0x8
+ 1756 0a75 68       		.byte	0x68
+ 1757 0a76 EF000000 		.4byte	0xef
+ 1758 0a7a 05       		.uleb128 0x5
+ 1759 0a7b 03       		.byte	0x3
+ 1760 0a7c 00000000 		.4byte	MaxPower
+ 1761 0a80 1A       		.uleb128 0x1a
+ 1762 0a81 4B070000 		.4byte	.LASF173
+ 1763 0a85 08       		.byte	0x8
+ 1764 0a86 69       		.byte	0x69
+ 1765 0a87 EF000000 		.4byte	0xef
+ 1766 0a8b 05       		.uleb128 0x5
+ 1767 0a8c 03       		.byte	0x3
+ 1768 0a8d 00000000 		.4byte	MaxVoltage
+ 1769 0a91 1A       		.uleb128 0x1a
+ 1770 0a92 6D050000 		.4byte	.LASF174
+ 1771 0a96 08       		.byte	0x8
+ 1772 0a97 6A       		.byte	0x6a
+ 1773 0a98 EF000000 		.4byte	0xef
+ 1774 0a9c 05       		.uleb128 0x5
+ 1775 0a9d 03       		.byte	0x3
+ 1776 0a9e 00000000 		.4byte	MaxCurrent
+ 1777 0aa2 1A       		.uleb128 0x1a
+ 1778 0aa3 6E040000 		.4byte	.LASF175
+ 1779 0aa7 08       		.byte	0x8
+ 1780 0aa8 6B       		.byte	0x6b
+ 1781 0aa9 EF000000 		.4byte	0xef
+ 1782 0aad 05       		.uleb128 0x5
+ 1783 0aae 03       		.byte	0x3
+ 1784 0aaf 00000000 		.4byte	MinResistance
+ 1785 0ab3 1A       		.uleb128 0x1a
+ 1786 0ab4 F7080000 		.4byte	.LASF176
+ 1787 0ab8 08       		.byte	0x8
+ 1788 0ab9 6C       		.byte	0x6c
+ 1789 0aba EF000000 		.4byte	0xef
+ 1790 0abe 05       		.uleb128 0x5
+ 1791 0abf 03       		.byte	0x3
+ 1792 0ac0 00000000 		.4byte	MaxResistance
+ 1793 0ac4 1A       		.uleb128 0x1a
+ 1794 0ac5 B3090000 		.4byte	.LASF177
+ 1795 0ac9 08       		.byte	0x8
+ 1796 0aca 6D       		.byte	0x6d
+ 1797 0acb EF000000 		.4byte	0xef
+ 1798 0acf 05       		.uleb128 0x5
+ 1799 0ad0 03       		.byte	0x3
+ 1800 0ad1 00000000 		.4byte	C_Kp
+ 1801 0ad5 1A       		.uleb128 0x1a
+ 1802 0ad6 AE090000 		.4byte	.LASF178
+ 1803 0ada 08       		.byte	0x8
+ 1804 0adb 6E       		.byte	0x6e
+ 1805 0adc EF000000 		.4byte	0xef
+ 1806 0ae0 05       		.uleb128 0x5
+ 1807 0ae1 03       		.byte	0x3
+ 1808 0ae2 00000000 		.4byte	C_Ki
+ 1809 0ae6 1A       		.uleb128 0x1a
+ 1810 0ae7 A9090000 		.4byte	.LASF179
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 34
+
+
+ 1811 0aeb 08       		.byte	0x8
+ 1812 0aec 6F       		.byte	0x6f
+ 1813 0aed EF000000 		.4byte	0xef
+ 1814 0af1 05       		.uleb128 0x5
+ 1815 0af2 03       		.byte	0x3
+ 1816 0af3 00000000 		.4byte	C_Kd
+ 1817 0af7 1A       		.uleb128 0x1a
+ 1818 0af8 50050000 		.4byte	.LASF180
+ 1819 0afc 08       		.byte	0x8
+ 1820 0afd 70       		.byte	0x70
+ 1821 0afe CE000000 		.4byte	0xce
+ 1822 0b02 05       		.uleb128 0x5
+ 1823 0b03 03       		.byte	0x3
+ 1824 0b04 00000000 		.4byte	Max_FET_Temp
+ 1825 0b08 1A       		.uleb128 0x1a
+ 1826 0b09 07080000 		.4byte	.LASF181
+ 1827 0b0d 08       		.byte	0x8
+ 1828 0b0e 71       		.byte	0x71
+ 1829 0b0f AD000000 		.4byte	0xad
+ 1830 0b13 05       		.uleb128 0x5
+ 1831 0b14 03       		.byte	0x3
+ 1832 0b15 00000000 		.4byte	OverTemperature
+ 1833 0b19 1A       		.uleb128 0x1a
+ 1834 0b1a 75020000 		.4byte	.LASF182
+ 1835 0b1e 08       		.byte	0x8
+ 1836 0b1f 74       		.byte	0x74
+ 1837 0b20 D9000000 		.4byte	0xd9
+ 1838 0b24 05       		.uleb128 0x5
+ 1839 0b25 03       		.byte	0x3
+ 1840 0b26 00000000 		.4byte	Set_Ampl
+ 1841 0b2a 1A       		.uleb128 0x1a
+ 1842 0b2b DD070000 		.4byte	.LASF183
+ 1843 0b2f 08       		.byte	0x8
+ 1844 0b30 75       		.byte	0x75
+ 1845 0b31 D9000000 		.4byte	0xd9
+ 1846 0b35 05       		.uleb128 0x5
+ 1847 0b36 03       		.byte	0x3
+ 1848 0b37 00000000 		.4byte	Set_Ampl_Temporary_Value
+ 1849 0b3b 1A       		.uleb128 0x1a
+ 1850 0b3c 47040000 		.4byte	.LASF184
+ 1851 0b40 08       		.byte	0x8
+ 1852 0b41 76       		.byte	0x76
+ 1853 0b42 B8000000 		.4byte	0xb8
+ 1854 0b46 05       		.uleb128 0x5
+ 1855 0b47 03       		.byte	0x3
+ 1856 0b48 00000000 		.4byte	Set_Freq
+ 1857 0b4c 1A       		.uleb128 0x1a
+ 1858 0b4d 5A010000 		.4byte	.LASF185
+ 1859 0b51 08       		.byte	0x8
+ 1860 0b52 77       		.byte	0x77
+ 1861 0b53 E4000000 		.4byte	0xe4
+ 1862 0b57 05       		.uleb128 0x5
+ 1863 0b58 03       		.byte	0x3
+ 1864 0b59 00000000 		.4byte	Set_Freq_Temporary_Value
+ 1865 0b5d 1A       		.uleb128 0x1a
+ 1866 0b5e FB030000 		.4byte	.LASF186
+ 1867 0b62 08       		.byte	0x8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 35
+
+
+ 1868 0b63 78       		.byte	0x78
+ 1869 0b64 CE000000 		.4byte	0xce
+ 1870 0b68 05       		.uleb128 0x5
+ 1871 0b69 03       		.byte	0x3
+ 1872 0b6a 00000000 		.4byte	Set_Duty
+ 1873 0b6e 1A       		.uleb128 0x1a
+ 1874 0b6f EB000000 		.4byte	.LASF187
+ 1875 0b73 08       		.byte	0x8
+ 1876 0b74 79       		.byte	0x79
+ 1877 0b75 CE000000 		.4byte	0xce
+ 1878 0b79 05       		.uleb128 0x5
+ 1879 0b7a 03       		.byte	0x3
+ 1880 0b7b 00000000 		.4byte	Set_Duty_Temporary_Value
+ 1881 0b7f 1A       		.uleb128 0x1a
+ 1882 0b80 01070000 		.4byte	.LASF188
+ 1883 0b84 08       		.byte	0x8
+ 1884 0b85 7A       		.byte	0x7a
+ 1885 0b86 51080000 		.4byte	0x851
+ 1886 0b8a 05       		.uleb128 0x5
+ 1887 0b8b 03       		.byte	0x3
+ 1888 0b8c 00000000 		.4byte	cSet_Ampl
+ 1889 0b90 1A       		.uleb128 0x1a
+ 1890 0b91 38040000 		.4byte	.LASF189
+ 1891 0b95 08       		.byte	0x8
+ 1892 0b96 7B       		.byte	0x7b
+ 1893 0b97 51080000 		.4byte	0x851
+ 1894 0b9b 05       		.uleb128 0x5
+ 1895 0b9c 03       		.byte	0x3
+ 1896 0b9d 00000000 		.4byte	cSet_Freq
+ 1897 0ba1 1A       		.uleb128 0x1a
+ 1898 0ba2 92040000 		.4byte	.LASF190
+ 1899 0ba6 08       		.byte	0x8
+ 1900 0ba7 7C       		.byte	0x7c
+ 1901 0ba8 51080000 		.4byte	0x851
+ 1902 0bac 05       		.uleb128 0x5
+ 1903 0bad 03       		.byte	0x3
+ 1904 0bae 00000000 		.4byte	cSet_Duty
+ 1905 0bb2 1A       		.uleb128 0x1a
+ 1906 0bb3 5B040000 		.4byte	.LASF191
+ 1907 0bb7 08       		.byte	0x8
+ 1908 0bb8 7E       		.byte	0x7e
+ 1909 0bb9 AD000000 		.4byte	0xad
+ 1910 0bbd 05       		.uleb128 0x5
+ 1911 0bbe 03       		.byte	0x3
+ 1912 0bbf 00000000 		.4byte	Current_Edit_Value
+ 1913 0bc3 1A       		.uleb128 0x1a
+ 1914 0bc4 330A0000 		.4byte	.LASF192
+ 1915 0bc8 08       		.byte	0x8
+ 1916 0bc9 7F       		.byte	0x7f
+ 1917 0bca AD000000 		.4byte	0xad
+ 1918 0bce 05       		.uleb128 0x5
+ 1919 0bcf 03       		.byte	0x3
+ 1920 0bd0 00000000 		.4byte	Actual_Multiplier_Value
+ 1921 0bd4 1B       		.uleb128 0x1b
+ 1922 0bd5 FD000000 		.4byte	0xfd
+ 1923 0bd9 E40B0000 		.4byte	0xbe4
+ 1924 0bdd 1C       		.uleb128 0x1c
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 36
+
+
+ 1925 0bde 1B010000 		.4byte	0x11b
+ 1926 0be2 1F       		.byte	0x1f
+ 1927 0be3 00       		.byte	0
+ 1928 0be4 1A       		.uleb128 0x1a
+ 1929 0be5 D0040000 		.4byte	.LASF193
+ 1930 0be9 08       		.byte	0x8
+ 1931 0bea 83       		.byte	0x83
+ 1932 0beb D40B0000 		.4byte	0xbd4
+ 1933 0bef 05       		.uleb128 0x5
+ 1934 0bf0 03       		.byte	0x3
+ 1935 0bf1 00000000 		.4byte	cCounter
+ 1936 0bf5 1A       		.uleb128 0x1a
+ 1937 0bf6 E4000000 		.4byte	.LASF194
+ 1938 0bfa 01       		.byte	0x1
+ 1939 0bfb 06       		.byte	0x6
+ 1940 0bfc 0F010000 		.4byte	0x10f
+ 1941 0c00 05       		.uleb128 0x5
+ 1942 0c01 03       		.byte	0x3
+ 1943 0c02 00000000 		.4byte	Status
+ 1944 0c06 00       		.byte	0
+ 1945              		.section	.debug_abbrev,"",%progbits
+ 1946              	.Ldebug_abbrev0:
+ 1947 0000 01       		.uleb128 0x1
+ 1948 0001 11       		.uleb128 0x11
+ 1949 0002 01       		.byte	0x1
+ 1950 0003 25       		.uleb128 0x25
+ 1951 0004 0E       		.uleb128 0xe
+ 1952 0005 13       		.uleb128 0x13
+ 1953 0006 0B       		.uleb128 0xb
+ 1954 0007 03       		.uleb128 0x3
+ 1955 0008 0E       		.uleb128 0xe
+ 1956 0009 1B       		.uleb128 0x1b
+ 1957 000a 0E       		.uleb128 0xe
+ 1958 000b 55       		.uleb128 0x55
+ 1959 000c 17       		.uleb128 0x17
+ 1960 000d 11       		.uleb128 0x11
+ 1961 000e 01       		.uleb128 0x1
+ 1962 000f 10       		.uleb128 0x10
+ 1963 0010 17       		.uleb128 0x17
+ 1964 0011 00       		.byte	0
+ 1965 0012 00       		.byte	0
+ 1966 0013 02       		.uleb128 0x2
+ 1967 0014 16       		.uleb128 0x16
+ 1968 0015 00       		.byte	0
+ 1969 0016 03       		.uleb128 0x3
+ 1970 0017 0E       		.uleb128 0xe
+ 1971 0018 3A       		.uleb128 0x3a
+ 1972 0019 0B       		.uleb128 0xb
+ 1973 001a 3B       		.uleb128 0x3b
+ 1974 001b 0B       		.uleb128 0xb
+ 1975 001c 49       		.uleb128 0x49
+ 1976 001d 13       		.uleb128 0x13
+ 1977 001e 00       		.byte	0
+ 1978 001f 00       		.byte	0
+ 1979 0020 03       		.uleb128 0x3
+ 1980 0021 24       		.uleb128 0x24
+ 1981 0022 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 37
+
+
+ 1982 0023 0B       		.uleb128 0xb
+ 1983 0024 0B       		.uleb128 0xb
+ 1984 0025 3E       		.uleb128 0x3e
+ 1985 0026 0B       		.uleb128 0xb
+ 1986 0027 03       		.uleb128 0x3
+ 1987 0028 0E       		.uleb128 0xe
+ 1988 0029 00       		.byte	0
+ 1989 002a 00       		.byte	0
+ 1990 002b 04       		.uleb128 0x4
+ 1991 002c 24       		.uleb128 0x24
+ 1992 002d 00       		.byte	0
+ 1993 002e 0B       		.uleb128 0xb
+ 1994 002f 0B       		.uleb128 0xb
+ 1995 0030 3E       		.uleb128 0x3e
+ 1996 0031 0B       		.uleb128 0xb
+ 1997 0032 03       		.uleb128 0x3
+ 1998 0033 08       		.uleb128 0x8
+ 1999 0034 00       		.byte	0
+ 2000 0035 00       		.byte	0
+ 2001 0036 05       		.uleb128 0x5
+ 2002 0037 16       		.uleb128 0x16
+ 2003 0038 00       		.byte	0
+ 2004 0039 03       		.uleb128 0x3
+ 2005 003a 0E       		.uleb128 0xe
+ 2006 003b 3A       		.uleb128 0x3a
+ 2007 003c 0B       		.uleb128 0xb
+ 2008 003d 3B       		.uleb128 0x3b
+ 2009 003e 05       		.uleb128 0x5
+ 2010 003f 49       		.uleb128 0x49
+ 2011 0040 13       		.uleb128 0x13
+ 2012 0041 00       		.byte	0
+ 2013 0042 00       		.byte	0
+ 2014 0043 06       		.uleb128 0x6
+ 2015 0044 0F       		.uleb128 0xf
+ 2016 0045 00       		.byte	0
+ 2017 0046 0B       		.uleb128 0xb
+ 2018 0047 0B       		.uleb128 0xb
+ 2019 0048 00       		.byte	0
+ 2020 0049 00       		.byte	0
+ 2021 004a 07       		.uleb128 0x7
+ 2022 004b 13       		.uleb128 0x13
+ 2023 004c 01       		.byte	0x1
+ 2024 004d 03       		.uleb128 0x3
+ 2025 004e 0E       		.uleb128 0xe
+ 2026 004f 0B       		.uleb128 0xb
+ 2027 0050 0B       		.uleb128 0xb
+ 2028 0051 3A       		.uleb128 0x3a
+ 2029 0052 0B       		.uleb128 0xb
+ 2030 0053 3B       		.uleb128 0x3b
+ 2031 0054 05       		.uleb128 0x5
+ 2032 0055 01       		.uleb128 0x1
+ 2033 0056 13       		.uleb128 0x13
+ 2034 0057 00       		.byte	0
+ 2035 0058 00       		.byte	0
+ 2036 0059 08       		.uleb128 0x8
+ 2037 005a 0D       		.uleb128 0xd
+ 2038 005b 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 38
+
+
+ 2039 005c 03       		.uleb128 0x3
+ 2040 005d 0E       		.uleb128 0xe
+ 2041 005e 3A       		.uleb128 0x3a
+ 2042 005f 0B       		.uleb128 0xb
+ 2043 0060 3B       		.uleb128 0x3b
+ 2044 0061 05       		.uleb128 0x5
+ 2045 0062 49       		.uleb128 0x49
+ 2046 0063 13       		.uleb128 0x13
+ 2047 0064 38       		.uleb128 0x38
+ 2048 0065 0B       		.uleb128 0xb
+ 2049 0066 00       		.byte	0
+ 2050 0067 00       		.byte	0
+ 2051 0068 09       		.uleb128 0x9
+ 2052 0069 0D       		.uleb128 0xd
+ 2053 006a 00       		.byte	0
+ 2054 006b 03       		.uleb128 0x3
+ 2055 006c 08       		.uleb128 0x8
+ 2056 006d 3A       		.uleb128 0x3a
+ 2057 006e 0B       		.uleb128 0xb
+ 2058 006f 3B       		.uleb128 0x3b
+ 2059 0070 05       		.uleb128 0x5
+ 2060 0071 49       		.uleb128 0x49
+ 2061 0072 13       		.uleb128 0x13
+ 2062 0073 38       		.uleb128 0x38
+ 2063 0074 0B       		.uleb128 0xb
+ 2064 0075 00       		.byte	0
+ 2065 0076 00       		.byte	0
+ 2066 0077 0A       		.uleb128 0xa
+ 2067 0078 13       		.uleb128 0x13
+ 2068 0079 01       		.byte	0x1
+ 2069 007a 03       		.uleb128 0x3
+ 2070 007b 0E       		.uleb128 0xe
+ 2071 007c 0B       		.uleb128 0xb
+ 2072 007d 0B       		.uleb128 0xb
+ 2073 007e 3A       		.uleb128 0x3a
+ 2074 007f 0B       		.uleb128 0xb
+ 2075 0080 3B       		.uleb128 0x3b
+ 2076 0081 0B       		.uleb128 0xb
+ 2077 0082 01       		.uleb128 0x1
+ 2078 0083 13       		.uleb128 0x13
+ 2079 0084 00       		.byte	0
+ 2080 0085 00       		.byte	0
+ 2081 0086 0B       		.uleb128 0xb
+ 2082 0087 0D       		.uleb128 0xd
+ 2083 0088 00       		.byte	0
+ 2084 0089 03       		.uleb128 0x3
+ 2085 008a 0E       		.uleb128 0xe
+ 2086 008b 3A       		.uleb128 0x3a
+ 2087 008c 0B       		.uleb128 0xb
+ 2088 008d 3B       		.uleb128 0x3b
+ 2089 008e 0B       		.uleb128 0xb
+ 2090 008f 49       		.uleb128 0x49
+ 2091 0090 13       		.uleb128 0x13
+ 2092 0091 38       		.uleb128 0x38
+ 2093 0092 0B       		.uleb128 0xb
+ 2094 0093 00       		.byte	0
+ 2095 0094 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 39
+
+
+ 2096 0095 0C       		.uleb128 0xc
+ 2097 0096 0F       		.uleb128 0xf
+ 2098 0097 00       		.byte	0
+ 2099 0098 0B       		.uleb128 0xb
+ 2100 0099 0B       		.uleb128 0xb
+ 2101 009a 49       		.uleb128 0x49
+ 2102 009b 13       		.uleb128 0x13
+ 2103 009c 00       		.byte	0
+ 2104 009d 00       		.byte	0
+ 2105 009e 0D       		.uleb128 0xd
+ 2106 009f 15       		.uleb128 0x15
+ 2107 00a0 01       		.byte	0x1
+ 2108 00a1 27       		.uleb128 0x27
+ 2109 00a2 19       		.uleb128 0x19
+ 2110 00a3 49       		.uleb128 0x49
+ 2111 00a4 13       		.uleb128 0x13
+ 2112 00a5 01       		.uleb128 0x1
+ 2113 00a6 13       		.uleb128 0x13
+ 2114 00a7 00       		.byte	0
+ 2115 00a8 00       		.byte	0
+ 2116 00a9 0E       		.uleb128 0xe
+ 2117 00aa 05       		.uleb128 0x5
+ 2118 00ab 00       		.byte	0
+ 2119 00ac 49       		.uleb128 0x49
+ 2120 00ad 13       		.uleb128 0x13
+ 2121 00ae 00       		.byte	0
+ 2122 00af 00       		.byte	0
+ 2123 00b0 0F       		.uleb128 0xf
+ 2124 00b1 15       		.uleb128 0x15
+ 2125 00b2 01       		.byte	0x1
+ 2126 00b3 27       		.uleb128 0x27
+ 2127 00b4 19       		.uleb128 0x19
+ 2128 00b5 01       		.uleb128 0x1
+ 2129 00b6 13       		.uleb128 0x13
+ 2130 00b7 00       		.byte	0
+ 2131 00b8 00       		.byte	0
+ 2132 00b9 10       		.uleb128 0x10
+ 2133 00ba 26       		.uleb128 0x26
+ 2134 00bb 00       		.byte	0
+ 2135 00bc 49       		.uleb128 0x49
+ 2136 00bd 13       		.uleb128 0x13
+ 2137 00be 00       		.byte	0
+ 2138 00bf 00       		.byte	0
+ 2139 00c0 11       		.uleb128 0x11
+ 2140 00c1 04       		.uleb128 0x4
+ 2141 00c2 01       		.byte	0x1
+ 2142 00c3 03       		.uleb128 0x3
+ 2143 00c4 0E       		.uleb128 0xe
+ 2144 00c5 0B       		.uleb128 0xb
+ 2145 00c6 0B       		.uleb128 0xb
+ 2146 00c7 3A       		.uleb128 0x3a
+ 2147 00c8 0B       		.uleb128 0xb
+ 2148 00c9 3B       		.uleb128 0x3b
+ 2149 00ca 0B       		.uleb128 0xb
+ 2150 00cb 01       		.uleb128 0x1
+ 2151 00cc 13       		.uleb128 0x13
+ 2152 00cd 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 40
+
+
+ 2153 00ce 00       		.byte	0
+ 2154 00cf 12       		.uleb128 0x12
+ 2155 00d0 28       		.uleb128 0x28
+ 2156 00d1 00       		.byte	0
+ 2157 00d2 03       		.uleb128 0x3
+ 2158 00d3 0E       		.uleb128 0xe
+ 2159 00d4 1C       		.uleb128 0x1c
+ 2160 00d5 0D       		.uleb128 0xd
+ 2161 00d6 00       		.byte	0
+ 2162 00d7 00       		.byte	0
+ 2163 00d8 13       		.uleb128 0x13
+ 2164 00d9 2E       		.uleb128 0x2e
+ 2165 00da 01       		.byte	0x1
+ 2166 00db 3F       		.uleb128 0x3f
+ 2167 00dc 19       		.uleb128 0x19
+ 2168 00dd 03       		.uleb128 0x3
+ 2169 00de 0E       		.uleb128 0xe
+ 2170 00df 3A       		.uleb128 0x3a
+ 2171 00e0 0B       		.uleb128 0xb
+ 2172 00e1 3B       		.uleb128 0x3b
+ 2173 00e2 0B       		.uleb128 0xb
+ 2174 00e3 27       		.uleb128 0x27
+ 2175 00e4 19       		.uleb128 0x19
+ 2176 00e5 11       		.uleb128 0x11
+ 2177 00e6 01       		.uleb128 0x1
+ 2178 00e7 12       		.uleb128 0x12
+ 2179 00e8 06       		.uleb128 0x6
+ 2180 00e9 40       		.uleb128 0x40
+ 2181 00ea 18       		.uleb128 0x18
+ 2182 00eb 9642     		.uleb128 0x2116
+ 2183 00ed 19       		.uleb128 0x19
+ 2184 00ee 01       		.uleb128 0x1
+ 2185 00ef 13       		.uleb128 0x13
+ 2186 00f0 00       		.byte	0
+ 2187 00f1 00       		.byte	0
+ 2188 00f2 14       		.uleb128 0x14
+ 2189 00f3 05       		.uleb128 0x5
+ 2190 00f4 00       		.byte	0
+ 2191 00f5 03       		.uleb128 0x3
+ 2192 00f6 0E       		.uleb128 0xe
+ 2193 00f7 3A       		.uleb128 0x3a
+ 2194 00f8 0B       		.uleb128 0xb
+ 2195 00f9 3B       		.uleb128 0x3b
+ 2196 00fa 0B       		.uleb128 0xb
+ 2197 00fb 49       		.uleb128 0x49
+ 2198 00fc 13       		.uleb128 0x13
+ 2199 00fd 02       		.uleb128 0x2
+ 2200 00fe 18       		.uleb128 0x18
+ 2201 00ff 00       		.byte	0
+ 2202 0100 00       		.byte	0
+ 2203 0101 15       		.uleb128 0x15
+ 2204 0102 2E       		.uleb128 0x2e
+ 2205 0103 00       		.byte	0
+ 2206 0104 3F       		.uleb128 0x3f
+ 2207 0105 19       		.uleb128 0x19
+ 2208 0106 03       		.uleb128 0x3
+ 2209 0107 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 41
+
+
+ 2210 0108 3A       		.uleb128 0x3a
+ 2211 0109 0B       		.uleb128 0xb
+ 2212 010a 3B       		.uleb128 0x3b
+ 2213 010b 0B       		.uleb128 0xb
+ 2214 010c 27       		.uleb128 0x27
+ 2215 010d 19       		.uleb128 0x19
+ 2216 010e 11       		.uleb128 0x11
+ 2217 010f 01       		.uleb128 0x1
+ 2218 0110 12       		.uleb128 0x12
+ 2219 0111 06       		.uleb128 0x6
+ 2220 0112 40       		.uleb128 0x40
+ 2221 0113 18       		.uleb128 0x18
+ 2222 0114 9642     		.uleb128 0x2116
+ 2223 0116 19       		.uleb128 0x19
+ 2224 0117 00       		.byte	0
+ 2225 0118 00       		.byte	0
+ 2226 0119 16       		.uleb128 0x16
+ 2227 011a 34       		.uleb128 0x34
+ 2228 011b 00       		.byte	0
+ 2229 011c 03       		.uleb128 0x3
+ 2230 011d 0E       		.uleb128 0xe
+ 2231 011e 3A       		.uleb128 0x3a
+ 2232 011f 0B       		.uleb128 0xb
+ 2233 0120 3B       		.uleb128 0x3b
+ 2234 0121 0B       		.uleb128 0xb
+ 2235 0122 49       		.uleb128 0x49
+ 2236 0123 13       		.uleb128 0x13
+ 2237 0124 02       		.uleb128 0x2
+ 2238 0125 18       		.uleb128 0x18
+ 2239 0126 00       		.byte	0
+ 2240 0127 00       		.byte	0
+ 2241 0128 17       		.uleb128 0x17
+ 2242 0129 34       		.uleb128 0x34
+ 2243 012a 00       		.byte	0
+ 2244 012b 03       		.uleb128 0x3
+ 2245 012c 08       		.uleb128 0x8
+ 2246 012d 3A       		.uleb128 0x3a
+ 2247 012e 0B       		.uleb128 0xb
+ 2248 012f 3B       		.uleb128 0x3b
+ 2249 0130 0B       		.uleb128 0xb
+ 2250 0131 49       		.uleb128 0x49
+ 2251 0132 13       		.uleb128 0x13
+ 2252 0133 02       		.uleb128 0x2
+ 2253 0134 18       		.uleb128 0x18
+ 2254 0135 00       		.byte	0
+ 2255 0136 00       		.byte	0
+ 2256 0137 18       		.uleb128 0x18
+ 2257 0138 34       		.uleb128 0x34
+ 2258 0139 00       		.byte	0
+ 2259 013a 03       		.uleb128 0x3
+ 2260 013b 0E       		.uleb128 0xe
+ 2261 013c 3A       		.uleb128 0x3a
+ 2262 013d 0B       		.uleb128 0xb
+ 2263 013e 3B       		.uleb128 0x3b
+ 2264 013f 05       		.uleb128 0x5
+ 2265 0140 49       		.uleb128 0x49
+ 2266 0141 13       		.uleb128 0x13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 42
+
+
+ 2267 0142 3F       		.uleb128 0x3f
+ 2268 0143 19       		.uleb128 0x19
+ 2269 0144 3C       		.uleb128 0x3c
+ 2270 0145 19       		.uleb128 0x19
+ 2271 0146 00       		.byte	0
+ 2272 0147 00       		.byte	0
+ 2273 0148 19       		.uleb128 0x19
+ 2274 0149 35       		.uleb128 0x35
+ 2275 014a 00       		.byte	0
+ 2276 014b 49       		.uleb128 0x49
+ 2277 014c 13       		.uleb128 0x13
+ 2278 014d 00       		.byte	0
+ 2279 014e 00       		.byte	0
+ 2280 014f 1A       		.uleb128 0x1a
+ 2281 0150 34       		.uleb128 0x34
+ 2282 0151 00       		.byte	0
+ 2283 0152 03       		.uleb128 0x3
+ 2284 0153 0E       		.uleb128 0xe
+ 2285 0154 3A       		.uleb128 0x3a
+ 2286 0155 0B       		.uleb128 0xb
+ 2287 0156 3B       		.uleb128 0x3b
+ 2288 0157 0B       		.uleb128 0xb
+ 2289 0158 49       		.uleb128 0x49
+ 2290 0159 13       		.uleb128 0x13
+ 2291 015a 3F       		.uleb128 0x3f
+ 2292 015b 19       		.uleb128 0x19
+ 2293 015c 02       		.uleb128 0x2
+ 2294 015d 18       		.uleb128 0x18
+ 2295 015e 00       		.byte	0
+ 2296 015f 00       		.byte	0
+ 2297 0160 1B       		.uleb128 0x1b
+ 2298 0161 01       		.uleb128 0x1
+ 2299 0162 01       		.byte	0x1
+ 2300 0163 49       		.uleb128 0x49
+ 2301 0164 13       		.uleb128 0x13
+ 2302 0165 01       		.uleb128 0x1
+ 2303 0166 13       		.uleb128 0x13
+ 2304 0167 00       		.byte	0
+ 2305 0168 00       		.byte	0
+ 2306 0169 1C       		.uleb128 0x1c
+ 2307 016a 21       		.uleb128 0x21
+ 2308 016b 00       		.byte	0
+ 2309 016c 49       		.uleb128 0x49
+ 2310 016d 13       		.uleb128 0x13
+ 2311 016e 2F       		.uleb128 0x2f
+ 2312 016f 0B       		.uleb128 0xb
+ 2313 0170 00       		.byte	0
+ 2314 0171 00       		.byte	0
+ 2315 0172 1D       		.uleb128 0x1d
+ 2316 0173 34       		.uleb128 0x34
+ 2317 0174 00       		.byte	0
+ 2318 0175 03       		.uleb128 0x3
+ 2319 0176 08       		.uleb128 0x8
+ 2320 0177 3A       		.uleb128 0x3a
+ 2321 0178 0B       		.uleb128 0xb
+ 2322 0179 3B       		.uleb128 0x3b
+ 2323 017a 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 43
+
+
+ 2324 017b 49       		.uleb128 0x49
+ 2325 017c 13       		.uleb128 0x13
+ 2326 017d 3F       		.uleb128 0x3f
+ 2327 017e 19       		.uleb128 0x19
+ 2328 017f 02       		.uleb128 0x2
+ 2329 0180 18       		.uleb128 0x18
+ 2330 0181 00       		.byte	0
+ 2331 0182 00       		.byte	0
+ 2332 0183 00       		.byte	0
+ 2333              		.section	.debug_aranges,"",%progbits
+ 2334 0000 3C000000 		.4byte	0x3c
+ 2335 0004 0200     		.2byte	0x2
+ 2336 0006 00000000 		.4byte	.Ldebug_info0
+ 2337 000a 04       		.byte	0x4
+ 2338 000b 00       		.byte	0
+ 2339 000c 0000     		.2byte	0
+ 2340 000e 0000     		.2byte	0
+ 2341 0010 00000000 		.4byte	.LFB63
+ 2342 0014 5C000000 		.4byte	.LFE63-.LFB63
+ 2343 0018 00000000 		.4byte	.LFB64
+ 2344 001c 9C000000 		.4byte	.LFE64-.LFB64
+ 2345 0020 00000000 		.4byte	.LFB65
+ 2346 0024 34000000 		.4byte	.LFE65-.LFB65
+ 2347 0028 00000000 		.4byte	.LFB66
+ 2348 002c 28000000 		.4byte	.LFE66-.LFB66
+ 2349 0030 00000000 		.4byte	.LFB67
+ 2350 0034 70000000 		.4byte	.LFE67-.LFB67
+ 2351 0038 00000000 		.4byte	0
+ 2352 003c 00000000 		.4byte	0
+ 2353              		.section	.debug_ranges,"",%progbits
+ 2354              	.Ldebug_ranges0:
+ 2355 0000 00000000 		.4byte	.LFB63
+ 2356 0004 5C000000 		.4byte	.LFE63
+ 2357 0008 00000000 		.4byte	.LFB64
+ 2358 000c 9C000000 		.4byte	.LFE64
+ 2359 0010 00000000 		.4byte	.LFB65
+ 2360 0014 34000000 		.4byte	.LFE65
+ 2361 0018 00000000 		.4byte	.LFB66
+ 2362 001c 28000000 		.4byte	.LFE66
+ 2363 0020 00000000 		.4byte	.LFB67
+ 2364 0024 70000000 		.4byte	.LFE67
+ 2365 0028 00000000 		.4byte	0
+ 2366 002c 00000000 		.4byte	0
+ 2367              		.section	.debug_line,"",%progbits
+ 2368              	.Ldebug_line0:
+ 2369 0000 0E020000 		.section	.debug_str,"MS",%progbits,1
+ 2369      02007E01 
+ 2369      00000201 
+ 2369      FB0E0D00 
+ 2369      01010101 
+ 2370              	.LASF27:
+ 2371 0000 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 2371      70676D5F 
+ 2371      75696E74 
+ 2371      385F7400 
+ 2372              	.LASF149:
+ 2373 0010 63526573 		.ascii	"cResist_Set\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 44
+
+
+ 2373      6973745F 
+ 2373      53657400 
+ 2374              	.LASF87:
+ 2375 001c 4572726F 		.ascii	"Error_NC\000"
+ 2375      725F4E43 
+ 2375      00
+ 2376              	.LASF58:
+ 2377 0025 6465765F 		.ascii	"dev_mem\000"
+ 2377      6D656D00 
+ 2378              	.LASF141:
+ 2379 002d 45646974 		.ascii	"Edit_Value_Mode\000"
+ 2379      5F56616C 
+ 2379      75655F4D 
+ 2379      6F646500 
+ 2380              	.LASF47:
+ 2381 003d 666F6E74 		.ascii	"font_ref_ascent\000"
+ 2381      5F726566 
+ 2381      5F617363 
+ 2381      656E7400 
+ 2382              	.LASF160:
+ 2383 004d 506F7765 		.ascii	"Power\000"
+ 2383      7200
+ 2384              	.LASF169:
+ 2385 0053 5365745F 		.ascii	"Set_Resist\000"
+ 2385      52657369 
+ 2385      737400
+ 2386              	.LASF100:
+ 2387 005e 5365745F 		.ascii	"Set_Temp_Value\000"
+ 2387      54656D70 
+ 2387      5F56616C 
+ 2387      756500
+ 2388              	.LASF120:
+ 2389 006d 43757272 		.ascii	"Current_Calibration_Range1\000"
+ 2389      656E745F 
+ 2389      43616C69 
+ 2389      62726174 
+ 2389      696F6E5F 
+ 2390              	.LASF121:
+ 2391 0088 43757272 		.ascii	"Current_Calibration_Range2\000"
+ 2391      656E745F 
+ 2391      43616C69 
+ 2391      62726174 
+ 2391      696F6E5F 
+ 2392              	.LASF122:
+ 2393 00a3 43757272 		.ascii	"Current_Calibration_Range3\000"
+ 2393      656E745F 
+ 2393      43616C69 
+ 2393      62726174 
+ 2393      696F6E5F 
+ 2394              	.LASF11:
+ 2395 00be 756E7369 		.ascii	"unsigned int\000"
+ 2395      676E6564 
+ 2395      20696E74 
+ 2395      00
+ 2396              	.LASF64:
+ 2397 00cb 68695F63 		.ascii	"hi_color\000"
+ 2397      6F6C6F72 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 45
+
+
+ 2397      00
+ 2398              	.LASF142:
+ 2399 00d4 63566F6C 		.ascii	"cVoltage_Actual\000"
+ 2399      74616765 
+ 2399      5F416374 
+ 2399      75616C00 
+ 2400              	.LASF194:
+ 2401 00e4 53746174 		.ascii	"Status\000"
+ 2401      757300
+ 2402              	.LASF187:
+ 2403 00eb 5365745F 		.ascii	"Set_Duty_Temporary_Value\000"
+ 2403      44757479 
+ 2403      5F54656D 
+ 2403      706F7261 
+ 2403      72795F56 
+ 2404              	.LASF89:
+ 2405 0104 4572726F 		.ascii	"Error_OC\000"
+ 2405      725F4F43 
+ 2405      00
+ 2406              	.LASF6:
+ 2407 010d 5F5F696E 		.ascii	"__int32_t\000"
+ 2407      7433325F 
+ 2407      7400
+ 2408              	.LASF19:
+ 2409 0117 696E7431 		.ascii	"int16\000"
+ 2409      3600
+ 2410              	.LASF123:
+ 2411 011d 4C454D5F 		.ascii	"LEM_Offset_Value\000"
+ 2411      4F666673 
+ 2411      65745F56 
+ 2411      616C7565 
+ 2411      00
+ 2412              	.LASF88:
+ 2413 012e 4572726F 		.ascii	"Error_OT\000"
+ 2413      725F4F54 
+ 2413      00
+ 2414              	.LASF86:
+ 2415 0137 4572726F 		.ascii	"Error_OV\000"
+ 2415      725F4F56 
+ 2415      00
+ 2416              	.LASF34:
+ 2417 0140 63757273 		.ascii	"cursor_bg_color\000"
+ 2417      6F725F62 
+ 2417      675F636F 
+ 2417      6C6F7200 
+ 2418              	.LASF51:
+ 2419 0150 6172675F 		.ascii	"arg_pixel\000"
+ 2419      70697865 
+ 2419      6C00
+ 2420              	.LASF185:
+ 2421 015a 5365745F 		.ascii	"Set_Freq_Temporary_Value\000"
+ 2421      46726571 
+ 2421      5F54656D 
+ 2421      706F7261 
+ 2421      72795F56 
+ 2422              	.LASF65:
+ 2423 0173 626C7565 		.ascii	"blue\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 46
+
+
+ 2423      00
+ 2424              	.LASF59:
+ 2425 0178 636F6D5F 		.ascii	"com_fn\000"
+ 2425      666E00
+ 2426              	.LASF196:
+ 2427 017f 74656D70 		.ascii	"temp_manage.c\000"
+ 2427      5F6D616E 
+ 2427      6167652E 
+ 2427      6300
+ 2428              	.LASF101:
+ 2429 018d 41637475 		.ascii	"Actual_Temp_Value\000"
+ 2429      616C5F54 
+ 2429      656D705F 
+ 2429      56616C75 
+ 2429      6500
+ 2430              	.LASF112:
+ 2431 019f 43757272 		.ascii	"Current_State\000"
+ 2431      656E745F 
+ 2431      53746174 
+ 2431      6500
+ 2432              	.LASF114:
+ 2433 01ad 536F756E 		.ascii	"Sound_Enable\000"
+ 2433      645F456E 
+ 2433      61626C65 
+ 2433      00
+ 2434              	.LASF97:
+ 2435 01ba 4D617854 		.ascii	"MaxTemp\000"
+ 2435      656D7000 
+ 2436              	.LASF143:
+ 2437 01c2 63437572 		.ascii	"cCurrent_Actual\000"
+ 2437      72656E74 
+ 2437      5F416374 
+ 2437      75616C00 
+ 2438              	.LASF147:
+ 2439 01d2 63437572 		.ascii	"cCurrent_Set\000"
+ 2439      72656E74 
+ 2439      5F536574 
+ 2439      00
+ 2440              	.LASF198:
+ 2441 01df 53746174 		.ascii	"State\000"
+ 2441      6500
+ 2442              	.LASF36:
+ 2443 01e5 6D6F6465 		.ascii	"mode\000"
+ 2443      00
+ 2444              	.LASF45:
+ 2445 01ea 666F6E74 		.ascii	"font_calc_vref\000"
+ 2445      5F63616C 
+ 2445      635F7672 
+ 2445      656600
+ 2446              	.LASF117:
+ 2447 01f9 43757272 		.ascii	"CurrentBacklightValueString\000"
+ 2447      656E7442 
+ 2447      61636B6C 
+ 2447      69676874 
+ 2447      56616C75 
+ 2448              	.LASF130:
+ 2449 0215 4C617374 		.ascii	"Last_qdCount\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 47
+
+
+ 2449      5F716443 
+ 2449      6F756E74 
+ 2449      00
+ 2450              	.LASF77:
+ 2451 0222 41726269 		.ascii	"ArbitraryMode\000"
+ 2451      74726172 
+ 2451      794D6F64 
+ 2451      6500
+ 2452              	.LASF197:
+ 2453 0230 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 2453      6F726B73 
+ 2453      70616365 
+ 2453      5C50536F 
+ 2453      435F4372 
+ 2454 025f 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 2454      392E6379 
+ 2454      64736E00 
+ 2455              	.LASF128:
+ 2456 026b 56696577 		.ascii	"View_Mode\000"
+ 2456      5F4D6F64 
+ 2456      6500
+ 2457              	.LASF182:
+ 2458 0275 5365745F 		.ascii	"Set_Ampl\000"
+ 2458      416D706C 
+ 2458      00
+ 2459              	.LASF12:
+ 2460 027e 696E7438 		.ascii	"int8_t\000"
+ 2460      5F7400
+ 2461              	.LASF146:
+ 2462 0285 63566F6C 		.ascii	"cVoltage_Set\000"
+ 2462      74616765 
+ 2462      5F536574 
+ 2462      00
+ 2463              	.LASF61:
+ 2464 0292 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 2464      5F646576 
+ 2464      5F617267 
+ 2464      5F706978 
+ 2464      656C5F74 
+ 2465              	.LASF118:
+ 2466 02a7 43757272 		.ascii	"CurrentVolumeValue\000"
+ 2466      656E7456 
+ 2466      6F6C756D 
+ 2466      6556616C 
+ 2466      756500
+ 2467              	.LASF21:
+ 2468 02ba 666C6F61 		.ascii	"float\000"
+ 2468      7400
+ 2469              	.LASF96:
+ 2470 02c0 46414E5F 		.ascii	"FAN_Speed\000"
+ 2470      53706565 
+ 2470      6400
+ 2471              	.LASF148:
+ 2472 02ca 63506F77 		.ascii	"cPower_Set\000"
+ 2472      65725F53 
+ 2472      657400
+ 2473              	.LASF20:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 48
+
+
+ 2474 02d5 696E7433 		.ascii	"int32\000"
+ 2474      3200
+ 2475              	.LASF37:
+ 2476 02db 63757273 		.ascii	"cursor_x\000"
+ 2476      6F725F78 
+ 2476      00
+ 2477              	.LASF38:
+ 2478 02e4 63757273 		.ascii	"cursor_y\000"
+ 2478      6F725F79 
+ 2478      00
+ 2479              	.LASF151:
+ 2480 02ed 58506F73 		.ascii	"XPosition\000"
+ 2480      6974696F 
+ 2480      6E00
+ 2481              	.LASF137:
+ 2482 02f7 70757368 		.ascii	"push\000"
+ 2482      00
+ 2483              	.LASF113:
+ 2484 02fc 50726576 		.ascii	"Previous_State\000"
+ 2484      696F7573 
+ 2484      5F537461 
+ 2484      746500
+ 2485              	.LASF111:
+ 2486 030b 43757272 		.ascii	"Current_FET_TempString\000"
+ 2486      656E745F 
+ 2486      4645545F 
+ 2486      54656D70 
+ 2486      53747269 
+ 2487              	.LASF10:
+ 2488 0322 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2488      206C6F6E 
+ 2488      6720756E 
+ 2488      7369676E 
+ 2488      65642069 
+ 2489              	.LASF157:
+ 2490 0339 66566F6C 		.ascii	"fVoltage\000"
+ 2490      74616765 
+ 2490      00
+ 2491              	.LASF170:
+ 2492 0342 5365745F 		.ascii	"Set_Resist_Temporary_Value\000"
+ 2492      52657369 
+ 2492      73745F54 
+ 2492      656D706F 
+ 2492      72617279 
+ 2493              	.LASF69:
+ 2494 035d 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 2494      6465765F 
+ 2494      666E7074 
+ 2494      7200
+ 2495              	.LASF108:
+ 2496 036b 43757272 		.ascii	"Current_DIE_Temp\000"
+ 2496      656E745F 
+ 2496      4449455F 
+ 2496      54656D70 
+ 2496      00
+ 2497              	.LASF70:
+ 2498 037c 7538675F 		.ascii	"u8g_com_fnptr\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 49
+
+
+ 2498      636F6D5F 
+ 2498      666E7074 
+ 2498      7200
+ 2499              	.LASF103:
+ 2500 038a 4572726F 		.ascii	"Error\000"
+ 2500      7200
+ 2501              	.LASF85:
+ 2502 0390 4572726F 		.ascii	"Error_RP\000"
+ 2502      725F5250 
+ 2502      00
+ 2503              	.LASF145:
+ 2504 0399 63526573 		.ascii	"cResist_Actual\000"
+ 2504      6973745F 
+ 2504      41637475 
+ 2504      616C00
+ 2505              	.LASF172:
+ 2506 03a8 4D617850 		.ascii	"MaxPower\000"
+ 2506      6F776572 
+ 2506      00
+ 2507              	.LASF44:
+ 2508 03b1 676C7970 		.ascii	"glyph_height\000"
+ 2508      685F6865 
+ 2508      69676874 
+ 2508      00
+ 2509              	.LASF29:
+ 2510 03be 77696474 		.ascii	"width\000"
+ 2510      6800
+ 2511              	.LASF144:
+ 2512 03c4 63506F77 		.ascii	"cPower_Actual\000"
+ 2512      65725F41 
+ 2512      63747561 
+ 2512      6C00
+ 2513              	.LASF168:
+ 2514 03d2 5365745F 		.ascii	"Set_Power_Temporary_Value\000"
+ 2514      506F7765 
+ 2514      725F5465 
+ 2514      6D706F72 
+ 2514      6172795F 
+ 2515              	.LASF99:
+ 2516 03ec 54656D70 		.ascii	"Temp_Regulator\000"
+ 2516      5F526567 
+ 2516      756C6174 
+ 2516      6F7200
+ 2517              	.LASF186:
+ 2518 03fb 5365745F 		.ascii	"Set_Duty\000"
+ 2518      44757479 
+ 2518      00
+ 2519              	.LASF161:
+ 2520 0404 66506F77 		.ascii	"fPower\000"
+ 2520      657200
+ 2521              	.LASF93:
+ 2522 040b 54656D70 		.ascii	"TempRead_FET\000"
+ 2522      52656164 
+ 2522      5F464554 
+ 2522      00
+ 2523              	.LASF171:
+ 2524 0418 506F7369 		.ascii	"Position_Number\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 50
+
+
+ 2524      74696F6E 
+ 2524      5F4E756D 
+ 2524      62657200 
+ 2525              	.LASF41:
+ 2526 0428 676C7970 		.ascii	"glyph_x\000"
+ 2526      685F7800 
+ 2527              	.LASF42:
+ 2528 0430 676C7970 		.ascii	"glyph_y\000"
+ 2528      685F7900 
+ 2529              	.LASF189:
+ 2530 0438 63536574 		.ascii	"cSet_Freq\000"
+ 2530      5F467265 
+ 2530      7100
+ 2531              	.LASF75:
+ 2532 0442 486F6D65 		.ascii	"Home\000"
+ 2532      00
+ 2533              	.LASF184:
+ 2534 0447 5365745F 		.ascii	"Set_Freq\000"
+ 2534      46726571 
+ 2534      00
+ 2535              	.LASF154:
+ 2536 0450 6359506F 		.ascii	"cYPosition\000"
+ 2536      73697469 
+ 2536      6F6E00
+ 2537              	.LASF191:
+ 2538 045b 43757272 		.ascii	"Current_Edit_Value\000"
+ 2538      656E745F 
+ 2538      45646974 
+ 2538      5F56616C 
+ 2538      756500
+ 2539              	.LASF175:
+ 2540 046e 4D696E52 		.ascii	"MinResistance\000"
+ 2540      65736973 
+ 2540      74616E63 
+ 2540      6500
+ 2541              	.LASF115:
+ 2542 047c 43757272 		.ascii	"Current_Menu_Position\000"
+ 2542      656E745F 
+ 2542      4D656E75 
+ 2542      5F506F73 
+ 2542      6974696F 
+ 2543              	.LASF190:
+ 2544 0492 63536574 		.ascii	"cSet_Duty\000"
+ 2544      5F447574 
+ 2544      7900
+ 2545              	.LASF24:
+ 2546 049c 63686172 		.ascii	"char\000"
+ 2546      00
+ 2547              	.LASF102:
+ 2548 04a1 48697374 		.ascii	"Hist\000"
+ 2548      00
+ 2549              	.LASF95:
+ 2550 04a6 54656D70 		.ascii	"Temp_Management\000"
+ 2550      5F4D616E 
+ 2550      6167656D 
+ 2550      656E7400 
+ 2551              	.LASF98:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 51
+
+
+ 2552 04b6 53706565 		.ascii	"Speed\000"
+ 2552      6400
+ 2553              	.LASF57:
+ 2554 04bc 6465765F 		.ascii	"dev_fn\000"
+ 2554      666E00
+ 2555              	.LASF53:
+ 2556 04c3 63757272 		.ascii	"current_page\000"
+ 2556      656E745F 
+ 2556      70616765 
+ 2556      00
+ 2557              	.LASF193:
+ 2558 04d0 63436F75 		.ascii	"cCounter\000"
+ 2558      6E746572 
+ 2558      00
+ 2559              	.LASF16:
+ 2560 04d9 75696E74 		.ascii	"uint16\000"
+ 2560      313600
+ 2561              	.LASF18:
+ 2562 04e0 696E7438 		.ascii	"int8\000"
+ 2562      00
+ 2563              	.LASF13:
+ 2564 04e5 75696E74 		.ascii	"uint8_t\000"
+ 2564      385F7400 
+ 2565              	.LASF23:
+ 2566 04ed 63686172 		.ascii	"char8\000"
+ 2566      3800
+ 2567              	.LASF163:
+ 2568 04f3 66526573 		.ascii	"fResist\000"
+ 2568      69737400 
+ 2569              	.LASF119:
+ 2570 04fb 43757272 		.ascii	"CurrentVolumeValueString\000"
+ 2570      656E7456 
+ 2570      6F6C756D 
+ 2570      6556616C 
+ 2570      75655374 
+ 2571              	.LASF68:
+ 2572 0514 7538675F 		.ascii	"u8g_uint_t\000"
+ 2572      75696E74 
+ 2572      5F7400
+ 2573              	.LASF67:
+ 2574 051f 5F753867 		.ascii	"_u8g_box_t\000"
+ 2574      5F626F78 
+ 2574      5F7400
+ 2575              	.LASF9:
+ 2576 052a 6C6F6E67 		.ascii	"long long int\000"
+ 2576      206C6F6E 
+ 2576      6720696E 
+ 2576      7400
+ 2577              	.LASF33:
+ 2578 0538 63757273 		.ascii	"cursor_fg_color\000"
+ 2578      6F725F66 
+ 2578      675F636F 
+ 2578      6C6F7200 
+ 2579              	.LASF129:
+ 2580 0548 7164436F 		.ascii	"qdCount\000"
+ 2580      756E7400 
+ 2581              	.LASF180:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 52
+
+
+ 2582 0550 4D61785F 		.ascii	"Max_FET_Temp\000"
+ 2582      4645545F 
+ 2582      54656D70 
+ 2582      00
+ 2583              	.LASF104:
+ 2584 055d 44726976 		.ascii	"Drive\000"
+ 2584      6500
+ 2585              	.LASF153:
+ 2586 0563 59506F73 		.ascii	"YPosition\000"
+ 2586      6974696F 
+ 2586      6E00
+ 2587              	.LASF174:
+ 2588 056d 4D617843 		.ascii	"MaxCurrent\000"
+ 2588      75727265 
+ 2588      6E7400
+ 2589              	.LASF133:
+ 2590 0578 62757474 		.ascii	"button3\000"
+ 2590      6F6E3300 
+ 2591              	.LASF134:
+ 2592 0580 62757474 		.ascii	"button4\000"
+ 2592      6F6E3400 
+ 2593              	.LASF54:
+ 2594 0588 7538675F 		.ascii	"u8g_dev_t\000"
+ 2594      6465765F 
+ 2594      7400
+ 2595              	.LASF158:
+ 2596 0592 4D656173 		.ascii	"MeasuredCurrent\000"
+ 2596      75726564 
+ 2596      43757272 
+ 2596      656E7400 
+ 2597              	.LASF136:
+ 2598 05a2 62757474 		.ascii	"button6\000"
+ 2598      6F6E3600 
+ 2599              	.LASF73:
+ 2600 05aa 7538675F 		.ascii	"u8g_state_cb\000"
+ 2600      73746174 
+ 2600      655F6362 
+ 2600      00
+ 2601              	.LASF60:
+ 2602 05b7 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 2602      6465765F 
+ 2602      6172675F 
+ 2602      70697865 
+ 2602      6C5F7400 
+ 2603              	.LASF195:
+ 2604 05cb 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2604      4320342E 
+ 2604      392E3320 
+ 2604      32303135 
+ 2604      30333033 
+ 2605 05fe 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2605      20726576 
+ 2605      6973696F 
+ 2605      6E203232 
+ 2605      31323230 
+ 2606 0631 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 2606      66756E63 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 53
+
+
+ 2606      74696F6E 
+ 2606      2D736563 
+ 2606      74696F6E 
+ 2607              	.LASF82:
+ 2608 0659 496E666F 		.ascii	"Information\000"
+ 2608      726D6174 
+ 2608      696F6E00 
+ 2609              	.LASF84:
+ 2610 0665 436F6E73 		.ascii	"ConstantResistance\000"
+ 2610      74616E74 
+ 2610      52657369 
+ 2610      7374616E 
+ 2610      636500
+ 2611              	.LASF162:
+ 2612 0678 52657369 		.ascii	"Resist\000"
+ 2612      737400
+ 2613              	.LASF17:
+ 2614 067f 75696E74 		.ascii	"uint32\000"
+ 2614      333200
+ 2615              	.LASF28:
+ 2616 0686 7538675F 		.ascii	"u8g_t\000"
+ 2616      7400
+ 2617              	.LASF30:
+ 2618 068c 68656967 		.ascii	"height\000"
+ 2618      687400
+ 2619              	.LASF40:
+ 2620 0693 676C7970 		.ascii	"glyph_dx\000"
+ 2620      685F6478 
+ 2620      00
+ 2621              	.LASF0:
+ 2622 069c 5F5F696E 		.ascii	"__int8_t\000"
+ 2622      74385F74 
+ 2622      00
+ 2623              	.LASF91:
+ 2624 06a5 50574D5F 		.ascii	"PWM_Mode\000"
+ 2624      4D6F6465 
+ 2624      00
+ 2625              	.LASF159:
+ 2626 06ae 66437572 		.ascii	"fCurrent\000"
+ 2626      72656E74 
+ 2626      00
+ 2627              	.LASF39:
+ 2628 06b7 63757273 		.ascii	"cursor_fn\000"
+ 2628      6F725F66 
+ 2628      6E00
+ 2629              	.LASF166:
+ 2630 06c1 5365745F 		.ascii	"Set_Current_Temporary_Value\000"
+ 2630      43757272 
+ 2630      656E745F 
+ 2630      54656D70 
+ 2630      6F726172 
+ 2631              	.LASF106:
+ 2632 06dd 64656C74 		.ascii	"deltaT\000"
+ 2632      615400
+ 2633              	.LASF50:
+ 2634 06e4 6C696E65 		.ascii	"line_spacing\000"
+ 2634      5F737061 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 54
+
+
+ 2634      63696E67 
+ 2634      00
+ 2635              	.LASF78:
+ 2636 06f1 436F6E73 		.ascii	"ConstantCurrent\000"
+ 2636      74616E74 
+ 2636      43757272 
+ 2636      656E7400 
+ 2637              	.LASF188:
+ 2638 0701 63536574 		.ascii	"cSet_Ampl\000"
+ 2638      5F416D70 
+ 2638      6C00
+ 2639              	.LASF46:
+ 2640 070b 666F6E74 		.ascii	"font_height_mode\000"
+ 2640      5F686569 
+ 2640      6768745F 
+ 2640      6D6F6465 
+ 2640      00
+ 2641              	.LASF4:
+ 2642 071c 73686F72 		.ascii	"short int\000"
+ 2642      7420696E 
+ 2642      7400
+ 2643              	.LASF7:
+ 2644 0726 6C6F6E67 		.ascii	"long int\000"
+ 2644      20696E74 
+ 2644      00
+ 2645              	.LASF105:
+ 2646 072f 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2646      52784275 
+ 2646      66666572 
+ 2646      00
+ 2647              	.LASF92:
+ 2648 073c 45787465 		.ascii	"External_Drive\000"
+ 2648      726E616C 
+ 2648      5F447269 
+ 2648      766500
+ 2649              	.LASF173:
+ 2650 074b 4D617856 		.ascii	"MaxVoltage\000"
+ 2650      6F6C7461 
+ 2650      676500
+ 2651              	.LASF140:
+ 2652 0756 526F7461 		.ascii	"Rotate_Buzzer__Default_Lenght\000"
+ 2652      74655F42 
+ 2652      757A7A65 
+ 2652      725F5F44 
+ 2652      65666175 
+ 2653              	.LASF156:
+ 2654 0774 4D656173 		.ascii	"MeasuredVoltage\000"
+ 2654      75726564 
+ 2654      566F6C74 
+ 2654      61676500 
+ 2655              	.LASF52:
+ 2656 0784 73746174 		.ascii	"state_cb\000"
+ 2656      655F6362 
+ 2656      00
+ 2657              	.LASF55:
+ 2658 078d 5F753867 		.ascii	"_u8g_t\000"
+ 2658      5F7400
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 55
+
+
+ 2659              	.LASF63:
+ 2660 0794 636F6C6F 		.ascii	"color\000"
+ 2660      7200
+ 2661              	.LASF131:
+ 2662 079a 62757474 		.ascii	"button1\000"
+ 2662      6F6E3100 
+ 2663              	.LASF132:
+ 2664 07a2 62757474 		.ascii	"button2\000"
+ 2664      6F6E3200 
+ 2665              	.LASF35:
+ 2666 07aa 63757273 		.ascii	"cursor_encoding\000"
+ 2666      6F725F65 
+ 2666      6E636F64 
+ 2666      696E6700 
+ 2667              	.LASF81:
+ 2668 07ba 566F6C75 		.ascii	"VolumeSetting\000"
+ 2668      6D655365 
+ 2668      7474696E 
+ 2668      6700
+ 2669              	.LASF135:
+ 2670 07c8 62757474 		.ascii	"button5\000"
+ 2670      6F6E3500 
+ 2671              	.LASF127:
+ 2672 07d0 41637475 		.ascii	"Actual_Range\000"
+ 2672      616C5F52 
+ 2672      616E6765 
+ 2672      00
+ 2673              	.LASF183:
+ 2674 07dd 5365745F 		.ascii	"Set_Ampl_Temporary_Value\000"
+ 2674      416D706C 
+ 2674      5F54656D 
+ 2674      706F7261 
+ 2674      72795F56 
+ 2675              	.LASF48:
+ 2676 07f6 666F6E74 		.ascii	"font_ref_descent\000"
+ 2676      5F726566 
+ 2676      5F646573 
+ 2676      63656E74 
+ 2676      00
+ 2677              	.LASF181:
+ 2678 0807 4F766572 		.ascii	"OverTemperature\000"
+ 2678      54656D70 
+ 2678      65726174 
+ 2678      75726500 
+ 2679              	.LASF1:
+ 2680 0817 5F5F7569 		.ascii	"__uint8_t\000"
+ 2680      6E74385F 
+ 2680      7400
+ 2681              	.LASF56:
+ 2682 0821 5F753867 		.ascii	"_u8g_dev_t\000"
+ 2682      5F646576 
+ 2682      5F7400
+ 2683              	.LASF31:
+ 2684 082c 666F6E74 		.ascii	"font\000"
+ 2684      00
+ 2685              	.LASF26:
+ 2686 0831 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 56
+
+
+ 2686      74797065 
+ 2686      00
+ 2687              	.LASF66:
+ 2688 083a 7538675F 		.ascii	"u8g_box_t\000"
+ 2688      626F785F 
+ 2688      7400
+ 2689              	.LASF8:
+ 2690 0844 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2690      20756E73 
+ 2690      69676E65 
+ 2690      6420696E 
+ 2690      7400
+ 2691              	.LASF126:
+ 2692 0856 466F7572 		.ascii	"Four_Wire_Method\000"
+ 2692      5F576972 
+ 2692      655F4D65 
+ 2692      74686F64 
+ 2692      00
+ 2693              	.LASF14:
+ 2694 0867 696E7433 		.ascii	"int32_t\000"
+ 2694      325F7400 
+ 2695              	.LASF110:
+ 2696 086f 43757272 		.ascii	"Current_FET_Temp\000"
+ 2696      656E745F 
+ 2696      4645545F 
+ 2696      54656D70 
+ 2696      00
+ 2697              	.LASF79:
+ 2698 0880 53657474 		.ascii	"Settings\000"
+ 2698      696E6773 
+ 2698      00
+ 2699              	.LASF94:
+ 2700 0889 54656D70 		.ascii	"TempRead_DIE\000"
+ 2700      52656164 
+ 2700      5F444945 
+ 2700      00
+ 2701              	.LASF49:
+ 2702 0896 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 2702      5F6C696E 
+ 2702      655F7370 
+ 2702      6163696E 
+ 2702      675F6661 
+ 2703              	.LASF25:
+ 2704 08af 63797374 		.ascii	"cystatus\000"
+ 2704      61747573 
+ 2704      00
+ 2705              	.LASF62:
+ 2706 08b8 70697865 		.ascii	"pixel\000"
+ 2706      6C00
+ 2707              	.LASF90:
+ 2708 08be 57617665 		.ascii	"WaveForm_Mode\000"
+ 2708      466F726D 
+ 2708      5F4D6F64 
+ 2708      6500
+ 2709              	.LASF3:
+ 2710 08cc 756E7369 		.ascii	"unsigned char\000"
+ 2710      676E6564 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 57
+
+
+ 2710      20636861 
+ 2710      7200
+ 2711              	.LASF155:
+ 2712 08da 546F7563 		.ascii	"Touched\000"
+ 2712      68656400 
+ 2713              	.LASF150:
+ 2714 08e2 54657374 		.ascii	"TestChar\000"
+ 2714      43686172 
+ 2714      00
+ 2715              	.LASF165:
+ 2716 08eb 5365745F 		.ascii	"Set_Current\000"
+ 2716      43757272 
+ 2716      656E7400 
+ 2717              	.LASF176:
+ 2718 08f7 4D617852 		.ascii	"MaxResistance\000"
+ 2718      65736973 
+ 2718      74616E63 
+ 2718      6500
+ 2719              	.LASF167:
+ 2720 0905 5365745F 		.ascii	"Set_Power\000"
+ 2720      506F7765 
+ 2720      7200
+ 2721              	.LASF72:
+ 2722 090f 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 2722      666F6E74 
+ 2722      5F63616C 
+ 2722      635F7672 
+ 2722      65665F66 
+ 2723              	.LASF83:
+ 2724 0928 436F6E73 		.ascii	"ConstantPower\000"
+ 2724      74616E74 
+ 2724      506F7765 
+ 2724      7200
+ 2725              	.LASF107:
+ 2726 0936 41766172 		.ascii	"Avarage_FET_Temp\000"
+ 2726      6167655F 
+ 2726      4645545F 
+ 2726      54656D70 
+ 2726      00
+ 2727              	.LASF138:
+ 2728 0947 4F757470 		.ascii	"OutputEnable\000"
+ 2728      7574456E 
+ 2728      61626C65 
+ 2728      00
+ 2729              	.LASF43:
+ 2730 0954 676C7970 		.ascii	"glyph_width\000"
+ 2730      685F7769 
+ 2730      64746800 
+ 2731              	.LASF32:
+ 2732 0960 63757273 		.ascii	"cursor_font\000"
+ 2732      6F725F66 
+ 2732      6F6E7400 
+ 2733              	.LASF116:
+ 2734 096c 43757272 		.ascii	"CurrentBacklightValue\000"
+ 2734      656E7442 
+ 2734      61636B6C 
+ 2734      69676874 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 58
+
+
+ 2734      56616C75 
+ 2735              	.LASF74:
+ 2736 0982 44657665 		.ascii	"Develop\000"
+ 2736      6C6F7000 
+ 2737              	.LASF2:
+ 2738 098a 7369676E 		.ascii	"signed char\000"
+ 2738      65642063 
+ 2738      68617200 
+ 2739              	.LASF5:
+ 2740 0996 73686F72 		.ascii	"short unsigned int\000"
+ 2740      7420756E 
+ 2740      7369676E 
+ 2740      65642069 
+ 2740      6E7400
+ 2741              	.LASF179:
+ 2742 09a9 435F4B64 		.ascii	"C_Kd\000"
+ 2742      00
+ 2743              	.LASF178:
+ 2744 09ae 435F4B69 		.ascii	"C_Ki\000"
+ 2744      00
+ 2745              	.LASF177:
+ 2746 09b3 435F4B70 		.ascii	"C_Kp\000"
+ 2746      00
+ 2747              	.LASF164:
+ 2748 09b8 5365745F 		.ascii	"Set_Voltage\000"
+ 2748      566F6C74 
+ 2748      61676500 
+ 2749              	.LASF80:
+ 2750 09c4 4261636B 		.ascii	"BacklightSetting\000"
+ 2750      6C696768 
+ 2750      74536574 
+ 2750      74696E67 
+ 2750      00
+ 2751              	.LASF15:
+ 2752 09d5 75696E74 		.ascii	"uint8\000"
+ 2752      3800
+ 2753              	.LASF22:
+ 2754 09db 646F7562 		.ascii	"double\000"
+ 2754      6C6500
+ 2755              	.LASF152:
+ 2756 09e2 6358506F 		.ascii	"cXPosition\000"
+ 2756      73697469 
+ 2756      6F6E00
+ 2757              	.LASF109:
+ 2758 09ed 43757272 		.ascii	"Current_DIE_TempString\000"
+ 2758      656E745F 
+ 2758      4449455F 
+ 2758      54656D70 
+ 2758      53747269 
+ 2759              	.LASF71:
+ 2760 0a04 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 2760      64726177 
+ 2760      5F637572 
+ 2760      736F725F 
+ 2760      666E00
+ 2761              	.LASF76:
+ 2762 0a17 436F6E73 		.ascii	"ConstantMode\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRuNJLT.s 			page 59
+
+
+ 2762      74616E74 
+ 2762      4D6F6465 
+ 2762      00
+ 2763              	.LASF124:
+ 2764 0a24 54776F5F 		.ascii	"Two_Wire_Range\000"
+ 2764      57697265 
+ 2764      5F52616E 
+ 2764      676500
+ 2765              	.LASF192:
+ 2766 0a33 41637475 		.ascii	"Actual_Multiplier_Value\000"
+ 2766      616C5F4D 
+ 2766      756C7469 
+ 2766      706C6965 
+ 2766      725F5661 
+ 2767              	.LASF125:
+ 2768 0a4b 466F7572 		.ascii	"Four_Wire_Range\000"
+ 2768      5F576972 
+ 2768      655F5261 
+ 2768      6E676500 
+ 2769              	.LASF139:
+ 2770 0a5b 50757368 		.ascii	"Push_Buzzer__Default_Lenght\000"
+ 2770      5F42757A 
+ 2770      7A65725F 
+ 2770      5F446566 
+ 2770      61756C74 
+ 2771              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

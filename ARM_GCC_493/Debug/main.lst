@@ -1,0 +1,5246 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global _printf_float
+  19              		.thumb
+  20              		.comm	filtered_count,1,1
+  21              		.global	i
+  22              		.data
+  23              		.type	i, %object
+  24              		.size	i, 1
+  25              	i:
+  26 0000 01       		.byte	1
+  27              		.global	j
+  28              		.bss
+  29              		.type	j, %object
+  30              		.size	j, 1
+  31              	j:
+  32 0000 00       		.space	1
+  33              		.comm	k,1,1
+  34              		.comm	number,5,4
+  35              		.comm	number2,5,4
+  36              		.comm	number3,5,4
+  37              		.comm	button1,1,1
+  38              		.comm	button2,1,1
+  39              		.comm	button3,1,1
+  40              		.comm	push,1,1
+  41              		.global	OutputEnable
+  42              		.type	OutputEnable, %object
+  43              		.size	OutputEnable, 1
+  44              	OutputEnable:
+  45 0001 00       		.space	1
+  46              		.global	OutputSelect
+  47              		.type	OutputSelect, %object
+  48              		.size	OutputSelect, 1
+  49              	OutputSelect:
+  50 0002 00       		.space	1
+  51              		.global	WaveSelect
+  52              		.type	WaveSelect, %object
+  53              		.size	WaveSelect, 1
+  54              	WaveSelect:
+  55 0003 00       		.space	1
+  56              		.global	DutyCycle
+  57              		.type	DutyCycle, %object
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 2
+
+
+  58              		.size	DutyCycle, 1
+  59              	DutyCycle:
+  60 0004 00       		.space	1
+  61              		.global	Frequency
+  62              		.type	Frequency, %object
+  63              		.size	Frequency, 1
+  64              	Frequency:
+  65 0005 00       		.space	1
+  66              		.global	CurrentBacklightValue
+  67              		.type	CurrentBacklightValue, %object
+  68              		.size	CurrentBacklightValue, 1
+  69              	CurrentBacklightValue:
+  70 0006 00       		.space	1
+  71              		.comm	CurrentBacklightValueString,8,4
+  72              		.global	Test
+  73              		.data
+  74 0001 000000   		.align	2
+  75              		.type	Test, %object
+  76              		.size	Test, 8
+  77              	Test:
+  78 0004 54455354 		.ascii	"TEST\000"
+  78      00
+  79 0009 000000   		.space	3
+  80              		.global	LCD_Page
+  81              		.bss
+  82              		.type	LCD_Page, %object
+  83              		.size	LCD_Page, 1
+  84              	LCD_Page:
+  85 0007 00       		.space	1
+  86              		.comm	Status,4,4
+  87              		.global	DIE_Temp
+  88              		.align	1
+  89              		.type	DIE_Temp, %object
+  90              		.size	DIE_Temp, 2
+  91              	DIE_Temp:
+  92 0008 0000     		.space	2
+  93              		.global	FET_Temp
+  94              		.type	FET_Temp, %object
+  95              		.size	FET_Temp, 1
+  96              	FET_Temp:
+  97 000a 00       		.space	1
+  98              		.global	Power
+  99 000b 00       		.align	1
+ 100              		.type	Power, %object
+ 101              		.size	Power, 2
+ 102              	Power:
+ 103 000c 0000     		.space	2
+ 104              		.comm	fPower,4,4
+ 105              		.comm	cPower,16,4
+ 106              		.global	Voltage
+ 107              		.align	1
+ 108              		.type	Voltage, %object
+ 109              		.size	Voltage, 2
+ 110              	Voltage:
+ 111 000e 0000     		.space	2
+ 112              		.comm	fVoltage,4,4
+ 113              		.comm	cVoltage,16,4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 3
+
+
+ 114              		.global	Current
+ 115              		.align	1
+ 116              		.type	Current, %object
+ 117              		.size	Current, 2
+ 118              	Current:
+ 119 0010 0000     		.space	2
+ 120              		.comm	fCurrent,4,4
+ 121              		.comm	cCurrent,16,4
+ 122              		.global	DACValue
+ 123              		.type	DACValue, %object
+ 124              		.size	DACValue, 1
+ 125              	DACValue:
+ 126 0012 00       		.space	1
+ 127              		.global	DACValueOld
+ 128              		.type	DACValueOld, %object
+ 129              		.size	DACValueOld, 1
+ 130              	DACValueOld:
+ 131 0013 00       		.space	1
+ 132              		.global	qdCount
+ 133              		.align	1
+ 134              		.type	qdCount, %object
+ 135              		.size	qdCount, 2
+ 136              	qdCount:
+ 137 0014 0000     		.space	2
+ 138              		.global	Last_qdCount
+ 139              		.align	1
+ 140              		.type	Last_qdCount, %object
+ 141              		.size	Last_qdCount, 2
+ 142              	Last_qdCount:
+ 143 0016 0000     		.space	2
+ 144              		.global	Current_Menu_Position
+ 145              		.type	Current_Menu_Position, %object
+ 146              		.size	Current_Menu_Position, 1
+ 147              	Current_Menu_Position:
+ 148 0018 00       		.space	1
+ 149              		.global	Current_State
+ 150              		.type	Current_State, %object
+ 151              		.size	Current_State, 1
+ 152              	Current_State:
+ 153 0019 00       		.space	1
+ 154              		.comm	u8g,60,4
+ 155              		.global	__aeabi_fmul
+ 156              		.global	__aeabi_f2d
+ 157              		.section	.rodata
+ 158              		.align	2
+ 159              	.LC0:
+ 160 0000 25322E33 		.ascii	"%2.3f\000"
+ 160      6600
+ 161 0006 0000     		.align	2
+ 162              	.LC1:
+ 163 0008 25332E33 		.ascii	"%3.3f\000"
+ 163      6600
+ 164              		.section	.text.main,"ax",%progbits
+ 165              		.align	2
+ 166              		.global	main
+ 167              		.thumb
+ 168              		.thumb_func
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 4
+
+
+ 169              		.type	main, %function
+ 170              	main:
+ 171              	.LFB63:
+ 172              		.file 1 ".\\main.c"
+   1:.\main.c      **** 
+   2:.\main.c      **** // 06/01/2015 18V, 2.7A, 50W, 92C
+   3:.\main.c      **** 
+   4:.\main.c      **** #include <device.h>
+   5:.\main.c      **** #include <stdio.h>
+   6:.\main.c      **** #include "u8g_arm.h"
+   7:.\main.c      **** 
+   8:.\main.c      **** #if defined (__GNUC__)
+   9:.\main.c      ****     /* Add an explicit reference to the floating point printf library */
+  10:.\main.c      ****     /* to allow the usage of floating point conversion specifiers. */
+  11:.\main.c      ****     /* This is not linked in by default with the newlib-nano library. */
+  12:.\main.c      ****     asm (".global _printf_float");
+  13:.\main.c      **** #endif
+  14:.\main.c      **** 
+  15:.\main.c      **** #define I2C_SLAVE_ADDRESS    0x48
+  16:.\main.c      **** 
+  17:.\main.c      **** 
+  18:.\main.c      **** extern uint8 const CYCODE LCD_customFonts[];
+  19:.\main.c      **** 
+  20:.\main.c      **** 
+  21:.\main.c      **** uint8 filtered_count; /* # of filtered transitions of input pin 'SW' */
+  22:.\main.c      **** 
+  23:.\main.c      **** 
+  24:.\main.c      **** 
+  25:.\main.c      **** 
+  26:.\main.c      **** uint8 i = 1u;
+  27:.\main.c      **** uint8 j = 0u;
+  28:.\main.c      **** uint8 k;
+  29:.\main.c      **** char8 number[5u];
+  30:.\main.c      **** char8 number2[5u];
+  31:.\main.c      **** char8 number3 [5u];
+  32:.\main.c      **** 
+  33:.\main.c      **** uint8 button1, button2, button3, push;
+  34:.\main.c      **** 
+  35:.\main.c      **** uint8 OutputEnable = 0;
+  36:.\main.c      **** uint8 OutputSelect = 0;
+  37:.\main.c      **** uint8 WaveSelect = 0;
+  38:.\main.c      **** 
+  39:.\main.c      **** uint8 DutyCycle = 0;
+  40:.\main.c      **** uint8 Frequency = 0;   
+  41:.\main.c      **** 
+  42:.\main.c      **** uint8 CurrentBacklightValue = 0;
+  43:.\main.c      **** char8 CurrentBacklightValueString[8u];
+  44:.\main.c      **** char8 Test[8u] = "TEST";
+  45:.\main.c      **** 
+  46:.\main.c      **** 
+  47:.\main.c      **** uint8 LCD_Page = 0;
+  48:.\main.c      **** 
+  49:.\main.c      **** cystatus Status;
+  50:.\main.c      **** int16 DIE_Temp = 0;
+  51:.\main.c      **** int8  FET_Temp = 0;
+  52:.\main.c      **** 
+  53:.\main.c      **** int16 Power = 0;
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 5
+
+
+  54:.\main.c      **** float fPower;
+  55:.\main.c      **** char8 cPower[16u];
+  56:.\main.c      **** 
+  57:.\main.c      **** uint16 Voltage = 0;
+  58:.\main.c      **** float fVoltage;
+  59:.\main.c      **** char8 cVoltage[16u];
+  60:.\main.c      **** 
+  61:.\main.c      **** int16 Current = 0;
+  62:.\main.c      **** float fCurrent;
+  63:.\main.c      **** char8 cCurrent[16u];
+  64:.\main.c      **** 
+  65:.\main.c      **** uint8 DACValue = 0;
+  66:.\main.c      **** uint8 DACValueOld = 0;
+  67:.\main.c      **** 
+  68:.\main.c      **** void LCD_Update(void);
+  69:.\main.c      **** void Check_Buttons(void);
+  70:.\main.c      **** void Initialize(void);
+  71:.\main.c      **** void TempRead(void);
+  72:.\main.c      **** 
+  73:.\main.c      **** 
+  74:.\main.c      **** uint16 qdCount = 0;    // Current Encoder Value
+  75:.\main.c      **** uint16 Last_qdCount = 0;    // Last Encoder Value
+  76:.\main.c      **** 
+  77:.\main.c      **** 
+  78:.\main.c      **** uint8 Current_Menu_Position = 0; // Selected Position in Current Menu
+  79:.\main.c      **** 
+  80:.\main.c      **** void LCD_Draw(uint8 PageName, uint8 Current_Menu_Position);
+  81:.\main.c      **** enum State {Home, ConstantMode, ArbitraryMode, ConstantCurrent, Settings, BacklightSetting};
+  82:.\main.c      **** 
+  83:.\main.c      **** enum State Current_State = Home;
+  84:.\main.c      **** 
+  85:.\main.c      **** uint16 Get_Encoder(uint16 maxValue);
+  86:.\main.c      **** uint16 Get_Encoder_Menu(uint16 maxValue);
+  87:.\main.c      **** 
+  88:.\main.c      **** void State_Machine();
+  89:.\main.c      **** void State_Machine_Home();
+  90:.\main.c      **** void State_Machine_Settings();
+  91:.\main.c      **** void State_Machine_BacklightSetting();
+  92:.\main.c      **** void State_Machine_ConstantMode();
+  93:.\main.c      **** void State_Machine_ArbitraryMode();
+  94:.\main.c      **** void State_Machine_ConstantCurrent();  
+  95:.\main.c      **** 
+  96:.\main.c      **** 
+  97:.\main.c      **** 
+  98:.\main.c      **** void SetBacklight(uint8 BacklightValue);
+  99:.\main.c      **** 
+ 100:.\main.c      **** 
+ 101:.\main.c      **** u8g_t u8g;
+ 102:.\main.c      **** 
+ 103:.\main.c      **** 
+ 104:.\main.c      **** 
+ 105:.\main.c      **** int main()
+ 106:.\main.c      **** {
+ 173              		.loc 1 106 0
+ 174              		.cfi_startproc
+ 175              		@ args = 0, pretend = 0, frame = 8
+ 176              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 6
+
+
+ 177 0000 80B5     		push	{r7, lr}
+ 178              		.cfi_def_cfa_offset 8
+ 179              		.cfi_offset 7, -8
+ 180              		.cfi_offset 14, -4
+ 181 0002 82B0     		sub	sp, sp, #8
+ 182              		.cfi_def_cfa_offset 16
+ 183 0004 00AF     		add	r7, sp, #0
+ 184              		.cfi_def_cfa_register 7
+ 107:.\main.c      ****       uint8_t pos = 0;
+ 185              		.loc 1 107 0
+ 186 0006 0023     		movs	r3, #0
+ 187 0008 FB71     		strb	r3, [r7, #7]
+ 108:.\main.c      ****   /*
+ 109:.\main.c      ****     Please uncomment one of the displays below
+ 110:.\main.c      ****     Notes:
+ 111:.\main.c      ****       - "2x", "4x": high speed version, which uses more RAM
+ 112:.\main.c      ****       - "hw_spi": All hardware SPI devices can be used with software SPI also.
+ 113:.\main.c      **** 	Access type is defined by u8g_com_hw_spi_fn
+ 114:.\main.c      ****   */
+ 115:.\main.c      **** 
+ 116:.\main.c      **** //   u8g_InitComFn(&u8g, &u8g_dev_uc1601_c128032_hw_spi, u8g_com_hw_spi_fn);
+ 117:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_uc1601_c128032_2x_hw_spi, u8g_com_hw_spi_fn);
+ 118:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_dogm132_hw_spi, u8g_com_hw_spi_fn);
+ 119:.\main.c      ****    u8g_InitComFn(&u8g, &u8g_dev_st7565_dogm128_hw_spi, u8g_com_hw_spi_fn);
+ 188              		.loc 1 119 0
+ 189 000a 5148     		ldr	r0, .L9
+ 190 000c 5149     		ldr	r1, .L9+4
+ 191 000e 524A     		ldr	r2, .L9+8
+ 192 0010 FFF7FEFF 		bl	u8g_InitComFn
+ 120:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_dogm128_2x_hw_spi, u8g_com_hw_spi_fn);
+ 121:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_lm6059_hw_spi, u8g_com_hw_spi_fn);
+ 122:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_lm6059_2x_hw_spi, u8g_com_hw_spi_fn);
+ 123:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_lm6063_hw_spi, u8g_com_hw_spi_fn);
+ 124:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_lm6063_2x_hw_spi, u8g_com_hw_spi_fn);
+ 125:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_nhd_c12864_hw_spi, u8g_com_hw_spi_fn);
+ 126:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_nhd_c12864_2x_hw_spi, u8g_com_hw_spi_fn);
+ 127:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_nhd_c12832_hw_spi, u8g_com_hw_spi_fn);
+ 128:.\main.c      **** //   u8g_InitComFn(&u8g, &u8g_dev_st7565_64128n_hw_spi, u8g_com_hw_spi_fn);
+ 129:.\main.c      ****   // u8g_InitComFn(&u8g, &u8g_dev_st7565_64128n_2x_hw_spi, u8g_com_hw_spi_fn);
+ 130:.\main.c      ****     
+ 131:.\main.c      ****     
+ 132:.\main.c      ****     Initialize();
+ 193              		.loc 1 132 0
+ 194 0014 FFF7FEFF 		bl	Initialize
+ 133:.\main.c      ****     
+ 134:.\main.c      ****   //  LCD_WriteControl(LCD_CURSOR_BLINK);
+ 135:.\main.c      ****      Clock_QD_1_Start();
+ 195              		.loc 1 135 0
+ 196 0018 FFF7FEFF 		bl	Clock_QD_1_Start
+ 136:.\main.c      ****      AMux_1_Select(2);
+ 197              		.loc 1 136 0
+ 198 001c 0220     		movs	r0, #2
+ 199 001e FFF7FEFF 		bl	AMux_1_Select
+ 137:.\main.c      ****     
+ 138:.\main.c      ****     u8g_SetContrast(&u8g,55); // Ustawienie kontrastu
+ 200              		.loc 1 138 0
+ 201 0022 4B48     		ldr	r0, .L9
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 7
+
+
+ 202 0024 3721     		movs	r1, #55
+ 203 0026 FFF7FEFF 		bl	u8g_SetContrast
+ 139:.\main.c      ****     LCD_Draw(Home, 0);
+ 204              		.loc 1 139 0
+ 205 002a 0020     		movs	r0, #0
+ 206 002c 0021     		movs	r1, #0
+ 207 002e FFF7FEFF 		bl	LCD_Draw
+ 208              	.L8:
+ 140:.\main.c      ****     
+ 141:.\main.c      ****     for(;;)
+ 142:.\main.c      ****     {
+ 143:.\main.c      ****         Check_Buttons();
+ 209              		.loc 1 143 0
+ 210 0032 FFF7FEFF 		bl	Check_Buttons
+ 144:.\main.c      ****         State_Machine();
+ 211              		.loc 1 144 0
+ 212 0036 FFF7FEFF 		bl	State_Machine
+ 145:.\main.c      **** //                u8g_DrawLine(&u8g, 64, 32, 128, 0);
+ 146:.\main.c      **** //                u8g_DrawFrame(&u8g, 55,3,30,15);
+ 147:.\main.c      ****        
+ 148:.\main.c      ****         Status = DieTemp_GetTemp(&DIE_Temp);
+ 213              		.loc 1 148 0
+ 214 003a 4848     		ldr	r0, .L9+12
+ 215 003c FFF7FEFF 		bl	DieTemp_GetTemp
+ 216 0040 0246     		mov	r2, r0
+ 217 0042 474B     		ldr	r3, .L9+16
+ 218 0044 1A60     		str	r2, [r3]
+ 149:.\main.c      **** 
+ 150:.\main.c      ****                 
+ 151:.\main.c      ****         DACValue = qdCount;
+ 219              		.loc 1 151 0
+ 220 0046 474B     		ldr	r3, .L9+20
+ 221 0048 1B88     		ldrh	r3, [r3]
+ 222 004a DAB2     		uxtb	r2, r3
+ 223 004c 464B     		ldr	r3, .L9+24
+ 224 004e 1A70     		strb	r2, [r3]
+ 152:.\main.c      ****         
+ 153:.\main.c      ****         if(OutputEnable ==1){
+ 225              		.loc 1 153 0
+ 226 0050 464B     		ldr	r3, .L9+28
+ 227 0052 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 228 0054 012B     		cmp	r3, #1
+ 229 0056 1CD1     		bne	.L2
+ 154:.\main.c      ****             if(OutputSelect == 0){
+ 230              		.loc 1 154 0
+ 231 0058 454B     		ldr	r3, .L9+32
+ 232 005a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 233 005c 002B     		cmp	r3, #0
+ 234 005e 02D1     		bne	.L3
+ 155:.\main.c      ****                 AMux_1_Select(2);
+ 235              		.loc 1 155 0
+ 236 0060 0220     		movs	r0, #2
+ 237 0062 FFF7FEFF 		bl	AMux_1_Select
+ 238              	.L3:
+ 156:.\main.c      ****             }
+ 157:.\main.c      ****             if(OutputSelect == 1){
+ 239              		.loc 1 157 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 8
+
+
+ 240 0066 424B     		ldr	r3, .L9+32
+ 241 0068 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 242 006a 012B     		cmp	r3, #1
+ 243 006c 14D1     		bne	.L7
+ 158:.\main.c      ****                 if(WaveSelect == 0){
+ 244              		.loc 1 158 0
+ 245 006e 414B     		ldr	r3, .L9+36
+ 246 0070 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 247 0072 002B     		cmp	r3, #0
+ 248 0074 02D1     		bne	.L5
+ 159:.\main.c      ****                     Wave_Reg_Write(0);
+ 249              		.loc 1 159 0
+ 250 0076 0020     		movs	r0, #0
+ 251 0078 FFF7FEFF 		bl	Wave_Reg_Write
+ 252              	.L5:
+ 160:.\main.c      ****                 }
+ 161:.\main.c      ****                 if(WaveSelect == 1){
+ 253              		.loc 1 161 0
+ 254 007c 3D4B     		ldr	r3, .L9+36
+ 255 007e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 256 0080 012B     		cmp	r3, #1
+ 257 0082 02D1     		bne	.L6
+ 162:.\main.c      ****                     Wave_Reg_Write(1);
+ 258              		.loc 1 162 0
+ 259 0084 0120     		movs	r0, #1
+ 260 0086 FFF7FEFF 		bl	Wave_Reg_Write
+ 261              	.L6:
+ 163:.\main.c      ****                 }
+ 164:.\main.c      ****                 AMux_1_Select(1);
+ 262              		.loc 1 164 0
+ 263 008a 0120     		movs	r0, #1
+ 264 008c FFF7FEFF 		bl	AMux_1_Select
+ 265 0090 02E0     		b	.L7
+ 266              	.L2:
+ 165:.\main.c      ****             }
+ 166:.\main.c      ****             
+ 167:.\main.c      ****         }
+ 168:.\main.c      ****         else{
+ 169:.\main.c      ****             AMux_1_Select(0);
+ 267              		.loc 1 169 0
+ 268 0092 0020     		movs	r0, #0
+ 269 0094 FFF7FEFF 		bl	AMux_1_Select
+ 270              	.L7:
+ 170:.\main.c      ****         }
+ 171:.\main.c      ****         
+ 172:.\main.c      ****         Voltage = ADC_SAR_1_GetResult16();   
+ 271              		.loc 1 172 0
+ 272 0098 FFF7FEFF 		bl	ADC_SAR_1_GetResult16
+ 273 009c 0346     		mov	r3, r0
+ 274 009e 9AB2     		uxth	r2, r3
+ 275 00a0 354B     		ldr	r3, .L9+40
+ 276 00a2 1A80     		strh	r2, [r3]	@ movhi
+ 173:.\main.c      ****         fVoltage = 10*ADC_SAR_1_CountsTo_Volts(Voltage);
+ 277              		.loc 1 173 0
+ 278 00a4 344B     		ldr	r3, .L9+40
+ 279 00a6 1B88     		ldrh	r3, [r3]
+ 280 00a8 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 9
+
+
+ 281 00aa 1BB2     		sxth	r3, r3
+ 282 00ac 1846     		mov	r0, r3
+ 283 00ae FFF7FEFF 		bl	ADC_SAR_1_CountsTo_Volts
+ 284 00b2 0346     		mov	r3, r0
+ 285 00b4 1846     		mov	r0, r3
+ 286 00b6 3149     		ldr	r1, .L9+44
+ 287 00b8 FFF7FEFF 		bl	__aeabi_fmul
+ 288 00bc 0346     		mov	r3, r0
+ 289 00be 1A46     		mov	r2, r3
+ 290 00c0 2F4B     		ldr	r3, .L9+48
+ 291 00c2 1A60     		str	r2, [r3]	@ float
+ 174:.\main.c      ****         sprintf((char *)cVoltage,"%2.3f",fVoltage);
+ 292              		.loc 1 174 0
+ 293 00c4 2E4B     		ldr	r3, .L9+48
+ 294 00c6 1B68     		ldr	r3, [r3]	@ float
+ 295 00c8 1846     		mov	r0, r3
+ 296 00ca FFF7FEFF 		bl	__aeabi_f2d
+ 297 00ce 0246     		mov	r2, r0
+ 298 00d0 0B46     		mov	r3, r1
+ 299 00d2 2C48     		ldr	r0, .L9+52
+ 300 00d4 2C49     		ldr	r1, .L9+56
+ 301 00d6 FFF7FEFF 		bl	sprintf
+ 175:.\main.c      ****         
+ 176:.\main.c      ****         Current = ADC_SAR_2_GetResult16();      
+ 302              		.loc 1 176 0
+ 303 00da FFF7FEFF 		bl	ADC_SAR_2_GetResult16
+ 304 00de 0346     		mov	r3, r0
+ 305 00e0 1A46     		mov	r2, r3
+ 306 00e2 2A4B     		ldr	r3, .L9+60
+ 307 00e4 1A80     		strh	r2, [r3]	@ movhi
+ 177:.\main.c      ****         fCurrent = ADC_SAR_2_CountsTo_Volts(Current);
+ 308              		.loc 1 177 0
+ 309 00e6 294B     		ldr	r3, .L9+60
+ 310 00e8 1B88     		ldrh	r3, [r3]
+ 311 00ea 1BB2     		sxth	r3, r3
+ 312 00ec 1846     		mov	r0, r3
+ 313 00ee FFF7FEFF 		bl	ADC_SAR_2_CountsTo_Volts
+ 314 00f2 0246     		mov	r2, r0
+ 315 00f4 264B     		ldr	r3, .L9+64
+ 316 00f6 1A60     		str	r2, [r3]	@ float
+ 178:.\main.c      ****         sprintf((char *)cCurrent,"%2.3f",fCurrent);
+ 317              		.loc 1 178 0
+ 318 00f8 254B     		ldr	r3, .L9+64
+ 319 00fa 1B68     		ldr	r3, [r3]	@ float
+ 320 00fc 1846     		mov	r0, r3
+ 321 00fe FFF7FEFF 		bl	__aeabi_f2d
+ 322 0102 0246     		mov	r2, r0
+ 323 0104 0B46     		mov	r3, r1
+ 324 0106 2348     		ldr	r0, .L9+68
+ 325 0108 1F49     		ldr	r1, .L9+56
+ 326 010a FFF7FEFF 		bl	sprintf
+ 179:.\main.c      ****         
+ 180:.\main.c      ****         fPower = fVoltage*fCurrent;
+ 327              		.loc 1 180 0
+ 328 010e 1C4B     		ldr	r3, .L9+48
+ 329 0110 1A68     		ldr	r2, [r3]	@ float
+ 330 0112 1F4B     		ldr	r3, .L9+64
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 10
+
+
+ 331 0114 1B68     		ldr	r3, [r3]	@ float
+ 332 0116 1046     		mov	r0, r2
+ 333 0118 1946     		mov	r1, r3
+ 334 011a FFF7FEFF 		bl	__aeabi_fmul
+ 335 011e 0346     		mov	r3, r0
+ 336 0120 1A46     		mov	r2, r3
+ 337 0122 1D4B     		ldr	r3, .L9+72
+ 338 0124 1A60     		str	r2, [r3]	@ float
+ 181:.\main.c      ****         sprintf((char *)cPower,"%3.3f",fPower);
+ 339              		.loc 1 181 0
+ 340 0126 1C4B     		ldr	r3, .L9+72
+ 341 0128 1B68     		ldr	r3, [r3]	@ float
+ 342 012a 1846     		mov	r0, r3
+ 343 012c FFF7FEFF 		bl	__aeabi_f2d
+ 344 0130 0246     		mov	r2, r0
+ 345 0132 0B46     		mov	r3, r1
+ 346 0134 1948     		ldr	r0, .L9+76
+ 347 0136 1A49     		ldr	r1, .L9+80
+ 348 0138 FFF7FEFF 		bl	sprintf
+ 182:.\main.c      ****        
+ 183:.\main.c      ****         VDAC8_1_SetValue(122);
+ 349              		.loc 1 183 0
+ 350 013c 7A20     		movs	r0, #122
+ 351 013e FFF7FEFF 		bl	VDAC8_1_SetValue
+ 184:.\main.c      ****         
+ 185:.\main.c      ****         TempRead();
+ 352              		.loc 1 185 0
+ 353 0142 FFF7FEFF 		bl	TempRead
+ 186:.\main.c      ****         
+ 187:.\main.c      ****         CyDelay(50u);
+ 354              		.loc 1 187 0
+ 355 0146 3220     		movs	r0, #50
+ 356 0148 FFF7FEFF 		bl	CyDelay
+ 188:.\main.c      ****         
+ 189:.\main.c      ****     }
+ 357              		.loc 1 189 0
+ 358 014c 71E7     		b	.L8
+ 359              	.L10:
+ 360 014e 00BF     		.align	2
+ 361              	.L9:
+ 362 0150 00000000 		.word	u8g
+ 363 0154 00000000 		.word	u8g_dev_st7565_dogm128_hw_spi
+ 364 0158 00000000 		.word	u8g_com_hw_spi_fn
+ 365 015c 00000000 		.word	DIE_Temp
+ 366 0160 00000000 		.word	Status
+ 367 0164 00000000 		.word	qdCount
+ 368 0168 00000000 		.word	DACValue
+ 369 016c 00000000 		.word	OutputEnable
+ 370 0170 00000000 		.word	OutputSelect
+ 371 0174 00000000 		.word	WaveSelect
+ 372 0178 00000000 		.word	Voltage
+ 373 017c 00002041 		.word	1092616192
+ 374 0180 00000000 		.word	fVoltage
+ 375 0184 00000000 		.word	cVoltage
+ 376 0188 00000000 		.word	.LC0
+ 377 018c 00000000 		.word	Current
+ 378 0190 00000000 		.word	fCurrent
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 11
+
+
+ 379 0194 00000000 		.word	cCurrent
+ 380 0198 00000000 		.word	fPower
+ 381 019c 00000000 		.word	cPower
+ 382 01a0 08000000 		.word	.LC1
+ 383              		.cfi_endproc
+ 384              	.LFE63:
+ 385              		.size	main, .-main
+ 386              		.section	.text.State_Machine,"ax",%progbits
+ 387              		.align	2
+ 388              		.global	State_Machine
+ 389              		.thumb
+ 390              		.thumb_func
+ 391              		.type	State_Machine, %function
+ 392              	State_Machine:
+ 393              	.LFB64:
+ 190:.\main.c      **** }
+ 191:.\main.c      **** 
+ 192:.\main.c      **** void State_Machine(){   
+ 394              		.loc 1 192 0
+ 395              		.cfi_startproc
+ 396              		@ args = 0, pretend = 0, frame = 0
+ 397              		@ frame_needed = 1, uses_anonymous_args = 0
+ 398 0000 80B5     		push	{r7, lr}
+ 399              		.cfi_def_cfa_offset 8
+ 400              		.cfi_offset 7, -8
+ 401              		.cfi_offset 14, -4
+ 402 0002 00AF     		add	r7, sp, #0
+ 403              		.cfi_def_cfa_register 7
+ 193:.\main.c      ****     switch(Current_State){
+ 404              		.loc 1 193 0
+ 405 0004 134B     		ldr	r3, .L22
+ 406 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 407 0008 052B     		cmp	r3, #5
+ 408 000a 21D8     		bhi	.L21
+ 409 000c 01A2     		adr	r2, .L14
+ 410 000e 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 411 0012 00BF     		.p2align 2
+ 412              	.L14:
+ 413 0014 2D000000 		.word	.L13+1
+ 414 0018 33000000 		.word	.L15+1
+ 415 001c 39000000 		.word	.L16+1
+ 416 0020 3F000000 		.word	.L17+1
+ 417 0024 45000000 		.word	.L18+1
+ 418 0028 4B000000 		.word	.L19+1
+ 419              		.p2align 1
+ 420              	.L13:
+ 194:.\main.c      ****         case Home:
+ 195:.\main.c      ****              State_Machine_Home();
+ 421              		.loc 1 195 0
+ 422 002c FFF7FEFF 		bl	State_Machine_Home
+ 196:.\main.c      ****         break;
+ 423              		.loc 1 196 0
+ 424 0030 0FE0     		b	.L11
+ 425              	.L15:
+ 197:.\main.c      ****     
+ 198:.\main.c      ****         case ConstantMode:
+ 199:.\main.c      ****              State_Machine_ConstantMode();  
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 12
+
+
+ 426              		.loc 1 199 0
+ 427 0032 FFF7FEFF 		bl	State_Machine_ConstantMode
+ 200:.\main.c      ****         break;
+ 428              		.loc 1 200 0
+ 429 0036 0CE0     		b	.L11
+ 430              	.L16:
+ 201:.\main.c      ****             
+ 202:.\main.c      ****         case ArbitraryMode:
+ 203:.\main.c      ****              State_Machine_ArbitraryMode();  
+ 431              		.loc 1 203 0
+ 432 0038 FFF7FEFF 		bl	State_Machine_ArbitraryMode
+ 204:.\main.c      ****         break;
+ 433              		.loc 1 204 0
+ 434 003c 09E0     		b	.L11
+ 435              	.L17:
+ 205:.\main.c      ****             
+ 206:.\main.c      ****         case ConstantCurrent:
+ 207:.\main.c      ****              State_Machine_ConstantCurrent();  
+ 436              		.loc 1 207 0
+ 437 003e FFF7FEFF 		bl	State_Machine_ConstantCurrent
+ 208:.\main.c      ****         break;
+ 438              		.loc 1 208 0
+ 439 0042 06E0     		b	.L11
+ 440              	.L18:
+ 209:.\main.c      ****             
+ 210:.\main.c      ****         case Settings:
+ 211:.\main.c      ****              State_Machine_Settings();
+ 441              		.loc 1 211 0
+ 442 0044 FFF7FEFF 		bl	State_Machine_Settings
+ 212:.\main.c      ****         break;
+ 443              		.loc 1 212 0
+ 444 0048 03E0     		b	.L11
+ 445              	.L19:
+ 213:.\main.c      ****             
+ 214:.\main.c      ****         case BacklightSetting:
+ 215:.\main.c      ****             State_Machine_BacklightSetting();
+ 446              		.loc 1 215 0
+ 447 004a FFF7FEFF 		bl	State_Machine_BacklightSetting
+ 216:.\main.c      ****         break;
+ 448              		.loc 1 216 0
+ 449 004e 00E0     		b	.L11
+ 450              	.L21:
+ 217:.\main.c      ****             
+ 218:.\main.c      ****             
+ 219:.\main.c      ****          
+ 220:.\main.c      ****         
+ 221:.\main.c      ****             
+ 222:.\main.c      ****         default:
+ 223:.\main.c      ****         break;
+ 451              		.loc 1 223 0
+ 452 0050 00BF     		nop
+ 453              	.L11:
+ 224:.\main.c      ****     }
+ 225:.\main.c      **** }
+ 454              		.loc 1 225 0
+ 455 0052 80BD     		pop	{r7, pc}
+ 456              	.L23:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 13
+
+
+ 457              		.align	2
+ 458              	.L22:
+ 459 0054 00000000 		.word	Current_State
+ 460              		.cfi_endproc
+ 461              	.LFE64:
+ 462              		.size	State_Machine, .-State_Machine
+ 463              		.section	.text.State_Machine_Home,"ax",%progbits
+ 464              		.align	2
+ 465              		.global	State_Machine_Home
+ 466              		.thumb
+ 467              		.thumb_func
+ 468              		.type	State_Machine_Home, %function
+ 469              	State_Machine_Home:
+ 470              	.LFB65:
+ 226:.\main.c      **** 
+ 227:.\main.c      **** void State_Machine_Home(){
+ 471              		.loc 1 227 0
+ 472              		.cfi_startproc
+ 473              		@ args = 0, pretend = 0, frame = 0
+ 474              		@ frame_needed = 1, uses_anonymous_args = 0
+ 475 0000 98B5     		push	{r3, r4, r7, lr}
+ 476              		.cfi_def_cfa_offset 16
+ 477              		.cfi_offset 3, -16
+ 478              		.cfi_offset 4, -12
+ 479              		.cfi_offset 7, -8
+ 480              		.cfi_offset 14, -4
+ 481 0002 00AF     		add	r7, sp, #0
+ 482              		.cfi_def_cfa_register 7
+ 228:.\main.c      ****     LCD_Draw(Current_State, Get_Encoder_Menu(4));
+ 483              		.loc 1 228 0
+ 484 0004 1B4B     		ldr	r3, .L28
+ 485 0006 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 486 0008 0420     		movs	r0, #4
+ 487 000a FFF7FEFF 		bl	Get_Encoder_Menu
+ 488 000e 0346     		mov	r3, r0
+ 489 0010 DBB2     		uxtb	r3, r3
+ 490 0012 2046     		mov	r0, r4
+ 491 0014 1946     		mov	r1, r3
+ 492 0016 FFF7FEFF 		bl	LCD_Draw
+ 229:.\main.c      ****     if(!(Push_Reg_Read() == 0)){
+ 493              		.loc 1 229 0
+ 494 001a FFF7FEFF 		bl	Push_Reg_Read
+ 495 001e 0346     		mov	r3, r0
+ 496 0020 002B     		cmp	r3, #0
+ 497 0022 25D0     		beq	.L24
+ 230:.\main.c      ****         if(Get_Encoder_Menu(4) == 0){
+ 498              		.loc 1 230 0
+ 499 0024 0420     		movs	r0, #4
+ 500 0026 FFF7FEFF 		bl	Get_Encoder_Menu
+ 501 002a 0346     		mov	r3, r0
+ 502 002c 002B     		cmp	r3, #0
+ 503 002e 06D1     		bne	.L26
+ 231:.\main.c      ****             QD_SetCounter(0);
+ 504              		.loc 1 231 0
+ 505 0030 0020     		movs	r0, #0
+ 506 0032 FFF7FEFF 		bl	QD_SetCounter
+ 232:.\main.c      ****             Current_State = ConstantMode;
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 14
+
+
+ 507              		.loc 1 232 0
+ 508 0036 0F4B     		ldr	r3, .L28
+ 509 0038 0122     		movs	r2, #1
+ 510 003a 1A70     		strb	r2, [r3]
+ 511 003c 18E0     		b	.L24
+ 512              	.L26:
+ 233:.\main.c      ****         }
+ 234:.\main.c      ****         else if(Get_Encoder_Menu(4) == 1){
+ 513              		.loc 1 234 0
+ 514 003e 0420     		movs	r0, #4
+ 515 0040 FFF7FEFF 		bl	Get_Encoder_Menu
+ 516 0044 0346     		mov	r3, r0
+ 517 0046 012B     		cmp	r3, #1
+ 518 0048 06D1     		bne	.L27
+ 235:.\main.c      ****             QD_SetCounter(0);
+ 519              		.loc 1 235 0
+ 520 004a 0020     		movs	r0, #0
+ 521 004c FFF7FEFF 		bl	QD_SetCounter
+ 236:.\main.c      ****             Current_State = ArbitraryMode;
+ 522              		.loc 1 236 0
+ 523 0050 084B     		ldr	r3, .L28
+ 524 0052 0222     		movs	r2, #2
+ 525 0054 1A70     		strb	r2, [r3]
+ 526 0056 0BE0     		b	.L24
+ 527              	.L27:
+ 237:.\main.c      ****         }
+ 238:.\main.c      ****         else if(Get_Encoder_Menu(4) == 3){
+ 528              		.loc 1 238 0
+ 529 0058 0420     		movs	r0, #4
+ 530 005a FFF7FEFF 		bl	Get_Encoder_Menu
+ 531 005e 0346     		mov	r3, r0
+ 532 0060 032B     		cmp	r3, #3
+ 533 0062 05D1     		bne	.L24
+ 239:.\main.c      ****             QD_SetCounter(0);
+ 534              		.loc 1 239 0
+ 535 0064 0020     		movs	r0, #0
+ 536 0066 FFF7FEFF 		bl	QD_SetCounter
+ 240:.\main.c      ****             Current_State = Settings;
+ 537              		.loc 1 240 0
+ 538 006a 024B     		ldr	r3, .L28
+ 539 006c 0422     		movs	r2, #4
+ 540 006e 1A70     		strb	r2, [r3]
+ 541              	.L24:
+ 241:.\main.c      ****         }  
+ 242:.\main.c      ****     }
+ 243:.\main.c      **** }
+ 542              		.loc 1 243 0
+ 543 0070 98BD     		pop	{r3, r4, r7, pc}
+ 544              	.L29:
+ 545 0072 00BF     		.align	2
+ 546              	.L28:
+ 547 0074 00000000 		.word	Current_State
+ 548              		.cfi_endproc
+ 549              	.LFE65:
+ 550              		.size	State_Machine_Home, .-State_Machine_Home
+ 551              		.section	.text.State_Machine_ConstantMode,"ax",%progbits
+ 552              		.align	2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 15
+
+
+ 553              		.global	State_Machine_ConstantMode
+ 554              		.thumb
+ 555              		.thumb_func
+ 556              		.type	State_Machine_ConstantMode, %function
+ 557              	State_Machine_ConstantMode:
+ 558              	.LFB66:
+ 244:.\main.c      **** 
+ 245:.\main.c      **** void State_Machine_ConstantMode(){
+ 559              		.loc 1 245 0
+ 560              		.cfi_startproc
+ 561              		@ args = 0, pretend = 0, frame = 0
+ 562              		@ frame_needed = 1, uses_anonymous_args = 0
+ 563 0000 98B5     		push	{r3, r4, r7, lr}
+ 564              		.cfi_def_cfa_offset 16
+ 565              		.cfi_offset 3, -16
+ 566              		.cfi_offset 4, -12
+ 567              		.cfi_offset 7, -8
+ 568              		.cfi_offset 14, -4
+ 569 0002 00AF     		add	r7, sp, #0
+ 570              		.cfi_def_cfa_register 7
+ 246:.\main.c      ****     LCD_Draw(Current_State, Get_Encoder_Menu(2));
+ 571              		.loc 1 246 0
+ 572 0004 134B     		ldr	r3, .L33
+ 573 0006 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 574 0008 0220     		movs	r0, #2
+ 575 000a FFF7FEFF 		bl	Get_Encoder_Menu
+ 576 000e 0346     		mov	r3, r0
+ 577 0010 DBB2     		uxtb	r3, r3
+ 578 0012 2046     		mov	r0, r4
+ 579 0014 1946     		mov	r1, r3
+ 580 0016 FFF7FEFF 		bl	LCD_Draw
+ 247:.\main.c      ****     if(!(Push_Reg_Read() == 0)){
+ 581              		.loc 1 247 0
+ 582 001a FFF7FEFF 		bl	Push_Reg_Read
+ 583 001e 0346     		mov	r3, r0
+ 584 0020 002B     		cmp	r3, #0
+ 585 0022 0BD0     		beq	.L31
+ 248:.\main.c      ****         if(Get_Encoder_Menu(2) == 0){
+ 586              		.loc 1 248 0
+ 587 0024 0220     		movs	r0, #2
+ 588 0026 FFF7FEFF 		bl	Get_Encoder_Menu
+ 589 002a 0346     		mov	r3, r0
+ 590 002c 002B     		cmp	r3, #0
+ 591 002e 05D1     		bne	.L31
+ 249:.\main.c      ****             QD_SetCounter(0);
+ 592              		.loc 1 249 0
+ 593 0030 0020     		movs	r0, #0
+ 594 0032 FFF7FEFF 		bl	QD_SetCounter
+ 250:.\main.c      ****             Current_State = ConstantCurrent;
+ 595              		.loc 1 250 0
+ 596 0036 074B     		ldr	r3, .L33
+ 597 0038 0322     		movs	r2, #3
+ 598 003a 1A70     		strb	r2, [r3]
+ 599              	.L31:
+ 251:.\main.c      ****         }
+ 252:.\main.c      ****     }
+ 253:.\main.c      **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 16
+
+
+ 254:.\main.c      ****     if(!(button1 == 0)){    //Back
+ 600              		.loc 1 254 0
+ 601 003c 064B     		ldr	r3, .L33+4
+ 602 003e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 603 0040 002B     		cmp	r3, #0
+ 604 0042 05D0     		beq	.L30
+ 255:.\main.c      ****         QD_SetCounter(0);
+ 605              		.loc 1 255 0
+ 606 0044 0020     		movs	r0, #0
+ 607 0046 FFF7FEFF 		bl	QD_SetCounter
+ 256:.\main.c      ****         Current_State = Home;
+ 608              		.loc 1 256 0
+ 609 004a 024B     		ldr	r3, .L33
+ 610 004c 0022     		movs	r2, #0
+ 611 004e 1A70     		strb	r2, [r3]
+ 612              	.L30:
+ 257:.\main.c      ****     }
+ 258:.\main.c      **** }
+ 613              		.loc 1 258 0
+ 614 0050 98BD     		pop	{r3, r4, r7, pc}
+ 615              	.L34:
+ 616 0052 00BF     		.align	2
+ 617              	.L33:
+ 618 0054 00000000 		.word	Current_State
+ 619 0058 00000000 		.word	button1
+ 620              		.cfi_endproc
+ 621              	.LFE66:
+ 622              		.size	State_Machine_ConstantMode, .-State_Machine_ConstantMode
+ 623              		.section	.text.State_Machine_ArbitraryMode,"ax",%progbits
+ 624              		.align	2
+ 625              		.global	State_Machine_ArbitraryMode
+ 626              		.thumb
+ 627              		.thumb_func
+ 628              		.type	State_Machine_ArbitraryMode, %function
+ 629              	State_Machine_ArbitraryMode:
+ 630              	.LFB67:
+ 259:.\main.c      **** 
+ 260:.\main.c      **** void State_Machine_ArbitraryMode(){
+ 631              		.loc 1 260 0
+ 632              		.cfi_startproc
+ 633              		@ args = 0, pretend = 0, frame = 0
+ 634              		@ frame_needed = 1, uses_anonymous_args = 0
+ 635 0000 98B5     		push	{r3, r4, r7, lr}
+ 636              		.cfi_def_cfa_offset 16
+ 637              		.cfi_offset 3, -16
+ 638              		.cfi_offset 4, -12
+ 639              		.cfi_offset 7, -8
+ 640              		.cfi_offset 14, -4
+ 641 0002 00AF     		add	r7, sp, #0
+ 642              		.cfi_def_cfa_register 7
+ 261:.\main.c      ****     LCD_Draw(Current_State, Get_Encoder_Menu(2));    
+ 643              		.loc 1 261 0
+ 644 0004 054B     		ldr	r3, .L36
+ 645 0006 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 646 0008 0220     		movs	r0, #2
+ 647 000a FFF7FEFF 		bl	Get_Encoder_Menu
+ 648 000e 0346     		mov	r3, r0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 17
+
+
+ 649 0010 DBB2     		uxtb	r3, r3
+ 650 0012 2046     		mov	r0, r4
+ 651 0014 1946     		mov	r1, r3
+ 652 0016 FFF7FEFF 		bl	LCD_Draw
+ 262:.\main.c      **** }
+ 653              		.loc 1 262 0
+ 654 001a 98BD     		pop	{r3, r4, r7, pc}
+ 655              	.L37:
+ 656              		.align	2
+ 657              	.L36:
+ 658 001c 00000000 		.word	Current_State
+ 659              		.cfi_endproc
+ 660              	.LFE67:
+ 661              		.size	State_Machine_ArbitraryMode, .-State_Machine_ArbitraryMode
+ 662              		.section	.text.State_Machine_ConstantCurrent,"ax",%progbits
+ 663              		.align	2
+ 664              		.global	State_Machine_ConstantCurrent
+ 665              		.thumb
+ 666              		.thumb_func
+ 667              		.type	State_Machine_ConstantCurrent, %function
+ 668              	State_Machine_ConstantCurrent:
+ 669              	.LFB68:
+ 263:.\main.c      **** 
+ 264:.\main.c      **** void State_Machine_ConstantCurrent(){
+ 670              		.loc 1 264 0
+ 671              		.cfi_startproc
+ 672              		@ args = 0, pretend = 0, frame = 0
+ 673              		@ frame_needed = 1, uses_anonymous_args = 0
+ 674 0000 98B5     		push	{r3, r4, r7, lr}
+ 675              		.cfi_def_cfa_offset 16
+ 676              		.cfi_offset 3, -16
+ 677              		.cfi_offset 4, -12
+ 678              		.cfi_offset 7, -8
+ 679              		.cfi_offset 14, -4
+ 680 0002 00AF     		add	r7, sp, #0
+ 681              		.cfi_def_cfa_register 7
+ 265:.\main.c      ****     LCD_Draw(Current_State, Get_Encoder_Menu(2));     
+ 682              		.loc 1 265 0
+ 683 0004 114B     		ldr	r3, .L41
+ 684 0006 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 685 0008 0220     		movs	r0, #2
+ 686 000a FFF7FEFF 		bl	Get_Encoder_Menu
+ 687 000e 0346     		mov	r3, r0
+ 688 0010 DBB2     		uxtb	r3, r3
+ 689 0012 2046     		mov	r0, r4
+ 690 0014 1946     		mov	r1, r3
+ 691 0016 FFF7FEFF 		bl	LCD_Draw
+ 266:.\main.c      ****     
+ 267:.\main.c      ****     if(!(button1 == 0)){    //Back
+ 692              		.loc 1 267 0
+ 693 001a 0D4B     		ldr	r3, .L41+4
+ 694 001c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 695 001e 002B     		cmp	r3, #0
+ 696 0020 05D0     		beq	.L39
+ 268:.\main.c      ****         QD_SetCounter(0);
+ 697              		.loc 1 268 0
+ 698 0022 0020     		movs	r0, #0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 18
+
+
+ 699 0024 FFF7FEFF 		bl	QD_SetCounter
+ 269:.\main.c      ****         Current_State = ConstantMode;
+ 700              		.loc 1 269 0
+ 701 0028 084B     		ldr	r3, .L41
+ 702 002a 0122     		movs	r2, #1
+ 703 002c 1A70     		strb	r2, [r3]
+ 704              	.L39:
+ 270:.\main.c      ****     }
+ 271:.\main.c      **** 
+ 272:.\main.c      ****     if(!(button3 == 0)){    //Output Enable
+ 705              		.loc 1 272 0
+ 706 002e 094B     		ldr	r3, .L41+8
+ 707 0030 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 708 0032 002B     		cmp	r3, #0
+ 709 0034 09D0     		beq	.L38
+ 273:.\main.c      ****         OutputEnable = !OutputEnable;
+ 710              		.loc 1 273 0
+ 711 0036 084B     		ldr	r3, .L41+12
+ 712 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 713 003a 002B     		cmp	r3, #0
+ 714 003c 0CBF     		ite	eq
+ 715 003e 0123     		moveq	r3, #1
+ 716 0040 0023     		movne	r3, #0
+ 717 0042 DBB2     		uxtb	r3, r3
+ 718 0044 1A46     		mov	r2, r3
+ 719 0046 044B     		ldr	r3, .L41+12
+ 720 0048 1A70     		strb	r2, [r3]
+ 721              	.L38:
+ 274:.\main.c      ****     }
+ 275:.\main.c      **** }
+ 722              		.loc 1 275 0
+ 723 004a 98BD     		pop	{r3, r4, r7, pc}
+ 724              	.L42:
+ 725              		.align	2
+ 726              	.L41:
+ 727 004c 00000000 		.word	Current_State
+ 728 0050 00000000 		.word	button1
+ 729 0054 00000000 		.word	button3
+ 730 0058 00000000 		.word	OutputEnable
+ 731              		.cfi_endproc
+ 732              	.LFE68:
+ 733              		.size	State_Machine_ConstantCurrent, .-State_Machine_ConstantCurrent
+ 734              		.section	.text.State_Machine_Settings,"ax",%progbits
+ 735              		.align	2
+ 736              		.global	State_Machine_Settings
+ 737              		.thumb
+ 738              		.thumb_func
+ 739              		.type	State_Machine_Settings, %function
+ 740              	State_Machine_Settings:
+ 741              	.LFB69:
+ 276:.\main.c      **** 
+ 277:.\main.c      **** 
+ 278:.\main.c      **** void State_Machine_Settings(){
+ 742              		.loc 1 278 0
+ 743              		.cfi_startproc
+ 744              		@ args = 0, pretend = 0, frame = 0
+ 745              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 19
+
+
+ 746 0000 98B5     		push	{r3, r4, r7, lr}
+ 747              		.cfi_def_cfa_offset 16
+ 748              		.cfi_offset 3, -16
+ 749              		.cfi_offset 4, -12
+ 750              		.cfi_offset 7, -8
+ 751              		.cfi_offset 14, -4
+ 752 0002 00AF     		add	r7, sp, #0
+ 753              		.cfi_def_cfa_register 7
+ 279:.\main.c      ****     LCD_Draw(Current_State, Get_Encoder_Menu(2));
+ 754              		.loc 1 279 0
+ 755 0004 1A4B     		ldr	r3, .L47
+ 756 0006 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 757 0008 0220     		movs	r0, #2
+ 758 000a FFF7FEFF 		bl	Get_Encoder_Menu
+ 759 000e 0346     		mov	r3, r0
+ 760 0010 DBB2     		uxtb	r3, r3
+ 761 0012 2046     		mov	r0, r4
+ 762 0014 1946     		mov	r1, r3
+ 763 0016 FFF7FEFF 		bl	LCD_Draw
+ 280:.\main.c      ****     if(!(Push_Reg_Read() == 0)){
+ 764              		.loc 1 280 0
+ 765 001a FFF7FEFF 		bl	Push_Reg_Read
+ 766 001e 0346     		mov	r3, r0
+ 767 0020 002B     		cmp	r3, #0
+ 768 0022 19D0     		beq	.L44
+ 281:.\main.c      ****         if(Get_Encoder_Menu(4) == 0){
+ 769              		.loc 1 281 0
+ 770 0024 0420     		movs	r0, #4
+ 771 0026 FFF7FEFF 		bl	Get_Encoder_Menu
+ 772 002a 0346     		mov	r3, r0
+ 773 002c 002B     		cmp	r3, #0
+ 774 002e 0AD1     		bne	.L45
+ 282:.\main.c      ****             QD_SetCounter(CurrentBacklightValue);
+ 775              		.loc 1 282 0
+ 776 0030 104B     		ldr	r3, .L47+4
+ 777 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 778 0034 9BB2     		uxth	r3, r3
+ 779 0036 1BB2     		sxth	r3, r3
+ 780 0038 1846     		mov	r0, r3
+ 781 003a FFF7FEFF 		bl	QD_SetCounter
+ 283:.\main.c      ****             Current_State = BacklightSetting;
+ 782              		.loc 1 283 0
+ 783 003e 0C4B     		ldr	r3, .L47
+ 784 0040 0522     		movs	r2, #5
+ 785 0042 1A70     		strb	r2, [r3]
+ 786 0044 08E0     		b	.L44
+ 787              	.L45:
+ 284:.\main.c      ****             
+ 285:.\main.c      ****         }
+ 286:.\main.c      ****         else if(Get_Encoder_Menu(4) == 1){
+ 788              		.loc 1 286 0
+ 789 0046 0420     		movs	r0, #4
+ 790 0048 FFF7FEFF 		bl	Get_Encoder_Menu
+ 791 004c 0346     		mov	r3, r0
+ 792 004e 012B     		cmp	r3, #1
+ 793 0050 02D1     		bne	.L44
+ 287:.\main.c      ****             QD_SetCounter(0);
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 20
+
+
+ 794              		.loc 1 287 0
+ 795 0052 0020     		movs	r0, #0
+ 796 0054 FFF7FEFF 		bl	QD_SetCounter
+ 797              	.L44:
+ 288:.\main.c      ****            
+ 289:.\main.c      ****         }  
+ 290:.\main.c      ****     }
+ 291:.\main.c      ****     if(!(button1 == 0)){    //Back
+ 798              		.loc 1 291 0
+ 799 0058 074B     		ldr	r3, .L47+8
+ 800 005a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 801 005c 002B     		cmp	r3, #0
+ 802 005e 05D0     		beq	.L43
+ 292:.\main.c      ****         QD_SetCounter(0);
+ 803              		.loc 1 292 0
+ 804 0060 0020     		movs	r0, #0
+ 805 0062 FFF7FEFF 		bl	QD_SetCounter
+ 293:.\main.c      ****         Current_State = Home;
+ 806              		.loc 1 293 0
+ 807 0066 024B     		ldr	r3, .L47
+ 808 0068 0022     		movs	r2, #0
+ 809 006a 1A70     		strb	r2, [r3]
+ 810              	.L43:
+ 294:.\main.c      ****     }
+ 295:.\main.c      **** }
+ 811              		.loc 1 295 0
+ 812 006c 98BD     		pop	{r3, r4, r7, pc}
+ 813              	.L48:
+ 814 006e 00BF     		.align	2
+ 815              	.L47:
+ 816 0070 00000000 		.word	Current_State
+ 817 0074 00000000 		.word	CurrentBacklightValue
+ 818 0078 00000000 		.word	button1
+ 819              		.cfi_endproc
+ 820              	.LFE69:
+ 821              		.size	State_Machine_Settings, .-State_Machine_Settings
+ 822              		.section	.text.State_Machine_BacklightSetting,"ax",%progbits
+ 823              		.align	2
+ 824              		.global	State_Machine_BacklightSetting
+ 825              		.thumb
+ 826              		.thumb_func
+ 827              		.type	State_Machine_BacklightSetting, %function
+ 828              	State_Machine_BacklightSetting:
+ 829              	.LFB70:
+ 296:.\main.c      **** 
+ 297:.\main.c      **** 
+ 298:.\main.c      **** void State_Machine_BacklightSetting(){
+ 830              		.loc 1 298 0
+ 831              		.cfi_startproc
+ 832              		@ args = 0, pretend = 0, frame = 0
+ 833              		@ frame_needed = 1, uses_anonymous_args = 0
+ 834 0000 98B5     		push	{r3, r4, r7, lr}
+ 835              		.cfi_def_cfa_offset 16
+ 836              		.cfi_offset 3, -16
+ 837              		.cfi_offset 4, -12
+ 838              		.cfi_offset 7, -8
+ 839              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 21
+
+
+ 840 0002 00AF     		add	r7, sp, #0
+ 841              		.cfi_def_cfa_register 7
+ 299:.\main.c      ****    
+ 300:.\main.c      ****     SetBacklight(Get_Encoder(255));
+ 842              		.loc 1 300 0
+ 843 0004 FF20     		movs	r0, #255
+ 844 0006 FFF7FEFF 		bl	Get_Encoder
+ 845 000a 0346     		mov	r3, r0
+ 846 000c DBB2     		uxtb	r3, r3
+ 847 000e 1846     		mov	r0, r3
+ 848 0010 FFF7FEFF 		bl	SetBacklight
+ 301:.\main.c      ****     LCD_Draw(Current_State, Get_Encoder_Menu(1));
+ 849              		.loc 1 301 0
+ 850 0014 104B     		ldr	r3, .L52
+ 851 0016 1C78     		ldrb	r4, [r3]	@ zero_extendqisi2
+ 852 0018 0120     		movs	r0, #1
+ 853 001a FFF7FEFF 		bl	Get_Encoder_Menu
+ 854 001e 0346     		mov	r3, r0
+ 855 0020 DBB2     		uxtb	r3, r3
+ 856 0022 2046     		mov	r0, r4
+ 857 0024 1946     		mov	r1, r3
+ 858 0026 FFF7FEFF 		bl	LCD_Draw
+ 302:.\main.c      ****     
+ 303:.\main.c      ****     if(!(Push_Reg_Read() == 0)){
+ 859              		.loc 1 303 0
+ 860 002a FFF7FEFF 		bl	Push_Reg_Read
+ 861 002e 0346     		mov	r3, r0
+ 862 0030 002B     		cmp	r3, #0
+ 863 0032 05D0     		beq	.L50
+ 304:.\main.c      ****             QD_SetCounter(0);
+ 864              		.loc 1 304 0
+ 865 0034 0020     		movs	r0, #0
+ 866 0036 FFF7FEFF 		bl	QD_SetCounter
+ 305:.\main.c      ****             Current_State = Settings;
+ 867              		.loc 1 305 0
+ 868 003a 074B     		ldr	r3, .L52
+ 869 003c 0422     		movs	r2, #4
+ 870 003e 1A70     		strb	r2, [r3]
+ 871              	.L50:
+ 306:.\main.c      ****     }
+ 307:.\main.c      ****     
+ 308:.\main.c      ****     if(!(button1 == 0)){    //Back
+ 872              		.loc 1 308 0
+ 873 0040 064B     		ldr	r3, .L52+4
+ 874 0042 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 875 0044 002B     		cmp	r3, #0
+ 876 0046 05D0     		beq	.L49
+ 309:.\main.c      ****         QD_SetCounter(0);
+ 877              		.loc 1 309 0
+ 878 0048 0020     		movs	r0, #0
+ 879 004a FFF7FEFF 		bl	QD_SetCounter
+ 310:.\main.c      ****         Current_State = Settings;
+ 880              		.loc 1 310 0
+ 881 004e 024B     		ldr	r3, .L52
+ 882 0050 0422     		movs	r2, #4
+ 883 0052 1A70     		strb	r2, [r3]
+ 884              	.L49:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 22
+
+
+ 311:.\main.c      ****     }
+ 312:.\main.c      **** }
+ 885              		.loc 1 312 0
+ 886 0054 98BD     		pop	{r3, r4, r7, pc}
+ 887              	.L53:
+ 888 0056 00BF     		.align	2
+ 889              	.L52:
+ 890 0058 00000000 		.word	Current_State
+ 891 005c 00000000 		.word	button1
+ 892              		.cfi_endproc
+ 893              	.LFE70:
+ 894              		.size	State_Machine_BacklightSetting, .-State_Machine_BacklightSetting
+ 895              		.section	.rodata
+ 896 000e 0000     		.align	2
+ 897              	.LC2:
+ 898 0010 436F6E73 		.ascii	"Constant Mode\000"
+ 898      74616E74 
+ 898      204D6F64 
+ 898      6500
+ 899 001e 0000     		.align	2
+ 900              	.LC3:
+ 901 0020 41726269 		.ascii	"Arbitrary Mode\000"
+ 901      74726172 
+ 901      79204D6F 
+ 901      646500
+ 902 002f 00       		.align	2
+ 903              	.LC4:
+ 904 0030 42617420 		.ascii	"Bat Discharge\000"
+ 904      44697363 
+ 904      68617267 
+ 904      6500
+ 905 003e 0000     		.align	2
+ 906              	.LC5:
+ 907 0040 53657474 		.ascii	"Settings\000"
+ 907      696E6773 
+ 907      00
+ 908 0049 000000   		.align	2
+ 909              	.LC6:
+ 910 004c 436F6E73 		.ascii	"Const Current\000"
+ 910      74204375 
+ 910      7272656E 
+ 910      7400
+ 911 005a 0000     		.align	2
+ 912              	.LC7:
+ 913 005c 436F6E73 		.ascii	"Const Volatge\000"
+ 913      7420566F 
+ 913      6C617467 
+ 913      6500
+ 914 006a 0000     		.align	2
+ 915              	.LC8:
+ 916 006c 53696E65 		.ascii	"Sine Wave\000"
+ 916      20576176 
+ 916      6500
+ 917 0076 0000     		.align	2
+ 918              	.LC9:
+ 919 0078 53717561 		.ascii	"Square Wave\000"
+ 919      72652057 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 23
+
+
+ 919      61766500 
+ 920              		.align	2
+ 921              	.LC10:
+ 922 0084 4261636B 		.ascii	"Backlight\000"
+ 922      6C696768 
+ 922      7400
+ 923 008e 0000     		.align	2
+ 924              	.LC11:
+ 925 0090 566F6C75 		.ascii	"Volume:\000"
+ 925      6D653A00 
+ 926              		.align	2
+ 927              	.LC12:
+ 928 0098 2D2D2D54 		.ascii	"---TBD---\000"
+ 928      42442D2D 
+ 928      2D00
+ 929 00a2 0000     		.align	2
+ 930              	.LC13:
+ 931 00a4 332E3237 		.ascii	"3.27 A\000"
+ 931      204100
+ 932 00ab 00       		.align	2
+ 933              	.LC14:
+ 934 00ac 31322E30 		.ascii	"12.01V  39.27W\000"
+ 934      31562020 
+ 934      33392E32 
+ 934      375700
+ 935 00bb 00       		.align	2
+ 936              	.LC15:
+ 937 00bc 3C2D207C 		.ascii	"<- | Set Value | Start\000"
+ 937      20536574 
+ 937      2056616C 
+ 937      7565207C 
+ 937      20537461 
+ 938              		.section	.text.LCD_Draw,"ax",%progbits
+ 939              		.align	2
+ 940              		.global	LCD_Draw
+ 941              		.thumb
+ 942              		.thumb_func
+ 943              		.type	LCD_Draw, %function
+ 944              	LCD_Draw:
+ 945              	.LFB71:
+ 313:.\main.c      **** 
+ 314:.\main.c      **** void LCD_Draw(uint8 PageName, uint8 Current_Menu_Position){
+ 946              		.loc 1 314 0
+ 947              		.cfi_startproc
+ 948              		@ args = 0, pretend = 0, frame = 16
+ 949              		@ frame_needed = 1, uses_anonymous_args = 0
+ 950 0000 80B5     		push	{r7, lr}
+ 951              		.cfi_def_cfa_offset 8
+ 952              		.cfi_offset 7, -8
+ 953              		.cfi_offset 14, -4
+ 954 0002 86B0     		sub	sp, sp, #24
+ 955              		.cfi_def_cfa_offset 32
+ 956 0004 02AF     		add	r7, sp, #8
+ 957              		.cfi_def_cfa 7, 24
+ 958 0006 0346     		mov	r3, r0
+ 959 0008 0A46     		mov	r2, r1
+ 960 000a FB71     		strb	r3, [r7, #7]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 24
+
+
+ 961 000c 1346     		mov	r3, r2
+ 962 000e BB71     		strb	r3, [r7, #6]
+ 315:.\main.c      **** 
+ 316:.\main.c      ****     enum State PageNamee;
+ 317:.\main.c      ****     PageNamee = PageName;
+ 963              		.loc 1 317 0
+ 964 0010 FB79     		ldrb	r3, [r7, #7]
+ 965 0012 FB73     		strb	r3, [r7, #15]
+ 318:.\main.c      ****     
+ 319:.\main.c      ****     switch(PageNamee){
+ 966              		.loc 1 319 0
+ 967 0014 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 968 0016 052B     		cmp	r3, #5
+ 969 0018 00F22C82 		bhi	.L82
+ 970 001c 01A2     		adr	r2, .L57
+ 971 001e 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 972 0022 00BF     		.p2align 2
+ 973              	.L57:
+ 974 0024 3D000000 		.word	.L56+1
+ 975 0028 29010000 		.word	.L58+1
+ 976 002c A9010000 		.word	.L59+1
+ 977 0030 09040000 		.word	.L60+1
+ 978 0034 09030000 		.word	.L61+1
+ 979 0038 29020000 		.word	.L62+1
+ 980              		.p2align 1
+ 981              	.L56:
+ 320:.\main.c      ****       case Home: 
+ 321:.\main.c      ****             u8g_FirstPage(&u8g);
+ 982              		.loc 1 321 0
+ 983 003c A448     		ldr	r0, .L83
+ 984 003e FFF7FEFF 		bl	u8g_FirstPage
+ 985              	.L67:
+ 322:.\main.c      ****             do{
+ 323:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 986              		.loc 1 323 0
+ 987 0042 A348     		ldr	r0, .L83
+ 988 0044 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 324:.\main.c      ****                 if(Current_Menu_Position == 0){
+ 989              		.loc 1 324 0
+ 990 0048 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 991 004a 002B     		cmp	r3, #0
+ 992 004c 0AD1     		bne	.L63
+ 325:.\main.c      ****                     u8g_DrawBox(&u8g, 0,0,128,16);
+ 993              		.loc 1 325 0
+ 994 004e 1023     		movs	r3, #16
+ 995 0050 0093     		str	r3, [sp]
+ 996 0052 9F48     		ldr	r0, .L83
+ 997 0054 0021     		movs	r1, #0
+ 998 0056 0022     		movs	r2, #0
+ 999 0058 8023     		movs	r3, #128
+ 1000 005a FFF7FEFF 		bl	u8g_DrawBox
+ 326:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1001              		.loc 1 326 0
+ 1002 005e 9C48     		ldr	r0, .L83
+ 1003 0060 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1004              	.L63:
+ 327:.\main.c      ****                 }             
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 25
+
+
+ 328:.\main.c      ****                 
+ 329:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);   
+ 1005              		.loc 1 329 0
+ 1006 0064 9A48     		ldr	r0, .L83
+ 1007 0066 9B49     		ldr	r1, .L83+4
+ 1008 0068 FFF7FEFF 		bl	u8g_SetFont
+ 330:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 13, "Constant Mode");
+ 1009              		.loc 1 330 0
+ 1010 006c 9848     		ldr	r0, .L83
+ 1011 006e 0221     		movs	r1, #2
+ 1012 0070 0D22     		movs	r2, #13
+ 1013 0072 994B     		ldr	r3, .L83+8
+ 1014 0074 FFF7FEFF 		bl	u8g_DrawStr
+ 331:.\main.c      ****                 
+ 332:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);                
+ 1015              		.loc 1 332 0
+ 1016 0078 9548     		ldr	r0, .L83
+ 1017 007a FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 333:.\main.c      ****                 if(Current_Menu_Position == 1){
+ 1018              		.loc 1 333 0
+ 1019 007e BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1020 0080 012B     		cmp	r3, #1
+ 1021 0082 0AD1     		bne	.L64
+ 334:.\main.c      ****                     u8g_DrawBox(&u8g, 0,16,128,16);
+ 1022              		.loc 1 334 0
+ 1023 0084 1023     		movs	r3, #16
+ 1024 0086 0093     		str	r3, [sp]
+ 1025 0088 9148     		ldr	r0, .L83
+ 1026 008a 0021     		movs	r1, #0
+ 1027 008c 1022     		movs	r2, #16
+ 1028 008e 8023     		movs	r3, #128
+ 1029 0090 FFF7FEFF 		bl	u8g_DrawBox
+ 335:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1030              		.loc 1 335 0
+ 1031 0094 8E48     		ldr	r0, .L83
+ 1032 0096 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1033              	.L64:
+ 336:.\main.c      ****                 }
+ 337:.\main.c      ****                 
+ 338:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1034              		.loc 1 338 0
+ 1035 009a 8D48     		ldr	r0, .L83
+ 1036 009c 8D49     		ldr	r1, .L83+4
+ 1037 009e FFF7FEFF 		bl	u8g_SetFont
+ 339:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 29, "Arbitrary Mode");
+ 1038              		.loc 1 339 0
+ 1039 00a2 8B48     		ldr	r0, .L83
+ 1040 00a4 0221     		movs	r1, #2
+ 1041 00a6 1D22     		movs	r2, #29
+ 1042 00a8 8C4B     		ldr	r3, .L83+12
+ 1043 00aa FFF7FEFF 		bl	u8g_DrawStr
+ 340:.\main.c      ****                 
+ 341:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1044              		.loc 1 341 0
+ 1045 00ae 8848     		ldr	r0, .L83
+ 1046 00b0 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 342:.\main.c      ****                 if(Current_Menu_Position == 2){
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 26
+
+
+ 1047              		.loc 1 342 0
+ 1048 00b4 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1049 00b6 022B     		cmp	r3, #2
+ 1050 00b8 0AD1     		bne	.L65
+ 343:.\main.c      ****                     u8g_DrawBox(&u8g, 0,32,128,16);
+ 1051              		.loc 1 343 0
+ 1052 00ba 1023     		movs	r3, #16
+ 1053 00bc 0093     		str	r3, [sp]
+ 1054 00be 8448     		ldr	r0, .L83
+ 1055 00c0 0021     		movs	r1, #0
+ 1056 00c2 2022     		movs	r2, #32
+ 1057 00c4 8023     		movs	r3, #128
+ 1058 00c6 FFF7FEFF 		bl	u8g_DrawBox
+ 344:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1059              		.loc 1 344 0
+ 1060 00ca 8148     		ldr	r0, .L83
+ 1061 00cc FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1062              	.L65:
+ 345:.\main.c      ****                 }
+ 346:.\main.c      ****                 
+ 347:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1063              		.loc 1 347 0
+ 1064 00d0 7F48     		ldr	r0, .L83
+ 1065 00d2 8049     		ldr	r1, .L83+4
+ 1066 00d4 FFF7FEFF 		bl	u8g_SetFont
+ 348:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 45, "Bat Discharge");
+ 1067              		.loc 1 348 0
+ 1068 00d8 7D48     		ldr	r0, .L83
+ 1069 00da 0221     		movs	r1, #2
+ 1070 00dc 2D22     		movs	r2, #45
+ 1071 00de 804B     		ldr	r3, .L83+16
+ 1072 00e0 FFF7FEFF 		bl	u8g_DrawStr
+ 349:.\main.c      ****                 
+ 350:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1073              		.loc 1 350 0
+ 1074 00e4 7A48     		ldr	r0, .L83
+ 1075 00e6 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 351:.\main.c      ****                 if(Current_Menu_Position == 3){
+ 1076              		.loc 1 351 0
+ 1077 00ea BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1078 00ec 032B     		cmp	r3, #3
+ 1079 00ee 0AD1     		bne	.L66
+ 352:.\main.c      ****                     u8g_DrawBox(&u8g, 0,48,128,16);
+ 1080              		.loc 1 352 0
+ 1081 00f0 1023     		movs	r3, #16
+ 1082 00f2 0093     		str	r3, [sp]
+ 1083 00f4 7648     		ldr	r0, .L83
+ 1084 00f6 0021     		movs	r1, #0
+ 1085 00f8 3022     		movs	r2, #48
+ 1086 00fa 8023     		movs	r3, #128
+ 1087 00fc FFF7FEFF 		bl	u8g_DrawBox
+ 353:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1088              		.loc 1 353 0
+ 1089 0100 7348     		ldr	r0, .L83
+ 1090 0102 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1091              	.L66:
+ 354:.\main.c      ****                 }
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 27
+
+
+ 355:.\main.c      ****                 
+ 356:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1092              		.loc 1 356 0
+ 1093 0106 7248     		ldr	r0, .L83
+ 1094 0108 7249     		ldr	r1, .L83+4
+ 1095 010a FFF7FEFF 		bl	u8g_SetFont
+ 357:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 60, "Settings");
+ 1096              		.loc 1 357 0
+ 1097 010e 7048     		ldr	r0, .L83
+ 1098 0110 0221     		movs	r1, #2
+ 1099 0112 3C22     		movs	r2, #60
+ 1100 0114 734B     		ldr	r3, .L83+20
+ 1101 0116 FFF7FEFF 		bl	u8g_DrawStr
+ 358:.\main.c      ****                 
+ 359:.\main.c      ****             } while ( u8g_NextPage(&u8g) );
+ 1102              		.loc 1 359 0
+ 1103 011a 6D48     		ldr	r0, .L83
+ 1104 011c FFF7FEFF 		bl	u8g_NextPage
+ 1105 0120 0346     		mov	r3, r0
+ 1106 0122 002B     		cmp	r3, #0
+ 1107 0124 8DD1     		bne	.L67
+ 360:.\main.c      ****       break;
+ 1108              		.loc 1 360 0
+ 1109 0126 A6E1     		b	.L54
+ 1110              	.L58:
+ 361:.\main.c      ****      
+ 362:.\main.c      ****       case ConstantMode: 
+ 363:.\main.c      ****             u8g_FirstPage(&u8g);
+ 1111              		.loc 1 363 0
+ 1112 0128 6948     		ldr	r0, .L83
+ 1113 012a FFF7FEFF 		bl	u8g_FirstPage
+ 1114              	.L71:
+ 364:.\main.c      ****             do{
+ 365:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1115              		.loc 1 365 0
+ 1116 012e 6848     		ldr	r0, .L83
+ 1117 0130 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 366:.\main.c      ****                 if(Current_Menu_Position == 0){
+ 1118              		.loc 1 366 0
+ 1119 0134 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1120 0136 002B     		cmp	r3, #0
+ 1121 0138 0AD1     		bne	.L69
+ 367:.\main.c      ****                     u8g_DrawBox(&u8g, 0,0,128,16);
+ 1122              		.loc 1 367 0
+ 1123 013a 1023     		movs	r3, #16
+ 1124 013c 0093     		str	r3, [sp]
+ 1125 013e 6448     		ldr	r0, .L83
+ 1126 0140 0021     		movs	r1, #0
+ 1127 0142 0022     		movs	r2, #0
+ 1128 0144 8023     		movs	r3, #128
+ 1129 0146 FFF7FEFF 		bl	u8g_DrawBox
+ 368:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1130              		.loc 1 368 0
+ 1131 014a 6148     		ldr	r0, .L83
+ 1132 014c FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1133              	.L69:
+ 369:.\main.c      ****                 }             
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 28
+
+
+ 370:.\main.c      ****                 
+ 371:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);   
+ 1134              		.loc 1 371 0
+ 1135 0150 5F48     		ldr	r0, .L83
+ 1136 0152 6049     		ldr	r1, .L83+4
+ 1137 0154 FFF7FEFF 		bl	u8g_SetFont
+ 372:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 13, "Const Current");
+ 1138              		.loc 1 372 0
+ 1139 0158 5D48     		ldr	r0, .L83
+ 1140 015a 0221     		movs	r1, #2
+ 1141 015c 0D22     		movs	r2, #13
+ 1142 015e 624B     		ldr	r3, .L83+24
+ 1143 0160 FFF7FEFF 		bl	u8g_DrawStr
+ 373:.\main.c      ****                 
+ 374:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);                
+ 1144              		.loc 1 374 0
+ 1145 0164 5A48     		ldr	r0, .L83
+ 1146 0166 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 375:.\main.c      ****                 if(Current_Menu_Position == 1){
+ 1147              		.loc 1 375 0
+ 1148 016a BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1149 016c 012B     		cmp	r3, #1
+ 1150 016e 0AD1     		bne	.L70
+ 376:.\main.c      ****                     u8g_DrawBox(&u8g, 0,16,128,16);
+ 1151              		.loc 1 376 0
+ 1152 0170 1023     		movs	r3, #16
+ 1153 0172 0093     		str	r3, [sp]
+ 1154 0174 5648     		ldr	r0, .L83
+ 1155 0176 0021     		movs	r1, #0
+ 1156 0178 1022     		movs	r2, #16
+ 1157 017a 8023     		movs	r3, #128
+ 1158 017c FFF7FEFF 		bl	u8g_DrawBox
+ 377:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1159              		.loc 1 377 0
+ 1160 0180 5348     		ldr	r0, .L83
+ 1161 0182 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1162              	.L70:
+ 378:.\main.c      ****                 }
+ 379:.\main.c      ****                 
+ 380:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1163              		.loc 1 380 0
+ 1164 0186 5248     		ldr	r0, .L83
+ 1165 0188 5249     		ldr	r1, .L83+4
+ 1166 018a FFF7FEFF 		bl	u8g_SetFont
+ 381:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 29, "Const Volatge");
+ 1167              		.loc 1 381 0
+ 1168 018e 5048     		ldr	r0, .L83
+ 1169 0190 0221     		movs	r1, #2
+ 1170 0192 1D22     		movs	r2, #29
+ 1171 0194 554B     		ldr	r3, .L83+28
+ 1172 0196 FFF7FEFF 		bl	u8g_DrawStr
+ 382:.\main.c      ****                 
+ 383:.\main.c      ****             } while ( u8g_NextPage(&u8g) );
+ 1173              		.loc 1 383 0
+ 1174 019a 4D48     		ldr	r0, .L83
+ 1175 019c FFF7FEFF 		bl	u8g_NextPage
+ 1176 01a0 0346     		mov	r3, r0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 29
+
+
+ 1177 01a2 002B     		cmp	r3, #0
+ 1178 01a4 C3D1     		bne	.L71
+ 384:.\main.c      ****         
+ 385:.\main.c      ****       break;
+ 1179              		.loc 1 385 0
+ 1180 01a6 66E1     		b	.L54
+ 1181              	.L59:
+ 386:.\main.c      **** 
+ 387:.\main.c      ****       case ArbitraryMode: 
+ 388:.\main.c      ****             u8g_FirstPage(&u8g);
+ 1182              		.loc 1 388 0
+ 1183 01a8 4948     		ldr	r0, .L83
+ 1184 01aa FFF7FEFF 		bl	u8g_FirstPage
+ 1185              	.L74:
+ 389:.\main.c      ****             do{
+ 390:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1186              		.loc 1 390 0
+ 1187 01ae 4848     		ldr	r0, .L83
+ 1188 01b0 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 391:.\main.c      ****                 if(Current_Menu_Position == 0){
+ 1189              		.loc 1 391 0
+ 1190 01b4 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1191 01b6 002B     		cmp	r3, #0
+ 1192 01b8 0AD1     		bne	.L72
+ 392:.\main.c      ****                     u8g_DrawBox(&u8g, 0,0,128,16);
+ 1193              		.loc 1 392 0
+ 1194 01ba 1023     		movs	r3, #16
+ 1195 01bc 0093     		str	r3, [sp]
+ 1196 01be 4448     		ldr	r0, .L83
+ 1197 01c0 0021     		movs	r1, #0
+ 1198 01c2 0022     		movs	r2, #0
+ 1199 01c4 8023     		movs	r3, #128
+ 1200 01c6 FFF7FEFF 		bl	u8g_DrawBox
+ 393:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1201              		.loc 1 393 0
+ 1202 01ca 4148     		ldr	r0, .L83
+ 1203 01cc FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1204              	.L72:
+ 394:.\main.c      ****                 }             
+ 395:.\main.c      ****                 
+ 396:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);   
+ 1205              		.loc 1 396 0
+ 1206 01d0 3F48     		ldr	r0, .L83
+ 1207 01d2 4049     		ldr	r1, .L83+4
+ 1208 01d4 FFF7FEFF 		bl	u8g_SetFont
+ 397:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 13, "Sine Wave");
+ 1209              		.loc 1 397 0
+ 1210 01d8 3D48     		ldr	r0, .L83
+ 1211 01da 0221     		movs	r1, #2
+ 1212 01dc 0D22     		movs	r2, #13
+ 1213 01de 444B     		ldr	r3, .L83+32
+ 1214 01e0 FFF7FEFF 		bl	u8g_DrawStr
+ 398:.\main.c      ****                 
+ 399:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);                
+ 1215              		.loc 1 399 0
+ 1216 01e4 3A48     		ldr	r0, .L83
+ 1217 01e6 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 30
+
+
+ 400:.\main.c      ****                 if(Current_Menu_Position == 1){
+ 1218              		.loc 1 400 0
+ 1219 01ea BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1220 01ec 012B     		cmp	r3, #1
+ 1221 01ee 0AD1     		bne	.L73
+ 401:.\main.c      ****                     u8g_DrawBox(&u8g, 0,16,128,16);
+ 1222              		.loc 1 401 0
+ 1223 01f0 1023     		movs	r3, #16
+ 1224 01f2 0093     		str	r3, [sp]
+ 1225 01f4 3648     		ldr	r0, .L83
+ 1226 01f6 0021     		movs	r1, #0
+ 1227 01f8 1022     		movs	r2, #16
+ 1228 01fa 8023     		movs	r3, #128
+ 1229 01fc FFF7FEFF 		bl	u8g_DrawBox
+ 402:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1230              		.loc 1 402 0
+ 1231 0200 3348     		ldr	r0, .L83
+ 1232 0202 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1233              	.L73:
+ 403:.\main.c      ****                 }
+ 404:.\main.c      ****                 
+ 405:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1234              		.loc 1 405 0
+ 1235 0206 3248     		ldr	r0, .L83
+ 1236 0208 3249     		ldr	r1, .L83+4
+ 1237 020a FFF7FEFF 		bl	u8g_SetFont
+ 406:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 29, "Square Wave");
+ 1238              		.loc 1 406 0
+ 1239 020e 3048     		ldr	r0, .L83
+ 1240 0210 0221     		movs	r1, #2
+ 1241 0212 1D22     		movs	r2, #29
+ 1242 0214 374B     		ldr	r3, .L83+36
+ 1243 0216 FFF7FEFF 		bl	u8g_DrawStr
+ 407:.\main.c      ****                 
+ 408:.\main.c      ****             } while ( u8g_NextPage(&u8g) );
+ 1244              		.loc 1 408 0
+ 1245 021a 2D48     		ldr	r0, .L83
+ 1246 021c FFF7FEFF 		bl	u8g_NextPage
+ 1247 0220 0346     		mov	r3, r0
+ 1248 0222 002B     		cmp	r3, #0
+ 1249 0224 C3D1     		bne	.L74
+ 409:.\main.c      ****         
+ 410:.\main.c      ****       break;
+ 1250              		.loc 1 410 0
+ 1251 0226 26E1     		b	.L54
+ 1252              	.L62:
+ 411:.\main.c      **** 
+ 412:.\main.c      ****         
+ 413:.\main.c      ****       case BacklightSetting: 
+ 414:.\main.c      ****             u8g_FirstPage(&u8g);
+ 1253              		.loc 1 414 0
+ 1254 0228 2948     		ldr	r0, .L83
+ 1255 022a FFF7FEFF 		bl	u8g_FirstPage
+ 1256              	.L75:
+ 415:.\main.c      ****             do{
+ 416:.\main.c      ****                                 
+ 417:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);       
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 31
+
+
+ 1257              		.loc 1 417 0 discriminator 1
+ 1258 022e 2848     		ldr	r0, .L83
+ 1259 0230 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 418:.\main.c      ****                 
+ 419:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);
+ 1260              		.loc 1 419 0 discriminator 1
+ 1261 0234 2648     		ldr	r0, .L83
+ 1262 0236 2749     		ldr	r1, .L83+4
+ 1263 0238 FFF7FEFF 		bl	u8g_SetFont
+ 420:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 13, "Backlight");
+ 1264              		.loc 1 420 0 discriminator 1
+ 1265 023c 2448     		ldr	r0, .L83
+ 1266 023e 0221     		movs	r1, #2
+ 1267 0240 0D22     		movs	r2, #13
+ 1268 0242 2D4B     		ldr	r3, .L83+40
+ 1269 0244 FFF7FEFF 		bl	u8g_DrawStr
+ 421:.\main.c      ****                 
+ 422:.\main.c      ****                 u8g_DrawBox(&u8g, 88,0,44,16);
+ 1270              		.loc 1 422 0 discriminator 1
+ 1271 0248 1023     		movs	r3, #16
+ 1272 024a 0093     		str	r3, [sp]
+ 1273 024c 2048     		ldr	r0, .L83
+ 1274 024e 5821     		movs	r1, #88
+ 1275 0250 0022     		movs	r2, #0
+ 1276 0252 2C23     		movs	r3, #44
+ 1277 0254 FFF7FEFF 		bl	u8g_DrawBox
+ 423:.\main.c      ****                 u8g_SetDefaultBackgroundColor(&u8g);
+ 1278              		.loc 1 423 0 discriminator 1
+ 1279 0258 1D48     		ldr	r0, .L83
+ 1280 025a FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 424:.\main.c      ****                 
+ 425:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);
+ 1281              		.loc 1 425 0 discriminator 1
+ 1282 025e 1C48     		ldr	r0, .L83
+ 1283 0260 1C49     		ldr	r1, .L83+4
+ 1284 0262 FFF7FEFF 		bl	u8g_SetFont
+ 426:.\main.c      ****                 u8g_DrawStr(&u8g,  96, 13, CurrentBacklightValueString);
+ 1285              		.loc 1 426 0 discriminator 1
+ 1286 0266 1A48     		ldr	r0, .L83
+ 1287 0268 6021     		movs	r1, #96
+ 1288 026a 0D22     		movs	r2, #13
+ 1289 026c 234B     		ldr	r3, .L83+44
+ 1290 026e FFF7FEFF 		bl	u8g_DrawStr
+ 427:.\main.c      ****                 
+ 428:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);   
+ 1291              		.loc 1 428 0 discriminator 1
+ 1292 0272 1748     		ldr	r0, .L83
+ 1293 0274 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 429:.\main.c      **** 
+ 430:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1294              		.loc 1 430 0 discriminator 1
+ 1295 0278 1548     		ldr	r0, .L83
+ 1296 027a 1649     		ldr	r1, .L83+4
+ 1297 027c FFF7FEFF 		bl	u8g_SetFont
+ 431:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 29, "Volume:");
+ 1298              		.loc 1 431 0 discriminator 1
+ 1299 0280 1348     		ldr	r0, .L83
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 32
+
+
+ 1300 0282 0221     		movs	r1, #2
+ 1301 0284 1D22     		movs	r2, #29
+ 1302 0286 1E4B     		ldr	r3, .L83+48
+ 1303 0288 FFF7FEFF 		bl	u8g_DrawStr
+ 432:.\main.c      ****                 
+ 433:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);   
+ 1304              		.loc 1 433 0 discriminator 1
+ 1305 028c 1048     		ldr	r0, .L83
+ 1306 028e FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 434:.\main.c      ****                 
+ 435:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1307              		.loc 1 435 0 discriminator 1
+ 1308 0292 0F48     		ldr	r0, .L83
+ 1309 0294 0F49     		ldr	r1, .L83+4
+ 1310 0296 FFF7FEFF 		bl	u8g_SetFont
+ 436:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 45, "---TBD---");
+ 1311              		.loc 1 436 0 discriminator 1
+ 1312 029a 0D48     		ldr	r0, .L83
+ 1313 029c 0221     		movs	r1, #2
+ 1314 029e 2D22     		movs	r2, #45
+ 1315 02a0 184B     		ldr	r3, .L83+52
+ 1316 02a2 FFF7FEFF 		bl	u8g_DrawStr
+ 437:.\main.c      ****                 
+ 438:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);   
+ 1317              		.loc 1 438 0 discriminator 1
+ 1318 02a6 0A48     		ldr	r0, .L83
+ 1319 02a8 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 439:.\main.c      ****                 
+ 440:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1320              		.loc 1 440 0 discriminator 1
+ 1321 02ac 0848     		ldr	r0, .L83
+ 1322 02ae 0949     		ldr	r1, .L83+4
+ 1323 02b0 FFF7FEFF 		bl	u8g_SetFont
+ 441:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 60, "---TBD---");
+ 1324              		.loc 1 441 0 discriminator 1
+ 1325 02b4 0648     		ldr	r0, .L83
+ 1326 02b6 0221     		movs	r1, #2
+ 1327 02b8 3C22     		movs	r2, #60
+ 1328 02ba 124B     		ldr	r3, .L83+52
+ 1329 02bc FFF7FEFF 		bl	u8g_DrawStr
+ 442:.\main.c      ****                 
+ 443:.\main.c      ****             } while ( u8g_NextPage(&u8g) );
+ 1330              		.loc 1 443 0 discriminator 1
+ 1331 02c0 0348     		ldr	r0, .L83
+ 1332 02c2 FFF7FEFF 		bl	u8g_NextPage
+ 1333 02c6 0346     		mov	r3, r0
+ 1334 02c8 002B     		cmp	r3, #0
+ 1335 02ca B0D1     		bne	.L75
+ 444:.\main.c      ****       break;           
+ 1336              		.loc 1 444 0
+ 1337 02cc D3E0     		b	.L54
+ 1338              	.L84:
+ 1339 02ce 00BF     		.align	2
+ 1340              	.L83:
+ 1341 02d0 00000000 		.word	u8g
+ 1342 02d4 00000000 		.word	u8g_font_unifont
+ 1343 02d8 10000000 		.word	.LC2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 33
+
+
+ 1344 02dc 20000000 		.word	.LC3
+ 1345 02e0 30000000 		.word	.LC4
+ 1346 02e4 40000000 		.word	.LC5
+ 1347 02e8 4C000000 		.word	.LC6
+ 1348 02ec 5C000000 		.word	.LC7
+ 1349 02f0 6C000000 		.word	.LC8
+ 1350 02f4 78000000 		.word	.LC9
+ 1351 02f8 84000000 		.word	.LC10
+ 1352 02fc 00000000 		.word	CurrentBacklightValueString
+ 1353 0300 90000000 		.word	.LC11
+ 1354 0304 98000000 		.word	.LC12
+ 1355              	.L61:
+ 445:.\main.c      ****             
+ 446:.\main.c      ****       case Settings: 
+ 447:.\main.c      ****             u8g_FirstPage(&u8g);
+ 1356              		.loc 1 447 0
+ 1357 0308 5C48     		ldr	r0, .L85
+ 1358 030a FFF7FEFF 		bl	u8g_FirstPage
+ 1359              	.L80:
+ 448:.\main.c      ****             do{
+ 449:.\main.c      ****                                 
+ 450:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1360              		.loc 1 450 0
+ 1361 030e 5B48     		ldr	r0, .L85
+ 1362 0310 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 451:.\main.c      ****                 if(Current_Menu_Position == 0){
+ 1363              		.loc 1 451 0
+ 1364 0314 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1365 0316 002B     		cmp	r3, #0
+ 1366 0318 0AD1     		bne	.L76
+ 452:.\main.c      ****                     u8g_DrawBox(&u8g, 0,0,128,16);
+ 1367              		.loc 1 452 0
+ 1368 031a 1023     		movs	r3, #16
+ 1369 031c 0093     		str	r3, [sp]
+ 1370 031e 5748     		ldr	r0, .L85
+ 1371 0320 0021     		movs	r1, #0
+ 1372 0322 0022     		movs	r2, #0
+ 1373 0324 8023     		movs	r3, #128
+ 1374 0326 FFF7FEFF 		bl	u8g_DrawBox
+ 453:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1375              		.loc 1 453 0
+ 1376 032a 5448     		ldr	r0, .L85
+ 1377 032c FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1378              	.L76:
+ 454:.\main.c      ****                 }             
+ 455:.\main.c      ****                 
+ 456:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);
+ 1379              		.loc 1 456 0
+ 1380 0330 5248     		ldr	r0, .L85
+ 1381 0332 5349     		ldr	r1, .L85+4
+ 1382 0334 FFF7FEFF 		bl	u8g_SetFont
+ 457:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 13, "Backlight");
+ 1383              		.loc 1 457 0
+ 1384 0338 5048     		ldr	r0, .L85
+ 1385 033a 0221     		movs	r1, #2
+ 1386 033c 0D22     		movs	r2, #13
+ 1387 033e 514B     		ldr	r3, .L85+8
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 34
+
+
+ 1388 0340 FFF7FEFF 		bl	u8g_DrawStr
+ 458:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);
+ 1389              		.loc 1 458 0
+ 1390 0344 4D48     		ldr	r0, .L85
+ 1391 0346 4E49     		ldr	r1, .L85+4
+ 1392 0348 FFF7FEFF 		bl	u8g_SetFont
+ 459:.\main.c      ****                 u8g_DrawStr(&u8g,  96, 13, CurrentBacklightValueString);
+ 1393              		.loc 1 459 0
+ 1394 034c 4B48     		ldr	r0, .L85
+ 1395 034e 6021     		movs	r1, #96
+ 1396 0350 0D22     		movs	r2, #13
+ 1397 0352 4D4B     		ldr	r3, .L85+12
+ 1398 0354 FFF7FEFF 		bl	u8g_DrawStr
+ 460:.\main.c      ****                 
+ 461:.\main.c      ****                 
+ 462:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);                
+ 1399              		.loc 1 462 0
+ 1400 0358 4848     		ldr	r0, .L85
+ 1401 035a FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 463:.\main.c      ****                 if(Current_Menu_Position == 1){
+ 1402              		.loc 1 463 0
+ 1403 035e BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1404 0360 012B     		cmp	r3, #1
+ 1405 0362 0AD1     		bne	.L77
+ 464:.\main.c      ****                     u8g_DrawBox(&u8g, 0,16,128,16);
+ 1406              		.loc 1 464 0
+ 1407 0364 1023     		movs	r3, #16
+ 1408 0366 0093     		str	r3, [sp]
+ 1409 0368 4448     		ldr	r0, .L85
+ 1410 036a 0021     		movs	r1, #0
+ 1411 036c 1022     		movs	r2, #16
+ 1412 036e 8023     		movs	r3, #128
+ 1413 0370 FFF7FEFF 		bl	u8g_DrawBox
+ 465:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1414              		.loc 1 465 0
+ 1415 0374 4148     		ldr	r0, .L85
+ 1416 0376 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1417              	.L77:
+ 466:.\main.c      ****                 }
+ 467:.\main.c      ****                 
+ 468:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1418              		.loc 1 468 0
+ 1419 037a 4048     		ldr	r0, .L85
+ 1420 037c 4049     		ldr	r1, .L85+4
+ 1421 037e FFF7FEFF 		bl	u8g_SetFont
+ 469:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 29, "Volume:");
+ 1422              		.loc 1 469 0
+ 1423 0382 3E48     		ldr	r0, .L85
+ 1424 0384 0221     		movs	r1, #2
+ 1425 0386 1D22     		movs	r2, #29
+ 1426 0388 404B     		ldr	r3, .L85+16
+ 1427 038a FFF7FEFF 		bl	u8g_DrawStr
+ 470:.\main.c      ****                 
+ 471:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1428              		.loc 1 471 0
+ 1429 038e 3B48     		ldr	r0, .L85
+ 1430 0390 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 35
+
+
+ 472:.\main.c      ****                 if(Current_Menu_Position == 2){
+ 1431              		.loc 1 472 0
+ 1432 0394 BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1433 0396 022B     		cmp	r3, #2
+ 1434 0398 0AD1     		bne	.L78
+ 473:.\main.c      ****                     u8g_DrawBox(&u8g, 0,32,128,16);
+ 1435              		.loc 1 473 0
+ 1436 039a 1023     		movs	r3, #16
+ 1437 039c 0093     		str	r3, [sp]
+ 1438 039e 3748     		ldr	r0, .L85
+ 1439 03a0 0021     		movs	r1, #0
+ 1440 03a2 2022     		movs	r2, #32
+ 1441 03a4 8023     		movs	r3, #128
+ 1442 03a6 FFF7FEFF 		bl	u8g_DrawBox
+ 474:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1443              		.loc 1 474 0
+ 1444 03aa 3448     		ldr	r0, .L85
+ 1445 03ac FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1446              	.L78:
+ 475:.\main.c      ****                 }
+ 476:.\main.c      ****                 
+ 477:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1447              		.loc 1 477 0
+ 1448 03b0 3248     		ldr	r0, .L85
+ 1449 03b2 3349     		ldr	r1, .L85+4
+ 1450 03b4 FFF7FEFF 		bl	u8g_SetFont
+ 478:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 45, "---TBD---");
+ 1451              		.loc 1 478 0
+ 1452 03b8 3048     		ldr	r0, .L85
+ 1453 03ba 0221     		movs	r1, #2
+ 1454 03bc 2D22     		movs	r2, #45
+ 1455 03be 344B     		ldr	r3, .L85+20
+ 1456 03c0 FFF7FEFF 		bl	u8g_DrawStr
+ 479:.\main.c      ****                 
+ 480:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);
+ 1457              		.loc 1 480 0
+ 1458 03c4 2D48     		ldr	r0, .L85
+ 1459 03c6 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 481:.\main.c      ****                 if(Current_Menu_Position == 3){
+ 1460              		.loc 1 481 0
+ 1461 03ca BB79     		ldrb	r3, [r7, #6]	@ zero_extendqisi2
+ 1462 03cc 032B     		cmp	r3, #3
+ 1463 03ce 0AD1     		bne	.L79
+ 482:.\main.c      ****                     u8g_DrawBox(&u8g, 0,48,128,16);
+ 1464              		.loc 1 482 0
+ 1465 03d0 1023     		movs	r3, #16
+ 1466 03d2 0093     		str	r3, [sp]
+ 1467 03d4 2948     		ldr	r0, .L85
+ 1468 03d6 0021     		movs	r1, #0
+ 1469 03d8 3022     		movs	r2, #48
+ 1470 03da 8023     		movs	r3, #128
+ 1471 03dc FFF7FEFF 		bl	u8g_DrawBox
+ 483:.\main.c      ****                     u8g_SetDefaultBackgroundColor(&u8g);
+ 1472              		.loc 1 483 0
+ 1473 03e0 2648     		ldr	r0, .L85
+ 1474 03e2 FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 1475              	.L79:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 36
+
+
+ 484:.\main.c      ****                 }
+ 485:.\main.c      ****                 
+ 486:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1476              		.loc 1 486 0
+ 1477 03e6 2548     		ldr	r0, .L85
+ 1478 03e8 2549     		ldr	r1, .L85+4
+ 1479 03ea FFF7FEFF 		bl	u8g_SetFont
+ 487:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 60, "---TBD---");
+ 1480              		.loc 1 487 0
+ 1481 03ee 2348     		ldr	r0, .L85
+ 1482 03f0 0221     		movs	r1, #2
+ 1483 03f2 3C22     		movs	r2, #60
+ 1484 03f4 264B     		ldr	r3, .L85+20
+ 1485 03f6 FFF7FEFF 		bl	u8g_DrawStr
+ 488:.\main.c      ****                 
+ 489:.\main.c      ****             } while ( u8g_NextPage(&u8g) );
+ 1486              		.loc 1 489 0
+ 1487 03fa 2048     		ldr	r0, .L85
+ 1488 03fc FFF7FEFF 		bl	u8g_NextPage
+ 1489 0400 0346     		mov	r3, r0
+ 1490 0402 002B     		cmp	r3, #0
+ 1491 0404 83D1     		bne	.L80
+ 490:.\main.c      ****       break;            
+ 1492              		.loc 1 490 0
+ 1493 0406 36E0     		b	.L54
+ 1494              	.L60:
+ 491:.\main.c      ****             
+ 492:.\main.c      ****       case ConstantCurrent: 
+ 493:.\main.c      ****             u8g_FirstPage(&u8g);
+ 1495              		.loc 1 493 0
+ 1496 0408 1C48     		ldr	r0, .L85
+ 1497 040a FFF7FEFF 		bl	u8g_FirstPage
+ 1498              	.L81:
+ 494:.\main.c      ****             do{       
+ 495:.\main.c      ****                 u8g_SetDefaultForegroundColor(&u8g);    
+ 1499              		.loc 1 495 0 discriminator 1
+ 1500 040e 1B48     		ldr	r0, .L85
+ 1501 0410 FFF7FEFF 		bl	u8g_SetDefaultForegroundColor
+ 496:.\main.c      ****                 
+ 497:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_fub20);   
+ 1502              		.loc 1 497 0 discriminator 1
+ 1503 0414 1948     		ldr	r0, .L85
+ 1504 0416 1F49     		ldr	r1, .L85+24
+ 1505 0418 FFF7FEFF 		bl	u8g_SetFont
+ 498:.\main.c      ****                 u8g_DrawStr(&u8g,  22, 26, "3.27 A");
+ 1506              		.loc 1 498 0 discriminator 1
+ 1507 041c 1748     		ldr	r0, .L85
+ 1508 041e 1621     		movs	r1, #22
+ 1509 0420 1A22     		movs	r2, #26
+ 1510 0422 1D4B     		ldr	r3, .L85+28
+ 1511 0424 FFF7FEFF 		bl	u8g_DrawStr
+ 499:.\main.c      ****                                
+ 500:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1512              		.loc 1 500 0 discriminator 1
+ 1513 0428 1448     		ldr	r0, .L85
+ 1514 042a 1549     		ldr	r1, .L85+4
+ 1515 042c FFF7FEFF 		bl	u8g_SetFont
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 37
+
+
+ 501:.\main.c      ****                 u8g_DrawStr(&u8g,  4, 43, "12.01V  39.27W");
+ 1516              		.loc 1 501 0 discriminator 1
+ 1517 0430 1248     		ldr	r0, .L85
+ 1518 0432 0421     		movs	r1, #4
+ 1519 0434 2B22     		movs	r2, #43
+ 1520 0436 194B     		ldr	r3, .L85+32
+ 1521 0438 FFF7FEFF 		bl	u8g_DrawStr
+ 502:.\main.c      ****                 
+ 503:.\main.c      ****                 u8g_DrawBox(&u8g, 0,52,128,16);
+ 1522              		.loc 1 503 0 discriminator 1
+ 1523 043c 1023     		movs	r3, #16
+ 1524 043e 0093     		str	r3, [sp]
+ 1525 0440 0E48     		ldr	r0, .L85
+ 1526 0442 0021     		movs	r1, #0
+ 1527 0444 3422     		movs	r2, #52
+ 1528 0446 8023     		movs	r3, #128
+ 1529 0448 FFF7FEFF 		bl	u8g_DrawBox
+ 504:.\main.c      ****                 u8g_SetDefaultBackgroundColor(&u8g);
+ 1530              		.loc 1 504 0 discriminator 1
+ 1531 044c 0B48     		ldr	r0, .L85
+ 1532 044e FFF7FEFF 		bl	u8g_SetDefaultBackgroundColor
+ 505:.\main.c      ****                 u8g_SetFont(&u8g, u8g_font_unifont);              
+ 1533              		.loc 1 505 0 discriminator 1
+ 1534 0452 0A48     		ldr	r0, .L85
+ 1535 0454 0A49     		ldr	r1, .L85+4
+ 1536 0456 FFF7FEFF 		bl	u8g_SetFont
+ 506:.\main.c      ****                 u8g_DrawStr(&u8g,  2, 63, "<- | Set Value | Start");
+ 1537              		.loc 1 506 0 discriminator 1
+ 1538 045a 0848     		ldr	r0, .L85
+ 1539 045c 0221     		movs	r1, #2
+ 1540 045e 3F22     		movs	r2, #63
+ 1541 0460 0F4B     		ldr	r3, .L85+36
+ 1542 0462 FFF7FEFF 		bl	u8g_DrawStr
+ 507:.\main.c      **** 
+ 508:.\main.c      ****                 
+ 509:.\main.c      ****             } while ( u8g_NextPage(&u8g) );
+ 1543              		.loc 1 509 0 discriminator 1
+ 1544 0466 0548     		ldr	r0, .L85
+ 1545 0468 FFF7FEFF 		bl	u8g_NextPage
+ 1546 046c 0346     		mov	r3, r0
+ 1547 046e 002B     		cmp	r3, #0
+ 1548 0470 CDD1     		bne	.L81
+ 510:.\main.c      ****         
+ 511:.\main.c      ****       break;            
+ 1549              		.loc 1 511 0
+ 1550 0472 00E0     		b	.L54
+ 1551              	.L82:
+ 512:.\main.c      **** 
+ 513:.\main.c      ****             
+ 514:.\main.c      ****       // ...
+ 515:.\main.c      ****      
+ 516:.\main.c      ****       default:
+ 517:.\main.c      ****         break;
+ 1552              		.loc 1 517 0
+ 1553 0474 00BF     		nop
+ 1554              	.L54:
+ 518:.\main.c      ****     }   
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 38
+
+
+ 519:.\main.c      **** }
+ 1555              		.loc 1 519 0
+ 1556 0476 1037     		adds	r7, r7, #16
+ 1557              		.cfi_def_cfa_offset 8
+ 1558 0478 BD46     		mov	sp, r7
+ 1559              		.cfi_def_cfa_register 13
+ 1560              		@ sp needed
+ 1561 047a 80BD     		pop	{r7, pc}
+ 1562              	.L86:
+ 1563              		.align	2
+ 1564              	.L85:
+ 1565 047c 00000000 		.word	u8g
+ 1566 0480 00000000 		.word	u8g_font_unifont
+ 1567 0484 84000000 		.word	.LC10
+ 1568 0488 00000000 		.word	CurrentBacklightValueString
+ 1569 048c 90000000 		.word	.LC11
+ 1570 0490 98000000 		.word	.LC12
+ 1571 0494 00000000 		.word	u8g_font_fub20
+ 1572 0498 A4000000 		.word	.LC13
+ 1573 049c AC000000 		.word	.LC14
+ 1574 04a0 BC000000 		.word	.LC15
+ 1575              		.cfi_endproc
+ 1576              	.LFE71:
+ 1577              		.size	LCD_Draw, .-LCD_Draw
+ 1578              		.section	.text.Get_Encoder,"ax",%progbits
+ 1579              		.align	2
+ 1580              		.global	Get_Encoder
+ 1581              		.thumb
+ 1582              		.thumb_func
+ 1583              		.type	Get_Encoder, %function
+ 1584              	Get_Encoder:
+ 1585              	.LFB72:
+ 520:.\main.c      **** 
+ 521:.\main.c      **** 
+ 522:.\main.c      **** uint16 Get_Encoder(uint16 maxValue){
+ 1586              		.loc 1 522 0
+ 1587              		.cfi_startproc
+ 1588              		@ args = 0, pretend = 0, frame = 8
+ 1589              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1590 0000 80B5     		push	{r7, lr}
+ 1591              		.cfi_def_cfa_offset 8
+ 1592              		.cfi_offset 7, -8
+ 1593              		.cfi_offset 14, -4
+ 1594 0002 82B0     		sub	sp, sp, #8
+ 1595              		.cfi_def_cfa_offset 16
+ 1596 0004 00AF     		add	r7, sp, #0
+ 1597              		.cfi_def_cfa_register 7
+ 1598 0006 0346     		mov	r3, r0
+ 1599 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 523:.\main.c      ****     qdCount = QD_GetCounter();  // Encoder Value    
+ 1600              		.loc 1 523 0
+ 1601 000a FFF7FEFF 		bl	QD_GetCounter
+ 1602 000e 0346     		mov	r3, r0
+ 1603 0010 9AB2     		uxth	r2, r3
+ 1604 0012 194B     		ldr	r3, .L92
+ 1605 0014 1A80     		strh	r2, [r3]	@ movhi
+ 524:.\main.c      ****     if(!(Last_qdCount == qdCount)){
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 39
+
+
+ 1606              		.loc 1 524 0
+ 1607 0016 194B     		ldr	r3, .L92+4
+ 1608 0018 1A88     		ldrh	r2, [r3]
+ 1609 001a 174B     		ldr	r3, .L92
+ 1610 001c 1B88     		ldrh	r3, [r3]
+ 1611 001e 9A42     		cmp	r2, r3
+ 1612 0020 23D0     		beq	.L88
+ 525:.\main.c      ****         if(qdCount >= 65530){
+ 1613              		.loc 1 525 0
+ 1614 0022 154B     		ldr	r3, .L92
+ 1615 0024 1B88     		ldrh	r3, [r3]
+ 1616 0026 4FF6F972 		movw	r2, #65529
+ 1617 002a 9342     		cmp	r3, r2
+ 1618 002c 05D9     		bls	.L89
+ 526:.\main.c      ****             QD_SetCounter(0);
+ 1619              		.loc 1 526 0
+ 1620 002e 0020     		movs	r0, #0
+ 1621 0030 FFF7FEFF 		bl	QD_SetCounter
+ 527:.\main.c      ****             qdCount = 0;
+ 1622              		.loc 1 527 0
+ 1623 0034 104B     		ldr	r3, .L92
+ 1624 0036 0022     		movs	r2, #0
+ 1625 0038 1A80     		strh	r2, [r3]	@ movhi
+ 1626              	.L89:
+ 528:.\main.c      ****         }       
+ 529:.\main.c      ****         if(qdCount >= maxValue-1){
+ 1627              		.loc 1 529 0
+ 1628 003a 0F4B     		ldr	r3, .L92
+ 1629 003c 1B88     		ldrh	r3, [r3]
+ 1630 003e 1A46     		mov	r2, r3
+ 1631 0040 FB88     		ldrh	r3, [r7, #6]
+ 1632 0042 013B     		subs	r3, r3, #1
+ 1633 0044 9A42     		cmp	r2, r3
+ 1634 0046 0CDB     		blt	.L90
+ 530:.\main.c      ****             QD_SetCounter(maxValue-1);
+ 1635              		.loc 1 530 0
+ 1636 0048 FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 1637 004a 013B     		subs	r3, r3, #1
+ 1638 004c 9BB2     		uxth	r3, r3
+ 1639 004e 9BB2     		uxth	r3, r3
+ 1640 0050 1BB2     		sxth	r3, r3
+ 1641 0052 1846     		mov	r0, r3
+ 1642 0054 FFF7FEFF 		bl	QD_SetCounter
+ 531:.\main.c      ****             qdCount = maxValue-1;
+ 1643              		.loc 1 531 0
+ 1644 0058 FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 1645 005a 013B     		subs	r3, r3, #1
+ 1646 005c 9AB2     		uxth	r2, r3
+ 1647 005e 064B     		ldr	r3, .L92
+ 1648 0060 1A80     		strh	r2, [r3]	@ movhi
+ 1649              	.L90:
+ 532:.\main.c      ****         }
+ 533:.\main.c      ****         Last_qdCount = qdCount;
+ 1650              		.loc 1 533 0
+ 1651 0062 054B     		ldr	r3, .L92
+ 1652 0064 1A88     		ldrh	r2, [r3]
+ 1653 0066 054B     		ldr	r3, .L92+4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 40
+
+
+ 1654 0068 1A80     		strh	r2, [r3]	@ movhi
+ 1655              	.L88:
+ 534:.\main.c      ****     }
+ 535:.\main.c      ****     return Last_qdCount;
+ 1656              		.loc 1 535 0
+ 1657 006a 044B     		ldr	r3, .L92+4
+ 1658 006c 1B88     		ldrh	r3, [r3]
+ 536:.\main.c      **** }
+ 1659              		.loc 1 536 0
+ 1660 006e 1846     		mov	r0, r3
+ 1661 0070 0837     		adds	r7, r7, #8
+ 1662              		.cfi_def_cfa_offset 8
+ 1663 0072 BD46     		mov	sp, r7
+ 1664              		.cfi_def_cfa_register 13
+ 1665              		@ sp needed
+ 1666 0074 80BD     		pop	{r7, pc}
+ 1667              	.L93:
+ 1668 0076 00BF     		.align	2
+ 1669              	.L92:
+ 1670 0078 00000000 		.word	qdCount
+ 1671 007c 00000000 		.word	Last_qdCount
+ 1672              		.cfi_endproc
+ 1673              	.LFE72:
+ 1674              		.size	Get_Encoder, .-Get_Encoder
+ 1675              		.section	.text.Get_Encoder_Menu,"ax",%progbits
+ 1676              		.align	2
+ 1677              		.global	Get_Encoder_Menu
+ 1678              		.thumb
+ 1679              		.thumb_func
+ 1680              		.type	Get_Encoder_Menu, %function
+ 1681              	Get_Encoder_Menu:
+ 1682              	.LFB73:
+ 537:.\main.c      **** 
+ 538:.\main.c      **** uint16 Get_Encoder_Menu(uint16 maxValue){
+ 1683              		.loc 1 538 0
+ 1684              		.cfi_startproc
+ 1685              		@ args = 0, pretend = 0, frame = 8
+ 1686              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1687 0000 80B5     		push	{r7, lr}
+ 1688              		.cfi_def_cfa_offset 8
+ 1689              		.cfi_offset 7, -8
+ 1690              		.cfi_offset 14, -4
+ 1691 0002 82B0     		sub	sp, sp, #8
+ 1692              		.cfi_def_cfa_offset 16
+ 1693 0004 00AF     		add	r7, sp, #0
+ 1694              		.cfi_def_cfa_register 7
+ 1695 0006 0346     		mov	r3, r0
+ 1696 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 539:.\main.c      ****     qdCount = QD_GetCounter();  // Encoder Value    
+ 1697              		.loc 1 539 0
+ 1698 000a FFF7FEFF 		bl	QD_GetCounter
+ 1699 000e 0346     		mov	r3, r0
+ 1700 0010 9AB2     		uxth	r2, r3
+ 1701 0012 134B     		ldr	r3, .L98
+ 1702 0014 1A80     		strh	r2, [r3]	@ movhi
+ 540:.\main.c      ****     if(!(Last_qdCount == qdCount)){
+ 1703              		.loc 1 540 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 41
+
+
+ 1704 0016 134B     		ldr	r3, .L98+4
+ 1705 0018 1A88     		ldrh	r2, [r3]
+ 1706 001a 114B     		ldr	r3, .L98
+ 1707 001c 1B88     		ldrh	r3, [r3]
+ 1708 001e 9A42     		cmp	r2, r3
+ 1709 0020 17D0     		beq	.L95
+ 541:.\main.c      ****         if(Last_qdCount > qdCount){
+ 1710              		.loc 1 541 0
+ 1711 0022 104B     		ldr	r3, .L98+4
+ 1712 0024 1A88     		ldrh	r2, [r3]
+ 1713 0026 0E4B     		ldr	r3, .L98
+ 1714 0028 1B88     		ldrh	r3, [r3]
+ 1715 002a 9A42     		cmp	r2, r3
+ 1716 002c 05D9     		bls	.L96
+ 542:.\main.c      ****             Last_qdCount--;
+ 1717              		.loc 1 542 0
+ 1718 002e 0D4B     		ldr	r3, .L98+4
+ 1719 0030 1B88     		ldrh	r3, [r3]
+ 1720 0032 013B     		subs	r3, r3, #1
+ 1721 0034 9AB2     		uxth	r2, r3
+ 1722 0036 0B4B     		ldr	r3, .L98+4
+ 1723 0038 1A80     		strh	r2, [r3]	@ movhi
+ 1724              	.L96:
+ 543:.\main.c      ****             
+ 544:.\main.c      ****         }
+ 545:.\main.c      ****         
+ 546:.\main.c      ****         if(Last_qdCount < qdCount){
+ 1725              		.loc 1 546 0
+ 1726 003a 0A4B     		ldr	r3, .L98+4
+ 1727 003c 1A88     		ldrh	r2, [r3]
+ 1728 003e 084B     		ldr	r3, .L98
+ 1729 0040 1B88     		ldrh	r3, [r3]
+ 1730 0042 9A42     		cmp	r2, r3
+ 1731 0044 05D2     		bcs	.L95
+ 547:.\main.c      ****             Last_qdCount++;
+ 1732              		.loc 1 547 0
+ 1733 0046 074B     		ldr	r3, .L98+4
+ 1734 0048 1B88     		ldrh	r3, [r3]
+ 1735 004a 0133     		adds	r3, r3, #1
+ 1736 004c 9AB2     		uxth	r2, r3
+ 1737 004e 054B     		ldr	r3, .L98+4
+ 1738 0050 1A80     		strh	r2, [r3]	@ movhi
+ 1739              	.L95:
+ 548:.\main.c      ****             
+ 549:.\main.c      ****         }
+ 550:.\main.c      ****         
+ 551:.\main.c      ****     }
+ 552:.\main.c      ****     return Last_qdCount;     
+ 1740              		.loc 1 552 0
+ 1741 0052 044B     		ldr	r3, .L98+4
+ 1742 0054 1B88     		ldrh	r3, [r3]
+ 553:.\main.c      **** }
+ 1743              		.loc 1 553 0
+ 1744 0056 1846     		mov	r0, r3
+ 1745 0058 0837     		adds	r7, r7, #8
+ 1746              		.cfi_def_cfa_offset 8
+ 1747 005a BD46     		mov	sp, r7
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 42
+
+
+ 1748              		.cfi_def_cfa_register 13
+ 1749              		@ sp needed
+ 1750 005c 80BD     		pop	{r7, pc}
+ 1751              	.L99:
+ 1752 005e 00BF     		.align	2
+ 1753              	.L98:
+ 1754 0060 00000000 		.word	qdCount
+ 1755 0064 00000000 		.word	Last_qdCount
+ 1756              		.cfi_endproc
+ 1757              	.LFE73:
+ 1758              		.size	Get_Encoder_Menu, .-Get_Encoder_Menu
+ 1759              		.section	.text.Initialize,"ax",%progbits
+ 1760              		.align	2
+ 1761              		.global	Initialize
+ 1762              		.thumb
+ 1763              		.thumb_func
+ 1764              		.type	Initialize, %function
+ 1765              	Initialize:
+ 1766              	.LFB74:
+ 554:.\main.c      **** 
+ 555:.\main.c      **** void Initialize(void){
+ 1767              		.loc 1 555 0
+ 1768              		.cfi_startproc
+ 1769              		@ args = 0, pretend = 0, frame = 0
+ 1770              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1771 0000 80B5     		push	{r7, lr}
+ 1772              		.cfi_def_cfa_offset 8
+ 1773              		.cfi_offset 7, -8
+ 1774              		.cfi_offset 14, -4
+ 1775 0002 00AF     		add	r7, sp, #0
+ 1776              		.cfi_def_cfa_register 7
+ 556:.\main.c      ****     CyGlobalIntEnable;  /* enable global interrupts. */
+ 1777              		.loc 1 556 0
+ 1778              	@ 556 ".\main.c" 1
+ 1779 0004 62B6     		CPSIE   i
+ 1780              	@ 0 "" 2
+ 557:.\main.c      ****            
+ 558:.\main.c      ****       
+ 559:.\main.c      ****     QD_SetCounter(5u);
+ 1781              		.loc 1 559 0
+ 1782              		.thumb
+ 1783 0006 0520     		movs	r0, #5
+ 1784 0008 FFF7FEFF 		bl	QD_SetCounter
+ 560:.\main.c      ****     QD_Start();
+ 1785              		.loc 1 560 0
+ 1786 000c FFF7FEFF 		bl	QD_Start
+ 561:.\main.c      ****     
+ 562:.\main.c      ****     PWM_1_Start();
+ 1787              		.loc 1 562 0
+ 1788 0010 FFF7FEFF 		bl	PWM_1_Start
+ 563:.\main.c      ****     
+ 564:.\main.c      ****     AMux_1_Select(0);
+ 1789              		.loc 1 564 0
+ 1790 0014 0020     		movs	r0, #0
+ 1791 0016 FFF7FEFF 		bl	AMux_1_Select
+ 565:.\main.c      ****     
+ 566:.\main.c      ****     WaveDAC8_1_Start();    
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 43
+
+
+ 1792              		.loc 1 566 0
+ 1793 001a FFF7FEFF 		bl	WaveDAC8_1_Start
+ 567:.\main.c      ****     
+ 568:.\main.c      ****     VDAC8_1_Start();  
+ 1794              		.loc 1 568 0
+ 1795 001e FFF7FEFF 		bl	VDAC8_1_Start
+ 569:.\main.c      ****     
+ 570:.\main.c      ****     ADC_SAR_1_Start();
+ 1796              		.loc 1 570 0
+ 1797 0022 FFF7FEFF 		bl	ADC_SAR_1_Start
+ 571:.\main.c      ****     ADC_SAR_1_StartConvert();
+ 1798              		.loc 1 571 0
+ 1799 0026 FFF7FEFF 		bl	ADC_SAR_1_StartConvert
+ 572:.\main.c      ****     
+ 573:.\main.c      ****     ADC_SAR_2_Start();
+ 1800              		.loc 1 573 0
+ 1801 002a FFF7FEFF 		bl	ADC_SAR_2_Start
+ 574:.\main.c      ****     ADC_SAR_2_StartConvert();
+ 1802              		.loc 1 574 0
+ 1803 002e FFF7FEFF 		bl	ADC_SAR_2_StartConvert
+ 575:.\main.c      ****     
+ 576:.\main.c      ****     WaveDAC8_1_Start();
+ 1804              		.loc 1 576 0
+ 1805 0032 FFF7FEFF 		bl	WaveDAC8_1_Start
+ 577:.\main.c      ****     
+ 578:.\main.c      **** 
+ 579:.\main.c      ****     
+ 580:.\main.c      ****     I2C_Start();
+ 1806              		.loc 1 580 0
+ 1807 0036 FFF7FEFF 		bl	I2C_Start
+ 581:.\main.c      ****     PWM_Back_Start();   
+ 1808              		.loc 1 581 0
+ 1809 003a FFF7FEFF 		bl	PWM_Back_Start
+ 582:.\main.c      ****     SetBacklight(200);
+ 1810              		.loc 1 582 0
+ 1811 003e C820     		movs	r0, #200
+ 1812 0040 FFF7FEFF 		bl	SetBacklight
+ 583:.\main.c      **** }
+ 1813              		.loc 1 583 0
+ 1814 0044 80BD     		pop	{r7, pc}
+ 1815              		.cfi_endproc
+ 1816              	.LFE74:
+ 1817              		.size	Initialize, .-Initialize
+ 1818 0046 00BF     		.section	.text.Check_Buttons,"ax",%progbits
+ 1819              		.align	2
+ 1820              		.global	Check_Buttons
+ 1821              		.thumb
+ 1822              		.thumb_func
+ 1823              		.type	Check_Buttons, %function
+ 1824              	Check_Buttons:
+ 1825              	.LFB75:
+ 584:.\main.c      **** 
+ 585:.\main.c      **** void Check_Buttons(void){
+ 1826              		.loc 1 585 0
+ 1827              		.cfi_startproc
+ 1828              		@ args = 0, pretend = 0, frame = 0
+ 1829              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 44
+
+
+ 1830 0000 80B5     		push	{r7, lr}
+ 1831              		.cfi_def_cfa_offset 8
+ 1832              		.cfi_offset 7, -8
+ 1833              		.cfi_offset 14, -4
+ 1834 0002 00AF     		add	r7, sp, #0
+ 1835              		.cfi_def_cfa_register 7
+ 586:.\main.c      ****     button1 = Button1_Reg_Read();   // Back
+ 1836              		.loc 1 586 0
+ 1837 0004 FFF7FEFF 		bl	Button1_Reg_Read
+ 1838 0008 0346     		mov	r3, r0
+ 1839 000a 1A46     		mov	r2, r3
+ 1840 000c 114B     		ldr	r3, .L104
+ 1841 000e 1A70     		strb	r2, [r3]
+ 587:.\main.c      ****     button2 = Button2_Reg_Read();
+ 1842              		.loc 1 587 0
+ 1843 0010 FFF7FEFF 		bl	Button2_Reg_Read
+ 1844 0014 0346     		mov	r3, r0
+ 1845 0016 1A46     		mov	r2, r3
+ 1846 0018 0F4B     		ldr	r3, .L104+4
+ 1847 001a 1A70     		strb	r2, [r3]
+ 588:.\main.c      ****     button3 = Button3_Reg_Read();
+ 1848              		.loc 1 588 0
+ 1849 001c FFF7FEFF 		bl	Button3_Reg_Read
+ 1850 0020 0346     		mov	r3, r0
+ 1851 0022 1A46     		mov	r2, r3
+ 1852 0024 0D4B     		ldr	r3, .L104+8
+ 1853 0026 1A70     		strb	r2, [r3]
+ 589:.\main.c      ****     
+ 590:.\main.c      ****     
+ 591:.\main.c      ****     if(!(button2 == 0)){
+ 1854              		.loc 1 591 0
+ 1855 0028 0B4B     		ldr	r3, .L104+4
+ 1856 002a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1857 002c 002B     		cmp	r3, #0
+ 1858 002e 02D0     		beq	.L102
+ 592:.\main.c      ****     //    OutputSelect = !OutputSelect;
+ 593:.\main.c      ****           Current_State = Home;
+ 1859              		.loc 1 593 0
+ 1860 0030 0B4B     		ldr	r3, .L104+12
+ 1861 0032 0022     		movs	r2, #0
+ 1862 0034 1A70     		strb	r2, [r3]
+ 1863              	.L102:
+ 594:.\main.c      ****     }
+ 595:.\main.c      ****     
+ 596:.\main.c      ****     if(!(button3 == 0)){
+ 1864              		.loc 1 596 0
+ 1865 0036 094B     		ldr	r3, .L104+8
+ 1866 0038 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1867 003a 002B     		cmp	r3, #0
+ 1868 003c 09D0     		beq	.L101
+ 597:.\main.c      ****         LCD_Page = !LCD_Page;
+ 1869              		.loc 1 597 0
+ 1870 003e 094B     		ldr	r3, .L104+16
+ 1871 0040 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1872 0042 002B     		cmp	r3, #0
+ 1873 0044 0CBF     		ite	eq
+ 1874 0046 0123     		moveq	r3, #1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 45
+
+
+ 1875 0048 0023     		movne	r3, #0
+ 1876 004a DBB2     		uxtb	r3, r3
+ 1877 004c 1A46     		mov	r2, r3
+ 1878 004e 054B     		ldr	r3, .L104+16
+ 1879 0050 1A70     		strb	r2, [r3]
+ 1880              	.L101:
+ 598:.\main.c      ****     }
+ 599:.\main.c      ****     
+ 600:.\main.c      **** }
+ 1881              		.loc 1 600 0
+ 1882 0052 80BD     		pop	{r7, pc}
+ 1883              	.L105:
+ 1884              		.align	2
+ 1885              	.L104:
+ 1886 0054 00000000 		.word	button1
+ 1887 0058 00000000 		.word	button2
+ 1888 005c 00000000 		.word	button3
+ 1889 0060 00000000 		.word	Current_State
+ 1890 0064 00000000 		.word	LCD_Page
+ 1891              		.cfi_endproc
+ 1892              	.LFE75:
+ 1893              		.size	Check_Buttons, .-Check_Buttons
+ 1894              		.section	.text.TempRead,"ax",%progbits
+ 1895              		.align	2
+ 1896              		.global	TempRead
+ 1897              		.thumb
+ 1898              		.thumb_func
+ 1899              		.type	TempRead, %function
+ 1900              	TempRead:
+ 1901              	.LFB76:
+ 601:.\main.c      **** 
+ 602:.\main.c      **** 
+ 603:.\main.c      **** void TempRead(void){
+ 1902              		.loc 1 603 0
+ 1903              		.cfi_startproc
+ 1904              		@ args = 0, pretend = 0, frame = 0
+ 1905              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1906 0000 80B5     		push	{r7, lr}
+ 1907              		.cfi_def_cfa_offset 8
+ 1908              		.cfi_offset 7, -8
+ 1909              		.cfi_offset 14, -4
+ 1910 0002 00AF     		add	r7, sp, #0
+ 1911              		.cfi_def_cfa_register 7
+ 604:.\main.c      ****         Status = I2C_MasterSendStart(I2C_SLAVE_ADDRESS, I2C_READ_XFER_MODE);
+ 1912              		.loc 1 604 0
+ 1913 0004 4820     		movs	r0, #72
+ 1914 0006 0121     		movs	r1, #1
+ 1915 0008 FFF7FEFF 		bl	I2C_MasterSendStart
+ 1916 000c 0346     		mov	r3, r0
+ 1917 000e 1A46     		mov	r2, r3
+ 1918 0010 074B     		ldr	r3, .L108
+ 1919 0012 1A60     		str	r2, [r3]
+ 605:.\main.c      ****         if(I2C_MSTR_NO_ERROR == Status) /* Check if transfer completed without errors */
+ 1920              		.loc 1 605 0
+ 1921 0014 064B     		ldr	r3, .L108
+ 1922 0016 1B68     		ldr	r3, [r3]
+ 1923 0018 002B     		cmp	r3, #0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 46
+
+
+ 1924 001a 06D1     		bne	.L107
+ 606:.\main.c      ****         FET_Temp = I2C_MasterReadByte(I2C_NAK_DATA);
+ 1925              		.loc 1 606 0
+ 1926 001c 0020     		movs	r0, #0
+ 1927 001e FFF7FEFF 		bl	I2C_MasterReadByte
+ 1928 0022 0346     		mov	r3, r0
+ 1929 0024 DAB2     		uxtb	r2, r3
+ 1930 0026 034B     		ldr	r3, .L108+4
+ 1931 0028 1A70     		strb	r2, [r3]
+ 1932              	.L107:
+ 607:.\main.c      ****         I2C_MasterSendStop(); /* Send Stop */
+ 1933              		.loc 1 607 0
+ 1934 002a FFF7FEFF 		bl	I2C_MasterSendStop
+ 608:.\main.c      **** }
+ 1935              		.loc 1 608 0
+ 1936 002e 80BD     		pop	{r7, pc}
+ 1937              	.L109:
+ 1938              		.align	2
+ 1939              	.L108:
+ 1940 0030 00000000 		.word	Status
+ 1941 0034 00000000 		.word	FET_Temp
+ 1942              		.cfi_endproc
+ 1943              	.LFE76:
+ 1944              		.size	TempRead, .-TempRead
+ 1945              		.section	.rodata
+ 1946 00d3 00       		.align	2
+ 1947              	.LC16:
+ 1948 00d4 256400   		.ascii	"%d\000"
+ 1949 00d7 00       		.section	.text.SetBacklight,"ax",%progbits
+ 1950              		.align	2
+ 1951              		.global	SetBacklight
+ 1952              		.thumb
+ 1953              		.thumb_func
+ 1954              		.type	SetBacklight, %function
+ 1955              	SetBacklight:
+ 1956              	.LFB77:
+ 609:.\main.c      **** 
+ 610:.\main.c      **** void SetBacklight(uint8 BacklightValue){
+ 1957              		.loc 1 610 0
+ 1958              		.cfi_startproc
+ 1959              		@ args = 0, pretend = 0, frame = 16
+ 1960              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1961 0000 80B5     		push	{r7, lr}
+ 1962              		.cfi_def_cfa_offset 8
+ 1963              		.cfi_offset 7, -8
+ 1964              		.cfi_offset 14, -4
+ 1965 0002 84B0     		sub	sp, sp, #16
+ 1966              		.cfi_def_cfa_offset 24
+ 1967 0004 00AF     		add	r7, sp, #0
+ 1968              		.cfi_def_cfa_register 7
+ 1969 0006 0346     		mov	r3, r0
+ 1970 0008 FB71     		strb	r3, [r7, #7]
+ 611:.\main.c      ****     int Backlight = BacklightValue;
+ 1971              		.loc 1 611 0
+ 1972 000a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 1973 000c FB60     		str	r3, [r7, #12]
+ 612:.\main.c      ****     if(Backlight>=255) Backlight = 255;
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 47
+
+
+ 1974              		.loc 1 612 0
+ 1975 000e FB68     		ldr	r3, [r7, #12]
+ 1976 0010 FE2B     		cmp	r3, #254
+ 1977 0012 01DD     		ble	.L111
+ 1978              		.loc 1 612 0 is_stmt 0 discriminator 1
+ 1979 0014 FF23     		movs	r3, #255
+ 1980 0016 FB60     		str	r3, [r7, #12]
+ 1981              	.L111:
+ 613:.\main.c      ****     if(Backlight<=0) Backlight = 0;
+ 1982              		.loc 1 613 0 is_stmt 1
+ 1983 0018 FB68     		ldr	r3, [r7, #12]
+ 1984 001a 002B     		cmp	r3, #0
+ 1985 001c 01DC     		bgt	.L112
+ 1986              		.loc 1 613 0 is_stmt 0 discriminator 1
+ 1987 001e 0023     		movs	r3, #0
+ 1988 0020 FB60     		str	r3, [r7, #12]
+ 1989              	.L112:
+ 614:.\main.c      ****     PWM_Back_WriteCompare(Backlight);
+ 1990              		.loc 1 614 0 is_stmt 1
+ 1991 0022 FB68     		ldr	r3, [r7, #12]
+ 1992 0024 DBB2     		uxtb	r3, r3
+ 1993 0026 1846     		mov	r0, r3
+ 1994 0028 FFF7FEFF 		bl	PWM_Back_WriteCompare
+ 615:.\main.c      ****     CurrentBacklightValue = Backlight;
+ 1995              		.loc 1 615 0
+ 1996 002c FB68     		ldr	r3, [r7, #12]
+ 1997 002e DAB2     		uxtb	r2, r3
+ 1998 0030 044B     		ldr	r3, .L113
+ 1999 0032 1A70     		strb	r2, [r3]
+ 616:.\main.c      ****     sprintf((char *)CurrentBacklightValueString,"%d",Backlight);   
+ 2000              		.loc 1 616 0
+ 2001 0034 0448     		ldr	r0, .L113+4
+ 2002 0036 0549     		ldr	r1, .L113+8
+ 2003 0038 FA68     		ldr	r2, [r7, #12]
+ 2004 003a FFF7FEFF 		bl	sprintf
+ 617:.\main.c      **** }
+ 2005              		.loc 1 617 0
+ 2006 003e 1037     		adds	r7, r7, #16
+ 2007              		.cfi_def_cfa_offset 8
+ 2008 0040 BD46     		mov	sp, r7
+ 2009              		.cfi_def_cfa_register 13
+ 2010              		@ sp needed
+ 2011 0042 80BD     		pop	{r7, pc}
+ 2012              	.L114:
+ 2013              		.align	2
+ 2014              	.L113:
+ 2015 0044 00000000 		.word	CurrentBacklightValue
+ 2016 0048 00000000 		.word	CurrentBacklightValueString
+ 2017 004c D4000000 		.word	.LC16
+ 2018              		.cfi_endproc
+ 2019              	.LFE77:
+ 2020              		.size	SetBacklight, .-SetBacklight
+ 2021              		.text
+ 2022              	.Letext0:
+ 2023              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 2024              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 2025              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 48
+
+
+ 2026              		.file 5 ".\\u8g.h"
+ 2027              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 2028              		.section	.debug_info,"",%progbits
+ 2029              	.Ldebug_info0:
+ 2030 0000 3E090000 		.4byte	0x93e
+ 2031 0004 0400     		.2byte	0x4
+ 2032 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 2033 000a 04       		.byte	0x4
+ 2034 000b 01       		.uleb128 0x1
+ 2035 000c AC030000 		.4byte	.LASF138
+ 2036 0010 01       		.byte	0x1
+ 2037 0011 3F070000 		.4byte	.LASF139
+ 2038 0015 62010000 		.4byte	.LASF140
+ 2039 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 2040 001d 00000000 		.4byte	0
+ 2041 0021 00000000 		.4byte	.Ldebug_line0
+ 2042 0025 02       		.uleb128 0x2
+ 2043 0026 74040000 		.4byte	.LASF0
+ 2044 002a 02       		.byte	0x2
+ 2045 002b 1B       		.byte	0x1b
+ 2046 002c 30000000 		.4byte	0x30
+ 2047 0030 03       		.uleb128 0x3
+ 2048 0031 01       		.byte	0x1
+ 2049 0032 06       		.byte	0x6
+ 2050 0033 75060000 		.4byte	.LASF2
+ 2051 0037 02       		.uleb128 0x2
+ 2052 0038 45050000 		.4byte	.LASF1
+ 2053 003c 02       		.byte	0x2
+ 2054 003d 1D       		.byte	0x1d
+ 2055 003e 42000000 		.4byte	0x42
+ 2056 0042 03       		.uleb128 0x3
+ 2057 0043 01       		.byte	0x1
+ 2058 0044 08       		.byte	0x8
+ 2059 0045 FF050000 		.4byte	.LASF3
+ 2060 0049 03       		.uleb128 0x3
+ 2061 004a 02       		.byte	0x2
+ 2062 004b 05       		.byte	0x5
+ 2063 004c C3040000 		.4byte	.LASF4
+ 2064 0050 03       		.uleb128 0x3
+ 2065 0051 02       		.byte	0x2
+ 2066 0052 07       		.byte	0x7
+ 2067 0053 81060000 		.4byte	.LASF5
+ 2068 0057 02       		.uleb128 0x2
+ 2069 0058 8C000000 		.4byte	.LASF6
+ 2070 005c 02       		.byte	0x2
+ 2071 005d 3F       		.byte	0x3f
+ 2072 005e 62000000 		.4byte	0x62
+ 2073 0062 03       		.uleb128 0x3
+ 2074 0063 04       		.byte	0x4
+ 2075 0064 05       		.byte	0x5
+ 2076 0065 CD040000 		.4byte	.LASF7
+ 2077 0069 03       		.uleb128 0x3
+ 2078 006a 04       		.byte	0x4
+ 2079 006b 07       		.byte	0x7
+ 2080 006c 8E050000 		.4byte	.LASF8
+ 2081 0070 03       		.uleb128 0x3
+ 2082 0071 08       		.byte	0x8
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 49
+
+
+ 2083 0072 05       		.byte	0x5
+ 2084 0073 4A030000 		.4byte	.LASF9
+ 2085 0077 03       		.uleb128 0x3
+ 2086 0078 08       		.byte	0x8
+ 2087 0079 07       		.byte	0x7
+ 2088 007a C5010000 		.4byte	.LASF10
+ 2089 007e 04       		.uleb128 0x4
+ 2090 007f 04       		.byte	0x4
+ 2091 0080 05       		.byte	0x5
+ 2092 0081 696E7400 		.ascii	"int\000"
+ 2093 0085 03       		.uleb128 0x3
+ 2094 0086 04       		.byte	0x4
+ 2095 0087 07       		.byte	0x7
+ 2096 0088 58000000 		.4byte	.LASF11
+ 2097 008c 02       		.uleb128 0x2
+ 2098 008d 46010000 		.4byte	.LASF12
+ 2099 0091 03       		.byte	0x3
+ 2100 0092 14       		.byte	0x14
+ 2101 0093 25000000 		.4byte	0x25
+ 2102 0097 02       		.uleb128 0x2
+ 2103 0098 E0020000 		.4byte	.LASF13
+ 2104 009c 03       		.byte	0x3
+ 2105 009d 15       		.byte	0x15
+ 2106 009e 37000000 		.4byte	0x37
+ 2107 00a2 02       		.uleb128 0x2
+ 2108 00a3 A0050000 		.4byte	.LASF14
+ 2109 00a7 03       		.byte	0x3
+ 2110 00a8 2C       		.byte	0x2c
+ 2111 00a9 57000000 		.4byte	0x57
+ 2112 00ad 02       		.uleb128 0x2
+ 2113 00ae B5060000 		.4byte	.LASF15
+ 2114 00b2 04       		.byte	0x4
+ 2115 00b3 C2       		.byte	0xc2
+ 2116 00b4 42000000 		.4byte	0x42
+ 2117 00b8 02       		.uleb128 0x2
+ 2118 00b9 D4020000 		.4byte	.LASF16
+ 2119 00bd 04       		.byte	0x4
+ 2120 00be C3       		.byte	0xc3
+ 2121 00bf 50000000 		.4byte	0x50
+ 2122 00c3 02       		.uleb128 0x2
+ 2123 00c4 DB020000 		.4byte	.LASF17
+ 2124 00c8 04       		.byte	0x4
+ 2125 00c9 C5       		.byte	0xc5
+ 2126 00ca 30000000 		.4byte	0x30
+ 2127 00ce 02       		.uleb128 0x2
+ 2128 00cf 96000000 		.4byte	.LASF18
+ 2129 00d3 04       		.byte	0x4
+ 2130 00d4 C6       		.byte	0xc6
+ 2131 00d5 49000000 		.4byte	0x49
+ 2132 00d9 03       		.uleb128 0x3
+ 2133 00da 04       		.byte	0x4
+ 2134 00db 04       		.byte	0x4
+ 2135 00dc 9D010000 		.4byte	.LASF19
+ 2136 00e0 03       		.uleb128 0x3
+ 2137 00e1 08       		.byte	0x8
+ 2138 00e2 04       		.byte	0x4
+ 2139 00e3 BB060000 		.4byte	.LASF20
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 50
+
+
+ 2140 00e7 02       		.uleb128 0x2
+ 2141 00e8 E8020000 		.4byte	.LASF21
+ 2142 00ec 04       		.byte	0x4
+ 2143 00ed D3       		.byte	0xd3
+ 2144 00ee F2000000 		.4byte	0xf2
+ 2145 00f2 03       		.uleb128 0x3
+ 2146 00f3 01       		.byte	0x1
+ 2147 00f4 08       		.byte	0x8
+ 2148 00f5 A6020000 		.4byte	.LASF22
+ 2149 00f9 05       		.uleb128 0x5
+ 2150 00fa DD050000 		.4byte	.LASF23
+ 2151 00fe 04       		.byte	0x4
+ 2152 00ff 6401     		.2byte	0x164
+ 2153 0101 69000000 		.4byte	0x69
+ 2154 0105 03       		.uleb128 0x3
+ 2155 0106 04       		.byte	0x4
+ 2156 0107 07       		.byte	0x7
+ 2157 0108 7B050000 		.4byte	.LASF24
+ 2158 010c 06       		.uleb128 0x6
+ 2159 010d 04       		.byte	0x4
+ 2160 010e 02       		.uleb128 0x2
+ 2161 010f 00000000 		.4byte	.LASF25
+ 2162 0113 05       		.byte	0x5
+ 2163 0114 80       		.byte	0x80
+ 2164 0115 97000000 		.4byte	0x97
+ 2165 0119 02       		.uleb128 0x2
+ 2166 011a B1050000 		.4byte	.LASF26
+ 2167 011e 05       		.byte	0x5
+ 2168 011f 81       		.byte	0x81
+ 2169 0120 97000000 		.4byte	0x97
+ 2170 0124 02       		.uleb128 0x2
+ 2171 0125 5E040000 		.4byte	.LASF27
+ 2172 0129 05       		.byte	0x5
+ 2173 012a A0       		.byte	0xa0
+ 2174 012b 2F010000 		.4byte	0x12f
+ 2175 012f 07       		.uleb128 0x7
+ 2176 0130 EC040000 		.4byte	.LASF54
+ 2177 0134 3C       		.byte	0x3c
+ 2178 0135 05       		.byte	0x5
+ 2179 0136 4B04     		.2byte	0x44b
+ 2180 0138 8F020000 		.4byte	0x28f
+ 2181 013c 08       		.uleb128 0x8
+ 2182 013d 4A020000 		.4byte	.LASF28
+ 2183 0141 05       		.byte	0x5
+ 2184 0142 4D04     		.2byte	0x44d
+ 2185 0144 84030000 		.4byte	0x384
+ 2186 0148 00       		.byte	0
+ 2187 0149 08       		.uleb128 0x8
+ 2188 014a 64040000 		.4byte	.LASF29
+ 2189 014e 05       		.byte	0x5
+ 2190 014f 4E04     		.2byte	0x44e
+ 2191 0151 84030000 		.4byte	0x384
+ 2192 0155 01       		.byte	0x1
+ 2193 0156 09       		.uleb128 0x9
+ 2194 0157 64657600 		.ascii	"dev\000"
+ 2195 015b 05       		.byte	0x5
+ 2196 015c 5104     		.2byte	0x451
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 51
+
+
+ 2197 015e C4030000 		.4byte	0x3c4
+ 2198 0162 04       		.byte	0x4
+ 2199 0163 08       		.uleb128 0x8
+ 2200 0164 5B050000 		.4byte	.LASF30
+ 2201 0168 05       		.byte	0x5
+ 2202 0169 5204     		.2byte	0x452
+ 2203 016b 54040000 		.4byte	0x454
+ 2204 016f 08       		.byte	0x8
+ 2205 0170 08       		.uleb128 0x8
+ 2206 0171 53060000 		.4byte	.LASF31
+ 2207 0175 05       		.byte	0x5
+ 2208 0176 5304     		.2byte	0x453
+ 2209 0178 54040000 		.4byte	0x454
+ 2210 017c 0C       		.byte	0xc
+ 2211 017d 08       		.uleb128 0x8
+ 2212 017e 58030000 		.4byte	.LASF32
+ 2213 0182 05       		.byte	0x5
+ 2214 0183 5404     		.2byte	0x454
+ 2215 0185 97000000 		.4byte	0x97
+ 2216 0189 10       		.byte	0x10
+ 2217 018a 08       		.uleb128 0x8
+ 2218 018b 9C000000 		.4byte	.LASF33
+ 2219 018f 05       		.byte	0x5
+ 2220 0190 5404     		.2byte	0x454
+ 2221 0192 97000000 		.4byte	0x97
+ 2222 0196 11       		.byte	0x11
+ 2223 0197 08       		.uleb128 0x8
+ 2224 0198 09050000 		.4byte	.LASF34
+ 2225 019c 05       		.byte	0x5
+ 2226 019d 5504     		.2byte	0x455
+ 2227 019f 97000000 		.4byte	0x97
+ 2228 01a3 12       		.byte	0x12
+ 2229 01a4 08       		.uleb128 0x8
+ 2230 01a5 DF000000 		.4byte	.LASF35
+ 2231 01a9 05       		.byte	0x5
+ 2232 01aa 5604     		.2byte	0x456
+ 2233 01ac 97000000 		.4byte	0x97
+ 2234 01b0 13       		.byte	0x13
+ 2235 01b1 08       		.uleb128 0x8
+ 2236 01b2 AE010000 		.4byte	.LASF36
+ 2237 01b6 05       		.byte	0x5
+ 2238 01b7 5704     		.2byte	0x457
+ 2239 01b9 84030000 		.4byte	0x384
+ 2240 01bd 14       		.byte	0x14
+ 2241 01be 08       		.uleb128 0x8
+ 2242 01bf B7010000 		.4byte	.LASF37
+ 2243 01c3 05       		.byte	0x5
+ 2244 01c4 5804     		.2byte	0x458
+ 2245 01c6 84030000 		.4byte	0x384
+ 2246 01ca 15       		.byte	0x15
+ 2247 01cb 08       		.uleb128 0x8
+ 2248 01cc 7D040000 		.4byte	.LASF38
+ 2249 01d0 05       		.byte	0x5
+ 2250 01d1 5904     		.2byte	0x459
+ 2251 01d3 F9030000 		.4byte	0x3f9
+ 2252 01d7 18       		.byte	0x18
+ 2253 01d8 08       		.uleb128 0x8
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 52
+
+
+ 2254 01d9 6B040000 		.4byte	.LASF39
+ 2255 01dd 05       		.byte	0x5
+ 2256 01de 5B04     		.2byte	0x45b
+ 2257 01e0 8C000000 		.4byte	0x8c
+ 2258 01e4 1C       		.byte	0x1c
+ 2259 01e5 08       		.uleb128 0x8
+ 2260 01e6 65020000 		.4byte	.LASF40
+ 2261 01ea 05       		.byte	0x5
+ 2262 01eb 5C04     		.2byte	0x45c
+ 2263 01ed 8C000000 		.4byte	0x8c
+ 2264 01f1 1D       		.byte	0x1d
+ 2265 01f2 08       		.uleb128 0x8
+ 2266 01f3 6D020000 		.4byte	.LASF41
+ 2267 01f7 05       		.byte	0x5
+ 2268 01f8 5D04     		.2byte	0x45d
+ 2269 01fa 8C000000 		.4byte	0x8c
+ 2270 01fe 1E       		.byte	0x1e
+ 2271 01ff 08       		.uleb128 0x8
+ 2272 0200 47060000 		.4byte	.LASF42
+ 2273 0204 05       		.byte	0x5
+ 2274 0205 5E04     		.2byte	0x45e
+ 2275 0207 97000000 		.4byte	0x97
+ 2276 020b 1F       		.byte	0x1f
+ 2277 020c 08       		.uleb128 0x8
+ 2278 020d 3D020000 		.4byte	.LASF43
+ 2279 0211 05       		.byte	0x5
+ 2280 0212 5F04     		.2byte	0x45f
+ 2281 0214 97000000 		.4byte	0x97
+ 2282 0218 20       		.byte	0x20
+ 2283 0219 08       		.uleb128 0x8
+ 2284 021a E4000000 		.4byte	.LASF44
+ 2285 021e 05       		.byte	0x5
+ 2286 021f 6104     		.2byte	0x461
+ 2287 0221 16040000 		.4byte	0x416
+ 2288 0225 24       		.byte	0x24
+ 2289 0226 08       		.uleb128 0x8
+ 2290 0227 B2040000 		.4byte	.LASF45
+ 2291 022b 05       		.byte	0x5
+ 2292 022c 6204     		.2byte	0x462
+ 2293 022e 97000000 		.4byte	0x97
+ 2294 0232 28       		.byte	0x28
+ 2295 0233 08       		.uleb128 0x8
+ 2296 0234 21000000 		.4byte	.LASF46
+ 2297 0238 05       		.byte	0x5
+ 2298 0239 6304     		.2byte	0x463
+ 2299 023b 8C000000 		.4byte	0x8c
+ 2300 023f 29       		.byte	0x29
+ 2301 0240 08       		.uleb128 0x8
+ 2302 0241 24050000 		.4byte	.LASF47
+ 2303 0245 05       		.byte	0x5
+ 2304 0246 6404     		.2byte	0x464
+ 2305 0248 8C000000 		.4byte	0x8c
+ 2306 024c 2A       		.byte	0x2a
+ 2307 024d 08       		.uleb128 0x8
+ 2308 024e C4050000 		.4byte	.LASF48
+ 2309 0252 05       		.byte	0x5
+ 2310 0253 6504     		.2byte	0x465
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 53
+
+
+ 2311 0255 97000000 		.4byte	0x97
+ 2312 0259 2B       		.byte	0x2b
+ 2313 025a 08       		.uleb128 0x8
+ 2314 025b 87040000 		.4byte	.LASF49
+ 2315 025f 05       		.byte	0x5
+ 2316 0260 6604     		.2byte	0x466
+ 2317 0262 97000000 		.4byte	0x97
+ 2318 0266 2C       		.byte	0x2c
+ 2319 0267 08       		.uleb128 0x8
+ 2320 0268 AC000000 		.4byte	.LASF50
+ 2321 026c 05       		.byte	0x5
+ 2322 026d 6804     		.2byte	0x468
+ 2323 026f CB020000 		.4byte	0x2cb
+ 2324 0273 2D       		.byte	0x2d
+ 2325 0274 08       		.uleb128 0x8
+ 2326 0275 E3040000 		.4byte	.LASF51
+ 2327 0279 05       		.byte	0x5
+ 2328 027a 6F04     		.2byte	0x46f
+ 2329 027c 37040000 		.4byte	0x437
+ 2330 0280 34       		.byte	0x34
+ 2331 0281 08       		.uleb128 0x8
+ 2332 0282 BB020000 		.4byte	.LASF52
+ 2333 0286 05       		.byte	0x5
+ 2334 0287 7104     		.2byte	0x471
+ 2335 0289 3B030000 		.4byte	0x33b
+ 2336 028d 38       		.byte	0x38
+ 2337 028e 00       		.byte	0
+ 2338 028f 02       		.uleb128 0x2
+ 2339 0290 78030000 		.4byte	.LASF53
+ 2340 0294 05       		.byte	0x5
+ 2341 0295 A1       		.byte	0xa1
+ 2342 0296 9A020000 		.4byte	0x29a
+ 2343 029a 0A       		.uleb128 0xa
+ 2344 029b A3010000 		.4byte	.LASF55
+ 2345 029f 0C       		.byte	0xc
+ 2346 02a0 05       		.byte	0x5
+ 2347 02a1 CF       		.byte	0xcf
+ 2348 02a2 CB020000 		.4byte	0x2cb
+ 2349 02a6 0B       		.uleb128 0xb
+ 2350 02a7 B4020000 		.4byte	.LASF56
+ 2351 02ab 05       		.byte	0x5
+ 2352 02ac D1       		.byte	0xd1
+ 2353 02ad 8F030000 		.4byte	0x38f
+ 2354 02b1 00       		.byte	0
+ 2355 02b2 0B       		.uleb128 0xb
+ 2356 02b3 10000000 		.4byte	.LASF57
+ 2357 02b7 05       		.byte	0x5
+ 2358 02b8 D2       		.byte	0xd2
+ 2359 02b9 0C010000 		.4byte	0x10c
+ 2360 02bd 04       		.byte	0x4
+ 2361 02be 0B       		.uleb128 0xb
+ 2362 02bf BB000000 		.4byte	.LASF58
+ 2363 02c3 05       		.byte	0x5
+ 2364 02c4 D3       		.byte	0xd3
+ 2365 02c5 CA030000 		.4byte	0x3ca
+ 2366 02c9 08       		.byte	0x8
+ 2367 02ca 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 54
+
+
+ 2368 02cb 02       		.uleb128 0x2
+ 2369 02cc 98030000 		.4byte	.LASF59
+ 2370 02d0 05       		.byte	0x5
+ 2371 02d1 A3       		.byte	0xa3
+ 2372 02d2 D6020000 		.4byte	0x2d6
+ 2373 02d6 07       		.uleb128 0x7
+ 2374 02d7 4D010000 		.4byte	.LASF60
+ 2375 02db 07       		.byte	0x7
+ 2376 02dc 05       		.byte	0x5
+ 2377 02dd 1D02     		.2byte	0x21d
+ 2378 02df 3B030000 		.4byte	0x33b
+ 2379 02e3 09       		.uleb128 0x9
+ 2380 02e4 7800     		.ascii	"x\000"
+ 2381 02e6 05       		.byte	0x5
+ 2382 02e7 1F02     		.2byte	0x21f
+ 2383 02e9 84030000 		.4byte	0x384
+ 2384 02ed 00       		.byte	0
+ 2385 02ee 09       		.uleb128 0x9
+ 2386 02ef 7900     		.ascii	"y\000"
+ 2387 02f1 05       		.byte	0x5
+ 2388 02f2 1F02     		.2byte	0x21f
+ 2389 02f4 84030000 		.4byte	0x384
+ 2390 02f8 01       		.byte	0x1
+ 2391 02f9 08       		.uleb128 0x8
+ 2392 02fa E6050000 		.4byte	.LASF61
+ 2393 02fe 05       		.byte	0x5
+ 2394 02ff 2002     		.2byte	0x220
+ 2395 0301 97000000 		.4byte	0x97
+ 2396 0305 02       		.byte	0x2
+ 2397 0306 09       		.uleb128 0x9
+ 2398 0307 64697200 		.ascii	"dir\000"
+ 2399 030b 05       		.byte	0x5
+ 2400 030c 2102     		.2byte	0x221
+ 2401 030e 97000000 		.4byte	0x97
+ 2402 0312 03       		.byte	0x3
+ 2403 0313 08       		.uleb128 0x8
+ 2404 0314 F3040000 		.4byte	.LASF62
+ 2405 0318 05       		.byte	0x5
+ 2406 0319 2202     		.2byte	0x222
+ 2407 031b 97000000 		.4byte	0x97
+ 2408 031f 04       		.byte	0x4
+ 2409 0320 08       		.uleb128 0x8
+ 2410 0321 65000000 		.4byte	.LASF63
+ 2411 0325 05       		.byte	0x5
+ 2412 0326 2302     		.2byte	0x223
+ 2413 0328 97000000 		.4byte	0x97
+ 2414 032c 05       		.byte	0x5
+ 2415 032d 08       		.uleb128 0x8
+ 2416 032e B6000000 		.4byte	.LASF64
+ 2417 0332 05       		.byte	0x5
+ 2418 0333 2402     		.2byte	0x224
+ 2419 0335 97000000 		.4byte	0x97
+ 2420 0339 06       		.byte	0x6
+ 2421 033a 00       		.byte	0
+ 2422 033b 02       		.uleb128 0x2
+ 2423 033c 84050000 		.4byte	.LASF65
+ 2424 0340 05       		.byte	0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 55
+
+
+ 2425 0341 A5       		.byte	0xa5
+ 2426 0342 46030000 		.4byte	0x346
+ 2427 0346 07       		.uleb128 0x7
+ 2428 0347 3F030000 		.4byte	.LASF66
+ 2429 034b 04       		.byte	0x4
+ 2430 034c 05       		.byte	0x5
+ 2431 034d 3102     		.2byte	0x231
+ 2432 034f 84030000 		.4byte	0x384
+ 2433 0353 09       		.uleb128 0x9
+ 2434 0354 783000   		.ascii	"x0\000"
+ 2435 0357 05       		.byte	0x5
+ 2436 0358 3302     		.2byte	0x233
+ 2437 035a 84030000 		.4byte	0x384
+ 2438 035e 00       		.byte	0
+ 2439 035f 09       		.uleb128 0x9
+ 2440 0360 793000   		.ascii	"y0\000"
+ 2441 0363 05       		.byte	0x5
+ 2442 0364 3302     		.2byte	0x233
+ 2443 0366 84030000 		.4byte	0x384
+ 2444 036a 01       		.byte	0x1
+ 2445 036b 09       		.uleb128 0x9
+ 2446 036c 783100   		.ascii	"x1\000"
+ 2447 036f 05       		.byte	0x5
+ 2448 0370 3302     		.2byte	0x233
+ 2449 0372 84030000 		.4byte	0x384
+ 2450 0376 02       		.byte	0x2
+ 2451 0377 09       		.uleb128 0x9
+ 2452 0378 793100   		.ascii	"y1\000"
+ 2453 037b 05       		.byte	0x5
+ 2454 037c 3302     		.2byte	0x233
+ 2455 037e 84030000 		.4byte	0x384
+ 2456 0382 03       		.byte	0x3
+ 2457 0383 00       		.byte	0
+ 2458 0384 02       		.uleb128 0x2
+ 2459 0385 34030000 		.4byte	.LASF67
+ 2460 0389 05       		.byte	0x5
+ 2461 038a AF       		.byte	0xaf
+ 2462 038b 97000000 		.4byte	0x97
+ 2463 038f 02       		.uleb128 0x2
+ 2464 0390 10020000 		.4byte	.LASF68
+ 2465 0394 05       		.byte	0x5
+ 2466 0395 C7       		.byte	0xc7
+ 2467 0396 9A030000 		.4byte	0x39a
+ 2468 039a 0C       		.uleb128 0xc
+ 2469 039b 04       		.byte	0x4
+ 2470 039c A0030000 		.4byte	0x3a0
+ 2471 03a0 0D       		.uleb128 0xd
+ 2472 03a1 97000000 		.4byte	0x97
+ 2473 03a5 BE030000 		.4byte	0x3be
+ 2474 03a9 0E       		.uleb128 0xe
+ 2475 03aa BE030000 		.4byte	0x3be
+ 2476 03ae 0E       		.uleb128 0xe
+ 2477 03af C4030000 		.4byte	0x3c4
+ 2478 03b3 0E       		.uleb128 0xe
+ 2479 03b4 97000000 		.4byte	0x97
+ 2480 03b8 0E       		.uleb128 0xe
+ 2481 03b9 0C010000 		.4byte	0x10c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 56
+
+
+ 2482 03bd 00       		.byte	0
+ 2483 03be 0C       		.uleb128 0xc
+ 2484 03bf 04       		.byte	0x4
+ 2485 03c0 24010000 		.4byte	0x124
+ 2486 03c4 0C       		.uleb128 0xc
+ 2487 03c5 04       		.byte	0x4
+ 2488 03c6 8F020000 		.4byte	0x28f
+ 2489 03ca 02       		.uleb128 0x2
+ 2490 03cb 26020000 		.4byte	.LASF69
+ 2491 03cf 05       		.byte	0x5
+ 2492 03d0 CA       		.byte	0xca
+ 2493 03d1 D5030000 		.4byte	0x3d5
+ 2494 03d5 0C       		.uleb128 0xc
+ 2495 03d6 04       		.byte	0x4
+ 2496 03d7 DB030000 		.4byte	0x3db
+ 2497 03db 0D       		.uleb128 0xd
+ 2498 03dc 97000000 		.4byte	0x97
+ 2499 03e0 F9030000 		.4byte	0x3f9
+ 2500 03e4 0E       		.uleb128 0xe
+ 2501 03e5 BE030000 		.4byte	0x3be
+ 2502 03e9 0E       		.uleb128 0xe
+ 2503 03ea 97000000 		.4byte	0x97
+ 2504 03ee 0E       		.uleb128 0xe
+ 2505 03ef 97000000 		.4byte	0x97
+ 2506 03f3 0E       		.uleb128 0xe
+ 2507 03f4 0C010000 		.4byte	0x10c
+ 2508 03f8 00       		.byte	0
+ 2509 03f9 05       		.uleb128 0x5
+ 2510 03fa 0F070000 		.4byte	.LASF70
+ 2511 03fe 05       		.byte	0x5
+ 2512 03ff 0D04     		.2byte	0x40d
+ 2513 0401 05040000 		.4byte	0x405
+ 2514 0405 0C       		.uleb128 0xc
+ 2515 0406 04       		.byte	0x4
+ 2516 0407 0B040000 		.4byte	0x40b
+ 2517 040b 0F       		.uleb128 0xf
+ 2518 040c 16040000 		.4byte	0x416
+ 2519 0410 0E       		.uleb128 0xe
+ 2520 0411 BE030000 		.4byte	0x3be
+ 2521 0415 00       		.byte	0
+ 2522 0416 05       		.uleb128 0x5
+ 2523 0417 17060000 		.4byte	.LASF71
+ 2524 041b 05       		.byte	0x5
+ 2525 041c 1004     		.2byte	0x410
+ 2526 041e 22040000 		.4byte	0x422
+ 2527 0422 0C       		.uleb128 0xc
+ 2528 0423 04       		.byte	0x4
+ 2529 0424 28040000 		.4byte	0x428
+ 2530 0428 0D       		.uleb128 0xd
+ 2531 0429 84030000 		.4byte	0x384
+ 2532 042d 37040000 		.4byte	0x437
+ 2533 0431 0E       		.uleb128 0xe
+ 2534 0432 BE030000 		.4byte	0x3be
+ 2535 0436 00       		.byte	0
+ 2536 0437 05       		.uleb128 0x5
+ 2537 0438 8B030000 		.4byte	.LASF72
+ 2538 043c 05       		.byte	0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 57
+
+
+ 2539 043d 1304     		.2byte	0x413
+ 2540 043f 43040000 		.4byte	0x443
+ 2541 0443 0C       		.uleb128 0xc
+ 2542 0444 04       		.byte	0x4
+ 2543 0445 49040000 		.4byte	0x449
+ 2544 0449 0F       		.uleb128 0xf
+ 2545 044a 54040000 		.4byte	0x454
+ 2546 044e 0E       		.uleb128 0xe
+ 2547 044f 97000000 		.4byte	0x97
+ 2548 0453 00       		.byte	0
+ 2549 0454 0C       		.uleb128 0xc
+ 2550 0455 04       		.byte	0x4
+ 2551 0456 5A040000 		.4byte	0x45a
+ 2552 045a 10       		.uleb128 0x10
+ 2553 045b 0E010000 		.4byte	0x10e
+ 2554 045f 11       		.uleb128 0x11
+ 2555 0460 D9000000 		.4byte	.LASF141
+ 2556 0464 01       		.byte	0x1
+ 2557 0465 01       		.byte	0x1
+ 2558 0466 51       		.byte	0x51
+ 2559 0467 90040000 		.4byte	0x490
+ 2560 046b 12       		.uleb128 0x12
+ 2561 046c 75020000 		.4byte	.LASF73
+ 2562 0470 00       		.sleb128 0
+ 2563 0471 12       		.uleb128 0x12
+ 2564 0472 22070000 		.4byte	.LASF74
+ 2565 0476 01       		.sleb128 1
+ 2566 0477 12       		.uleb128 0x12
+ 2567 0478 1C010000 		.4byte	.LASF75
+ 2568 047c 02       		.sleb128 2
+ 2569 047d 12       		.uleb128 0x12
+ 2570 047e 94040000 		.4byte	.LASF76
+ 2571 0482 03       		.sleb128 3
+ 2572 0483 12       		.uleb128 0x12
+ 2573 0484 A8050000 		.4byte	.LASF77
+ 2574 0488 04       		.sleb128 4
+ 2575 0489 12       		.uleb128 0x12
+ 2576 048a A4060000 		.4byte	.LASF78
+ 2577 048e 05       		.sleb128 5
+ 2578 048f 00       		.byte	0
+ 2579 0490 13       		.uleb128 0x13
+ 2580 0491 9F060000 		.4byte	.LASF86
+ 2581 0495 01       		.byte	0x1
+ 2582 0496 69       		.byte	0x69
+ 2583 0497 7E000000 		.4byte	0x7e
+ 2584 049b 00000000 		.4byte	.LFB63
+ 2585 049f A4010000 		.4byte	.LFE63-.LFB63
+ 2586 04a3 01       		.uleb128 0x1
+ 2587 04a4 9C       		.byte	0x9c
+ 2588 04a5 B8040000 		.4byte	0x4b8
+ 2589 04a9 14       		.uleb128 0x14
+ 2590 04aa 706F7300 		.ascii	"pos\000"
+ 2591 04ae 01       		.byte	0x1
+ 2592 04af 6B       		.byte	0x6b
+ 2593 04b0 97000000 		.4byte	0x97
+ 2594 04b4 02       		.uleb128 0x2
+ 2595 04b5 91       		.byte	0x91
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 58
+
+
+ 2596 04b6 77       		.sleb128 -9
+ 2597 04b7 00       		.byte	0
+ 2598 04b8 15       		.uleb128 0x15
+ 2599 04b9 57020000 		.4byte	.LASF79
+ 2600 04bd 01       		.byte	0x1
+ 2601 04be C0       		.byte	0xc0
+ 2602 04bf 00000000 		.4byte	.LFB64
+ 2603 04c3 58000000 		.4byte	.LFE64-.LFB64
+ 2604 04c7 01       		.uleb128 0x1
+ 2605 04c8 9C       		.byte	0x9c
+ 2606 04c9 15       		.uleb128 0x15
+ 2607 04ca EC050000 		.4byte	.LASF80
+ 2608 04ce 01       		.byte	0x1
+ 2609 04cf E3       		.byte	0xe3
+ 2610 04d0 00000000 		.4byte	.LFB65
+ 2611 04d4 78000000 		.4byte	.LFE65-.LFB65
+ 2612 04d8 01       		.uleb128 0x1
+ 2613 04d9 9C       		.byte	0x9c
+ 2614 04da 15       		.uleb128 0x15
+ 2615 04db 60050000 		.4byte	.LASF81
+ 2616 04df 01       		.byte	0x1
+ 2617 04e0 F5       		.byte	0xf5
+ 2618 04e1 00000000 		.4byte	.LFB66
+ 2619 04e5 5C000000 		.4byte	.LFE66-.LFB66
+ 2620 04e9 01       		.uleb128 0x1
+ 2621 04ea 9C       		.byte	0x9c
+ 2622 04eb 16       		.uleb128 0x16
+ 2623 04ec F3060000 		.4byte	.LASF82
+ 2624 04f0 01       		.byte	0x1
+ 2625 04f1 0401     		.2byte	0x104
+ 2626 04f3 00000000 		.4byte	.LFB67
+ 2627 04f7 20000000 		.4byte	.LFE67-.LFB67
+ 2628 04fb 01       		.uleb128 0x1
+ 2629 04fc 9C       		.byte	0x9c
+ 2630 04fd 16       		.uleb128 0x16
+ 2631 04fe 16030000 		.4byte	.LASF83
+ 2632 0502 01       		.byte	0x1
+ 2633 0503 0801     		.2byte	0x108
+ 2634 0505 00000000 		.4byte	.LFB68
+ 2635 0509 5C000000 		.4byte	.LFE68-.LFB68
+ 2636 050d 01       		.uleb128 0x1
+ 2637 050e 9C       		.byte	0x9c
+ 2638 050f 16       		.uleb128 0x16
+ 2639 0510 FF020000 		.4byte	.LASF84
+ 2640 0514 01       		.byte	0x1
+ 2641 0515 1601     		.2byte	0x116
+ 2642 0517 00000000 		.4byte	.LFB69
+ 2643 051b 7C000000 		.4byte	.LFE69-.LFB69
+ 2644 051f 01       		.uleb128 0x1
+ 2645 0520 9C       		.byte	0x9c
+ 2646 0521 16       		.uleb128 0x16
+ 2647 0522 F1010000 		.4byte	.LASF85
+ 2648 0526 01       		.byte	0x1
+ 2649 0527 2A01     		.2byte	0x12a
+ 2650 0529 00000000 		.4byte	.LFB70
+ 2651 052d 60000000 		.4byte	.LFE70-.LFB70
+ 2652 0531 01       		.uleb128 0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 59
+
+
+ 2653 0532 9C       		.byte	0x9c
+ 2654 0533 17       		.uleb128 0x17
+ 2655 0534 AB020000 		.4byte	.LASF87
+ 2656 0538 01       		.byte	0x1
+ 2657 0539 3A01     		.2byte	0x13a
+ 2658 053b 00000000 		.4byte	.LFB71
+ 2659 053f A4040000 		.4byte	.LFE71-.LFB71
+ 2660 0543 01       		.uleb128 0x1
+ 2661 0544 9C       		.byte	0x9c
+ 2662 0545 77050000 		.4byte	0x577
+ 2663 0549 18       		.uleb128 0x18
+ 2664 054a 82030000 		.4byte	.LASF88
+ 2665 054e 01       		.byte	0x1
+ 2666 054f 3A01     		.2byte	0x13a
+ 2667 0551 AD000000 		.4byte	0xad
+ 2668 0555 02       		.uleb128 0x2
+ 2669 0556 91       		.byte	0x91
+ 2670 0557 6F       		.sleb128 -17
+ 2671 0558 18       		.uleb128 0x18
+ 2672 0559 83020000 		.4byte	.LASF89
+ 2673 055d 01       		.byte	0x1
+ 2674 055e 3A01     		.2byte	0x13a
+ 2675 0560 AD000000 		.4byte	0xad
+ 2676 0564 02       		.uleb128 0x2
+ 2677 0565 91       		.byte	0x91
+ 2678 0566 6E       		.sleb128 -18
+ 2679 0567 19       		.uleb128 0x19
+ 2680 0568 43040000 		.4byte	.LASF90
+ 2681 056c 01       		.byte	0x1
+ 2682 056d 3C01     		.2byte	0x13c
+ 2683 056f 5F040000 		.4byte	0x45f
+ 2684 0573 02       		.uleb128 0x2
+ 2685 0574 91       		.byte	0x91
+ 2686 0575 77       		.sleb128 -9
+ 2687 0576 00       		.byte	0
+ 2688 0577 1A       		.uleb128 0x1a
+ 2689 0578 E5010000 		.4byte	.LASF92
+ 2690 057c 01       		.byte	0x1
+ 2691 057d 0A02     		.2byte	0x20a
+ 2692 057f B8000000 		.4byte	0xb8
+ 2693 0583 00000000 		.4byte	.LFB72
+ 2694 0587 80000000 		.4byte	.LFE72-.LFB72
+ 2695 058b 01       		.uleb128 0x1
+ 2696 058c 9C       		.byte	0x9c
+ 2697 058d A1050000 		.4byte	0x5a1
+ 2698 0591 18       		.uleb128 0x18
+ 2699 0592 7A020000 		.4byte	.LASF91
+ 2700 0596 01       		.byte	0x1
+ 2701 0597 0A02     		.2byte	0x20a
+ 2702 0599 B8000000 		.4byte	0xb8
+ 2703 059d 02       		.uleb128 0x2
+ 2704 059e 91       		.byte	0x91
+ 2705 059f 76       		.sleb128 -10
+ 2706 05a0 00       		.byte	0
+ 2707 05a1 1A       		.uleb128 0x1a
+ 2708 05a2 4D040000 		.4byte	.LASF93
+ 2709 05a6 01       		.byte	0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 60
+
+
+ 2710 05a7 1A02     		.2byte	0x21a
+ 2711 05a9 B8000000 		.4byte	0xb8
+ 2712 05ad 00000000 		.4byte	.LFB73
+ 2713 05b1 68000000 		.4byte	.LFE73-.LFB73
+ 2714 05b5 01       		.uleb128 0x1
+ 2715 05b6 9C       		.byte	0x9c
+ 2716 05b7 CB050000 		.4byte	0x5cb
+ 2717 05bb 18       		.uleb128 0x18
+ 2718 05bc 7A020000 		.4byte	.LASF91
+ 2719 05c0 01       		.byte	0x1
+ 2720 05c1 1A02     		.2byte	0x21a
+ 2721 05c3 B8000000 		.4byte	0xb8
+ 2722 05c7 02       		.uleb128 0x2
+ 2723 05c8 91       		.byte	0x91
+ 2724 05c9 76       		.sleb128 -10
+ 2725 05ca 00       		.byte	0
+ 2726 05cb 1B       		.uleb128 0x1b
+ 2727 05cc 19050000 		.4byte	.LASF94
+ 2728 05d0 01       		.byte	0x1
+ 2729 05d1 2B02     		.2byte	0x22b
+ 2730 05d3 00000000 		.4byte	.LFB74
+ 2731 05d7 46000000 		.4byte	.LFE74-.LFB74
+ 2732 05db 01       		.uleb128 0x1
+ 2733 05dc 9C       		.byte	0x9c
+ 2734 05dd 1B       		.uleb128 0x1b
+ 2735 05de A4040000 		.4byte	.LASF95
+ 2736 05e2 01       		.byte	0x1
+ 2737 05e3 4902     		.2byte	0x249
+ 2738 05e5 00000000 		.4byte	.LFB75
+ 2739 05e9 68000000 		.4byte	.LFE75-.LFB75
+ 2740 05ed 01       		.uleb128 0x1
+ 2741 05ee 9C       		.byte	0x9c
+ 2742 05ef 1B       		.uleb128 0x1b
+ 2743 05f0 4F000000 		.4byte	.LASF96
+ 2744 05f4 01       		.byte	0x1
+ 2745 05f5 5B02     		.2byte	0x25b
+ 2746 05f7 00000000 		.4byte	.LFB76
+ 2747 05fb 38000000 		.4byte	.LFE76-.LFB76
+ 2748 05ff 01       		.uleb128 0x1
+ 2749 0600 9C       		.byte	0x9c
+ 2750 0601 17       		.uleb128 0x17
+ 2751 0602 2A010000 		.4byte	.LASF97
+ 2752 0606 01       		.byte	0x1
+ 2753 0607 6202     		.2byte	0x262
+ 2754 0609 00000000 		.4byte	.LFB77
+ 2755 060d 50000000 		.4byte	.LFE77-.LFB77
+ 2756 0611 01       		.uleb128 0x1
+ 2757 0612 9C       		.byte	0x9c
+ 2758 0613 36060000 		.4byte	0x636
+ 2759 0617 18       		.uleb128 0x18
+ 2760 0618 37010000 		.4byte	.LASF98
+ 2761 061c 01       		.byte	0x1
+ 2762 061d 6202     		.2byte	0x262
+ 2763 061f AD000000 		.4byte	0xad
+ 2764 0623 02       		.uleb128 0x2
+ 2765 0624 91       		.byte	0x91
+ 2766 0625 6F       		.sleb128 -17
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 61
+
+
+ 2767 0626 19       		.uleb128 0x19
+ 2768 0627 30060000 		.4byte	.LASF99
+ 2769 062b 01       		.byte	0x1
+ 2770 062c 6302     		.2byte	0x263
+ 2771 062e 7E000000 		.4byte	0x7e
+ 2772 0632 02       		.uleb128 0x2
+ 2773 0633 91       		.byte	0x91
+ 2774 0634 74       		.sleb128 -12
+ 2775 0635 00       		.byte	0
+ 2776 0636 1C       		.uleb128 0x1c
+ 2777 0637 D6040000 		.4byte	.LASF100
+ 2778 063b 06       		.byte	0x6
+ 2779 063c 2A06     		.2byte	0x62a
+ 2780 063e 42060000 		.4byte	0x642
+ 2781 0642 1D       		.uleb128 0x1d
+ 2782 0643 A2000000 		.4byte	0xa2
+ 2783 0647 1C       		.uleb128 0x1c
+ 2784 0648 C2060000 		.4byte	.LASF101
+ 2785 064c 05       		.byte	0x5
+ 2786 064d 0301     		.2byte	0x103
+ 2787 064f 8F020000 		.4byte	0x28f
+ 2788 0653 1E       		.uleb128 0x1e
+ 2789 0654 19010000 		.4byte	0x119
+ 2790 0658 5E060000 		.4byte	0x65e
+ 2791 065c 1F       		.uleb128 0x1f
+ 2792 065d 00       		.byte	0
+ 2793 065e 1C       		.uleb128 0x1c
+ 2794 065f 37000000 		.4byte	.LASF102
+ 2795 0663 05       		.byte	0x5
+ 2796 0664 5606     		.2byte	0x656
+ 2797 0666 6A060000 		.4byte	0x66a
+ 2798 066a 10       		.uleb128 0x10
+ 2799 066b 53060000 		.4byte	0x653
+ 2800 066f 1C       		.uleb128 0x1c
+ 2801 0670 EE020000 		.4byte	.LASF103
+ 2802 0674 05       		.byte	0x5
+ 2803 0675 0107     		.2byte	0x701
+ 2804 0677 7B060000 		.4byte	0x67b
+ 2805 067b 10       		.uleb128 0x10
+ 2806 067c 53060000 		.4byte	0x653
+ 2807 0680 20       		.uleb128 0x20
+ 2808 0681 75000000 		.4byte	.LASF104
+ 2809 0685 01       		.byte	0x1
+ 2810 0686 15       		.byte	0x15
+ 2811 0687 AD000000 		.4byte	0xad
+ 2812 068b 05       		.uleb128 0x5
+ 2813 068c 03       		.byte	0x3
+ 2814 068d 00000000 		.4byte	filtered_count
+ 2815 0691 21       		.uleb128 0x21
+ 2816 0692 6900     		.ascii	"i\000"
+ 2817 0694 01       		.byte	0x1
+ 2818 0695 1A       		.byte	0x1a
+ 2819 0696 AD000000 		.4byte	0xad
+ 2820 069a 05       		.uleb128 0x5
+ 2821 069b 03       		.byte	0x3
+ 2822 069c 00000000 		.4byte	i
+ 2823 06a0 21       		.uleb128 0x21
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 62
+
+
+ 2824 06a1 6A00     		.ascii	"j\000"
+ 2825 06a3 01       		.byte	0x1
+ 2826 06a4 1B       		.byte	0x1b
+ 2827 06a5 AD000000 		.4byte	0xad
+ 2828 06a9 05       		.uleb128 0x5
+ 2829 06aa 03       		.byte	0x3
+ 2830 06ab 00000000 		.4byte	j
+ 2831 06af 21       		.uleb128 0x21
+ 2832 06b0 6B00     		.ascii	"k\000"
+ 2833 06b2 01       		.byte	0x1
+ 2834 06b3 1C       		.byte	0x1c
+ 2835 06b4 AD000000 		.4byte	0xad
+ 2836 06b8 05       		.uleb128 0x5
+ 2837 06b9 03       		.byte	0x3
+ 2838 06ba 00000000 		.4byte	k
+ 2839 06be 1E       		.uleb128 0x1e
+ 2840 06bf E7000000 		.4byte	0xe7
+ 2841 06c3 CE060000 		.4byte	0x6ce
+ 2842 06c7 22       		.uleb128 0x22
+ 2843 06c8 05010000 		.4byte	0x105
+ 2844 06cc 04       		.byte	0x4
+ 2845 06cd 00       		.byte	0
+ 2846 06ce 20       		.uleb128 0x20
+ 2847 06cf 54050000 		.4byte	.LASF105
+ 2848 06d3 01       		.byte	0x1
+ 2849 06d4 1D       		.byte	0x1d
+ 2850 06d5 BE060000 		.4byte	0x6be
+ 2851 06d9 05       		.uleb128 0x5
+ 2852 06da 03       		.byte	0x3
+ 2853 06db 00000000 		.4byte	number
+ 2854 06df 20       		.uleb128 0x20
+ 2855 06e0 35050000 		.4byte	.LASF106
+ 2856 06e4 01       		.byte	0x1
+ 2857 06e5 1E       		.byte	0x1e
+ 2858 06e6 BE060000 		.4byte	0x6be
+ 2859 06ea 05       		.uleb128 0x5
+ 2860 06eb 03       		.byte	0x3
+ 2861 06ec 00000000 		.4byte	number2
+ 2862 06f0 20       		.uleb128 0x20
+ 2863 06f1 3D050000 		.4byte	.LASF107
+ 2864 06f5 01       		.byte	0x1
+ 2865 06f6 1F       		.byte	0x1f
+ 2866 06f7 BE060000 		.4byte	0x6be
+ 2867 06fb 05       		.uleb128 0x5
+ 2868 06fc 03       		.byte	0x3
+ 2869 06fd 00000000 		.4byte	number3
+ 2870 0701 20       		.uleb128 0x20
+ 2871 0702 F9040000 		.4byte	.LASF108
+ 2872 0706 01       		.byte	0x1
+ 2873 0707 21       		.byte	0x21
+ 2874 0708 AD000000 		.4byte	0xad
+ 2875 070c 05       		.uleb128 0x5
+ 2876 070d 03       		.byte	0x3
+ 2877 070e 00000000 		.4byte	button1
+ 2878 0712 20       		.uleb128 0x20
+ 2879 0713 01050000 		.4byte	.LASF109
+ 2880 0717 01       		.byte	0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 63
+
+
+ 2881 0718 21       		.byte	0x21
+ 2882 0719 AD000000 		.4byte	0xad
+ 2883 071d 05       		.uleb128 0x5
+ 2884 071e 03       		.byte	0x3
+ 2885 071f 00000000 		.4byte	button2
+ 2886 0723 20       		.uleb128 0x20
+ 2887 0724 70030000 		.4byte	.LASF110
+ 2888 0728 01       		.byte	0x1
+ 2889 0729 21       		.byte	0x21
+ 2890 072a AD000000 		.4byte	0xad
+ 2891 072e 05       		.uleb128 0x5
+ 2892 072f 03       		.byte	0x3
+ 2893 0730 00000000 		.4byte	button3
+ 2894 0734 20       		.uleb128 0x20
+ 2895 0735 C0010000 		.4byte	.LASF111
+ 2896 0739 01       		.byte	0x1
+ 2897 073a 21       		.byte	0x21
+ 2898 073b AD000000 		.4byte	0xad
+ 2899 073f 05       		.uleb128 0x5
+ 2900 0740 03       		.byte	0x3
+ 2901 0741 00000000 		.4byte	push
+ 2902 0745 20       		.uleb128 0x20
+ 2903 0746 3A060000 		.4byte	.LASF112
+ 2904 074a 01       		.byte	0x1
+ 2905 074b 23       		.byte	0x23
+ 2906 074c AD000000 		.4byte	0xad
+ 2907 0750 05       		.uleb128 0x5
+ 2908 0751 03       		.byte	0x3
+ 2909 0752 00000000 		.4byte	OutputEnable
+ 2910 0756 20       		.uleb128 0x20
+ 2911 0757 99020000 		.4byte	.LASF113
+ 2912 075b 01       		.byte	0x1
+ 2913 075c 24       		.byte	0x24
+ 2914 075d AD000000 		.4byte	0xad
+ 2915 0761 05       		.uleb128 0x5
+ 2916 0762 03       		.byte	0x3
+ 2917 0763 00000000 		.4byte	OutputSelect
+ 2918 0767 20       		.uleb128 0x20
+ 2919 0768 94060000 		.4byte	.LASF114
+ 2920 076c 01       		.byte	0x1
+ 2921 076d 25       		.byte	0x25
+ 2922 076e AD000000 		.4byte	0xad
+ 2923 0772 05       		.uleb128 0x5
+ 2924 0773 03       		.byte	0x3
+ 2925 0774 00000000 		.4byte	WaveSelect
+ 2926 0778 20       		.uleb128 0x20
+ 2927 0779 0D060000 		.4byte	.LASF115
+ 2928 077d 01       		.byte	0x1
+ 2929 077e 27       		.byte	0x27
+ 2930 077f AD000000 		.4byte	0xad
+ 2931 0783 05       		.uleb128 0x5
+ 2932 0784 03       		.byte	0x3
+ 2933 0785 00000000 		.4byte	DutyCycle
+ 2934 0789 20       		.uleb128 0x20
+ 2935 078a E0060000 		.4byte	.LASF116
+ 2936 078e 01       		.byte	0x1
+ 2937 078f 28       		.byte	0x28
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 64
+
+
+ 2938 0790 AD000000 		.4byte	0xad
+ 2939 0794 05       		.uleb128 0x5
+ 2940 0795 03       		.byte	0x3
+ 2941 0796 00000000 		.4byte	Frequency
+ 2942 079a 20       		.uleb128 0x20
+ 2943 079b 5F060000 		.4byte	.LASF117
+ 2944 079f 01       		.byte	0x1
+ 2945 07a0 2A       		.byte	0x2a
+ 2946 07a1 AD000000 		.4byte	0xad
+ 2947 07a5 05       		.uleb128 0x5
+ 2948 07a6 03       		.byte	0x3
+ 2949 07a7 00000000 		.4byte	CurrentBacklightValue
+ 2950 07ab 1E       		.uleb128 0x1e
+ 2951 07ac E7000000 		.4byte	0xe7
+ 2952 07b0 BB070000 		.4byte	0x7bb
+ 2953 07b4 22       		.uleb128 0x22
+ 2954 07b5 05010000 		.4byte	0x105
+ 2955 07b9 07       		.byte	0x7
+ 2956 07ba 00       		.byte	0
+ 2957 07bb 20       		.uleb128 0x20
+ 2958 07bc F3000000 		.4byte	.LASF118
+ 2959 07c0 01       		.byte	0x1
+ 2960 07c1 2B       		.byte	0x2b
+ 2961 07c2 AB070000 		.4byte	0x7ab
+ 2962 07c6 05       		.uleb128 0x5
+ 2963 07c7 03       		.byte	0x3
+ 2964 07c8 00000000 		.4byte	CurrentBacklightValueString
+ 2965 07cc 20       		.uleb128 0x20
+ 2966 07cd 4F050000 		.4byte	.LASF119
+ 2967 07d1 01       		.byte	0x1
+ 2968 07d2 2C       		.byte	0x2c
+ 2969 07d3 AB070000 		.4byte	0x7ab
+ 2970 07d7 05       		.uleb128 0x5
+ 2971 07d8 03       		.byte	0x3
+ 2972 07d9 00000000 		.4byte	Test
+ 2973 07dd 20       		.uleb128 0x20
+ 2974 07de 36070000 		.4byte	.LASF120
+ 2975 07e2 01       		.byte	0x1
+ 2976 07e3 2F       		.byte	0x2f
+ 2977 07e4 AD000000 		.4byte	0xad
+ 2978 07e8 05       		.uleb128 0x5
+ 2979 07e9 03       		.byte	0x3
+ 2980 07ea 00000000 		.4byte	LCD_Page
+ 2981 07ee 20       		.uleb128 0x20
+ 2982 07ef 6E000000 		.4byte	.LASF121
+ 2983 07f3 01       		.byte	0x1
+ 2984 07f4 31       		.byte	0x31
+ 2985 07f5 F9000000 		.4byte	0xf9
+ 2986 07f9 05       		.uleb128 0x5
+ 2987 07fa 03       		.byte	0x3
+ 2988 07fb 00000000 		.4byte	Status
+ 2989 07ff 20       		.uleb128 0x20
+ 2990 0800 34020000 		.4byte	.LASF122
+ 2991 0804 01       		.byte	0x1
+ 2992 0805 32       		.byte	0x32
+ 2993 0806 CE000000 		.4byte	0xce
+ 2994 080a 05       		.uleb128 0x5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 65
+
+
+ 2995 080b 03       		.byte	0x3
+ 2996 080c 00000000 		.4byte	DIE_Temp
+ 2997 0810 20       		.uleb128 0x20
+ 2998 0811 EA060000 		.4byte	.LASF123
+ 2999 0815 01       		.byte	0x1
+ 3000 0816 33       		.byte	0x33
+ 3001 0817 C3000000 		.4byte	0xc3
+ 3002 081b 05       		.uleb128 0x5
+ 3003 081c 03       		.byte	0x3
+ 3004 081d 00000000 		.4byte	FET_Temp
+ 3005 0821 20       		.uleb128 0x20
+ 3006 0822 31000000 		.4byte	.LASF124
+ 3007 0826 01       		.byte	0x1
+ 3008 0827 35       		.byte	0x35
+ 3009 0828 CE000000 		.4byte	0xce
+ 3010 082c 05       		.uleb128 0x5
+ 3011 082d 03       		.byte	0x3
+ 3012 082e 00000000 		.4byte	Power
+ 3013 0832 20       		.uleb128 0x20
+ 3014 0833 50020000 		.4byte	.LASF125
+ 3015 0837 01       		.byte	0x1
+ 3016 0838 36       		.byte	0x36
+ 3017 0839 D9000000 		.4byte	0xd9
+ 3018 083d 05       		.uleb128 0x5
+ 3019 083e 03       		.byte	0x3
+ 3020 083f 00000000 		.4byte	fPower
+ 3021 0843 1E       		.uleb128 0x1e
+ 3022 0844 E7000000 		.4byte	0xe7
+ 3023 0848 53080000 		.4byte	0x853
+ 3024 084c 22       		.uleb128 0x22
+ 3025 084d 05010000 		.4byte	0x105
+ 3026 0851 0F       		.byte	0xf
+ 3027 0852 00       		.byte	0
+ 3028 0853 20       		.uleb128 0x20
+ 3029 0854 2F070000 		.4byte	.LASF126
+ 3030 0858 01       		.byte	0x1
+ 3031 0859 37       		.byte	0x37
+ 3032 085a 43080000 		.4byte	0x843
+ 3033 085e 05       		.uleb128 0x5
+ 3034 085f 03       		.byte	0x3
+ 3035 0860 00000000 		.4byte	cPower
+ 3036 0864 20       		.uleb128 0x20
+ 3037 0865 1E020000 		.4byte	.LASF127
+ 3038 0869 01       		.byte	0x1
+ 3039 086a 39       		.byte	0x39
+ 3040 086b B8000000 		.4byte	0xb8
+ 3041 086f 05       		.uleb128 0x5
+ 3042 0870 03       		.byte	0x3
+ 3043 0871 00000000 		.4byte	Voltage
+ 3044 0875 20       		.uleb128 0x20
+ 3045 0876 DC010000 		.4byte	.LASF128
+ 3046 087a 01       		.byte	0x1
+ 3047 087b 3A       		.byte	0x3a
+ 3048 087c D9000000 		.4byte	0xd9
+ 3049 0880 05       		.uleb128 0x5
+ 3050 0881 03       		.byte	0x3
+ 3051 0882 00000000 		.4byte	fVoltage
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 66
+
+
+ 3052 0886 20       		.uleb128 0x20
+ 3053 0887 D0000000 		.4byte	.LASF129
+ 3054 088b 01       		.byte	0x1
+ 3055 088c 3B       		.byte	0x3b
+ 3056 088d 43080000 		.4byte	0x843
+ 3057 0891 05       		.uleb128 0x5
+ 3058 0892 03       		.byte	0x3
+ 3059 0893 00000000 		.4byte	cVoltage
+ 3060 0897 20       		.uleb128 0x20
+ 3061 0898 84000000 		.4byte	.LASF130
+ 3062 089c 01       		.byte	0x1
+ 3063 089d 3D       		.byte	0x3d
+ 3064 089e CE000000 		.4byte	0xce
+ 3065 08a2 05       		.uleb128 0x5
+ 3066 08a3 03       		.byte	0x3
+ 3067 08a4 00000000 		.4byte	Current
+ 3068 08a8 20       		.uleb128 0x20
+ 3069 08a9 46000000 		.4byte	.LASF131
+ 3070 08ad 01       		.byte	0x1
+ 3071 08ae 3E       		.byte	0x3e
+ 3072 08af D9000000 		.4byte	0xd9
+ 3073 08b3 05       		.uleb128 0x5
+ 3074 08b4 03       		.byte	0x3
+ 3075 08b5 00000000 		.4byte	fCurrent
+ 3076 08b9 20       		.uleb128 0x20
+ 3077 08ba 18000000 		.4byte	.LASF132
+ 3078 08be 01       		.byte	0x1
+ 3079 08bf 3F       		.byte	0x3f
+ 3080 08c0 43080000 		.4byte	0x843
+ 3081 08c4 05       		.uleb128 0x5
+ 3082 08c5 03       		.byte	0x3
+ 3083 08c6 00000000 		.4byte	cCurrent
+ 3084 08ca 20       		.uleb128 0x20
+ 3085 08cb 3A040000 		.4byte	.LASF133
+ 3086 08cf 01       		.byte	0x1
+ 3087 08d0 41       		.byte	0x41
+ 3088 08d1 AD000000 		.4byte	0xad
+ 3089 08d5 05       		.uleb128 0x5
+ 3090 08d6 03       		.byte	0x3
+ 3091 08d7 00000000 		.4byte	DACValue
+ 3092 08db 20       		.uleb128 0x20
+ 3093 08dc C8020000 		.4byte	.LASF134
+ 3094 08e0 01       		.byte	0x1
+ 3095 08e1 42       		.byte	0x42
+ 3096 08e2 AD000000 		.4byte	0xad
+ 3097 08e6 05       		.uleb128 0x5
+ 3098 08e7 03       		.byte	0x3
+ 3099 08e8 00000000 		.4byte	DACValueOld
+ 3100 08ec 20       		.uleb128 0x20
+ 3101 08ed 68030000 		.4byte	.LASF135
+ 3102 08f1 01       		.byte	0x1
+ 3103 08f2 4A       		.byte	0x4a
+ 3104 08f3 B8000000 		.4byte	0xb8
+ 3105 08f7 05       		.uleb128 0x5
+ 3106 08f8 03       		.byte	0x3
+ 3107 08f9 00000000 		.4byte	qdCount
+ 3108 08fd 20       		.uleb128 0x20
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 67
+
+
+ 3109 08fe 0F010000 		.4byte	.LASF136
+ 3110 0902 01       		.byte	0x1
+ 3111 0903 4B       		.byte	0x4b
+ 3112 0904 B8000000 		.4byte	0xb8
+ 3113 0908 05       		.uleb128 0x5
+ 3114 0909 03       		.byte	0x3
+ 3115 090a 00000000 		.4byte	Last_qdCount
+ 3116 090e 20       		.uleb128 0x20
+ 3117 090f 83020000 		.4byte	.LASF89
+ 3118 0913 01       		.byte	0x1
+ 3119 0914 4E       		.byte	0x4e
+ 3120 0915 AD000000 		.4byte	0xad
+ 3121 0919 05       		.uleb128 0x5
+ 3122 091a 03       		.byte	0x3
+ 3123 091b 00000000 		.4byte	Current_Menu_Position
+ 3124 091f 20       		.uleb128 0x20
+ 3125 0920 C2000000 		.4byte	.LASF137
+ 3126 0924 01       		.byte	0x1
+ 3127 0925 53       		.byte	0x53
+ 3128 0926 5F040000 		.4byte	0x45f
+ 3129 092a 05       		.uleb128 0x5
+ 3130 092b 03       		.byte	0x3
+ 3131 092c 00000000 		.4byte	Current_State
+ 3132 0930 21       		.uleb128 0x21
+ 3133 0931 75386700 		.ascii	"u8g\000"
+ 3134 0935 01       		.byte	0x1
+ 3135 0936 65       		.byte	0x65
+ 3136 0937 24010000 		.4byte	0x124
+ 3137 093b 05       		.uleb128 0x5
+ 3138 093c 03       		.byte	0x3
+ 3139 093d 00000000 		.4byte	u8g
+ 3140 0941 00       		.byte	0
+ 3141              		.section	.debug_abbrev,"",%progbits
+ 3142              	.Ldebug_abbrev0:
+ 3143 0000 01       		.uleb128 0x1
+ 3144 0001 11       		.uleb128 0x11
+ 3145 0002 01       		.byte	0x1
+ 3146 0003 25       		.uleb128 0x25
+ 3147 0004 0E       		.uleb128 0xe
+ 3148 0005 13       		.uleb128 0x13
+ 3149 0006 0B       		.uleb128 0xb
+ 3150 0007 03       		.uleb128 0x3
+ 3151 0008 0E       		.uleb128 0xe
+ 3152 0009 1B       		.uleb128 0x1b
+ 3153 000a 0E       		.uleb128 0xe
+ 3154 000b 55       		.uleb128 0x55
+ 3155 000c 17       		.uleb128 0x17
+ 3156 000d 11       		.uleb128 0x11
+ 3157 000e 01       		.uleb128 0x1
+ 3158 000f 10       		.uleb128 0x10
+ 3159 0010 17       		.uleb128 0x17
+ 3160 0011 00       		.byte	0
+ 3161 0012 00       		.byte	0
+ 3162 0013 02       		.uleb128 0x2
+ 3163 0014 16       		.uleb128 0x16
+ 3164 0015 00       		.byte	0
+ 3165 0016 03       		.uleb128 0x3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 68
+
+
+ 3166 0017 0E       		.uleb128 0xe
+ 3167 0018 3A       		.uleb128 0x3a
+ 3168 0019 0B       		.uleb128 0xb
+ 3169 001a 3B       		.uleb128 0x3b
+ 3170 001b 0B       		.uleb128 0xb
+ 3171 001c 49       		.uleb128 0x49
+ 3172 001d 13       		.uleb128 0x13
+ 3173 001e 00       		.byte	0
+ 3174 001f 00       		.byte	0
+ 3175 0020 03       		.uleb128 0x3
+ 3176 0021 24       		.uleb128 0x24
+ 3177 0022 00       		.byte	0
+ 3178 0023 0B       		.uleb128 0xb
+ 3179 0024 0B       		.uleb128 0xb
+ 3180 0025 3E       		.uleb128 0x3e
+ 3181 0026 0B       		.uleb128 0xb
+ 3182 0027 03       		.uleb128 0x3
+ 3183 0028 0E       		.uleb128 0xe
+ 3184 0029 00       		.byte	0
+ 3185 002a 00       		.byte	0
+ 3186 002b 04       		.uleb128 0x4
+ 3187 002c 24       		.uleb128 0x24
+ 3188 002d 00       		.byte	0
+ 3189 002e 0B       		.uleb128 0xb
+ 3190 002f 0B       		.uleb128 0xb
+ 3191 0030 3E       		.uleb128 0x3e
+ 3192 0031 0B       		.uleb128 0xb
+ 3193 0032 03       		.uleb128 0x3
+ 3194 0033 08       		.uleb128 0x8
+ 3195 0034 00       		.byte	0
+ 3196 0035 00       		.byte	0
+ 3197 0036 05       		.uleb128 0x5
+ 3198 0037 16       		.uleb128 0x16
+ 3199 0038 00       		.byte	0
+ 3200 0039 03       		.uleb128 0x3
+ 3201 003a 0E       		.uleb128 0xe
+ 3202 003b 3A       		.uleb128 0x3a
+ 3203 003c 0B       		.uleb128 0xb
+ 3204 003d 3B       		.uleb128 0x3b
+ 3205 003e 05       		.uleb128 0x5
+ 3206 003f 49       		.uleb128 0x49
+ 3207 0040 13       		.uleb128 0x13
+ 3208 0041 00       		.byte	0
+ 3209 0042 00       		.byte	0
+ 3210 0043 06       		.uleb128 0x6
+ 3211 0044 0F       		.uleb128 0xf
+ 3212 0045 00       		.byte	0
+ 3213 0046 0B       		.uleb128 0xb
+ 3214 0047 0B       		.uleb128 0xb
+ 3215 0048 00       		.byte	0
+ 3216 0049 00       		.byte	0
+ 3217 004a 07       		.uleb128 0x7
+ 3218 004b 13       		.uleb128 0x13
+ 3219 004c 01       		.byte	0x1
+ 3220 004d 03       		.uleb128 0x3
+ 3221 004e 0E       		.uleb128 0xe
+ 3222 004f 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 69
+
+
+ 3223 0050 0B       		.uleb128 0xb
+ 3224 0051 3A       		.uleb128 0x3a
+ 3225 0052 0B       		.uleb128 0xb
+ 3226 0053 3B       		.uleb128 0x3b
+ 3227 0054 05       		.uleb128 0x5
+ 3228 0055 01       		.uleb128 0x1
+ 3229 0056 13       		.uleb128 0x13
+ 3230 0057 00       		.byte	0
+ 3231 0058 00       		.byte	0
+ 3232 0059 08       		.uleb128 0x8
+ 3233 005a 0D       		.uleb128 0xd
+ 3234 005b 00       		.byte	0
+ 3235 005c 03       		.uleb128 0x3
+ 3236 005d 0E       		.uleb128 0xe
+ 3237 005e 3A       		.uleb128 0x3a
+ 3238 005f 0B       		.uleb128 0xb
+ 3239 0060 3B       		.uleb128 0x3b
+ 3240 0061 05       		.uleb128 0x5
+ 3241 0062 49       		.uleb128 0x49
+ 3242 0063 13       		.uleb128 0x13
+ 3243 0064 38       		.uleb128 0x38
+ 3244 0065 0B       		.uleb128 0xb
+ 3245 0066 00       		.byte	0
+ 3246 0067 00       		.byte	0
+ 3247 0068 09       		.uleb128 0x9
+ 3248 0069 0D       		.uleb128 0xd
+ 3249 006a 00       		.byte	0
+ 3250 006b 03       		.uleb128 0x3
+ 3251 006c 08       		.uleb128 0x8
+ 3252 006d 3A       		.uleb128 0x3a
+ 3253 006e 0B       		.uleb128 0xb
+ 3254 006f 3B       		.uleb128 0x3b
+ 3255 0070 05       		.uleb128 0x5
+ 3256 0071 49       		.uleb128 0x49
+ 3257 0072 13       		.uleb128 0x13
+ 3258 0073 38       		.uleb128 0x38
+ 3259 0074 0B       		.uleb128 0xb
+ 3260 0075 00       		.byte	0
+ 3261 0076 00       		.byte	0
+ 3262 0077 0A       		.uleb128 0xa
+ 3263 0078 13       		.uleb128 0x13
+ 3264 0079 01       		.byte	0x1
+ 3265 007a 03       		.uleb128 0x3
+ 3266 007b 0E       		.uleb128 0xe
+ 3267 007c 0B       		.uleb128 0xb
+ 3268 007d 0B       		.uleb128 0xb
+ 3269 007e 3A       		.uleb128 0x3a
+ 3270 007f 0B       		.uleb128 0xb
+ 3271 0080 3B       		.uleb128 0x3b
+ 3272 0081 0B       		.uleb128 0xb
+ 3273 0082 01       		.uleb128 0x1
+ 3274 0083 13       		.uleb128 0x13
+ 3275 0084 00       		.byte	0
+ 3276 0085 00       		.byte	0
+ 3277 0086 0B       		.uleb128 0xb
+ 3278 0087 0D       		.uleb128 0xd
+ 3279 0088 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 70
+
+
+ 3280 0089 03       		.uleb128 0x3
+ 3281 008a 0E       		.uleb128 0xe
+ 3282 008b 3A       		.uleb128 0x3a
+ 3283 008c 0B       		.uleb128 0xb
+ 3284 008d 3B       		.uleb128 0x3b
+ 3285 008e 0B       		.uleb128 0xb
+ 3286 008f 49       		.uleb128 0x49
+ 3287 0090 13       		.uleb128 0x13
+ 3288 0091 38       		.uleb128 0x38
+ 3289 0092 0B       		.uleb128 0xb
+ 3290 0093 00       		.byte	0
+ 3291 0094 00       		.byte	0
+ 3292 0095 0C       		.uleb128 0xc
+ 3293 0096 0F       		.uleb128 0xf
+ 3294 0097 00       		.byte	0
+ 3295 0098 0B       		.uleb128 0xb
+ 3296 0099 0B       		.uleb128 0xb
+ 3297 009a 49       		.uleb128 0x49
+ 3298 009b 13       		.uleb128 0x13
+ 3299 009c 00       		.byte	0
+ 3300 009d 00       		.byte	0
+ 3301 009e 0D       		.uleb128 0xd
+ 3302 009f 15       		.uleb128 0x15
+ 3303 00a0 01       		.byte	0x1
+ 3304 00a1 27       		.uleb128 0x27
+ 3305 00a2 19       		.uleb128 0x19
+ 3306 00a3 49       		.uleb128 0x49
+ 3307 00a4 13       		.uleb128 0x13
+ 3308 00a5 01       		.uleb128 0x1
+ 3309 00a6 13       		.uleb128 0x13
+ 3310 00a7 00       		.byte	0
+ 3311 00a8 00       		.byte	0
+ 3312 00a9 0E       		.uleb128 0xe
+ 3313 00aa 05       		.uleb128 0x5
+ 3314 00ab 00       		.byte	0
+ 3315 00ac 49       		.uleb128 0x49
+ 3316 00ad 13       		.uleb128 0x13
+ 3317 00ae 00       		.byte	0
+ 3318 00af 00       		.byte	0
+ 3319 00b0 0F       		.uleb128 0xf
+ 3320 00b1 15       		.uleb128 0x15
+ 3321 00b2 01       		.byte	0x1
+ 3322 00b3 27       		.uleb128 0x27
+ 3323 00b4 19       		.uleb128 0x19
+ 3324 00b5 01       		.uleb128 0x1
+ 3325 00b6 13       		.uleb128 0x13
+ 3326 00b7 00       		.byte	0
+ 3327 00b8 00       		.byte	0
+ 3328 00b9 10       		.uleb128 0x10
+ 3329 00ba 26       		.uleb128 0x26
+ 3330 00bb 00       		.byte	0
+ 3331 00bc 49       		.uleb128 0x49
+ 3332 00bd 13       		.uleb128 0x13
+ 3333 00be 00       		.byte	0
+ 3334 00bf 00       		.byte	0
+ 3335 00c0 11       		.uleb128 0x11
+ 3336 00c1 04       		.uleb128 0x4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 71
+
+
+ 3337 00c2 01       		.byte	0x1
+ 3338 00c3 03       		.uleb128 0x3
+ 3339 00c4 0E       		.uleb128 0xe
+ 3340 00c5 0B       		.uleb128 0xb
+ 3341 00c6 0B       		.uleb128 0xb
+ 3342 00c7 3A       		.uleb128 0x3a
+ 3343 00c8 0B       		.uleb128 0xb
+ 3344 00c9 3B       		.uleb128 0x3b
+ 3345 00ca 0B       		.uleb128 0xb
+ 3346 00cb 01       		.uleb128 0x1
+ 3347 00cc 13       		.uleb128 0x13
+ 3348 00cd 00       		.byte	0
+ 3349 00ce 00       		.byte	0
+ 3350 00cf 12       		.uleb128 0x12
+ 3351 00d0 28       		.uleb128 0x28
+ 3352 00d1 00       		.byte	0
+ 3353 00d2 03       		.uleb128 0x3
+ 3354 00d3 0E       		.uleb128 0xe
+ 3355 00d4 1C       		.uleb128 0x1c
+ 3356 00d5 0D       		.uleb128 0xd
+ 3357 00d6 00       		.byte	0
+ 3358 00d7 00       		.byte	0
+ 3359 00d8 13       		.uleb128 0x13
+ 3360 00d9 2E       		.uleb128 0x2e
+ 3361 00da 01       		.byte	0x1
+ 3362 00db 3F       		.uleb128 0x3f
+ 3363 00dc 19       		.uleb128 0x19
+ 3364 00dd 03       		.uleb128 0x3
+ 3365 00de 0E       		.uleb128 0xe
+ 3366 00df 3A       		.uleb128 0x3a
+ 3367 00e0 0B       		.uleb128 0xb
+ 3368 00e1 3B       		.uleb128 0x3b
+ 3369 00e2 0B       		.uleb128 0xb
+ 3370 00e3 49       		.uleb128 0x49
+ 3371 00e4 13       		.uleb128 0x13
+ 3372 00e5 11       		.uleb128 0x11
+ 3373 00e6 01       		.uleb128 0x1
+ 3374 00e7 12       		.uleb128 0x12
+ 3375 00e8 06       		.uleb128 0x6
+ 3376 00e9 40       		.uleb128 0x40
+ 3377 00ea 18       		.uleb128 0x18
+ 3378 00eb 9642     		.uleb128 0x2116
+ 3379 00ed 19       		.uleb128 0x19
+ 3380 00ee 01       		.uleb128 0x1
+ 3381 00ef 13       		.uleb128 0x13
+ 3382 00f0 00       		.byte	0
+ 3383 00f1 00       		.byte	0
+ 3384 00f2 14       		.uleb128 0x14
+ 3385 00f3 34       		.uleb128 0x34
+ 3386 00f4 00       		.byte	0
+ 3387 00f5 03       		.uleb128 0x3
+ 3388 00f6 08       		.uleb128 0x8
+ 3389 00f7 3A       		.uleb128 0x3a
+ 3390 00f8 0B       		.uleb128 0xb
+ 3391 00f9 3B       		.uleb128 0x3b
+ 3392 00fa 0B       		.uleb128 0xb
+ 3393 00fb 49       		.uleb128 0x49
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 72
+
+
+ 3394 00fc 13       		.uleb128 0x13
+ 3395 00fd 02       		.uleb128 0x2
+ 3396 00fe 18       		.uleb128 0x18
+ 3397 00ff 00       		.byte	0
+ 3398 0100 00       		.byte	0
+ 3399 0101 15       		.uleb128 0x15
+ 3400 0102 2E       		.uleb128 0x2e
+ 3401 0103 00       		.byte	0
+ 3402 0104 3F       		.uleb128 0x3f
+ 3403 0105 19       		.uleb128 0x19
+ 3404 0106 03       		.uleb128 0x3
+ 3405 0107 0E       		.uleb128 0xe
+ 3406 0108 3A       		.uleb128 0x3a
+ 3407 0109 0B       		.uleb128 0xb
+ 3408 010a 3B       		.uleb128 0x3b
+ 3409 010b 0B       		.uleb128 0xb
+ 3410 010c 11       		.uleb128 0x11
+ 3411 010d 01       		.uleb128 0x1
+ 3412 010e 12       		.uleb128 0x12
+ 3413 010f 06       		.uleb128 0x6
+ 3414 0110 40       		.uleb128 0x40
+ 3415 0111 18       		.uleb128 0x18
+ 3416 0112 9642     		.uleb128 0x2116
+ 3417 0114 19       		.uleb128 0x19
+ 3418 0115 00       		.byte	0
+ 3419 0116 00       		.byte	0
+ 3420 0117 16       		.uleb128 0x16
+ 3421 0118 2E       		.uleb128 0x2e
+ 3422 0119 00       		.byte	0
+ 3423 011a 3F       		.uleb128 0x3f
+ 3424 011b 19       		.uleb128 0x19
+ 3425 011c 03       		.uleb128 0x3
+ 3426 011d 0E       		.uleb128 0xe
+ 3427 011e 3A       		.uleb128 0x3a
+ 3428 011f 0B       		.uleb128 0xb
+ 3429 0120 3B       		.uleb128 0x3b
+ 3430 0121 05       		.uleb128 0x5
+ 3431 0122 11       		.uleb128 0x11
+ 3432 0123 01       		.uleb128 0x1
+ 3433 0124 12       		.uleb128 0x12
+ 3434 0125 06       		.uleb128 0x6
+ 3435 0126 40       		.uleb128 0x40
+ 3436 0127 18       		.uleb128 0x18
+ 3437 0128 9642     		.uleb128 0x2116
+ 3438 012a 19       		.uleb128 0x19
+ 3439 012b 00       		.byte	0
+ 3440 012c 00       		.byte	0
+ 3441 012d 17       		.uleb128 0x17
+ 3442 012e 2E       		.uleb128 0x2e
+ 3443 012f 01       		.byte	0x1
+ 3444 0130 3F       		.uleb128 0x3f
+ 3445 0131 19       		.uleb128 0x19
+ 3446 0132 03       		.uleb128 0x3
+ 3447 0133 0E       		.uleb128 0xe
+ 3448 0134 3A       		.uleb128 0x3a
+ 3449 0135 0B       		.uleb128 0xb
+ 3450 0136 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 73
+
+
+ 3451 0137 05       		.uleb128 0x5
+ 3452 0138 27       		.uleb128 0x27
+ 3453 0139 19       		.uleb128 0x19
+ 3454 013a 11       		.uleb128 0x11
+ 3455 013b 01       		.uleb128 0x1
+ 3456 013c 12       		.uleb128 0x12
+ 3457 013d 06       		.uleb128 0x6
+ 3458 013e 40       		.uleb128 0x40
+ 3459 013f 18       		.uleb128 0x18
+ 3460 0140 9642     		.uleb128 0x2116
+ 3461 0142 19       		.uleb128 0x19
+ 3462 0143 01       		.uleb128 0x1
+ 3463 0144 13       		.uleb128 0x13
+ 3464 0145 00       		.byte	0
+ 3465 0146 00       		.byte	0
+ 3466 0147 18       		.uleb128 0x18
+ 3467 0148 05       		.uleb128 0x5
+ 3468 0149 00       		.byte	0
+ 3469 014a 03       		.uleb128 0x3
+ 3470 014b 0E       		.uleb128 0xe
+ 3471 014c 3A       		.uleb128 0x3a
+ 3472 014d 0B       		.uleb128 0xb
+ 3473 014e 3B       		.uleb128 0x3b
+ 3474 014f 05       		.uleb128 0x5
+ 3475 0150 49       		.uleb128 0x49
+ 3476 0151 13       		.uleb128 0x13
+ 3477 0152 02       		.uleb128 0x2
+ 3478 0153 18       		.uleb128 0x18
+ 3479 0154 00       		.byte	0
+ 3480 0155 00       		.byte	0
+ 3481 0156 19       		.uleb128 0x19
+ 3482 0157 34       		.uleb128 0x34
+ 3483 0158 00       		.byte	0
+ 3484 0159 03       		.uleb128 0x3
+ 3485 015a 0E       		.uleb128 0xe
+ 3486 015b 3A       		.uleb128 0x3a
+ 3487 015c 0B       		.uleb128 0xb
+ 3488 015d 3B       		.uleb128 0x3b
+ 3489 015e 05       		.uleb128 0x5
+ 3490 015f 49       		.uleb128 0x49
+ 3491 0160 13       		.uleb128 0x13
+ 3492 0161 02       		.uleb128 0x2
+ 3493 0162 18       		.uleb128 0x18
+ 3494 0163 00       		.byte	0
+ 3495 0164 00       		.byte	0
+ 3496 0165 1A       		.uleb128 0x1a
+ 3497 0166 2E       		.uleb128 0x2e
+ 3498 0167 01       		.byte	0x1
+ 3499 0168 3F       		.uleb128 0x3f
+ 3500 0169 19       		.uleb128 0x19
+ 3501 016a 03       		.uleb128 0x3
+ 3502 016b 0E       		.uleb128 0xe
+ 3503 016c 3A       		.uleb128 0x3a
+ 3504 016d 0B       		.uleb128 0xb
+ 3505 016e 3B       		.uleb128 0x3b
+ 3506 016f 05       		.uleb128 0x5
+ 3507 0170 27       		.uleb128 0x27
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 74
+
+
+ 3508 0171 19       		.uleb128 0x19
+ 3509 0172 49       		.uleb128 0x49
+ 3510 0173 13       		.uleb128 0x13
+ 3511 0174 11       		.uleb128 0x11
+ 3512 0175 01       		.uleb128 0x1
+ 3513 0176 12       		.uleb128 0x12
+ 3514 0177 06       		.uleb128 0x6
+ 3515 0178 40       		.uleb128 0x40
+ 3516 0179 18       		.uleb128 0x18
+ 3517 017a 9642     		.uleb128 0x2116
+ 3518 017c 19       		.uleb128 0x19
+ 3519 017d 01       		.uleb128 0x1
+ 3520 017e 13       		.uleb128 0x13
+ 3521 017f 00       		.byte	0
+ 3522 0180 00       		.byte	0
+ 3523 0181 1B       		.uleb128 0x1b
+ 3524 0182 2E       		.uleb128 0x2e
+ 3525 0183 00       		.byte	0
+ 3526 0184 3F       		.uleb128 0x3f
+ 3527 0185 19       		.uleb128 0x19
+ 3528 0186 03       		.uleb128 0x3
+ 3529 0187 0E       		.uleb128 0xe
+ 3530 0188 3A       		.uleb128 0x3a
+ 3531 0189 0B       		.uleb128 0xb
+ 3532 018a 3B       		.uleb128 0x3b
+ 3533 018b 05       		.uleb128 0x5
+ 3534 018c 27       		.uleb128 0x27
+ 3535 018d 19       		.uleb128 0x19
+ 3536 018e 11       		.uleb128 0x11
+ 3537 018f 01       		.uleb128 0x1
+ 3538 0190 12       		.uleb128 0x12
+ 3539 0191 06       		.uleb128 0x6
+ 3540 0192 40       		.uleb128 0x40
+ 3541 0193 18       		.uleb128 0x18
+ 3542 0194 9642     		.uleb128 0x2116
+ 3543 0196 19       		.uleb128 0x19
+ 3544 0197 00       		.byte	0
+ 3545 0198 00       		.byte	0
+ 3546 0199 1C       		.uleb128 0x1c
+ 3547 019a 34       		.uleb128 0x34
+ 3548 019b 00       		.byte	0
+ 3549 019c 03       		.uleb128 0x3
+ 3550 019d 0E       		.uleb128 0xe
+ 3551 019e 3A       		.uleb128 0x3a
+ 3552 019f 0B       		.uleb128 0xb
+ 3553 01a0 3B       		.uleb128 0x3b
+ 3554 01a1 05       		.uleb128 0x5
+ 3555 01a2 49       		.uleb128 0x49
+ 3556 01a3 13       		.uleb128 0x13
+ 3557 01a4 3F       		.uleb128 0x3f
+ 3558 01a5 19       		.uleb128 0x19
+ 3559 01a6 3C       		.uleb128 0x3c
+ 3560 01a7 19       		.uleb128 0x19
+ 3561 01a8 00       		.byte	0
+ 3562 01a9 00       		.byte	0
+ 3563 01aa 1D       		.uleb128 0x1d
+ 3564 01ab 35       		.uleb128 0x35
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 75
+
+
+ 3565 01ac 00       		.byte	0
+ 3566 01ad 49       		.uleb128 0x49
+ 3567 01ae 13       		.uleb128 0x13
+ 3568 01af 00       		.byte	0
+ 3569 01b0 00       		.byte	0
+ 3570 01b1 1E       		.uleb128 0x1e
+ 3571 01b2 01       		.uleb128 0x1
+ 3572 01b3 01       		.byte	0x1
+ 3573 01b4 49       		.uleb128 0x49
+ 3574 01b5 13       		.uleb128 0x13
+ 3575 01b6 01       		.uleb128 0x1
+ 3576 01b7 13       		.uleb128 0x13
+ 3577 01b8 00       		.byte	0
+ 3578 01b9 00       		.byte	0
+ 3579 01ba 1F       		.uleb128 0x1f
+ 3580 01bb 21       		.uleb128 0x21
+ 3581 01bc 00       		.byte	0
+ 3582 01bd 00       		.byte	0
+ 3583 01be 00       		.byte	0
+ 3584 01bf 20       		.uleb128 0x20
+ 3585 01c0 34       		.uleb128 0x34
+ 3586 01c1 00       		.byte	0
+ 3587 01c2 03       		.uleb128 0x3
+ 3588 01c3 0E       		.uleb128 0xe
+ 3589 01c4 3A       		.uleb128 0x3a
+ 3590 01c5 0B       		.uleb128 0xb
+ 3591 01c6 3B       		.uleb128 0x3b
+ 3592 01c7 0B       		.uleb128 0xb
+ 3593 01c8 49       		.uleb128 0x49
+ 3594 01c9 13       		.uleb128 0x13
+ 3595 01ca 3F       		.uleb128 0x3f
+ 3596 01cb 19       		.uleb128 0x19
+ 3597 01cc 02       		.uleb128 0x2
+ 3598 01cd 18       		.uleb128 0x18
+ 3599 01ce 00       		.byte	0
+ 3600 01cf 00       		.byte	0
+ 3601 01d0 21       		.uleb128 0x21
+ 3602 01d1 34       		.uleb128 0x34
+ 3603 01d2 00       		.byte	0
+ 3604 01d3 03       		.uleb128 0x3
+ 3605 01d4 08       		.uleb128 0x8
+ 3606 01d5 3A       		.uleb128 0x3a
+ 3607 01d6 0B       		.uleb128 0xb
+ 3608 01d7 3B       		.uleb128 0x3b
+ 3609 01d8 0B       		.uleb128 0xb
+ 3610 01d9 49       		.uleb128 0x49
+ 3611 01da 13       		.uleb128 0x13
+ 3612 01db 3F       		.uleb128 0x3f
+ 3613 01dc 19       		.uleb128 0x19
+ 3614 01dd 02       		.uleb128 0x2
+ 3615 01de 18       		.uleb128 0x18
+ 3616 01df 00       		.byte	0
+ 3617 01e0 00       		.byte	0
+ 3618 01e1 22       		.uleb128 0x22
+ 3619 01e2 21       		.uleb128 0x21
+ 3620 01e3 00       		.byte	0
+ 3621 01e4 49       		.uleb128 0x49
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 76
+
+
+ 3622 01e5 13       		.uleb128 0x13
+ 3623 01e6 2F       		.uleb128 0x2f
+ 3624 01e7 0B       		.uleb128 0xb
+ 3625 01e8 00       		.byte	0
+ 3626 01e9 00       		.byte	0
+ 3627 01ea 00       		.byte	0
+ 3628              		.section	.debug_aranges,"",%progbits
+ 3629 0000 8C000000 		.4byte	0x8c
+ 3630 0004 0200     		.2byte	0x2
+ 3631 0006 00000000 		.4byte	.Ldebug_info0
+ 3632 000a 04       		.byte	0x4
+ 3633 000b 00       		.byte	0
+ 3634 000c 0000     		.2byte	0
+ 3635 000e 0000     		.2byte	0
+ 3636 0010 00000000 		.4byte	.LFB63
+ 3637 0014 A4010000 		.4byte	.LFE63-.LFB63
+ 3638 0018 00000000 		.4byte	.LFB64
+ 3639 001c 58000000 		.4byte	.LFE64-.LFB64
+ 3640 0020 00000000 		.4byte	.LFB65
+ 3641 0024 78000000 		.4byte	.LFE65-.LFB65
+ 3642 0028 00000000 		.4byte	.LFB66
+ 3643 002c 5C000000 		.4byte	.LFE66-.LFB66
+ 3644 0030 00000000 		.4byte	.LFB67
+ 3645 0034 20000000 		.4byte	.LFE67-.LFB67
+ 3646 0038 00000000 		.4byte	.LFB68
+ 3647 003c 5C000000 		.4byte	.LFE68-.LFB68
+ 3648 0040 00000000 		.4byte	.LFB69
+ 3649 0044 7C000000 		.4byte	.LFE69-.LFB69
+ 3650 0048 00000000 		.4byte	.LFB70
+ 3651 004c 60000000 		.4byte	.LFE70-.LFB70
+ 3652 0050 00000000 		.4byte	.LFB71
+ 3653 0054 A4040000 		.4byte	.LFE71-.LFB71
+ 3654 0058 00000000 		.4byte	.LFB72
+ 3655 005c 80000000 		.4byte	.LFE72-.LFB72
+ 3656 0060 00000000 		.4byte	.LFB73
+ 3657 0064 68000000 		.4byte	.LFE73-.LFB73
+ 3658 0068 00000000 		.4byte	.LFB74
+ 3659 006c 46000000 		.4byte	.LFE74-.LFB74
+ 3660 0070 00000000 		.4byte	.LFB75
+ 3661 0074 68000000 		.4byte	.LFE75-.LFB75
+ 3662 0078 00000000 		.4byte	.LFB76
+ 3663 007c 38000000 		.4byte	.LFE76-.LFB76
+ 3664 0080 00000000 		.4byte	.LFB77
+ 3665 0084 50000000 		.4byte	.LFE77-.LFB77
+ 3666 0088 00000000 		.4byte	0
+ 3667 008c 00000000 		.4byte	0
+ 3668              		.section	.debug_ranges,"",%progbits
+ 3669              	.Ldebug_ranges0:
+ 3670 0000 00000000 		.4byte	.LFB63
+ 3671 0004 A4010000 		.4byte	.LFE63
+ 3672 0008 00000000 		.4byte	.LFB64
+ 3673 000c 58000000 		.4byte	.LFE64
+ 3674 0010 00000000 		.4byte	.LFB65
+ 3675 0014 78000000 		.4byte	.LFE65
+ 3676 0018 00000000 		.4byte	.LFB66
+ 3677 001c 5C000000 		.4byte	.LFE66
+ 3678 0020 00000000 		.4byte	.LFB67
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 77
+
+
+ 3679 0024 20000000 		.4byte	.LFE67
+ 3680 0028 00000000 		.4byte	.LFB68
+ 3681 002c 5C000000 		.4byte	.LFE68
+ 3682 0030 00000000 		.4byte	.LFB69
+ 3683 0034 7C000000 		.4byte	.LFE69
+ 3684 0038 00000000 		.4byte	.LFB70
+ 3685 003c 60000000 		.4byte	.LFE70
+ 3686 0040 00000000 		.4byte	.LFB71
+ 3687 0044 A4040000 		.4byte	.LFE71
+ 3688 0048 00000000 		.4byte	.LFB72
+ 3689 004c 80000000 		.4byte	.LFE72
+ 3690 0050 00000000 		.4byte	.LFB73
+ 3691 0054 68000000 		.4byte	.LFE73
+ 3692 0058 00000000 		.4byte	.LFB74
+ 3693 005c 46000000 		.4byte	.LFE74
+ 3694 0060 00000000 		.4byte	.LFB75
+ 3695 0064 68000000 		.4byte	.LFE75
+ 3696 0068 00000000 		.4byte	.LFB76
+ 3697 006c 38000000 		.4byte	.LFE76
+ 3698 0070 00000000 		.4byte	.LFB77
+ 3699 0074 50000000 		.4byte	.LFE77
+ 3700 0078 00000000 		.4byte	0
+ 3701 007c 00000000 		.4byte	0
+ 3702              		.section	.debug_line,"",%progbits
+ 3703              	.Ldebug_line0:
+ 3704 0000 DD030000 		.section	.debug_str,"MS",%progbits,1
+ 3704      02005401 
+ 3704      00000201 
+ 3704      FB0E0D00 
+ 3704      01010101 
+ 3705              	.LASF25:
+ 3706 0000 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 3706      70676D5F 
+ 3706      75696E74 
+ 3706      385F7400 
+ 3707              	.LASF57:
+ 3708 0010 6465765F 		.ascii	"dev_mem\000"
+ 3708      6D656D00 
+ 3709              	.LASF132:
+ 3710 0018 63437572 		.ascii	"cCurrent\000"
+ 3710      72656E74 
+ 3710      00
+ 3711              	.LASF46:
+ 3712 0021 666F6E74 		.ascii	"font_ref_ascent\000"
+ 3712      5F726566 
+ 3712      5F617363 
+ 3712      656E7400 
+ 3713              	.LASF124:
+ 3714 0031 506F7765 		.ascii	"Power\000"
+ 3714      7200
+ 3715              	.LASF102:
+ 3716 0037 7538675F 		.ascii	"u8g_font_fub20\000"
+ 3716      666F6E74 
+ 3716      5F667562 
+ 3716      323000
+ 3717              	.LASF131:
+ 3718 0046 66437572 		.ascii	"fCurrent\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 78
+
+
+ 3718      72656E74 
+ 3718      00
+ 3719              	.LASF96:
+ 3720 004f 54656D70 		.ascii	"TempRead\000"
+ 3720      52656164 
+ 3720      00
+ 3721              	.LASF11:
+ 3722 0058 756E7369 		.ascii	"unsigned int\000"
+ 3722      676E6564 
+ 3722      20696E74 
+ 3722      00
+ 3723              	.LASF63:
+ 3724 0065 68695F63 		.ascii	"hi_color\000"
+ 3724      6F6C6F72 
+ 3724      00
+ 3725              	.LASF121:
+ 3726 006e 53746174 		.ascii	"Status\000"
+ 3726      757300
+ 3727              	.LASF104:
+ 3728 0075 66696C74 		.ascii	"filtered_count\000"
+ 3728      65726564 
+ 3728      5F636F75 
+ 3728      6E7400
+ 3729              	.LASF130:
+ 3730 0084 43757272 		.ascii	"Current\000"
+ 3730      656E7400 
+ 3731              	.LASF6:
+ 3732 008c 5F5F696E 		.ascii	"__int32_t\000"
+ 3732      7433325F 
+ 3732      7400
+ 3733              	.LASF18:
+ 3734 0096 696E7431 		.ascii	"int16\000"
+ 3734      3600
+ 3735              	.LASF33:
+ 3736 009c 63757273 		.ascii	"cursor_bg_color\000"
+ 3736      6F725F62 
+ 3736      675F636F 
+ 3736      6C6F7200 
+ 3737              	.LASF50:
+ 3738 00ac 6172675F 		.ascii	"arg_pixel\000"
+ 3738      70697865 
+ 3738      6C00
+ 3739              	.LASF64:
+ 3740 00b6 626C7565 		.ascii	"blue\000"
+ 3740      00
+ 3741              	.LASF58:
+ 3742 00bb 636F6D5F 		.ascii	"com_fn\000"
+ 3742      666E00
+ 3743              	.LASF137:
+ 3744 00c2 43757272 		.ascii	"Current_State\000"
+ 3744      656E745F 
+ 3744      53746174 
+ 3744      6500
+ 3745              	.LASF129:
+ 3746 00d0 63566F6C 		.ascii	"cVoltage\000"
+ 3746      74616765 
+ 3746      00
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 79
+
+
+ 3747              	.LASF141:
+ 3748 00d9 53746174 		.ascii	"State\000"
+ 3748      6500
+ 3749              	.LASF35:
+ 3750 00df 6D6F6465 		.ascii	"mode\000"
+ 3750      00
+ 3751              	.LASF44:
+ 3752 00e4 666F6E74 		.ascii	"font_calc_vref\000"
+ 3752      5F63616C 
+ 3752      635F7672 
+ 3752      656600
+ 3753              	.LASF118:
+ 3754 00f3 43757272 		.ascii	"CurrentBacklightValueString\000"
+ 3754      656E7442 
+ 3754      61636B6C 
+ 3754      69676874 
+ 3754      56616C75 
+ 3755              	.LASF136:
+ 3756 010f 4C617374 		.ascii	"Last_qdCount\000"
+ 3756      5F716443 
+ 3756      6F756E74 
+ 3756      00
+ 3757              	.LASF75:
+ 3758 011c 41726269 		.ascii	"ArbitraryMode\000"
+ 3758      74726172 
+ 3758      794D6F64 
+ 3758      6500
+ 3759              	.LASF97:
+ 3760 012a 53657442 		.ascii	"SetBacklight\000"
+ 3760      61636B6C 
+ 3760      69676874 
+ 3760      00
+ 3761              	.LASF98:
+ 3762 0137 4261636B 		.ascii	"BacklightValue\000"
+ 3762      6C696768 
+ 3762      7456616C 
+ 3762      756500
+ 3763              	.LASF12:
+ 3764 0146 696E7438 		.ascii	"int8_t\000"
+ 3764      5F7400
+ 3765              	.LASF60:
+ 3766 014d 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 3766      5F646576 
+ 3766      5F617267 
+ 3766      5F706978 
+ 3766      656C5F74 
+ 3767              	.LASF140:
+ 3768 0162 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Kopia_Poczatki\\QDExam"
+ 3768      6F726B73 
+ 3768      70616365 
+ 3768      5C50536F 
+ 3768      435F4372 
+ 3769 0191 706C6530 		.ascii	"ple01.cydsn\000"
+ 3769      312E6379 
+ 3769      64736E00 
+ 3770              	.LASF19:
+ 3771 019d 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 80
+
+
+ 3771      7400
+ 3772              	.LASF55:
+ 3773 01a3 5F753867 		.ascii	"_u8g_dev_t\000"
+ 3773      5F646576 
+ 3773      5F7400
+ 3774              	.LASF36:
+ 3775 01ae 63757273 		.ascii	"cursor_x\000"
+ 3775      6F725F78 
+ 3775      00
+ 3776              	.LASF37:
+ 3777 01b7 63757273 		.ascii	"cursor_y\000"
+ 3777      6F725F79 
+ 3777      00
+ 3778              	.LASF111:
+ 3779 01c0 70757368 		.ascii	"push\000"
+ 3779      00
+ 3780              	.LASF10:
+ 3781 01c5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3781      206C6F6E 
+ 3781      6720756E 
+ 3781      7369676E 
+ 3781      65642069 
+ 3782              	.LASF128:
+ 3783 01dc 66566F6C 		.ascii	"fVoltage\000"
+ 3783      74616765 
+ 3783      00
+ 3784              	.LASF92:
+ 3785 01e5 4765745F 		.ascii	"Get_Encoder\000"
+ 3785      456E636F 
+ 3785      64657200 
+ 3786              	.LASF85:
+ 3787 01f1 53746174 		.ascii	"State_Machine_BacklightSetting\000"
+ 3787      655F4D61 
+ 3787      6368696E 
+ 3787      655F4261 
+ 3787      636B6C69 
+ 3788              	.LASF68:
+ 3789 0210 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 3789      6465765F 
+ 3789      666E7074 
+ 3789      7200
+ 3790              	.LASF127:
+ 3791 021e 566F6C74 		.ascii	"Voltage\000"
+ 3791      61676500 
+ 3792              	.LASF69:
+ 3793 0226 7538675F 		.ascii	"u8g_com_fnptr\000"
+ 3793      636F6D5F 
+ 3793      666E7074 
+ 3793      7200
+ 3794              	.LASF122:
+ 3795 0234 4449455F 		.ascii	"DIE_Temp\000"
+ 3795      54656D70 
+ 3795      00
+ 3796              	.LASF43:
+ 3797 023d 676C7970 		.ascii	"glyph_height\000"
+ 3797      685F6865 
+ 3797      69676874 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 81
+
+
+ 3797      00
+ 3798              	.LASF28:
+ 3799 024a 77696474 		.ascii	"width\000"
+ 3799      6800
+ 3800              	.LASF125:
+ 3801 0250 66506F77 		.ascii	"fPower\000"
+ 3801      657200
+ 3802              	.LASF79:
+ 3803 0257 53746174 		.ascii	"State_Machine\000"
+ 3803      655F4D61 
+ 3803      6368696E 
+ 3803      6500
+ 3804              	.LASF40:
+ 3805 0265 676C7970 		.ascii	"glyph_x\000"
+ 3805      685F7800 
+ 3806              	.LASF41:
+ 3807 026d 676C7970 		.ascii	"glyph_y\000"
+ 3807      685F7900 
+ 3808              	.LASF73:
+ 3809 0275 486F6D65 		.ascii	"Home\000"
+ 3809      00
+ 3810              	.LASF91:
+ 3811 027a 6D617856 		.ascii	"maxValue\000"
+ 3811      616C7565 
+ 3811      00
+ 3812              	.LASF89:
+ 3813 0283 43757272 		.ascii	"Current_Menu_Position\000"
+ 3813      656E745F 
+ 3813      4D656E75 
+ 3813      5F506F73 
+ 3813      6974696F 
+ 3814              	.LASF113:
+ 3815 0299 4F757470 		.ascii	"OutputSelect\000"
+ 3815      75745365 
+ 3815      6C656374 
+ 3815      00
+ 3816              	.LASF22:
+ 3817 02a6 63686172 		.ascii	"char\000"
+ 3817      00
+ 3818              	.LASF87:
+ 3819 02ab 4C43445F 		.ascii	"LCD_Draw\000"
+ 3819      44726177 
+ 3819      00
+ 3820              	.LASF56:
+ 3821 02b4 6465765F 		.ascii	"dev_fn\000"
+ 3821      666E00
+ 3822              	.LASF52:
+ 3823 02bb 63757272 		.ascii	"current_page\000"
+ 3823      656E745F 
+ 3823      70616765 
+ 3823      00
+ 3824              	.LASF134:
+ 3825 02c8 44414356 		.ascii	"DACValueOld\000"
+ 3825      616C7565 
+ 3825      4F6C6400 
+ 3826              	.LASF16:
+ 3827 02d4 75696E74 		.ascii	"uint16\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 82
+
+
+ 3827      313600
+ 3828              	.LASF17:
+ 3829 02db 696E7438 		.ascii	"int8\000"
+ 3829      00
+ 3830              	.LASF13:
+ 3831 02e0 75696E74 		.ascii	"uint8_t\000"
+ 3831      385F7400 
+ 3832              	.LASF21:
+ 3833 02e8 63686172 		.ascii	"char8\000"
+ 3833      3800
+ 3834              	.LASF103:
+ 3835 02ee 7538675F 		.ascii	"u8g_font_unifont\000"
+ 3835      666F6E74 
+ 3835      5F756E69 
+ 3835      666F6E74 
+ 3835      00
+ 3836              	.LASF84:
+ 3837 02ff 53746174 		.ascii	"State_Machine_Settings\000"
+ 3837      655F4D61 
+ 3837      6368696E 
+ 3837      655F5365 
+ 3837      7474696E 
+ 3838              	.LASF83:
+ 3839 0316 53746174 		.ascii	"State_Machine_ConstantCurrent\000"
+ 3839      655F4D61 
+ 3839      6368696E 
+ 3839      655F436F 
+ 3839      6E737461 
+ 3840              	.LASF67:
+ 3841 0334 7538675F 		.ascii	"u8g_uint_t\000"
+ 3841      75696E74 
+ 3841      5F7400
+ 3842              	.LASF66:
+ 3843 033f 5F753867 		.ascii	"_u8g_box_t\000"
+ 3843      5F626F78 
+ 3843      5F7400
+ 3844              	.LASF9:
+ 3845 034a 6C6F6E67 		.ascii	"long long int\000"
+ 3845      206C6F6E 
+ 3845      6720696E 
+ 3845      7400
+ 3846              	.LASF32:
+ 3847 0358 63757273 		.ascii	"cursor_fg_color\000"
+ 3847      6F725F66 
+ 3847      675F636F 
+ 3847      6C6F7200 
+ 3848              	.LASF135:
+ 3849 0368 7164436F 		.ascii	"qdCount\000"
+ 3849      756E7400 
+ 3850              	.LASF110:
+ 3851 0370 62757474 		.ascii	"button3\000"
+ 3851      6F6E3300 
+ 3852              	.LASF53:
+ 3853 0378 7538675F 		.ascii	"u8g_dev_t\000"
+ 3853      6465765F 
+ 3853      7400
+ 3854              	.LASF88:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 83
+
+
+ 3855 0382 50616765 		.ascii	"PageName\000"
+ 3855      4E616D65 
+ 3855      00
+ 3856              	.LASF72:
+ 3857 038b 7538675F 		.ascii	"u8g_state_cb\000"
+ 3857      73746174 
+ 3857      655F6362 
+ 3857      00
+ 3858              	.LASF59:
+ 3859 0398 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 3859      6465765F 
+ 3859      6172675F 
+ 3859      70697865 
+ 3859      6C5F7400 
+ 3860              	.LASF138:
+ 3861 03ac 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 3861      4320342E 
+ 3861      392E3320 
+ 3861      32303135 
+ 3861      30333033 
+ 3862 03df 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 3862      20726576 
+ 3862      6973696F 
+ 3862      6E203232 
+ 3862      31323230 
+ 3863 0412 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 3863      66756E63 
+ 3863      74696F6E 
+ 3863      2D736563 
+ 3863      74696F6E 
+ 3864              	.LASF133:
+ 3865 043a 44414356 		.ascii	"DACValue\000"
+ 3865      616C7565 
+ 3865      00
+ 3866              	.LASF90:
+ 3867 0443 50616765 		.ascii	"PageNamee\000"
+ 3867      4E616D65 
+ 3867      6500
+ 3868              	.LASF93:
+ 3869 044d 4765745F 		.ascii	"Get_Encoder_Menu\000"
+ 3869      456E636F 
+ 3869      6465725F 
+ 3869      4D656E75 
+ 3869      00
+ 3870              	.LASF27:
+ 3871 045e 7538675F 		.ascii	"u8g_t\000"
+ 3871      7400
+ 3872              	.LASF29:
+ 3873 0464 68656967 		.ascii	"height\000"
+ 3873      687400
+ 3874              	.LASF39:
+ 3875 046b 676C7970 		.ascii	"glyph_dx\000"
+ 3875      685F6478 
+ 3875      00
+ 3876              	.LASF0:
+ 3877 0474 5F5F696E 		.ascii	"__int8_t\000"
+ 3877      74385F74 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 84
+
+
+ 3877      00
+ 3878              	.LASF38:
+ 3879 047d 63757273 		.ascii	"cursor_fn\000"
+ 3879      6F725F66 
+ 3879      6E00
+ 3880              	.LASF49:
+ 3881 0487 6C696E65 		.ascii	"line_spacing\000"
+ 3881      5F737061 
+ 3881      63696E67 
+ 3881      00
+ 3882              	.LASF76:
+ 3883 0494 436F6E73 		.ascii	"ConstantCurrent\000"
+ 3883      74616E74 
+ 3883      43757272 
+ 3883      656E7400 
+ 3884              	.LASF95:
+ 3885 04a4 43686563 		.ascii	"Check_Buttons\000"
+ 3885      6B5F4275 
+ 3885      74746F6E 
+ 3885      7300
+ 3886              	.LASF45:
+ 3887 04b2 666F6E74 		.ascii	"font_height_mode\000"
+ 3887      5F686569 
+ 3887      6768745F 
+ 3887      6D6F6465 
+ 3887      00
+ 3888              	.LASF4:
+ 3889 04c3 73686F72 		.ascii	"short int\000"
+ 3889      7420696E 
+ 3889      7400
+ 3890              	.LASF7:
+ 3891 04cd 6C6F6E67 		.ascii	"long int\000"
+ 3891      20696E74 
+ 3891      00
+ 3892              	.LASF100:
+ 3893 04d6 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 3893      52784275 
+ 3893      66666572 
+ 3893      00
+ 3894              	.LASF51:
+ 3895 04e3 73746174 		.ascii	"state_cb\000"
+ 3895      655F6362 
+ 3895      00
+ 3896              	.LASF54:
+ 3897 04ec 5F753867 		.ascii	"_u8g_t\000"
+ 3897      5F7400
+ 3898              	.LASF62:
+ 3899 04f3 636F6C6F 		.ascii	"color\000"
+ 3899      7200
+ 3900              	.LASF108:
+ 3901 04f9 62757474 		.ascii	"button1\000"
+ 3901      6F6E3100 
+ 3902              	.LASF109:
+ 3903 0501 62757474 		.ascii	"button2\000"
+ 3903      6F6E3200 
+ 3904              	.LASF34:
+ 3905 0509 63757273 		.ascii	"cursor_encoding\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 85
+
+
+ 3905      6F725F65 
+ 3905      6E636F64 
+ 3905      696E6700 
+ 3906              	.LASF94:
+ 3907 0519 496E6974 		.ascii	"Initialize\000"
+ 3907      69616C69 
+ 3907      7A6500
+ 3908              	.LASF47:
+ 3909 0524 666F6E74 		.ascii	"font_ref_descent\000"
+ 3909      5F726566 
+ 3909      5F646573 
+ 3909      63656E74 
+ 3909      00
+ 3910              	.LASF106:
+ 3911 0535 6E756D62 		.ascii	"number2\000"
+ 3911      65723200 
+ 3912              	.LASF107:
+ 3913 053d 6E756D62 		.ascii	"number3\000"
+ 3913      65723300 
+ 3914              	.LASF1:
+ 3915 0545 5F5F7569 		.ascii	"__uint8_t\000"
+ 3915      6E74385F 
+ 3915      7400
+ 3916              	.LASF119:
+ 3917 054f 54657374 		.ascii	"Test\000"
+ 3917      00
+ 3918              	.LASF105:
+ 3919 0554 6E756D62 		.ascii	"number\000"
+ 3919      657200
+ 3920              	.LASF30:
+ 3921 055b 666F6E74 		.ascii	"font\000"
+ 3921      00
+ 3922              	.LASF81:
+ 3923 0560 53746174 		.ascii	"State_Machine_ConstantMode\000"
+ 3923      655F4D61 
+ 3923      6368696E 
+ 3923      655F436F 
+ 3923      6E737461 
+ 3924              	.LASF24:
+ 3925 057b 73697A65 		.ascii	"sizetype\000"
+ 3925      74797065 
+ 3925      00
+ 3926              	.LASF65:
+ 3927 0584 7538675F 		.ascii	"u8g_box_t\000"
+ 3927      626F785F 
+ 3927      7400
+ 3928              	.LASF8:
+ 3929 058e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3929      20756E73 
+ 3929      69676E65 
+ 3929      6420696E 
+ 3929      7400
+ 3930              	.LASF14:
+ 3931 05a0 696E7433 		.ascii	"int32_t\000"
+ 3931      325F7400 
+ 3932              	.LASF77:
+ 3933 05a8 53657474 		.ascii	"Settings\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 86
+
+
+ 3933      696E6773 
+ 3933      00
+ 3934              	.LASF26:
+ 3935 05b1 7538675F 		.ascii	"u8g_fntpgm_uint8_t\000"
+ 3935      666E7470 
+ 3935      676D5F75 
+ 3935      696E7438 
+ 3935      5F7400
+ 3936              	.LASF48:
+ 3937 05c4 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 3937      5F6C696E 
+ 3937      655F7370 
+ 3937      6163696E 
+ 3937      675F6661 
+ 3938              	.LASF23:
+ 3939 05dd 63797374 		.ascii	"cystatus\000"
+ 3939      61747573 
+ 3939      00
+ 3940              	.LASF61:
+ 3941 05e6 70697865 		.ascii	"pixel\000"
+ 3941      6C00
+ 3942              	.LASF80:
+ 3943 05ec 53746174 		.ascii	"State_Machine_Home\000"
+ 3943      655F4D61 
+ 3943      6368696E 
+ 3943      655F486F 
+ 3943      6D6500
+ 3944              	.LASF3:
+ 3945 05ff 756E7369 		.ascii	"unsigned char\000"
+ 3945      676E6564 
+ 3945      20636861 
+ 3945      7200
+ 3946              	.LASF115:
+ 3947 060d 44757479 		.ascii	"DutyCycle\000"
+ 3947      4379636C 
+ 3947      6500
+ 3948              	.LASF71:
+ 3949 0617 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 3949      666F6E74 
+ 3949      5F63616C 
+ 3949      635F7672 
+ 3949      65665F66 
+ 3950              	.LASF99:
+ 3951 0630 4261636B 		.ascii	"Backlight\000"
+ 3951      6C696768 
+ 3951      7400
+ 3952              	.LASF112:
+ 3953 063a 4F757470 		.ascii	"OutputEnable\000"
+ 3953      7574456E 
+ 3953      61626C65 
+ 3953      00
+ 3954              	.LASF42:
+ 3955 0647 676C7970 		.ascii	"glyph_width\000"
+ 3955      685F7769 
+ 3955      64746800 
+ 3956              	.LASF31:
+ 3957 0653 63757273 		.ascii	"cursor_font\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 87
+
+
+ 3957      6F725F66 
+ 3957      6F6E7400 
+ 3958              	.LASF117:
+ 3959 065f 43757272 		.ascii	"CurrentBacklightValue\000"
+ 3959      656E7442 
+ 3959      61636B6C 
+ 3959      69676874 
+ 3959      56616C75 
+ 3960              	.LASF2:
+ 3961 0675 7369676E 		.ascii	"signed char\000"
+ 3961      65642063 
+ 3961      68617200 
+ 3962              	.LASF5:
+ 3963 0681 73686F72 		.ascii	"short unsigned int\000"
+ 3963      7420756E 
+ 3963      7369676E 
+ 3963      65642069 
+ 3963      6E7400
+ 3964              	.LASF114:
+ 3965 0694 57617665 		.ascii	"WaveSelect\000"
+ 3965      53656C65 
+ 3965      637400
+ 3966              	.LASF86:
+ 3967 069f 6D61696E 		.ascii	"main\000"
+ 3967      00
+ 3968              	.LASF78:
+ 3969 06a4 4261636B 		.ascii	"BacklightSetting\000"
+ 3969      6C696768 
+ 3969      74536574 
+ 3969      74696E67 
+ 3969      00
+ 3970              	.LASF15:
+ 3971 06b5 75696E74 		.ascii	"uint8\000"
+ 3971      3800
+ 3972              	.LASF20:
+ 3973 06bb 646F7562 		.ascii	"double\000"
+ 3973      6C6500
+ 3974              	.LASF101:
+ 3975 06c2 7538675F 		.ascii	"u8g_dev_st7565_dogm128_hw_spi\000"
+ 3975      6465765F 
+ 3975      73743735 
+ 3975      36355F64 
+ 3975      6F676D31 
+ 3976              	.LASF116:
+ 3977 06e0 46726571 		.ascii	"Frequency\000"
+ 3977      75656E63 
+ 3977      7900
+ 3978              	.LASF123:
+ 3979 06ea 4645545F 		.ascii	"FET_Temp\000"
+ 3979      54656D70 
+ 3979      00
+ 3980              	.LASF82:
+ 3981 06f3 53746174 		.ascii	"State_Machine_ArbitraryMode\000"
+ 3981      655F4D61 
+ 3981      6368696E 
+ 3981      655F4172 
+ 3981      62697472 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccXfZjiw.s 			page 88
+
+
+ 3982              	.LASF70:
+ 3983 070f 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 3983      64726177 
+ 3983      5F637572 
+ 3983      736F725F 
+ 3983      666E00
+ 3984              	.LASF74:
+ 3985 0722 436F6E73 		.ascii	"ConstantMode\000"
+ 3985      74616E74 
+ 3985      4D6F6465 
+ 3985      00
+ 3986              	.LASF126:
+ 3987 072f 63506F77 		.ascii	"cPower\000"
+ 3987      657200
+ 3988              	.LASF120:
+ 3989 0736 4C43445F 		.ascii	"LCD_Page\000"
+ 3989      50616765 
+ 3989      00
+ 3990              	.LASF139:
+ 3991 073f 2E5C6D61 		.ascii	".\\main.c\000"
+ 3991      696E2E63 
+ 3991      00
+ 3992              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

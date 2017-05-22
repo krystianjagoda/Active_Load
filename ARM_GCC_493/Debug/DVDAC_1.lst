@@ -1,0 +1,1389 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"DVDAC_1.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.data
+  19              		.align	2
+  20              		.type	DVDAC_1_ditheredValues, %object
+  21              		.size	DVDAC_1_ditheredValues, 4
+  22              	DVDAC_1_ditheredValues:
+  23 0000 80       		.byte	-128
+  24 0001 80       		.byte	-128
+  25 0002 80       		.byte	-128
+  26 0003 80       		.byte	-128
+  27              		.global	DVDAC_1_initVar
+  28              		.bss
+  29              		.type	DVDAC_1_initVar, %object
+  30              		.size	DVDAC_1_initVar, 1
+  31              	DVDAC_1_initVar:
+  32 0000 00       		.space	1
+  33              	DVDAC_1_dmaChan:
+  34 0001 00       		.space	1
+  35              		.data
+  36              		.type	DVDAC_1_dmaTd, %object
+  37              		.size	DVDAC_1_dmaTd, 1
+  38              	DVDAC_1_dmaTd:
+  39 0004 FF       		.byte	-1
+  40 0005 000000   		.section	.text.DVDAC_1_Init,"ax",%progbits
+  41              		.align	2
+  42              		.global	DVDAC_1_Init
+  43              		.thumb
+  44              		.thumb_func
+  45              		.type	DVDAC_1_Init, %function
+  46              	DVDAC_1_Init:
+  47              	.LFB0:
+  48              		.file 1 ".\\Generated_Source\\PSoC5\\DVDAC_1.c"
+   1:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/DVDAC_1.c **** * File Name: DVDAC_1.c
+   3:.\Generated_Source\PSoC5/DVDAC_1.c **** * Version 2.10
+   4:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+   5:.\Generated_Source\PSoC5/DVDAC_1.c **** * Description:
+   6:.\Generated_Source\PSoC5/DVDAC_1.c **** *  This file provides the source code of APIs for the DVDAC component.
+   7:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+   8:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+   9:.\Generated_Source\PSoC5/DVDAC_1.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 2
+
+
+  10:.\Generated_Source\PSoC5/DVDAC_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  11:.\Generated_Source\PSoC5/DVDAC_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:.\Generated_Source\PSoC5/DVDAC_1.c **** * the software package with which this file was provided.
+  13:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+  14:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  15:.\Generated_Source\PSoC5/DVDAC_1.c **** #include "DVDAC_1.h"
+  16:.\Generated_Source\PSoC5/DVDAC_1.c **** #include "DVDAC_1_VDAC8.h"
+  17:.\Generated_Source\PSoC5/DVDAC_1.c **** #include "CyDmac.h"
+  18:.\Generated_Source\PSoC5/DVDAC_1.c **** #include "DVDAC_1_DMA_dma.H"
+  19:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  20:.\Generated_Source\PSoC5/DVDAC_1.c **** #if(DVDAC_1_INTERNAL_CLOCK_USED)
+  21:.\Generated_Source\PSoC5/DVDAC_1.c ****     #include "DVDAC_1_IntClock.h"
+  22:.\Generated_Source\PSoC5/DVDAC_1.c **** #endif /* DVDAC_1_INTERNAL_CLOCK_USED */
+  23:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  24:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  25:.\Generated_Source\PSoC5/DVDAC_1.c **** static uint8 DVDAC_1_ditheredValues[4u] = {0x80u, 0x80u, 0x80u, 0x80u};
+  26:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  27:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  28:.\Generated_Source\PSoC5/DVDAC_1.c **** uint8 DVDAC_1_initVar = 0u;
+  29:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  30:.\Generated_Source\PSoC5/DVDAC_1.c **** static uint8 DVDAC_1_dmaChan;
+  31:.\Generated_Source\PSoC5/DVDAC_1.c **** static uint8 DVDAC_1_dmaTd = CY_DMA_INVALID_TD;
+  32:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  33:.\Generated_Source\PSoC5/DVDAC_1.c **** static void DVDAC_1_InitDma(void)  ;
+  34:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  35:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  36:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+  37:.\Generated_Source\PSoC5/DVDAC_1.c **** * Function Name: DVDAC_1_Init
+  38:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+  39:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  40:.\Generated_Source\PSoC5/DVDAC_1.c **** * Summary:
+  41:.\Generated_Source\PSoC5/DVDAC_1.c **** *  Initializes or restores the component according to the customizer Configure
+  42:.\Generated_Source\PSoC5/DVDAC_1.c **** *  dialog settings. It is not necessary to call DVDAC_1_Init() because
+  43:.\Generated_Source\PSoC5/DVDAC_1.c **** *  the DVDAC_1_Start() API calls this function and is the preferred
+  44:.\Generated_Source\PSoC5/DVDAC_1.c **** *  method to begin component operation.
+  45:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  46:.\Generated_Source\PSoC5/DVDAC_1.c **** * Parameters:
+  47:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+  48:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  49:.\Generated_Source\PSoC5/DVDAC_1.c **** * Return:
+  50:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+  51:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  52:.\Generated_Source\PSoC5/DVDAC_1.c **** * Side Effects:
+  53:.\Generated_Source\PSoC5/DVDAC_1.c **** *  All registers will be set to values according to the customizer Configure
+  54:.\Generated_Source\PSoC5/DVDAC_1.c **** *  dialog.
+  55:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  56:.\Generated_Source\PSoC5/DVDAC_1.c **** * Global variables:
+  57:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+  58:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  59:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+  60:.\Generated_Source\PSoC5/DVDAC_1.c **** void DVDAC_1_Init(void) 
+  61:.\Generated_Source\PSoC5/DVDAC_1.c **** {
+  49              		.loc 1 61 0
+  50              		.cfi_startproc
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 1, uses_anonymous_args = 0
+  53 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 3
+
+
+  54              		.cfi_def_cfa_offset 8
+  55              		.cfi_offset 7, -8
+  56              		.cfi_offset 14, -4
+  57 0002 00AF     		add	r7, sp, #0
+  58              		.cfi_def_cfa_register 7
+  62:.\Generated_Source\PSoC5/DVDAC_1.c ****     DVDAC_1_VDAC8_Init();
+  59              		.loc 1 62 0
+  60 0004 FFF7FEFF 		bl	DVDAC_1_VDAC8_Init
+  63:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  64:.\Generated_Source\PSoC5/DVDAC_1.c ****     if(CY_DMA_INVALID_TD == DVDAC_1_dmaTd)
+  61              		.loc 1 64 0
+  62 0008 034B     		ldr	r3, .L3
+  63 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  64 000c FF2B     		cmp	r3, #255
+  65 000e 01D1     		bne	.L1
+  65:.\Generated_Source\PSoC5/DVDAC_1.c ****     {
+  66:.\Generated_Source\PSoC5/DVDAC_1.c ****         DVDAC_1_InitDma();
+  66              		.loc 1 66 0
+  67 0010 FFF7FEFF 		bl	DVDAC_1_InitDma
+  68              	.L1:
+  67:.\Generated_Source\PSoC5/DVDAC_1.c ****     }
+  68:.\Generated_Source\PSoC5/DVDAC_1.c **** }
+  69              		.loc 1 68 0
+  70 0014 80BD     		pop	{r7, pc}
+  71              	.L4:
+  72 0016 00BF     		.align	2
+  73              	.L3:
+  74 0018 04000000 		.word	DVDAC_1_dmaTd
+  75              		.cfi_endproc
+  76              	.LFE0:
+  77              		.size	DVDAC_1_Init, .-DVDAC_1_Init
+  78              		.section	.text.DVDAC_1_Enable,"ax",%progbits
+  79              		.align	2
+  80              		.global	DVDAC_1_Enable
+  81              		.thumb
+  82              		.thumb_func
+  83              		.type	DVDAC_1_Enable, %function
+  84              	DVDAC_1_Enable:
+  85              	.LFB1:
+  69:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  70:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  71:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+  72:.\Generated_Source\PSoC5/DVDAC_1.c **** * Function Name: DVDAC_1_Enable
+  73:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+  74:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  75:.\Generated_Source\PSoC5/DVDAC_1.c **** * Summary:
+  76:.\Generated_Source\PSoC5/DVDAC_1.c **** *  Activates the hardware and begins component operation. It is not necessary to
+  77:.\Generated_Source\PSoC5/DVDAC_1.c **** *  call DVDAC_1_Enable() because the DVDAC_1_Start() API calls
+  78:.\Generated_Source\PSoC5/DVDAC_1.c **** *  this function, which is the preferred method to begin component operation.
+  79:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  80:.\Generated_Source\PSoC5/DVDAC_1.c **** * Parameters:
+  81:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+  82:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  83:.\Generated_Source\PSoC5/DVDAC_1.c **** * Return:
+  84:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+  85:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  86:.\Generated_Source\PSoC5/DVDAC_1.c **** * Global variables:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 4
+
+
+  87:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+  88:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+  89:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+  90:.\Generated_Source\PSoC5/DVDAC_1.c **** void DVDAC_1_Enable(void) 
+  91:.\Generated_Source\PSoC5/DVDAC_1.c **** {
+  86              		.loc 1 91 0
+  87              		.cfi_startproc
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 1, uses_anonymous_args = 0
+  90 0000 80B5     		push	{r7, lr}
+  91              		.cfi_def_cfa_offset 8
+  92              		.cfi_offset 7, -8
+  93              		.cfi_offset 14, -4
+  94 0002 00AF     		add	r7, sp, #0
+  95              		.cfi_def_cfa_register 7
+  92:.\Generated_Source\PSoC5/DVDAC_1.c ****     (void) CyDmaChEnable(DVDAC_1_dmaChan, 1u);
+  96              		.loc 1 92 0
+  97 0004 054B     		ldr	r3, .L6
+  98 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  99 0008 1846     		mov	r0, r3
+ 100 000a 0121     		movs	r1, #1
+ 101 000c FFF7FEFF 		bl	CyDmaChEnable
+  93:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  94:.\Generated_Source\PSoC5/DVDAC_1.c ****     #if(DVDAC_1_INTERNAL_CLOCK_USED)
+  95:.\Generated_Source\PSoC5/DVDAC_1.c ****         DVDAC_1_IntClock_Start();
+ 102              		.loc 1 95 0
+ 103 0010 FFF7FEFF 		bl	DVDAC_1_IntClock_Start
+  96:.\Generated_Source\PSoC5/DVDAC_1.c ****     #endif /* DVDAC_1_INTERNAL_CLOCK_USED */
+  97:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+  98:.\Generated_Source\PSoC5/DVDAC_1.c ****     DVDAC_1_VDAC8_Enable();
+ 104              		.loc 1 98 0
+ 105 0014 FFF7FEFF 		bl	DVDAC_1_VDAC8_Enable
+  99:.\Generated_Source\PSoC5/DVDAC_1.c **** }
+ 106              		.loc 1 99 0
+ 107 0018 80BD     		pop	{r7, pc}
+ 108              	.L7:
+ 109 001a 00BF     		.align	2
+ 110              	.L6:
+ 111 001c 01000000 		.word	DVDAC_1_dmaChan
+ 112              		.cfi_endproc
+ 113              	.LFE1:
+ 114              		.size	DVDAC_1_Enable, .-DVDAC_1_Enable
+ 115              		.section	.text.DVDAC_1_Start,"ax",%progbits
+ 116              		.align	2
+ 117              		.global	DVDAC_1_Start
+ 118              		.thumb
+ 119              		.thumb_func
+ 120              		.type	DVDAC_1_Start, %function
+ 121              	DVDAC_1_Start:
+ 122              	.LFB2:
+ 100:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 101:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 102:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+ 103:.\Generated_Source\PSoC5/DVDAC_1.c **** * Function Name: DVDAC_1_Start
+ 104:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+ 105:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 106:.\Generated_Source\PSoC5/DVDAC_1.c **** * Summary:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 5
+
+
+ 107:.\Generated_Source\PSoC5/DVDAC_1.c **** *  Performs all of the required initialization for the component and enables
+ 108:.\Generated_Source\PSoC5/DVDAC_1.c **** *  power to the block. The first time the routine is executed, the component is
+ 109:.\Generated_Source\PSoC5/DVDAC_1.c **** *  initialized to the configured settings. When called to restart the DVDAC
+ 110:.\Generated_Source\PSoC5/DVDAC_1.c **** *  following a DVDAC_1_Stop() call, the current component parameter
+ 111:.\Generated_Source\PSoC5/DVDAC_1.c **** *  settings are retained.
+ 112:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 113:.\Generated_Source\PSoC5/DVDAC_1.c **** * Parameters:
+ 114:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 115:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 116:.\Generated_Source\PSoC5/DVDAC_1.c **** * Return:
+ 117:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 118:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 119:.\Generated_Source\PSoC5/DVDAC_1.c **** * Side Effects:
+ 120:.\Generated_Source\PSoC5/DVDAC_1.c **** *  If the DVDAC_1_initVar variable is already set, this function only
+ 121:.\Generated_Source\PSoC5/DVDAC_1.c **** *  calls the DVDAC_1_Enable() function.
+ 122:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 123:.\Generated_Source\PSoC5/DVDAC_1.c **** * Global variables:
+ 124:.\Generated_Source\PSoC5/DVDAC_1.c **** *  DVDAC_1_initVar - indicates whether the DVDAC has been initialized.
+ 125:.\Generated_Source\PSoC5/DVDAC_1.c **** *  The variable is initialized to 0 and set to 1 the first time DVDAC_Start()
+ 126:.\Generated_Source\PSoC5/DVDAC_1.c **** *  is called. This allows the component to restart without reinitialization
+ 127:.\Generated_Source\PSoC5/DVDAC_1.c **** *  after the first call to the DVDAC_1_Start() routine. If
+ 128:.\Generated_Source\PSoC5/DVDAC_1.c **** *  reinitialization of the component is required, then the
+ 129:.\Generated_Source\PSoC5/DVDAC_1.c **** *  DVDAC_1_Init() function can be called before the
+ 130:.\Generated_Source\PSoC5/DVDAC_1.c **** *  DVDAC_1_Start() or DVDAC_1_Enable() function.
+ 131:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 132:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+ 133:.\Generated_Source\PSoC5/DVDAC_1.c **** void DVDAC_1_Start(void) 
+ 134:.\Generated_Source\PSoC5/DVDAC_1.c **** {
+ 123              		.loc 1 134 0
+ 124              		.cfi_startproc
+ 125              		@ args = 0, pretend = 0, frame = 0
+ 126              		@ frame_needed = 1, uses_anonymous_args = 0
+ 127 0000 80B5     		push	{r7, lr}
+ 128              		.cfi_def_cfa_offset 8
+ 129              		.cfi_offset 7, -8
+ 130              		.cfi_offset 14, -4
+ 131 0002 00AF     		add	r7, sp, #0
+ 132              		.cfi_def_cfa_register 7
+ 135:.\Generated_Source\PSoC5/DVDAC_1.c ****     /* Hardware initiazation only needs to occure the first time */
+ 136:.\Generated_Source\PSoC5/DVDAC_1.c ****     if(0u == DVDAC_1_initVar)
+ 133              		.loc 1 136 0
+ 134 0004 054B     		ldr	r3, .L10
+ 135 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 136 0008 002B     		cmp	r3, #0
+ 137 000a 04D1     		bne	.L9
+ 137:.\Generated_Source\PSoC5/DVDAC_1.c ****     {
+ 138:.\Generated_Source\PSoC5/DVDAC_1.c ****         DVDAC_1_Init();
+ 138              		.loc 1 138 0
+ 139 000c FFF7FEFF 		bl	DVDAC_1_Init
+ 139:.\Generated_Source\PSoC5/DVDAC_1.c ****         DVDAC_1_initVar = 1u;
+ 140              		.loc 1 139 0
+ 141 0010 024B     		ldr	r3, .L10
+ 142 0012 0122     		movs	r2, #1
+ 143 0014 1A70     		strb	r2, [r3]
+ 144              	.L9:
+ 140:.\Generated_Source\PSoC5/DVDAC_1.c ****     }
+ 141:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 6
+
+
+ 142:.\Generated_Source\PSoC5/DVDAC_1.c ****     DVDAC_1_Enable();
+ 145              		.loc 1 142 0
+ 146 0016 FFF7FEFF 		bl	DVDAC_1_Enable
+ 143:.\Generated_Source\PSoC5/DVDAC_1.c **** }
+ 147              		.loc 1 143 0
+ 148 001a 80BD     		pop	{r7, pc}
+ 149              	.L11:
+ 150              		.align	2
+ 151              	.L10:
+ 152 001c 00000000 		.word	DVDAC_1_initVar
+ 153              		.cfi_endproc
+ 154              	.LFE2:
+ 155              		.size	DVDAC_1_Start, .-DVDAC_1_Start
+ 156              		.section	.text.DVDAC_1_Stop,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	DVDAC_1_Stop
+ 159              		.thumb
+ 160              		.thumb_func
+ 161              		.type	DVDAC_1_Stop, %function
+ 162              	DVDAC_1_Stop:
+ 163              	.LFB3:
+ 144:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 145:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 146:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+ 147:.\Generated_Source\PSoC5/DVDAC_1.c **** * Function Name: DVDAC_1_Stop
+ 148:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+ 149:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 150:.\Generated_Source\PSoC5/DVDAC_1.c **** * Summary:
+ 151:.\Generated_Source\PSoC5/DVDAC_1.c **** *  Stops the component and turns off the analog blocks in the DVDAC.
+ 152:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 153:.\Generated_Source\PSoC5/DVDAC_1.c **** * Parameters:
+ 154:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 155:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 156:.\Generated_Source\PSoC5/DVDAC_1.c **** * Return:
+ 157:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 158:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 159:.\Generated_Source\PSoC5/DVDAC_1.c **** * Global variables:
+ 160:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 161:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 162:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+ 163:.\Generated_Source\PSoC5/DVDAC_1.c **** void DVDAC_1_Stop(void) 
+ 164:.\Generated_Source\PSoC5/DVDAC_1.c **** {
+ 164              		.loc 1 164 0
+ 165              		.cfi_startproc
+ 166              		@ args = 0, pretend = 0, frame = 0
+ 167              		@ frame_needed = 1, uses_anonymous_args = 0
+ 168 0000 80B5     		push	{r7, lr}
+ 169              		.cfi_def_cfa_offset 8
+ 170              		.cfi_offset 7, -8
+ 171              		.cfi_offset 14, -4
+ 172 0002 00AF     		add	r7, sp, #0
+ 173              		.cfi_def_cfa_register 7
+ 165:.\Generated_Source\PSoC5/DVDAC_1.c ****     #if(DVDAC_1_INTERNAL_CLOCK_USED)
+ 166:.\Generated_Source\PSoC5/DVDAC_1.c ****         DVDAC_1_IntClock_Stop();
+ 174              		.loc 1 166 0
+ 175 0004 FFF7FEFF 		bl	DVDAC_1_IntClock_Stop
+ 167:.\Generated_Source\PSoC5/DVDAC_1.c ****     #endif /* DVDAC_1_INTERNAL_CLOCK_USED */
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 7
+
+
+ 168:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 169:.\Generated_Source\PSoC5/DVDAC_1.c ****     (void) CyDmaChDisable(DVDAC_1_dmaChan);
+ 176              		.loc 1 169 0
+ 177 0008 034B     		ldr	r3, .L13
+ 178 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 179 000c 1846     		mov	r0, r3
+ 180 000e FFF7FEFF 		bl	CyDmaChDisable
+ 170:.\Generated_Source\PSoC5/DVDAC_1.c ****     DVDAC_1_VDAC8_Stop();
+ 181              		.loc 1 170 0
+ 182 0012 FFF7FEFF 		bl	DVDAC_1_VDAC8_Stop
+ 171:.\Generated_Source\PSoC5/DVDAC_1.c **** }
+ 183              		.loc 1 171 0
+ 184 0016 80BD     		pop	{r7, pc}
+ 185              	.L14:
+ 186              		.align	2
+ 187              	.L13:
+ 188 0018 01000000 		.word	DVDAC_1_dmaChan
+ 189              		.cfi_endproc
+ 190              	.LFE3:
+ 191              		.size	DVDAC_1_Stop, .-DVDAC_1_Stop
+ 192              		.section	.text.DVDAC_1_SetValue,"ax",%progbits
+ 193              		.align	2
+ 194              		.global	DVDAC_1_SetValue
+ 195              		.thumb
+ 196              		.thumb_func
+ 197              		.type	DVDAC_1_SetValue, %function
+ 198              	DVDAC_1_SetValue:
+ 199              	.LFB4:
+ 172:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 173:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 174:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+ 175:.\Generated_Source\PSoC5/DVDAC_1.c **** * Function Name: DVDAC_1_SetValue
+ 176:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+ 177:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 178:.\Generated_Source\PSoC5/DVDAC_1.c **** * Summary:
+ 179:.\Generated_Source\PSoC5/DVDAC_1.c **** *  Sets the DVDACs output. The function populates the SRAM array based on the
+ 180:.\Generated_Source\PSoC5/DVDAC_1.c **** *  value and the resolution setting. That array is then transferred to the
+ 181:.\Generated_Source\PSoC5/DVDAC_1.c **** *  internal VDAC by DMA.
+ 182:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 183:.\Generated_Source\PSoC5/DVDAC_1.c **** * Parameters:
+ 184:.\Generated_Source\PSoC5/DVDAC_1.c **** *  (uint16) value:  The maximum value will be dependent on the resolution
+ 185:.\Generated_Source\PSoC5/DVDAC_1.c **** *  selected:
+ 186:.\Generated_Source\PSoC5/DVDAC_1.c **** *   Resolution       Valid range
+ 187:.\Generated_Source\PSoC5/DVDAC_1.c **** *        9 bits       0x0 - 0x1FE
+ 188:.\Generated_Source\PSoC5/DVDAC_1.c **** *       10 bits       0x0 - 0x3FC
+ 189:.\Generated_Source\PSoC5/DVDAC_1.c **** *       11 bits       0x0 - 0x7F8
+ 190:.\Generated_Source\PSoC5/DVDAC_1.c **** *       12 bits       0x0 - 0xFF0
+ 191:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 192:.\Generated_Source\PSoC5/DVDAC_1.c **** *  This value includes an integer portion and a fractional portion that varies
+ 193:.\Generated_Source\PSoC5/DVDAC_1.c **** *  depending on number of bits of resolution:
+ 194:.\Generated_Source\PSoC5/DVDAC_1.c **** *   - 9-bits:  1 fractional bit
+ 195:.\Generated_Source\PSoC5/DVDAC_1.c **** *   - 10-bits: 2 fractional bits
+ 196:.\Generated_Source\PSoC5/DVDAC_1.c **** *   - 11-bits: 3 fractional bits
+ 197:.\Generated_Source\PSoC5/DVDAC_1.c **** *   - 12-bits: 4 fractional bits
+ 198:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 199:.\Generated_Source\PSoC5/DVDAC_1.c **** * Return:
+ 200:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 8
+
+
+ 201:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 202:.\Generated_Source\PSoC5/DVDAC_1.c **** * Global variables:
+ 203:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 204:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 205:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+ 206:.\Generated_Source\PSoC5/DVDAC_1.c **** void DVDAC_1_SetValue(uint16 value) 
+ 207:.\Generated_Source\PSoC5/DVDAC_1.c **** {
+ 200              		.loc 1 207 0
+ 201              		.cfi_startproc
+ 202              		@ args = 0, pretend = 0, frame = 16
+ 203              		@ frame_needed = 1, uses_anonymous_args = 0
+ 204 0000 80B5     		push	{r7, lr}
+ 205              		.cfi_def_cfa_offset 8
+ 206              		.cfi_offset 7, -8
+ 207              		.cfi_offset 14, -4
+ 208 0002 84B0     		sub	sp, sp, #16
+ 209              		.cfi_def_cfa_offset 24
+ 210 0004 00AF     		add	r7, sp, #0
+ 211              		.cfi_def_cfa_register 7
+ 212 0006 0346     		mov	r3, r0
+ 213 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 208:.\Generated_Source\PSoC5/DVDAC_1.c ****     uint8  lowCount  = (uint8)(value & DVDAC_1_FRACTIONAL_PORTION_MASK);
+ 214              		.loc 1 208 0
+ 215 000a FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 216 000c DBB2     		uxtb	r3, r3
+ 217 000e 03F00303 		and	r3, r3, #3
+ 218 0012 BB73     		strb	r3, [r7, #14]
+ 209:.\Generated_Source\PSoC5/DVDAC_1.c ****     uint8 highCount  = (uint8)(value >> DVDAC_1_INTEGER_PORTION_SHIFT);
+ 219              		.loc 1 209 0
+ 220 0014 FB88     		ldrh	r3, [r7, #6]
+ 221 0016 9B08     		lsrs	r3, r3, #2
+ 222 0018 9BB2     		uxth	r3, r3
+ 223 001a 7B73     		strb	r3, [r7, #13]
+ 210:.\Generated_Source\PSoC5/DVDAC_1.c ****     uint8 i;
+ 211:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 212:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 213:.\Generated_Source\PSoC5/DVDAC_1.c ****     CYASSERT(value <= DVDAC_1_DVDAC_MAX_VALUE);
+ 224              		.loc 1 213 0
+ 225 001c FB88     		ldrh	r3, [r7, #6]
+ 226 001e B3F57F7F 		cmp	r3, #1020
+ 227 0022 02D9     		bls	.L16
+ 228              		.loc 1 213 0 is_stmt 0 discriminator 1
+ 229 0024 0020     		movs	r0, #0
+ 230 0026 FFF7FEFF 		bl	CyHalt
+ 231              	.L16:
+ 214:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 215:.\Generated_Source\PSoC5/DVDAC_1.c ****     if (DVDAC_1_INTEGER_PORTION_MAX_VALUE == highCount)
+ 232              		.loc 1 215 0 is_stmt 1
+ 233 002a 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 234 002c FF2B     		cmp	r3, #255
+ 235 002e 0DD1     		bne	.L17
+ 216:.\Generated_Source\PSoC5/DVDAC_1.c ****     {
+ 217:.\Generated_Source\PSoC5/DVDAC_1.c ****         for (i = 0u; i < DVDAC_1_DITHERED_ARRAY_SIZE; i++)
+ 236              		.loc 1 217 0
+ 237 0030 0023     		movs	r3, #0
+ 238 0032 FB73     		strb	r3, [r7, #15]
+ 239 0034 06E0     		b	.L18
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 9
+
+
+ 240              	.L19:
+ 218:.\Generated_Source\PSoC5/DVDAC_1.c ****         {
+ 219:.\Generated_Source\PSoC5/DVDAC_1.c ****             DVDAC_1_ditheredValues[i] = DVDAC_1_INTEGER_PORTION_MAX_VALUE;
+ 241              		.loc 1 219 0 discriminator 3
+ 242 0036 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 243 0038 134A     		ldr	r2, .L25
+ 244 003a FF21     		movs	r1, #255
+ 245 003c D154     		strb	r1, [r2, r3]
+ 217:.\Generated_Source\PSoC5/DVDAC_1.c ****         {
+ 246              		.loc 1 217 0 discriminator 3
+ 247 003e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 248 0040 0133     		adds	r3, r3, #1
+ 249 0042 FB73     		strb	r3, [r7, #15]
+ 250              	.L18:
+ 217:.\Generated_Source\PSoC5/DVDAC_1.c ****         {
+ 251              		.loc 1 217 0 is_stmt 0 discriminator 1
+ 252 0044 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 253 0046 032B     		cmp	r3, #3
+ 254 0048 F5D9     		bls	.L19
+ 255 004a 19E0     		b	.L15
+ 256              	.L17:
+ 220:.\Generated_Source\PSoC5/DVDAC_1.c ****         }
+ 221:.\Generated_Source\PSoC5/DVDAC_1.c ****     }
+ 222:.\Generated_Source\PSoC5/DVDAC_1.c ****     else
+ 223:.\Generated_Source\PSoC5/DVDAC_1.c ****     {
+ 224:.\Generated_Source\PSoC5/DVDAC_1.c ****         for(i = 0u; i < DVDAC_1_DITHERED_ARRAY_SIZE; i++)
+ 257              		.loc 1 224 0 is_stmt 1
+ 258 004c 0023     		movs	r3, #0
+ 259 004e FB73     		strb	r3, [r7, #15]
+ 260 0050 13E0     		b	.L21
+ 261              	.L24:
+ 225:.\Generated_Source\PSoC5/DVDAC_1.c ****         {
+ 226:.\Generated_Source\PSoC5/DVDAC_1.c ****             if(i < (DVDAC_1_DITHERED_ARRAY_SIZE - lowCount))
+ 262              		.loc 1 226 0
+ 263 0052 FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ 264 0054 BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ 265 0056 C3F10403 		rsb	r3, r3, #4
+ 266 005a 9A42     		cmp	r2, r3
+ 267 005c 04DA     		bge	.L22
+ 227:.\Generated_Source\PSoC5/DVDAC_1.c ****             {
+ 228:.\Generated_Source\PSoC5/DVDAC_1.c ****                 DVDAC_1_ditheredValues[i] = highCount;
+ 268              		.loc 1 228 0
+ 269 005e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 270 0060 0949     		ldr	r1, .L25
+ 271 0062 7A7B     		ldrb	r2, [r7, #13]
+ 272 0064 CA54     		strb	r2, [r1, r3]
+ 273 0066 05E0     		b	.L23
+ 274              	.L22:
+ 229:.\Generated_Source\PSoC5/DVDAC_1.c ****             }
+ 230:.\Generated_Source\PSoC5/DVDAC_1.c ****             else
+ 231:.\Generated_Source\PSoC5/DVDAC_1.c ****             {
+ 232:.\Generated_Source\PSoC5/DVDAC_1.c ****                 DVDAC_1_ditheredValues[i] = highCount + 1u;
+ 275              		.loc 1 232 0
+ 276 0068 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 277 006a 7A7B     		ldrb	r2, [r7, #13]
+ 278 006c 0132     		adds	r2, r2, #1
+ 279 006e D1B2     		uxtb	r1, r2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 10
+
+
+ 280 0070 054A     		ldr	r2, .L25
+ 281 0072 D154     		strb	r1, [r2, r3]
+ 282              	.L23:
+ 224:.\Generated_Source\PSoC5/DVDAC_1.c ****         {
+ 283              		.loc 1 224 0 discriminator 2
+ 284 0074 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 285 0076 0133     		adds	r3, r3, #1
+ 286 0078 FB73     		strb	r3, [r7, #15]
+ 287              	.L21:
+ 224:.\Generated_Source\PSoC5/DVDAC_1.c ****         {
+ 288              		.loc 1 224 0 is_stmt 0 discriminator 1
+ 289 007a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 290 007c 032B     		cmp	r3, #3
+ 291 007e E8D9     		bls	.L24
+ 292              	.L15:
+ 233:.\Generated_Source\PSoC5/DVDAC_1.c ****             }
+ 234:.\Generated_Source\PSoC5/DVDAC_1.c ****         }
+ 235:.\Generated_Source\PSoC5/DVDAC_1.c ****     }
+ 236:.\Generated_Source\PSoC5/DVDAC_1.c **** }
+ 293              		.loc 1 236 0 is_stmt 1
+ 294 0080 1037     		adds	r7, r7, #16
+ 295              		.cfi_def_cfa_offset 8
+ 296 0082 BD46     		mov	sp, r7
+ 297              		.cfi_def_cfa_register 13
+ 298              		@ sp needed
+ 299 0084 80BD     		pop	{r7, pc}
+ 300              	.L26:
+ 301 0086 00BF     		.align	2
+ 302              	.L25:
+ 303 0088 00000000 		.word	DVDAC_1_ditheredValues
+ 304              		.cfi_endproc
+ 305              	.LFE4:
+ 306              		.size	DVDAC_1_SetValue, .-DVDAC_1_SetValue
+ 307              		.section	.text.DVDAC_1_InitDma,"ax",%progbits
+ 308              		.align	2
+ 309              		.thumb
+ 310              		.thumb_func
+ 311              		.type	DVDAC_1_InitDma, %function
+ 312              	DVDAC_1_InitDma:
+ 313              	.LFB5:
+ 237:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 238:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 239:.\Generated_Source\PSoC5/DVDAC_1.c **** /*******************************************************************************
+ 240:.\Generated_Source\PSoC5/DVDAC_1.c **** * Function Name: DVDAC_1_InitDma
+ 241:.\Generated_Source\PSoC5/DVDAC_1.c **** ********************************************************************************
+ 242:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 243:.\Generated_Source\PSoC5/DVDAC_1.c **** * Summary:
+ 244:.\Generated_Source\PSoC5/DVDAC_1.c **** *  Configures a DMA transfer of channel values from memory to VDAC.
+ 245:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 246:.\Generated_Source\PSoC5/DVDAC_1.c **** * Parameters:
+ 247:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 248:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 249:.\Generated_Source\PSoC5/DVDAC_1.c **** * Return:
+ 250:.\Generated_Source\PSoC5/DVDAC_1.c **** *  None
+ 251:.\Generated_Source\PSoC5/DVDAC_1.c **** *
+ 252:.\Generated_Source\PSoC5/DVDAC_1.c **** *******************************************************************************/
+ 253:.\Generated_Source\PSoC5/DVDAC_1.c **** static void DVDAC_1_InitDma(void)  
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 11
+
+
+ 254:.\Generated_Source\PSoC5/DVDAC_1.c **** {
+ 314              		.loc 1 254 0
+ 315              		.cfi_startproc
+ 316              		@ args = 0, pretend = 0, frame = 0
+ 317              		@ frame_needed = 1, uses_anonymous_args = 0
+ 318 0000 80B5     		push	{r7, lr}
+ 319              		.cfi_def_cfa_offset 8
+ 320              		.cfi_offset 7, -8
+ 321              		.cfi_offset 14, -4
+ 322 0002 00AF     		add	r7, sp, #0
+ 323              		.cfi_def_cfa_register 7
+ 255:.\Generated_Source\PSoC5/DVDAC_1.c ****     /***************************************************************************
+ 256:.\Generated_Source\PSoC5/DVDAC_1.c ****     * Transfers channel values from SRAM to VDAC register. One byte transfer,
+ 257:.\Generated_Source\PSoC5/DVDAC_1.c ****     * each burst requires a request.
+ 258:.\Generated_Source\PSoC5/DVDAC_1.c ****     ***************************************************************************/
+ 259:.\Generated_Source\PSoC5/DVDAC_1.c ****     DVDAC_1_dmaChan = DVDAC_1_DMA_DmaInitialize(
+ 324              		.loc 1 259 0
+ 325 0004 0120     		movs	r0, #1
+ 326 0006 0121     		movs	r1, #1
+ 327 0008 41F6FF72 		movw	r2, #8191
+ 328 000c 4FF48043 		mov	r3, #16384
+ 329 0010 FFF7FEFF 		bl	DVDAC_1_DMA_DmaInitialize
+ 330 0014 0346     		mov	r3, r0
+ 331 0016 1A46     		mov	r2, r3
+ 332 0018 124B     		ldr	r3, .L28
+ 333 001a 1A70     		strb	r2, [r3]
+ 260:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     DVDAC_1_DMA_BYTES_PER_BURST,
+ 261:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     DVDAC_1_DMA_REQUEST_PER_BURST,
+ 262:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     HI16(DVDAC_1_DMA_SRC_BASE),
+ 263:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     HI16(DVDAC_1_DMA_DST_BASE));
+ 264:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 265:.\Generated_Source\PSoC5/DVDAC_1.c ****     DVDAC_1_dmaTd = CyDmaTdAllocate();
+ 334              		.loc 1 265 0
+ 335 001c FFF7FEFF 		bl	CyDmaTdAllocate
+ 336 0020 0346     		mov	r3, r0
+ 337 0022 1A46     		mov	r2, r3
+ 338 0024 104B     		ldr	r3, .L28+4
+ 339 0026 1A70     		strb	r2, [r3]
+ 266:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 267:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 268:.\Generated_Source\PSoC5/DVDAC_1.c ****     /***************************************************************************
+ 269:.\Generated_Source\PSoC5/DVDAC_1.c ****     * One TD looping on itself, increment the source address, but not the
+ 270:.\Generated_Source\PSoC5/DVDAC_1.c ****     * destination address.
+ 271:.\Generated_Source\PSoC5/DVDAC_1.c ****     ***************************************************************************/
+ 272:.\Generated_Source\PSoC5/DVDAC_1.c ****     (void) CyDmaTdSetConfiguration( DVDAC_1_dmaTd,
+ 340              		.loc 1 272 0
+ 341 0028 0F4B     		ldr	r3, .L28+4
+ 342 002a 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 343 002c 0E4B     		ldr	r3, .L28+4
+ 344 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 345 0030 1046     		mov	r0, r2
+ 346 0032 0421     		movs	r1, #4
+ 347 0034 1A46     		mov	r2, r3
+ 348 0036 0123     		movs	r3, #1
+ 349 0038 FFF7FEFF 		bl	CyDmaTdSetConfiguration
+ 273:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     DVDAC_1_DITHERED_ARRAY_SIZE,
+ 274:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     DVDAC_1_dmaTd,
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 12
+
+
+ 275:.\Generated_Source\PSoC5/DVDAC_1.c ****                                     (uint8) CY_DMA_TD_INC_SRC_ADR);
+ 276:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 277:.\Generated_Source\PSoC5/DVDAC_1.c ****     /* Transfers the value for each channel from memory to VDAC */
+ 278:.\Generated_Source\PSoC5/DVDAC_1.c ****     (void) CyDmaTdSetAddress(   DVDAC_1_dmaTd,
+ 350              		.loc 1 278 0
+ 351 003c 0A4B     		ldr	r3, .L28+4
+ 352 003e 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 353 0040 0A4B     		ldr	r3, .L28+8
+ 354 0042 9BB2     		uxth	r3, r3
+ 355 0044 1046     		mov	r0, r2
+ 356 0046 1946     		mov	r1, r3
+ 357 0048 45F68132 		movw	r2, #23425
+ 358 004c FFF7FEFF 		bl	CyDmaTdSetAddress
+ 279:.\Generated_Source\PSoC5/DVDAC_1.c ****                                 LO16((uint32)DVDAC_1_ditheredValues),
+ 280:.\Generated_Source\PSoC5/DVDAC_1.c ****                                 LO16((uint32)DVDAC_1_VDAC8_Data_PTR));
+ 281:.\Generated_Source\PSoC5/DVDAC_1.c **** 
+ 282:.\Generated_Source\PSoC5/DVDAC_1.c ****     (void) CyDmaChSetInitialTd(DVDAC_1_dmaChan, DVDAC_1_dmaTd);
+ 359              		.loc 1 282 0
+ 360 0050 044B     		ldr	r3, .L28
+ 361 0052 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 362 0054 044B     		ldr	r3, .L28+4
+ 363 0056 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 364 0058 1046     		mov	r0, r2
+ 365 005a 1946     		mov	r1, r3
+ 366 005c FFF7FEFF 		bl	CyDmaChSetInitialTd
+ 283:.\Generated_Source\PSoC5/DVDAC_1.c **** }
+ 367              		.loc 1 283 0
+ 368 0060 80BD     		pop	{r7, pc}
+ 369              	.L29:
+ 370 0062 00BF     		.align	2
+ 371              	.L28:
+ 372 0064 01000000 		.word	DVDAC_1_dmaChan
+ 373 0068 04000000 		.word	DVDAC_1_dmaTd
+ 374 006c 00000000 		.word	DVDAC_1_ditheredValues
+ 375              		.cfi_endproc
+ 376              	.LFE5:
+ 377              		.size	DVDAC_1_InitDma, .-DVDAC_1_InitDma
+ 378              		.text
+ 379              	.Letext0:
+ 380              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 381              		.section	.debug_info,"",%progbits
+ 382              	.Ldebug_info0:
+ 383 0000 AB010000 		.4byte	0x1ab
+ 384 0004 0400     		.2byte	0x4
+ 385 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 386 000a 04       		.byte	0x4
+ 387 000b 01       		.uleb128 0x1
+ 388 000c C9000000 		.4byte	.LASF26
+ 389 0010 01       		.byte	0x1
+ 390 0011 E7010000 		.4byte	.LASF27
+ 391 0015 83000000 		.4byte	.LASF28
+ 392 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 393 001d 00000000 		.4byte	0
+ 394 0021 00000000 		.4byte	.Ldebug_line0
+ 395 0025 02       		.uleb128 0x2
+ 396 0026 01       		.byte	0x1
+ 397 0027 06       		.byte	0x6
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 13
+
+
+ 398 0028 42020000 		.4byte	.LASF0
+ 399 002c 02       		.uleb128 0x2
+ 400 002d 01       		.byte	0x1
+ 401 002e 08       		.byte	0x8
+ 402 002f BB000000 		.4byte	.LASF1
+ 403 0033 02       		.uleb128 0x2
+ 404 0034 02       		.byte	0x2
+ 405 0035 05       		.byte	0x5
+ 406 0036 2F020000 		.4byte	.LASF2
+ 407 003a 02       		.uleb128 0x2
+ 408 003b 02       		.byte	0x2
+ 409 003c 07       		.byte	0x7
+ 410 003d 23000000 		.4byte	.LASF3
+ 411 0041 02       		.uleb128 0x2
+ 412 0042 04       		.byte	0x4
+ 413 0043 05       		.byte	0x5
+ 414 0044 39020000 		.4byte	.LASF4
+ 415 0048 02       		.uleb128 0x2
+ 416 0049 04       		.byte	0x4
+ 417 004a 07       		.byte	0x7
+ 418 004b 8B010000 		.4byte	.LASF5
+ 419 004f 02       		.uleb128 0x2
+ 420 0050 08       		.byte	0x8
+ 421 0051 05       		.byte	0x5
+ 422 0052 D4010000 		.4byte	.LASF6
+ 423 0056 02       		.uleb128 0x2
+ 424 0057 08       		.byte	0x8
+ 425 0058 07       		.byte	0x7
+ 426 0059 B4010000 		.4byte	.LASF7
+ 427 005d 03       		.uleb128 0x3
+ 428 005e 04       		.byte	0x4
+ 429 005f 05       		.byte	0x5
+ 430 0060 696E7400 		.ascii	"int\000"
+ 431 0064 02       		.uleb128 0x2
+ 432 0065 04       		.byte	0x4
+ 433 0066 07       		.byte	0x7
+ 434 0067 9D010000 		.4byte	.LASF8
+ 435 006b 04       		.uleb128 0x4
+ 436 006c 7D000000 		.4byte	.LASF9
+ 437 0070 02       		.byte	0x2
+ 438 0071 C2       		.byte	0xc2
+ 439 0072 2C000000 		.4byte	0x2c
+ 440 0076 04       		.uleb128 0x4
+ 441 0077 6C010000 		.4byte	.LASF10
+ 442 007b 02       		.byte	0x2
+ 443 007c C3       		.byte	0xc3
+ 444 007d 3A000000 		.4byte	0x3a
+ 445 0081 04       		.uleb128 0x4
+ 446 0082 73010000 		.4byte	.LASF11
+ 447 0086 02       		.byte	0x2
+ 448 0087 C4       		.byte	0xc4
+ 449 0088 48000000 		.4byte	0x48
+ 450 008c 02       		.uleb128 0x2
+ 451 008d 04       		.byte	0x4
+ 452 008e 04       		.byte	0x4
+ 453 008f 46000000 		.4byte	.LASF12
+ 454 0093 02       		.uleb128 0x2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 14
+
+
+ 455 0094 08       		.byte	0x8
+ 456 0095 04       		.byte	0x4
+ 457 0096 57010000 		.4byte	.LASF13
+ 458 009a 02       		.uleb128 0x2
+ 459 009b 01       		.byte	0x1
+ 460 009c 08       		.byte	0x8
+ 461 009d E2010000 		.4byte	.LASF14
+ 462 00a1 05       		.uleb128 0x5
+ 463 00a2 6B000000 		.4byte	.LASF15
+ 464 00a6 02       		.byte	0x2
+ 465 00a7 6C01     		.2byte	0x16c
+ 466 00a9 AD000000 		.4byte	0xad
+ 467 00ad 06       		.uleb128 0x6
+ 468 00ae 6B000000 		.4byte	0x6b
+ 469 00b2 02       		.uleb128 0x2
+ 470 00b3 04       		.byte	0x4
+ 471 00b4 07       		.byte	0x7
+ 472 00b5 CB010000 		.4byte	.LASF16
+ 473 00b9 07       		.uleb128 0x7
+ 474 00ba 6B000000 		.4byte	0x6b
+ 475 00be C9000000 		.4byte	0xc9
+ 476 00c2 08       		.uleb128 0x8
+ 477 00c3 B2000000 		.4byte	0xb2
+ 478 00c7 03       		.byte	0x3
+ 479 00c8 00       		.byte	0
+ 480 00c9 09       		.uleb128 0x9
+ 481 00ca 00000000 		.4byte	.LASF17
+ 482 00ce 01       		.byte	0x1
+ 483 00cf 3C       		.byte	0x3c
+ 484 00d0 00000000 		.4byte	.LFB0
+ 485 00d4 1C000000 		.4byte	.LFE0-.LFB0
+ 486 00d8 01       		.uleb128 0x1
+ 487 00d9 9C       		.byte	0x9c
+ 488 00da 09       		.uleb128 0x9
+ 489 00db 4C000000 		.4byte	.LASF18
+ 490 00df 01       		.byte	0x1
+ 491 00e0 5A       		.byte	0x5a
+ 492 00e1 00000000 		.4byte	.LFB1
+ 493 00e5 20000000 		.4byte	.LFE1-.LFB1
+ 494 00e9 01       		.uleb128 0x1
+ 495 00ea 9C       		.byte	0x9c
+ 496 00eb 09       		.uleb128 0x9
+ 497 00ec 21020000 		.4byte	.LASF19
+ 498 00f0 01       		.byte	0x1
+ 499 00f1 85       		.byte	0x85
+ 500 00f2 00000000 		.4byte	.LFB2
+ 501 00f6 20000000 		.4byte	.LFE2-.LFB2
+ 502 00fa 01       		.uleb128 0x1
+ 503 00fb 9C       		.byte	0x9c
+ 504 00fc 09       		.uleb128 0x9
+ 505 00fd 70000000 		.4byte	.LASF20
+ 506 0101 01       		.byte	0x1
+ 507 0102 A3       		.byte	0xa3
+ 508 0103 00000000 		.4byte	.LFB3
+ 509 0107 1C000000 		.4byte	.LFE3-.LFB3
+ 510 010b 01       		.uleb128 0x1
+ 511 010c 9C       		.byte	0x9c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 15
+
+
+ 512 010d 0A       		.uleb128 0xa
+ 513 010e 7A010000 		.4byte	.LASF29
+ 514 0112 01       		.byte	0x1
+ 515 0113 CE       		.byte	0xce
+ 516 0114 00000000 		.4byte	.LFB4
+ 517 0118 8C000000 		.4byte	.LFE4-.LFB4
+ 518 011c 01       		.uleb128 0x1
+ 519 011d 9C       		.byte	0x9c
+ 520 011e 59010000 		.4byte	0x159
+ 521 0122 0B       		.uleb128 0xb
+ 522 0123 0D000000 		.4byte	.LASF30
+ 523 0127 01       		.byte	0x1
+ 524 0128 CE       		.byte	0xce
+ 525 0129 76000000 		.4byte	0x76
+ 526 012d 02       		.uleb128 0x2
+ 527 012e 91       		.byte	0x91
+ 528 012f 6E       		.sleb128 -18
+ 529 0130 0C       		.uleb128 0xc
+ 530 0131 4E020000 		.4byte	.LASF21
+ 531 0135 01       		.byte	0x1
+ 532 0136 D0       		.byte	0xd0
+ 533 0137 6B000000 		.4byte	0x6b
+ 534 013b 02       		.uleb128 0x2
+ 535 013c 91       		.byte	0x91
+ 536 013d 76       		.sleb128 -10
+ 537 013e 0C       		.uleb128 0xc
+ 538 013f AA010000 		.4byte	.LASF22
+ 539 0143 01       		.byte	0x1
+ 540 0144 D1       		.byte	0xd1
+ 541 0145 6B000000 		.4byte	0x6b
+ 542 0149 02       		.uleb128 0x2
+ 543 014a 91       		.byte	0x91
+ 544 014b 75       		.sleb128 -11
+ 545 014c 0D       		.uleb128 0xd
+ 546 014d 6900     		.ascii	"i\000"
+ 547 014f 01       		.byte	0x1
+ 548 0150 D2       		.byte	0xd2
+ 549 0151 6B000000 		.4byte	0x6b
+ 550 0155 02       		.uleb128 0x2
+ 551 0156 91       		.byte	0x91
+ 552 0157 77       		.sleb128 -9
+ 553 0158 00       		.byte	0
+ 554 0159 0E       		.uleb128 0xe
+ 555 015a 5B000000 		.4byte	.LASF31
+ 556 015e 01       		.byte	0x1
+ 557 015f FD       		.byte	0xfd
+ 558 0160 00000000 		.4byte	.LFB5
+ 559 0164 70000000 		.4byte	.LFE5-.LFB5
+ 560 0168 01       		.uleb128 0x1
+ 561 0169 9C       		.byte	0x9c
+ 562 016a 0C       		.uleb128 0xc
+ 563 016b 0A020000 		.4byte	.LASF23
+ 564 016f 01       		.byte	0x1
+ 565 0170 19       		.byte	0x19
+ 566 0171 B9000000 		.4byte	0xb9
+ 567 0175 05       		.uleb128 0x5
+ 568 0176 03       		.byte	0x3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 16
+
+
+ 569 0177 00000000 		.4byte	DVDAC_1_ditheredValues
+ 570 017b 0C       		.uleb128 0xc
+ 571 017c 36000000 		.4byte	.LASF24
+ 572 0180 01       		.byte	0x1
+ 573 0181 1E       		.byte	0x1e
+ 574 0182 6B000000 		.4byte	0x6b
+ 575 0186 05       		.uleb128 0x5
+ 576 0187 03       		.byte	0x3
+ 577 0188 01000000 		.4byte	DVDAC_1_dmaChan
+ 578 018c 0C       		.uleb128 0xc
+ 579 018d 5E010000 		.4byte	.LASF25
+ 580 0191 01       		.byte	0x1
+ 581 0192 1F       		.byte	0x1f
+ 582 0193 6B000000 		.4byte	0x6b
+ 583 0197 05       		.uleb128 0x5
+ 584 0198 03       		.byte	0x3
+ 585 0199 04000000 		.4byte	DVDAC_1_dmaTd
+ 586 019d 0F       		.uleb128 0xf
+ 587 019e 13000000 		.4byte	.LASF32
+ 588 01a2 01       		.byte	0x1
+ 589 01a3 1C       		.byte	0x1c
+ 590 01a4 6B000000 		.4byte	0x6b
+ 591 01a8 05       		.uleb128 0x5
+ 592 01a9 03       		.byte	0x3
+ 593 01aa 00000000 		.4byte	DVDAC_1_initVar
+ 594 01ae 00       		.byte	0
+ 595              		.section	.debug_abbrev,"",%progbits
+ 596              	.Ldebug_abbrev0:
+ 597 0000 01       		.uleb128 0x1
+ 598 0001 11       		.uleb128 0x11
+ 599 0002 01       		.byte	0x1
+ 600 0003 25       		.uleb128 0x25
+ 601 0004 0E       		.uleb128 0xe
+ 602 0005 13       		.uleb128 0x13
+ 603 0006 0B       		.uleb128 0xb
+ 604 0007 03       		.uleb128 0x3
+ 605 0008 0E       		.uleb128 0xe
+ 606 0009 1B       		.uleb128 0x1b
+ 607 000a 0E       		.uleb128 0xe
+ 608 000b 55       		.uleb128 0x55
+ 609 000c 17       		.uleb128 0x17
+ 610 000d 11       		.uleb128 0x11
+ 611 000e 01       		.uleb128 0x1
+ 612 000f 10       		.uleb128 0x10
+ 613 0010 17       		.uleb128 0x17
+ 614 0011 00       		.byte	0
+ 615 0012 00       		.byte	0
+ 616 0013 02       		.uleb128 0x2
+ 617 0014 24       		.uleb128 0x24
+ 618 0015 00       		.byte	0
+ 619 0016 0B       		.uleb128 0xb
+ 620 0017 0B       		.uleb128 0xb
+ 621 0018 3E       		.uleb128 0x3e
+ 622 0019 0B       		.uleb128 0xb
+ 623 001a 03       		.uleb128 0x3
+ 624 001b 0E       		.uleb128 0xe
+ 625 001c 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 17
+
+
+ 626 001d 00       		.byte	0
+ 627 001e 03       		.uleb128 0x3
+ 628 001f 24       		.uleb128 0x24
+ 629 0020 00       		.byte	0
+ 630 0021 0B       		.uleb128 0xb
+ 631 0022 0B       		.uleb128 0xb
+ 632 0023 3E       		.uleb128 0x3e
+ 633 0024 0B       		.uleb128 0xb
+ 634 0025 03       		.uleb128 0x3
+ 635 0026 08       		.uleb128 0x8
+ 636 0027 00       		.byte	0
+ 637 0028 00       		.byte	0
+ 638 0029 04       		.uleb128 0x4
+ 639 002a 16       		.uleb128 0x16
+ 640 002b 00       		.byte	0
+ 641 002c 03       		.uleb128 0x3
+ 642 002d 0E       		.uleb128 0xe
+ 643 002e 3A       		.uleb128 0x3a
+ 644 002f 0B       		.uleb128 0xb
+ 645 0030 3B       		.uleb128 0x3b
+ 646 0031 0B       		.uleb128 0xb
+ 647 0032 49       		.uleb128 0x49
+ 648 0033 13       		.uleb128 0x13
+ 649 0034 00       		.byte	0
+ 650 0035 00       		.byte	0
+ 651 0036 05       		.uleb128 0x5
+ 652 0037 16       		.uleb128 0x16
+ 653 0038 00       		.byte	0
+ 654 0039 03       		.uleb128 0x3
+ 655 003a 0E       		.uleb128 0xe
+ 656 003b 3A       		.uleb128 0x3a
+ 657 003c 0B       		.uleb128 0xb
+ 658 003d 3B       		.uleb128 0x3b
+ 659 003e 05       		.uleb128 0x5
+ 660 003f 49       		.uleb128 0x49
+ 661 0040 13       		.uleb128 0x13
+ 662 0041 00       		.byte	0
+ 663 0042 00       		.byte	0
+ 664 0043 06       		.uleb128 0x6
+ 665 0044 35       		.uleb128 0x35
+ 666 0045 00       		.byte	0
+ 667 0046 49       		.uleb128 0x49
+ 668 0047 13       		.uleb128 0x13
+ 669 0048 00       		.byte	0
+ 670 0049 00       		.byte	0
+ 671 004a 07       		.uleb128 0x7
+ 672 004b 01       		.uleb128 0x1
+ 673 004c 01       		.byte	0x1
+ 674 004d 49       		.uleb128 0x49
+ 675 004e 13       		.uleb128 0x13
+ 676 004f 01       		.uleb128 0x1
+ 677 0050 13       		.uleb128 0x13
+ 678 0051 00       		.byte	0
+ 679 0052 00       		.byte	0
+ 680 0053 08       		.uleb128 0x8
+ 681 0054 21       		.uleb128 0x21
+ 682 0055 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 18
+
+
+ 683 0056 49       		.uleb128 0x49
+ 684 0057 13       		.uleb128 0x13
+ 685 0058 2F       		.uleb128 0x2f
+ 686 0059 0B       		.uleb128 0xb
+ 687 005a 00       		.byte	0
+ 688 005b 00       		.byte	0
+ 689 005c 09       		.uleb128 0x9
+ 690 005d 2E       		.uleb128 0x2e
+ 691 005e 00       		.byte	0
+ 692 005f 3F       		.uleb128 0x3f
+ 693 0060 19       		.uleb128 0x19
+ 694 0061 03       		.uleb128 0x3
+ 695 0062 0E       		.uleb128 0xe
+ 696 0063 3A       		.uleb128 0x3a
+ 697 0064 0B       		.uleb128 0xb
+ 698 0065 3B       		.uleb128 0x3b
+ 699 0066 0B       		.uleb128 0xb
+ 700 0067 27       		.uleb128 0x27
+ 701 0068 19       		.uleb128 0x19
+ 702 0069 11       		.uleb128 0x11
+ 703 006a 01       		.uleb128 0x1
+ 704 006b 12       		.uleb128 0x12
+ 705 006c 06       		.uleb128 0x6
+ 706 006d 40       		.uleb128 0x40
+ 707 006e 18       		.uleb128 0x18
+ 708 006f 9642     		.uleb128 0x2116
+ 709 0071 19       		.uleb128 0x19
+ 710 0072 00       		.byte	0
+ 711 0073 00       		.byte	0
+ 712 0074 0A       		.uleb128 0xa
+ 713 0075 2E       		.uleb128 0x2e
+ 714 0076 01       		.byte	0x1
+ 715 0077 3F       		.uleb128 0x3f
+ 716 0078 19       		.uleb128 0x19
+ 717 0079 03       		.uleb128 0x3
+ 718 007a 0E       		.uleb128 0xe
+ 719 007b 3A       		.uleb128 0x3a
+ 720 007c 0B       		.uleb128 0xb
+ 721 007d 3B       		.uleb128 0x3b
+ 722 007e 0B       		.uleb128 0xb
+ 723 007f 27       		.uleb128 0x27
+ 724 0080 19       		.uleb128 0x19
+ 725 0081 11       		.uleb128 0x11
+ 726 0082 01       		.uleb128 0x1
+ 727 0083 12       		.uleb128 0x12
+ 728 0084 06       		.uleb128 0x6
+ 729 0085 40       		.uleb128 0x40
+ 730 0086 18       		.uleb128 0x18
+ 731 0087 9642     		.uleb128 0x2116
+ 732 0089 19       		.uleb128 0x19
+ 733 008a 01       		.uleb128 0x1
+ 734 008b 13       		.uleb128 0x13
+ 735 008c 00       		.byte	0
+ 736 008d 00       		.byte	0
+ 737 008e 0B       		.uleb128 0xb
+ 738 008f 05       		.uleb128 0x5
+ 739 0090 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 19
+
+
+ 740 0091 03       		.uleb128 0x3
+ 741 0092 0E       		.uleb128 0xe
+ 742 0093 3A       		.uleb128 0x3a
+ 743 0094 0B       		.uleb128 0xb
+ 744 0095 3B       		.uleb128 0x3b
+ 745 0096 0B       		.uleb128 0xb
+ 746 0097 49       		.uleb128 0x49
+ 747 0098 13       		.uleb128 0x13
+ 748 0099 02       		.uleb128 0x2
+ 749 009a 18       		.uleb128 0x18
+ 750 009b 00       		.byte	0
+ 751 009c 00       		.byte	0
+ 752 009d 0C       		.uleb128 0xc
+ 753 009e 34       		.uleb128 0x34
+ 754 009f 00       		.byte	0
+ 755 00a0 03       		.uleb128 0x3
+ 756 00a1 0E       		.uleb128 0xe
+ 757 00a2 3A       		.uleb128 0x3a
+ 758 00a3 0B       		.uleb128 0xb
+ 759 00a4 3B       		.uleb128 0x3b
+ 760 00a5 0B       		.uleb128 0xb
+ 761 00a6 49       		.uleb128 0x49
+ 762 00a7 13       		.uleb128 0x13
+ 763 00a8 02       		.uleb128 0x2
+ 764 00a9 18       		.uleb128 0x18
+ 765 00aa 00       		.byte	0
+ 766 00ab 00       		.byte	0
+ 767 00ac 0D       		.uleb128 0xd
+ 768 00ad 34       		.uleb128 0x34
+ 769 00ae 00       		.byte	0
+ 770 00af 03       		.uleb128 0x3
+ 771 00b0 08       		.uleb128 0x8
+ 772 00b1 3A       		.uleb128 0x3a
+ 773 00b2 0B       		.uleb128 0xb
+ 774 00b3 3B       		.uleb128 0x3b
+ 775 00b4 0B       		.uleb128 0xb
+ 776 00b5 49       		.uleb128 0x49
+ 777 00b6 13       		.uleb128 0x13
+ 778 00b7 02       		.uleb128 0x2
+ 779 00b8 18       		.uleb128 0x18
+ 780 00b9 00       		.byte	0
+ 781 00ba 00       		.byte	0
+ 782 00bb 0E       		.uleb128 0xe
+ 783 00bc 2E       		.uleb128 0x2e
+ 784 00bd 00       		.byte	0
+ 785 00be 03       		.uleb128 0x3
+ 786 00bf 0E       		.uleb128 0xe
+ 787 00c0 3A       		.uleb128 0x3a
+ 788 00c1 0B       		.uleb128 0xb
+ 789 00c2 3B       		.uleb128 0x3b
+ 790 00c3 0B       		.uleb128 0xb
+ 791 00c4 27       		.uleb128 0x27
+ 792 00c5 19       		.uleb128 0x19
+ 793 00c6 11       		.uleb128 0x11
+ 794 00c7 01       		.uleb128 0x1
+ 795 00c8 12       		.uleb128 0x12
+ 796 00c9 06       		.uleb128 0x6
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 20
+
+
+ 797 00ca 40       		.uleb128 0x40
+ 798 00cb 18       		.uleb128 0x18
+ 799 00cc 9642     		.uleb128 0x2116
+ 800 00ce 19       		.uleb128 0x19
+ 801 00cf 00       		.byte	0
+ 802 00d0 00       		.byte	0
+ 803 00d1 0F       		.uleb128 0xf
+ 804 00d2 34       		.uleb128 0x34
+ 805 00d3 00       		.byte	0
+ 806 00d4 03       		.uleb128 0x3
+ 807 00d5 0E       		.uleb128 0xe
+ 808 00d6 3A       		.uleb128 0x3a
+ 809 00d7 0B       		.uleb128 0xb
+ 810 00d8 3B       		.uleb128 0x3b
+ 811 00d9 0B       		.uleb128 0xb
+ 812 00da 49       		.uleb128 0x49
+ 813 00db 13       		.uleb128 0x13
+ 814 00dc 3F       		.uleb128 0x3f
+ 815 00dd 19       		.uleb128 0x19
+ 816 00de 02       		.uleb128 0x2
+ 817 00df 18       		.uleb128 0x18
+ 818 00e0 00       		.byte	0
+ 819 00e1 00       		.byte	0
+ 820 00e2 00       		.byte	0
+ 821              		.section	.debug_aranges,"",%progbits
+ 822 0000 44000000 		.4byte	0x44
+ 823 0004 0200     		.2byte	0x2
+ 824 0006 00000000 		.4byte	.Ldebug_info0
+ 825 000a 04       		.byte	0x4
+ 826 000b 00       		.byte	0
+ 827 000c 0000     		.2byte	0
+ 828 000e 0000     		.2byte	0
+ 829 0010 00000000 		.4byte	.LFB0
+ 830 0014 1C000000 		.4byte	.LFE0-.LFB0
+ 831 0018 00000000 		.4byte	.LFB1
+ 832 001c 20000000 		.4byte	.LFE1-.LFB1
+ 833 0020 00000000 		.4byte	.LFB2
+ 834 0024 20000000 		.4byte	.LFE2-.LFB2
+ 835 0028 00000000 		.4byte	.LFB3
+ 836 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 837 0030 00000000 		.4byte	.LFB4
+ 838 0034 8C000000 		.4byte	.LFE4-.LFB4
+ 839 0038 00000000 		.4byte	.LFB5
+ 840 003c 70000000 		.4byte	.LFE5-.LFB5
+ 841 0040 00000000 		.4byte	0
+ 842 0044 00000000 		.4byte	0
+ 843              		.section	.debug_ranges,"",%progbits
+ 844              	.Ldebug_ranges0:
+ 845 0000 00000000 		.4byte	.LFB0
+ 846 0004 1C000000 		.4byte	.LFE0
+ 847 0008 00000000 		.4byte	.LFB1
+ 848 000c 20000000 		.4byte	.LFE1
+ 849 0010 00000000 		.4byte	.LFB2
+ 850 0014 20000000 		.4byte	.LFE2
+ 851 0018 00000000 		.4byte	.LFB3
+ 852 001c 1C000000 		.4byte	.LFE3
+ 853 0020 00000000 		.4byte	.LFB4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 21
+
+
+ 854 0024 8C000000 		.4byte	.LFE4
+ 855 0028 00000000 		.4byte	.LFB5
+ 856 002c 70000000 		.4byte	.LFE5
+ 857 0030 00000000 		.4byte	0
+ 858 0034 00000000 		.4byte	0
+ 859              		.section	.debug_line,"",%progbits
+ 860              	.Ldebug_line0:
+ 861 0000 F4000000 		.section	.debug_str,"MS",%progbits,1
+ 861      02004600 
+ 861      00000201 
+ 861      FB0E0D00 
+ 861      01010101 
+ 862              	.LASF17:
+ 863 0000 44564441 		.ascii	"DVDAC_1_Init\000"
+ 863      435F315F 
+ 863      496E6974 
+ 863      00
+ 864              	.LASF30:
+ 865 000d 76616C75 		.ascii	"value\000"
+ 865      6500
+ 866              	.LASF32:
+ 867 0013 44564441 		.ascii	"DVDAC_1_initVar\000"
+ 867      435F315F 
+ 867      696E6974 
+ 867      56617200 
+ 868              	.LASF3:
+ 869 0023 73686F72 		.ascii	"short unsigned int\000"
+ 869      7420756E 
+ 869      7369676E 
+ 869      65642069 
+ 869      6E7400
+ 870              	.LASF24:
+ 871 0036 44564441 		.ascii	"DVDAC_1_dmaChan\000"
+ 871      435F315F 
+ 871      646D6143 
+ 871      68616E00 
+ 872              	.LASF12:
+ 873 0046 666C6F61 		.ascii	"float\000"
+ 873      7400
+ 874              	.LASF18:
+ 875 004c 44564441 		.ascii	"DVDAC_1_Enable\000"
+ 875      435F315F 
+ 875      456E6162 
+ 875      6C6500
+ 876              	.LASF31:
+ 877 005b 44564441 		.ascii	"DVDAC_1_InitDma\000"
+ 877      435F315F 
+ 877      496E6974 
+ 877      446D6100 
+ 878              	.LASF15:
+ 879 006b 72656738 		.ascii	"reg8\000"
+ 879      00
+ 880              	.LASF20:
+ 881 0070 44564441 		.ascii	"DVDAC_1_Stop\000"
+ 881      435F315F 
+ 881      53746F70 
+ 881      00
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 22
+
+
+ 882              	.LASF9:
+ 883 007d 75696E74 		.ascii	"uint8\000"
+ 883      3800
+ 884              	.LASF28:
+ 885 0083 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\QDExample01\\QDExample"
+ 885      6F726B73 
+ 885      70616365 
+ 885      5C50536F 
+ 885      435F4372 
+ 886 00b2 30312E63 		.ascii	"01.cydsn\000"
+ 886      7964736E 
+ 886      00
+ 887              	.LASF1:
+ 888 00bb 756E7369 		.ascii	"unsigned char\000"
+ 888      676E6564 
+ 888      20636861 
+ 888      7200
+ 889              	.LASF26:
+ 890 00c9 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 890      4320342E 
+ 890      392E3320 
+ 890      32303135 
+ 890      30333033 
+ 891 00fc 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 891      20726576 
+ 891      6973696F 
+ 891      6E203232 
+ 891      31323230 
+ 892 012f 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 892      66756E63 
+ 892      74696F6E 
+ 892      2D736563 
+ 892      74696F6E 
+ 893              	.LASF13:
+ 894 0157 646F7562 		.ascii	"double\000"
+ 894      6C6500
+ 895              	.LASF25:
+ 896 015e 44564441 		.ascii	"DVDAC_1_dmaTd\000"
+ 896      435F315F 
+ 896      646D6154 
+ 896      6400
+ 897              	.LASF10:
+ 898 016c 75696E74 		.ascii	"uint16\000"
+ 898      313600
+ 899              	.LASF11:
+ 900 0173 75696E74 		.ascii	"uint32\000"
+ 900      333200
+ 901              	.LASF29:
+ 902 017a 44564441 		.ascii	"DVDAC_1_SetValue\000"
+ 902      435F315F 
+ 902      53657456 
+ 902      616C7565 
+ 902      00
+ 903              	.LASF5:
+ 904 018b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 904      20756E73 
+ 904      69676E65 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 23
+
+
+ 904      6420696E 
+ 904      7400
+ 905              	.LASF8:
+ 906 019d 756E7369 		.ascii	"unsigned int\000"
+ 906      676E6564 
+ 906      20696E74 
+ 906      00
+ 907              	.LASF22:
+ 908 01aa 68696768 		.ascii	"highCount\000"
+ 908      436F756E 
+ 908      7400
+ 909              	.LASF7:
+ 910 01b4 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 910      206C6F6E 
+ 910      6720756E 
+ 910      7369676E 
+ 910      65642069 
+ 911              	.LASF16:
+ 912 01cb 73697A65 		.ascii	"sizetype\000"
+ 912      74797065 
+ 912      00
+ 913              	.LASF6:
+ 914 01d4 6C6F6E67 		.ascii	"long long int\000"
+ 914      206C6F6E 
+ 914      6720696E 
+ 914      7400
+ 915              	.LASF14:
+ 916 01e2 63686172 		.ascii	"char\000"
+ 916      00
+ 917              	.LASF27:
+ 918 01e7 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\DVDAC_1.c\000"
+ 918      6E657261 
+ 918      7465645F 
+ 918      536F7572 
+ 918      63655C50 
+ 919              	.LASF23:
+ 920 020a 44564441 		.ascii	"DVDAC_1_ditheredValues\000"
+ 920      435F315F 
+ 920      64697468 
+ 920      65726564 
+ 920      56616C75 
+ 921              	.LASF19:
+ 922 0221 44564441 		.ascii	"DVDAC_1_Start\000"
+ 922      435F315F 
+ 922      53746172 
+ 922      7400
+ 923              	.LASF2:
+ 924 022f 73686F72 		.ascii	"short int\000"
+ 924      7420696E 
+ 924      7400
+ 925              	.LASF4:
+ 926 0239 6C6F6E67 		.ascii	"long int\000"
+ 926      20696E74 
+ 926      00
+ 927              	.LASF0:
+ 928 0242 7369676E 		.ascii	"signed char\000"
+ 928      65642063 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc92M6nF.s 			page 24
+
+
+ 928      68617200 
+ 929              	.LASF21:
+ 930 024e 6C6F7743 		.ascii	"lowCount\000"
+ 930      6F756E74 
+ 930      00
+ 931              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

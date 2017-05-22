@@ -1,0 +1,732 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"DAC_MUX.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.data
+  19              		.type	DAC_MUX_lastChannel, %object
+  20              		.size	DAC_MUX_lastChannel, 1
+  21              	DAC_MUX_lastChannel:
+  22 0000 FF       		.byte	-1
+  23              		.section	.text.DAC_MUX_Start,"ax",%progbits
+  24              		.align	2
+  25              		.global	DAC_MUX_Start
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	DAC_MUX_Start, %function
+  29              	DAC_MUX_Start:
+  30              	.LFB0:
+  31              		.file 1 "Generated_Source\\PSoC5\\DAC_MUX.c"
+   1:Generated_Source\PSoC5/DAC_MUX.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/DAC_MUX.c **** * File Name: DAC_MUX.c
+   3:Generated_Source\PSoC5/DAC_MUX.c **** * Version 1.80
+   4:Generated_Source\PSoC5/DAC_MUX.c **** *
+   5:Generated_Source\PSoC5/DAC_MUX.c **** *  Description:
+   6:Generated_Source\PSoC5/DAC_MUX.c **** *    This file contains all functions required for the analog multiplexer
+   7:Generated_Source\PSoC5/DAC_MUX.c **** *    AMux User Module.
+   8:Generated_Source\PSoC5/DAC_MUX.c **** *
+   9:Generated_Source\PSoC5/DAC_MUX.c **** *   Note:
+  10:Generated_Source\PSoC5/DAC_MUX.c **** *
+  11:Generated_Source\PSoC5/DAC_MUX.c **** *******************************************************************************
+  12:Generated_Source\PSoC5/DAC_MUX.c **** * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/DAC_MUX.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC5/DAC_MUX.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC5/DAC_MUX.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/DAC_MUX.c **** ********************************************************************************/
+  17:Generated_Source\PSoC5/DAC_MUX.c **** 
+  18:Generated_Source\PSoC5/DAC_MUX.c **** #include "DAC_MUX.h"
+  19:Generated_Source\PSoC5/DAC_MUX.c **** 
+  20:Generated_Source\PSoC5/DAC_MUX.c **** static uint8 DAC_MUX_lastChannel = DAC_MUX_NULL_CHANNEL;
+  21:Generated_Source\PSoC5/DAC_MUX.c **** 
+  22:Generated_Source\PSoC5/DAC_MUX.c **** 
+  23:Generated_Source\PSoC5/DAC_MUX.c **** /*******************************************************************************
+  24:Generated_Source\PSoC5/DAC_MUX.c **** * Function Name: DAC_MUX_Start
+  25:Generated_Source\PSoC5/DAC_MUX.c **** ********************************************************************************
+  26:Generated_Source\PSoC5/DAC_MUX.c **** * Summary:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 2
+
+
+  27:Generated_Source\PSoC5/DAC_MUX.c **** *  Disconnect all channels.
+  28:Generated_Source\PSoC5/DAC_MUX.c **** *
+  29:Generated_Source\PSoC5/DAC_MUX.c **** * Parameters:
+  30:Generated_Source\PSoC5/DAC_MUX.c **** *  void
+  31:Generated_Source\PSoC5/DAC_MUX.c **** *
+  32:Generated_Source\PSoC5/DAC_MUX.c **** * Return:
+  33:Generated_Source\PSoC5/DAC_MUX.c **** *  void
+  34:Generated_Source\PSoC5/DAC_MUX.c **** *
+  35:Generated_Source\PSoC5/DAC_MUX.c **** *******************************************************************************/
+  36:Generated_Source\PSoC5/DAC_MUX.c **** void DAC_MUX_Start(void) 
+  37:Generated_Source\PSoC5/DAC_MUX.c **** {
+  32              		.loc 1 37 0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 8
+  35              		@ frame_needed = 1, uses_anonymous_args = 0
+  36 0000 80B5     		push	{r7, lr}
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 7, -8
+  39              		.cfi_offset 14, -4
+  40 0002 82B0     		sub	sp, sp, #8
+  41              		.cfi_def_cfa_offset 16
+  42 0004 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  38:Generated_Source\PSoC5/DAC_MUX.c ****     uint8 chan;
+  39:Generated_Source\PSoC5/DAC_MUX.c **** 
+  40:Generated_Source\PSoC5/DAC_MUX.c ****     for(chan = 0u; chan < DAC_MUX_CHANNELS ; chan++)
+  44              		.loc 1 40 0
+  45 0006 0023     		movs	r3, #0
+  46 0008 FB71     		strb	r3, [r7, #7]
+  47 000a 06E0     		b	.L2
+  48              	.L3:
+  41:Generated_Source\PSoC5/DAC_MUX.c ****     {
+  42:Generated_Source\PSoC5/DAC_MUX.c **** #if (DAC_MUX_MUXTYPE == DAC_MUX_MUX_SINGLE)
+  43:Generated_Source\PSoC5/DAC_MUX.c ****         DAC_MUX_Unset(chan);
+  49              		.loc 1 43 0 discriminator 3
+  50 000c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  51 000e 1846     		mov	r0, r3
+  52 0010 FFF7FEFF 		bl	DAC_MUX_Unset
+  40:Generated_Source\PSoC5/DAC_MUX.c ****     {
+  53              		.loc 1 40 0 discriminator 3
+  54 0014 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  55 0016 0133     		adds	r3, r3, #1
+  56 0018 FB71     		strb	r3, [r7, #7]
+  57              	.L2:
+  40:Generated_Source\PSoC5/DAC_MUX.c ****     {
+  58              		.loc 1 40 0 is_stmt 0 discriminator 1
+  59 001a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  60 001c 022B     		cmp	r3, #2
+  61 001e F5D9     		bls	.L3
+  44:Generated_Source\PSoC5/DAC_MUX.c **** #else
+  45:Generated_Source\PSoC5/DAC_MUX.c ****         DAC_MUX_CYAMUXSIDE_A_Unset(chan);
+  46:Generated_Source\PSoC5/DAC_MUX.c ****         DAC_MUX_CYAMUXSIDE_B_Unset(chan);
+  47:Generated_Source\PSoC5/DAC_MUX.c **** #endif
+  48:Generated_Source\PSoC5/DAC_MUX.c ****     }
+  49:Generated_Source\PSoC5/DAC_MUX.c **** 
+  50:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_lastChannel = DAC_MUX_NULL_CHANNEL;
+  62              		.loc 1 50 0 is_stmt 1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 3
+
+
+  63 0020 024B     		ldr	r3, .L4
+  64 0022 FF22     		movs	r2, #255
+  65 0024 1A70     		strb	r2, [r3]
+  51:Generated_Source\PSoC5/DAC_MUX.c **** }
+  66              		.loc 1 51 0
+  67 0026 0837     		adds	r7, r7, #8
+  68              		.cfi_def_cfa_offset 8
+  69 0028 BD46     		mov	sp, r7
+  70              		.cfi_def_cfa_register 13
+  71              		@ sp needed
+  72 002a 80BD     		pop	{r7, pc}
+  73              	.L5:
+  74              		.align	2
+  75              	.L4:
+  76 002c 00000000 		.word	DAC_MUX_lastChannel
+  77              		.cfi_endproc
+  78              	.LFE0:
+  79              		.size	DAC_MUX_Start, .-DAC_MUX_Start
+  80              		.section	.text.DAC_MUX_Select,"ax",%progbits
+  81              		.align	2
+  82              		.global	DAC_MUX_Select
+  83              		.thumb
+  84              		.thumb_func
+  85              		.type	DAC_MUX_Select, %function
+  86              	DAC_MUX_Select:
+  87              	.LFB1:
+  52:Generated_Source\PSoC5/DAC_MUX.c **** 
+  53:Generated_Source\PSoC5/DAC_MUX.c **** 
+  54:Generated_Source\PSoC5/DAC_MUX.c **** #if (!DAC_MUX_ATMOSTONE)
+  55:Generated_Source\PSoC5/DAC_MUX.c **** /*******************************************************************************
+  56:Generated_Source\PSoC5/DAC_MUX.c **** * Function Name: DAC_MUX_Select
+  57:Generated_Source\PSoC5/DAC_MUX.c **** ********************************************************************************
+  58:Generated_Source\PSoC5/DAC_MUX.c **** * Summary:
+  59:Generated_Source\PSoC5/DAC_MUX.c **** *  This functions first disconnects all channels then connects the given
+  60:Generated_Source\PSoC5/DAC_MUX.c **** *  channel.
+  61:Generated_Source\PSoC5/DAC_MUX.c **** *
+  62:Generated_Source\PSoC5/DAC_MUX.c **** * Parameters:
+  63:Generated_Source\PSoC5/DAC_MUX.c **** *  channel:  The channel to connect to the common terminal.
+  64:Generated_Source\PSoC5/DAC_MUX.c **** *
+  65:Generated_Source\PSoC5/DAC_MUX.c **** * Return:
+  66:Generated_Source\PSoC5/DAC_MUX.c **** *  void
+  67:Generated_Source\PSoC5/DAC_MUX.c **** *
+  68:Generated_Source\PSoC5/DAC_MUX.c **** *******************************************************************************/
+  69:Generated_Source\PSoC5/DAC_MUX.c **** void DAC_MUX_Select(uint8 channel) 
+  70:Generated_Source\PSoC5/DAC_MUX.c **** {
+  88              		.loc 1 70 0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 8
+  91              		@ frame_needed = 1, uses_anonymous_args = 0
+  92 0000 80B5     		push	{r7, lr}
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 7, -8
+  95              		.cfi_offset 14, -4
+  96 0002 82B0     		sub	sp, sp, #8
+  97              		.cfi_def_cfa_offset 16
+  98 0004 00AF     		add	r7, sp, #0
+  99              		.cfi_def_cfa_register 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 4
+
+
+ 100 0006 0346     		mov	r3, r0
+ 101 0008 FB71     		strb	r3, [r7, #7]
+  71:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_DisconnectAll();        /* Disconnect all previous connections */
+ 102              		.loc 1 71 0
+ 103 000a FFF7FEFF 		bl	DAC_MUX_Start
+  72:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_Connect(channel);       /* Make the given selection */
+ 104              		.loc 1 72 0
+ 105 000e FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 106 0010 1846     		mov	r0, r3
+ 107 0012 FFF7FEFF 		bl	DAC_MUX_Set
+  73:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_lastChannel = channel;  /* Update last channel */
+ 108              		.loc 1 73 0
+ 109 0016 034A     		ldr	r2, .L7
+ 110 0018 FB79     		ldrb	r3, [r7, #7]
+ 111 001a 1370     		strb	r3, [r2]
+  74:Generated_Source\PSoC5/DAC_MUX.c **** }
+ 112              		.loc 1 74 0
+ 113 001c 0837     		adds	r7, r7, #8
+ 114              		.cfi_def_cfa_offset 8
+ 115 001e BD46     		mov	sp, r7
+ 116              		.cfi_def_cfa_register 13
+ 117              		@ sp needed
+ 118 0020 80BD     		pop	{r7, pc}
+ 119              	.L8:
+ 120 0022 00BF     		.align	2
+ 121              	.L7:
+ 122 0024 00000000 		.word	DAC_MUX_lastChannel
+ 123              		.cfi_endproc
+ 124              	.LFE1:
+ 125              		.size	DAC_MUX_Select, .-DAC_MUX_Select
+ 126              		.section	.text.DAC_MUX_FastSelect,"ax",%progbits
+ 127              		.align	2
+ 128              		.global	DAC_MUX_FastSelect
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.type	DAC_MUX_FastSelect, %function
+ 132              	DAC_MUX_FastSelect:
+ 133              	.LFB2:
+  75:Generated_Source\PSoC5/DAC_MUX.c **** #endif
+  76:Generated_Source\PSoC5/DAC_MUX.c **** 
+  77:Generated_Source\PSoC5/DAC_MUX.c **** 
+  78:Generated_Source\PSoC5/DAC_MUX.c **** /*******************************************************************************
+  79:Generated_Source\PSoC5/DAC_MUX.c **** * Function Name: DAC_MUX_FastSelect
+  80:Generated_Source\PSoC5/DAC_MUX.c **** ********************************************************************************
+  81:Generated_Source\PSoC5/DAC_MUX.c **** * Summary:
+  82:Generated_Source\PSoC5/DAC_MUX.c **** *  This function first disconnects the last connection made with FastSelect or
+  83:Generated_Source\PSoC5/DAC_MUX.c **** *  Select, then connects the given channel. The FastSelect function is similar
+  84:Generated_Source\PSoC5/DAC_MUX.c **** *  to the Select function, except it is faster since it only disconnects the
+  85:Generated_Source\PSoC5/DAC_MUX.c **** *  last channel selected rather than all channels.
+  86:Generated_Source\PSoC5/DAC_MUX.c **** *
+  87:Generated_Source\PSoC5/DAC_MUX.c **** * Parameters:
+  88:Generated_Source\PSoC5/DAC_MUX.c **** *  channel:  The channel to connect to the common terminal.
+  89:Generated_Source\PSoC5/DAC_MUX.c **** *
+  90:Generated_Source\PSoC5/DAC_MUX.c **** * Return:
+  91:Generated_Source\PSoC5/DAC_MUX.c **** *  void
+  92:Generated_Source\PSoC5/DAC_MUX.c **** *
+  93:Generated_Source\PSoC5/DAC_MUX.c **** *******************************************************************************/
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 5
+
+
+  94:Generated_Source\PSoC5/DAC_MUX.c **** void DAC_MUX_FastSelect(uint8 channel) 
+  95:Generated_Source\PSoC5/DAC_MUX.c **** {
+ 134              		.loc 1 95 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 8
+ 137              		@ frame_needed = 1, uses_anonymous_args = 0
+ 138 0000 80B5     		push	{r7, lr}
+ 139              		.cfi_def_cfa_offset 8
+ 140              		.cfi_offset 7, -8
+ 141              		.cfi_offset 14, -4
+ 142 0002 82B0     		sub	sp, sp, #8
+ 143              		.cfi_def_cfa_offset 16
+ 144 0004 00AF     		add	r7, sp, #0
+ 145              		.cfi_def_cfa_register 7
+ 146 0006 0346     		mov	r3, r0
+ 147 0008 FB71     		strb	r3, [r7, #7]
+  96:Generated_Source\PSoC5/DAC_MUX.c ****     /* Disconnect the last valid channel */
+  97:Generated_Source\PSoC5/DAC_MUX.c ****     if( DAC_MUX_lastChannel != DAC_MUX_NULL_CHANNEL)
+ 148              		.loc 1 97 0
+ 149 000a 094B     		ldr	r3, .L11
+ 150 000c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 151 000e FF2B     		cmp	r3, #255
+ 152 0010 04D0     		beq	.L10
+  98:Generated_Source\PSoC5/DAC_MUX.c ****     {
+  99:Generated_Source\PSoC5/DAC_MUX.c ****         DAC_MUX_Disconnect(DAC_MUX_lastChannel);
+ 153              		.loc 1 99 0
+ 154 0012 074B     		ldr	r3, .L11
+ 155 0014 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 156 0016 1846     		mov	r0, r3
+ 157 0018 FFF7FEFF 		bl	DAC_MUX_Unset
+ 158              	.L10:
+ 100:Generated_Source\PSoC5/DAC_MUX.c ****     }
+ 101:Generated_Source\PSoC5/DAC_MUX.c **** 
+ 102:Generated_Source\PSoC5/DAC_MUX.c ****     /* Make the new channel connection */
+ 103:Generated_Source\PSoC5/DAC_MUX.c **** #if (DAC_MUX_MUXTYPE == DAC_MUX_MUX_SINGLE)
+ 104:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_Set(channel);
+ 159              		.loc 1 104 0
+ 160 001c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 161 001e 1846     		mov	r0, r3
+ 162 0020 FFF7FEFF 		bl	DAC_MUX_Set
+ 105:Generated_Source\PSoC5/DAC_MUX.c **** #else
+ 106:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_CYAMUXSIDE_A_Set(channel);
+ 107:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_CYAMUXSIDE_B_Set(channel);
+ 108:Generated_Source\PSoC5/DAC_MUX.c **** #endif
+ 109:Generated_Source\PSoC5/DAC_MUX.c **** 
+ 110:Generated_Source\PSoC5/DAC_MUX.c **** 
+ 111:Generated_Source\PSoC5/DAC_MUX.c ****     DAC_MUX_lastChannel = channel;   /* Update last channel */
+ 163              		.loc 1 111 0
+ 164 0024 024A     		ldr	r2, .L11
+ 165 0026 FB79     		ldrb	r3, [r7, #7]
+ 166 0028 1370     		strb	r3, [r2]
+ 112:Generated_Source\PSoC5/DAC_MUX.c **** }
+ 167              		.loc 1 112 0
+ 168 002a 0837     		adds	r7, r7, #8
+ 169              		.cfi_def_cfa_offset 8
+ 170 002c BD46     		mov	sp, r7
+ 171              		.cfi_def_cfa_register 13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 6
+
+
+ 172              		@ sp needed
+ 173 002e 80BD     		pop	{r7, pc}
+ 174              	.L12:
+ 175              		.align	2
+ 176              	.L11:
+ 177 0030 00000000 		.word	DAC_MUX_lastChannel
+ 178              		.cfi_endproc
+ 179              	.LFE2:
+ 180              		.size	DAC_MUX_FastSelect, .-DAC_MUX_FastSelect
+ 181              		.text
+ 182              	.Letext0:
+ 183              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 184              		.section	.debug_info,"",%progbits
+ 185              	.Ldebug_info0:
+ 186 0000 05010000 		.4byte	0x105
+ 187 0004 0400     		.2byte	0x4
+ 188 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 189 000a 04       		.byte	0x4
+ 190 000b 01       		.uleb128 0x1
+ 191 000c 1B000000 		.4byte	.LASF18
+ 192 0010 01       		.byte	0x1
+ 193 0011 B6010000 		.4byte	.LASF19
+ 194 0015 E9000000 		.4byte	.LASF20
+ 195 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 196 001d 00000000 		.4byte	0
+ 197 0021 00000000 		.4byte	.Ldebug_line0
+ 198 0025 02       		.uleb128 0x2
+ 199 0026 01       		.byte	0x1
+ 200 0027 06       		.byte	0x6
+ 201 0028 AA010000 		.4byte	.LASF0
+ 202 002c 02       		.uleb128 0x2
+ 203 002d 01       		.byte	0x1
+ 204 002e 08       		.byte	0x8
+ 205 002f AF000000 		.4byte	.LASF1
+ 206 0033 02       		.uleb128 0x2
+ 207 0034 02       		.byte	0x2
+ 208 0035 05       		.byte	0x5
+ 209 0036 7D010000 		.4byte	.LASF2
+ 210 003a 02       		.uleb128 0x2
+ 211 003b 02       		.byte	0x2
+ 212 003c 07       		.byte	0x7
+ 213 003d CF000000 		.4byte	.LASF3
+ 214 0041 02       		.uleb128 0x2
+ 215 0042 04       		.byte	0x4
+ 216 0043 05       		.byte	0x5
+ 217 0044 A1010000 		.4byte	.LASF4
+ 218 0048 02       		.uleb128 0x2
+ 219 0049 04       		.byte	0x4
+ 220 004a 07       		.byte	0x7
+ 221 004b BD000000 		.4byte	.LASF5
+ 222 004f 02       		.uleb128 0x2
+ 223 0050 08       		.byte	0x8
+ 224 0051 05       		.byte	0x5
+ 225 0052 5B010000 		.4byte	.LASF6
+ 226 0056 02       		.uleb128 0x2
+ 227 0057 08       		.byte	0x8
+ 228 0058 07       		.byte	0x7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 7
+
+
+ 229 0059 31010000 		.4byte	.LASF7
+ 230 005d 03       		.uleb128 0x3
+ 231 005e 04       		.byte	0x4
+ 232 005f 05       		.byte	0x5
+ 233 0060 696E7400 		.ascii	"int\000"
+ 234 0064 02       		.uleb128 0x2
+ 235 0065 04       		.byte	0x4
+ 236 0066 07       		.byte	0x7
+ 237 0067 24010000 		.4byte	.LASF8
+ 238 006b 04       		.uleb128 0x4
+ 239 006c 9B010000 		.4byte	.LASF21
+ 240 0070 02       		.byte	0x2
+ 241 0071 C2       		.byte	0xc2
+ 242 0072 2C000000 		.4byte	0x2c
+ 243 0076 02       		.uleb128 0x2
+ 244 0077 04       		.byte	0x4
+ 245 0078 04       		.byte	0x4
+ 246 0079 A9000000 		.4byte	.LASF9
+ 247 007d 02       		.uleb128 0x2
+ 248 007e 08       		.byte	0x8
+ 249 007f 04       		.byte	0x4
+ 250 0080 E2000000 		.4byte	.LASF10
+ 251 0084 02       		.uleb128 0x2
+ 252 0085 01       		.byte	0x1
+ 253 0086 08       		.byte	0x8
+ 254 0087 69010000 		.4byte	.LASF11
+ 255 008b 05       		.uleb128 0x5
+ 256 008c 4D010000 		.4byte	.LASF12
+ 257 0090 01       		.byte	0x1
+ 258 0091 24       		.byte	0x24
+ 259 0092 00000000 		.4byte	.LFB0
+ 260 0096 30000000 		.4byte	.LFE0-.LFB0
+ 261 009a 01       		.uleb128 0x1
+ 262 009b 9C       		.byte	0x9c
+ 263 009c AF000000 		.4byte	0xaf
+ 264 00a0 06       		.uleb128 0x6
+ 265 00a1 48010000 		.4byte	.LASF16
+ 266 00a5 01       		.byte	0x1
+ 267 00a6 26       		.byte	0x26
+ 268 00a7 6B000000 		.4byte	0x6b
+ 269 00ab 02       		.uleb128 0x2
+ 270 00ac 91       		.byte	0x91
+ 271 00ad 77       		.sleb128 -9
+ 272 00ae 00       		.byte	0
+ 273 00af 05       		.uleb128 0x5
+ 274 00b0 6E010000 		.4byte	.LASF13
+ 275 00b4 01       		.byte	0x1
+ 276 00b5 45       		.byte	0x45
+ 277 00b6 00000000 		.4byte	.LFB1
+ 278 00ba 28000000 		.4byte	.LFE1-.LFB1
+ 279 00be 01       		.uleb128 0x1
+ 280 00bf 9C       		.byte	0x9c
+ 281 00c0 D3000000 		.4byte	0xd3
+ 282 00c4 07       		.uleb128 0x7
+ 283 00c5 00000000 		.4byte	.LASF15
+ 284 00c9 01       		.byte	0x1
+ 285 00ca 45       		.byte	0x45
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 8
+
+
+ 286 00cb 6B000000 		.4byte	0x6b
+ 287 00cf 02       		.uleb128 0x2
+ 288 00d0 91       		.byte	0x91
+ 289 00d1 77       		.sleb128 -9
+ 290 00d2 00       		.byte	0
+ 291 00d3 05       		.uleb128 0x5
+ 292 00d4 08000000 		.4byte	.LASF14
+ 293 00d8 01       		.byte	0x1
+ 294 00d9 5E       		.byte	0x5e
+ 295 00da 00000000 		.4byte	.LFB2
+ 296 00de 34000000 		.4byte	.LFE2-.LFB2
+ 297 00e2 01       		.uleb128 0x1
+ 298 00e3 9C       		.byte	0x9c
+ 299 00e4 F7000000 		.4byte	0xf7
+ 300 00e8 07       		.uleb128 0x7
+ 301 00e9 00000000 		.4byte	.LASF15
+ 302 00ed 01       		.byte	0x1
+ 303 00ee 5E       		.byte	0x5e
+ 304 00ef 6B000000 		.4byte	0x6b
+ 305 00f3 02       		.uleb128 0x2
+ 306 00f4 91       		.byte	0x91
+ 307 00f5 77       		.sleb128 -9
+ 308 00f6 00       		.byte	0
+ 309 00f7 06       		.uleb128 0x6
+ 310 00f8 87010000 		.4byte	.LASF17
+ 311 00fc 01       		.byte	0x1
+ 312 00fd 14       		.byte	0x14
+ 313 00fe 6B000000 		.4byte	0x6b
+ 314 0102 05       		.uleb128 0x5
+ 315 0103 03       		.byte	0x3
+ 316 0104 00000000 		.4byte	DAC_MUX_lastChannel
+ 317 0108 00       		.byte	0
+ 318              		.section	.debug_abbrev,"",%progbits
+ 319              	.Ldebug_abbrev0:
+ 320 0000 01       		.uleb128 0x1
+ 321 0001 11       		.uleb128 0x11
+ 322 0002 01       		.byte	0x1
+ 323 0003 25       		.uleb128 0x25
+ 324 0004 0E       		.uleb128 0xe
+ 325 0005 13       		.uleb128 0x13
+ 326 0006 0B       		.uleb128 0xb
+ 327 0007 03       		.uleb128 0x3
+ 328 0008 0E       		.uleb128 0xe
+ 329 0009 1B       		.uleb128 0x1b
+ 330 000a 0E       		.uleb128 0xe
+ 331 000b 55       		.uleb128 0x55
+ 332 000c 17       		.uleb128 0x17
+ 333 000d 11       		.uleb128 0x11
+ 334 000e 01       		.uleb128 0x1
+ 335 000f 10       		.uleb128 0x10
+ 336 0010 17       		.uleb128 0x17
+ 337 0011 00       		.byte	0
+ 338 0012 00       		.byte	0
+ 339 0013 02       		.uleb128 0x2
+ 340 0014 24       		.uleb128 0x24
+ 341 0015 00       		.byte	0
+ 342 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 9
+
+
+ 343 0017 0B       		.uleb128 0xb
+ 344 0018 3E       		.uleb128 0x3e
+ 345 0019 0B       		.uleb128 0xb
+ 346 001a 03       		.uleb128 0x3
+ 347 001b 0E       		.uleb128 0xe
+ 348 001c 00       		.byte	0
+ 349 001d 00       		.byte	0
+ 350 001e 03       		.uleb128 0x3
+ 351 001f 24       		.uleb128 0x24
+ 352 0020 00       		.byte	0
+ 353 0021 0B       		.uleb128 0xb
+ 354 0022 0B       		.uleb128 0xb
+ 355 0023 3E       		.uleb128 0x3e
+ 356 0024 0B       		.uleb128 0xb
+ 357 0025 03       		.uleb128 0x3
+ 358 0026 08       		.uleb128 0x8
+ 359 0027 00       		.byte	0
+ 360 0028 00       		.byte	0
+ 361 0029 04       		.uleb128 0x4
+ 362 002a 16       		.uleb128 0x16
+ 363 002b 00       		.byte	0
+ 364 002c 03       		.uleb128 0x3
+ 365 002d 0E       		.uleb128 0xe
+ 366 002e 3A       		.uleb128 0x3a
+ 367 002f 0B       		.uleb128 0xb
+ 368 0030 3B       		.uleb128 0x3b
+ 369 0031 0B       		.uleb128 0xb
+ 370 0032 49       		.uleb128 0x49
+ 371 0033 13       		.uleb128 0x13
+ 372 0034 00       		.byte	0
+ 373 0035 00       		.byte	0
+ 374 0036 05       		.uleb128 0x5
+ 375 0037 2E       		.uleb128 0x2e
+ 376 0038 01       		.byte	0x1
+ 377 0039 3F       		.uleb128 0x3f
+ 378 003a 19       		.uleb128 0x19
+ 379 003b 03       		.uleb128 0x3
+ 380 003c 0E       		.uleb128 0xe
+ 381 003d 3A       		.uleb128 0x3a
+ 382 003e 0B       		.uleb128 0xb
+ 383 003f 3B       		.uleb128 0x3b
+ 384 0040 0B       		.uleb128 0xb
+ 385 0041 27       		.uleb128 0x27
+ 386 0042 19       		.uleb128 0x19
+ 387 0043 11       		.uleb128 0x11
+ 388 0044 01       		.uleb128 0x1
+ 389 0045 12       		.uleb128 0x12
+ 390 0046 06       		.uleb128 0x6
+ 391 0047 40       		.uleb128 0x40
+ 392 0048 18       		.uleb128 0x18
+ 393 0049 9642     		.uleb128 0x2116
+ 394 004b 19       		.uleb128 0x19
+ 395 004c 01       		.uleb128 0x1
+ 396 004d 13       		.uleb128 0x13
+ 397 004e 00       		.byte	0
+ 398 004f 00       		.byte	0
+ 399 0050 06       		.uleb128 0x6
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 10
+
+
+ 400 0051 34       		.uleb128 0x34
+ 401 0052 00       		.byte	0
+ 402 0053 03       		.uleb128 0x3
+ 403 0054 0E       		.uleb128 0xe
+ 404 0055 3A       		.uleb128 0x3a
+ 405 0056 0B       		.uleb128 0xb
+ 406 0057 3B       		.uleb128 0x3b
+ 407 0058 0B       		.uleb128 0xb
+ 408 0059 49       		.uleb128 0x49
+ 409 005a 13       		.uleb128 0x13
+ 410 005b 02       		.uleb128 0x2
+ 411 005c 18       		.uleb128 0x18
+ 412 005d 00       		.byte	0
+ 413 005e 00       		.byte	0
+ 414 005f 07       		.uleb128 0x7
+ 415 0060 05       		.uleb128 0x5
+ 416 0061 00       		.byte	0
+ 417 0062 03       		.uleb128 0x3
+ 418 0063 0E       		.uleb128 0xe
+ 419 0064 3A       		.uleb128 0x3a
+ 420 0065 0B       		.uleb128 0xb
+ 421 0066 3B       		.uleb128 0x3b
+ 422 0067 0B       		.uleb128 0xb
+ 423 0068 49       		.uleb128 0x49
+ 424 0069 13       		.uleb128 0x13
+ 425 006a 02       		.uleb128 0x2
+ 426 006b 18       		.uleb128 0x18
+ 427 006c 00       		.byte	0
+ 428 006d 00       		.byte	0
+ 429 006e 00       		.byte	0
+ 430              		.section	.debug_aranges,"",%progbits
+ 431 0000 2C000000 		.4byte	0x2c
+ 432 0004 0200     		.2byte	0x2
+ 433 0006 00000000 		.4byte	.Ldebug_info0
+ 434 000a 04       		.byte	0x4
+ 435 000b 00       		.byte	0
+ 436 000c 0000     		.2byte	0
+ 437 000e 0000     		.2byte	0
+ 438 0010 00000000 		.4byte	.LFB0
+ 439 0014 30000000 		.4byte	.LFE0-.LFB0
+ 440 0018 00000000 		.4byte	.LFB1
+ 441 001c 28000000 		.4byte	.LFE1-.LFB1
+ 442 0020 00000000 		.4byte	.LFB2
+ 443 0024 34000000 		.4byte	.LFE2-.LFB2
+ 444 0028 00000000 		.4byte	0
+ 445 002c 00000000 		.4byte	0
+ 446              		.section	.debug_ranges,"",%progbits
+ 447              	.Ldebug_ranges0:
+ 448 0000 00000000 		.4byte	.LFB0
+ 449 0004 30000000 		.4byte	.LFE0
+ 450 0008 00000000 		.4byte	.LFB1
+ 451 000c 28000000 		.4byte	.LFE1
+ 452 0010 00000000 		.4byte	.LFB2
+ 453 0014 34000000 		.4byte	.LFE2
+ 454 0018 00000000 		.4byte	0
+ 455 001c 00000000 		.4byte	0
+ 456              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 11
+
+
+ 457              	.Ldebug_line0:
+ 458 0000 98000000 		.section	.debug_str,"MS",%progbits,1
+ 458      02004400 
+ 458      00000201 
+ 458      FB0E0D00 
+ 458      01010101 
+ 459              	.LASF15:
+ 460 0000 6368616E 		.ascii	"channel\000"
+ 460      6E656C00 
+ 461              	.LASF14:
+ 462 0008 4441435F 		.ascii	"DAC_MUX_FastSelect\000"
+ 462      4D55585F 
+ 462      46617374 
+ 462      53656C65 
+ 462      637400
+ 463              	.LASF18:
+ 464 001b 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 464      4320342E 
+ 464      392E3320 
+ 464      32303135 
+ 464      30333033 
+ 465 004e 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 465      20726576 
+ 465      6973696F 
+ 465      6E203232 
+ 465      31323230 
+ 466 0081 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 466      66756E63 
+ 466      74696F6E 
+ 466      2D736563 
+ 466      74696F6E 
+ 467              	.LASF9:
+ 468 00a9 666C6F61 		.ascii	"float\000"
+ 468      7400
+ 469              	.LASF1:
+ 470 00af 756E7369 		.ascii	"unsigned char\000"
+ 470      676E6564 
+ 470      20636861 
+ 470      7200
+ 471              	.LASF5:
+ 472 00bd 6C6F6E67 		.ascii	"long unsigned int\000"
+ 472      20756E73 
+ 472      69676E65 
+ 472      6420696E 
+ 472      7400
+ 473              	.LASF3:
+ 474 00cf 73686F72 		.ascii	"short unsigned int\000"
+ 474      7420756E 
+ 474      7369676E 
+ 474      65642069 
+ 474      6E7400
+ 475              	.LASF10:
+ 476 00e2 646F7562 		.ascii	"double\000"
+ 476      6C6500
+ 477              	.LASF20:
+ 478 00e9 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 478      6F726B73 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 12
+
+
+ 478      70616365 
+ 478      5C50536F 
+ 478      435F4372 
+ 479 0118 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 479      392E6379 
+ 479      64736E00 
+ 480              	.LASF8:
+ 481 0124 756E7369 		.ascii	"unsigned int\000"
+ 481      676E6564 
+ 481      20696E74 
+ 481      00
+ 482              	.LASF7:
+ 483 0131 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 483      206C6F6E 
+ 483      6720756E 
+ 483      7369676E 
+ 483      65642069 
+ 484              	.LASF16:
+ 485 0148 6368616E 		.ascii	"chan\000"
+ 485      00
+ 486              	.LASF12:
+ 487 014d 4441435F 		.ascii	"DAC_MUX_Start\000"
+ 487      4D55585F 
+ 487      53746172 
+ 487      7400
+ 488              	.LASF6:
+ 489 015b 6C6F6E67 		.ascii	"long long int\000"
+ 489      206C6F6E 
+ 489      6720696E 
+ 489      7400
+ 490              	.LASF11:
+ 491 0169 63686172 		.ascii	"char\000"
+ 491      00
+ 492              	.LASF13:
+ 493 016e 4441435F 		.ascii	"DAC_MUX_Select\000"
+ 493      4D55585F 
+ 493      53656C65 
+ 493      637400
+ 494              	.LASF2:
+ 495 017d 73686F72 		.ascii	"short int\000"
+ 495      7420696E 
+ 495      7400
+ 496              	.LASF17:
+ 497 0187 4441435F 		.ascii	"DAC_MUX_lastChannel\000"
+ 497      4D55585F 
+ 497      6C617374 
+ 497      4368616E 
+ 497      6E656C00 
+ 498              	.LASF21:
+ 499 019b 75696E74 		.ascii	"uint8\000"
+ 499      3800
+ 500              	.LASF4:
+ 501 01a1 6C6F6E67 		.ascii	"long int\000"
+ 501      20696E74 
+ 501      00
+ 502              	.LASF0:
+ 503 01aa 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3cvCTP.s 			page 13
+
+
+ 503      65642063 
+ 503      68617200 
+ 504              	.LASF19:
+ 505 01b6 47656E65 		.ascii	"Generated_Source\\PSoC5\\DAC_MUX.c\000"
+ 505      72617465 
+ 505      645F536F 
+ 505      75726365 
+ 505      5C50536F 
+ 506              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

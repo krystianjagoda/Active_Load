@@ -1,0 +1,2419 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_Buzz.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	PWM_Buzz_initVar
+  19              		.bss
+  20              		.type	PWM_Buzz_initVar, %object
+  21              		.size	PWM_Buzz_initVar, 1
+  22              	PWM_Buzz_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.PWM_Buzz_Start,"ax",%progbits
+  25              		.align	2
+  26              		.global	PWM_Buzz_Start
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	PWM_Buzz_Start, %function
+  30              	PWM_Buzz_Start:
+  31              	.LFB0:
+  32              		.file 1 "Generated_Source\\PSoC5\\PWM_Buzz.c"
+   1:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/PWM_Buzz.c **** * File Name: PWM_Buzz.c
+   3:Generated_Source\PSoC5/PWM_Buzz.c **** * Version 3.30
+   4:Generated_Source\PSoC5/PWM_Buzz.c **** *
+   5:Generated_Source\PSoC5/PWM_Buzz.c **** * Description:
+   6:Generated_Source\PSoC5/PWM_Buzz.c **** *  The PWM User Module consist of an 8 or 16-bit counter with two 8 or 16-bit
+   7:Generated_Source\PSoC5/PWM_Buzz.c **** *  comparitors. Each instance of this user module is capable of generating
+   8:Generated_Source\PSoC5/PWM_Buzz.c **** *  two PWM outputs with the same period. The pulse width is selectable between
+   9:Generated_Source\PSoC5/PWM_Buzz.c **** *  1 and 255/65535. The period is selectable between 2 and 255/65536 clocks.
+  10:Generated_Source\PSoC5/PWM_Buzz.c **** *  The compare value output may be configured to be active when the present
+  11:Generated_Source\PSoC5/PWM_Buzz.c **** *  counter is less than or less than/equal to the compare value.
+  12:Generated_Source\PSoC5/PWM_Buzz.c **** *  A terminal count output is also provided. It generates a pulse one clock
+  13:Generated_Source\PSoC5/PWM_Buzz.c **** *  width wide when the counter is equal to zero.
+  14:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  15:Generated_Source\PSoC5/PWM_Buzz.c **** * Note:
+  16:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  17:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************
+  18:Generated_Source\PSoC5/PWM_Buzz.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:Generated_Source\PSoC5/PWM_Buzz.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:Generated_Source\PSoC5/PWM_Buzz.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:Generated_Source\PSoC5/PWM_Buzz.c **** * the software package with which this file was provided.
+  22:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************/
+  23:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  24:Generated_Source\PSoC5/PWM_Buzz.c **** #include "PWM_Buzz.h"
+  25:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 2
+
+
+  26:Generated_Source\PSoC5/PWM_Buzz.c **** /* Error message for removed <resource> through optimization */
+  27:Generated_Source\PSoC5/PWM_Buzz.c **** #ifdef PWM_Buzz_PWMUDB_genblk1_ctrlreg__REMOVED
+  28:Generated_Source\PSoC5/PWM_Buzz.c ****     #error PWM_v3_30 detected with a constant 0 for the enable or \
+  29:Generated_Source\PSoC5/PWM_Buzz.c ****          constant 1 for reset. This will prevent the component from operating.
+  30:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* PWM_Buzz_PWMUDB_genblk1_ctrlreg__REMOVED */
+  31:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  32:Generated_Source\PSoC5/PWM_Buzz.c **** uint8 PWM_Buzz_initVar = 0u;
+  33:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  34:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  35:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+  36:Generated_Source\PSoC5/PWM_Buzz.c **** * Function Name: PWM_Buzz_Start
+  37:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************
+  38:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  39:Generated_Source\PSoC5/PWM_Buzz.c **** * Summary:
+  40:Generated_Source\PSoC5/PWM_Buzz.c **** *  The start function initializes the pwm with the default values, the
+  41:Generated_Source\PSoC5/PWM_Buzz.c **** *  enables the counter to begin counting.  It does not enable interrupts,
+  42:Generated_Source\PSoC5/PWM_Buzz.c **** *  the EnableInt command should be called if interrupt generation is required.
+  43:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  44:Generated_Source\PSoC5/PWM_Buzz.c **** * Parameters:
+  45:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+  46:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  47:Generated_Source\PSoC5/PWM_Buzz.c **** * Return:
+  48:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+  49:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  50:Generated_Source\PSoC5/PWM_Buzz.c **** * Global variables:
+  51:Generated_Source\PSoC5/PWM_Buzz.c **** *  PWM_Buzz_initVar: Is modified when this function is called for the
+  52:Generated_Source\PSoC5/PWM_Buzz.c **** *   first time. Is used to ensure that initialization happens only once.
+  53:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  54:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************/
+  55:Generated_Source\PSoC5/PWM_Buzz.c **** void PWM_Buzz_Start(void) 
+  56:Generated_Source\PSoC5/PWM_Buzz.c **** {
+  33              		.loc 1 56 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
+  57:Generated_Source\PSoC5/PWM_Buzz.c ****     /* If not Initialized then initialize all required hardware and software */
+  58:Generated_Source\PSoC5/PWM_Buzz.c ****     if(PWM_Buzz_initVar == 0u)
+  43              		.loc 1 58 0
+  44 0004 054B     		ldr	r3, .L3
+  45 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  46 0008 002B     		cmp	r3, #0
+  47 000a 04D1     		bne	.L2
+  59:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+  60:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_Init();
+  48              		.loc 1 60 0
+  49 000c FFF7FEFF 		bl	PWM_Buzz_Init
+  61:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_initVar = 1u;
+  50              		.loc 1 61 0
+  51 0010 024B     		ldr	r3, .L3
+  52 0012 0122     		movs	r2, #1
+  53 0014 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 3
+
+
+  54              	.L2:
+  62:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+  63:Generated_Source\PSoC5/PWM_Buzz.c ****     PWM_Buzz_Enable();
+  55              		.loc 1 63 0
+  56 0016 FFF7FEFF 		bl	PWM_Buzz_Enable
+  64:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  65:Generated_Source\PSoC5/PWM_Buzz.c **** }
+  57              		.loc 1 65 0
+  58 001a 80BD     		pop	{r7, pc}
+  59              	.L4:
+  60              		.align	2
+  61              	.L3:
+  62 001c 00000000 		.word	PWM_Buzz_initVar
+  63              		.cfi_endproc
+  64              	.LFE0:
+  65              		.size	PWM_Buzz_Start, .-PWM_Buzz_Start
+  66              		.section	.text.PWM_Buzz_Init,"ax",%progbits
+  67              		.align	2
+  68              		.global	PWM_Buzz_Init
+  69              		.thumb
+  70              		.thumb_func
+  71              		.type	PWM_Buzz_Init, %function
+  72              	PWM_Buzz_Init:
+  73              	.LFB1:
+  66:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  67:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  68:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+  69:Generated_Source\PSoC5/PWM_Buzz.c **** * Function Name: PWM_Buzz_Init
+  70:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************
+  71:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  72:Generated_Source\PSoC5/PWM_Buzz.c **** * Summary:
+  73:Generated_Source\PSoC5/PWM_Buzz.c **** *  Initialize component's parameters to the parameters set by user in the
+  74:Generated_Source\PSoC5/PWM_Buzz.c **** *  customizer of the component placed onto schematic. Usually called in
+  75:Generated_Source\PSoC5/PWM_Buzz.c **** *  PWM_Buzz_Start().
+  76:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  77:Generated_Source\PSoC5/PWM_Buzz.c **** * Parameters:
+  78:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+  79:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  80:Generated_Source\PSoC5/PWM_Buzz.c **** * Return:
+  81:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+  82:Generated_Source\PSoC5/PWM_Buzz.c **** *
+  83:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************/
+  84:Generated_Source\PSoC5/PWM_Buzz.c **** void PWM_Buzz_Init(void) 
+  85:Generated_Source\PSoC5/PWM_Buzz.c **** {
+  74              		.loc 1 85 0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 8
+  77              		@ frame_needed = 1, uses_anonymous_args = 0
+  78 0000 80B5     		push	{r7, lr}
+  79              		.cfi_def_cfa_offset 8
+  80              		.cfi_offset 7, -8
+  81              		.cfi_offset 14, -4
+  82 0002 82B0     		sub	sp, sp, #8
+  83              		.cfi_def_cfa_offset 16
+  84 0004 00AF     		add	r7, sp, #0
+  85              		.cfi_def_cfa_register 7
+  86:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UsingFixedFunction || PWM_Buzz_UseControl)
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 4
+
+
+  87:Generated_Source\PSoC5/PWM_Buzz.c ****         uint8 ctrl;
+  88:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction || PWM_Buzz_UseControl) */
+  89:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  90:Generated_Source\PSoC5/PWM_Buzz.c ****     #if(!PWM_Buzz_UsingFixedFunction)
+  91:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(PWM_Buzz_UseStatus)
+  92:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Interrupt State Backup for Critical Region*/
+  93:Generated_Source\PSoC5/PWM_Buzz.c ****             uint8 PWM_Buzz_interruptState;
+  94:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UseStatus) */
+  95:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (!PWM_Buzz_UsingFixedFunction) */
+  96:Generated_Source\PSoC5/PWM_Buzz.c **** 
+  97:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UsingFixedFunction)
+  98:Generated_Source\PSoC5/PWM_Buzz.c ****         /* You are allowed to write the compare value (FF only) */
+  99:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_CONTROL |= PWM_Buzz_CFG0_MODE;
+ 100:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_DeadBand2_4)
+ 101:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_CONTROL |= PWM_Buzz_CFG0_DB;
+ 102:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_DeadBand2_4) */
+ 103:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 104:Generated_Source\PSoC5/PWM_Buzz.c ****         ctrl = PWM_Buzz_CONTROL3 & ((uint8 )(~PWM_Buzz_CTRL_CMPMODE1_MASK));
+ 105:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_CONTROL3 = ctrl | PWM_Buzz_DEFAULT_COMPARE1_MODE;
+ 106:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 107:Generated_Source\PSoC5/PWM_Buzz.c ****          /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ 108:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_RT1 &= ((uint8)(~PWM_Buzz_RT1_MASK));
+ 109:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_RT1 |= PWM_Buzz_SYNC;
+ 110:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 111:Generated_Source\PSoC5/PWM_Buzz.c ****         /*Enable DSI Sync all all inputs of the PWM*/
+ 112:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_RT1 &= ((uint8)(~PWM_Buzz_SYNCDSI_MASK));
+ 113:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_RT1 |= PWM_Buzz_SYNCDSI_EN;
+ 114:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 115:Generated_Source\PSoC5/PWM_Buzz.c ****     #elif (PWM_Buzz_UseControl)
+ 116:Generated_Source\PSoC5/PWM_Buzz.c ****         /* Set the default compare mode defined in the parameter */
+ 117:Generated_Source\PSoC5/PWM_Buzz.c ****         ctrl = PWM_Buzz_CONTROL & ((uint8)(~PWM_Buzz_CTRL_CMPMODE2_MASK)) &
+ 118:Generated_Source\PSoC5/PWM_Buzz.c ****                 ((uint8)(~PWM_Buzz_CTRL_CMPMODE1_MASK));
+ 119:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_CONTROL = ctrl | PWM_Buzz_DEFAULT_COMPARE2_MODE |
+ 120:Generated_Source\PSoC5/PWM_Buzz.c ****                                    PWM_Buzz_DEFAULT_COMPARE1_MODE;
+ 121:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 122:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 123:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (!PWM_Buzz_UsingFixedFunction)
+ 124:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_Resolution == 8)
+ 125:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Set FIFO 0 to 1 byte register for period*/
+ 126:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_AUX_CONTROLDP0 |= (PWM_Buzz_AUX_CTRL_FIFO0_CLR);
+  86              		.loc 1 126 0
+  87 0006 144A     		ldr	r2, .L6
+  88 0008 134B     		ldr	r3, .L6
+  89 000a 1B78     		ldrb	r3, [r3]
+  90 000c DBB2     		uxtb	r3, r3
+  91 000e 43F00103 		orr	r3, r3, #1
+  92 0012 DBB2     		uxtb	r3, r3
+  93 0014 1370     		strb	r3, [r2]
+ 127:Generated_Source\PSoC5/PWM_Buzz.c ****         #else /* (PWM_Buzz_Resolution == 16)*/
+ 128:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Set FIFO 0 to 1 byte register for period */
+ 129:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_AUX_CONTROLDP0 |= (PWM_Buzz_AUX_CTRL_FIFO0_CLR);
+ 130:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_AUX_CONTROLDP1 |= (PWM_Buzz_AUX_CTRL_FIFO0_CLR);
+ 131:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_Resolution == 8) */
+ 132:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 133:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_WriteCounter(PWM_Buzz_INIT_PERIOD_VALUE);
+  94              		.loc 1 133 0
+  95 0016 D220     		movs	r0, #210
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 5
+
+
+  96 0018 FFF7FEFF 		bl	PWM_Buzz_WriteCounter
+ 134:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (!PWM_Buzz_UsingFixedFunction) */
+ 135:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 136:Generated_Source\PSoC5/PWM_Buzz.c ****     PWM_Buzz_WritePeriod(PWM_Buzz_INIT_PERIOD_VALUE);
+  97              		.loc 1 136 0
+  98 001c D220     		movs	r0, #210
+  99 001e FFF7FEFF 		bl	PWM_Buzz_WritePeriod
+ 137:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 138:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_UseOneCompareMode)
+ 139:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_WriteCompare(PWM_Buzz_INIT_COMPARE_VALUE1);
+ 100              		.loc 1 139 0
+ 101 0022 6920     		movs	r0, #105
+ 102 0024 FFF7FEFF 		bl	PWM_Buzz_WriteCompare
+ 140:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 141:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_WriteCompare1(PWM_Buzz_INIT_COMPARE_VALUE1);
+ 142:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_WriteCompare2(PWM_Buzz_INIT_COMPARE_VALUE2);
+ 143:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UseOneCompareMode) */
+ 144:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 145:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_KillModeMinTime)
+ 146:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_WriteKillTime(PWM_Buzz_MinimumKillTime);
+ 147:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_KillModeMinTime) */
+ 148:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 149:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_DeadBandUsed)
+ 150:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_WriteDeadTime(PWM_Buzz_INIT_DEAD_TIME);
+ 151:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_DeadBandUsed) */
+ 152:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 153:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UseStatus || PWM_Buzz_UsingFixedFunction)
+ 154:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_SetInterruptMode(PWM_Buzz_INIT_INTERRUPTS_MODE);
+ 103              		.loc 1 154 0
+ 104 0028 0020     		movs	r0, #0
+ 105 002a FFF7FEFF 		bl	PWM_Buzz_SetInterruptMode
+ 155:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UseStatus || PWM_Buzz_UsingFixedFunction) */
+ 156:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 157:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UsingFixedFunction)
+ 158:Generated_Source\PSoC5/PWM_Buzz.c ****         /* Globally Enable the Fixed Function Block chosen */
+ 159:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_GLOBAL_ENABLE |= PWM_Buzz_BLOCK_EN_MASK;
+ 160:Generated_Source\PSoC5/PWM_Buzz.c ****         /* Set the Interrupt source to come from the status register */
+ 161:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_CONTROL2 |= PWM_Buzz_CTRL2_IRQ_SEL;
+ 162:Generated_Source\PSoC5/PWM_Buzz.c ****     #else
+ 163:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(PWM_Buzz_UseStatus)
+ 164:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 165:Generated_Source\PSoC5/PWM_Buzz.c ****             /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region cri
+ 166:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Enter Critical Region*/
+ 167:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_interruptState = CyEnterCriticalSection();
+ 106              		.loc 1 167 0
+ 107 002e FFF7FEFF 		bl	CyEnterCriticalSection
+ 108 0032 0346     		mov	r3, r0
+ 109 0034 FB71     		strb	r3, [r7, #7]
+ 168:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Use the interrupt output of the status register for IRQ output */
+ 169:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_STATUS_AUX_CTRL |= PWM_Buzz_STATUS_ACTL_INT_EN_MASK;
+ 110              		.loc 1 169 0
+ 111 0036 084A     		ldr	r2, .L6
+ 112 0038 074B     		ldr	r3, .L6
+ 113 003a 1B78     		ldrb	r3, [r3]
+ 114 003c DBB2     		uxtb	r3, r3
+ 115 003e 43F01003 		orr	r3, r3, #16
+ 116 0042 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 6
+
+
+ 117 0044 1370     		strb	r3, [r2]
+ 170:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 171:Generated_Source\PSoC5/PWM_Buzz.c ****              /* Exit Critical Region*/
+ 172:Generated_Source\PSoC5/PWM_Buzz.c ****             CyExitCriticalSection(PWM_Buzz_interruptState);
+ 118              		.loc 1 172 0
+ 119 0046 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 120 0048 1846     		mov	r0, r3
+ 121 004a FFF7FEFF 		bl	CyExitCriticalSection
+ 173:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 174:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Clear the FIFO to enable the PWM_Buzz_STATUS_FIFOFULL
+ 175:Generated_Source\PSoC5/PWM_Buzz.c ****                    bit to be set on FIFO full. */
+ 176:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_ClearFIFO();
+ 122              		.loc 1 176 0
+ 123 004e FFF7FEFF 		bl	PWM_Buzz_ClearFIFO
+ 177:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UseStatus) */
+ 178:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 179:Generated_Source\PSoC5/PWM_Buzz.c **** }
+ 124              		.loc 1 179 0
+ 125 0052 0837     		adds	r7, r7, #8
+ 126              		.cfi_def_cfa_offset 8
+ 127 0054 BD46     		mov	sp, r7
+ 128              		.cfi_def_cfa_register 13
+ 129              		@ sp needed
+ 130 0056 80BD     		pop	{r7, pc}
+ 131              	.L7:
+ 132              		.align	2
+ 133              	.L6:
+ 134 0058 93640040 		.word	1073767571
+ 135              		.cfi_endproc
+ 136              	.LFE1:
+ 137              		.size	PWM_Buzz_Init, .-PWM_Buzz_Init
+ 138              		.section	.text.PWM_Buzz_Enable,"ax",%progbits
+ 139              		.align	2
+ 140              		.global	PWM_Buzz_Enable
+ 141              		.thumb
+ 142              		.thumb_func
+ 143              		.type	PWM_Buzz_Enable, %function
+ 144              	PWM_Buzz_Enable:
+ 145              	.LFB2:
+ 180:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 181:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 182:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+ 183:Generated_Source\PSoC5/PWM_Buzz.c **** * Function Name: PWM_Buzz_Enable
+ 184:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************
+ 185:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 186:Generated_Source\PSoC5/PWM_Buzz.c **** * Summary:
+ 187:Generated_Source\PSoC5/PWM_Buzz.c **** *  Enables the PWM block operation
+ 188:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 189:Generated_Source\PSoC5/PWM_Buzz.c **** * Parameters:
+ 190:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+ 191:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 192:Generated_Source\PSoC5/PWM_Buzz.c **** * Return:
+ 193:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+ 194:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 195:Generated_Source\PSoC5/PWM_Buzz.c **** * Side Effects:
+ 196:Generated_Source\PSoC5/PWM_Buzz.c **** *  This works only if software enable mode is chosen
+ 197:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 7
+
+
+ 198:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************/
+ 199:Generated_Source\PSoC5/PWM_Buzz.c **** void PWM_Buzz_Enable(void) 
+ 200:Generated_Source\PSoC5/PWM_Buzz.c **** {
+ 146              		.loc 1 200 0
+ 147              		.cfi_startproc
+ 148              		@ args = 0, pretend = 0, frame = 0
+ 149              		@ frame_needed = 1, uses_anonymous_args = 0
+ 150              		@ link register save eliminated.
+ 151 0000 80B4     		push	{r7}
+ 152              		.cfi_def_cfa_offset 4
+ 153              		.cfi_offset 7, -4
+ 154 0002 00AF     		add	r7, sp, #0
+ 155              		.cfi_def_cfa_register 7
+ 201:Generated_Source\PSoC5/PWM_Buzz.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 202:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UsingFixedFunction)
+ 203:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_GLOBAL_ENABLE |= PWM_Buzz_BLOCK_EN_MASK;
+ 204:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_GLOBAL_STBY_ENABLE |= PWM_Buzz_BLOCK_STBY_EN_MASK;
+ 205:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 206:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 207:Generated_Source\PSoC5/PWM_Buzz.c ****     /* Enable the PWM from the control register  */
+ 208:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UseControl || PWM_Buzz_UsingFixedFunction)
+ 209:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_CONTROL |= PWM_Buzz_CTRL_ENABLE;
+ 210:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UseControl || PWM_Buzz_UsingFixedFunction) */
+ 211:Generated_Source\PSoC5/PWM_Buzz.c **** }
+ 156              		.loc 1 211 0
+ 157 0004 BD46     		mov	sp, r7
+ 158              		.cfi_def_cfa_register 13
+ 159              		@ sp needed
+ 160 0006 5DF8047B 		ldr	r7, [sp], #4
+ 161              		.cfi_restore 7
+ 162              		.cfi_def_cfa_offset 0
+ 163 000a 7047     		bx	lr
+ 164              		.cfi_endproc
+ 165              	.LFE2:
+ 166              		.size	PWM_Buzz_Enable, .-PWM_Buzz_Enable
+ 167              		.section	.text.PWM_Buzz_Stop,"ax",%progbits
+ 168              		.align	2
+ 169              		.global	PWM_Buzz_Stop
+ 170              		.thumb
+ 171              		.thumb_func
+ 172              		.type	PWM_Buzz_Stop, %function
+ 173              	PWM_Buzz_Stop:
+ 174              	.LFB3:
+ 212:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 213:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 214:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+ 215:Generated_Source\PSoC5/PWM_Buzz.c **** * Function Name: PWM_Buzz_Stop
+ 216:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************
+ 217:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 218:Generated_Source\PSoC5/PWM_Buzz.c **** * Summary:
+ 219:Generated_Source\PSoC5/PWM_Buzz.c **** *  The stop function halts the PWM, but does not change any modes or disable
+ 220:Generated_Source\PSoC5/PWM_Buzz.c **** *  interrupts.
+ 221:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 222:Generated_Source\PSoC5/PWM_Buzz.c **** * Parameters:
+ 223:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+ 224:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 225:Generated_Source\PSoC5/PWM_Buzz.c **** * Return:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 8
+
+
+ 226:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+ 227:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 228:Generated_Source\PSoC5/PWM_Buzz.c **** * Side Effects:
+ 229:Generated_Source\PSoC5/PWM_Buzz.c **** *  If the Enable mode is set to Hardware only then this function
+ 230:Generated_Source\PSoC5/PWM_Buzz.c **** *  has no effect on the operation of the PWM
+ 231:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 232:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************/
+ 233:Generated_Source\PSoC5/PWM_Buzz.c **** void PWM_Buzz_Stop(void) 
+ 234:Generated_Source\PSoC5/PWM_Buzz.c **** {
+ 175              		.loc 1 234 0
+ 176              		.cfi_startproc
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 1, uses_anonymous_args = 0
+ 179              		@ link register save eliminated.
+ 180 0000 80B4     		push	{r7}
+ 181              		.cfi_def_cfa_offset 4
+ 182              		.cfi_offset 7, -4
+ 183 0002 00AF     		add	r7, sp, #0
+ 184              		.cfi_def_cfa_register 7
+ 235:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UseControl || PWM_Buzz_UsingFixedFunction)
+ 236:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_CONTROL &= ((uint8)(~PWM_Buzz_CTRL_ENABLE));
+ 237:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UseControl || PWM_Buzz_UsingFixedFunction) */
+ 238:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 239:Generated_Source\PSoC5/PWM_Buzz.c ****     /* Globally disable the Fixed Function Block chosen */
+ 240:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UsingFixedFunction)
+ 241:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_GLOBAL_ENABLE &= ((uint8)(~PWM_Buzz_BLOCK_EN_MASK));
+ 242:Generated_Source\PSoC5/PWM_Buzz.c ****         PWM_Buzz_GLOBAL_STBY_ENABLE &= ((uint8)(~PWM_Buzz_BLOCK_STBY_EN_MASK));
+ 243:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 244:Generated_Source\PSoC5/PWM_Buzz.c **** }
+ 185              		.loc 1 244 0
+ 186 0004 BD46     		mov	sp, r7
+ 187              		.cfi_def_cfa_register 13
+ 188              		@ sp needed
+ 189 0006 5DF8047B 		ldr	r7, [sp], #4
+ 190              		.cfi_restore 7
+ 191              		.cfi_def_cfa_offset 0
+ 192 000a 7047     		bx	lr
+ 193              		.cfi_endproc
+ 194              	.LFE3:
+ 195              		.size	PWM_Buzz_Stop, .-PWM_Buzz_Stop
+ 196              		.section	.text.PWM_Buzz_WriteCounter,"ax",%progbits
+ 197              		.align	2
+ 198              		.global	PWM_Buzz_WriteCounter
+ 199              		.thumb
+ 200              		.thumb_func
+ 201              		.type	PWM_Buzz_WriteCounter, %function
+ 202              	PWM_Buzz_WriteCounter:
+ 203              	.LFB4:
+ 245:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 246:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_UseOneCompareMode)
+ 247:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_CompareMode1SW)
+ 248:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 249:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 250:Generated_Source\PSoC5/PWM_Buzz.c ****         /*******************************************************************************
+ 251:Generated_Source\PSoC5/PWM_Buzz.c ****         * Function Name: PWM_Buzz_SetCompareMode
+ 252:Generated_Source\PSoC5/PWM_Buzz.c ****         ********************************************************************************
+ 253:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 9
+
+
+ 254:Generated_Source\PSoC5/PWM_Buzz.c ****         * Summary:
+ 255:Generated_Source\PSoC5/PWM_Buzz.c ****         *  This function writes the Compare Mode for the pwm output when in Dither mode,
+ 256:Generated_Source\PSoC5/PWM_Buzz.c ****         *  Center Align Mode or One Output Mode.
+ 257:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 258:Generated_Source\PSoC5/PWM_Buzz.c ****         * Parameters:
+ 259:Generated_Source\PSoC5/PWM_Buzz.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 260:Generated_Source\PSoC5/PWM_Buzz.c ****         *                defined in the H file as input arguments.
+ 261:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 262:Generated_Source\PSoC5/PWM_Buzz.c ****         * Return:
+ 263:Generated_Source\PSoC5/PWM_Buzz.c ****         *  None
+ 264:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 265:Generated_Source\PSoC5/PWM_Buzz.c ****         *******************************************************************************/
+ 266:Generated_Source\PSoC5/PWM_Buzz.c ****         void PWM_Buzz_SetCompareMode(uint8 comparemode) 
+ 267:Generated_Source\PSoC5/PWM_Buzz.c ****         {
+ 268:Generated_Source\PSoC5/PWM_Buzz.c ****             #if(PWM_Buzz_UsingFixedFunction)
+ 269:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 270:Generated_Source\PSoC5/PWM_Buzz.c ****                 #if(0 != PWM_Buzz_CTRL_CMPMODE1_SHIFT)
+ 271:Generated_Source\PSoC5/PWM_Buzz.c ****                     uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Buzz_CTRL_CMPMODE1
+ 272:Generated_Source\PSoC5/PWM_Buzz.c ****                 #else
+ 273:Generated_Source\PSoC5/PWM_Buzz.c ****                     uint8 comparemodemasked = comparemode;
+ 274:Generated_Source\PSoC5/PWM_Buzz.c ****                 #endif /* (0 != PWM_Buzz_CTRL_CMPMODE1_SHIFT) */
+ 275:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 276:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_CONTROL3 &= ((uint8)(~PWM_Buzz_CTRL_CMPMODE1_MASK)); /*Clear Existing Data
+ 277:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_CONTROL3 |= comparemodemasked;
+ 278:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 279:Generated_Source\PSoC5/PWM_Buzz.c ****             #elif (PWM_Buzz_UseControl)
+ 280:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 281:Generated_Source\PSoC5/PWM_Buzz.c ****                 #if(0 != PWM_Buzz_CTRL_CMPMODE1_SHIFT)
+ 282:Generated_Source\PSoC5/PWM_Buzz.c ****                     uint8 comparemode1masked = ((uint8)((uint8)comparemode << PWM_Buzz_CTRL_CMPMODE
+ 283:Generated_Source\PSoC5/PWM_Buzz.c ****                                                 PWM_Buzz_CTRL_CMPMODE1_MASK;
+ 284:Generated_Source\PSoC5/PWM_Buzz.c ****                 #else
+ 285:Generated_Source\PSoC5/PWM_Buzz.c ****                     uint8 comparemode1masked = comparemode & PWM_Buzz_CTRL_CMPMODE1_MASK;
+ 286:Generated_Source\PSoC5/PWM_Buzz.c ****                 #endif /* (0 != PWM_Buzz_CTRL_CMPMODE1_SHIFT) */
+ 287:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 288:Generated_Source\PSoC5/PWM_Buzz.c ****                 #if(0 != PWM_Buzz_CTRL_CMPMODE2_SHIFT)
+ 289:Generated_Source\PSoC5/PWM_Buzz.c ****                     uint8 comparemode2masked = ((uint8)((uint8)comparemode << PWM_Buzz_CTRL_CMPMODE
+ 290:Generated_Source\PSoC5/PWM_Buzz.c ****                                                PWM_Buzz_CTRL_CMPMODE2_MASK;
+ 291:Generated_Source\PSoC5/PWM_Buzz.c ****                 #else
+ 292:Generated_Source\PSoC5/PWM_Buzz.c ****                     uint8 comparemode2masked = comparemode & PWM_Buzz_CTRL_CMPMODE2_MASK;
+ 293:Generated_Source\PSoC5/PWM_Buzz.c ****                 #endif /* (0 != PWM_Buzz_CTRL_CMPMODE2_SHIFT) */
+ 294:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 295:Generated_Source\PSoC5/PWM_Buzz.c ****                 /*Clear existing mode */
+ 296:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_CONTROL &= ((uint8)(~(PWM_Buzz_CTRL_CMPMODE1_MASK |
+ 297:Generated_Source\PSoC5/PWM_Buzz.c ****                                             PWM_Buzz_CTRL_CMPMODE2_MASK)));
+ 298:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_CONTROL |= (comparemode1masked | comparemode2masked);
+ 299:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 300:Generated_Source\PSoC5/PWM_Buzz.c ****             #else
+ 301:Generated_Source\PSoC5/PWM_Buzz.c ****                 uint8 temp = comparemode;
+ 302:Generated_Source\PSoC5/PWM_Buzz.c ****             #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 303:Generated_Source\PSoC5/PWM_Buzz.c ****         }
+ 304:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* PWM_Buzz_CompareMode1SW */
+ 305:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 306:Generated_Source\PSoC5/PWM_Buzz.c **** #else /* UseOneCompareMode */
+ 307:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 308:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_CompareMode1SW)
+ 309:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 310:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 10
+
+
+ 311:Generated_Source\PSoC5/PWM_Buzz.c ****         /*******************************************************************************
+ 312:Generated_Source\PSoC5/PWM_Buzz.c ****         * Function Name: PWM_Buzz_SetCompareMode1
+ 313:Generated_Source\PSoC5/PWM_Buzz.c ****         ********************************************************************************
+ 314:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 315:Generated_Source\PSoC5/PWM_Buzz.c ****         * Summary:
+ 316:Generated_Source\PSoC5/PWM_Buzz.c ****         *  This function writes the Compare Mode for the pwm or pwm1 output
+ 317:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 318:Generated_Source\PSoC5/PWM_Buzz.c ****         * Parameters:
+ 319:Generated_Source\PSoC5/PWM_Buzz.c ****         *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 320:Generated_Source\PSoC5/PWM_Buzz.c ****         *                defined in the H file as input arguments.
+ 321:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 322:Generated_Source\PSoC5/PWM_Buzz.c ****         * Return:
+ 323:Generated_Source\PSoC5/PWM_Buzz.c ****         *  None
+ 324:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 325:Generated_Source\PSoC5/PWM_Buzz.c ****         *******************************************************************************/
+ 326:Generated_Source\PSoC5/PWM_Buzz.c ****         void PWM_Buzz_SetCompareMode1(uint8 comparemode) 
+ 327:Generated_Source\PSoC5/PWM_Buzz.c ****         {
+ 328:Generated_Source\PSoC5/PWM_Buzz.c ****             #if(0 != PWM_Buzz_CTRL_CMPMODE1_SHIFT)
+ 329:Generated_Source\PSoC5/PWM_Buzz.c ****                 uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Buzz_CTRL_CMPMODE1_SHI
+ 330:Generated_Source\PSoC5/PWM_Buzz.c ****                                            PWM_Buzz_CTRL_CMPMODE1_MASK;
+ 331:Generated_Source\PSoC5/PWM_Buzz.c ****             #else
+ 332:Generated_Source\PSoC5/PWM_Buzz.c ****                 uint8 comparemodemasked = comparemode & PWM_Buzz_CTRL_CMPMODE1_MASK;
+ 333:Generated_Source\PSoC5/PWM_Buzz.c ****             #endif /* (0 != PWM_Buzz_CTRL_CMPMODE1_SHIFT) */
+ 334:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 335:Generated_Source\PSoC5/PWM_Buzz.c ****             #if (PWM_Buzz_UseControl)
+ 336:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_CONTROL &= ((uint8)(~PWM_Buzz_CTRL_CMPMODE1_MASK)); /*Clear existing mode 
+ 337:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_CONTROL |= comparemodemasked;
+ 338:Generated_Source\PSoC5/PWM_Buzz.c ****             #endif /* (PWM_Buzz_UseControl) */
+ 339:Generated_Source\PSoC5/PWM_Buzz.c ****         }
+ 340:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* PWM_Buzz_CompareMode1SW */
+ 341:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 342:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_CompareMode2SW)
+ 343:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 344:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 345:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 346:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_SetCompareMode2
+ 347:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 348:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 349:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 350:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function writes the Compare Mode for the pwm or pwm2 output
+ 351:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 352:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 353:Generated_Source\PSoC5/PWM_Buzz.c ****     *  comparemode:  The new compare mode for the PWM output. Use the compare types
+ 354:Generated_Source\PSoC5/PWM_Buzz.c ****     *                defined in the H file as input arguments.
+ 355:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 356:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 357:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 358:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 359:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 360:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_SetCompareMode2(uint8 comparemode) 
+ 361:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 362:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 363:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(0 != PWM_Buzz_CTRL_CMPMODE2_SHIFT)
+ 364:Generated_Source\PSoC5/PWM_Buzz.c ****             uint8 comparemodemasked = ((uint8)((uint8)comparemode << PWM_Buzz_CTRL_CMPMODE2_SHIFT))
+ 365:Generated_Source\PSoC5/PWM_Buzz.c ****                                                  PWM_Buzz_CTRL_CMPMODE2_MASK;
+ 366:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 367:Generated_Source\PSoC5/PWM_Buzz.c ****             uint8 comparemodemasked = comparemode & PWM_Buzz_CTRL_CMPMODE2_MASK;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 11
+
+
+ 368:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (0 != PWM_Buzz_CTRL_CMPMODE2_SHIFT) */
+ 369:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 370:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_UseControl)
+ 371:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_CONTROL &= ((uint8)(~PWM_Buzz_CTRL_CMPMODE2_MASK)); /*Clear existing mode */
+ 372:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_CONTROL |= comparemodemasked;
+ 373:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UseControl) */
+ 374:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 375:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /*PWM_Buzz_CompareMode2SW */
+ 376:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 377:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* UseOneCompareMode */
+ 378:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 379:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 380:Generated_Source\PSoC5/PWM_Buzz.c **** #if (!PWM_Buzz_UsingFixedFunction)
+ 381:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 382:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 383:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 384:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_WriteCounter
+ 385:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 386:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 387:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 388:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Writes a new counter value directly to the counter register. This will be
+ 389:Generated_Source\PSoC5/PWM_Buzz.c ****     *  implemented for that currently running period and only that period. This API
+ 390:Generated_Source\PSoC5/PWM_Buzz.c ****     *  is valid only for UDB implementation and not available for fixed function
+ 391:Generated_Source\PSoC5/PWM_Buzz.c ****     *  PWM implementation.
+ 392:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 393:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 394:Generated_Source\PSoC5/PWM_Buzz.c ****     *  counter:  The period new period counter value.
+ 395:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 396:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 397:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 398:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 399:Generated_Source\PSoC5/PWM_Buzz.c ****     * Side Effects:
+ 400:Generated_Source\PSoC5/PWM_Buzz.c ****     *  The PWM Period will be reloaded when a counter value will be a zero
+ 401:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 402:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 403:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_WriteCounter(uint8 counter) \
+ 404:Generated_Source\PSoC5/PWM_Buzz.c ****                                        
+ 405:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 204              		.loc 1 405 0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 8
+ 207              		@ frame_needed = 1, uses_anonymous_args = 0
+ 208              		@ link register save eliminated.
+ 209 0000 80B4     		push	{r7}
+ 210              		.cfi_def_cfa_offset 4
+ 211              		.cfi_offset 7, -4
+ 212 0002 83B0     		sub	sp, sp, #12
+ 213              		.cfi_def_cfa_offset 16
+ 214 0004 00AF     		add	r7, sp, #0
+ 215              		.cfi_def_cfa_register 7
+ 216 0006 0346     		mov	r3, r0
+ 217 0008 FB71     		strb	r3, [r7, #7]
+ 406:Generated_Source\PSoC5/PWM_Buzz.c ****         CY_SET_REG8(PWM_Buzz_COUNTER_LSB_PTR, counter);
+ 218              		.loc 1 406 0
+ 219 000a 044A     		ldr	r2, .L11
+ 220 000c FB79     		ldrb	r3, [r7, #7]
+ 221 000e 1370     		strb	r3, [r2]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 12
+
+
+ 407:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 222              		.loc 1 407 0
+ 223 0010 0C37     		adds	r7, r7, #12
+ 224              		.cfi_def_cfa_offset 4
+ 225 0012 BD46     		mov	sp, r7
+ 226              		.cfi_def_cfa_register 13
+ 227              		@ sp needed
+ 228 0014 5DF8047B 		ldr	r7, [sp], #4
+ 229              		.cfi_restore 7
+ 230              		.cfi_def_cfa_offset 0
+ 231 0018 7047     		bx	lr
+ 232              	.L12:
+ 233 001a 00BF     		.align	2
+ 234              	.L11:
+ 235 001c 03640040 		.word	1073767427
+ 236              		.cfi_endproc
+ 237              	.LFE4:
+ 238              		.size	PWM_Buzz_WriteCounter, .-PWM_Buzz_WriteCounter
+ 239              		.section	.text.PWM_Buzz_ReadCounter,"ax",%progbits
+ 240              		.align	2
+ 241              		.global	PWM_Buzz_ReadCounter
+ 242              		.thumb
+ 243              		.thumb_func
+ 244              		.type	PWM_Buzz_ReadCounter, %function
+ 245              	PWM_Buzz_ReadCounter:
+ 246              	.LFB5:
+ 408:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 409:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 410:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 411:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadCounter
+ 412:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 413:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 414:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 415:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function returns the current value of the counter.  It doesn't matter
+ 416:Generated_Source\PSoC5/PWM_Buzz.c ****     *  if the counter is enabled or running.
+ 417:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 418:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 419:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 420:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 421:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 422:Generated_Source\PSoC5/PWM_Buzz.c ****     *  The current value of the counter.
+ 423:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 424:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 425:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadCounter(void) 
+ 426:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 247              		.loc 1 426 0
+ 248              		.cfi_startproc
+ 249              		@ args = 0, pretend = 0, frame = 0
+ 250              		@ frame_needed = 1, uses_anonymous_args = 0
+ 251              		@ link register save eliminated.
+ 252 0000 80B4     		push	{r7}
+ 253              		.cfi_def_cfa_offset 4
+ 254              		.cfi_offset 7, -4
+ 255 0002 00AF     		add	r7, sp, #0
+ 256              		.cfi_def_cfa_register 7
+ 427:Generated_Source\PSoC5/PWM_Buzz.c ****         /* Force capture by reading Accumulator */
+ 428:Generated_Source\PSoC5/PWM_Buzz.c ****         /* Must first do a software capture to be able to read the counter */
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 13
+
+
+ 429:Generated_Source\PSoC5/PWM_Buzz.c ****         /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 430:Generated_Source\PSoC5/PWM_Buzz.c ****           (void)CY_GET_REG8(PWM_Buzz_COUNTERCAP_LSB_PTR_8BIT);
+ 257              		.loc 1 430 0
+ 258 0004 044B     		ldr	r3, .L15
+ 259 0006 1B78     		ldrb	r3, [r3]
+ 431:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 432:Generated_Source\PSoC5/PWM_Buzz.c ****         /* Read the data from the FIFO */
+ 433:Generated_Source\PSoC5/PWM_Buzz.c ****         return (CY_GET_REG8(PWM_Buzz_CAPTURE_LSB_PTR));
+ 260              		.loc 1 433 0
+ 261 0008 044B     		ldr	r3, .L15+4
+ 262 000a 1B78     		ldrb	r3, [r3]
+ 263 000c DBB2     		uxtb	r3, r3
+ 434:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 264              		.loc 1 434 0
+ 265 000e 1846     		mov	r0, r3
+ 266 0010 BD46     		mov	sp, r7
+ 267              		.cfi_def_cfa_register 13
+ 268              		@ sp needed
+ 269 0012 5DF8047B 		ldr	r7, [sp], #4
+ 270              		.cfi_restore 7
+ 271              		.cfi_def_cfa_offset 0
+ 272 0016 7047     		bx	lr
+ 273              	.L16:
+ 274              		.align	2
+ 275              	.L15:
+ 276 0018 13640040 		.word	1073767443
+ 277 001c 53640040 		.word	1073767507
+ 278              		.cfi_endproc
+ 279              	.LFE5:
+ 280              		.size	PWM_Buzz_ReadCounter, .-PWM_Buzz_ReadCounter
+ 281              		.section	.text.PWM_Buzz_ClearFIFO,"ax",%progbits
+ 282              		.align	2
+ 283              		.global	PWM_Buzz_ClearFIFO
+ 284              		.thumb
+ 285              		.thumb_func
+ 286              		.type	PWM_Buzz_ClearFIFO, %function
+ 287              	PWM_Buzz_ClearFIFO:
+ 288              	.LFB6:
+ 435:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 436:Generated_Source\PSoC5/PWM_Buzz.c ****     #if (PWM_Buzz_UseStatus)
+ 437:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 438:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 439:Generated_Source\PSoC5/PWM_Buzz.c ****         /*******************************************************************************
+ 440:Generated_Source\PSoC5/PWM_Buzz.c ****         * Function Name: PWM_Buzz_ClearFIFO
+ 441:Generated_Source\PSoC5/PWM_Buzz.c ****         ********************************************************************************
+ 442:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 443:Generated_Source\PSoC5/PWM_Buzz.c ****         * Summary:
+ 444:Generated_Source\PSoC5/PWM_Buzz.c ****         *  This function clears all capture data from the capture FIFO
+ 445:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 446:Generated_Source\PSoC5/PWM_Buzz.c ****         * Parameters:
+ 447:Generated_Source\PSoC5/PWM_Buzz.c ****         *  None
+ 448:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 449:Generated_Source\PSoC5/PWM_Buzz.c ****         * Return:
+ 450:Generated_Source\PSoC5/PWM_Buzz.c ****         *  None
+ 451:Generated_Source\PSoC5/PWM_Buzz.c ****         *
+ 452:Generated_Source\PSoC5/PWM_Buzz.c ****         *******************************************************************************/
+ 453:Generated_Source\PSoC5/PWM_Buzz.c ****         void PWM_Buzz_ClearFIFO(void) 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 14
+
+
+ 454:Generated_Source\PSoC5/PWM_Buzz.c ****         {
+ 289              		.loc 1 454 0
+ 290              		.cfi_startproc
+ 291              		@ args = 0, pretend = 0, frame = 0
+ 292              		@ frame_needed = 1, uses_anonymous_args = 0
+ 293 0000 80B5     		push	{r7, lr}
+ 294              		.cfi_def_cfa_offset 8
+ 295              		.cfi_offset 7, -8
+ 296              		.cfi_offset 14, -4
+ 297 0002 00AF     		add	r7, sp, #0
+ 298              		.cfi_def_cfa_register 7
+ 455:Generated_Source\PSoC5/PWM_Buzz.c ****             while(0u != (PWM_Buzz_ReadStatusRegister() & PWM_Buzz_STATUS_FIFONEMPTY))
+ 299              		.loc 1 455 0
+ 300 0004 01E0     		b	.L18
+ 301              	.L19:
+ 456:Generated_Source\PSoC5/PWM_Buzz.c ****             {
+ 457:Generated_Source\PSoC5/PWM_Buzz.c ****                 (void)PWM_Buzz_ReadCapture();
+ 302              		.loc 1 457 0
+ 303 0006 FFF7FEFF 		bl	PWM_Buzz_ReadCapture
+ 304              	.L18:
+ 455:Generated_Source\PSoC5/PWM_Buzz.c ****             while(0u != (PWM_Buzz_ReadStatusRegister() & PWM_Buzz_STATUS_FIFONEMPTY))
+ 305              		.loc 1 455 0
+ 306 000a FFF7FEFF 		bl	PWM_Buzz_ReadStatusRegister
+ 307 000e 0346     		mov	r3, r0
+ 308 0010 03F01003 		and	r3, r3, #16
+ 309 0014 002B     		cmp	r3, #0
+ 310 0016 F6D1     		bne	.L19
+ 458:Generated_Source\PSoC5/PWM_Buzz.c ****             }
+ 459:Generated_Source\PSoC5/PWM_Buzz.c ****         }
+ 311              		.loc 1 459 0
+ 312 0018 80BD     		pop	{r7, pc}
+ 313              		.cfi_endproc
+ 314              	.LFE6:
+ 315              		.size	PWM_Buzz_ClearFIFO, .-PWM_Buzz_ClearFIFO
+ 316 001a 00BF     		.section	.text.PWM_Buzz_WritePeriod,"ax",%progbits
+ 317              		.align	2
+ 318              		.global	PWM_Buzz_WritePeriod
+ 319              		.thumb
+ 320              		.thumb_func
+ 321              		.type	PWM_Buzz_WritePeriod, %function
+ 322              	PWM_Buzz_WritePeriod:
+ 323              	.LFB7:
+ 460:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 461:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* PWM_Buzz_UseStatus */
+ 462:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 463:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* !PWM_Buzz_UsingFixedFunction */
+ 464:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 465:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 466:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+ 467:Generated_Source\PSoC5/PWM_Buzz.c **** * Function Name: PWM_Buzz_WritePeriod
+ 468:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************
+ 469:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 470:Generated_Source\PSoC5/PWM_Buzz.c **** * Summary:
+ 471:Generated_Source\PSoC5/PWM_Buzz.c **** *  This function is used to change the period of the counter.  The new period
+ 472:Generated_Source\PSoC5/PWM_Buzz.c **** *  will be loaded the next time terminal count is detected.
+ 473:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 474:Generated_Source\PSoC5/PWM_Buzz.c **** * Parameters:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 15
+
+
+ 475:Generated_Source\PSoC5/PWM_Buzz.c **** *  period:  Period value. May be between 1 and (2^Resolution)-1.  A value of 0
+ 476:Generated_Source\PSoC5/PWM_Buzz.c **** *           will result in the counter remaining at zero.
+ 477:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 478:Generated_Source\PSoC5/PWM_Buzz.c **** * Return:
+ 479:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+ 480:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 481:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************/
+ 482:Generated_Source\PSoC5/PWM_Buzz.c **** void PWM_Buzz_WritePeriod(uint8 period) 
+ 483:Generated_Source\PSoC5/PWM_Buzz.c **** {
+ 324              		.loc 1 483 0
+ 325              		.cfi_startproc
+ 326              		@ args = 0, pretend = 0, frame = 8
+ 327              		@ frame_needed = 1, uses_anonymous_args = 0
+ 328              		@ link register save eliminated.
+ 329 0000 80B4     		push	{r7}
+ 330              		.cfi_def_cfa_offset 4
+ 331              		.cfi_offset 7, -4
+ 332 0002 83B0     		sub	sp, sp, #12
+ 333              		.cfi_def_cfa_offset 16
+ 334 0004 00AF     		add	r7, sp, #0
+ 335              		.cfi_def_cfa_register 7
+ 336 0006 0346     		mov	r3, r0
+ 337 0008 FB71     		strb	r3, [r7, #7]
+ 484:Generated_Source\PSoC5/PWM_Buzz.c ****     #if(PWM_Buzz_UsingFixedFunction)
+ 485:Generated_Source\PSoC5/PWM_Buzz.c ****         CY_SET_REG16(PWM_Buzz_PERIOD_LSB_PTR, (uint16)period);
+ 486:Generated_Source\PSoC5/PWM_Buzz.c ****     #else
+ 487:Generated_Source\PSoC5/PWM_Buzz.c ****         CY_SET_REG8(PWM_Buzz_PERIOD_LSB_PTR, period);
+ 338              		.loc 1 487 0
+ 339 000a 044A     		ldr	r2, .L21
+ 340 000c FB79     		ldrb	r3, [r7, #7]
+ 341 000e 1370     		strb	r3, [r2]
+ 488:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 489:Generated_Source\PSoC5/PWM_Buzz.c **** }
+ 342              		.loc 1 489 0
+ 343 0010 0C37     		adds	r7, r7, #12
+ 344              		.cfi_def_cfa_offset 4
+ 345 0012 BD46     		mov	sp, r7
+ 346              		.cfi_def_cfa_register 13
+ 347              		@ sp needed
+ 348 0014 5DF8047B 		ldr	r7, [sp], #4
+ 349              		.cfi_restore 7
+ 350              		.cfi_def_cfa_offset 0
+ 351 0018 7047     		bx	lr
+ 352              	.L22:
+ 353 001a 00BF     		.align	2
+ 354              	.L21:
+ 355 001c 43640040 		.word	1073767491
+ 356              		.cfi_endproc
+ 357              	.LFE7:
+ 358              		.size	PWM_Buzz_WritePeriod, .-PWM_Buzz_WritePeriod
+ 359              		.section	.text.PWM_Buzz_WriteCompare,"ax",%progbits
+ 360              		.align	2
+ 361              		.global	PWM_Buzz_WriteCompare
+ 362              		.thumb
+ 363              		.thumb_func
+ 364              		.type	PWM_Buzz_WriteCompare, %function
+ 365              	PWM_Buzz_WriteCompare:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 16
+
+
+ 366              	.LFB8:
+ 490:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 491:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_UseOneCompareMode)
+ 492:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 493:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 494:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 495:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_WriteCompare
+ 496:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 497:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 498:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 499:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This funtion is used to change the compare1 value when the PWM is in Dither
+ 500:Generated_Source\PSoC5/PWM_Buzz.c ****     *  mode. The compare output will reflect the new value on the next UDB clock.
+ 501:Generated_Source\PSoC5/PWM_Buzz.c ****     *  The compare output will be driven high when the present counter value is
+ 502:Generated_Source\PSoC5/PWM_Buzz.c ****     *  compared to the compare value based on the compare mode defined in
+ 503:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Dither Mode.
+ 504:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 505:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 506:Generated_Source\PSoC5/PWM_Buzz.c ****     *  compare:  New compare value.
+ 507:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 508:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 509:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 510:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 511:Generated_Source\PSoC5/PWM_Buzz.c ****     * Side Effects:
+ 512:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function is only available if the PWM mode parameter is set to
+ 513:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Dither Mode, Center Aligned Mode or One Output Mode
+ 514:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 515:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 516:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_WriteCompare(uint8 compare) \
+ 517:Generated_Source\PSoC5/PWM_Buzz.c ****                                        
+ 518:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 367              		.loc 1 518 0
+ 368              		.cfi_startproc
+ 369              		@ args = 0, pretend = 0, frame = 8
+ 370              		@ frame_needed = 1, uses_anonymous_args = 0
+ 371              		@ link register save eliminated.
+ 372 0000 80B4     		push	{r7}
+ 373              		.cfi_def_cfa_offset 4
+ 374              		.cfi_offset 7, -4
+ 375 0002 83B0     		sub	sp, sp, #12
+ 376              		.cfi_def_cfa_offset 16
+ 377 0004 00AF     		add	r7, sp, #0
+ 378              		.cfi_def_cfa_register 7
+ 379 0006 0346     		mov	r3, r0
+ 380 0008 FB71     		strb	r3, [r7, #7]
+ 519:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(PWM_Buzz_UsingFixedFunction)
+ 520:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG16(PWM_Buzz_COMPARE1_LSB_PTR, (uint16)compare);
+ 521:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 522:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG8(PWM_Buzz_COMPARE1_LSB_PTR, compare);
+ 381              		.loc 1 522 0
+ 382 000a 044A     		ldr	r2, .L24
+ 383 000c FB79     		ldrb	r3, [r7, #7]
+ 384 000e 1370     		strb	r3, [r2]
+ 523:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 524:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 525:Generated_Source\PSoC5/PWM_Buzz.c ****         #if (PWM_Buzz_PWMMode == PWM_Buzz__B_PWM__DITHER)
+ 526:Generated_Source\PSoC5/PWM_Buzz.c ****             #if(PWM_Buzz_UsingFixedFunction)
+ 527:Generated_Source\PSoC5/PWM_Buzz.c ****                 CY_SET_REG16(PWM_Buzz_COMPARE2_LSB_PTR, (uint16)(compare + 1u));
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 17
+
+
+ 528:Generated_Source\PSoC5/PWM_Buzz.c ****             #else
+ 529:Generated_Source\PSoC5/PWM_Buzz.c ****                 CY_SET_REG8(PWM_Buzz_COMPARE2_LSB_PTR, (compare + 1u));
+ 530:Generated_Source\PSoC5/PWM_Buzz.c ****             #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 531:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_PWMMode == PWM_Buzz__B_PWM__DITHER) */
+ 532:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 385              		.loc 1 532 0
+ 386 0010 0C37     		adds	r7, r7, #12
+ 387              		.cfi_def_cfa_offset 4
+ 388 0012 BD46     		mov	sp, r7
+ 389              		.cfi_def_cfa_register 13
+ 390              		@ sp needed
+ 391 0014 5DF8047B 		ldr	r7, [sp], #4
+ 392              		.cfi_restore 7
+ 393              		.cfi_def_cfa_offset 0
+ 394 0018 7047     		bx	lr
+ 395              	.L25:
+ 396 001a 00BF     		.align	2
+ 397              	.L24:
+ 398 001c 23640040 		.word	1073767459
+ 399              		.cfi_endproc
+ 400              	.LFE8:
+ 401              		.size	PWM_Buzz_WriteCompare, .-PWM_Buzz_WriteCompare
+ 402              		.section	.text.PWM_Buzz_SetInterruptMode,"ax",%progbits
+ 403              		.align	2
+ 404              		.global	PWM_Buzz_SetInterruptMode
+ 405              		.thumb
+ 406              		.thumb_func
+ 407              		.type	PWM_Buzz_SetInterruptMode, %function
+ 408              	PWM_Buzz_SetInterruptMode:
+ 409              	.LFB9:
+ 533:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 534:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 535:Generated_Source\PSoC5/PWM_Buzz.c **** #else
+ 536:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 537:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 538:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 539:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_WriteCompare1
+ 540:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 541:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 542:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 543:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This funtion is used to change the compare1 value.  The compare output will
+ 544:Generated_Source\PSoC5/PWM_Buzz.c ****     *  reflect the new value on the next UDB clock.  The compare output will be
+ 545:Generated_Source\PSoC5/PWM_Buzz.c ****     *  driven high when the present counter value is less than or less than or
+ 546:Generated_Source\PSoC5/PWM_Buzz.c ****     *  equal to the compare register, depending on the mode.
+ 547:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 548:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 549:Generated_Source\PSoC5/PWM_Buzz.c ****     *  compare:  New compare value.
+ 550:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 551:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 552:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 553:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 554:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 555:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_WriteCompare1(uint8 compare) \
+ 556:Generated_Source\PSoC5/PWM_Buzz.c ****                                         
+ 557:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 558:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(PWM_Buzz_UsingFixedFunction)
+ 559:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG16(PWM_Buzz_COMPARE1_LSB_PTR, (uint16)compare);
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 18
+
+
+ 560:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 561:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG8(PWM_Buzz_COMPARE1_LSB_PTR, compare);
+ 562:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 563:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 564:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 565:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 566:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 567:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_WriteCompare2
+ 568:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 569:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 570:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 571:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This funtion is used to change the compare value, for compare1 output.
+ 572:Generated_Source\PSoC5/PWM_Buzz.c ****     *  The compare output will reflect the new value on the next UDB clock.
+ 573:Generated_Source\PSoC5/PWM_Buzz.c ****     *  The compare output will be driven high when the present counter value is
+ 574:Generated_Source\PSoC5/PWM_Buzz.c ****     *  less than or less than or equal to the compare register, depending on the
+ 575:Generated_Source\PSoC5/PWM_Buzz.c ****     *  mode.
+ 576:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 577:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 578:Generated_Source\PSoC5/PWM_Buzz.c ****     *  compare:  New compare value.
+ 579:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 580:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 581:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 582:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 583:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 584:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_WriteCompare2(uint8 compare) \
+ 585:Generated_Source\PSoC5/PWM_Buzz.c ****                                         
+ 586:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 587:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(PWM_Buzz_UsingFixedFunction)
+ 588:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG16(PWM_Buzz_COMPARE2_LSB_PTR, compare);
+ 589:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 590:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG8(PWM_Buzz_COMPARE2_LSB_PTR, compare);
+ 591:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 592:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 593:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* UseOneCompareMode */
+ 594:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 595:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_DeadBandUsed)
+ 596:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 597:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 598:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 599:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_WriteDeadTime
+ 600:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 601:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 602:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 603:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function writes the dead-band counts to the corresponding register
+ 604:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 605:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 606:Generated_Source\PSoC5/PWM_Buzz.c ****     *  deadtime:  Number of counts for dead time
+ 607:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 608:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 609:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 610:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 611:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 612:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_WriteDeadTime(uint8 deadtime) 
+ 613:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 614:Generated_Source\PSoC5/PWM_Buzz.c ****         /* If using the Dead Band 1-255 mode then just write the register */
+ 615:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(!PWM_Buzz_DeadBand2_4)
+ 616:Generated_Source\PSoC5/PWM_Buzz.c ****             CY_SET_REG8(PWM_Buzz_DEADBAND_COUNT_PTR, deadtime);
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 19
+
+
+ 617:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 618:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Otherwise the data has to be masked and offset */
+ 619:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Clear existing data */
+ 620:Generated_Source\PSoC5/PWM_Buzz.c ****             PWM_Buzz_DEADBAND_COUNT &= ((uint8)(~PWM_Buzz_DEADBAND_COUNT_MASK));
+ 621:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 622:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Set new dead time */
+ 623:Generated_Source\PSoC5/PWM_Buzz.c ****             #if(PWM_Buzz_DEADBAND_COUNT_SHIFT)
+ 624:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_DEADBAND_COUNT |= ((uint8)((uint8)deadtime << PWM_Buzz_DEADBAND_COUNT_SHIF
+ 625:Generated_Source\PSoC5/PWM_Buzz.c ****                                                     PWM_Buzz_DEADBAND_COUNT_MASK;
+ 626:Generated_Source\PSoC5/PWM_Buzz.c ****             #else
+ 627:Generated_Source\PSoC5/PWM_Buzz.c ****                 PWM_Buzz_DEADBAND_COUNT |= deadtime & PWM_Buzz_DEADBAND_COUNT_MASK;
+ 628:Generated_Source\PSoC5/PWM_Buzz.c ****             #endif /* (PWM_Buzz_DEADBAND_COUNT_SHIFT) */
+ 629:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 630:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (!PWM_Buzz_DeadBand2_4) */
+ 631:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 632:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 633:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 634:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 635:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadDeadTime
+ 636:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 637:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 638:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 639:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function reads the dead-band counts from the corresponding register
+ 640:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 641:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 642:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 643:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 644:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 645:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Dead Band Counts
+ 646:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 647:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 648:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadDeadTime(void) 
+ 649:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 650:Generated_Source\PSoC5/PWM_Buzz.c ****         /* If using the Dead Band 1-255 mode then just read the register */
+ 651:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(!PWM_Buzz_DeadBand2_4)
+ 652:Generated_Source\PSoC5/PWM_Buzz.c ****             return (CY_GET_REG8(PWM_Buzz_DEADBAND_COUNT_PTR));
+ 653:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 654:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 655:Generated_Source\PSoC5/PWM_Buzz.c ****             /* Otherwise the data has to be masked and offset */
+ 656:Generated_Source\PSoC5/PWM_Buzz.c ****             #if(PWM_Buzz_DEADBAND_COUNT_SHIFT)
+ 657:Generated_Source\PSoC5/PWM_Buzz.c ****                 return ((uint8)(((uint8)(PWM_Buzz_DEADBAND_COUNT & PWM_Buzz_DEADBAND_COUNT_MASK)) >
+ 658:Generated_Source\PSoC5/PWM_Buzz.c ****                                                                            PWM_Buzz_DEADBAND_COUNT_
+ 659:Generated_Source\PSoC5/PWM_Buzz.c ****             #else
+ 660:Generated_Source\PSoC5/PWM_Buzz.c ****                 return (PWM_Buzz_DEADBAND_COUNT & PWM_Buzz_DEADBAND_COUNT_MASK);
+ 661:Generated_Source\PSoC5/PWM_Buzz.c ****             #endif /* (PWM_Buzz_DEADBAND_COUNT_SHIFT) */
+ 662:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (!PWM_Buzz_DeadBand2_4) */
+ 663:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 664:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* DeadBandUsed */
+ 665:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 666:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_UseStatus || PWM_Buzz_UsingFixedFunction)
+ 667:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 668:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 669:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 670:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_SetInterruptMode
+ 671:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 672:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 673:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 20
+
+
+ 674:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function configures the interrupts mask control of theinterrupt
+ 675:Generated_Source\PSoC5/PWM_Buzz.c ****     *  source status register.
+ 676:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 677:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 678:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8 interruptMode: Bit field containing the interrupt sources enabled
+ 679:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 680:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 681:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 682:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 683:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 684:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_SetInterruptMode(uint8 interruptMode) 
+ 685:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 410              		.loc 1 685 0
+ 411              		.cfi_startproc
+ 412              		@ args = 0, pretend = 0, frame = 8
+ 413              		@ frame_needed = 1, uses_anonymous_args = 0
+ 414              		@ link register save eliminated.
+ 415 0000 80B4     		push	{r7}
+ 416              		.cfi_def_cfa_offset 4
+ 417              		.cfi_offset 7, -4
+ 418 0002 83B0     		sub	sp, sp, #12
+ 419              		.cfi_def_cfa_offset 16
+ 420 0004 00AF     		add	r7, sp, #0
+ 421              		.cfi_def_cfa_register 7
+ 422 0006 0346     		mov	r3, r0
+ 423 0008 FB71     		strb	r3, [r7, #7]
+ 686:Generated_Source\PSoC5/PWM_Buzz.c ****         CY_SET_REG8(PWM_Buzz_STATUS_MASK_PTR, interruptMode);
+ 424              		.loc 1 686 0
+ 425 000a 044A     		ldr	r2, .L27
+ 426 000c FB79     		ldrb	r3, [r7, #7]
+ 427 000e 1370     		strb	r3, [r2]
+ 687:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 428              		.loc 1 687 0
+ 429 0010 0C37     		adds	r7, r7, #12
+ 430              		.cfi_def_cfa_offset 4
+ 431 0012 BD46     		mov	sp, r7
+ 432              		.cfi_def_cfa_register 13
+ 433              		@ sp needed
+ 434 0014 5DF8047B 		ldr	r7, [sp], #4
+ 435              		.cfi_restore 7
+ 436              		.cfi_def_cfa_offset 0
+ 437 0018 7047     		bx	lr
+ 438              	.L28:
+ 439 001a 00BF     		.align	2
+ 440              	.L27:
+ 441 001c 83640040 		.word	1073767555
+ 442              		.cfi_endproc
+ 443              	.LFE9:
+ 444              		.size	PWM_Buzz_SetInterruptMode, .-PWM_Buzz_SetInterruptMode
+ 445              		.section	.text.PWM_Buzz_ReadStatusRegister,"ax",%progbits
+ 446              		.align	2
+ 447              		.global	PWM_Buzz_ReadStatusRegister
+ 448              		.thumb
+ 449              		.thumb_func
+ 450              		.type	PWM_Buzz_ReadStatusRegister, %function
+ 451              	PWM_Buzz_ReadStatusRegister:
+ 452              	.LFB10:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 21
+
+
+ 688:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 689:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 690:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 691:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadStatusRegister
+ 692:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 693:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 694:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 695:Generated_Source\PSoC5/PWM_Buzz.c ****     *  This function returns the current state of the status register.
+ 696:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 697:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 698:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 699:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 700:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 701:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8 : Current status register value. The status register bits are:
+ 702:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [7:6] : Unused(0)
+ 703:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [5]   : Kill event output
+ 704:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [4]   : FIFO not empty
+ 705:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [3]   : FIFO full
+ 706:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [2]   : Terminal count
+ 707:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [1]   : Compare output 2
+ 708:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [0]   : Compare output 1
+ 709:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 710:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 711:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadStatusRegister(void) 
+ 712:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 453              		.loc 1 712 0
+ 454              		.cfi_startproc
+ 455              		@ args = 0, pretend = 0, frame = 0
+ 456              		@ frame_needed = 1, uses_anonymous_args = 0
+ 457              		@ link register save eliminated.
+ 458 0000 80B4     		push	{r7}
+ 459              		.cfi_def_cfa_offset 4
+ 460              		.cfi_offset 7, -4
+ 461 0002 00AF     		add	r7, sp, #0
+ 462              		.cfi_def_cfa_register 7
+ 713:Generated_Source\PSoC5/PWM_Buzz.c ****         return (CY_GET_REG8(PWM_Buzz_STATUS_PTR));
+ 463              		.loc 1 713 0
+ 464 0004 034B     		ldr	r3, .L31
+ 465 0006 1B78     		ldrb	r3, [r3]
+ 466 0008 DBB2     		uxtb	r3, r3
+ 714:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 467              		.loc 1 714 0
+ 468 000a 1846     		mov	r0, r3
+ 469 000c BD46     		mov	sp, r7
+ 470              		.cfi_def_cfa_register 13
+ 471              		@ sp needed
+ 472 000e 5DF8047B 		ldr	r7, [sp], #4
+ 473              		.cfi_restore 7
+ 474              		.cfi_def_cfa_offset 0
+ 475 0012 7047     		bx	lr
+ 476              	.L32:
+ 477              		.align	2
+ 478              	.L31:
+ 479 0014 63640040 		.word	1073767523
+ 480              		.cfi_endproc
+ 481              	.LFE10:
+ 482              		.size	PWM_Buzz_ReadStatusRegister, .-PWM_Buzz_ReadStatusRegister
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 22
+
+
+ 483              		.section	.text.PWM_Buzz_ReadCapture,"ax",%progbits
+ 484              		.align	2
+ 485              		.global	PWM_Buzz_ReadCapture
+ 486              		.thumb
+ 487              		.thumb_func
+ 488              		.type	PWM_Buzz_ReadCapture, %function
+ 489              	PWM_Buzz_ReadCapture:
+ 490              	.LFB11:
+ 715:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 716:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* (PWM_Buzz_UseStatus || PWM_Buzz_UsingFixedFunction) */
+ 717:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 718:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 719:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_UseControl)
+ 720:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 721:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 722:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 723:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadControlRegister
+ 724:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 725:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 726:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 727:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Returns the current state of the control register. This API is available
+ 728:Generated_Source\PSoC5/PWM_Buzz.c ****     *  only if the control register is not removed.
+ 729:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 730:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 731:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 732:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 733:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 734:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8 : Current control register value
+ 735:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 736:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 737:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadControlRegister(void) 
+ 738:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 739:Generated_Source\PSoC5/PWM_Buzz.c ****         uint8 result;
+ 740:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 741:Generated_Source\PSoC5/PWM_Buzz.c ****         result = CY_GET_REG8(PWM_Buzz_CONTROL_PTR);
+ 742:Generated_Source\PSoC5/PWM_Buzz.c ****         return (result);
+ 743:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 744:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 745:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 746:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 747:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_WriteControlRegister
+ 748:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 749:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 750:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 751:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Sets the bit field of the control register. This API is available only if
+ 752:Generated_Source\PSoC5/PWM_Buzz.c ****     *  the control register is not removed.
+ 753:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 754:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 755:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8 control: Control register bit field, The status register bits are:
+ 756:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [7]   : PWM Enable
+ 757:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [6]   : Reset
+ 758:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [5:3] : Compare Mode2
+ 759:Generated_Source\PSoC5/PWM_Buzz.c ****     *  [2:0] : Compare Mode2
+ 760:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 761:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 762:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 763:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 23
+
+
+ 764:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 765:Generated_Source\PSoC5/PWM_Buzz.c ****     void PWM_Buzz_WriteControlRegister(uint8 control) 
+ 766:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 767:Generated_Source\PSoC5/PWM_Buzz.c ****         CY_SET_REG8(PWM_Buzz_CONTROL_PTR, control);
+ 768:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 769:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 770:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* (PWM_Buzz_UseControl) */
+ 771:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 772:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 773:Generated_Source\PSoC5/PWM_Buzz.c **** #if (!PWM_Buzz_UsingFixedFunction)
+ 774:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 775:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 776:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 777:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadCapture
+ 778:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 779:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 780:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 781:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Reads the capture value from the capture FIFO.
+ 782:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 783:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 784:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 785:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 786:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 787:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8/uint16: The current capture value
+ 788:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 789:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 790:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadCapture(void) 
+ 791:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 491              		.loc 1 791 0
+ 492              		.cfi_startproc
+ 493              		@ args = 0, pretend = 0, frame = 0
+ 494              		@ frame_needed = 1, uses_anonymous_args = 0
+ 495              		@ link register save eliminated.
+ 496 0000 80B4     		push	{r7}
+ 497              		.cfi_def_cfa_offset 4
+ 498              		.cfi_offset 7, -4
+ 499 0002 00AF     		add	r7, sp, #0
+ 500              		.cfi_def_cfa_register 7
+ 792:Generated_Source\PSoC5/PWM_Buzz.c ****         return (CY_GET_REG8(PWM_Buzz_CAPTURE_LSB_PTR));
+ 501              		.loc 1 792 0
+ 502 0004 034B     		ldr	r3, .L35
+ 503 0006 1B78     		ldrb	r3, [r3]
+ 504 0008 DBB2     		uxtb	r3, r3
+ 793:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 505              		.loc 1 793 0
+ 506 000a 1846     		mov	r0, r3
+ 507 000c BD46     		mov	sp, r7
+ 508              		.cfi_def_cfa_register 13
+ 509              		@ sp needed
+ 510 000e 5DF8047B 		ldr	r7, [sp], #4
+ 511              		.cfi_restore 7
+ 512              		.cfi_def_cfa_offset 0
+ 513 0012 7047     		bx	lr
+ 514              	.L36:
+ 515              		.align	2
+ 516              	.L35:
+ 517 0014 53640040 		.word	1073767507
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 24
+
+
+ 518              		.cfi_endproc
+ 519              	.LFE11:
+ 520              		.size	PWM_Buzz_ReadCapture, .-PWM_Buzz_ReadCapture
+ 521              		.section	.text.PWM_Buzz_ReadCompare,"ax",%progbits
+ 522              		.align	2
+ 523              		.global	PWM_Buzz_ReadCompare
+ 524              		.thumb
+ 525              		.thumb_func
+ 526              		.type	PWM_Buzz_ReadCompare, %function
+ 527              	PWM_Buzz_ReadCompare:
+ 528              	.LFB12:
+ 794:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 795:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* (!PWM_Buzz_UsingFixedFunction) */
+ 796:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 797:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 798:Generated_Source\PSoC5/PWM_Buzz.c **** #if (PWM_Buzz_UseOneCompareMode)
+ 799:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 800:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 801:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 802:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadCompare
+ 803:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 804:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 805:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 806:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Reads the compare value for the compare output when the PWM Mode parameter is
+ 807:Generated_Source\PSoC5/PWM_Buzz.c ****     *  set to Dither mode, Center Aligned mode, or One Output mode.
+ 808:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 809:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 810:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 811:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 812:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 813:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8/uint16: Current compare value
+ 814:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 815:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 816:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadCompare(void) 
+ 817:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 529              		.loc 1 817 0
+ 530              		.cfi_startproc
+ 531              		@ args = 0, pretend = 0, frame = 0
+ 532              		@ frame_needed = 1, uses_anonymous_args = 0
+ 533              		@ link register save eliminated.
+ 534 0000 80B4     		push	{r7}
+ 535              		.cfi_def_cfa_offset 4
+ 536              		.cfi_offset 7, -4
+ 537 0002 00AF     		add	r7, sp, #0
+ 538              		.cfi_def_cfa_register 7
+ 818:Generated_Source\PSoC5/PWM_Buzz.c ****         #if(PWM_Buzz_UsingFixedFunction)
+ 819:Generated_Source\PSoC5/PWM_Buzz.c ****             return ((uint8)CY_GET_REG16(PWM_Buzz_COMPARE1_LSB_PTR));
+ 820:Generated_Source\PSoC5/PWM_Buzz.c ****         #else
+ 821:Generated_Source\PSoC5/PWM_Buzz.c ****             return (CY_GET_REG8(PWM_Buzz_COMPARE1_LSB_PTR));
+ 539              		.loc 1 821 0
+ 540 0004 034B     		ldr	r3, .L39
+ 541 0006 1B78     		ldrb	r3, [r3]
+ 542 0008 DBB2     		uxtb	r3, r3
+ 822:Generated_Source\PSoC5/PWM_Buzz.c ****         #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 823:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 543              		.loc 1 823 0
+ 544 000a 1846     		mov	r0, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 25
+
+
+ 545 000c BD46     		mov	sp, r7
+ 546              		.cfi_def_cfa_register 13
+ 547              		@ sp needed
+ 548 000e 5DF8047B 		ldr	r7, [sp], #4
+ 549              		.cfi_restore 7
+ 550              		.cfi_def_cfa_offset 0
+ 551 0012 7047     		bx	lr
+ 552              	.L40:
+ 553              		.align	2
+ 554              	.L39:
+ 555 0014 23640040 		.word	1073767459
+ 556              		.cfi_endproc
+ 557              	.LFE12:
+ 558              		.size	PWM_Buzz_ReadCompare, .-PWM_Buzz_ReadCompare
+ 559              		.section	.text.PWM_Buzz_ReadPeriod,"ax",%progbits
+ 560              		.align	2
+ 561              		.global	PWM_Buzz_ReadPeriod
+ 562              		.thumb
+ 563              		.thumb_func
+ 564              		.type	PWM_Buzz_ReadPeriod, %function
+ 565              	PWM_Buzz_ReadPeriod:
+ 566              	.LFB13:
+ 824:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 825:Generated_Source\PSoC5/PWM_Buzz.c **** #else
+ 826:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 827:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 828:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 829:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadCompare1
+ 830:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 831:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 832:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 833:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Reads the compare value for the compare1 output.
+ 834:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 835:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 836:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 837:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 838:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ 839:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8/uint16: Current compare value.
+ 840:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 841:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 842:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadCompare1(void) 
+ 843:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 844:Generated_Source\PSoC5/PWM_Buzz.c ****         return (CY_GET_REG8(PWM_Buzz_COMPARE1_LSB_PTR));
+ 845:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 846:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 847:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 848:Generated_Source\PSoC5/PWM_Buzz.c ****     /*******************************************************************************
+ 849:Generated_Source\PSoC5/PWM_Buzz.c ****     * Function Name: PWM_Buzz_ReadCompare2
+ 850:Generated_Source\PSoC5/PWM_Buzz.c ****     ********************************************************************************
+ 851:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 852:Generated_Source\PSoC5/PWM_Buzz.c ****     * Summary:
+ 853:Generated_Source\PSoC5/PWM_Buzz.c ****     *  Reads the compare value for the compare2 output.
+ 854:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 855:Generated_Source\PSoC5/PWM_Buzz.c ****     * Parameters:
+ 856:Generated_Source\PSoC5/PWM_Buzz.c ****     *  None
+ 857:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 858:Generated_Source\PSoC5/PWM_Buzz.c ****     * Return:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 26
+
+
+ 859:Generated_Source\PSoC5/PWM_Buzz.c ****     *  uint8/uint16: Current compare value.
+ 860:Generated_Source\PSoC5/PWM_Buzz.c ****     *
+ 861:Generated_Source\PSoC5/PWM_Buzz.c ****     *******************************************************************************/
+ 862:Generated_Source\PSoC5/PWM_Buzz.c ****     uint8 PWM_Buzz_ReadCompare2(void) 
+ 863:Generated_Source\PSoC5/PWM_Buzz.c ****     {
+ 864:Generated_Source\PSoC5/PWM_Buzz.c ****         return (CY_GET_REG8(PWM_Buzz_COMPARE2_LSB_PTR));
+ 865:Generated_Source\PSoC5/PWM_Buzz.c ****     }
+ 866:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 867:Generated_Source\PSoC5/PWM_Buzz.c **** #endif /* (PWM_Buzz_UseOneCompareMode) */
+ 868:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 869:Generated_Source\PSoC5/PWM_Buzz.c **** 
+ 870:Generated_Source\PSoC5/PWM_Buzz.c **** /*******************************************************************************
+ 871:Generated_Source\PSoC5/PWM_Buzz.c **** * Function Name: PWM_Buzz_ReadPeriod
+ 872:Generated_Source\PSoC5/PWM_Buzz.c **** ********************************************************************************
+ 873:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 874:Generated_Source\PSoC5/PWM_Buzz.c **** * Summary:
+ 875:Generated_Source\PSoC5/PWM_Buzz.c **** *  Reads the period value used by the PWM hardware.
+ 876:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 877:Generated_Source\PSoC5/PWM_Buzz.c **** * Parameters:
+ 878:Generated_Source\PSoC5/PWM_Buzz.c **** *  None
+ 879:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 880:Generated_Source\PSoC5/PWM_Buzz.c **** * Return:
+ 881:Generated_Source\PSoC5/PWM_Buzz.c **** *  uint8/16: Period value
+ 882:Generated_Source\PSoC5/PWM_Buzz.c **** *
+ 883:Generated_Source\PSoC5/PWM_Buzz.c **** *******************************************************************************/
+ 884:Generated_Source\PSoC5/PWM_Buzz.c **** uint8 PWM_Buzz_ReadPeriod(void) 
+ 885:Generated_Source\PSoC5/PWM_Buzz.c **** {
+ 567              		.loc 1 885 0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 0
+ 570              		@ frame_needed = 1, uses_anonymous_args = 0
+ 571              		@ link register save eliminated.
+ 572 0000 80B4     		push	{r7}
+ 573              		.cfi_def_cfa_offset 4
+ 574              		.cfi_offset 7, -4
+ 575 0002 00AF     		add	r7, sp, #0
+ 576              		.cfi_def_cfa_register 7
+ 886:Generated_Source\PSoC5/PWM_Buzz.c ****     #if(PWM_Buzz_UsingFixedFunction)
+ 887:Generated_Source\PSoC5/PWM_Buzz.c ****         return ((uint8)CY_GET_REG16(PWM_Buzz_PERIOD_LSB_PTR));
+ 888:Generated_Source\PSoC5/PWM_Buzz.c ****     #else
+ 889:Generated_Source\PSoC5/PWM_Buzz.c ****         return (CY_GET_REG8(PWM_Buzz_PERIOD_LSB_PTR));
+ 577              		.loc 1 889 0
+ 578 0004 034B     		ldr	r3, .L43
+ 579 0006 1B78     		ldrb	r3, [r3]
+ 580 0008 DBB2     		uxtb	r3, r3
+ 890:Generated_Source\PSoC5/PWM_Buzz.c ****     #endif /* (PWM_Buzz_UsingFixedFunction) */
+ 891:Generated_Source\PSoC5/PWM_Buzz.c **** }
+ 581              		.loc 1 891 0
+ 582 000a 1846     		mov	r0, r3
+ 583 000c BD46     		mov	sp, r7
+ 584              		.cfi_def_cfa_register 13
+ 585              		@ sp needed
+ 586 000e 5DF8047B 		ldr	r7, [sp], #4
+ 587              		.cfi_restore 7
+ 588              		.cfi_def_cfa_offset 0
+ 589 0012 7047     		bx	lr
+ 590              	.L44:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 27
+
+
+ 591              		.align	2
+ 592              	.L43:
+ 593 0014 43640040 		.word	1073767491
+ 594              		.cfi_endproc
+ 595              	.LFE13:
+ 596              		.size	PWM_Buzz_ReadPeriod, .-PWM_Buzz_ReadPeriod
+ 597              		.text
+ 598              	.Letext0:
+ 599              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 600              		.section	.debug_info,"",%progbits
+ 601              	.Ldebug_info0:
+ 602 0000 20020000 		.4byte	0x220
+ 603 0004 0400     		.2byte	0x4
+ 604 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 605 000a 04       		.byte	0x4
+ 606 000b 01       		.uleb128 0x1
+ 607 000c 41000000 		.4byte	.LASF33
+ 608 0010 01       		.byte	0x1
+ 609 0011 E7000000 		.4byte	.LASF34
+ 610 0015 B0010000 		.4byte	.LASF35
+ 611 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 612 001d 00000000 		.4byte	0
+ 613 0021 00000000 		.4byte	.Ldebug_line0
+ 614 0025 02       		.uleb128 0x2
+ 615 0026 01       		.byte	0x1
+ 616 0027 06       		.byte	0x6
+ 617 0028 D4020000 		.4byte	.LASF0
+ 618 002c 02       		.uleb128 0x2
+ 619 002d 01       		.byte	0x1
+ 620 002e 08       		.byte	0x8
+ 621 002f 25010000 		.4byte	.LASF1
+ 622 0033 02       		.uleb128 0x2
+ 623 0034 02       		.byte	0x2
+ 624 0035 05       		.byte	0x5
+ 625 0036 8B020000 		.4byte	.LASF2
+ 626 003a 02       		.uleb128 0x2
+ 627 003b 02       		.byte	0x2
+ 628 003c 07       		.byte	0x7
+ 629 003d E8020000 		.4byte	.LASF3
+ 630 0041 02       		.uleb128 0x2
+ 631 0042 04       		.byte	0x4
+ 632 0043 05       		.byte	0x5
+ 633 0044 95020000 		.4byte	.LASF4
+ 634 0048 02       		.uleb128 0x2
+ 635 0049 04       		.byte	0x4
+ 636 004a 07       		.byte	0x7
+ 637 004b 4C010000 		.4byte	.LASF5
+ 638 004f 02       		.uleb128 0x2
+ 639 0050 08       		.byte	0x8
+ 640 0051 05       		.byte	0x5
+ 641 0052 5F020000 		.4byte	.LASF6
+ 642 0056 02       		.uleb128 0x2
+ 643 0057 08       		.byte	0x8
+ 644 0058 07       		.byte	0x7
+ 645 0059 09020000 		.4byte	.LASF7
+ 646 005d 03       		.uleb128 0x3
+ 647 005e 04       		.byte	0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 28
+
+
+ 648 005f 05       		.byte	0x5
+ 649 0060 696E7400 		.ascii	"int\000"
+ 650 0064 02       		.uleb128 0x2
+ 651 0065 04       		.byte	0x4
+ 652 0066 07       		.byte	0x7
+ 653 0067 FC010000 		.4byte	.LASF8
+ 654 006b 04       		.uleb128 0x4
+ 655 006c 5E010000 		.4byte	.LASF12
+ 656 0070 02       		.byte	0x2
+ 657 0071 C2       		.byte	0xc2
+ 658 0072 2C000000 		.4byte	0x2c
+ 659 0076 02       		.uleb128 0x2
+ 660 0077 04       		.byte	0x4
+ 661 0078 04       		.byte	0x4
+ 662 0079 09010000 		.4byte	.LASF9
+ 663 007d 02       		.uleb128 0x2
+ 664 007e 08       		.byte	0x8
+ 665 007f 04       		.byte	0x4
+ 666 0080 8F010000 		.4byte	.LASF10
+ 667 0084 02       		.uleb128 0x2
+ 668 0085 01       		.byte	0x1
+ 669 0086 08       		.byte	0x8
+ 670 0087 9E020000 		.4byte	.LASF11
+ 671 008b 05       		.uleb128 0x5
+ 672 008c 33010000 		.4byte	.LASF13
+ 673 0090 02       		.byte	0x2
+ 674 0091 6C01     		.2byte	0x16c
+ 675 0093 97000000 		.4byte	0x97
+ 676 0097 06       		.uleb128 0x6
+ 677 0098 6B000000 		.4byte	0x6b
+ 678 009c 02       		.uleb128 0x2
+ 679 009d 04       		.byte	0x4
+ 680 009e 07       		.byte	0x7
+ 681 009f 41020000 		.4byte	.LASF14
+ 682 00a3 07       		.uleb128 0x7
+ 683 00a4 00000000 		.4byte	.LASF15
+ 684 00a8 01       		.byte	0x1
+ 685 00a9 37       		.byte	0x37
+ 686 00aa 00000000 		.4byte	.LFB0
+ 687 00ae 20000000 		.4byte	.LFE0-.LFB0
+ 688 00b2 01       		.uleb128 0x1
+ 689 00b3 9C       		.byte	0x9c
+ 690 00b4 08       		.uleb128 0x8
+ 691 00b5 17010000 		.4byte	.LASF18
+ 692 00b9 01       		.byte	0x1
+ 693 00ba 54       		.byte	0x54
+ 694 00bb 00000000 		.4byte	.LFB1
+ 695 00bf 5C000000 		.4byte	.LFE1-.LFB1
+ 696 00c3 01       		.uleb128 0x1
+ 697 00c4 9C       		.byte	0x9c
+ 698 00c5 D8000000 		.4byte	0xd8
+ 699 00c9 09       		.uleb128 0x9
+ 700 00ca CF000000 		.4byte	.LASF36
+ 701 00ce 01       		.byte	0x1
+ 702 00cf 5D       		.byte	0x5d
+ 703 00d0 6B000000 		.4byte	0x6b
+ 704 00d4 02       		.uleb128 0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 29
+
+
+ 705 00d5 91       		.byte	0x91
+ 706 00d6 77       		.sleb128 -9
+ 707 00d7 00       		.byte	0
+ 708 00d8 0A       		.uleb128 0xa
+ 709 00d9 7B020000 		.4byte	.LASF16
+ 710 00dd 01       		.byte	0x1
+ 711 00de C7       		.byte	0xc7
+ 712 00df 00000000 		.4byte	.LFB2
+ 713 00e3 0C000000 		.4byte	.LFE2-.LFB2
+ 714 00e7 01       		.uleb128 0x1
+ 715 00e8 9C       		.byte	0x9c
+ 716 00e9 0A       		.uleb128 0xa
+ 717 00ea 20020000 		.4byte	.LASF17
+ 718 00ee 01       		.byte	0x1
+ 719 00ef E9       		.byte	0xe9
+ 720 00f0 00000000 		.4byte	.LFB3
+ 721 00f4 0C000000 		.4byte	.LFE3-.LFB3
+ 722 00f8 01       		.uleb128 0x1
+ 723 00f9 9C       		.byte	0x9c
+ 724 00fa 0B       		.uleb128 0xb
+ 725 00fb 79010000 		.4byte	.LASF19
+ 726 00ff 01       		.byte	0x1
+ 727 0100 9301     		.2byte	0x193
+ 728 0102 00000000 		.4byte	.LFB4
+ 729 0106 20000000 		.4byte	.LFE4-.LFB4
+ 730 010a 01       		.uleb128 0x1
+ 731 010b 9C       		.byte	0x9c
+ 732 010c 20010000 		.4byte	0x120
+ 733 0110 0C       		.uleb128 0xc
+ 734 0111 0F010000 		.4byte	.LASF22
+ 735 0115 01       		.byte	0x1
+ 736 0116 9301     		.2byte	0x193
+ 737 0118 6B000000 		.4byte	0x6b
+ 738 011c 02       		.uleb128 0x2
+ 739 011d 91       		.byte	0x91
+ 740 011e 77       		.sleb128 -9
+ 741 011f 00       		.byte	0
+ 742 0120 0D       		.uleb128 0xd
+ 743 0121 25000000 		.4byte	.LASF28
+ 744 0125 01       		.byte	0x1
+ 745 0126 A901     		.2byte	0x1a9
+ 746 0128 6B000000 		.4byte	0x6b
+ 747 012c 00000000 		.4byte	.LFB5
+ 748 0130 20000000 		.4byte	.LFE5-.LFB5
+ 749 0134 01       		.uleb128 0x1
+ 750 0135 9C       		.byte	0x9c
+ 751 0136 0E       		.uleb128 0xe
+ 752 0137 2E020000 		.4byte	.LASF20
+ 753 013b 01       		.byte	0x1
+ 754 013c C501     		.2byte	0x1c5
+ 755 013e 00000000 		.4byte	.LFB6
+ 756 0142 1A000000 		.4byte	.LFE6-.LFB6
+ 757 0146 01       		.uleb128 0x1
+ 758 0147 9C       		.byte	0x9c
+ 759 0148 0B       		.uleb128 0xb
+ 760 0149 64010000 		.4byte	.LASF21
+ 761 014d 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 30
+
+
+ 762 014e E201     		.2byte	0x1e2
+ 763 0150 00000000 		.4byte	.LFB7
+ 764 0154 20000000 		.4byte	.LFE7-.LFB7
+ 765 0158 01       		.uleb128 0x1
+ 766 0159 9C       		.byte	0x9c
+ 767 015a 6E010000 		.4byte	0x16e
+ 768 015e 0C       		.uleb128 0xc
+ 769 015f 3A000000 		.4byte	.LASF23
+ 770 0163 01       		.byte	0x1
+ 771 0164 E201     		.2byte	0x1e2
+ 772 0166 6B000000 		.4byte	0x6b
+ 773 016a 02       		.uleb128 0x2
+ 774 016b 91       		.byte	0x91
+ 775 016c 77       		.sleb128 -9
+ 776 016d 00       		.byte	0
+ 777 016e 0B       		.uleb128 0xb
+ 778 016f 0F000000 		.4byte	.LASF24
+ 779 0173 01       		.byte	0x1
+ 780 0174 0402     		.2byte	0x204
+ 781 0176 00000000 		.4byte	.LFB8
+ 782 017a 20000000 		.4byte	.LFE8-.LFB8
+ 783 017e 01       		.uleb128 0x1
+ 784 017f 9C       		.byte	0x9c
+ 785 0180 94010000 		.4byte	0x194
+ 786 0184 0C       		.uleb128 0xc
+ 787 0185 E0020000 		.4byte	.LASF25
+ 788 0189 01       		.byte	0x1
+ 789 018a 0402     		.2byte	0x204
+ 790 018c 6B000000 		.4byte	0x6b
+ 791 0190 02       		.uleb128 0x2
+ 792 0191 91       		.byte	0x91
+ 793 0192 77       		.sleb128 -9
+ 794 0193 00       		.byte	0
+ 795 0194 0B       		.uleb128 0xb
+ 796 0195 96010000 		.4byte	.LASF26
+ 797 0199 01       		.byte	0x1
+ 798 019a AC02     		.2byte	0x2ac
+ 799 019c 00000000 		.4byte	.LFB9
+ 800 01a0 20000000 		.4byte	.LFE9-.LFB9
+ 801 01a4 01       		.uleb128 0x1
+ 802 01a5 9C       		.byte	0x9c
+ 803 01a6 BA010000 		.4byte	0x1ba
+ 804 01aa 0C       		.uleb128 0xc
+ 805 01ab 6D020000 		.4byte	.LASF27
+ 806 01af 01       		.byte	0x1
+ 807 01b0 AC02     		.2byte	0x2ac
+ 808 01b2 6B000000 		.4byte	0x6b
+ 809 01b6 02       		.uleb128 0x2
+ 810 01b7 91       		.byte	0x91
+ 811 01b8 77       		.sleb128 -9
+ 812 01b9 00       		.byte	0
+ 813 01ba 0D       		.uleb128 0xd
+ 814 01bb B8020000 		.4byte	.LASF29
+ 815 01bf 01       		.byte	0x1
+ 816 01c0 C702     		.2byte	0x2c7
+ 817 01c2 6B000000 		.4byte	0x6b
+ 818 01c6 00000000 		.4byte	.LFB10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 31
+
+
+ 819 01ca 18000000 		.4byte	.LFE10-.LFB10
+ 820 01ce 01       		.uleb128 0x1
+ 821 01cf 9C       		.byte	0x9c
+ 822 01d0 0D       		.uleb128 0xd
+ 823 01d1 A3020000 		.4byte	.LASF30
+ 824 01d5 01       		.byte	0x1
+ 825 01d6 1603     		.2byte	0x316
+ 826 01d8 6B000000 		.4byte	0x6b
+ 827 01dc 00000000 		.4byte	.LFB11
+ 828 01e0 18000000 		.4byte	.LFE11-.LFB11
+ 829 01e4 01       		.uleb128 0x1
+ 830 01e5 9C       		.byte	0x9c
+ 831 01e6 0D       		.uleb128 0xd
+ 832 01e7 4A020000 		.4byte	.LASF31
+ 833 01eb 01       		.byte	0x1
+ 834 01ec 3003     		.2byte	0x330
+ 835 01ee 6B000000 		.4byte	0x6b
+ 836 01f2 00000000 		.4byte	.LFB12
+ 837 01f6 18000000 		.4byte	.LFE12-.LFB12
+ 838 01fa 01       		.uleb128 0x1
+ 839 01fb 9C       		.byte	0x9c
+ 840 01fc 0D       		.uleb128 0xd
+ 841 01fd 38010000 		.4byte	.LASF32
+ 842 0201 01       		.byte	0x1
+ 843 0202 7403     		.2byte	0x374
+ 844 0204 6B000000 		.4byte	0x6b
+ 845 0208 00000000 		.4byte	.LFB13
+ 846 020c 18000000 		.4byte	.LFE13-.LFB13
+ 847 0210 01       		.uleb128 0x1
+ 848 0211 9C       		.byte	0x9c
+ 849 0212 0F       		.uleb128 0xf
+ 850 0213 EB010000 		.4byte	.LASF37
+ 851 0217 01       		.byte	0x1
+ 852 0218 20       		.byte	0x20
+ 853 0219 6B000000 		.4byte	0x6b
+ 854 021d 05       		.uleb128 0x5
+ 855 021e 03       		.byte	0x3
+ 856 021f 00000000 		.4byte	PWM_Buzz_initVar
+ 857 0223 00       		.byte	0
+ 858              		.section	.debug_abbrev,"",%progbits
+ 859              	.Ldebug_abbrev0:
+ 860 0000 01       		.uleb128 0x1
+ 861 0001 11       		.uleb128 0x11
+ 862 0002 01       		.byte	0x1
+ 863 0003 25       		.uleb128 0x25
+ 864 0004 0E       		.uleb128 0xe
+ 865 0005 13       		.uleb128 0x13
+ 866 0006 0B       		.uleb128 0xb
+ 867 0007 03       		.uleb128 0x3
+ 868 0008 0E       		.uleb128 0xe
+ 869 0009 1B       		.uleb128 0x1b
+ 870 000a 0E       		.uleb128 0xe
+ 871 000b 55       		.uleb128 0x55
+ 872 000c 17       		.uleb128 0x17
+ 873 000d 11       		.uleb128 0x11
+ 874 000e 01       		.uleb128 0x1
+ 875 000f 10       		.uleb128 0x10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 32
+
+
+ 876 0010 17       		.uleb128 0x17
+ 877 0011 00       		.byte	0
+ 878 0012 00       		.byte	0
+ 879 0013 02       		.uleb128 0x2
+ 880 0014 24       		.uleb128 0x24
+ 881 0015 00       		.byte	0
+ 882 0016 0B       		.uleb128 0xb
+ 883 0017 0B       		.uleb128 0xb
+ 884 0018 3E       		.uleb128 0x3e
+ 885 0019 0B       		.uleb128 0xb
+ 886 001a 03       		.uleb128 0x3
+ 887 001b 0E       		.uleb128 0xe
+ 888 001c 00       		.byte	0
+ 889 001d 00       		.byte	0
+ 890 001e 03       		.uleb128 0x3
+ 891 001f 24       		.uleb128 0x24
+ 892 0020 00       		.byte	0
+ 893 0021 0B       		.uleb128 0xb
+ 894 0022 0B       		.uleb128 0xb
+ 895 0023 3E       		.uleb128 0x3e
+ 896 0024 0B       		.uleb128 0xb
+ 897 0025 03       		.uleb128 0x3
+ 898 0026 08       		.uleb128 0x8
+ 899 0027 00       		.byte	0
+ 900 0028 00       		.byte	0
+ 901 0029 04       		.uleb128 0x4
+ 902 002a 16       		.uleb128 0x16
+ 903 002b 00       		.byte	0
+ 904 002c 03       		.uleb128 0x3
+ 905 002d 0E       		.uleb128 0xe
+ 906 002e 3A       		.uleb128 0x3a
+ 907 002f 0B       		.uleb128 0xb
+ 908 0030 3B       		.uleb128 0x3b
+ 909 0031 0B       		.uleb128 0xb
+ 910 0032 49       		.uleb128 0x49
+ 911 0033 13       		.uleb128 0x13
+ 912 0034 00       		.byte	0
+ 913 0035 00       		.byte	0
+ 914 0036 05       		.uleb128 0x5
+ 915 0037 16       		.uleb128 0x16
+ 916 0038 00       		.byte	0
+ 917 0039 03       		.uleb128 0x3
+ 918 003a 0E       		.uleb128 0xe
+ 919 003b 3A       		.uleb128 0x3a
+ 920 003c 0B       		.uleb128 0xb
+ 921 003d 3B       		.uleb128 0x3b
+ 922 003e 05       		.uleb128 0x5
+ 923 003f 49       		.uleb128 0x49
+ 924 0040 13       		.uleb128 0x13
+ 925 0041 00       		.byte	0
+ 926 0042 00       		.byte	0
+ 927 0043 06       		.uleb128 0x6
+ 928 0044 35       		.uleb128 0x35
+ 929 0045 00       		.byte	0
+ 930 0046 49       		.uleb128 0x49
+ 931 0047 13       		.uleb128 0x13
+ 932 0048 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 33
+
+
+ 933 0049 00       		.byte	0
+ 934 004a 07       		.uleb128 0x7
+ 935 004b 2E       		.uleb128 0x2e
+ 936 004c 00       		.byte	0
+ 937 004d 3F       		.uleb128 0x3f
+ 938 004e 19       		.uleb128 0x19
+ 939 004f 03       		.uleb128 0x3
+ 940 0050 0E       		.uleb128 0xe
+ 941 0051 3A       		.uleb128 0x3a
+ 942 0052 0B       		.uleb128 0xb
+ 943 0053 3B       		.uleb128 0x3b
+ 944 0054 0B       		.uleb128 0xb
+ 945 0055 27       		.uleb128 0x27
+ 946 0056 19       		.uleb128 0x19
+ 947 0057 11       		.uleb128 0x11
+ 948 0058 01       		.uleb128 0x1
+ 949 0059 12       		.uleb128 0x12
+ 950 005a 06       		.uleb128 0x6
+ 951 005b 40       		.uleb128 0x40
+ 952 005c 18       		.uleb128 0x18
+ 953 005d 9642     		.uleb128 0x2116
+ 954 005f 19       		.uleb128 0x19
+ 955 0060 00       		.byte	0
+ 956 0061 00       		.byte	0
+ 957 0062 08       		.uleb128 0x8
+ 958 0063 2E       		.uleb128 0x2e
+ 959 0064 01       		.byte	0x1
+ 960 0065 3F       		.uleb128 0x3f
+ 961 0066 19       		.uleb128 0x19
+ 962 0067 03       		.uleb128 0x3
+ 963 0068 0E       		.uleb128 0xe
+ 964 0069 3A       		.uleb128 0x3a
+ 965 006a 0B       		.uleb128 0xb
+ 966 006b 3B       		.uleb128 0x3b
+ 967 006c 0B       		.uleb128 0xb
+ 968 006d 27       		.uleb128 0x27
+ 969 006e 19       		.uleb128 0x19
+ 970 006f 11       		.uleb128 0x11
+ 971 0070 01       		.uleb128 0x1
+ 972 0071 12       		.uleb128 0x12
+ 973 0072 06       		.uleb128 0x6
+ 974 0073 40       		.uleb128 0x40
+ 975 0074 18       		.uleb128 0x18
+ 976 0075 9642     		.uleb128 0x2116
+ 977 0077 19       		.uleb128 0x19
+ 978 0078 01       		.uleb128 0x1
+ 979 0079 13       		.uleb128 0x13
+ 980 007a 00       		.byte	0
+ 981 007b 00       		.byte	0
+ 982 007c 09       		.uleb128 0x9
+ 983 007d 34       		.uleb128 0x34
+ 984 007e 00       		.byte	0
+ 985 007f 03       		.uleb128 0x3
+ 986 0080 0E       		.uleb128 0xe
+ 987 0081 3A       		.uleb128 0x3a
+ 988 0082 0B       		.uleb128 0xb
+ 989 0083 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 34
+
+
+ 990 0084 0B       		.uleb128 0xb
+ 991 0085 49       		.uleb128 0x49
+ 992 0086 13       		.uleb128 0x13
+ 993 0087 02       		.uleb128 0x2
+ 994 0088 18       		.uleb128 0x18
+ 995 0089 00       		.byte	0
+ 996 008a 00       		.byte	0
+ 997 008b 0A       		.uleb128 0xa
+ 998 008c 2E       		.uleb128 0x2e
+ 999 008d 00       		.byte	0
+ 1000 008e 3F       		.uleb128 0x3f
+ 1001 008f 19       		.uleb128 0x19
+ 1002 0090 03       		.uleb128 0x3
+ 1003 0091 0E       		.uleb128 0xe
+ 1004 0092 3A       		.uleb128 0x3a
+ 1005 0093 0B       		.uleb128 0xb
+ 1006 0094 3B       		.uleb128 0x3b
+ 1007 0095 0B       		.uleb128 0xb
+ 1008 0096 27       		.uleb128 0x27
+ 1009 0097 19       		.uleb128 0x19
+ 1010 0098 11       		.uleb128 0x11
+ 1011 0099 01       		.uleb128 0x1
+ 1012 009a 12       		.uleb128 0x12
+ 1013 009b 06       		.uleb128 0x6
+ 1014 009c 40       		.uleb128 0x40
+ 1015 009d 18       		.uleb128 0x18
+ 1016 009e 9742     		.uleb128 0x2117
+ 1017 00a0 19       		.uleb128 0x19
+ 1018 00a1 00       		.byte	0
+ 1019 00a2 00       		.byte	0
+ 1020 00a3 0B       		.uleb128 0xb
+ 1021 00a4 2E       		.uleb128 0x2e
+ 1022 00a5 01       		.byte	0x1
+ 1023 00a6 3F       		.uleb128 0x3f
+ 1024 00a7 19       		.uleb128 0x19
+ 1025 00a8 03       		.uleb128 0x3
+ 1026 00a9 0E       		.uleb128 0xe
+ 1027 00aa 3A       		.uleb128 0x3a
+ 1028 00ab 0B       		.uleb128 0xb
+ 1029 00ac 3B       		.uleb128 0x3b
+ 1030 00ad 05       		.uleb128 0x5
+ 1031 00ae 27       		.uleb128 0x27
+ 1032 00af 19       		.uleb128 0x19
+ 1033 00b0 11       		.uleb128 0x11
+ 1034 00b1 01       		.uleb128 0x1
+ 1035 00b2 12       		.uleb128 0x12
+ 1036 00b3 06       		.uleb128 0x6
+ 1037 00b4 40       		.uleb128 0x40
+ 1038 00b5 18       		.uleb128 0x18
+ 1039 00b6 9742     		.uleb128 0x2117
+ 1040 00b8 19       		.uleb128 0x19
+ 1041 00b9 01       		.uleb128 0x1
+ 1042 00ba 13       		.uleb128 0x13
+ 1043 00bb 00       		.byte	0
+ 1044 00bc 00       		.byte	0
+ 1045 00bd 0C       		.uleb128 0xc
+ 1046 00be 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 35
+
+
+ 1047 00bf 00       		.byte	0
+ 1048 00c0 03       		.uleb128 0x3
+ 1049 00c1 0E       		.uleb128 0xe
+ 1050 00c2 3A       		.uleb128 0x3a
+ 1051 00c3 0B       		.uleb128 0xb
+ 1052 00c4 3B       		.uleb128 0x3b
+ 1053 00c5 05       		.uleb128 0x5
+ 1054 00c6 49       		.uleb128 0x49
+ 1055 00c7 13       		.uleb128 0x13
+ 1056 00c8 02       		.uleb128 0x2
+ 1057 00c9 18       		.uleb128 0x18
+ 1058 00ca 00       		.byte	0
+ 1059 00cb 00       		.byte	0
+ 1060 00cc 0D       		.uleb128 0xd
+ 1061 00cd 2E       		.uleb128 0x2e
+ 1062 00ce 00       		.byte	0
+ 1063 00cf 3F       		.uleb128 0x3f
+ 1064 00d0 19       		.uleb128 0x19
+ 1065 00d1 03       		.uleb128 0x3
+ 1066 00d2 0E       		.uleb128 0xe
+ 1067 00d3 3A       		.uleb128 0x3a
+ 1068 00d4 0B       		.uleb128 0xb
+ 1069 00d5 3B       		.uleb128 0x3b
+ 1070 00d6 05       		.uleb128 0x5
+ 1071 00d7 27       		.uleb128 0x27
+ 1072 00d8 19       		.uleb128 0x19
+ 1073 00d9 49       		.uleb128 0x49
+ 1074 00da 13       		.uleb128 0x13
+ 1075 00db 11       		.uleb128 0x11
+ 1076 00dc 01       		.uleb128 0x1
+ 1077 00dd 12       		.uleb128 0x12
+ 1078 00de 06       		.uleb128 0x6
+ 1079 00df 40       		.uleb128 0x40
+ 1080 00e0 18       		.uleb128 0x18
+ 1081 00e1 9742     		.uleb128 0x2117
+ 1082 00e3 19       		.uleb128 0x19
+ 1083 00e4 00       		.byte	0
+ 1084 00e5 00       		.byte	0
+ 1085 00e6 0E       		.uleb128 0xe
+ 1086 00e7 2E       		.uleb128 0x2e
+ 1087 00e8 00       		.byte	0
+ 1088 00e9 3F       		.uleb128 0x3f
+ 1089 00ea 19       		.uleb128 0x19
+ 1090 00eb 03       		.uleb128 0x3
+ 1091 00ec 0E       		.uleb128 0xe
+ 1092 00ed 3A       		.uleb128 0x3a
+ 1093 00ee 0B       		.uleb128 0xb
+ 1094 00ef 3B       		.uleb128 0x3b
+ 1095 00f0 05       		.uleb128 0x5
+ 1096 00f1 27       		.uleb128 0x27
+ 1097 00f2 19       		.uleb128 0x19
+ 1098 00f3 11       		.uleb128 0x11
+ 1099 00f4 01       		.uleb128 0x1
+ 1100 00f5 12       		.uleb128 0x12
+ 1101 00f6 06       		.uleb128 0x6
+ 1102 00f7 40       		.uleb128 0x40
+ 1103 00f8 18       		.uleb128 0x18
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 36
+
+
+ 1104 00f9 9642     		.uleb128 0x2116
+ 1105 00fb 19       		.uleb128 0x19
+ 1106 00fc 00       		.byte	0
+ 1107 00fd 00       		.byte	0
+ 1108 00fe 0F       		.uleb128 0xf
+ 1109 00ff 34       		.uleb128 0x34
+ 1110 0100 00       		.byte	0
+ 1111 0101 03       		.uleb128 0x3
+ 1112 0102 0E       		.uleb128 0xe
+ 1113 0103 3A       		.uleb128 0x3a
+ 1114 0104 0B       		.uleb128 0xb
+ 1115 0105 3B       		.uleb128 0x3b
+ 1116 0106 0B       		.uleb128 0xb
+ 1117 0107 49       		.uleb128 0x49
+ 1118 0108 13       		.uleb128 0x13
+ 1119 0109 3F       		.uleb128 0x3f
+ 1120 010a 19       		.uleb128 0x19
+ 1121 010b 02       		.uleb128 0x2
+ 1122 010c 18       		.uleb128 0x18
+ 1123 010d 00       		.byte	0
+ 1124 010e 00       		.byte	0
+ 1125 010f 00       		.byte	0
+ 1126              		.section	.debug_aranges,"",%progbits
+ 1127 0000 84000000 		.4byte	0x84
+ 1128 0004 0200     		.2byte	0x2
+ 1129 0006 00000000 		.4byte	.Ldebug_info0
+ 1130 000a 04       		.byte	0x4
+ 1131 000b 00       		.byte	0
+ 1132 000c 0000     		.2byte	0
+ 1133 000e 0000     		.2byte	0
+ 1134 0010 00000000 		.4byte	.LFB0
+ 1135 0014 20000000 		.4byte	.LFE0-.LFB0
+ 1136 0018 00000000 		.4byte	.LFB1
+ 1137 001c 5C000000 		.4byte	.LFE1-.LFB1
+ 1138 0020 00000000 		.4byte	.LFB2
+ 1139 0024 0C000000 		.4byte	.LFE2-.LFB2
+ 1140 0028 00000000 		.4byte	.LFB3
+ 1141 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 1142 0030 00000000 		.4byte	.LFB4
+ 1143 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1144 0038 00000000 		.4byte	.LFB5
+ 1145 003c 20000000 		.4byte	.LFE5-.LFB5
+ 1146 0040 00000000 		.4byte	.LFB6
+ 1147 0044 1A000000 		.4byte	.LFE6-.LFB6
+ 1148 0048 00000000 		.4byte	.LFB7
+ 1149 004c 20000000 		.4byte	.LFE7-.LFB7
+ 1150 0050 00000000 		.4byte	.LFB8
+ 1151 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1152 0058 00000000 		.4byte	.LFB9
+ 1153 005c 20000000 		.4byte	.LFE9-.LFB9
+ 1154 0060 00000000 		.4byte	.LFB10
+ 1155 0064 18000000 		.4byte	.LFE10-.LFB10
+ 1156 0068 00000000 		.4byte	.LFB11
+ 1157 006c 18000000 		.4byte	.LFE11-.LFB11
+ 1158 0070 00000000 		.4byte	.LFB12
+ 1159 0074 18000000 		.4byte	.LFE12-.LFB12
+ 1160 0078 00000000 		.4byte	.LFB13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 37
+
+
+ 1161 007c 18000000 		.4byte	.LFE13-.LFB13
+ 1162 0080 00000000 		.4byte	0
+ 1163 0084 00000000 		.4byte	0
+ 1164              		.section	.debug_ranges,"",%progbits
+ 1165              	.Ldebug_ranges0:
+ 1166 0000 00000000 		.4byte	.LFB0
+ 1167 0004 20000000 		.4byte	.LFE0
+ 1168 0008 00000000 		.4byte	.LFB1
+ 1169 000c 5C000000 		.4byte	.LFE1
+ 1170 0010 00000000 		.4byte	.LFB2
+ 1171 0014 0C000000 		.4byte	.LFE2
+ 1172 0018 00000000 		.4byte	.LFB3
+ 1173 001c 0C000000 		.4byte	.LFE3
+ 1174 0020 00000000 		.4byte	.LFB4
+ 1175 0024 20000000 		.4byte	.LFE4
+ 1176 0028 00000000 		.4byte	.LFB5
+ 1177 002c 20000000 		.4byte	.LFE5
+ 1178 0030 00000000 		.4byte	.LFB6
+ 1179 0034 1A000000 		.4byte	.LFE6
+ 1180 0038 00000000 		.4byte	.LFB7
+ 1181 003c 20000000 		.4byte	.LFE7
+ 1182 0040 00000000 		.4byte	.LFB8
+ 1183 0044 20000000 		.4byte	.LFE8
+ 1184 0048 00000000 		.4byte	.LFB9
+ 1185 004c 20000000 		.4byte	.LFE9
+ 1186 0050 00000000 		.4byte	.LFB10
+ 1187 0054 18000000 		.4byte	.LFE10
+ 1188 0058 00000000 		.4byte	.LFB11
+ 1189 005c 18000000 		.4byte	.LFE11
+ 1190 0060 00000000 		.4byte	.LFB12
+ 1191 0064 18000000 		.4byte	.LFE12
+ 1192 0068 00000000 		.4byte	.LFB13
+ 1193 006c 18000000 		.4byte	.LFE13
+ 1194 0070 00000000 		.4byte	0
+ 1195 0074 00000000 		.4byte	0
+ 1196              		.section	.debug_line,"",%progbits
+ 1197              	.Ldebug_line0:
+ 1198 0000 5E010000 		.section	.debug_str,"MS",%progbits,1
+ 1198      02004500 
+ 1198      00000201 
+ 1198      FB0E0D00 
+ 1198      01010101 
+ 1199              	.LASF15:
+ 1200 0000 50574D5F 		.ascii	"PWM_Buzz_Start\000"
+ 1200      42757A7A 
+ 1200      5F537461 
+ 1200      727400
+ 1201              	.LASF24:
+ 1202 000f 50574D5F 		.ascii	"PWM_Buzz_WriteCompare\000"
+ 1202      42757A7A 
+ 1202      5F577269 
+ 1202      7465436F 
+ 1202      6D706172 
+ 1203              	.LASF28:
+ 1204 0025 50574D5F 		.ascii	"PWM_Buzz_ReadCounter\000"
+ 1204      42757A7A 
+ 1204      5F526561 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 38
+
+
+ 1204      64436F75 
+ 1204      6E746572 
+ 1205              	.LASF23:
+ 1206 003a 70657269 		.ascii	"period\000"
+ 1206      6F6400
+ 1207              	.LASF33:
+ 1208 0041 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1208      4320342E 
+ 1208      392E3320 
+ 1208      32303135 
+ 1208      30333033 
+ 1209 0074 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1209      20726576 
+ 1209      6973696F 
+ 1209      6E203232 
+ 1209      31323230 
+ 1210 00a7 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1210      66756E63 
+ 1210      74696F6E 
+ 1210      2D736563 
+ 1210      74696F6E 
+ 1211              	.LASF36:
+ 1212 00cf 50574D5F 		.ascii	"PWM_Buzz_interruptState\000"
+ 1212      42757A7A 
+ 1212      5F696E74 
+ 1212      65727275 
+ 1212      70745374 
+ 1213              	.LASF34:
+ 1214 00e7 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_Buzz.c\000"
+ 1214      72617465 
+ 1214      645F536F 
+ 1214      75726365 
+ 1214      5C50536F 
+ 1215              	.LASF9:
+ 1216 0109 666C6F61 		.ascii	"float\000"
+ 1216      7400
+ 1217              	.LASF22:
+ 1218 010f 636F756E 		.ascii	"counter\000"
+ 1218      74657200 
+ 1219              	.LASF18:
+ 1220 0117 50574D5F 		.ascii	"PWM_Buzz_Init\000"
+ 1220      42757A7A 
+ 1220      5F496E69 
+ 1220      7400
+ 1221              	.LASF1:
+ 1222 0125 756E7369 		.ascii	"unsigned char\000"
+ 1222      676E6564 
+ 1222      20636861 
+ 1222      7200
+ 1223              	.LASF13:
+ 1224 0133 72656738 		.ascii	"reg8\000"
+ 1224      00
+ 1225              	.LASF32:
+ 1226 0138 50574D5F 		.ascii	"PWM_Buzz_ReadPeriod\000"
+ 1226      42757A7A 
+ 1226      5F526561 
+ 1226      64506572 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 39
+
+
+ 1226      696F6400 
+ 1227              	.LASF5:
+ 1228 014c 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1228      20756E73 
+ 1228      69676E65 
+ 1228      6420696E 
+ 1228      7400
+ 1229              	.LASF12:
+ 1230 015e 75696E74 		.ascii	"uint8\000"
+ 1230      3800
+ 1231              	.LASF21:
+ 1232 0164 50574D5F 		.ascii	"PWM_Buzz_WritePeriod\000"
+ 1232      42757A7A 
+ 1232      5F577269 
+ 1232      74655065 
+ 1232      72696F64 
+ 1233              	.LASF19:
+ 1234 0179 50574D5F 		.ascii	"PWM_Buzz_WriteCounter\000"
+ 1234      42757A7A 
+ 1234      5F577269 
+ 1234      7465436F 
+ 1234      756E7465 
+ 1235              	.LASF10:
+ 1236 018f 646F7562 		.ascii	"double\000"
+ 1236      6C6500
+ 1237              	.LASF26:
+ 1238 0196 50574D5F 		.ascii	"PWM_Buzz_SetInterruptMode\000"
+ 1238      42757A7A 
+ 1238      5F536574 
+ 1238      496E7465 
+ 1238      72727570 
+ 1239              	.LASF35:
+ 1240 01b0 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 1240      6F726B73 
+ 1240      70616365 
+ 1240      5C50536F 
+ 1240      435F4372 
+ 1241 01df 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 1241      392E6379 
+ 1241      64736E00 
+ 1242              	.LASF37:
+ 1243 01eb 50574D5F 		.ascii	"PWM_Buzz_initVar\000"
+ 1243      42757A7A 
+ 1243      5F696E69 
+ 1243      74566172 
+ 1243      00
+ 1244              	.LASF8:
+ 1245 01fc 756E7369 		.ascii	"unsigned int\000"
+ 1245      676E6564 
+ 1245      20696E74 
+ 1245      00
+ 1246              	.LASF7:
+ 1247 0209 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1247      206C6F6E 
+ 1247      6720756E 
+ 1247      7369676E 
+ 1247      65642069 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 40
+
+
+ 1248              	.LASF17:
+ 1249 0220 50574D5F 		.ascii	"PWM_Buzz_Stop\000"
+ 1249      42757A7A 
+ 1249      5F53746F 
+ 1249      7000
+ 1250              	.LASF20:
+ 1251 022e 50574D5F 		.ascii	"PWM_Buzz_ClearFIFO\000"
+ 1251      42757A7A 
+ 1251      5F436C65 
+ 1251      61724649 
+ 1251      464F00
+ 1252              	.LASF14:
+ 1253 0241 73697A65 		.ascii	"sizetype\000"
+ 1253      74797065 
+ 1253      00
+ 1254              	.LASF31:
+ 1255 024a 50574D5F 		.ascii	"PWM_Buzz_ReadCompare\000"
+ 1255      42757A7A 
+ 1255      5F526561 
+ 1255      64436F6D 
+ 1255      70617265 
+ 1256              	.LASF6:
+ 1257 025f 6C6F6E67 		.ascii	"long long int\000"
+ 1257      206C6F6E 
+ 1257      6720696E 
+ 1257      7400
+ 1258              	.LASF27:
+ 1259 026d 696E7465 		.ascii	"interruptMode\000"
+ 1259      72727570 
+ 1259      744D6F64 
+ 1259      6500
+ 1260              	.LASF16:
+ 1261 027b 50574D5F 		.ascii	"PWM_Buzz_Enable\000"
+ 1261      42757A7A 
+ 1261      5F456E61 
+ 1261      626C6500 
+ 1262              	.LASF2:
+ 1263 028b 73686F72 		.ascii	"short int\000"
+ 1263      7420696E 
+ 1263      7400
+ 1264              	.LASF4:
+ 1265 0295 6C6F6E67 		.ascii	"long int\000"
+ 1265      20696E74 
+ 1265      00
+ 1266              	.LASF11:
+ 1267 029e 63686172 		.ascii	"char\000"
+ 1267      00
+ 1268              	.LASF30:
+ 1269 02a3 50574D5F 		.ascii	"PWM_Buzz_ReadCapture\000"
+ 1269      42757A7A 
+ 1269      5F526561 
+ 1269      64436170 
+ 1269      74757265 
+ 1270              	.LASF29:
+ 1271 02b8 50574D5F 		.ascii	"PWM_Buzz_ReadStatusRegister\000"
+ 1271      42757A7A 
+ 1271      5F526561 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7ZAKF3.s 			page 41
+
+
+ 1271      64537461 
+ 1271      74757352 
+ 1272              	.LASF0:
+ 1273 02d4 7369676E 		.ascii	"signed char\000"
+ 1273      65642063 
+ 1273      68617200 
+ 1274              	.LASF25:
+ 1275 02e0 636F6D70 		.ascii	"compare\000"
+ 1275      61726500 
+ 1276              	.LASF3:
+ 1277 02e8 73686F72 		.ascii	"short unsigned int\000"
+ 1277      7420756E 
+ 1277      7369676E 
+ 1277      65642069 
+ 1277      6E7400
+ 1278              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

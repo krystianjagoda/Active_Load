@@ -1,0 +1,783 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ResistiveTouch_1_AMux.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	ResistiveTouch_1_AMux_initVar
+  19              		.bss
+  20              		.type	ResistiveTouch_1_AMux_initVar, %object
+  21              		.size	ResistiveTouch_1_AMux_initVar, 1
+  22              	ResistiveTouch_1_AMux_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.ResistiveTouch_1_AMux_Start,"ax",%progbits
+  25              		.align	2
+  26              		.global	ResistiveTouch_1_AMux_Start
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	ResistiveTouch_1_AMux_Start, %function
+  30              	ResistiveTouch_1_AMux_Start:
+  31              	.LFB0:
+  32              		.file 1 "Generated_Source\\PSoC5\\ResistiveTouch_1_AMux.c"
+   1:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * File Name: ResistiveTouch_1_AMux.c
+   3:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Version 1.80
+   4:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+   5:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  Description:
+   6:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *    This file contains functions for the AMuxSeq.
+   7:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+   8:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *   Note:
+   9:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  10:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************
+  11:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************/
+  16:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  17:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** #include "ResistiveTouch_1_AMux.h"
+  18:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  19:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** uint8 ResistiveTouch_1_AMux_initVar = 0u;
+  20:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  21:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  22:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+  23:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_Start
+  24:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+  25:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 2
+
+
+  26:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  Disconnect all channels. The next time Next is called, channel 0 will be
+  27:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  connected.
+  28:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  29:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+  30:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  31:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  32:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+  33:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  34:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  35:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+  36:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** void ResistiveTouch_1_AMux_Start(void)
+  37:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+  33              		.loc 1 37 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
+  38:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_DisconnectAll();
+  43              		.loc 1 38 0
+  44 0004 FFF7FEFF 		bl	ResistiveTouch_1_AMux_DisconnectAll
+  39:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_initVar = 1u;
+  45              		.loc 1 39 0
+  46 0008 014B     		ldr	r3, .L2
+  47 000a 0122     		movs	r2, #1
+  48 000c 1A70     		strb	r2, [r3]
+  40:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+  49              		.loc 1 40 0
+  50 000e 80BD     		pop	{r7, pc}
+  51              	.L3:
+  52              		.align	2
+  53              	.L2:
+  54 0010 00000000 		.word	ResistiveTouch_1_AMux_initVar
+  55              		.cfi_endproc
+  56              	.LFE0:
+  57              		.size	ResistiveTouch_1_AMux_Start, .-ResistiveTouch_1_AMux_Start
+  58              		.section	.text.ResistiveTouch_1_AMux_Init,"ax",%progbits
+  59              		.align	2
+  60              		.global	ResistiveTouch_1_AMux_Init
+  61              		.thumb
+  62              		.thumb_func
+  63              		.type	ResistiveTouch_1_AMux_Init, %function
+  64              	ResistiveTouch_1_AMux_Init:
+  65              	.LFB1:
+  41:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  42:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  43:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+  44:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_Init
+  45:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+  46:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+  47:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  Disconnect all channels. The next time Next is called, channel 0 will be
+  48:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  connected.
+  49:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 3
+
+
+  50:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+  51:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  52:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  53:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+  54:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  55:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  56:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+  57:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** void ResistiveTouch_1_AMux_Init(void)
+  58:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+  66              		.loc 1 58 0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 1, uses_anonymous_args = 0
+  70 0000 80B5     		push	{r7, lr}
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 7, -8
+  73              		.cfi_offset 14, -4
+  74 0002 00AF     		add	r7, sp, #0
+  75              		.cfi_def_cfa_register 7
+  59:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_DisconnectAll();
+  76              		.loc 1 59 0
+  77 0004 FFF7FEFF 		bl	ResistiveTouch_1_AMux_DisconnectAll
+  60:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+  78              		.loc 1 60 0
+  79 0008 80BD     		pop	{r7, pc}
+  80              		.cfi_endproc
+  81              	.LFE1:
+  82              		.size	ResistiveTouch_1_AMux_Init, .-ResistiveTouch_1_AMux_Init
+  83 000a 00BF     		.section	.text.ResistiveTouch_1_AMux_Stop,"ax",%progbits
+  84              		.align	2
+  85              		.global	ResistiveTouch_1_AMux_Stop
+  86              		.thumb
+  87              		.thumb_func
+  88              		.type	ResistiveTouch_1_AMux_Stop, %function
+  89              	ResistiveTouch_1_AMux_Stop:
+  90              	.LFB2:
+  61:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  62:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  63:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+  64:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_Stop
+  65:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+  66:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+  67:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  Disconnect all channels. The next time Next is called, channel 0 will be
+  68:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  connected.
+  69:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  70:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+  71:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  72:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  73:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+  74:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  75:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  76:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+  77:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** void ResistiveTouch_1_AMux_Stop(void)
+  78:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+  91              		.loc 1 78 0
+  92              		.cfi_startproc
+  93              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 4
+
+
+  94              		@ frame_needed = 1, uses_anonymous_args = 0
+  95 0000 80B5     		push	{r7, lr}
+  96              		.cfi_def_cfa_offset 8
+  97              		.cfi_offset 7, -8
+  98              		.cfi_offset 14, -4
+  99 0002 00AF     		add	r7, sp, #0
+ 100              		.cfi_def_cfa_register 7
+  79:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_DisconnectAll();
+ 101              		.loc 1 79 0
+ 102 0004 FFF7FEFF 		bl	ResistiveTouch_1_AMux_DisconnectAll
+  80:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+ 103              		.loc 1 80 0
+ 104 0008 80BD     		pop	{r7, pc}
+ 105              		.cfi_endproc
+ 106              	.LFE2:
+ 107              		.size	ResistiveTouch_1_AMux_Stop, .-ResistiveTouch_1_AMux_Stop
+ 108 000a 00BF     		.section	.text.ResistiveTouch_1_AMux_GetChannel,"ax",%progbits
+ 109              		.align	2
+ 110              		.global	ResistiveTouch_1_AMux_GetChannel
+ 111              		.thumb
+ 112              		.thumb_func
+ 113              		.type	ResistiveTouch_1_AMux_GetChannel, %function
+ 114              	ResistiveTouch_1_AMux_GetChannel:
+ 115              	.LFB3:
+  81:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  82:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** #if (ResistiveTouch_1_AMux_MUXTYPE == ResistiveTouch_1_AMux_MUX_DIFF)
+  83:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+  84:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+  85:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_Next
+  86:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+  87:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+  88:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  Disconnects the previous channel and connects the next one in the sequence.
+  89:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  When Next is called for the first time after Init, Start, Enable, Stop, or
+  90:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  DisconnectAll, it connects channel 0.
+  91:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  92:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+  93:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  94:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  95:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+  96:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+  97:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+  98:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+  99:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** void ResistiveTouch_1_AMux_Next(void)
+ 100:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+ 101:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_CYAMUXSIDE_A_Next();
+ 102:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_CYAMUXSIDE_B_Next();
+ 103:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+ 104:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+ 105:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+ 106:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+ 107:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_DisconnectAll
+ 108:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+ 109:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+ 110:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  This function disconnects all channels. The next time Next is called, channel
+ 111:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  0 will be connected.
+ 112:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 113:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 5
+
+
+ 114:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+ 115:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 116:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+ 117:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+ 118:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 119:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+ 120:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** void ResistiveTouch_1_AMux_DisconnectAll(void)
+ 121:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+ 122:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_CYAMUXSIDE_A_DisconnectAll();
+ 123:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     ResistiveTouch_1_AMux_CYAMUXSIDE_B_DisconnectAll();
+ 124:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+ 125:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+ 126:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+ 127:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+ 128:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_GetChannel
+ 129:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+ 130:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+ 131:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  The currently connected channel is retuned. If no channel is connected
+ 132:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  returns -1.
+ 133:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 134:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+ 135:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+ 136:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 137:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+ 138:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  The current channel or -1.
+ 139:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 140:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+ 141:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** int8 ResistiveTouch_1_AMux_GetChannel(void)
+ 142:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+ 143:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     return ResistiveTouch_1_AMux_CYAMUXSIDE_A_curChannel;
+ 144:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+ 145:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+ 146:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** #else
+ 147:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** 
+ 148:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** /*******************************************************************************
+ 149:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Function Name: ResistiveTouch_1_AMux_GetChannel
+ 150:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** ********************************************************************************
+ 151:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Summary:
+ 152:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  The currently connected channel is retuned. If no channel is connected
+ 153:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  returns -1.
+ 154:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 155:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Parameters:
+ 156:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  void
+ 157:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 158:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** * Return:
+ 159:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *  The current channel or -1.
+ 160:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *
+ 161:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** *******************************************************************************/
+ 162:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** int8 ResistiveTouch_1_AMux_GetChannel(void)
+ 163:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** {
+ 116              		.loc 1 163 0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 1, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+ 121 0000 80B4     		push	{r7}
+ 122              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 6
+
+
+ 123              		.cfi_offset 7, -4
+ 124 0002 00AF     		add	r7, sp, #0
+ 125              		.cfi_def_cfa_register 7
+ 164:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c ****     return ResistiveTouch_1_AMux_curChannel;
+ 126              		.loc 1 164 0
+ 127 0004 034B     		ldr	r3, .L8
+ 128 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 129 0008 5BB2     		sxtb	r3, r3
+ 165:Generated_Source\PSoC5/ResistiveTouch_1_AMux.c **** }
+ 130              		.loc 1 165 0
+ 131 000a 1846     		mov	r0, r3
+ 132 000c BD46     		mov	sp, r7
+ 133              		.cfi_def_cfa_register 13
+ 134              		@ sp needed
+ 135 000e 5DF8047B 		ldr	r7, [sp], #4
+ 136              		.cfi_restore 7
+ 137              		.cfi_def_cfa_offset 0
+ 138 0012 7047     		bx	lr
+ 139              	.L9:
+ 140              		.align	2
+ 141              	.L8:
+ 142 0014 00000000 		.word	ResistiveTouch_1_AMux_curChannel
+ 143              		.cfi_endproc
+ 144              	.LFE3:
+ 145              		.size	ResistiveTouch_1_AMux_GetChannel, .-ResistiveTouch_1_AMux_GetChannel
+ 146              		.text
+ 147              	.Letext0:
+ 148              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 149              		.file 3 "Generated_Source\\PSoC5\\cyfitter_cfg.h"
+ 150              		.section	.debug_info,"",%progbits
+ 151              	.Ldebug_info0:
+ 152 0000 F7000000 		.4byte	0xf7
+ 153 0004 0400     		.2byte	0x4
+ 154 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 155 000a 04       		.byte	0x4
+ 156 000b 01       		.uleb128 0x1
+ 157 000c 52000000 		.4byte	.LASF19
+ 158 0010 01       		.byte	0x1
+ 159 0011 01010000 		.4byte	.LASF20
+ 160 0015 70010000 		.4byte	.LASF21
+ 161 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 162 001d 00000000 		.4byte	0
+ 163 0021 00000000 		.4byte	.Ldebug_line0
+ 164 0025 02       		.uleb128 0x2
+ 165 0026 01       		.byte	0x1
+ 166 0027 06       		.byte	0x6
+ 167 0028 21020000 		.4byte	.LASF0
+ 168 002c 02       		.uleb128 0x2
+ 169 002d 01       		.byte	0x1
+ 170 002e 08       		.byte	0x8
+ 171 002f 36010000 		.4byte	.LASF1
+ 172 0033 02       		.uleb128 0x2
+ 173 0034 02       		.byte	0x2
+ 174 0035 05       		.byte	0x5
+ 175 0036 E7010000 		.4byte	.LASF2
+ 176 003a 02       		.uleb128 0x2
+ 177 003b 02       		.byte	0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 7
+
+
+ 178 003c 07       		.byte	0x7
+ 179 003d 56010000 		.4byte	.LASF3
+ 180 0041 02       		.uleb128 0x2
+ 181 0042 04       		.byte	0x4
+ 182 0043 05       		.byte	0x5
+ 183 0044 F7010000 		.4byte	.LASF4
+ 184 0048 02       		.uleb128 0x2
+ 185 0049 04       		.byte	0x4
+ 186 004a 07       		.byte	0x7
+ 187 004b 44010000 		.4byte	.LASF5
+ 188 004f 02       		.uleb128 0x2
+ 189 0050 08       		.byte	0x8
+ 190 0051 05       		.byte	0x5
+ 191 0052 D4010000 		.4byte	.LASF6
+ 192 0056 02       		.uleb128 0x2
+ 193 0057 08       		.byte	0x8
+ 194 0058 07       		.byte	0x7
+ 195 0059 BD010000 		.4byte	.LASF7
+ 196 005d 03       		.uleb128 0x3
+ 197 005e 04       		.byte	0x4
+ 198 005f 05       		.byte	0x5
+ 199 0060 696E7400 		.ascii	"int\000"
+ 200 0064 02       		.uleb128 0x2
+ 201 0065 04       		.byte	0x4
+ 202 0066 07       		.byte	0x7
+ 203 0067 B0010000 		.4byte	.LASF8
+ 204 006b 04       		.uleb128 0x4
+ 205 006c F1010000 		.4byte	.LASF9
+ 206 0070 02       		.byte	0x2
+ 207 0071 C2       		.byte	0xc2
+ 208 0072 2C000000 		.4byte	0x2c
+ 209 0076 04       		.uleb128 0x4
+ 210 0077 AB010000 		.4byte	.LASF10
+ 211 007b 02       		.byte	0x2
+ 212 007c C5       		.byte	0xc5
+ 213 007d 25000000 		.4byte	0x25
+ 214 0081 02       		.uleb128 0x2
+ 215 0082 04       		.byte	0x4
+ 216 0083 04       		.byte	0x4
+ 217 0084 30010000 		.4byte	.LASF11
+ 218 0088 02       		.uleb128 0x2
+ 219 0089 08       		.byte	0x8
+ 220 008a 04       		.byte	0x4
+ 221 008b 69010000 		.4byte	.LASF12
+ 222 008f 02       		.uleb128 0x2
+ 223 0090 01       		.byte	0x1
+ 224 0091 08       		.byte	0x8
+ 225 0092 E2010000 		.4byte	.LASF13
+ 226 0096 05       		.uleb128 0x5
+ 227 0097 1B000000 		.4byte	.LASF14
+ 228 009b 01       		.byte	0x1
+ 229 009c 24       		.byte	0x24
+ 230 009d 00000000 		.4byte	.LFB0
+ 231 00a1 14000000 		.4byte	.LFE0-.LFB0
+ 232 00a5 01       		.uleb128 0x1
+ 233 00a6 9C       		.byte	0x9c
+ 234 00a7 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 8
+
+
+ 235 00a8 00000000 		.4byte	.LASF15
+ 236 00ac 01       		.byte	0x1
+ 237 00ad 39       		.byte	0x39
+ 238 00ae 00000000 		.4byte	.LFB1
+ 239 00b2 0A000000 		.4byte	.LFE1-.LFB1
+ 240 00b6 01       		.uleb128 0x1
+ 241 00b7 9C       		.byte	0x9c
+ 242 00b8 05       		.uleb128 0x5
+ 243 00b9 37000000 		.4byte	.LASF16
+ 244 00bd 01       		.byte	0x1
+ 245 00be 4D       		.byte	0x4d
+ 246 00bf 00000000 		.4byte	.LFB2
+ 247 00c3 0A000000 		.4byte	.LFE2-.LFB2
+ 248 00c7 01       		.uleb128 0x1
+ 249 00c8 9C       		.byte	0x9c
+ 250 00c9 06       		.uleb128 0x6
+ 251 00ca E0000000 		.4byte	.LASF22
+ 252 00ce 01       		.byte	0x1
+ 253 00cf A2       		.byte	0xa2
+ 254 00d0 76000000 		.4byte	0x76
+ 255 00d4 00000000 		.4byte	.LFB3
+ 256 00d8 18000000 		.4byte	.LFE3-.LFB3
+ 257 00dc 01       		.uleb128 0x1
+ 258 00dd 9C       		.byte	0x9c
+ 259 00de 07       		.uleb128 0x7
+ 260 00df 00020000 		.4byte	.LASF17
+ 261 00e3 03       		.byte	0x3
+ 262 00e4 30       		.byte	0x30
+ 263 00e5 76000000 		.4byte	0x76
+ 264 00e9 08       		.uleb128 0x8
+ 265 00ea 2D020000 		.4byte	.LASF18
+ 266 00ee 01       		.byte	0x1
+ 267 00ef 13       		.byte	0x13
+ 268 00f0 6B000000 		.4byte	0x6b
+ 269 00f4 05       		.uleb128 0x5
+ 270 00f5 03       		.byte	0x3
+ 271 00f6 00000000 		.4byte	ResistiveTouch_1_AMux_initVar
+ 272 00fa 00       		.byte	0
+ 273              		.section	.debug_abbrev,"",%progbits
+ 274              	.Ldebug_abbrev0:
+ 275 0000 01       		.uleb128 0x1
+ 276 0001 11       		.uleb128 0x11
+ 277 0002 01       		.byte	0x1
+ 278 0003 25       		.uleb128 0x25
+ 279 0004 0E       		.uleb128 0xe
+ 280 0005 13       		.uleb128 0x13
+ 281 0006 0B       		.uleb128 0xb
+ 282 0007 03       		.uleb128 0x3
+ 283 0008 0E       		.uleb128 0xe
+ 284 0009 1B       		.uleb128 0x1b
+ 285 000a 0E       		.uleb128 0xe
+ 286 000b 55       		.uleb128 0x55
+ 287 000c 17       		.uleb128 0x17
+ 288 000d 11       		.uleb128 0x11
+ 289 000e 01       		.uleb128 0x1
+ 290 000f 10       		.uleb128 0x10
+ 291 0010 17       		.uleb128 0x17
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 9
+
+
+ 292 0011 00       		.byte	0
+ 293 0012 00       		.byte	0
+ 294 0013 02       		.uleb128 0x2
+ 295 0014 24       		.uleb128 0x24
+ 296 0015 00       		.byte	0
+ 297 0016 0B       		.uleb128 0xb
+ 298 0017 0B       		.uleb128 0xb
+ 299 0018 3E       		.uleb128 0x3e
+ 300 0019 0B       		.uleb128 0xb
+ 301 001a 03       		.uleb128 0x3
+ 302 001b 0E       		.uleb128 0xe
+ 303 001c 00       		.byte	0
+ 304 001d 00       		.byte	0
+ 305 001e 03       		.uleb128 0x3
+ 306 001f 24       		.uleb128 0x24
+ 307 0020 00       		.byte	0
+ 308 0021 0B       		.uleb128 0xb
+ 309 0022 0B       		.uleb128 0xb
+ 310 0023 3E       		.uleb128 0x3e
+ 311 0024 0B       		.uleb128 0xb
+ 312 0025 03       		.uleb128 0x3
+ 313 0026 08       		.uleb128 0x8
+ 314 0027 00       		.byte	0
+ 315 0028 00       		.byte	0
+ 316 0029 04       		.uleb128 0x4
+ 317 002a 16       		.uleb128 0x16
+ 318 002b 00       		.byte	0
+ 319 002c 03       		.uleb128 0x3
+ 320 002d 0E       		.uleb128 0xe
+ 321 002e 3A       		.uleb128 0x3a
+ 322 002f 0B       		.uleb128 0xb
+ 323 0030 3B       		.uleb128 0x3b
+ 324 0031 0B       		.uleb128 0xb
+ 325 0032 49       		.uleb128 0x49
+ 326 0033 13       		.uleb128 0x13
+ 327 0034 00       		.byte	0
+ 328 0035 00       		.byte	0
+ 329 0036 05       		.uleb128 0x5
+ 330 0037 2E       		.uleb128 0x2e
+ 331 0038 00       		.byte	0
+ 332 0039 3F       		.uleb128 0x3f
+ 333 003a 19       		.uleb128 0x19
+ 334 003b 03       		.uleb128 0x3
+ 335 003c 0E       		.uleb128 0xe
+ 336 003d 3A       		.uleb128 0x3a
+ 337 003e 0B       		.uleb128 0xb
+ 338 003f 3B       		.uleb128 0x3b
+ 339 0040 0B       		.uleb128 0xb
+ 340 0041 27       		.uleb128 0x27
+ 341 0042 19       		.uleb128 0x19
+ 342 0043 11       		.uleb128 0x11
+ 343 0044 01       		.uleb128 0x1
+ 344 0045 12       		.uleb128 0x12
+ 345 0046 06       		.uleb128 0x6
+ 346 0047 40       		.uleb128 0x40
+ 347 0048 18       		.uleb128 0x18
+ 348 0049 9642     		.uleb128 0x2116
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 10
+
+
+ 349 004b 19       		.uleb128 0x19
+ 350 004c 00       		.byte	0
+ 351 004d 00       		.byte	0
+ 352 004e 06       		.uleb128 0x6
+ 353 004f 2E       		.uleb128 0x2e
+ 354 0050 00       		.byte	0
+ 355 0051 3F       		.uleb128 0x3f
+ 356 0052 19       		.uleb128 0x19
+ 357 0053 03       		.uleb128 0x3
+ 358 0054 0E       		.uleb128 0xe
+ 359 0055 3A       		.uleb128 0x3a
+ 360 0056 0B       		.uleb128 0xb
+ 361 0057 3B       		.uleb128 0x3b
+ 362 0058 0B       		.uleb128 0xb
+ 363 0059 27       		.uleb128 0x27
+ 364 005a 19       		.uleb128 0x19
+ 365 005b 49       		.uleb128 0x49
+ 366 005c 13       		.uleb128 0x13
+ 367 005d 11       		.uleb128 0x11
+ 368 005e 01       		.uleb128 0x1
+ 369 005f 12       		.uleb128 0x12
+ 370 0060 06       		.uleb128 0x6
+ 371 0061 40       		.uleb128 0x40
+ 372 0062 18       		.uleb128 0x18
+ 373 0063 9742     		.uleb128 0x2117
+ 374 0065 19       		.uleb128 0x19
+ 375 0066 00       		.byte	0
+ 376 0067 00       		.byte	0
+ 377 0068 07       		.uleb128 0x7
+ 378 0069 34       		.uleb128 0x34
+ 379 006a 00       		.byte	0
+ 380 006b 03       		.uleb128 0x3
+ 381 006c 0E       		.uleb128 0xe
+ 382 006d 3A       		.uleb128 0x3a
+ 383 006e 0B       		.uleb128 0xb
+ 384 006f 3B       		.uleb128 0x3b
+ 385 0070 0B       		.uleb128 0xb
+ 386 0071 49       		.uleb128 0x49
+ 387 0072 13       		.uleb128 0x13
+ 388 0073 3F       		.uleb128 0x3f
+ 389 0074 19       		.uleb128 0x19
+ 390 0075 3C       		.uleb128 0x3c
+ 391 0076 19       		.uleb128 0x19
+ 392 0077 00       		.byte	0
+ 393 0078 00       		.byte	0
+ 394 0079 08       		.uleb128 0x8
+ 395 007a 34       		.uleb128 0x34
+ 396 007b 00       		.byte	0
+ 397 007c 03       		.uleb128 0x3
+ 398 007d 0E       		.uleb128 0xe
+ 399 007e 3A       		.uleb128 0x3a
+ 400 007f 0B       		.uleb128 0xb
+ 401 0080 3B       		.uleb128 0x3b
+ 402 0081 0B       		.uleb128 0xb
+ 403 0082 49       		.uleb128 0x49
+ 404 0083 13       		.uleb128 0x13
+ 405 0084 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 11
+
+
+ 406 0085 19       		.uleb128 0x19
+ 407 0086 02       		.uleb128 0x2
+ 408 0087 18       		.uleb128 0x18
+ 409 0088 00       		.byte	0
+ 410 0089 00       		.byte	0
+ 411 008a 00       		.byte	0
+ 412              		.section	.debug_aranges,"",%progbits
+ 413 0000 34000000 		.4byte	0x34
+ 414 0004 0200     		.2byte	0x2
+ 415 0006 00000000 		.4byte	.Ldebug_info0
+ 416 000a 04       		.byte	0x4
+ 417 000b 00       		.byte	0
+ 418 000c 0000     		.2byte	0
+ 419 000e 0000     		.2byte	0
+ 420 0010 00000000 		.4byte	.LFB0
+ 421 0014 14000000 		.4byte	.LFE0-.LFB0
+ 422 0018 00000000 		.4byte	.LFB1
+ 423 001c 0A000000 		.4byte	.LFE1-.LFB1
+ 424 0020 00000000 		.4byte	.LFB2
+ 425 0024 0A000000 		.4byte	.LFE2-.LFB2
+ 426 0028 00000000 		.4byte	.LFB3
+ 427 002c 18000000 		.4byte	.LFE3-.LFB3
+ 428 0030 00000000 		.4byte	0
+ 429 0034 00000000 		.4byte	0
+ 430              		.section	.debug_ranges,"",%progbits
+ 431              	.Ldebug_ranges0:
+ 432 0000 00000000 		.4byte	.LFB0
+ 433 0004 14000000 		.4byte	.LFE0
+ 434 0008 00000000 		.4byte	.LFB1
+ 435 000c 0A000000 		.4byte	.LFE1
+ 436 0010 00000000 		.4byte	.LFB2
+ 437 0014 0A000000 		.4byte	.LFE2
+ 438 0018 00000000 		.4byte	.LFB3
+ 439 001c 18000000 		.4byte	.LFE3
+ 440 0020 00000000 		.4byte	0
+ 441 0024 00000000 		.4byte	0
+ 442              		.section	.debug_line,"",%progbits
+ 443              	.Ldebug_line0:
+ 444 0000 B1000000 		.section	.debug_str,"MS",%progbits,1
+ 444      02006400 
+ 444      00000201 
+ 444      FB0E0D00 
+ 444      01010101 
+ 445              	.LASF15:
+ 446 0000 52657369 		.ascii	"ResistiveTouch_1_AMux_Init\000"
+ 446      73746976 
+ 446      65546F75 
+ 446      63685F31 
+ 446      5F414D75 
+ 447              	.LASF14:
+ 448 001b 52657369 		.ascii	"ResistiveTouch_1_AMux_Start\000"
+ 448      73746976 
+ 448      65546F75 
+ 448      63685F31 
+ 448      5F414D75 
+ 449              	.LASF16:
+ 450 0037 52657369 		.ascii	"ResistiveTouch_1_AMux_Stop\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 12
+
+
+ 450      73746976 
+ 450      65546F75 
+ 450      63685F31 
+ 450      5F414D75 
+ 451              	.LASF19:
+ 452 0052 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 452      4320342E 
+ 452      392E3320 
+ 452      32303135 
+ 452      30333033 
+ 453 0085 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 453      20726576 
+ 453      6973696F 
+ 453      6E203232 
+ 453      31323230 
+ 454 00b8 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 454      66756E63 
+ 454      74696F6E 
+ 454      2D736563 
+ 454      74696F6E 
+ 455              	.LASF22:
+ 456 00e0 52657369 		.ascii	"ResistiveTouch_1_AMux_GetChannel\000"
+ 456      73746976 
+ 456      65546F75 
+ 456      63685F31 
+ 456      5F414D75 
+ 457              	.LASF20:
+ 458 0101 47656E65 		.ascii	"Generated_Source\\PSoC5\\ResistiveTouch_1_AMux.c\000"
+ 458      72617465 
+ 458      645F536F 
+ 458      75726365 
+ 458      5C50536F 
+ 459              	.LASF11:
+ 460 0130 666C6F61 		.ascii	"float\000"
+ 460      7400
+ 461              	.LASF1:
+ 462 0136 756E7369 		.ascii	"unsigned char\000"
+ 462      676E6564 
+ 462      20636861 
+ 462      7200
+ 463              	.LASF5:
+ 464 0144 6C6F6E67 		.ascii	"long unsigned int\000"
+ 464      20756E73 
+ 464      69676E65 
+ 464      6420696E 
+ 464      7400
+ 465              	.LASF3:
+ 466 0156 73686F72 		.ascii	"short unsigned int\000"
+ 466      7420756E 
+ 466      7369676E 
+ 466      65642069 
+ 466      6E7400
+ 467              	.LASF12:
+ 468 0169 646F7562 		.ascii	"double\000"
+ 468      6C6500
+ 469              	.LASF21:
+ 470 0170 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 13
+
+
+ 470      6F726B73 
+ 470      70616365 
+ 470      5C50536F 
+ 470      435F4372 
+ 471 019f 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 471      392E6379 
+ 471      64736E00 
+ 472              	.LASF10:
+ 473 01ab 696E7438 		.ascii	"int8\000"
+ 473      00
+ 474              	.LASF8:
+ 475 01b0 756E7369 		.ascii	"unsigned int\000"
+ 475      676E6564 
+ 475      20696E74 
+ 475      00
+ 476              	.LASF7:
+ 477 01bd 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 477      206C6F6E 
+ 477      6720756E 
+ 477      7369676E 
+ 477      65642069 
+ 478              	.LASF6:
+ 479 01d4 6C6F6E67 		.ascii	"long long int\000"
+ 479      206C6F6E 
+ 479      6720696E 
+ 479      7400
+ 480              	.LASF13:
+ 481 01e2 63686172 		.ascii	"char\000"
+ 481      00
+ 482              	.LASF2:
+ 483 01e7 73686F72 		.ascii	"short int\000"
+ 483      7420696E 
+ 483      7400
+ 484              	.LASF9:
+ 485 01f1 75696E74 		.ascii	"uint8\000"
+ 485      3800
+ 486              	.LASF4:
+ 487 01f7 6C6F6E67 		.ascii	"long int\000"
+ 487      20696E74 
+ 487      00
+ 488              	.LASF17:
+ 489 0200 52657369 		.ascii	"ResistiveTouch_1_AMux_curChannel\000"
+ 489      73746976 
+ 489      65546F75 
+ 489      63685F31 
+ 489      5F414D75 
+ 490              	.LASF0:
+ 491 0221 7369676E 		.ascii	"signed char\000"
+ 491      65642063 
+ 491      68617200 
+ 492              	.LASF18:
+ 493 022d 52657369 		.ascii	"ResistiveTouch_1_AMux_initVar\000"
+ 493      73746976 
+ 493      65546F75 
+ 493      63685F31 
+ 493      5F414D75 
+ 494              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc3G7zb7.s 			page 14
+
+

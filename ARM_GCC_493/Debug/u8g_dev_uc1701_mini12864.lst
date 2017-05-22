@@ -1,0 +1,2360 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"u8g_dev_uc1701_mini12864.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.rodata
+  19              		.align	2
+  20              		.type	u8g_dev_uc1701_mini12864_init_seq, %object
+  21              		.size	u8g_dev_uc1701_mini12864_init_seq, 35
+  22              	u8g_dev_uc1701_mini12864_init_seq:
+  23 0000 FF       		.byte	-1
+  24 0001 D0       		.byte	-48
+  25 0002 FF       		.byte	-1
+  26 0003 E0       		.byte	-32
+  27 0004 FF       		.byte	-1
+  28 0005 C1       		.byte	-63
+  29 0006 FF       		.byte	-1
+  30 0007 D1       		.byte	-47
+  31 0008 E2       		.byte	-30
+  32 0009 40       		.byte	64
+  33 000a A0       		.byte	-96
+  34 000b C8       		.byte	-56
+  35 000c A6       		.byte	-90
+  36 000d A2       		.byte	-94
+  37 000e 2F       		.byte	47
+  38 000f F8       		.byte	-8
+  39 0010 00       		.byte	0
+  40 0011 23       		.byte	35
+  41 0012 81       		.byte	-127
+  42 0013 27       		.byte	39
+  43 0014 AC       		.byte	-84
+  44 0015 00       		.byte	0
+  45 0016 AF       		.byte	-81
+  46 0017 FF       		.byte	-1
+  47 0018 64       		.byte	100
+  48 0019 A5       		.byte	-91
+  49 001a FF       		.byte	-1
+  50 001b 64       		.byte	100
+  51 001c FF       		.byte	-1
+  52 001d 64       		.byte	100
+  53 001e A4       		.byte	-92
+  54 001f FF       		.byte	-1
+  55 0020 D0       		.byte	-48
+  56 0021 FF       		.byte	-1
+  57 0022 FE       		.byte	-2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 2
+
+
+  58 0023 00       		.align	2
+  59              		.type	u8g_dev_uc1701_mini12864_data_start, %object
+  60              		.size	u8g_dev_uc1701_mini12864_data_start, 8
+  61              	u8g_dev_uc1701_mini12864_data_start:
+  62 0024 FF       		.byte	-1
+  63 0025 E0       		.byte	-32
+  64 0026 FF       		.byte	-1
+  65 0027 D1       		.byte	-47
+  66 0028 10       		.byte	16
+  67 0029 00       		.byte	0
+  68 002a FF       		.byte	-1
+  69 002b FE       		.byte	-2
+  70              		.section	.text.u8g_dev_uc1701_mini12864_fn,"ax",%progbits
+  71              		.align	2
+  72              		.global	u8g_dev_uc1701_mini12864_fn
+  73              		.thumb
+  74              		.thumb_func
+  75              		.type	u8g_dev_uc1701_mini12864_fn, %function
+  76              	u8g_dev_uc1701_mini12864_fn:
+  77              	.LFB0:
+  78              		.file 1 ".\\u8glib_arm_v1.18.1\\src\\u8g_dev_uc1701_mini12864.c"
+   1:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** /*
+   2:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+   3:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   u8g_dev_uc1701_mini12864.c (dealextreme)
+   4:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+   5:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   Universal 8bit Graphics Library
+   6:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   
+   7:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   Copyright (c) 2011, olikraus@gmail.com
+   8:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   All rights reserved.
+   9:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  10:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  11:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   are permitted provided that the following conditions are met:
+  12:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  13:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  14:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     of conditions and the following disclaimer.
+  15:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     
+  16:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  17:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  18:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     materials provided with the distribution.
+  19:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  20:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  21:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  22:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  23:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  24:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  25:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  26:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  27:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  28:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  29:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  30:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  32:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  33:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   
+  34:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   
+  35:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** */
+  36:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 3
+
+
+  37:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** #include "u8g.h"
+  38:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  39:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** #define WIDTH 128
+  40:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** #define HEIGHT 64
+  41:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** #define PAGE_HEIGHT 8
+  42:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  43:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** static const uint8_t u8g_dev_uc1701_mini12864_init_seq[] PROGMEM = {
+  44:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_CS(0),             /* disable chip */
+  45:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_ADR(0),           /* instruction mode */
+  46:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_RST(1),           /* do reset low pulse with (1*16)+2 milliseconds */
+  47:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_CS(1),             /* enable chip */
+  48:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  49:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0e2,            /* soft reset */
+  50:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x040,		/* set display start line to 0 */
+  51:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0a0,		/* ADC set to reverse */
+  52:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0c8,		/* common output mode */
+  53:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0a6,		/* display normal, bit val 0: LCD pixel off. */
+  54:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0a2,		/* LCD bias 1/9 */
+  55:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x02f,		/* all power  control circuits on */
+  56:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0f8,		/* set booster ratio to */
+  57:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x000,		/* 4x */
+  58:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x023,		/* set V0 voltage resistor ratio to large */
+  59:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x081,		/* set contrast */
+  60:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x027,		/* contrast value */
+  61:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0ac,		/* indicator */
+  62:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x000,		/* disable */
+  63:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0af,		/* display on */
+  64:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  65:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_DLY(100),       /* delay 100 ms */
+  66:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0a5,		                /* display all points, ST7565 */
+  67:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_DLY(100),       /* delay 100 ms */
+  68:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_DLY(100),       /* delay 100 ms */
+  69:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x0a4,		                /* normal display */
+  70:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_CS(0),             /* disable chip */
+  71:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_END                /* end of sequence */
+  72:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** };
+  73:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  74:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** static const uint8_t u8g_dev_uc1701_mini12864_data_start[] PROGMEM = {
+  75:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_ADR(0),           /* instruction mode */
+  76:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_CS(1),             /* enable chip */
+  77:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x010,		/* set upper 4 bit of the col adr to 0 */
+  78:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   0x000,		/* set lower 4 bit of the col adr to 4  */
+  79:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   U8G_ESC_END                /* end of sequence */
+  80:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** };
+  81:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+  82:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** uint8_t u8g_dev_uc1701_mini12864_fn(u8g_t *u8g, u8g_dev_t *dev, uint8_t msg, void *arg)
+  83:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** {
+  79              		.loc 1 83 0
+  80              		.cfi_startproc
+  81              		@ args = 0, pretend = 0, frame = 24
+  82              		@ frame_needed = 1, uses_anonymous_args = 0
+  83 0000 80B5     		push	{r7, lr}
+  84              		.cfi_def_cfa_offset 8
+  85              		.cfi_offset 7, -8
+  86              		.cfi_offset 14, -4
+  87 0002 86B0     		sub	sp, sp, #24
+  88              		.cfi_def_cfa_offset 32
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 4
+
+
+  89 0004 00AF     		add	r7, sp, #0
+  90              		.cfi_def_cfa_register 7
+  91 0006 F860     		str	r0, [r7, #12]
+  92 0008 B960     		str	r1, [r7, #8]
+  93 000a 3B60     		str	r3, [r7]
+  94 000c 1346     		mov	r3, r2
+  95 000e FB71     		strb	r3, [r7, #7]
+  84:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   switch(msg)
+  96              		.loc 1 84 0
+  97 0010 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+  98 0012 0A3B     		subs	r3, r3, #10
+  99 0014 0B2B     		cmp	r3, #11
+ 100 0016 6CD8     		bhi	.L2
+ 101 0018 01A2     		adr	r2, .L4
+ 102 001a 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 103 001e 00BF     		.p2align 2
+ 104              	.L4:
+ 105 0020 51000000 		.word	.L3+1
+ 106 0024 F3000000 		.word	.L2+1
+ 107 0028 F3000000 		.word	.L2+1
+ 108 002c F3000000 		.word	.L2+1
+ 109 0030 F3000000 		.word	.L2+1
+ 110 0034 B5000000 		.word	.L6+1
+ 111 0038 F3000000 		.word	.L2+1
+ 112 003c F3000000 		.word	.L2+1
+ 113 0040 F3000000 		.word	.L2+1
+ 114 0044 F3000000 		.word	.L2+1
+ 115 0048 F3000000 		.word	.L2+1
+ 116 004c 67000000 		.word	.L7+1
+ 117              		.p2align 1
+ 118              	.L3:
+  85:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   {
+  86:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_INIT:
+  87:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_InitCom(u8g, dev, U8G_SPI_CLK_CYCLE_300NS);
+ 119              		.loc 1 87 0
+ 120 0050 F868     		ldr	r0, [r7, #12]
+ 121 0052 B968     		ldr	r1, [r7, #8]
+ 122 0054 0222     		movs	r2, #2
+ 123 0056 FFF7FEFF 		bl	u8g_InitCom
+  88:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_uc1701_mini12864_init_seq);
+ 124              		.loc 1 88 0
+ 125 005a F868     		ldr	r0, [r7, #12]
+ 126 005c B968     		ldr	r1, [r7, #8]
+ 127 005e 2B4A     		ldr	r2, .L10
+ 128 0060 FFF7FEFF 		bl	u8g_WriteEscSeqP
+  89:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       break;
+ 129              		.loc 1 89 0
+ 130 0064 45E0     		b	.L2
+ 131              	.L7:
+ 132              	.LBB2:
+  90:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_STOP:
+  91:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       break;
+  92:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_PAGE_NEXT:
+  93:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       {
+  94:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_pb_t *pb = (u8g_pb_t *)(dev->dev_mem);
+ 133              		.loc 1 94 0
+ 134 0066 BB68     		ldr	r3, [r7, #8]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 5
+
+
+ 135 0068 5B68     		ldr	r3, [r3, #4]
+ 136 006a 7B61     		str	r3, [r7, #20]
+  95:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_WriteEscSeqP(u8g, dev, u8g_dev_uc1701_mini12864_data_start);    
+ 137              		.loc 1 95 0
+ 138 006c F868     		ldr	r0, [r7, #12]
+ 139 006e B968     		ldr	r1, [r7, #8]
+ 140 0070 274A     		ldr	r2, .L10+4
+ 141 0072 FFF7FEFF 		bl	u8g_WriteEscSeqP
+  96:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_WriteByte(u8g, dev, 0x0b0 | pb->p.page); /* select current page */
+ 142              		.loc 1 96 0
+ 143 0076 7B69     		ldr	r3, [r7, #20]
+ 144 0078 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 145 007a 63F04F03 		orn	r3, r3, #79
+ 146 007e DBB2     		uxtb	r3, r3
+ 147 0080 F868     		ldr	r0, [r7, #12]
+ 148 0082 B968     		ldr	r1, [r7, #8]
+ 149 0084 1A46     		mov	r2, r3
+ 150 0086 FFF7FEFF 		bl	u8g_WriteByte
+  97:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_SetAddress(u8g, dev, 1);           /* data mode */
+ 151              		.loc 1 97 0
+ 152 008a F868     		ldr	r0, [r7, #12]
+ 153 008c B968     		ldr	r1, [r7, #8]
+ 154 008e 0122     		movs	r2, #1
+ 155 0090 FFF7FEFF 		bl	u8g_SetAddress
+  98:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         if ( u8g_pb_WriteBuffer(pb, u8g, dev) == 0 )
+ 156              		.loc 1 98 0
+ 157 0094 7869     		ldr	r0, [r7, #20]
+ 158 0096 F968     		ldr	r1, [r7, #12]
+ 159 0098 BA68     		ldr	r2, [r7, #8]
+ 160 009a FFF7FEFF 		bl	u8g_pb_WriteBuffer
+ 161 009e 0346     		mov	r3, r0
+ 162 00a0 002B     		cmp	r3, #0
+ 163 00a2 01D1     		bne	.L8
+  99:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****           return 0;
+ 164              		.loc 1 99 0
+ 165 00a4 0023     		movs	r3, #0
+ 166 00a6 2CE0     		b	.L9
+ 167              	.L8:
+ 100:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_SetChipSelect(u8g, dev, 0);
+ 168              		.loc 1 100 0
+ 169 00a8 F868     		ldr	r0, [r7, #12]
+ 170 00aa B968     		ldr	r1, [r7, #8]
+ 171 00ac 0022     		movs	r2, #0
+ 172 00ae FFF7FEFF 		bl	u8g_SetChipSelect
+ 173              	.LBE2:
+ 101:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       }
+ 102:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       break;
+ 174              		.loc 1 102 0
+ 175 00b2 1EE0     		b	.L2
+ 176              	.L6:
+ 103:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_CONTRAST:
+ 104:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_SetChipSelect(u8g, dev, 1);
+ 177              		.loc 1 104 0
+ 178 00b4 F868     		ldr	r0, [r7, #12]
+ 179 00b6 B968     		ldr	r1, [r7, #8]
+ 180 00b8 0122     		movs	r2, #1
+ 181 00ba FFF7FEFF 		bl	u8g_SetChipSelect
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 6
+
+
+ 105:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_SetAddress(u8g, dev, 0);          /* instruction mode */
+ 182              		.loc 1 105 0
+ 183 00be F868     		ldr	r0, [r7, #12]
+ 184 00c0 B968     		ldr	r1, [r7, #8]
+ 185 00c2 0022     		movs	r2, #0
+ 186 00c4 FFF7FEFF 		bl	u8g_SetAddress
+ 106:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_WriteByte(u8g, dev, 0x081);
+ 187              		.loc 1 106 0
+ 188 00c8 F868     		ldr	r0, [r7, #12]
+ 189 00ca B968     		ldr	r1, [r7, #8]
+ 190 00cc 8122     		movs	r2, #129
+ 191 00ce FFF7FEFF 		bl	u8g_WriteByte
+ 107:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_WriteByte(u8g, dev, (*(uint8_t *)arg) >> 2);
+ 192              		.loc 1 107 0
+ 193 00d2 3B68     		ldr	r3, [r7]
+ 194 00d4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 195 00d6 9B08     		lsrs	r3, r3, #2
+ 196 00d8 DBB2     		uxtb	r3, r3
+ 197 00da F868     		ldr	r0, [r7, #12]
+ 198 00dc B968     		ldr	r1, [r7, #8]
+ 199 00de 1A46     		mov	r2, r3
+ 200 00e0 FFF7FEFF 		bl	u8g_WriteByte
+ 108:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_SetChipSelect(u8g, dev, 0);      
+ 201              		.loc 1 108 0
+ 202 00e4 F868     		ldr	r0, [r7, #12]
+ 203 00e6 B968     		ldr	r1, [r7, #8]
+ 204 00e8 0022     		movs	r2, #0
+ 205 00ea FFF7FEFF 		bl	u8g_SetChipSelect
+ 109:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       return 1;
+ 206              		.loc 1 109 0
+ 207 00ee 0123     		movs	r3, #1
+ 208 00f0 07E0     		b	.L9
+ 209              	.L2:
+ 110:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   }
+ 111:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   return u8g_dev_pb8v1_base_fn(u8g, dev, msg, arg);
+ 210              		.loc 1 111 0
+ 211 00f2 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 212 00f4 F868     		ldr	r0, [r7, #12]
+ 213 00f6 B968     		ldr	r1, [r7, #8]
+ 214 00f8 1A46     		mov	r2, r3
+ 215 00fa 3B68     		ldr	r3, [r7]
+ 216 00fc FFF7FEFF 		bl	u8g_dev_pb8v1_base_fn
+ 217 0100 0346     		mov	r3, r0
+ 218              	.L9:
+ 112:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** }
+ 219              		.loc 1 112 0
+ 220 0102 1846     		mov	r0, r3
+ 221 0104 1837     		adds	r7, r7, #24
+ 222              		.cfi_def_cfa_offset 8
+ 223 0106 BD46     		mov	sp, r7
+ 224              		.cfi_def_cfa_register 13
+ 225              		@ sp needed
+ 226 0108 80BD     		pop	{r7, pc}
+ 227              	.L11:
+ 228 010a 00BF     		.align	2
+ 229              	.L10:
+ 230 010c 00000000 		.word	u8g_dev_uc1701_mini12864_init_seq
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 7
+
+
+ 231 0110 24000000 		.word	u8g_dev_uc1701_mini12864_data_start
+ 232              		.cfi_endproc
+ 233              	.LFE0:
+ 234              		.size	u8g_dev_uc1701_mini12864_fn, .-u8g_dev_uc1701_mini12864_fn
+ 235              		.section	.text.u8g_dev_uc1701_mini12864_2x_fn,"ax",%progbits
+ 236              		.align	2
+ 237              		.global	u8g_dev_uc1701_mini12864_2x_fn
+ 238              		.thumb
+ 239              		.thumb_func
+ 240              		.type	u8g_dev_uc1701_mini12864_2x_fn, %function
+ 241              	u8g_dev_uc1701_mini12864_2x_fn:
+ 242              	.LFB1:
+ 113:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 
+ 114:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** uint8_t u8g_dev_uc1701_mini12864_2x_fn(u8g_t *u8g, u8g_dev_t *dev, uint8_t msg, void *arg)
+ 115:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** {
+ 243              		.loc 1 115 0
+ 244              		.cfi_startproc
+ 245              		@ args = 0, pretend = 0, frame = 24
+ 246              		@ frame_needed = 1, uses_anonymous_args = 0
+ 247 0000 90B5     		push	{r4, r7, lr}
+ 248              		.cfi_def_cfa_offset 12
+ 249              		.cfi_offset 4, -12
+ 250              		.cfi_offset 7, -8
+ 251              		.cfi_offset 14, -4
+ 252 0002 87B0     		sub	sp, sp, #28
+ 253              		.cfi_def_cfa_offset 40
+ 254 0004 00AF     		add	r7, sp, #0
+ 255              		.cfi_def_cfa_register 7
+ 256 0006 F860     		str	r0, [r7, #12]
+ 257 0008 B960     		str	r1, [r7, #8]
+ 258 000a 3B60     		str	r3, [r7]
+ 259 000c 1346     		mov	r3, r2
+ 260 000e FB71     		strb	r3, [r7, #7]
+ 116:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   switch(msg)
+ 261              		.loc 1 116 0
+ 262 0010 FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 263 0012 0A3B     		subs	r3, r3, #10
+ 264 0014 0B2B     		cmp	r3, #11
+ 265 0016 00F29980 		bhi	.L13
+ 266 001a 01A2     		adr	r2, .L15
+ 267 001c 52F823F0 		ldr	pc, [r2, r3, lsl #2]
+ 268              		.p2align 2
+ 269              	.L15:
+ 270 0020 51000000 		.word	.L14+1
+ 271 0024 4D010000 		.word	.L13+1
+ 272 0028 4D010000 		.word	.L13+1
+ 273 002c 4D010000 		.word	.L13+1
+ 274 0030 4D010000 		.word	.L13+1
+ 275 0034 0F010000 		.word	.L17+1
+ 276 0038 4D010000 		.word	.L13+1
+ 277 003c 4D010000 		.word	.L13+1
+ 278 0040 4D010000 		.word	.L13+1
+ 279 0044 4D010000 		.word	.L13+1
+ 280 0048 4D010000 		.word	.L13+1
+ 281 004c 67000000 		.word	.L18+1
+ 282              		.p2align 1
+ 283              	.L14:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 8
+
+
+ 117:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   {
+ 118:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_INIT:
+ 119:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_InitCom(u8g, dev, U8G_SPI_CLK_CYCLE_300NS);
+ 284              		.loc 1 119 0
+ 285 0050 F868     		ldr	r0, [r7, #12]
+ 286 0052 B968     		ldr	r1, [r7, #8]
+ 287 0054 0222     		movs	r2, #2
+ 288 0056 FFF7FEFF 		bl	u8g_InitCom
+ 120:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_WriteEscSeqP(u8g, dev, u8g_dev_uc1701_mini12864_init_seq);
+ 289              		.loc 1 120 0
+ 290 005a F868     		ldr	r0, [r7, #12]
+ 291 005c B968     		ldr	r1, [r7, #8]
+ 292 005e 414A     		ldr	r2, .L20
+ 293 0060 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 121:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       break;
+ 294              		.loc 1 121 0
+ 295 0064 72E0     		b	.L13
+ 296              	.L18:
+ 297              	.LBB3:
+ 122:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_STOP:
+ 123:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       break;
+ 124:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_PAGE_NEXT:
+ 125:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       {
+ 126:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_pb_t *pb = (u8g_pb_t *)(dev->dev_mem);
+ 298              		.loc 1 126 0
+ 299 0066 BB68     		ldr	r3, [r7, #8]
+ 300 0068 5B68     		ldr	r3, [r3, #4]
+ 301 006a 7B61     		str	r3, [r7, #20]
+ 127:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 	
+ 128:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_WriteEscSeqP(u8g, dev, u8g_dev_uc1701_mini12864_data_start);    
+ 302              		.loc 1 128 0
+ 303 006c F868     		ldr	r0, [r7, #12]
+ 304 006e B968     		ldr	r1, [r7, #8]
+ 305 0070 3D4A     		ldr	r2, .L20+4
+ 306 0072 FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 129:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_WriteByte(u8g, dev, 0x0b0 | (2*pb->p.page)); /* select current page */
+ 307              		.loc 1 129 0
+ 308 0076 7B69     		ldr	r3, [r7, #20]
+ 309 0078 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 310 007a 5B00     		lsls	r3, r3, #1
+ 311 007c DBB2     		uxtb	r3, r3
+ 312 007e DBB2     		uxtb	r3, r3
+ 313 0080 63F04F03 		orn	r3, r3, #79
+ 314 0084 DBB2     		uxtb	r3, r3
+ 315 0086 DBB2     		uxtb	r3, r3
+ 316 0088 F868     		ldr	r0, [r7, #12]
+ 317 008a B968     		ldr	r1, [r7, #8]
+ 318 008c 1A46     		mov	r2, r3
+ 319 008e FFF7FEFF 		bl	u8g_WriteByte
+ 130:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_SetAddress(u8g, dev, 1);           /* data mode */
+ 320              		.loc 1 130 0
+ 321 0092 F868     		ldr	r0, [r7, #12]
+ 322 0094 B968     		ldr	r1, [r7, #8]
+ 323 0096 0122     		movs	r2, #1
+ 324 0098 FFF7FEFF 		bl	u8g_SetAddress
+ 131:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 	u8g_WriteSequence(u8g, dev, pb->width, pb->buf); 
+ 325              		.loc 1 131 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 9
+
+
+ 326 009c 7B69     		ldr	r3, [r7, #20]
+ 327 009e 5A79     		ldrb	r2, [r3, #5]	@ zero_extendqisi2
+ 328 00a0 7B69     		ldr	r3, [r7, #20]
+ 329 00a2 9B68     		ldr	r3, [r3, #8]
+ 330 00a4 F868     		ldr	r0, [r7, #12]
+ 331 00a6 B968     		ldr	r1, [r7, #8]
+ 332 00a8 FFF7FEFF 		bl	u8g_WriteSequence
+ 132:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_SetChipSelect(u8g, dev, 0);
+ 333              		.loc 1 132 0
+ 334 00ac F868     		ldr	r0, [r7, #12]
+ 335 00ae B968     		ldr	r1, [r7, #8]
+ 336 00b0 0022     		movs	r2, #0
+ 337 00b2 FFF7FEFF 		bl	u8g_SetChipSelect
+ 133:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 	
+ 134:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_WriteEscSeqP(u8g, dev, u8g_dev_uc1701_mini12864_data_start);    
+ 338              		.loc 1 134 0
+ 339 00b6 F868     		ldr	r0, [r7, #12]
+ 340 00b8 B968     		ldr	r1, [r7, #8]
+ 341 00ba 2B4A     		ldr	r2, .L20+4
+ 342 00bc FFF7FEFF 		bl	u8g_WriteEscSeqP
+ 135:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_WriteByte(u8g, dev, 0x0b0 | (2*pb->p.page+1)); /* select current page */
+ 343              		.loc 1 135 0
+ 344 00c0 7B69     		ldr	r3, [r7, #20]
+ 345 00c2 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 346 00c4 5B00     		lsls	r3, r3, #1
+ 347 00c6 DBB2     		uxtb	r3, r3
+ 348 00c8 0133     		adds	r3, r3, #1
+ 349 00ca DBB2     		uxtb	r3, r3
+ 350 00cc DBB2     		uxtb	r3, r3
+ 351 00ce 63F04F03 		orn	r3, r3, #79
+ 352 00d2 DBB2     		uxtb	r3, r3
+ 353 00d4 DBB2     		uxtb	r3, r3
+ 354 00d6 F868     		ldr	r0, [r7, #12]
+ 355 00d8 B968     		ldr	r1, [r7, #8]
+ 356 00da 1A46     		mov	r2, r3
+ 357 00dc FFF7FEFF 		bl	u8g_WriteByte
+ 136:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_SetAddress(u8g, dev, 1);           /* data mode */
+ 358              		.loc 1 136 0
+ 359 00e0 F868     		ldr	r0, [r7, #12]
+ 360 00e2 B968     		ldr	r1, [r7, #8]
+ 361 00e4 0122     		movs	r2, #1
+ 362 00e6 FFF7FEFF 		bl	u8g_SetAddress
+ 137:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** 	u8g_WriteSequence(u8g, dev, pb->width, (uint8_t *)(pb->buf)+pb->width); 
+ 363              		.loc 1 137 0
+ 364 00ea 7B69     		ldr	r3, [r7, #20]
+ 365 00ec 5C79     		ldrb	r4, [r3, #5]	@ zero_extendqisi2
+ 366 00ee 7B69     		ldr	r3, [r7, #20]
+ 367 00f0 9B68     		ldr	r3, [r3, #8]
+ 368 00f2 7A69     		ldr	r2, [r7, #20]
+ 369 00f4 5279     		ldrb	r2, [r2, #5]	@ zero_extendqisi2
+ 370 00f6 1344     		add	r3, r3, r2
+ 371 00f8 F868     		ldr	r0, [r7, #12]
+ 372 00fa B968     		ldr	r1, [r7, #8]
+ 373 00fc 2246     		mov	r2, r4
+ 374 00fe FFF7FEFF 		bl	u8g_WriteSequence
+ 138:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****         u8g_SetChipSelect(u8g, dev, 0);
+ 375              		.loc 1 138 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 10
+
+
+ 376 0102 F868     		ldr	r0, [r7, #12]
+ 377 0104 B968     		ldr	r1, [r7, #8]
+ 378 0106 0022     		movs	r2, #0
+ 379 0108 FFF7FEFF 		bl	u8g_SetChipSelect
+ 380              	.LBE3:
+ 139:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       }
+ 140:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       break;
+ 381              		.loc 1 140 0
+ 382 010c 1EE0     		b	.L13
+ 383              	.L17:
+ 141:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****     case U8G_DEV_MSG_CONTRAST:
+ 142:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_SetChipSelect(u8g, dev, 1);
+ 384              		.loc 1 142 0
+ 385 010e F868     		ldr	r0, [r7, #12]
+ 386 0110 B968     		ldr	r1, [r7, #8]
+ 387 0112 0122     		movs	r2, #1
+ 388 0114 FFF7FEFF 		bl	u8g_SetChipSelect
+ 143:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_SetAddress(u8g, dev, 0);          /* instruction mode */
+ 389              		.loc 1 143 0
+ 390 0118 F868     		ldr	r0, [r7, #12]
+ 391 011a B968     		ldr	r1, [r7, #8]
+ 392 011c 0022     		movs	r2, #0
+ 393 011e FFF7FEFF 		bl	u8g_SetAddress
+ 144:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_WriteByte(u8g, dev, 0x081);
+ 394              		.loc 1 144 0
+ 395 0122 F868     		ldr	r0, [r7, #12]
+ 396 0124 B968     		ldr	r1, [r7, #8]
+ 397 0126 8122     		movs	r2, #129
+ 398 0128 FFF7FEFF 		bl	u8g_WriteByte
+ 145:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_WriteByte(u8g, dev, (*(uint8_t *)arg) >> 2);
+ 399              		.loc 1 145 0
+ 400 012c 3B68     		ldr	r3, [r7]
+ 401 012e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 402 0130 9B08     		lsrs	r3, r3, #2
+ 403 0132 DBB2     		uxtb	r3, r3
+ 404 0134 F868     		ldr	r0, [r7, #12]
+ 405 0136 B968     		ldr	r1, [r7, #8]
+ 406 0138 1A46     		mov	r2, r3
+ 407 013a FFF7FEFF 		bl	u8g_WriteByte
+ 146:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       u8g_SetChipSelect(u8g, dev, 0);      
+ 408              		.loc 1 146 0
+ 409 013e F868     		ldr	r0, [r7, #12]
+ 410 0140 B968     		ldr	r1, [r7, #8]
+ 411 0142 0022     		movs	r2, #0
+ 412 0144 FFF7FEFF 		bl	u8g_SetChipSelect
+ 147:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****       return 1;
+ 413              		.loc 1 147 0
+ 414 0148 0123     		movs	r3, #1
+ 415 014a 07E0     		b	.L19
+ 416              	.L13:
+ 148:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   }
+ 149:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c ****   return u8g_dev_pb16v1_base_fn(u8g, dev, msg, arg);
+ 417              		.loc 1 149 0
+ 418 014c FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
+ 419 014e F868     		ldr	r0, [r7, #12]
+ 420 0150 B968     		ldr	r1, [r7, #8]
+ 421 0152 1A46     		mov	r2, r3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 11
+
+
+ 422 0154 3B68     		ldr	r3, [r7]
+ 423 0156 FFF7FEFF 		bl	u8g_dev_pb16v1_base_fn
+ 424 015a 0346     		mov	r3, r0
+ 425              	.L19:
+ 150:.\u8glib_arm_v1.18.1\src/u8g_dev_uc1701_mini12864.c **** }
+ 426              		.loc 1 150 0
+ 427 015c 1846     		mov	r0, r3
+ 428 015e 1C37     		adds	r7, r7, #28
+ 429              		.cfi_def_cfa_offset 12
+ 430 0160 BD46     		mov	sp, r7
+ 431              		.cfi_def_cfa_register 13
+ 432              		@ sp needed
+ 433 0162 90BD     		pop	{r4, r7, pc}
+ 434              	.L21:
+ 435              		.align	2
+ 436              	.L20:
+ 437 0164 00000000 		.word	u8g_dev_uc1701_mini12864_init_seq
+ 438 0168 24000000 		.word	u8g_dev_uc1701_mini12864_data_start
+ 439              		.cfi_endproc
+ 440              	.LFE1:
+ 441              		.size	u8g_dev_uc1701_mini12864_2x_fn, .-u8g_dev_uc1701_mini12864_2x_fn
+ 442              		.global	u8g_dev_uc1701_mini12864_sw_spi_buf
+ 443              		.bss
+ 444              		.align	2
+ 445              		.type	u8g_dev_uc1701_mini12864_sw_spi_buf, %object
+ 446              		.size	u8g_dev_uc1701_mini12864_sw_spi_buf, 128
+ 447              	u8g_dev_uc1701_mini12864_sw_spi_buf:
+ 448 0000 00000000 		.space	128
+ 448      00000000 
+ 448      00000000 
+ 448      00000000 
+ 448      00000000 
+ 449              		.global	u8g_dev_uc1701_mini12864_sw_spi_pb
+ 450              		.data
+ 451              		.align	2
+ 452              		.type	u8g_dev_uc1701_mini12864_sw_spi_pb, %object
+ 453              		.size	u8g_dev_uc1701_mini12864_sw_spi_pb, 12
+ 454              	u8g_dev_uc1701_mini12864_sw_spi_pb:
+ 455 0000 08       		.byte	8
+ 456 0001 40       		.byte	64
+ 457 0002 00       		.byte	0
+ 458 0003 00       		.byte	0
+ 459 0004 00       		.byte	0
+ 460 0005 80       		.byte	-128
+ 461 0006 0000     		.space	2
+ 462 0008 00000000 		.word	u8g_dev_uc1701_mini12864_sw_spi_buf
+ 463              		.global	u8g_dev_uc1701_mini12864_sw_spi
+ 464              		.align	2
+ 465              		.type	u8g_dev_uc1701_mini12864_sw_spi, %object
+ 466              		.size	u8g_dev_uc1701_mini12864_sw_spi, 12
+ 467              	u8g_dev_uc1701_mini12864_sw_spi:
+ 468 000c 00000000 		.word	u8g_dev_uc1701_mini12864_fn
+ 469 0010 00000000 		.word	u8g_dev_uc1701_mini12864_sw_spi_pb
+ 470 0014 00000000 		.word	u8g_com_null_fn
+ 471              		.global	u8g_dev_uc1701_mini12864_hw_spi_buf
+ 472              		.bss
+ 473              		.align	2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 12
+
+
+ 474              		.type	u8g_dev_uc1701_mini12864_hw_spi_buf, %object
+ 475              		.size	u8g_dev_uc1701_mini12864_hw_spi_buf, 128
+ 476              	u8g_dev_uc1701_mini12864_hw_spi_buf:
+ 477 0080 00000000 		.space	128
+ 477      00000000 
+ 477      00000000 
+ 477      00000000 
+ 477      00000000 
+ 478              		.global	u8g_dev_uc1701_mini12864_hw_spi_pb
+ 479              		.data
+ 480              		.align	2
+ 481              		.type	u8g_dev_uc1701_mini12864_hw_spi_pb, %object
+ 482              		.size	u8g_dev_uc1701_mini12864_hw_spi_pb, 12
+ 483              	u8g_dev_uc1701_mini12864_hw_spi_pb:
+ 484 0018 08       		.byte	8
+ 485 0019 40       		.byte	64
+ 486 001a 00       		.byte	0
+ 487 001b 00       		.byte	0
+ 488 001c 00       		.byte	0
+ 489 001d 80       		.byte	-128
+ 490 001e 0000     		.space	2
+ 491 0020 00000000 		.word	u8g_dev_uc1701_mini12864_hw_spi_buf
+ 492              		.global	u8g_dev_uc1701_mini12864_hw_spi
+ 493              		.align	2
+ 494              		.type	u8g_dev_uc1701_mini12864_hw_spi, %object
+ 495              		.size	u8g_dev_uc1701_mini12864_hw_spi, 12
+ 496              	u8g_dev_uc1701_mini12864_hw_spi:
+ 497 0024 00000000 		.word	u8g_dev_uc1701_mini12864_fn
+ 498 0028 00000000 		.word	u8g_dev_uc1701_mini12864_hw_spi_pb
+ 499 002c 00000000 		.word	u8g_com_null_fn
+ 500              		.global	u8g_dev_uc1701_mini12864_2x_buf
+ 501              		.bss
+ 502              		.align	2
+ 503              		.type	u8g_dev_uc1701_mini12864_2x_buf, %object
+ 504              		.size	u8g_dev_uc1701_mini12864_2x_buf, 256
+ 505              	u8g_dev_uc1701_mini12864_2x_buf:
+ 506 0100 00000000 		.space	256
+ 506      00000000 
+ 506      00000000 
+ 506      00000000 
+ 506      00000000 
+ 507              		.global	u8g_dev_uc1701_mini12864_2x_pb
+ 508              		.data
+ 509              		.align	2
+ 510              		.type	u8g_dev_uc1701_mini12864_2x_pb, %object
+ 511              		.size	u8g_dev_uc1701_mini12864_2x_pb, 12
+ 512              	u8g_dev_uc1701_mini12864_2x_pb:
+ 513 0030 10       		.byte	16
+ 514 0031 40       		.byte	64
+ 515 0032 00       		.byte	0
+ 516 0033 00       		.byte	0
+ 517 0034 00       		.byte	0
+ 518 0035 80       		.byte	-128
+ 519 0036 0000     		.space	2
+ 520 0038 00000000 		.word	u8g_dev_uc1701_mini12864_2x_buf
+ 521              		.global	u8g_dev_uc1701_mini12864_2x_sw_spi
+ 522              		.align	2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 13
+
+
+ 523              		.type	u8g_dev_uc1701_mini12864_2x_sw_spi, %object
+ 524              		.size	u8g_dev_uc1701_mini12864_2x_sw_spi, 12
+ 525              	u8g_dev_uc1701_mini12864_2x_sw_spi:
+ 526 003c 00000000 		.word	u8g_dev_uc1701_mini12864_2x_fn
+ 527 0040 00000000 		.word	u8g_dev_uc1701_mini12864_2x_pb
+ 528 0044 00000000 		.word	u8g_com_null_fn
+ 529              		.global	u8g_dev_uc1701_mini12864_2x_hw_spi
+ 530              		.align	2
+ 531              		.type	u8g_dev_uc1701_mini12864_2x_hw_spi, %object
+ 532              		.size	u8g_dev_uc1701_mini12864_2x_hw_spi, 12
+ 533              	u8g_dev_uc1701_mini12864_2x_hw_spi:
+ 534 0048 00000000 		.word	u8g_dev_uc1701_mini12864_2x_fn
+ 535 004c 00000000 		.word	u8g_dev_uc1701_mini12864_2x_pb
+ 536 0050 00000000 		.word	u8g_com_null_fn
+ 537              		.text
+ 538              	.Letext0:
+ 539              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 540              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 541              		.file 4 ".\\u8glib_arm_v1.18.1\\src\\u8g.h"
+ 542              		.section	.debug_info,"",%progbits
+ 543              	.Ldebug_info0:
+ 544 0000 6B060000 		.4byte	0x66b
+ 545 0004 0400     		.2byte	0x4
+ 546 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 547 000a 04       		.byte	0x4
+ 548 000b 01       		.uleb128 0x1
+ 549 000c 45020000 		.4byte	.LASF84
+ 550 0010 01       		.byte	0x1
+ 551 0011 62040000 		.4byte	.LASF85
+ 552 0015 6D010000 		.4byte	.LASF86
+ 553 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 554 001d 00000000 		.4byte	0
+ 555 0021 00000000 		.4byte	.Ldebug_line0
+ 556 0025 02       		.uleb128 0x2
+ 557 0026 04       		.byte	0x4
+ 558 0027 05       		.byte	0x5
+ 559 0028 696E7400 		.ascii	"int\000"
+ 560 002c 03       		.uleb128 0x3
+ 561 002d 04       		.byte	0x4
+ 562 002e 07       		.byte	0x7
+ 563 002f 10040000 		.4byte	.LASF0
+ 564 0033 04       		.uleb128 0x4
+ 565 0034 45040000 		.4byte	.LASF2
+ 566 0038 02       		.byte	0x2
+ 567 0039 1B       		.byte	0x1b
+ 568 003a 3E000000 		.4byte	0x3e
+ 569 003e 03       		.uleb128 0x3
+ 570 003f 01       		.byte	0x1
+ 571 0040 06       		.byte	0x6
+ 572 0041 C7030000 		.4byte	.LASF1
+ 573 0045 04       		.uleb128 0x4
+ 574 0046 06030000 		.4byte	.LASF3
+ 575 004a 02       		.byte	0x2
+ 576 004b 1D       		.byte	0x1d
+ 577 004c 50000000 		.4byte	0x50
+ 578 0050 03       		.uleb128 0x3
+ 579 0051 01       		.byte	0x1
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 14
+
+
+ 580 0052 08       		.byte	0x8
+ 581 0053 96030000 		.4byte	.LASF4
+ 582 0057 03       		.uleb128 0x3
+ 583 0058 02       		.byte	0x2
+ 584 0059 05       		.byte	0x5
+ 585 005a 6F000000 		.4byte	.LASF5
+ 586 005e 03       		.uleb128 0x3
+ 587 005f 02       		.byte	0x2
+ 588 0060 07       		.byte	0x7
+ 589 0061 32040000 		.4byte	.LASF6
+ 590 0065 03       		.uleb128 0x3
+ 591 0066 04       		.byte	0x4
+ 592 0067 05       		.byte	0x5
+ 593 0068 59040000 		.4byte	.LASF7
+ 594 006c 03       		.uleb128 0x3
+ 595 006d 04       		.byte	0x4
+ 596 006e 07       		.byte	0x7
+ 597 006f B4040000 		.4byte	.LASF8
+ 598 0073 03       		.uleb128 0x3
+ 599 0074 08       		.byte	0x8
+ 600 0075 05       		.byte	0x5
+ 601 0076 07020000 		.4byte	.LASF9
+ 602 007a 03       		.uleb128 0x3
+ 603 007b 08       		.byte	0x8
+ 604 007c 07       		.byte	0x7
+ 605 007d F2030000 		.4byte	.LASF10
+ 606 0081 04       		.uleb128 0x4
+ 607 0082 63000000 		.4byte	.LASF11
+ 608 0086 03       		.byte	0x3
+ 609 0087 14       		.byte	0x14
+ 610 0088 33000000 		.4byte	0x33
+ 611 008c 04       		.uleb128 0x4
+ 612 008d 65010000 		.4byte	.LASF12
+ 613 0091 03       		.byte	0x3
+ 614 0092 15       		.byte	0x15
+ 615 0093 45000000 		.4byte	0x45
+ 616 0097 04       		.uleb128 0x4
+ 617 0098 2A000000 		.4byte	.LASF13
+ 618 009c 04       		.byte	0x4
+ 619 009d 80       		.byte	0x80
+ 620 009e 8C000000 		.4byte	0x8c
+ 621 00a2 04       		.uleb128 0x4
+ 622 00a3 00000000 		.4byte	.LASF14
+ 623 00a7 04       		.byte	0x4
+ 624 00a8 A0       		.byte	0xa0
+ 625 00a9 AD000000 		.4byte	0xad
+ 626 00ad 05       		.uleb128 0x5
+ 627 00ae 8C000000 		.4byte	.LASF41
+ 628 00b2 3C       		.byte	0x3c
+ 629 00b3 04       		.byte	0x4
+ 630 00b4 4B04     		.2byte	0x44b
+ 631 00b6 0D020000 		.4byte	0x20d
+ 632 00ba 06       		.uleb128 0x6
+ 633 00bb E3010000 		.4byte	.LASF15
+ 634 00bf 04       		.byte	0x4
+ 635 00c0 4D04     		.2byte	0x44d
+ 636 00c2 02030000 		.4byte	0x302
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 15
+
+
+ 637 00c6 00       		.byte	0
+ 638 00c7 06       		.uleb128 0x6
+ 639 00c8 09040000 		.4byte	.LASF16
+ 640 00cc 04       		.byte	0x4
+ 641 00cd 4E04     		.2byte	0x44e
+ 642 00cf 02030000 		.4byte	0x302
+ 643 00d3 01       		.byte	0x1
+ 644 00d4 07       		.uleb128 0x7
+ 645 00d5 64657600 		.ascii	"dev\000"
+ 646 00d9 04       		.byte	0x4
+ 647 00da 5104     		.2byte	0x451
+ 648 00dc 42030000 		.4byte	0x342
+ 649 00e0 04       		.byte	0x4
+ 650 00e1 06       		.uleb128 0x6
+ 651 00e2 6A000000 		.4byte	.LASF17
+ 652 00e6 04       		.byte	0x4
+ 653 00e7 5204     		.2byte	0x452
+ 654 00e9 6E040000 		.4byte	0x46e
+ 655 00ed 08       		.byte	0x8
+ 656 00ee 06       		.uleb128 0x6
+ 657 00ef 4C050000 		.4byte	.LASF18
+ 658 00f3 04       		.byte	0x4
+ 659 00f4 5304     		.2byte	0x453
+ 660 00f6 6E040000 		.4byte	0x46e
+ 661 00fa 0C       		.byte	0xc
+ 662 00fb 06       		.uleb128 0x6
+ 663 00fc E3000000 		.4byte	.LASF19
+ 664 0100 04       		.byte	0x4
+ 665 0101 5404     		.2byte	0x454
+ 666 0103 8C000000 		.4byte	0x8c
+ 667 0107 10       		.byte	0x10
+ 668 0108 06       		.uleb128 0x6
+ 669 0109 D3010000 		.4byte	.LASF20
+ 670 010d 04       		.byte	0x4
+ 671 010e 5404     		.2byte	0x454
+ 672 0110 8C000000 		.4byte	0x8c
+ 673 0114 11       		.byte	0x11
+ 674 0115 06       		.uleb128 0x6
+ 675 0116 86030000 		.4byte	.LASF21
+ 676 011a 04       		.byte	0x4
+ 677 011b 5504     		.2byte	0x455
+ 678 011d 8C000000 		.4byte	0x8c
+ 679 0121 12       		.byte	0x12
+ 680 0122 06       		.uleb128 0x6
+ 681 0123 96040000 		.4byte	.LASF22
+ 682 0127 04       		.byte	0x4
+ 683 0128 5604     		.2byte	0x456
+ 684 012a 8C000000 		.4byte	0x8c
+ 685 012e 13       		.byte	0x13
+ 686 012f 06       		.uleb128 0x6
+ 687 0130 93000000 		.4byte	.LASF23
+ 688 0134 04       		.byte	0x4
+ 689 0135 5704     		.2byte	0x457
+ 690 0137 02030000 		.4byte	0x302
+ 691 013b 14       		.byte	0x14
+ 692 013c 06       		.uleb128 0x6
+ 693 013d 9C000000 		.4byte	.LASF24
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 16
+
+
+ 694 0141 04       		.byte	0x4
+ 695 0142 5804     		.2byte	0x458
+ 696 0144 02030000 		.4byte	0x302
+ 697 0148 15       		.byte	0x15
+ 698 0149 06       		.uleb128 0x6
+ 699 014a 1D040000 		.4byte	.LASF25
+ 700 014e 04       		.byte	0x4
+ 701 014f 5904     		.2byte	0x459
+ 702 0151 13040000 		.4byte	0x413
+ 703 0155 18       		.byte	0x18
+ 704 0156 06       		.uleb128 0x6
+ 705 0157 A8010000 		.4byte	.LASF26
+ 706 015b 04       		.byte	0x4
+ 707 015c 5B04     		.2byte	0x45b
+ 708 015e 81000000 		.4byte	0x81
+ 709 0162 1C       		.byte	0x1c
+ 710 0163 06       		.uleb128 0x6
+ 711 0164 10030000 		.4byte	.LASF27
+ 712 0168 04       		.byte	0x4
+ 713 0169 5C04     		.2byte	0x45c
+ 714 016b 81000000 		.4byte	0x81
+ 715 016f 1D       		.byte	0x1d
+ 716 0170 06       		.uleb128 0x6
+ 717 0171 18030000 		.4byte	.LASF28
+ 718 0175 04       		.byte	0x4
+ 719 0176 5D04     		.2byte	0x45d
+ 720 0178 81000000 		.4byte	0x81
+ 721 017c 1E       		.byte	0x1e
+ 722 017d 06       		.uleb128 0x6
+ 723 017e A9050000 		.4byte	.LASF29
+ 724 0182 04       		.byte	0x4
+ 725 0183 5E04     		.2byte	0x45e
+ 726 0185 8C000000 		.4byte	0x8c
+ 727 0189 1F       		.byte	0x1f
+ 728 018a 06       		.uleb128 0x6
+ 729 018b B0030000 		.4byte	.LASF30
+ 730 018f 04       		.byte	0x4
+ 731 0190 5F04     		.2byte	0x45f
+ 732 0192 8C000000 		.4byte	0x8c
+ 733 0196 20       		.byte	0x20
+ 734 0197 06       		.uleb128 0x6
+ 735 0198 58050000 		.4byte	.LASF31
+ 736 019c 04       		.byte	0x4
+ 737 019d 6104     		.2byte	0x461
+ 738 019f 30040000 		.4byte	0x430
+ 739 01a3 24       		.byte	0x24
+ 740 01a4 06       		.uleb128 0x6
+ 741 01a5 6F050000 		.4byte	.LASF32
+ 742 01a9 04       		.byte	0x4
+ 743 01aa 6204     		.2byte	0x462
+ 744 01ac 8C000000 		.4byte	0x8c
+ 745 01b0 28       		.byte	0x28
+ 746 01b1 06       		.uleb128 0x6
+ 747 01b2 55010000 		.4byte	.LASF33
+ 748 01b6 04       		.byte	0x4
+ 749 01b7 6304     		.2byte	0x463
+ 750 01b9 81000000 		.4byte	0x81
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 17
+
+
+ 751 01bd 29       		.byte	0x29
+ 752 01be 06       		.uleb128 0x6
+ 753 01bf 10050000 		.4byte	.LASF34
+ 754 01c3 04       		.byte	0x4
+ 755 01c4 6404     		.2byte	0x464
+ 756 01c6 81000000 		.4byte	0x81
+ 757 01ca 2A       		.byte	0x2a
+ 758 01cb 06       		.uleb128 0x6
+ 759 01cc 21050000 		.4byte	.LASF35
+ 760 01d0 04       		.byte	0x4
+ 761 01d1 6504     		.2byte	0x465
+ 762 01d3 8C000000 		.4byte	0x8c
+ 763 01d7 2B       		.byte	0x2b
+ 764 01d8 06       		.uleb128 0x6
+ 765 01d9 25010000 		.4byte	.LASF36
+ 766 01dd 04       		.byte	0x4
+ 767 01de 6604     		.2byte	0x466
+ 768 01e0 8C000000 		.4byte	0x8c
+ 769 01e4 2C       		.byte	0x2c
+ 770 01e5 06       		.uleb128 0x6
+ 771 01e6 BD030000 		.4byte	.LASF37
+ 772 01ea 04       		.byte	0x4
+ 773 01eb 6804     		.2byte	0x468
+ 774 01ed 49020000 		.4byte	0x249
+ 775 01f1 2D       		.byte	0x2d
+ 776 01f2 06       		.uleb128 0x6
+ 777 01f3 C1000000 		.4byte	.LASF38
+ 778 01f7 04       		.byte	0x4
+ 779 01f8 6F04     		.2byte	0x46f
+ 780 01fa 51040000 		.4byte	0x451
+ 781 01fe 34       		.byte	0x34
+ 782 01ff 06       		.uleb128 0x6
+ 783 0200 38020000 		.4byte	.LASF39
+ 784 0204 04       		.byte	0x4
+ 785 0205 7104     		.2byte	0x471
+ 786 0207 B9020000 		.4byte	0x2b9
+ 787 020b 38       		.byte	0x38
+ 788 020c 00       		.byte	0
+ 789 020d 04       		.uleb128 0x4
+ 790 020e 16010000 		.4byte	.LASF40
+ 791 0212 04       		.byte	0x4
+ 792 0213 A1       		.byte	0xa1
+ 793 0214 18020000 		.4byte	0x218
+ 794 0218 08       		.uleb128 0x8
+ 795 0219 E1050000 		.4byte	.LASF42
+ 796 021d 0C       		.byte	0xc
+ 797 021e 04       		.byte	0x4
+ 798 021f CF       		.byte	0xcf
+ 799 0220 49020000 		.4byte	0x249
+ 800 0224 09       		.uleb128 0x9
+ 801 0225 9B040000 		.4byte	.LASF43
+ 802 0229 04       		.byte	0x4
+ 803 022a D1       		.byte	0xd1
+ 804 022b 0D030000 		.4byte	0x30d
+ 805 022f 00       		.byte	0
+ 806 0230 09       		.uleb128 0x9
+ 807 0231 44050000 		.4byte	.LASF44
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 18
+
+
+ 808 0235 04       		.byte	0x4
+ 809 0236 D2       		.byte	0xd2
+ 810 0237 48030000 		.4byte	0x348
+ 811 023b 04       		.byte	0x4
+ 812 023c 09       		.uleb128 0x9
+ 813 023d F9050000 		.4byte	.LASF45
+ 814 0241 04       		.byte	0x4
+ 815 0242 D3       		.byte	0xd3
+ 816 0243 4A030000 		.4byte	0x34a
+ 817 0247 08       		.byte	0x8
+ 818 0248 00       		.byte	0
+ 819 0249 04       		.uleb128 0x4
+ 820 024a 2E030000 		.4byte	.LASF46
+ 821 024e 04       		.byte	0x4
+ 822 024f A3       		.byte	0xa3
+ 823 0250 54020000 		.4byte	0x254
+ 824 0254 05       		.uleb128 0x5
+ 825 0255 F2010000 		.4byte	.LASF47
+ 826 0259 07       		.byte	0x7
+ 827 025a 04       		.byte	0x4
+ 828 025b 1D02     		.2byte	0x21d
+ 829 025d B9020000 		.4byte	0x2b9
+ 830 0261 07       		.uleb128 0x7
+ 831 0262 7800     		.ascii	"x\000"
+ 832 0264 04       		.byte	0x4
+ 833 0265 1F02     		.2byte	0x21f
+ 834 0267 02030000 		.4byte	0x302
+ 835 026b 00       		.byte	0
+ 836 026c 07       		.uleb128 0x7
+ 837 026d 7900     		.ascii	"y\000"
+ 838 026f 04       		.byte	0x4
+ 839 0270 1F02     		.2byte	0x21f
+ 840 0272 02030000 		.4byte	0x302
+ 841 0276 01       		.byte	0x1
+ 842 0277 06       		.uleb128 0x6
+ 843 0278 3A000000 		.4byte	.LASF48
+ 844 027c 04       		.byte	0x4
+ 845 027d 2002     		.2byte	0x220
+ 846 027f 8C000000 		.4byte	0x8c
+ 847 0283 02       		.byte	0x2
+ 848 0284 07       		.uleb128 0x7
+ 849 0285 64697200 		.ascii	"dir\000"
+ 850 0289 04       		.byte	0x4
+ 851 028a 2102     		.2byte	0x221
+ 852 028c 8C000000 		.4byte	0x8c
+ 853 0290 03       		.byte	0x3
+ 854 0291 06       		.uleb128 0x6
+ 855 0292 79000000 		.4byte	.LASF49
+ 856 0296 04       		.byte	0x4
+ 857 0297 2202     		.2byte	0x222
+ 858 0299 8C000000 		.4byte	0x8c
+ 859 029d 04       		.byte	0x4
+ 860 029e 06       		.uleb128 0x6
+ 861 029f E9010000 		.4byte	.LASF50
+ 862 02a3 04       		.byte	0x4
+ 863 02a4 2302     		.2byte	0x223
+ 864 02a6 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 19
+
+
+ 865 02aa 05       		.byte	0x5
+ 866 02ab 06       		.uleb128 0x6
+ 867 02ac 20010000 		.4byte	.LASF51
+ 868 02b0 04       		.byte	0x4
+ 869 02b1 2402     		.2byte	0x224
+ 870 02b3 8C000000 		.4byte	0x8c
+ 871 02b7 06       		.byte	0x6
+ 872 02b8 00       		.byte	0
+ 873 02b9 04       		.uleb128 0x4
+ 874 02ba 3A050000 		.4byte	.LASF52
+ 875 02be 04       		.byte	0x4
+ 876 02bf A5       		.byte	0xa5
+ 877 02c0 C4020000 		.4byte	0x2c4
+ 878 02c4 05       		.uleb128 0x5
+ 879 02c5 4E040000 		.4byte	.LASF53
+ 880 02c9 04       		.byte	0x4
+ 881 02ca 04       		.byte	0x4
+ 882 02cb 3102     		.2byte	0x231
+ 883 02cd 02030000 		.4byte	0x302
+ 884 02d1 07       		.uleb128 0x7
+ 885 02d2 783000   		.ascii	"x0\000"
+ 886 02d5 04       		.byte	0x4
+ 887 02d6 3302     		.2byte	0x233
+ 888 02d8 02030000 		.4byte	0x302
+ 889 02dc 00       		.byte	0
+ 890 02dd 07       		.uleb128 0x7
+ 891 02de 793000   		.ascii	"y0\000"
+ 892 02e1 04       		.byte	0x4
+ 893 02e2 3302     		.2byte	0x233
+ 894 02e4 02030000 		.4byte	0x302
+ 895 02e8 01       		.byte	0x1
+ 896 02e9 07       		.uleb128 0x7
+ 897 02ea 783100   		.ascii	"x1\000"
+ 898 02ed 04       		.byte	0x4
+ 899 02ee 3302     		.2byte	0x233
+ 900 02f0 02030000 		.4byte	0x302
+ 901 02f4 02       		.byte	0x2
+ 902 02f5 07       		.uleb128 0x7
+ 903 02f6 793100   		.ascii	"y1\000"
+ 904 02f9 04       		.byte	0x4
+ 905 02fa 3302     		.2byte	0x233
+ 906 02fc 02030000 		.4byte	0x302
+ 907 0300 03       		.byte	0x3
+ 908 0301 00       		.byte	0
+ 909 0302 04       		.uleb128 0x4
+ 910 0303 27040000 		.4byte	.LASF54
+ 911 0307 04       		.byte	0x4
+ 912 0308 AF       		.byte	0xaf
+ 913 0309 8C000000 		.4byte	0x8c
+ 914 030d 04       		.uleb128 0x4
+ 915 030e F8020000 		.4byte	.LASF55
+ 916 0312 04       		.byte	0x4
+ 917 0313 C7       		.byte	0xc7
+ 918 0314 18030000 		.4byte	0x318
+ 919 0318 0A       		.uleb128 0xa
+ 920 0319 04       		.byte	0x4
+ 921 031a 1E030000 		.4byte	0x31e
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 20
+
+
+ 922 031e 0B       		.uleb128 0xb
+ 923 031f 8C000000 		.4byte	0x8c
+ 924 0323 3C030000 		.4byte	0x33c
+ 925 0327 0C       		.uleb128 0xc
+ 926 0328 3C030000 		.4byte	0x33c
+ 927 032c 0C       		.uleb128 0xc
+ 928 032d 42030000 		.4byte	0x342
+ 929 0331 0C       		.uleb128 0xc
+ 930 0332 8C000000 		.4byte	0x8c
+ 931 0336 0C       		.uleb128 0xc
+ 932 0337 48030000 		.4byte	0x348
+ 933 033b 00       		.byte	0
+ 934 033c 0A       		.uleb128 0xa
+ 935 033d 04       		.byte	0x4
+ 936 033e A2000000 		.4byte	0xa2
+ 937 0342 0A       		.uleb128 0xa
+ 938 0343 04       		.byte	0x4
+ 939 0344 0D020000 		.4byte	0x20d
+ 940 0348 0D       		.uleb128 0xd
+ 941 0349 04       		.byte	0x4
+ 942 034a 04       		.uleb128 0x4
+ 943 034b 20030000 		.4byte	.LASF56
+ 944 034f 04       		.byte	0x4
+ 945 0350 CA       		.byte	0xca
+ 946 0351 55030000 		.4byte	0x355
+ 947 0355 0A       		.uleb128 0xa
+ 948 0356 04       		.byte	0x4
+ 949 0357 5B030000 		.4byte	0x35b
+ 950 035b 0B       		.uleb128 0xb
+ 951 035c 8C000000 		.4byte	0x8c
+ 952 0360 79030000 		.4byte	0x379
+ 953 0364 0C       		.uleb128 0xc
+ 954 0365 3C030000 		.4byte	0x33c
+ 955 0369 0C       		.uleb128 0xc
+ 956 036a 8C000000 		.4byte	0x8c
+ 957 036e 0C       		.uleb128 0xc
+ 958 036f 8C000000 		.4byte	0x8c
+ 959 0373 0C       		.uleb128 0xc
+ 960 0374 48030000 		.4byte	0x348
+ 961 0378 00       		.byte	0
+ 962 0379 05       		.uleb128 0x5
+ 963 037a A4030000 		.4byte	.LASF57
+ 964 037e 05       		.byte	0x5
+ 965 037f 04       		.byte	0x4
+ 966 0380 9E03     		.2byte	0x39e
+ 967 0382 C8030000 		.4byte	0x3c8
+ 968 0386 06       		.uleb128 0x6
+ 969 0387 B5050000 		.4byte	.LASF58
+ 970 038b 04       		.byte	0x4
+ 971 038c A003     		.2byte	0x3a0
+ 972 038e 02030000 		.4byte	0x302
+ 973 0392 00       		.byte	0
+ 974 0393 06       		.uleb128 0x6
+ 975 0394 EC050000 		.4byte	.LASF59
+ 976 0398 04       		.byte	0x4
+ 977 0399 A103     		.2byte	0x3a1
+ 978 039b 02030000 		.4byte	0x302
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 21
+
+
+ 979 039f 01       		.byte	0x1
+ 980 03a0 06       		.uleb128 0x6
+ 981 03a1 67050000 		.4byte	.LASF60
+ 982 03a5 04       		.byte	0x4
+ 983 03a6 A203     		.2byte	0x3a2
+ 984 03a8 02030000 		.4byte	0x302
+ 985 03ac 02       		.byte	0x2
+ 986 03ad 06       		.uleb128 0x6
+ 987 03ae A2040000 		.4byte	.LASF61
+ 988 03b2 04       		.byte	0x4
+ 989 03b3 A303     		.2byte	0x3a3
+ 990 03b5 02030000 		.4byte	0x302
+ 991 03b9 03       		.byte	0x3
+ 992 03ba 06       		.uleb128 0x6
+ 993 03bb A4050000 		.4byte	.LASF62
+ 994 03bf 04       		.byte	0x4
+ 995 03c0 A403     		.2byte	0x3a4
+ 996 03c2 8C000000 		.4byte	0x8c
+ 997 03c6 04       		.byte	0x4
+ 998 03c7 00       		.byte	0
+ 999 03c8 0E       		.uleb128 0xe
+ 1000 03c9 C6040000 		.4byte	.LASF63
+ 1001 03cd 04       		.byte	0x4
+ 1002 03ce A603     		.2byte	0x3a6
+ 1003 03d0 79030000 		.4byte	0x379
+ 1004 03d4 05       		.uleb128 0x5
+ 1005 03d5 AA040000 		.4byte	.LASF64
+ 1006 03d9 0C       		.byte	0xc
+ 1007 03da 04       		.byte	0x4
+ 1008 03db AF03     		.2byte	0x3af
+ 1009 03dd 07040000 		.4byte	0x407
+ 1010 03e1 07       		.uleb128 0x7
+ 1011 03e2 7000     		.ascii	"p\000"
+ 1012 03e4 04       		.byte	0x4
+ 1013 03e5 B103     		.2byte	0x3b1
+ 1014 03e7 C8030000 		.4byte	0x3c8
+ 1015 03eb 00       		.byte	0
+ 1016 03ec 06       		.uleb128 0x6
+ 1017 03ed E3010000 		.4byte	.LASF15
+ 1018 03f1 04       		.byte	0x4
+ 1019 03f2 B203     		.2byte	0x3b2
+ 1020 03f4 02030000 		.4byte	0x302
+ 1021 03f8 05       		.byte	0x5
+ 1022 03f9 07       		.uleb128 0x7
+ 1023 03fa 62756600 		.ascii	"buf\000"
+ 1024 03fe 04       		.byte	0x4
+ 1025 03ff B303     		.2byte	0x3b3
+ 1026 0401 48030000 		.4byte	0x348
+ 1027 0405 08       		.byte	0x8
+ 1028 0406 00       		.byte	0
+ 1029 0407 0E       		.uleb128 0xe
+ 1030 0408 EF020000 		.4byte	.LASF65
+ 1031 040c 04       		.byte	0x4
+ 1032 040d B503     		.2byte	0x3b5
+ 1033 040f D4030000 		.4byte	0x3d4
+ 1034 0413 0E       		.uleb128 0xe
+ 1035 0414 D3020000 		.4byte	.LASF66
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 22
+
+
+ 1036 0418 04       		.byte	0x4
+ 1037 0419 0D04     		.2byte	0x40d
+ 1038 041b 1F040000 		.4byte	0x41f
+ 1039 041f 0A       		.uleb128 0xa
+ 1040 0420 04       		.byte	0x4
+ 1041 0421 25040000 		.4byte	0x425
+ 1042 0425 0F       		.uleb128 0xf
+ 1043 0426 30040000 		.4byte	0x430
+ 1044 042a 0C       		.uleb128 0xc
+ 1045 042b 3C030000 		.4byte	0x33c
+ 1046 042f 00       		.byte	0
+ 1047 0430 0E       		.uleb128 0xe
+ 1048 0431 CA000000 		.4byte	.LASF67
+ 1049 0435 04       		.byte	0x4
+ 1050 0436 1004     		.2byte	0x410
+ 1051 0438 3C040000 		.4byte	0x43c
+ 1052 043c 0A       		.uleb128 0xa
+ 1053 043d 04       		.byte	0x4
+ 1054 043e 42040000 		.4byte	0x442
+ 1055 0442 0B       		.uleb128 0xb
+ 1056 0443 02030000 		.4byte	0x302
+ 1057 0447 51040000 		.4byte	0x451
+ 1058 044b 0C       		.uleb128 0xc
+ 1059 044c 3C030000 		.4byte	0x33c
+ 1060 0450 00       		.byte	0
+ 1061 0451 0E       		.uleb128 0xe
+ 1062 0452 7F000000 		.4byte	.LASF68
+ 1063 0456 04       		.byte	0x4
+ 1064 0457 1304     		.2byte	0x413
+ 1065 0459 5D040000 		.4byte	0x45d
+ 1066 045d 0A       		.uleb128 0xa
+ 1067 045e 04       		.byte	0x4
+ 1068 045f 63040000 		.4byte	0x463
+ 1069 0463 0F       		.uleb128 0xf
+ 1070 0464 6E040000 		.4byte	0x46e
+ 1071 0468 0C       		.uleb128 0xc
+ 1072 0469 8C000000 		.4byte	0x8c
+ 1073 046d 00       		.byte	0
+ 1074 046e 0A       		.uleb128 0xa
+ 1075 046f 04       		.byte	0x4
+ 1076 0470 74040000 		.4byte	0x474
+ 1077 0474 10       		.uleb128 0x10
+ 1078 0475 97000000 		.4byte	0x97
+ 1079 0479 03       		.uleb128 0x3
+ 1080 047a 04       		.byte	0x4
+ 1081 047b 07       		.byte	0x7
+ 1082 047c E6020000 		.4byte	.LASF69
+ 1083 0480 11       		.uleb128 0x11
+ 1084 0481 A5000000 		.4byte	.LASF70
+ 1085 0485 01       		.byte	0x1
+ 1086 0486 52       		.byte	0x52
+ 1087 0487 8C000000 		.4byte	0x8c
+ 1088 048b 00000000 		.4byte	.LFB0
+ 1089 048f 14010000 		.4byte	.LFE0-.LFB0
+ 1090 0493 01       		.uleb128 0x1
+ 1091 0494 9C       		.byte	0x9c
+ 1092 0495 E9040000 		.4byte	0x4e9
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 23
+
+
+ 1093 0499 12       		.uleb128 0x12
+ 1094 049a 75386700 		.ascii	"u8g\000"
+ 1095 049e 01       		.byte	0x1
+ 1096 049f 52       		.byte	0x52
+ 1097 04a0 3C030000 		.4byte	0x33c
+ 1098 04a4 02       		.uleb128 0x2
+ 1099 04a5 91       		.byte	0x91
+ 1100 04a6 6C       		.sleb128 -20
+ 1101 04a7 12       		.uleb128 0x12
+ 1102 04a8 64657600 		.ascii	"dev\000"
+ 1103 04ac 01       		.byte	0x1
+ 1104 04ad 52       		.byte	0x52
+ 1105 04ae 42030000 		.4byte	0x342
+ 1106 04b2 02       		.uleb128 0x2
+ 1107 04b3 91       		.byte	0x91
+ 1108 04b4 68       		.sleb128 -24
+ 1109 04b5 12       		.uleb128 0x12
+ 1110 04b6 6D736700 		.ascii	"msg\000"
+ 1111 04ba 01       		.byte	0x1
+ 1112 04bb 52       		.byte	0x52
+ 1113 04bc 8C000000 		.4byte	0x8c
+ 1114 04c0 02       		.uleb128 0x2
+ 1115 04c1 91       		.byte	0x91
+ 1116 04c2 67       		.sleb128 -25
+ 1117 04c3 12       		.uleb128 0x12
+ 1118 04c4 61726700 		.ascii	"arg\000"
+ 1119 04c8 01       		.byte	0x1
+ 1120 04c9 52       		.byte	0x52
+ 1121 04ca 48030000 		.4byte	0x348
+ 1122 04ce 02       		.uleb128 0x2
+ 1123 04cf 91       		.byte	0x91
+ 1124 04d0 60       		.sleb128 -32
+ 1125 04d1 13       		.uleb128 0x13
+ 1126 04d2 66000000 		.4byte	.LBB2
+ 1127 04d6 4C000000 		.4byte	.LBE2-.LBB2
+ 1128 04da 14       		.uleb128 0x14
+ 1129 04db 706200   		.ascii	"pb\000"
+ 1130 04de 01       		.byte	0x1
+ 1131 04df 5E       		.byte	0x5e
+ 1132 04e0 E9040000 		.4byte	0x4e9
+ 1133 04e4 02       		.uleb128 0x2
+ 1134 04e5 91       		.byte	0x91
+ 1135 04e6 74       		.sleb128 -12
+ 1136 04e7 00       		.byte	0
+ 1137 04e8 00       		.byte	0
+ 1138 04e9 0A       		.uleb128 0xa
+ 1139 04ea 04       		.byte	0x4
+ 1140 04eb 07040000 		.4byte	0x407
+ 1141 04ef 11       		.uleb128 0x11
+ 1142 04f0 D1040000 		.4byte	.LASF71
+ 1143 04f4 01       		.byte	0x1
+ 1144 04f5 72       		.byte	0x72
+ 1145 04f6 8C000000 		.4byte	0x8c
+ 1146 04fa 00000000 		.4byte	.LFB1
+ 1147 04fe 6C010000 		.4byte	.LFE1-.LFB1
+ 1148 0502 01       		.uleb128 0x1
+ 1149 0503 9C       		.byte	0x9c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 24
+
+
+ 1150 0504 58050000 		.4byte	0x558
+ 1151 0508 12       		.uleb128 0x12
+ 1152 0509 75386700 		.ascii	"u8g\000"
+ 1153 050d 01       		.byte	0x1
+ 1154 050e 72       		.byte	0x72
+ 1155 050f 3C030000 		.4byte	0x33c
+ 1156 0513 02       		.uleb128 0x2
+ 1157 0514 91       		.byte	0x91
+ 1158 0515 64       		.sleb128 -28
+ 1159 0516 12       		.uleb128 0x12
+ 1160 0517 64657600 		.ascii	"dev\000"
+ 1161 051b 01       		.byte	0x1
+ 1162 051c 72       		.byte	0x72
+ 1163 051d 42030000 		.4byte	0x342
+ 1164 0521 02       		.uleb128 0x2
+ 1165 0522 91       		.byte	0x91
+ 1166 0523 60       		.sleb128 -32
+ 1167 0524 12       		.uleb128 0x12
+ 1168 0525 6D736700 		.ascii	"msg\000"
+ 1169 0529 01       		.byte	0x1
+ 1170 052a 72       		.byte	0x72
+ 1171 052b 8C000000 		.4byte	0x8c
+ 1172 052f 02       		.uleb128 0x2
+ 1173 0530 91       		.byte	0x91
+ 1174 0531 5F       		.sleb128 -33
+ 1175 0532 12       		.uleb128 0x12
+ 1176 0533 61726700 		.ascii	"arg\000"
+ 1177 0537 01       		.byte	0x1
+ 1178 0538 72       		.byte	0x72
+ 1179 0539 48030000 		.4byte	0x348
+ 1180 053d 02       		.uleb128 0x2
+ 1181 053e 91       		.byte	0x91
+ 1182 053f 58       		.sleb128 -40
+ 1183 0540 13       		.uleb128 0x13
+ 1184 0541 66000000 		.4byte	.LBB3
+ 1185 0545 A6000000 		.4byte	.LBE3-.LBB3
+ 1186 0549 14       		.uleb128 0x14
+ 1187 054a 706200   		.ascii	"pb\000"
+ 1188 054d 01       		.byte	0x1
+ 1189 054e 7E       		.byte	0x7e
+ 1190 054f E9040000 		.4byte	0x4e9
+ 1191 0553 02       		.uleb128 0x2
+ 1192 0554 91       		.byte	0x91
+ 1193 0555 6C       		.sleb128 -20
+ 1194 0556 00       		.byte	0
+ 1195 0557 00       		.byte	0
+ 1196 0558 15       		.uleb128 0x15
+ 1197 0559 8C000000 		.4byte	0x8c
+ 1198 055d 68050000 		.4byte	0x568
+ 1199 0561 16       		.uleb128 0x16
+ 1200 0562 79040000 		.4byte	0x479
+ 1201 0566 22       		.byte	0x22
+ 1202 0567 00       		.byte	0
+ 1203 0568 17       		.uleb128 0x17
+ 1204 0569 B1010000 		.4byte	.LASF72
+ 1205 056d 01       		.byte	0x1
+ 1206 056e 2B       		.byte	0x2b
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 25
+
+
+ 1207 056f 79050000 		.4byte	0x579
+ 1208 0573 05       		.uleb128 0x5
+ 1209 0574 03       		.byte	0x3
+ 1210 0575 00000000 		.4byte	u8g_dev_uc1701_mini12864_init_seq
+ 1211 0579 10       		.uleb128 0x10
+ 1212 057a 58050000 		.4byte	0x558
+ 1213 057e 15       		.uleb128 0x15
+ 1214 057f 8C000000 		.4byte	0x8c
+ 1215 0583 8E050000 		.4byte	0x58e
+ 1216 0587 16       		.uleb128 0x16
+ 1217 0588 79040000 		.4byte	0x479
+ 1218 058c 07       		.byte	0x7
+ 1219 058d 00       		.byte	0
+ 1220 058e 17       		.uleb128 0x17
+ 1221 058f 42030000 		.4byte	.LASF73
+ 1222 0593 01       		.byte	0x1
+ 1223 0594 4A       		.byte	0x4a
+ 1224 0595 9F050000 		.4byte	0x59f
+ 1225 0599 05       		.uleb128 0x5
+ 1226 059a 03       		.byte	0x3
+ 1227 059b 24000000 		.4byte	u8g_dev_uc1701_mini12864_data_start
+ 1228 059f 10       		.uleb128 0x10
+ 1229 05a0 7E050000 		.4byte	0x57e
+ 1230 05a4 18       		.uleb128 0x18
+ 1231 05a5 F0040000 		.4byte	.LASF74
+ 1232 05a9 01       		.byte	0x1
+ 1233 05aa 98       		.byte	0x98
+ 1234 05ab 0D020000 		.4byte	0x20d
+ 1235 05af 05       		.uleb128 0x5
+ 1236 05b0 03       		.byte	0x3
+ 1237 05b1 00000000 		.4byte	u8g_dev_uc1701_mini12864_sw_spi
+ 1238 05b5 18       		.uleb128 0x18
+ 1239 05b6 C1050000 		.4byte	.LASF75
+ 1240 05ba 01       		.byte	0x1
+ 1241 05bb 99       		.byte	0x99
+ 1242 05bc 0D020000 		.4byte	0x20d
+ 1243 05c0 05       		.uleb128 0x5
+ 1244 05c1 03       		.byte	0x3
+ 1245 05c2 00000000 		.4byte	u8g_dev_uc1701_mini12864_hw_spi
+ 1246 05c6 18       		.uleb128 0x18
+ 1247 05c7 40000000 		.4byte	.LASF76
+ 1248 05cb 01       		.byte	0x1
+ 1249 05cc 9D       		.byte	0x9d
+ 1250 05cd 0D020000 		.4byte	0x20d
+ 1251 05d1 05       		.uleb128 0x5
+ 1252 05d2 03       		.byte	0x3
+ 1253 05d3 00000000 		.4byte	u8g_dev_uc1701_mini12864_2x_sw_spi
+ 1254 05d7 18       		.uleb128 0x18
+ 1255 05d8 32010000 		.4byte	.LASF77
+ 1256 05dc 01       		.byte	0x1
+ 1257 05dd 9E       		.byte	0x9e
+ 1258 05de 0D020000 		.4byte	0x20d
+ 1259 05e2 05       		.uleb128 0x5
+ 1260 05e3 03       		.byte	0x3
+ 1261 05e4 00000000 		.4byte	u8g_dev_uc1701_mini12864_2x_hw_spi
+ 1262 05e8 15       		.uleb128 0x15
+ 1263 05e9 8C000000 		.4byte	0x8c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 26
+
+
+ 1264 05ed F8050000 		.4byte	0x5f8
+ 1265 05f1 16       		.uleb128 0x16
+ 1266 05f2 79040000 		.4byte	0x479
+ 1267 05f6 7F       		.byte	0x7f
+ 1268 05f7 00       		.byte	0
+ 1269 05f8 18       		.uleb128 0x18
+ 1270 05f9 80050000 		.4byte	.LASF78
+ 1271 05fd 01       		.byte	0x1
+ 1272 05fe 98       		.byte	0x98
+ 1273 05ff E8050000 		.4byte	0x5e8
+ 1274 0603 05       		.uleb128 0x5
+ 1275 0604 03       		.byte	0x3
+ 1276 0605 00000000 		.4byte	u8g_dev_uc1701_mini12864_sw_spi_buf
+ 1277 0609 18       		.uleb128 0x18
+ 1278 060a F3000000 		.4byte	.LASF79
+ 1279 060e 01       		.byte	0x1
+ 1280 060f 98       		.byte	0x98
+ 1281 0610 07040000 		.4byte	0x407
+ 1282 0614 05       		.uleb128 0x5
+ 1283 0615 03       		.byte	0x3
+ 1284 0616 00000000 		.4byte	u8g_dev_uc1701_mini12864_sw_spi_pb
+ 1285 061a 18       		.uleb128 0x18
+ 1286 061b 06000000 		.4byte	.LASF80
+ 1287 061f 01       		.byte	0x1
+ 1288 0620 99       		.byte	0x99
+ 1289 0621 E8050000 		.4byte	0x5e8
+ 1290 0625 05       		.uleb128 0x5
+ 1291 0626 03       		.byte	0x3
+ 1292 0627 00000000 		.4byte	u8g_dev_uc1701_mini12864_hw_spi_buf
+ 1293 062b 18       		.uleb128 0x18
+ 1294 062c 15020000 		.4byte	.LASF81
+ 1295 0630 01       		.byte	0x1
+ 1296 0631 99       		.byte	0x99
+ 1297 0632 07040000 		.4byte	0x407
+ 1298 0636 05       		.uleb128 0x5
+ 1299 0637 03       		.byte	0x3
+ 1300 0638 00000000 		.4byte	u8g_dev_uc1701_mini12864_hw_spi_pb
+ 1301 063c 15       		.uleb128 0x15
+ 1302 063d 8C000000 		.4byte	0x8c
+ 1303 0641 4C060000 		.4byte	0x64c
+ 1304 0645 16       		.uleb128 0x16
+ 1305 0646 79040000 		.4byte	0x479
+ 1306 064a FF       		.byte	0xff
+ 1307 064b 00       		.byte	0
+ 1308 064c 18       		.uleb128 0x18
+ 1309 064d 66030000 		.4byte	.LASF82
+ 1310 0651 01       		.byte	0x1
+ 1311 0652 9B       		.byte	0x9b
+ 1312 0653 3C060000 		.4byte	0x63c
+ 1313 0657 05       		.uleb128 0x5
+ 1314 0658 03       		.byte	0x3
+ 1315 0659 00000000 		.4byte	u8g_dev_uc1701_mini12864_2x_buf
+ 1316 065d 18       		.uleb128 0x18
+ 1317 065e D3030000 		.4byte	.LASF83
+ 1318 0662 01       		.byte	0x1
+ 1319 0663 9C       		.byte	0x9c
+ 1320 0664 07040000 		.4byte	0x407
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 27
+
+
+ 1321 0668 05       		.uleb128 0x5
+ 1322 0669 03       		.byte	0x3
+ 1323 066a 00000000 		.4byte	u8g_dev_uc1701_mini12864_2x_pb
+ 1324 066e 00       		.byte	0
+ 1325              		.section	.debug_abbrev,"",%progbits
+ 1326              	.Ldebug_abbrev0:
+ 1327 0000 01       		.uleb128 0x1
+ 1328 0001 11       		.uleb128 0x11
+ 1329 0002 01       		.byte	0x1
+ 1330 0003 25       		.uleb128 0x25
+ 1331 0004 0E       		.uleb128 0xe
+ 1332 0005 13       		.uleb128 0x13
+ 1333 0006 0B       		.uleb128 0xb
+ 1334 0007 03       		.uleb128 0x3
+ 1335 0008 0E       		.uleb128 0xe
+ 1336 0009 1B       		.uleb128 0x1b
+ 1337 000a 0E       		.uleb128 0xe
+ 1338 000b 55       		.uleb128 0x55
+ 1339 000c 17       		.uleb128 0x17
+ 1340 000d 11       		.uleb128 0x11
+ 1341 000e 01       		.uleb128 0x1
+ 1342 000f 10       		.uleb128 0x10
+ 1343 0010 17       		.uleb128 0x17
+ 1344 0011 00       		.byte	0
+ 1345 0012 00       		.byte	0
+ 1346 0013 02       		.uleb128 0x2
+ 1347 0014 24       		.uleb128 0x24
+ 1348 0015 00       		.byte	0
+ 1349 0016 0B       		.uleb128 0xb
+ 1350 0017 0B       		.uleb128 0xb
+ 1351 0018 3E       		.uleb128 0x3e
+ 1352 0019 0B       		.uleb128 0xb
+ 1353 001a 03       		.uleb128 0x3
+ 1354 001b 08       		.uleb128 0x8
+ 1355 001c 00       		.byte	0
+ 1356 001d 00       		.byte	0
+ 1357 001e 03       		.uleb128 0x3
+ 1358 001f 24       		.uleb128 0x24
+ 1359 0020 00       		.byte	0
+ 1360 0021 0B       		.uleb128 0xb
+ 1361 0022 0B       		.uleb128 0xb
+ 1362 0023 3E       		.uleb128 0x3e
+ 1363 0024 0B       		.uleb128 0xb
+ 1364 0025 03       		.uleb128 0x3
+ 1365 0026 0E       		.uleb128 0xe
+ 1366 0027 00       		.byte	0
+ 1367 0028 00       		.byte	0
+ 1368 0029 04       		.uleb128 0x4
+ 1369 002a 16       		.uleb128 0x16
+ 1370 002b 00       		.byte	0
+ 1371 002c 03       		.uleb128 0x3
+ 1372 002d 0E       		.uleb128 0xe
+ 1373 002e 3A       		.uleb128 0x3a
+ 1374 002f 0B       		.uleb128 0xb
+ 1375 0030 3B       		.uleb128 0x3b
+ 1376 0031 0B       		.uleb128 0xb
+ 1377 0032 49       		.uleb128 0x49
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 28
+
+
+ 1378 0033 13       		.uleb128 0x13
+ 1379 0034 00       		.byte	0
+ 1380 0035 00       		.byte	0
+ 1381 0036 05       		.uleb128 0x5
+ 1382 0037 13       		.uleb128 0x13
+ 1383 0038 01       		.byte	0x1
+ 1384 0039 03       		.uleb128 0x3
+ 1385 003a 0E       		.uleb128 0xe
+ 1386 003b 0B       		.uleb128 0xb
+ 1387 003c 0B       		.uleb128 0xb
+ 1388 003d 3A       		.uleb128 0x3a
+ 1389 003e 0B       		.uleb128 0xb
+ 1390 003f 3B       		.uleb128 0x3b
+ 1391 0040 05       		.uleb128 0x5
+ 1392 0041 01       		.uleb128 0x1
+ 1393 0042 13       		.uleb128 0x13
+ 1394 0043 00       		.byte	0
+ 1395 0044 00       		.byte	0
+ 1396 0045 06       		.uleb128 0x6
+ 1397 0046 0D       		.uleb128 0xd
+ 1398 0047 00       		.byte	0
+ 1399 0048 03       		.uleb128 0x3
+ 1400 0049 0E       		.uleb128 0xe
+ 1401 004a 3A       		.uleb128 0x3a
+ 1402 004b 0B       		.uleb128 0xb
+ 1403 004c 3B       		.uleb128 0x3b
+ 1404 004d 05       		.uleb128 0x5
+ 1405 004e 49       		.uleb128 0x49
+ 1406 004f 13       		.uleb128 0x13
+ 1407 0050 38       		.uleb128 0x38
+ 1408 0051 0B       		.uleb128 0xb
+ 1409 0052 00       		.byte	0
+ 1410 0053 00       		.byte	0
+ 1411 0054 07       		.uleb128 0x7
+ 1412 0055 0D       		.uleb128 0xd
+ 1413 0056 00       		.byte	0
+ 1414 0057 03       		.uleb128 0x3
+ 1415 0058 08       		.uleb128 0x8
+ 1416 0059 3A       		.uleb128 0x3a
+ 1417 005a 0B       		.uleb128 0xb
+ 1418 005b 3B       		.uleb128 0x3b
+ 1419 005c 05       		.uleb128 0x5
+ 1420 005d 49       		.uleb128 0x49
+ 1421 005e 13       		.uleb128 0x13
+ 1422 005f 38       		.uleb128 0x38
+ 1423 0060 0B       		.uleb128 0xb
+ 1424 0061 00       		.byte	0
+ 1425 0062 00       		.byte	0
+ 1426 0063 08       		.uleb128 0x8
+ 1427 0064 13       		.uleb128 0x13
+ 1428 0065 01       		.byte	0x1
+ 1429 0066 03       		.uleb128 0x3
+ 1430 0067 0E       		.uleb128 0xe
+ 1431 0068 0B       		.uleb128 0xb
+ 1432 0069 0B       		.uleb128 0xb
+ 1433 006a 3A       		.uleb128 0x3a
+ 1434 006b 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 29
+
+
+ 1435 006c 3B       		.uleb128 0x3b
+ 1436 006d 0B       		.uleb128 0xb
+ 1437 006e 01       		.uleb128 0x1
+ 1438 006f 13       		.uleb128 0x13
+ 1439 0070 00       		.byte	0
+ 1440 0071 00       		.byte	0
+ 1441 0072 09       		.uleb128 0x9
+ 1442 0073 0D       		.uleb128 0xd
+ 1443 0074 00       		.byte	0
+ 1444 0075 03       		.uleb128 0x3
+ 1445 0076 0E       		.uleb128 0xe
+ 1446 0077 3A       		.uleb128 0x3a
+ 1447 0078 0B       		.uleb128 0xb
+ 1448 0079 3B       		.uleb128 0x3b
+ 1449 007a 0B       		.uleb128 0xb
+ 1450 007b 49       		.uleb128 0x49
+ 1451 007c 13       		.uleb128 0x13
+ 1452 007d 38       		.uleb128 0x38
+ 1453 007e 0B       		.uleb128 0xb
+ 1454 007f 00       		.byte	0
+ 1455 0080 00       		.byte	0
+ 1456 0081 0A       		.uleb128 0xa
+ 1457 0082 0F       		.uleb128 0xf
+ 1458 0083 00       		.byte	0
+ 1459 0084 0B       		.uleb128 0xb
+ 1460 0085 0B       		.uleb128 0xb
+ 1461 0086 49       		.uleb128 0x49
+ 1462 0087 13       		.uleb128 0x13
+ 1463 0088 00       		.byte	0
+ 1464 0089 00       		.byte	0
+ 1465 008a 0B       		.uleb128 0xb
+ 1466 008b 15       		.uleb128 0x15
+ 1467 008c 01       		.byte	0x1
+ 1468 008d 27       		.uleb128 0x27
+ 1469 008e 19       		.uleb128 0x19
+ 1470 008f 49       		.uleb128 0x49
+ 1471 0090 13       		.uleb128 0x13
+ 1472 0091 01       		.uleb128 0x1
+ 1473 0092 13       		.uleb128 0x13
+ 1474 0093 00       		.byte	0
+ 1475 0094 00       		.byte	0
+ 1476 0095 0C       		.uleb128 0xc
+ 1477 0096 05       		.uleb128 0x5
+ 1478 0097 00       		.byte	0
+ 1479 0098 49       		.uleb128 0x49
+ 1480 0099 13       		.uleb128 0x13
+ 1481 009a 00       		.byte	0
+ 1482 009b 00       		.byte	0
+ 1483 009c 0D       		.uleb128 0xd
+ 1484 009d 0F       		.uleb128 0xf
+ 1485 009e 00       		.byte	0
+ 1486 009f 0B       		.uleb128 0xb
+ 1487 00a0 0B       		.uleb128 0xb
+ 1488 00a1 00       		.byte	0
+ 1489 00a2 00       		.byte	0
+ 1490 00a3 0E       		.uleb128 0xe
+ 1491 00a4 16       		.uleb128 0x16
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 30
+
+
+ 1492 00a5 00       		.byte	0
+ 1493 00a6 03       		.uleb128 0x3
+ 1494 00a7 0E       		.uleb128 0xe
+ 1495 00a8 3A       		.uleb128 0x3a
+ 1496 00a9 0B       		.uleb128 0xb
+ 1497 00aa 3B       		.uleb128 0x3b
+ 1498 00ab 05       		.uleb128 0x5
+ 1499 00ac 49       		.uleb128 0x49
+ 1500 00ad 13       		.uleb128 0x13
+ 1501 00ae 00       		.byte	0
+ 1502 00af 00       		.byte	0
+ 1503 00b0 0F       		.uleb128 0xf
+ 1504 00b1 15       		.uleb128 0x15
+ 1505 00b2 01       		.byte	0x1
+ 1506 00b3 27       		.uleb128 0x27
+ 1507 00b4 19       		.uleb128 0x19
+ 1508 00b5 01       		.uleb128 0x1
+ 1509 00b6 13       		.uleb128 0x13
+ 1510 00b7 00       		.byte	0
+ 1511 00b8 00       		.byte	0
+ 1512 00b9 10       		.uleb128 0x10
+ 1513 00ba 26       		.uleb128 0x26
+ 1514 00bb 00       		.byte	0
+ 1515 00bc 49       		.uleb128 0x49
+ 1516 00bd 13       		.uleb128 0x13
+ 1517 00be 00       		.byte	0
+ 1518 00bf 00       		.byte	0
+ 1519 00c0 11       		.uleb128 0x11
+ 1520 00c1 2E       		.uleb128 0x2e
+ 1521 00c2 01       		.byte	0x1
+ 1522 00c3 3F       		.uleb128 0x3f
+ 1523 00c4 19       		.uleb128 0x19
+ 1524 00c5 03       		.uleb128 0x3
+ 1525 00c6 0E       		.uleb128 0xe
+ 1526 00c7 3A       		.uleb128 0x3a
+ 1527 00c8 0B       		.uleb128 0xb
+ 1528 00c9 3B       		.uleb128 0x3b
+ 1529 00ca 0B       		.uleb128 0xb
+ 1530 00cb 27       		.uleb128 0x27
+ 1531 00cc 19       		.uleb128 0x19
+ 1532 00cd 49       		.uleb128 0x49
+ 1533 00ce 13       		.uleb128 0x13
+ 1534 00cf 11       		.uleb128 0x11
+ 1535 00d0 01       		.uleb128 0x1
+ 1536 00d1 12       		.uleb128 0x12
+ 1537 00d2 06       		.uleb128 0x6
+ 1538 00d3 40       		.uleb128 0x40
+ 1539 00d4 18       		.uleb128 0x18
+ 1540 00d5 9642     		.uleb128 0x2116
+ 1541 00d7 19       		.uleb128 0x19
+ 1542 00d8 01       		.uleb128 0x1
+ 1543 00d9 13       		.uleb128 0x13
+ 1544 00da 00       		.byte	0
+ 1545 00db 00       		.byte	0
+ 1546 00dc 12       		.uleb128 0x12
+ 1547 00dd 05       		.uleb128 0x5
+ 1548 00de 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 31
+
+
+ 1549 00df 03       		.uleb128 0x3
+ 1550 00e0 08       		.uleb128 0x8
+ 1551 00e1 3A       		.uleb128 0x3a
+ 1552 00e2 0B       		.uleb128 0xb
+ 1553 00e3 3B       		.uleb128 0x3b
+ 1554 00e4 0B       		.uleb128 0xb
+ 1555 00e5 49       		.uleb128 0x49
+ 1556 00e6 13       		.uleb128 0x13
+ 1557 00e7 02       		.uleb128 0x2
+ 1558 00e8 18       		.uleb128 0x18
+ 1559 00e9 00       		.byte	0
+ 1560 00ea 00       		.byte	0
+ 1561 00eb 13       		.uleb128 0x13
+ 1562 00ec 0B       		.uleb128 0xb
+ 1563 00ed 01       		.byte	0x1
+ 1564 00ee 11       		.uleb128 0x11
+ 1565 00ef 01       		.uleb128 0x1
+ 1566 00f0 12       		.uleb128 0x12
+ 1567 00f1 06       		.uleb128 0x6
+ 1568 00f2 00       		.byte	0
+ 1569 00f3 00       		.byte	0
+ 1570 00f4 14       		.uleb128 0x14
+ 1571 00f5 34       		.uleb128 0x34
+ 1572 00f6 00       		.byte	0
+ 1573 00f7 03       		.uleb128 0x3
+ 1574 00f8 08       		.uleb128 0x8
+ 1575 00f9 3A       		.uleb128 0x3a
+ 1576 00fa 0B       		.uleb128 0xb
+ 1577 00fb 3B       		.uleb128 0x3b
+ 1578 00fc 0B       		.uleb128 0xb
+ 1579 00fd 49       		.uleb128 0x49
+ 1580 00fe 13       		.uleb128 0x13
+ 1581 00ff 02       		.uleb128 0x2
+ 1582 0100 18       		.uleb128 0x18
+ 1583 0101 00       		.byte	0
+ 1584 0102 00       		.byte	0
+ 1585 0103 15       		.uleb128 0x15
+ 1586 0104 01       		.uleb128 0x1
+ 1587 0105 01       		.byte	0x1
+ 1588 0106 49       		.uleb128 0x49
+ 1589 0107 13       		.uleb128 0x13
+ 1590 0108 01       		.uleb128 0x1
+ 1591 0109 13       		.uleb128 0x13
+ 1592 010a 00       		.byte	0
+ 1593 010b 00       		.byte	0
+ 1594 010c 16       		.uleb128 0x16
+ 1595 010d 21       		.uleb128 0x21
+ 1596 010e 00       		.byte	0
+ 1597 010f 49       		.uleb128 0x49
+ 1598 0110 13       		.uleb128 0x13
+ 1599 0111 2F       		.uleb128 0x2f
+ 1600 0112 0B       		.uleb128 0xb
+ 1601 0113 00       		.byte	0
+ 1602 0114 00       		.byte	0
+ 1603 0115 17       		.uleb128 0x17
+ 1604 0116 34       		.uleb128 0x34
+ 1605 0117 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 32
+
+
+ 1606 0118 03       		.uleb128 0x3
+ 1607 0119 0E       		.uleb128 0xe
+ 1608 011a 3A       		.uleb128 0x3a
+ 1609 011b 0B       		.uleb128 0xb
+ 1610 011c 3B       		.uleb128 0x3b
+ 1611 011d 0B       		.uleb128 0xb
+ 1612 011e 49       		.uleb128 0x49
+ 1613 011f 13       		.uleb128 0x13
+ 1614 0120 02       		.uleb128 0x2
+ 1615 0121 18       		.uleb128 0x18
+ 1616 0122 00       		.byte	0
+ 1617 0123 00       		.byte	0
+ 1618 0124 18       		.uleb128 0x18
+ 1619 0125 34       		.uleb128 0x34
+ 1620 0126 00       		.byte	0
+ 1621 0127 03       		.uleb128 0x3
+ 1622 0128 0E       		.uleb128 0xe
+ 1623 0129 3A       		.uleb128 0x3a
+ 1624 012a 0B       		.uleb128 0xb
+ 1625 012b 3B       		.uleb128 0x3b
+ 1626 012c 0B       		.uleb128 0xb
+ 1627 012d 49       		.uleb128 0x49
+ 1628 012e 13       		.uleb128 0x13
+ 1629 012f 3F       		.uleb128 0x3f
+ 1630 0130 19       		.uleb128 0x19
+ 1631 0131 02       		.uleb128 0x2
+ 1632 0132 18       		.uleb128 0x18
+ 1633 0133 00       		.byte	0
+ 1634 0134 00       		.byte	0
+ 1635 0135 00       		.byte	0
+ 1636              		.section	.debug_aranges,"",%progbits
+ 1637 0000 24000000 		.4byte	0x24
+ 1638 0004 0200     		.2byte	0x2
+ 1639 0006 00000000 		.4byte	.Ldebug_info0
+ 1640 000a 04       		.byte	0x4
+ 1641 000b 00       		.byte	0
+ 1642 000c 0000     		.2byte	0
+ 1643 000e 0000     		.2byte	0
+ 1644 0010 00000000 		.4byte	.LFB0
+ 1645 0014 14010000 		.4byte	.LFE0-.LFB0
+ 1646 0018 00000000 		.4byte	.LFB1
+ 1647 001c 6C010000 		.4byte	.LFE1-.LFB1
+ 1648 0020 00000000 		.4byte	0
+ 1649 0024 00000000 		.4byte	0
+ 1650              		.section	.debug_ranges,"",%progbits
+ 1651              	.Ldebug_ranges0:
+ 1652 0000 00000000 		.4byte	.LFB0
+ 1653 0004 14010000 		.4byte	.LFE0
+ 1654 0008 00000000 		.4byte	.LFB1
+ 1655 000c 6C010000 		.4byte	.LFE1
+ 1656 0010 00000000 		.4byte	0
+ 1657 0014 00000000 		.4byte	0
+ 1658              		.section	.debug_line,"",%progbits
+ 1659              	.Ldebug_line0:
+ 1660 0000 9F010000 		.section	.debug_str,"MS",%progbits,1
+ 1660      02004B01 
+ 1660      00000201 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 33
+
+
+ 1660      FB0E0D00 
+ 1660      01010101 
+ 1661              	.LASF14:
+ 1662 0000 7538675F 		.ascii	"u8g_t\000"
+ 1662      7400
+ 1663              	.LASF80:
+ 1664 0006 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_hw_spi_buf\000"
+ 1664      6465765F 
+ 1664      75633137 
+ 1664      30315F6D 
+ 1664      696E6931 
+ 1665              	.LASF13:
+ 1666 002a 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 1666      70676D5F 
+ 1666      75696E74 
+ 1666      385F7400 
+ 1667              	.LASF48:
+ 1668 003a 70697865 		.ascii	"pixel\000"
+ 1668      6C00
+ 1669              	.LASF76:
+ 1670 0040 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_2x_sw_spi\000"
+ 1670      6465765F 
+ 1670      75633137 
+ 1670      30315F6D 
+ 1670      696E6931 
+ 1671              	.LASF11:
+ 1672 0063 696E7438 		.ascii	"int8_t\000"
+ 1672      5F7400
+ 1673              	.LASF17:
+ 1674 006a 666F6E74 		.ascii	"font\000"
+ 1674      00
+ 1675              	.LASF5:
+ 1676 006f 73686F72 		.ascii	"short int\000"
+ 1676      7420696E 
+ 1676      7400
+ 1677              	.LASF49:
+ 1678 0079 636F6C6F 		.ascii	"color\000"
+ 1678      7200
+ 1679              	.LASF68:
+ 1680 007f 7538675F 		.ascii	"u8g_state_cb\000"
+ 1680      73746174 
+ 1680      655F6362 
+ 1680      00
+ 1681              	.LASF41:
+ 1682 008c 5F753867 		.ascii	"_u8g_t\000"
+ 1682      5F7400
+ 1683              	.LASF23:
+ 1684 0093 63757273 		.ascii	"cursor_x\000"
+ 1684      6F725F78 
+ 1684      00
+ 1685              	.LASF24:
+ 1686 009c 63757273 		.ascii	"cursor_y\000"
+ 1686      6F725F79 
+ 1686      00
+ 1687              	.LASF70:
+ 1688 00a5 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_fn\000"
+ 1688      6465765F 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 34
+
+
+ 1688      75633137 
+ 1688      30315F6D 
+ 1688      696E6931 
+ 1689              	.LASF38:
+ 1690 00c1 73746174 		.ascii	"state_cb\000"
+ 1690      655F6362 
+ 1690      00
+ 1691              	.LASF67:
+ 1692 00ca 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 1692      666F6E74 
+ 1692      5F63616C 
+ 1692      635F7672 
+ 1692      65665F66 
+ 1693              	.LASF19:
+ 1694 00e3 63757273 		.ascii	"cursor_fg_color\000"
+ 1694      6F725F66 
+ 1694      675F636F 
+ 1694      6C6F7200 
+ 1695              	.LASF79:
+ 1696 00f3 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_sw_spi_pb\000"
+ 1696      6465765F 
+ 1696      75633137 
+ 1696      30315F6D 
+ 1696      696E6931 
+ 1697              	.LASF40:
+ 1698 0116 7538675F 		.ascii	"u8g_dev_t\000"
+ 1698      6465765F 
+ 1698      7400
+ 1699              	.LASF51:
+ 1700 0120 626C7565 		.ascii	"blue\000"
+ 1700      00
+ 1701              	.LASF36:
+ 1702 0125 6C696E65 		.ascii	"line_spacing\000"
+ 1702      5F737061 
+ 1702      63696E67 
+ 1702      00
+ 1703              	.LASF77:
+ 1704 0132 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_2x_hw_spi\000"
+ 1704      6465765F 
+ 1704      75633137 
+ 1704      30315F6D 
+ 1704      696E6931 
+ 1705              	.LASF33:
+ 1706 0155 666F6E74 		.ascii	"font_ref_ascent\000"
+ 1706      5F726566 
+ 1706      5F617363 
+ 1706      656E7400 
+ 1707              	.LASF12:
+ 1708 0165 75696E74 		.ascii	"uint8_t\000"
+ 1708      385F7400 
+ 1709              	.LASF86:
+ 1710 016d 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Kopia_Poczatki\\QDExam"
+ 1710      6F726B73 
+ 1710      70616365 
+ 1710      5C50536F 
+ 1710      435F4372 
+ 1711 019c 706C6530 		.ascii	"ple01.cydsn\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 35
+
+
+ 1711      312E6379 
+ 1711      64736E00 
+ 1712              	.LASF26:
+ 1713 01a8 676C7970 		.ascii	"glyph_dx\000"
+ 1713      685F6478 
+ 1713      00
+ 1714              	.LASF72:
+ 1715 01b1 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_init_seq\000"
+ 1715      6465765F 
+ 1715      75633137 
+ 1715      30315F6D 
+ 1715      696E6931 
+ 1716              	.LASF20:
+ 1717 01d3 63757273 		.ascii	"cursor_bg_color\000"
+ 1717      6F725F62 
+ 1717      675F636F 
+ 1717      6C6F7200 
+ 1718              	.LASF15:
+ 1719 01e3 77696474 		.ascii	"width\000"
+ 1719      6800
+ 1720              	.LASF50:
+ 1721 01e9 68695F63 		.ascii	"hi_color\000"
+ 1721      6F6C6F72 
+ 1721      00
+ 1722              	.LASF47:
+ 1723 01f2 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 1723      5F646576 
+ 1723      5F617267 
+ 1723      5F706978 
+ 1723      656C5F74 
+ 1724              	.LASF9:
+ 1725 0207 6C6F6E67 		.ascii	"long long int\000"
+ 1725      206C6F6E 
+ 1725      6720696E 
+ 1725      7400
+ 1726              	.LASF81:
+ 1727 0215 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_hw_spi_pb\000"
+ 1727      6465765F 
+ 1727      75633137 
+ 1727      30315F6D 
+ 1727      696E6931 
+ 1728              	.LASF39:
+ 1729 0238 63757272 		.ascii	"current_page\000"
+ 1729      656E745F 
+ 1729      70616765 
+ 1729      00
+ 1730              	.LASF84:
+ 1731 0245 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1731      4320342E 
+ 1731      392E3320 
+ 1731      32303135 
+ 1731      30333033 
+ 1732 0278 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1732      20726576 
+ 1732      6973696F 
+ 1732      6E203232 
+ 1732      31323230 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 36
+
+
+ 1733 02ab 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1733      66756E63 
+ 1733      74696F6E 
+ 1733      2D736563 
+ 1733      74696F6E 
+ 1734              	.LASF66:
+ 1735 02d3 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 1735      64726177 
+ 1735      5F637572 
+ 1735      736F725F 
+ 1735      666E00
+ 1736              	.LASF69:
+ 1737 02e6 73697A65 		.ascii	"sizetype\000"
+ 1737      74797065 
+ 1737      00
+ 1738              	.LASF65:
+ 1739 02ef 7538675F 		.ascii	"u8g_pb_t\000"
+ 1739      70625F74 
+ 1739      00
+ 1740              	.LASF55:
+ 1741 02f8 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 1741      6465765F 
+ 1741      666E7074 
+ 1741      7200
+ 1742              	.LASF3:
+ 1743 0306 5F5F7569 		.ascii	"__uint8_t\000"
+ 1743      6E74385F 
+ 1743      7400
+ 1744              	.LASF27:
+ 1745 0310 676C7970 		.ascii	"glyph_x\000"
+ 1745      685F7800 
+ 1746              	.LASF28:
+ 1747 0318 676C7970 		.ascii	"glyph_y\000"
+ 1747      685F7900 
+ 1748              	.LASF56:
+ 1749 0320 7538675F 		.ascii	"u8g_com_fnptr\000"
+ 1749      636F6D5F 
+ 1749      666E7074 
+ 1749      7200
+ 1750              	.LASF46:
+ 1751 032e 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 1751      6465765F 
+ 1751      6172675F 
+ 1751      70697865 
+ 1751      6C5F7400 
+ 1752              	.LASF73:
+ 1753 0342 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_data_start\000"
+ 1753      6465765F 
+ 1753      75633137 
+ 1753      30315F6D 
+ 1753      696E6931 
+ 1754              	.LASF82:
+ 1755 0366 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_2x_buf\000"
+ 1755      6465765F 
+ 1755      75633137 
+ 1755      30315F6D 
+ 1755      696E6931 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 37
+
+
+ 1756              	.LASF21:
+ 1757 0386 63757273 		.ascii	"cursor_encoding\000"
+ 1757      6F725F65 
+ 1757      6E636F64 
+ 1757      696E6700 
+ 1758              	.LASF4:
+ 1759 0396 756E7369 		.ascii	"unsigned char\000"
+ 1759      676E6564 
+ 1759      20636861 
+ 1759      7200
+ 1760              	.LASF57:
+ 1761 03a4 5F753867 		.ascii	"_u8g_page_t\000"
+ 1761      5F706167 
+ 1761      655F7400 
+ 1762              	.LASF30:
+ 1763 03b0 676C7970 		.ascii	"glyph_height\000"
+ 1763      685F6865 
+ 1763      69676874 
+ 1763      00
+ 1764              	.LASF37:
+ 1765 03bd 6172675F 		.ascii	"arg_pixel\000"
+ 1765      70697865 
+ 1765      6C00
+ 1766              	.LASF1:
+ 1767 03c7 7369676E 		.ascii	"signed char\000"
+ 1767      65642063 
+ 1767      68617200 
+ 1768              	.LASF83:
+ 1769 03d3 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_2x_pb\000"
+ 1769      6465765F 
+ 1769      75633137 
+ 1769      30315F6D 
+ 1769      696E6931 
+ 1770              	.LASF10:
+ 1771 03f2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1771      206C6F6E 
+ 1771      6720756E 
+ 1771      7369676E 
+ 1771      65642069 
+ 1772              	.LASF16:
+ 1773 0409 68656967 		.ascii	"height\000"
+ 1773      687400
+ 1774              	.LASF0:
+ 1775 0410 756E7369 		.ascii	"unsigned int\000"
+ 1775      676E6564 
+ 1775      20696E74 
+ 1775      00
+ 1776              	.LASF25:
+ 1777 041d 63757273 		.ascii	"cursor_fn\000"
+ 1777      6F725F66 
+ 1777      6E00
+ 1778              	.LASF54:
+ 1779 0427 7538675F 		.ascii	"u8g_uint_t\000"
+ 1779      75696E74 
+ 1779      5F7400
+ 1780              	.LASF6:
+ 1781 0432 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 38
+
+
+ 1781      7420756E 
+ 1781      7369676E 
+ 1781      65642069 
+ 1781      6E7400
+ 1782              	.LASF2:
+ 1783 0445 5F5F696E 		.ascii	"__int8_t\000"
+ 1783      74385F74 
+ 1783      00
+ 1784              	.LASF53:
+ 1785 044e 5F753867 		.ascii	"_u8g_box_t\000"
+ 1785      5F626F78 
+ 1785      5F7400
+ 1786              	.LASF7:
+ 1787 0459 6C6F6E67 		.ascii	"long int\000"
+ 1787      20696E74 
+ 1787      00
+ 1788              	.LASF85:
+ 1789 0462 2E5C7538 		.ascii	".\\u8glib_arm_v1.18.1\\src\\u8g_dev_uc1701_mini1286"
+ 1789      676C6962 
+ 1789      5F61726D 
+ 1789      5F76312E 
+ 1789      31382E31 
+ 1790 0492 342E6300 		.ascii	"4.c\000"
+ 1791              	.LASF22:
+ 1792 0496 6D6F6465 		.ascii	"mode\000"
+ 1792      00
+ 1793              	.LASF43:
+ 1794 049b 6465765F 		.ascii	"dev_fn\000"
+ 1794      666E00
+ 1795              	.LASF61:
+ 1796 04a2 70616765 		.ascii	"page_y1\000"
+ 1796      5F793100 
+ 1797              	.LASF64:
+ 1798 04aa 5F753867 		.ascii	"_u8g_pb_t\000"
+ 1798      5F70625F 
+ 1798      7400
+ 1799              	.LASF8:
+ 1800 04b4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1800      20756E73 
+ 1800      69676E65 
+ 1800      6420696E 
+ 1800      7400
+ 1801              	.LASF63:
+ 1802 04c6 7538675F 		.ascii	"u8g_page_t\000"
+ 1802      70616765 
+ 1802      5F7400
+ 1803              	.LASF71:
+ 1804 04d1 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_2x_fn\000"
+ 1804      6465765F 
+ 1804      75633137 
+ 1804      30315F6D 
+ 1804      696E6931 
+ 1805              	.LASF74:
+ 1806 04f0 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_sw_spi\000"
+ 1806      6465765F 
+ 1806      75633137 
+ 1806      30315F6D 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 39
+
+
+ 1806      696E6931 
+ 1807              	.LASF34:
+ 1808 0510 666F6E74 		.ascii	"font_ref_descent\000"
+ 1808      5F726566 
+ 1808      5F646573 
+ 1808      63656E74 
+ 1808      00
+ 1809              	.LASF35:
+ 1810 0521 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 1810      5F6C696E 
+ 1810      655F7370 
+ 1810      6163696E 
+ 1810      675F6661 
+ 1811              	.LASF52:
+ 1812 053a 7538675F 		.ascii	"u8g_box_t\000"
+ 1812      626F785F 
+ 1812      7400
+ 1813              	.LASF44:
+ 1814 0544 6465765F 		.ascii	"dev_mem\000"
+ 1814      6D656D00 
+ 1815              	.LASF18:
+ 1816 054c 63757273 		.ascii	"cursor_font\000"
+ 1816      6F725F66 
+ 1816      6F6E7400 
+ 1817              	.LASF31:
+ 1818 0558 666F6E74 		.ascii	"font_calc_vref\000"
+ 1818      5F63616C 
+ 1818      635F7672 
+ 1818      656600
+ 1819              	.LASF60:
+ 1820 0567 70616765 		.ascii	"page_y0\000"
+ 1820      5F793000 
+ 1821              	.LASF32:
+ 1822 056f 666F6E74 		.ascii	"font_height_mode\000"
+ 1822      5F686569 
+ 1822      6768745F 
+ 1822      6D6F6465 
+ 1822      00
+ 1823              	.LASF78:
+ 1824 0580 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_sw_spi_buf\000"
+ 1824      6465765F 
+ 1824      75633137 
+ 1824      30315F6D 
+ 1824      696E6931 
+ 1825              	.LASF62:
+ 1826 05a4 70616765 		.ascii	"page\000"
+ 1826      00
+ 1827              	.LASF29:
+ 1828 05a9 676C7970 		.ascii	"glyph_width\000"
+ 1828      685F7769 
+ 1828      64746800 
+ 1829              	.LASF58:
+ 1830 05b5 70616765 		.ascii	"page_height\000"
+ 1830      5F686569 
+ 1830      67687400 
+ 1831              	.LASF75:
+ 1832 05c1 7538675F 		.ascii	"u8g_dev_uc1701_mini12864_hw_spi\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc9YyIHW.s 			page 40
+
+
+ 1832      6465765F 
+ 1832      75633137 
+ 1832      30315F6D 
+ 1832      696E6931 
+ 1833              	.LASF42:
+ 1834 05e1 5F753867 		.ascii	"_u8g_dev_t\000"
+ 1834      5F646576 
+ 1834      5F7400
+ 1835              	.LASF59:
+ 1836 05ec 746F7461 		.ascii	"total_height\000"
+ 1836      6C5F6865 
+ 1836      69676874 
+ 1836      00
+ 1837              	.LASF45:
+ 1838 05f9 636F6D5F 		.ascii	"com_fn\000"
+ 1838      666E00
+ 1839              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

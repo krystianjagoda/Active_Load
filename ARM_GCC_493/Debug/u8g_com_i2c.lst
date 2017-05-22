@@ -1,0 +1,1695 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"u8g_com_i2c.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              	u8g_i2c_err_code:
+  20 0000 00       		.space	1
+  21              	u8g_i2c_opt:
+  22 0001 00       		.space	1
+  23              	u8g_i2c_err_pos:
+  24 0002 00       		.space	1
+  25              		.section	.text.u8g_i2c_clear_error,"ax",%progbits
+  26              		.align	2
+  27              		.global	u8g_i2c_clear_error
+  28              		.thumb
+  29              		.thumb_func
+  30              		.type	u8g_i2c_clear_error, %function
+  31              	u8g_i2c_clear_error:
+  32              	.LFB0:
+  33              		.file 1 "u8glib_arm_v1.18.1\\src\\u8g_com_i2c.c"
+   1:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /*
+   2:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+   3:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_com_i2c.c
+   4:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+   5:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   generic i2c interface
+   6:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+   7:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   Universal 8bit Graphics Library
+   8:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+   9:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   Copyright (c) 2011, olikraus@gmail.com
+  10:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   All rights reserved.
+  11:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  12:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  13:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   are permitted provided that the following conditions are met:
+  14:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  15:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  16:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     of conditions and the following disclaimer.
+  17:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     
+  18:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  19:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  20:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     materials provided with the distribution.
+  21:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  22:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  23:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  24:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 2
+
+
+  25:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  26:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  27:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  28:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  29:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  30:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  31:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  32:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  33:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  34:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  35:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+  36:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** */
+  37:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  38:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  39:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include "u8g.h"
+  40:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  41:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** //#define U8G_I2C_WITH_NO_ACK
+  42:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  43:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t u8g_i2c_err_code;
+  44:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t u8g_i2c_opt;		/* U8G_I2C_OPT_NO_ACK, SAM: U8G_I2C_OPT_DEV_1 */
+  45:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /*
+  46:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   position values
+  47:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     1: start condition
+  48:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     2: sla transfer
+  49:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** */
+  50:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t u8g_i2c_err_pos;
+  51:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  52:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  53:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_clear_error(void)
+  54:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+  34              		.loc 1 54 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 0
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38              		@ link register save eliminated.
+  39 0000 80B4     		push	{r7}
+  40              		.cfi_def_cfa_offset 4
+  41              		.cfi_offset 7, -4
+  42 0002 00AF     		add	r7, sp, #0
+  43              		.cfi_def_cfa_register 7
+  55:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_err_code = U8G_I2C_ERR_NONE;
+  44              		.loc 1 55 0
+  45 0004 044B     		ldr	r3, .L2
+  46 0006 0022     		movs	r2, #0
+  47 0008 1A70     		strb	r2, [r3]
+  56:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_err_pos = 0;
+  48              		.loc 1 56 0
+  49 000a 044B     		ldr	r3, .L2+4
+  50 000c 0022     		movs	r2, #0
+  51 000e 1A70     		strb	r2, [r3]
+  57:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+  52              		.loc 1 57 0
+  53 0010 BD46     		mov	sp, r7
+  54              		.cfi_def_cfa_register 13
+  55              		@ sp needed
+  56 0012 5DF8047B 		ldr	r7, [sp], #4
+  57              		.cfi_restore 7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 3
+
+
+  58              		.cfi_def_cfa_offset 0
+  59 0016 7047     		bx	lr
+  60              	.L3:
+  61              		.align	2
+  62              	.L2:
+  63 0018 00000000 		.word	u8g_i2c_err_code
+  64 001c 02000000 		.word	u8g_i2c_err_pos
+  65              		.cfi_endproc
+  66              	.LFE0:
+  67              		.size	u8g_i2c_clear_error, .-u8g_i2c_clear_error
+  68              		.section	.text.u8g_i2c_get_error,"ax",%progbits
+  69              		.align	2
+  70              		.global	u8g_i2c_get_error
+  71              		.thumb
+  72              		.thumb_func
+  73              		.type	u8g_i2c_get_error, %function
+  74              	u8g_i2c_get_error:
+  75              	.LFB1:
+  58:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  59:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t  u8g_i2c_get_error(void)
+  60:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+  76              		.loc 1 60 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 1, uses_anonymous_args = 0
+  80              		@ link register save eliminated.
+  81 0000 80B4     		push	{r7}
+  82              		.cfi_def_cfa_offset 4
+  83              		.cfi_offset 7, -4
+  84 0002 00AF     		add	r7, sp, #0
+  85              		.cfi_def_cfa_register 7
+  61:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return u8g_i2c_err_code;
+  86              		.loc 1 61 0
+  87 0004 034B     		ldr	r3, .L6
+  88 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  62:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+  89              		.loc 1 62 0
+  90 0008 1846     		mov	r0, r3
+  91 000a BD46     		mov	sp, r7
+  92              		.cfi_def_cfa_register 13
+  93              		@ sp needed
+  94 000c 5DF8047B 		ldr	r7, [sp], #4
+  95              		.cfi_restore 7
+  96              		.cfi_def_cfa_offset 0
+  97 0010 7047     		bx	lr
+  98              	.L7:
+  99 0012 00BF     		.align	2
+ 100              	.L6:
+ 101 0014 00000000 		.word	u8g_i2c_err_code
+ 102              		.cfi_endproc
+ 103              	.LFE1:
+ 104              		.size	u8g_i2c_get_error, .-u8g_i2c_get_error
+ 105              		.section	.text.u8g_i2c_get_err_pos,"ax",%progbits
+ 106              		.align	2
+ 107              		.global	u8g_i2c_get_err_pos
+ 108              		.thumb
+ 109              		.thumb_func
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 4
+
+
+ 110              		.type	u8g_i2c_get_err_pos, %function
+ 111              	u8g_i2c_get_err_pos:
+ 112              	.LFB2:
+  63:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  64:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_get_err_pos(void)
+  65:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 113              		.loc 1 65 0
+ 114              		.cfi_startproc
+ 115              		@ args = 0, pretend = 0, frame = 0
+ 116              		@ frame_needed = 1, uses_anonymous_args = 0
+ 117              		@ link register save eliminated.
+ 118 0000 80B4     		push	{r7}
+ 119              		.cfi_def_cfa_offset 4
+ 120              		.cfi_offset 7, -4
+ 121 0002 00AF     		add	r7, sp, #0
+ 122              		.cfi_def_cfa_register 7
+  66:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return u8g_i2c_err_pos;
+ 123              		.loc 1 66 0
+ 124 0004 034B     		ldr	r3, .L10
+ 125 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  67:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 126              		.loc 1 67 0
+ 127 0008 1846     		mov	r0, r3
+ 128 000a BD46     		mov	sp, r7
+ 129              		.cfi_def_cfa_register 13
+ 130              		@ sp needed
+ 131 000c 5DF8047B 		ldr	r7, [sp], #4
+ 132              		.cfi_restore 7
+ 133              		.cfi_def_cfa_offset 0
+ 134 0010 7047     		bx	lr
+ 135              	.L11:
+ 136 0012 00BF     		.align	2
+ 137              	.L10:
+ 138 0014 02000000 		.word	u8g_i2c_err_pos
+ 139              		.cfi_endproc
+ 140              	.LFE2:
+ 141              		.size	u8g_i2c_get_err_pos, .-u8g_i2c_get_err_pos
+ 142              		.section	.text.u8g_i2c_init,"ax",%progbits
+ 143              		.align	2
+ 144              		.global	u8g_i2c_init
+ 145              		.thumb
+ 146              		.thumb_func
+ 147              		.type	u8g_i2c_init, %function
+ 148              	u8g_i2c_init:
+ 149              	.LFB3:
+  68:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  69:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  70:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  71:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #if defined(__AVR__)
+  72:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  73:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void u8g_i2c_set_error(uint8_t code, uint8_t pos)
+  74:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+  75:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_err_code > 0 )
+  76:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     return;
+  77:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_err_code |= code;
+  78:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_err_pos = pos;
+  79:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 5
+
+
+  80:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  81:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define U8G_ATMEGA_HW_TWI
+  82:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  83:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* remove the definition for attiny */
+  84:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #if __AVR_ARCH__ == 2
+  85:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #undef U8G_ATMEGA_HW_TWI
+  86:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #endif
+  87:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #if __AVR_ARCH__ == 25
+  88:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #undef U8G_ATMEGA_HW_TWI
+  89:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #endif
+  90:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #endif
+  91:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  92:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #if defined(U8G_ATMEGA_HW_TWI)
+  93:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  94:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <avr/io.h>
+  95:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <util/twi.h>
+  96:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  97:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  98:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+  99:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_init(uint8_t options)
+ 100:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 101:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /*
+ 102:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWBR: bit rate register
+ 103:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWSR: status register (contains preselector bits)
+ 104:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 105:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   prescalar
+ 106:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     0		1
+ 107:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     1		4
+ 108:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     2		16
+ 109:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     3		64
+ 110:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 111:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   f = F_CPU/(16+2*TWBR*prescalar)
+ 112:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 113:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   F_CPU = 16MHz
+ 114:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWBR = 152;
+ 115:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWSR = 0;
+ 116:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	--> 50KHz
+ 117:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 118:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWBR = 72;
+ 119:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWSR = 0;
+ 120:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	--> 100KHz
+ 121:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 122:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWBR = 12;
+ 123:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWSR = 0;
+ 124:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	--> 400KHz
+ 125:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 126:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     F_CPU/(2*100000)-8  --> calculate TWBR value for 100KHz
+ 127:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** */
+ 128:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_opt = options;
+ 129:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWSR = 0;
+ 130:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( options & U8G_I2C_OPT_FAST )
+ 131:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 132:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWBR = F_CPU/(2*400000)-8;
+ 133:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 134:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   else
+ 135:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {  
+ 136:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     TWBR = F_CPU/(2*100000)-8;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 6
+
+
+ 137:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 138:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_clear_error();
+ 139:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 140:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 141:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_wait(uint8_t mask, uint8_t pos)
+ 142:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 143:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   volatile uint16_t cnt = 2000;	/* timout value should be > 280 for 50KHz Bus and 16 Mhz CPU, howev
+ 144:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   while( !(TWCR & mask) )
+ 145:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 146:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       if ( cnt == 0 )
+ 147:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       {
+ 148:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	if ( u8g_i2c_opt & U8G_I2C_OPT_NO_ACK )
+ 149:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	{
+ 150:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	  return 1;	/* all ok */
+ 151:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	}
+ 152:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	else
+ 153:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	{
+ 154:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	  u8g_i2c_set_error(U8G_I2C_ERR_TIMEOUT, pos);
+ 155:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	  return 0; /* error */
+ 156:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 	}
+ 157:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       }
+ 158:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       cnt--;
+ 159:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     }
+ 160:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;	/* all ok */
+ 161:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 162:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 163:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* sla includes all 8 bits (with r/w bit), assums master transmit */
+ 164:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_start(uint8_t sla)
+ 165:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 166:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   register uint8_t status;
+ 167:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 168:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* send start */
+ 169:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWCR = _BV(TWINT) |  _BV(TWSTA)  |  _BV(TWEN);
+ 170:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    
+ 171:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* wait */
+ 172:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_wait(_BV(TWINT), 1) == 0 )
+ 173:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     return 0;
+ 174:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 175:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   status = TW_STATUS;
+ 176:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****  
+ 177:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* check status after start */  
+ 178:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( status != TW_START && status != TW_REP_START )
+ 179:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 180:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     u8g_i2c_set_error(U8G_I2C_ERR_BUS, 1);
+ 181:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     return 0;
+ 182:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 183:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 184:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set slave address */  
+ 185:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWDR = sla;
+ 186:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 187:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* enable sla transfer */
+ 188:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWCR = _BV(TWINT)  |  _BV(TWEN);
+ 189:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 190:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* wait */
+ 191:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_wait(_BV(TWINT), 2) == 0 )
+ 192:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     return 0;
+ 193:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 7
+
+
+ 194:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_opt & U8G_I2C_OPT_NO_ACK )
+ 195:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 196:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     /* do not check for ACK */
+ 197:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 198:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   else
+ 199:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 200:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     status = TW_STATUS;
+ 201:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     /* check status after sla */  
+ 202:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     if ( status != TW_MT_SLA_ACK )
+ 203:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     {
+ 204:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       u8g_i2c_set_error(U8G_I2C_ERR_BUS, 2);
+ 205:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       return 0;
+ 206:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     }
+ 207:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 208:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 209:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    return 1;
+ 210:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 211:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 212:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_send_byte(uint8_t data)
+ 213:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 214:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   register uint8_t status;
+ 215:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWDR = data;
+ 216:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWCR = _BV(TWINT)  |  _BV(TWEN);
+ 217:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_wait(_BV(TWINT), 3) == 0 )
+ 218:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     return 0;
+ 219:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     
+ 220:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_opt & U8G_I2C_OPT_NO_ACK )
+ 221:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 222:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     /* do not check for ACK */
+ 223:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 224:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   else
+ 225:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 226:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     status = TW_STATUS;  
+ 227:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     if ( status != TW_MT_DATA_ACK )
+ 228:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     {
+ 229:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       u8g_i2c_set_error(U8G_I2C_ERR_BUS, 3);
+ 230:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       return 0;
+ 231:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     }
+ 232:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 233:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 234:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;  
+ 235:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 236:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 237:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_stop(void)
+ 238:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 239:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* write stop */
+ 240:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWSTO);
+ 241:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 242:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* no error is checked for the stop condition */  
+ 243:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_wait(_BV(TWSTO), 4);
+ 244:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 245:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 246:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 247:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /*
+ 248:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void twi_send(uint8_t adr, uint8_t data1, uint8_t data2)
+ 249:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 250:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_start(adr<<1);
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 8
+
+
+ 251:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_send_byte(data1);
+ 252:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_send_byte(data2);
+ 253:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_stop();
+ 254:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 255:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** */
+ 256:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 257:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #elif defined(ARDUINO) && defined(__SAM3X8E__)
+ 258:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* Arduino Due */
+ 259:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include "Arduino.h"
+ 260:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include "sam.h"
+ 261:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 262:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /*
+ 263:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 264:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** Controller
+ 265:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 266:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** TWI0 TWCK0 PA18 A			DUE PCB: SCL1
+ 267:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** TWI0 TWD0 PA17 A			DUE PCB: SDA1 
+ 268:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** TWI1 TWCK1 PB13 A			DUE PCB: SCL 21
+ 269:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** TWI1 TWD1 PB12 A			DUE PCB: SDA 20
+ 270:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 271:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** Arduino definitions
+ 272:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 273:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define PIN_WIRE_SDA         (20u)
+ 274:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define PIN_WIRE_SCL         (21u)
+ 275:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define WIRE_INTERFACE       TWI1
+ 276:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define WIRE_INTERFACE_ID    ID_TWI1
+ 277:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define WIRE_ISR_HANDLER     TWI1_Handler
+ 278:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 279:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define PIN_WIRE1_SDA        (70u)
+ 280:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define PIN_WIRE1_SCL        (71u)
+ 281:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define WIRE1_INTERFACE      TWI0
+ 282:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define WIRE1_INTERFACE_ID   ID_TWI0
+ 283:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define WIRE1_ISR_HANDLER    TWI0_Handler
+ 284:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 285:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 286:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** */
+ 287:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 288:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_400KHz_delay(void)
+ 289:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 290:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* should be at least 4 */
+ 291:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* should be 5 for 100KHz transfer speed */
+ 292:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****  
+ 293:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 294:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /*
+ 295:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     Arduino Due
+ 296:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     0x NOP: 470KHz
+ 297:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     4x NOP: 450KHz
+ 298:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     8x NOP: 430KHz
+ 299:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     16x NOP: 400KHz
+ 300:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   */
+ 301:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 302:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 303:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 304:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 305:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 306:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 307:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 9
+
+
+ 308:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 309:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 310:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 311:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 312:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 313:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 314:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 315:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 316:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 317:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 318:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 319:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 320:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   __NOP();
+ 321:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 322:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 323:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_100KHz_delay(void)
+ 324:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 325:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* 
+ 326:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     1x u8g_MicroDelay()	ca. 130KHz
+ 327:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     2x u8g_MicroDelay()	ca. 80KHz 
+ 328:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   */
+ 329:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_MicroDelay();
+ 330:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_MicroDelay();  
+ 331:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 332:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 333:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 334:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint32_t i2c_started = 0;
+ 335:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint32_t i2c_scl_pin = 0;
+ 336:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint32_t i2c_sda_pin = 0;
+ 337:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void (*i2c_delay)(void) = i2c_100KHz_delay;
+ 338:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 339:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** const PinDescription *i2c_scl_pin_desc;
+ 340:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** const PinDescription *i2c_sda_pin_desc;
+ 341:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 342:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 343:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* maybe this can be optimized */
+ 344:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_init(void)
+ 345:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 346:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc = &(g_APinDescription[i2c_sda_pin]);
+ 347:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc = &(g_APinDescription[i2c_scl_pin]);
+ 348:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   pinMode(i2c_sda_pin, OUTPUT);
+ 349:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   digitalWrite(i2c_sda_pin, HIGH);
+ 350:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   pinMode(i2c_scl_pin, OUTPUT);
+ 351:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   digitalWrite(i2c_scl_pin, HIGH);
+ 352:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   PIO_Configure( i2c_sda_pin_desc->pPort, PIO_OUTPUT_0, i2c_sda_pin_desc->ulPin, PIO_OPENDRAIN );
+ 353:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   PIO_Configure( i2c_scl_pin_desc->pPort, PIO_OUTPUT_0, i2c_scl_pin_desc->ulPin, PIO_OPENDRAIN );
+ 354:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   PIO_Clear( i2c_sda_pin_desc->pPort, i2c_sda_pin_desc->ulPin) ;
+ 355:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   PIO_Clear( i2c_scl_pin_desc->pPort, i2c_scl_pin_desc->ulPin) ;
+ 356:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   PIO_Configure( i2c_sda_pin_desc->pPort, PIO_INPUT, i2c_sda_pin_desc->ulPin, PIO_DEFAULT ) ;
+ 357:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   PIO_Configure( i2c_scl_pin_desc->pPort, PIO_INPUT, i2c_scl_pin_desc->ulPin, PIO_DEFAULT ) ;
+ 358:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 359:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 360:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 361:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* actually, the scl line is not observed, so this procedure does not return a value */
+ 362:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_read_scl_and_delay(void)
+ 363:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 364:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   uint32_t dwMask = i2c_scl_pin_desc->ulPin;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 10
+
+
+ 365:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_Configure( i2c_scl_pin_desc->pPort, PIO_INPUT, i2c_scl_pin_desc->ulPin, PIO_DEFAULT ) ;
+ 366:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_SetInput( i2c_scl_pin_desc->pPort, i2c_scl_pin_desc->ulPin, PIO_DEFAULT ) ;
+ 367:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 368:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set as input */
+ 369:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc->pPort->PIO_ODR = dwMask ;
+ 370:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc->pPort->PIO_PER = dwMask ;
+ 371:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 372:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 373:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 374:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 375:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_clear_scl(void)
+ 376:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 377:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   uint32_t dwMask = i2c_scl_pin_desc->ulPin;
+ 378:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 379:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set open collector and drive low */
+ 380:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_Configure( i2c_scl_pin_desc->pPort, PIO_OUTPUT_0, i2c_scl_pin_desc->ulPin, PIO_OPENDRAIN );
+ 381:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_SetOutput( i2c_scl_pin_desc->pPort, i2c_scl_pin_desc->ulPin, 0, 1, 0);
+ 382:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 383:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* open drain, zero default output */
+ 384:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc->pPort->PIO_MDER = dwMask;
+ 385:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc->pPort->PIO_CODR = dwMask;
+ 386:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc->pPort->PIO_OER = dwMask;
+ 387:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_scl_pin_desc->pPort->PIO_PER = dwMask;
+ 388:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 389:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_Clear( i2c_scl_pin_desc->pPort, i2c_scl_pin_desc->ulPin) ;
+ 390:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 391:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 392:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t i2c_read_sda(void)
+ 393:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 394:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   uint32_t dwMask = i2c_sda_pin_desc->ulPin;
+ 395:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_Configure( i2c_sda_pin_desc->pPort, PIO_INPUT, i2c_sda_pin_desc->ulPin, PIO_DEFAULT ) ;
+ 396:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_SetInput( i2c_sda_pin_desc->pPort, i2c_sda_pin_desc->ulPin, PIO_DEFAULT ) ;
+ 397:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 398:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set as input */
+ 399:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc->pPort->PIO_ODR = dwMask ;
+ 400:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc->pPort->PIO_PER = dwMask ;
+ 401:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 402:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 403:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;
+ 404:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 405:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 406:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_clear_sda(void)
+ 407:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 408:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   uint32_t dwMask = i2c_sda_pin_desc->ulPin;
+ 409:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 410:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set open collector and drive low */
+ 411:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_Configure( i2c_sda_pin_desc->pPort, PIO_OUTPUT_0, i2c_sda_pin_desc->ulPin, PIO_OPENDRAIN );
+ 412:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_SetOutput( i2c_sda_pin_desc->pPort, i2c_sda_pin_desc->ulPin, 0, 1, 0);
+ 413:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 414:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* open drain, zero default output */
+ 415:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc->pPort->PIO_MDER = dwMask ;
+ 416:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc->pPort->PIO_CODR = dwMask ;
+ 417:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc->pPort->PIO_OER = dwMask ;
+ 418:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_sda_pin_desc->pPort->PIO_PER = dwMask ;
+ 419:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 420:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   //PIO_Clear( i2c_sda_pin_desc->pPort, i2c_sda_pin_desc->ulPin) ;
+ 421:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 11
+
+
+ 422:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 423:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_start(void)
+ 424:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 425:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( i2c_started != 0 )
+ 426:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 427:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     /* if already started: do restart */
+ 428:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_read_sda();     /* SDA = 1 */
+ 429:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_delay();
+ 430:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_read_scl_and_delay();
+ 431:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 432:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_read_sda();
+ 433:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /*
+ 434:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if (i2c_read_sda() == 0)
+ 435:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 436:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     // do something because arbitration is lost
+ 437:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 438:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   */
+ 439:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* send the start condition, both lines go from 1 to 0 */
+ 440:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_clear_sda();
+ 441:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 442:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_clear_scl();
+ 443:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_started = 1;
+ 444:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 445:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 446:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 447:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_stop(void)
+ 448:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 449:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set SDA to 0 */
+ 450:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_clear_sda();  
+ 451:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 452:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****  
+ 453:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* now release all lines */
+ 454:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_read_scl_and_delay();
+ 455:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****  
+ 456:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* set SDA to 1 */
+ 457:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_read_sda();
+ 458:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 459:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_started = 0;
+ 460:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 461:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 462:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static void i2c_write_bit(uint8_t val)
+ 463:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 464:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if (val)
+ 465:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_read_sda();
+ 466:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   else
+ 467:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_clear_sda();
+ 468:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****  
+ 469:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 470:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_read_scl_and_delay();
+ 471:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_clear_scl();
+ 472:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 473:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 474:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t i2c_read_bit(void)
+ 475:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 476:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   uint8_t val;
+ 477:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* do not drive SDA */
+ 478:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_read_sda();
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 12
+
+
+ 479:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 480:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_read_scl_and_delay();
+ 481:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   val = i2c_read_sda();
+ 482:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_delay();
+ 483:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_clear_scl();
+ 484:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return val;
+ 485:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 486:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 487:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t i2c_write_byte(uint8_t b)
+ 488:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 489:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 128);
+ 490:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 64);
+ 491:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 32);
+ 492:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 16);
+ 493:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 8);
+ 494:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 4);
+ 495:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 2);
+ 496:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_bit(b & 1);
+ 497:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     
+ 498:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* read ack from client */
+ 499:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* 0: ack was given by client */
+ 500:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   /* 1: nothing happend during ack cycle */  
+ 501:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return i2c_read_bit();
+ 502:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 503:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 504:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 505:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 506:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_init(uint8_t options)
+ 507:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 508:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_opt = options;
+ 509:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_clear_error();
+ 510:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 511:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_opt & U8G_I2C_OPT_FAST )
+ 512:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 513:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_delay = i2c_400KHz_delay;
+ 514:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 515:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   else
+ 516:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 517:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_delay = i2c_100KHz_delay;
+ 518:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 519:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 520:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 521:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   if ( u8g_i2c_opt & U8G_I2C_OPT_DEV_1 )
+ 522:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {
+ 523:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_scl_pin = PIN_WIRE1_SCL;
+ 524:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_sda_pin = PIN_WIRE1_SDA;
+ 525:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     
+ 526:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     //REG_PIOA_PDR = PIO_PB12A_TWD1 | PIO_PB13A_TWCK1;
+ 527:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ 528:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   else
+ 529:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   {    
+ 530:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     
+ 531:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_scl_pin = PIN_WIRE_SCL;
+ 532:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     i2c_sda_pin = PIN_WIRE_SDA;
+ 533:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     
+ 534:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****     //REG_PIOA_PDR = PIO_PA17A_TWD0 | PIO_PA18A_TWCK0;
+ 535:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 13
+
+
+ 536:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   
+ 537:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_init();
+ 538:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 539:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 540:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 541:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* sla includes also the r/w bit */
+ 542:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_start(uint8_t sla)
+ 543:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {  
+ 544:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_start();
+ 545:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_write_byte(sla);
+ 546:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;
+ 547:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 548:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 549:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_send_byte(uint8_t data)
+ 550:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 551:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return i2c_write_byte(data);
+ 552:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 553:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 554:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_stop(void)
+ 555:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 556:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   i2c_stop();
+ 557:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 558:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 559:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 560:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #elif defined(U8G_RASPBERRY_PI)
+ 561:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 562:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <wiringPi.h>
+ 563:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <wiringPiI2C.h>
+ 564:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <stdio.h>
+ 565:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <stdlib.h>
+ 566:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #include <errno.h>
+ 567:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 568:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #define I2C_SLA         0x3c
+ 569:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 570:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static int fd=-1;
+ 571:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** static uint8_t i2cMode = 0;
+ 572:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 573:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_init(uint8_t options) {
+ 574:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    u8g_i2c_clear_error();
+ 575:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    u8g_i2c_opt = options;
+ 576:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 577:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    if (wiringPiSetup() == -1) {
+ 578:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       printf("wiringPi-Error\n");
+ 579:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       exit(1);
+ 580:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    }
+ 581:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 582:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    fd = wiringPiI2CSetup(I2C_SLA);
+ 583:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    if (fd < 0) {
+ 584:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       printf ("Unable to open I2C device 0: %s\n", strerror (errno)) ;
+ 585:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****       exit (1) ;
+ 586:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    }
+ 587:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    //u8g_SetPIOutput(u8g, U8G_PI_RESET);
+ 588:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    //u8g_SetPIOutput(u8g, U8G_PI_A0);
+ 589:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 590:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_start(uint8_t sla) {
+ 591:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    u8g_i2c_send_mode(0);
+ 592:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 14
+
+
+ 593:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    return 1;
+ 594:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 595:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 596:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_stop(void) {
+ 597:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 598:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 599:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_send_mode(uint8_t mode) {
+ 600:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    i2cMode = mode;
+ 601:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** } 
+ 602:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 603:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_send_byte(uint8_t data) {
+ 604:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    wiringPiI2CWriteReg8(fd, i2cMode, data);
+ 605:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 606:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****    return 1;
+ 607:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 608:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 609:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_wait(uint8_t mask, uint8_t pos)
+ 610:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 611:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;
+ 612:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 613:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 614:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** #else
+ 615:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 616:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** /* empty interface */
+ 617:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 618:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_init(uint8_t options)
+ 619:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 150              		.loc 1 619 0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 8
+ 153              		@ frame_needed = 1, uses_anonymous_args = 0
+ 154 0000 80B5     		push	{r7, lr}
+ 155              		.cfi_def_cfa_offset 8
+ 156              		.cfi_offset 7, -8
+ 157              		.cfi_offset 14, -4
+ 158 0002 82B0     		sub	sp, sp, #8
+ 159              		.cfi_def_cfa_offset 16
+ 160 0004 00AF     		add	r7, sp, #0
+ 161              		.cfi_def_cfa_register 7
+ 162 0006 0346     		mov	r3, r0
+ 163 0008 FB71     		strb	r3, [r7, #7]
+ 620:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   u8g_i2c_clear_error();
+ 164              		.loc 1 620 0
+ 165 000a FFF7FEFF 		bl	u8g_i2c_clear_error
+ 621:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 166              		.loc 1 621 0
+ 167 000e 0837     		adds	r7, r7, #8
+ 168              		.cfi_def_cfa_offset 8
+ 169 0010 BD46     		mov	sp, r7
+ 170              		.cfi_def_cfa_register 13
+ 171              		@ sp needed
+ 172 0012 80BD     		pop	{r7, pc}
+ 173              		.cfi_endproc
+ 174              	.LFE3:
+ 175              		.size	u8g_i2c_init, .-u8g_i2c_init
+ 176              		.section	.text.u8g_i2c_wait,"ax",%progbits
+ 177              		.align	2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 15
+
+
+ 178              		.global	u8g_i2c_wait
+ 179              		.thumb
+ 180              		.thumb_func
+ 181              		.type	u8g_i2c_wait, %function
+ 182              	u8g_i2c_wait:
+ 183              	.LFB4:
+ 622:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 623:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_wait(uint8_t mask, uint8_t pos)
+ 624:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 184              		.loc 1 624 0
+ 185              		.cfi_startproc
+ 186              		@ args = 0, pretend = 0, frame = 8
+ 187              		@ frame_needed = 1, uses_anonymous_args = 0
+ 188              		@ link register save eliminated.
+ 189 0000 80B4     		push	{r7}
+ 190              		.cfi_def_cfa_offset 4
+ 191              		.cfi_offset 7, -4
+ 192 0002 83B0     		sub	sp, sp, #12
+ 193              		.cfi_def_cfa_offset 16
+ 194 0004 00AF     		add	r7, sp, #0
+ 195              		.cfi_def_cfa_register 7
+ 196 0006 0346     		mov	r3, r0
+ 197 0008 0A46     		mov	r2, r1
+ 198 000a FB71     		strb	r3, [r7, #7]
+ 199 000c 1346     		mov	r3, r2
+ 200 000e BB71     		strb	r3, [r7, #6]
+ 625:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;
+ 201              		.loc 1 625 0
+ 202 0010 0123     		movs	r3, #1
+ 626:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 203              		.loc 1 626 0
+ 204 0012 1846     		mov	r0, r3
+ 205 0014 0C37     		adds	r7, r7, #12
+ 206              		.cfi_def_cfa_offset 4
+ 207 0016 BD46     		mov	sp, r7
+ 208              		.cfi_def_cfa_register 13
+ 209              		@ sp needed
+ 210 0018 5DF8047B 		ldr	r7, [sp], #4
+ 211              		.cfi_restore 7
+ 212              		.cfi_def_cfa_offset 0
+ 213 001c 7047     		bx	lr
+ 214              		.cfi_endproc
+ 215              	.LFE4:
+ 216              		.size	u8g_i2c_wait, .-u8g_i2c_wait
+ 217 001e 00BF     		.section	.text.u8g_i2c_start,"ax",%progbits
+ 218              		.align	2
+ 219              		.global	u8g_i2c_start
+ 220              		.thumb
+ 221              		.thumb_func
+ 222              		.type	u8g_i2c_start, %function
+ 223              	u8g_i2c_start:
+ 224              	.LFB5:
+ 627:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 628:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_start(uint8_t sla)
+ 629:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 225              		.loc 1 629 0
+ 226              		.cfi_startproc
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 16
+
+
+ 227              		@ args = 0, pretend = 0, frame = 8
+ 228              		@ frame_needed = 1, uses_anonymous_args = 0
+ 229              		@ link register save eliminated.
+ 230 0000 80B4     		push	{r7}
+ 231              		.cfi_def_cfa_offset 4
+ 232              		.cfi_offset 7, -4
+ 233 0002 83B0     		sub	sp, sp, #12
+ 234              		.cfi_def_cfa_offset 16
+ 235 0004 00AF     		add	r7, sp, #0
+ 236              		.cfi_def_cfa_register 7
+ 237 0006 0346     		mov	r3, r0
+ 238 0008 FB71     		strb	r3, [r7, #7]
+ 630:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;
+ 239              		.loc 1 630 0
+ 240 000a 0123     		movs	r3, #1
+ 631:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 241              		.loc 1 631 0
+ 242 000c 1846     		mov	r0, r3
+ 243 000e 0C37     		adds	r7, r7, #12
+ 244              		.cfi_def_cfa_offset 4
+ 245 0010 BD46     		mov	sp, r7
+ 246              		.cfi_def_cfa_register 13
+ 247              		@ sp needed
+ 248 0012 5DF8047B 		ldr	r7, [sp], #4
+ 249              		.cfi_restore 7
+ 250              		.cfi_def_cfa_offset 0
+ 251 0016 7047     		bx	lr
+ 252              		.cfi_endproc
+ 253              	.LFE5:
+ 254              		.size	u8g_i2c_start, .-u8g_i2c_start
+ 255              		.section	.text.u8g_i2c_send_byte,"ax",%progbits
+ 256              		.align	2
+ 257              		.global	u8g_i2c_send_byte
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.type	u8g_i2c_send_byte, %function
+ 261              	u8g_i2c_send_byte:
+ 262              	.LFB6:
+ 632:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** uint8_t u8g_i2c_send_byte(uint8_t data)
+ 633:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 263              		.loc 1 633 0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 8
+ 266              		@ frame_needed = 1, uses_anonymous_args = 0
+ 267              		@ link register save eliminated.
+ 268 0000 80B4     		push	{r7}
+ 269              		.cfi_def_cfa_offset 4
+ 270              		.cfi_offset 7, -4
+ 271 0002 83B0     		sub	sp, sp, #12
+ 272              		.cfi_def_cfa_offset 16
+ 273 0004 00AF     		add	r7, sp, #0
+ 274              		.cfi_def_cfa_register 7
+ 275 0006 0346     		mov	r3, r0
+ 276 0008 FB71     		strb	r3, [r7, #7]
+ 634:u8glib_arm_v1.18.1\src/u8g_com_i2c.c ****   return 1;
+ 277              		.loc 1 634 0
+ 278 000a 0123     		movs	r3, #1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 17
+
+
+ 635:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 279              		.loc 1 635 0
+ 280 000c 1846     		mov	r0, r3
+ 281 000e 0C37     		adds	r7, r7, #12
+ 282              		.cfi_def_cfa_offset 4
+ 283 0010 BD46     		mov	sp, r7
+ 284              		.cfi_def_cfa_register 13
+ 285              		@ sp needed
+ 286 0012 5DF8047B 		ldr	r7, [sp], #4
+ 287              		.cfi_restore 7
+ 288              		.cfi_def_cfa_offset 0
+ 289 0016 7047     		bx	lr
+ 290              		.cfi_endproc
+ 291              	.LFE6:
+ 292              		.size	u8g_i2c_send_byte, .-u8g_i2c_send_byte
+ 293              		.section	.text.u8g_i2c_stop,"ax",%progbits
+ 294              		.align	2
+ 295              		.global	u8g_i2c_stop
+ 296              		.thumb
+ 297              		.thumb_func
+ 298              		.type	u8g_i2c_stop, %function
+ 299              	u8g_i2c_stop:
+ 300              	.LFB7:
+ 636:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** 
+ 637:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** void u8g_i2c_stop(void)
+ 638:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** {
+ 301              		.loc 1 638 0
+ 302              		.cfi_startproc
+ 303              		@ args = 0, pretend = 0, frame = 0
+ 304              		@ frame_needed = 1, uses_anonymous_args = 0
+ 305              		@ link register save eliminated.
+ 306 0000 80B4     		push	{r7}
+ 307              		.cfi_def_cfa_offset 4
+ 308              		.cfi_offset 7, -4
+ 309 0002 00AF     		add	r7, sp, #0
+ 310              		.cfi_def_cfa_register 7
+ 639:u8glib_arm_v1.18.1\src/u8g_com_i2c.c **** }
+ 311              		.loc 1 639 0
+ 312 0004 BD46     		mov	sp, r7
+ 313              		.cfi_def_cfa_register 13
+ 314              		@ sp needed
+ 315 0006 5DF8047B 		ldr	r7, [sp], #4
+ 316              		.cfi_restore 7
+ 317              		.cfi_def_cfa_offset 0
+ 318 000a 7047     		bx	lr
+ 319              		.cfi_endproc
+ 320              	.LFE7:
+ 321              		.size	u8g_i2c_stop, .-u8g_i2c_stop
+ 322              		.text
+ 323              	.Letext0:
+ 324              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 325              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 326              		.section	.debug_info,"",%progbits
+ 327              	.Ldebug_info0:
+ 328 0000 B8010000 		.4byte	0x1b8
+ 329 0004 0400     		.2byte	0x4
+ 330 0006 00000000 		.4byte	.Ldebug_abbrev0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 18
+
+
+ 331 000a 04       		.byte	0x4
+ 332 000b 01       		.uleb128 0x1
+ 333 000c 75000000 		.4byte	.LASF25
+ 334 0010 01       		.byte	0x1
+ 335 0011 2D000000 		.4byte	.LASF26
+ 336 0015 05020000 		.4byte	.LASF27
+ 337 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 338 001d 00000000 		.4byte	0
+ 339 0021 00000000 		.4byte	.Ldebug_line0
+ 340 0025 02       		.uleb128 0x2
+ 341 0026 04       		.byte	0x4
+ 342 0027 05       		.byte	0x5
+ 343 0028 696E7400 		.ascii	"int\000"
+ 344 002c 03       		.uleb128 0x3
+ 345 002d 04       		.byte	0x4
+ 346 002e 07       		.byte	0x7
+ 347 002f 64010000 		.4byte	.LASF0
+ 348 0033 03       		.uleb128 0x3
+ 349 0034 01       		.byte	0x1
+ 350 0035 06       		.byte	0x6
+ 351 0036 2D010000 		.4byte	.LASF1
+ 352 003a 04       		.uleb128 0x4
+ 353 003b 03010000 		.4byte	.LASF9
+ 354 003f 02       		.byte	0x2
+ 355 0040 1D       		.byte	0x1d
+ 356 0041 45000000 		.4byte	0x45
+ 357 0045 03       		.uleb128 0x3
+ 358 0046 01       		.byte	0x1
+ 359 0047 08       		.byte	0x8
+ 360 0048 0D010000 		.4byte	.LASF2
+ 361 004c 03       		.uleb128 0x3
+ 362 004d 02       		.byte	0x2
+ 363 004e 05       		.byte	0x5
+ 364 004f 00000000 		.4byte	.LASF3
+ 365 0053 03       		.uleb128 0x3
+ 366 0054 02       		.byte	0x2
+ 367 0055 07       		.byte	0x7
+ 368 0056 8F010000 		.4byte	.LASF4
+ 369 005a 03       		.uleb128 0x3
+ 370 005b 04       		.byte	0x4
+ 371 005c 05       		.byte	0x5
+ 372 005d AF010000 		.4byte	.LASF5
+ 373 0061 03       		.uleb128 0x3
+ 374 0062 04       		.byte	0x4
+ 375 0063 07       		.byte	0x7
+ 376 0064 DA010000 		.4byte	.LASF6
+ 377 0068 03       		.uleb128 0x3
+ 378 0069 08       		.byte	0x8
+ 379 006a 05       		.byte	0x5
+ 380 006b 52000000 		.4byte	.LASF7
+ 381 006f 03       		.uleb128 0x3
+ 382 0070 08       		.byte	0x8
+ 383 0071 07       		.byte	0x7
+ 384 0072 4D010000 		.4byte	.LASF8
+ 385 0076 04       		.uleb128 0x4
+ 386 0077 25000000 		.4byte	.LASF10
+ 387 007b 03       		.byte	0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 19
+
+
+ 388 007c 15       		.byte	0x15
+ 389 007d 3A000000 		.4byte	0x3a
+ 390 0081 03       		.uleb128 0x3
+ 391 0082 04       		.byte	0x4
+ 392 0083 07       		.byte	0x7
+ 393 0084 0A000000 		.4byte	.LASF11
+ 394 0088 05       		.uleb128 0x5
+ 395 0089 39010000 		.4byte	.LASF20
+ 396 008d 01       		.byte	0x1
+ 397 008e 35       		.byte	0x35
+ 398 008f 00000000 		.4byte	.LFB0
+ 399 0093 20000000 		.4byte	.LFE0-.LFB0
+ 400 0097 01       		.uleb128 0x1
+ 401 0098 9C       		.byte	0x9c
+ 402 0099 06       		.uleb128 0x6
+ 403 009a 13000000 		.4byte	.LASF12
+ 404 009e 01       		.byte	0x1
+ 405 009f 3B       		.byte	0x3b
+ 406 00a0 76000000 		.4byte	0x76
+ 407 00a4 00000000 		.4byte	.LFB1
+ 408 00a8 18000000 		.4byte	.LFE1-.LFB1
+ 409 00ac 01       		.uleb128 0x1
+ 410 00ad 9C       		.byte	0x9c
+ 411 00ae 06       		.uleb128 0x6
+ 412 00af F1010000 		.4byte	.LASF13
+ 413 00b3 01       		.byte	0x1
+ 414 00b4 40       		.byte	0x40
+ 415 00b5 76000000 		.4byte	0x76
+ 416 00b9 00000000 		.4byte	.LFB2
+ 417 00bd 18000000 		.4byte	.LFE2-.LFB2
+ 418 00c1 01       		.uleb128 0x1
+ 419 00c2 9C       		.byte	0x9c
+ 420 00c3 07       		.uleb128 0x7
+ 421 00c4 68000000 		.4byte	.LASF28
+ 422 00c8 01       		.byte	0x1
+ 423 00c9 6A02     		.2byte	0x26a
+ 424 00cb 00000000 		.4byte	.LFB3
+ 425 00cf 14000000 		.4byte	.LFE3-.LFB3
+ 426 00d3 01       		.uleb128 0x1
+ 427 00d4 9C       		.byte	0x9c
+ 428 00d5 E9000000 		.4byte	0xe9
+ 429 00d9 08       		.uleb128 0x8
+ 430 00da 60000000 		.4byte	.LASF14
+ 431 00de 01       		.byte	0x1
+ 432 00df 6A02     		.2byte	0x26a
+ 433 00e1 76000000 		.4byte	0x76
+ 434 00e5 02       		.uleb128 0x2
+ 435 00e6 91       		.byte	0x91
+ 436 00e7 77       		.sleb128 -9
+ 437 00e8 00       		.byte	0
+ 438 00e9 09       		.uleb128 0x9
+ 439 00ea A2010000 		.4byte	.LASF16
+ 440 00ee 01       		.byte	0x1
+ 441 00ef 6F02     		.2byte	0x26f
+ 442 00f1 76000000 		.4byte	0x76
+ 443 00f5 00000000 		.4byte	.LFB4
+ 444 00f9 1E000000 		.4byte	.LFE4-.LFB4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 20
+
+
+ 445 00fd 01       		.uleb128 0x1
+ 446 00fe 9C       		.byte	0x9c
+ 447 00ff 22010000 		.4byte	0x122
+ 448 0103 08       		.uleb128 0x8
+ 449 0104 EC010000 		.4byte	.LASF15
+ 450 0108 01       		.byte	0x1
+ 451 0109 6F02     		.2byte	0x26f
+ 452 010b 76000000 		.4byte	0x76
+ 453 010f 02       		.uleb128 0x2
+ 454 0110 91       		.byte	0x91
+ 455 0111 77       		.sleb128 -9
+ 456 0112 0A       		.uleb128 0xa
+ 457 0113 706F7300 		.ascii	"pos\000"
+ 458 0117 01       		.byte	0x1
+ 459 0118 6F02     		.2byte	0x26f
+ 460 011a 76000000 		.4byte	0x76
+ 461 011e 02       		.uleb128 0x2
+ 462 011f 91       		.byte	0x91
+ 463 0120 76       		.sleb128 -10
+ 464 0121 00       		.byte	0
+ 465 0122 09       		.uleb128 0x9
+ 466 0123 71010000 		.4byte	.LASF17
+ 467 0127 01       		.byte	0x1
+ 468 0128 7402     		.2byte	0x274
+ 469 012a 76000000 		.4byte	0x76
+ 470 012e 00000000 		.4byte	.LFB5
+ 471 0132 18000000 		.4byte	.LFE5-.LFB5
+ 472 0136 01       		.uleb128 0x1
+ 473 0137 9C       		.byte	0x9c
+ 474 0138 4C010000 		.4byte	0x14c
+ 475 013c 0A       		.uleb128 0xa
+ 476 013d 736C6100 		.ascii	"sla\000"
+ 477 0141 01       		.byte	0x1
+ 478 0142 7402     		.2byte	0x274
+ 479 0144 76000000 		.4byte	0x76
+ 480 0148 02       		.uleb128 0x2
+ 481 0149 91       		.byte	0x91
+ 482 014a 77       		.sleb128 -9
+ 483 014b 00       		.byte	0
+ 484 014c 09       		.uleb128 0x9
+ 485 014d 1B010000 		.4byte	.LASF18
+ 486 0151 01       		.byte	0x1
+ 487 0152 7802     		.2byte	0x278
+ 488 0154 76000000 		.4byte	0x76
+ 489 0158 00000000 		.4byte	.LFB6
+ 490 015c 18000000 		.4byte	.LFE6-.LFB6
+ 491 0160 01       		.uleb128 0x1
+ 492 0161 9C       		.byte	0x9c
+ 493 0162 76010000 		.4byte	0x176
+ 494 0166 08       		.uleb128 0x8
+ 495 0167 D5010000 		.4byte	.LASF19
+ 496 016b 01       		.byte	0x1
+ 497 016c 7802     		.2byte	0x278
+ 498 016e 76000000 		.4byte	0x76
+ 499 0172 02       		.uleb128 0x2
+ 500 0173 91       		.byte	0x91
+ 501 0174 77       		.sleb128 -9
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 21
+
+
+ 502 0175 00       		.byte	0
+ 503 0176 0B       		.uleb128 0xb
+ 504 0177 40020000 		.4byte	.LASF21
+ 505 017b 01       		.byte	0x1
+ 506 017c 7D02     		.2byte	0x27d
+ 507 017e 00000000 		.4byte	.LFB7
+ 508 0182 0C000000 		.4byte	.LFE7-.LFB7
+ 509 0186 01       		.uleb128 0x1
+ 510 0187 9C       		.byte	0x9c
+ 511 0188 0C       		.uleb128 0xc
+ 512 0189 C4010000 		.4byte	.LASF22
+ 513 018d 01       		.byte	0x1
+ 514 018e 2B       		.byte	0x2b
+ 515 018f 76000000 		.4byte	0x76
+ 516 0193 05       		.uleb128 0x5
+ 517 0194 03       		.byte	0x3
+ 518 0195 00000000 		.4byte	u8g_i2c_err_code
+ 519 0199 0C       		.uleb128 0xc
+ 520 019a B8010000 		.4byte	.LASF23
+ 521 019e 01       		.byte	0x1
+ 522 019f 2C       		.byte	0x2c
+ 523 01a0 76000000 		.4byte	0x76
+ 524 01a4 05       		.uleb128 0x5
+ 525 01a5 03       		.byte	0x3
+ 526 01a6 01000000 		.4byte	u8g_i2c_opt
+ 527 01aa 0C       		.uleb128 0xc
+ 528 01ab 7F010000 		.4byte	.LASF24
+ 529 01af 01       		.byte	0x1
+ 530 01b0 32       		.byte	0x32
+ 531 01b1 76000000 		.4byte	0x76
+ 532 01b5 05       		.uleb128 0x5
+ 533 01b6 03       		.byte	0x3
+ 534 01b7 02000000 		.4byte	u8g_i2c_err_pos
+ 535 01bb 00       		.byte	0
+ 536              		.section	.debug_abbrev,"",%progbits
+ 537              	.Ldebug_abbrev0:
+ 538 0000 01       		.uleb128 0x1
+ 539 0001 11       		.uleb128 0x11
+ 540 0002 01       		.byte	0x1
+ 541 0003 25       		.uleb128 0x25
+ 542 0004 0E       		.uleb128 0xe
+ 543 0005 13       		.uleb128 0x13
+ 544 0006 0B       		.uleb128 0xb
+ 545 0007 03       		.uleb128 0x3
+ 546 0008 0E       		.uleb128 0xe
+ 547 0009 1B       		.uleb128 0x1b
+ 548 000a 0E       		.uleb128 0xe
+ 549 000b 55       		.uleb128 0x55
+ 550 000c 17       		.uleb128 0x17
+ 551 000d 11       		.uleb128 0x11
+ 552 000e 01       		.uleb128 0x1
+ 553 000f 10       		.uleb128 0x10
+ 554 0010 17       		.uleb128 0x17
+ 555 0011 00       		.byte	0
+ 556 0012 00       		.byte	0
+ 557 0013 02       		.uleb128 0x2
+ 558 0014 24       		.uleb128 0x24
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 22
+
+
+ 559 0015 00       		.byte	0
+ 560 0016 0B       		.uleb128 0xb
+ 561 0017 0B       		.uleb128 0xb
+ 562 0018 3E       		.uleb128 0x3e
+ 563 0019 0B       		.uleb128 0xb
+ 564 001a 03       		.uleb128 0x3
+ 565 001b 08       		.uleb128 0x8
+ 566 001c 00       		.byte	0
+ 567 001d 00       		.byte	0
+ 568 001e 03       		.uleb128 0x3
+ 569 001f 24       		.uleb128 0x24
+ 570 0020 00       		.byte	0
+ 571 0021 0B       		.uleb128 0xb
+ 572 0022 0B       		.uleb128 0xb
+ 573 0023 3E       		.uleb128 0x3e
+ 574 0024 0B       		.uleb128 0xb
+ 575 0025 03       		.uleb128 0x3
+ 576 0026 0E       		.uleb128 0xe
+ 577 0027 00       		.byte	0
+ 578 0028 00       		.byte	0
+ 579 0029 04       		.uleb128 0x4
+ 580 002a 16       		.uleb128 0x16
+ 581 002b 00       		.byte	0
+ 582 002c 03       		.uleb128 0x3
+ 583 002d 0E       		.uleb128 0xe
+ 584 002e 3A       		.uleb128 0x3a
+ 585 002f 0B       		.uleb128 0xb
+ 586 0030 3B       		.uleb128 0x3b
+ 587 0031 0B       		.uleb128 0xb
+ 588 0032 49       		.uleb128 0x49
+ 589 0033 13       		.uleb128 0x13
+ 590 0034 00       		.byte	0
+ 591 0035 00       		.byte	0
+ 592 0036 05       		.uleb128 0x5
+ 593 0037 2E       		.uleb128 0x2e
+ 594 0038 00       		.byte	0
+ 595 0039 3F       		.uleb128 0x3f
+ 596 003a 19       		.uleb128 0x19
+ 597 003b 03       		.uleb128 0x3
+ 598 003c 0E       		.uleb128 0xe
+ 599 003d 3A       		.uleb128 0x3a
+ 600 003e 0B       		.uleb128 0xb
+ 601 003f 3B       		.uleb128 0x3b
+ 602 0040 0B       		.uleb128 0xb
+ 603 0041 27       		.uleb128 0x27
+ 604 0042 19       		.uleb128 0x19
+ 605 0043 11       		.uleb128 0x11
+ 606 0044 01       		.uleb128 0x1
+ 607 0045 12       		.uleb128 0x12
+ 608 0046 06       		.uleb128 0x6
+ 609 0047 40       		.uleb128 0x40
+ 610 0048 18       		.uleb128 0x18
+ 611 0049 9742     		.uleb128 0x2117
+ 612 004b 19       		.uleb128 0x19
+ 613 004c 00       		.byte	0
+ 614 004d 00       		.byte	0
+ 615 004e 06       		.uleb128 0x6
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 23
+
+
+ 616 004f 2E       		.uleb128 0x2e
+ 617 0050 00       		.byte	0
+ 618 0051 3F       		.uleb128 0x3f
+ 619 0052 19       		.uleb128 0x19
+ 620 0053 03       		.uleb128 0x3
+ 621 0054 0E       		.uleb128 0xe
+ 622 0055 3A       		.uleb128 0x3a
+ 623 0056 0B       		.uleb128 0xb
+ 624 0057 3B       		.uleb128 0x3b
+ 625 0058 0B       		.uleb128 0xb
+ 626 0059 27       		.uleb128 0x27
+ 627 005a 19       		.uleb128 0x19
+ 628 005b 49       		.uleb128 0x49
+ 629 005c 13       		.uleb128 0x13
+ 630 005d 11       		.uleb128 0x11
+ 631 005e 01       		.uleb128 0x1
+ 632 005f 12       		.uleb128 0x12
+ 633 0060 06       		.uleb128 0x6
+ 634 0061 40       		.uleb128 0x40
+ 635 0062 18       		.uleb128 0x18
+ 636 0063 9742     		.uleb128 0x2117
+ 637 0065 19       		.uleb128 0x19
+ 638 0066 00       		.byte	0
+ 639 0067 00       		.byte	0
+ 640 0068 07       		.uleb128 0x7
+ 641 0069 2E       		.uleb128 0x2e
+ 642 006a 01       		.byte	0x1
+ 643 006b 3F       		.uleb128 0x3f
+ 644 006c 19       		.uleb128 0x19
+ 645 006d 03       		.uleb128 0x3
+ 646 006e 0E       		.uleb128 0xe
+ 647 006f 3A       		.uleb128 0x3a
+ 648 0070 0B       		.uleb128 0xb
+ 649 0071 3B       		.uleb128 0x3b
+ 650 0072 05       		.uleb128 0x5
+ 651 0073 27       		.uleb128 0x27
+ 652 0074 19       		.uleb128 0x19
+ 653 0075 11       		.uleb128 0x11
+ 654 0076 01       		.uleb128 0x1
+ 655 0077 12       		.uleb128 0x12
+ 656 0078 06       		.uleb128 0x6
+ 657 0079 40       		.uleb128 0x40
+ 658 007a 18       		.uleb128 0x18
+ 659 007b 9642     		.uleb128 0x2116
+ 660 007d 19       		.uleb128 0x19
+ 661 007e 01       		.uleb128 0x1
+ 662 007f 13       		.uleb128 0x13
+ 663 0080 00       		.byte	0
+ 664 0081 00       		.byte	0
+ 665 0082 08       		.uleb128 0x8
+ 666 0083 05       		.uleb128 0x5
+ 667 0084 00       		.byte	0
+ 668 0085 03       		.uleb128 0x3
+ 669 0086 0E       		.uleb128 0xe
+ 670 0087 3A       		.uleb128 0x3a
+ 671 0088 0B       		.uleb128 0xb
+ 672 0089 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 24
+
+
+ 673 008a 05       		.uleb128 0x5
+ 674 008b 49       		.uleb128 0x49
+ 675 008c 13       		.uleb128 0x13
+ 676 008d 02       		.uleb128 0x2
+ 677 008e 18       		.uleb128 0x18
+ 678 008f 00       		.byte	0
+ 679 0090 00       		.byte	0
+ 680 0091 09       		.uleb128 0x9
+ 681 0092 2E       		.uleb128 0x2e
+ 682 0093 01       		.byte	0x1
+ 683 0094 3F       		.uleb128 0x3f
+ 684 0095 19       		.uleb128 0x19
+ 685 0096 03       		.uleb128 0x3
+ 686 0097 0E       		.uleb128 0xe
+ 687 0098 3A       		.uleb128 0x3a
+ 688 0099 0B       		.uleb128 0xb
+ 689 009a 3B       		.uleb128 0x3b
+ 690 009b 05       		.uleb128 0x5
+ 691 009c 27       		.uleb128 0x27
+ 692 009d 19       		.uleb128 0x19
+ 693 009e 49       		.uleb128 0x49
+ 694 009f 13       		.uleb128 0x13
+ 695 00a0 11       		.uleb128 0x11
+ 696 00a1 01       		.uleb128 0x1
+ 697 00a2 12       		.uleb128 0x12
+ 698 00a3 06       		.uleb128 0x6
+ 699 00a4 40       		.uleb128 0x40
+ 700 00a5 18       		.uleb128 0x18
+ 701 00a6 9742     		.uleb128 0x2117
+ 702 00a8 19       		.uleb128 0x19
+ 703 00a9 01       		.uleb128 0x1
+ 704 00aa 13       		.uleb128 0x13
+ 705 00ab 00       		.byte	0
+ 706 00ac 00       		.byte	0
+ 707 00ad 0A       		.uleb128 0xa
+ 708 00ae 05       		.uleb128 0x5
+ 709 00af 00       		.byte	0
+ 710 00b0 03       		.uleb128 0x3
+ 711 00b1 08       		.uleb128 0x8
+ 712 00b2 3A       		.uleb128 0x3a
+ 713 00b3 0B       		.uleb128 0xb
+ 714 00b4 3B       		.uleb128 0x3b
+ 715 00b5 05       		.uleb128 0x5
+ 716 00b6 49       		.uleb128 0x49
+ 717 00b7 13       		.uleb128 0x13
+ 718 00b8 02       		.uleb128 0x2
+ 719 00b9 18       		.uleb128 0x18
+ 720 00ba 00       		.byte	0
+ 721 00bb 00       		.byte	0
+ 722 00bc 0B       		.uleb128 0xb
+ 723 00bd 2E       		.uleb128 0x2e
+ 724 00be 00       		.byte	0
+ 725 00bf 3F       		.uleb128 0x3f
+ 726 00c0 19       		.uleb128 0x19
+ 727 00c1 03       		.uleb128 0x3
+ 728 00c2 0E       		.uleb128 0xe
+ 729 00c3 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 25
+
+
+ 730 00c4 0B       		.uleb128 0xb
+ 731 00c5 3B       		.uleb128 0x3b
+ 732 00c6 05       		.uleb128 0x5
+ 733 00c7 27       		.uleb128 0x27
+ 734 00c8 19       		.uleb128 0x19
+ 735 00c9 11       		.uleb128 0x11
+ 736 00ca 01       		.uleb128 0x1
+ 737 00cb 12       		.uleb128 0x12
+ 738 00cc 06       		.uleb128 0x6
+ 739 00cd 40       		.uleb128 0x40
+ 740 00ce 18       		.uleb128 0x18
+ 741 00cf 9742     		.uleb128 0x2117
+ 742 00d1 19       		.uleb128 0x19
+ 743 00d2 00       		.byte	0
+ 744 00d3 00       		.byte	0
+ 745 00d4 0C       		.uleb128 0xc
+ 746 00d5 34       		.uleb128 0x34
+ 747 00d6 00       		.byte	0
+ 748 00d7 03       		.uleb128 0x3
+ 749 00d8 0E       		.uleb128 0xe
+ 750 00d9 3A       		.uleb128 0x3a
+ 751 00da 0B       		.uleb128 0xb
+ 752 00db 3B       		.uleb128 0x3b
+ 753 00dc 0B       		.uleb128 0xb
+ 754 00dd 49       		.uleb128 0x49
+ 755 00de 13       		.uleb128 0x13
+ 756 00df 02       		.uleb128 0x2
+ 757 00e0 18       		.uleb128 0x18
+ 758 00e1 00       		.byte	0
+ 759 00e2 00       		.byte	0
+ 760 00e3 00       		.byte	0
+ 761              		.section	.debug_aranges,"",%progbits
+ 762 0000 54000000 		.4byte	0x54
+ 763 0004 0200     		.2byte	0x2
+ 764 0006 00000000 		.4byte	.Ldebug_info0
+ 765 000a 04       		.byte	0x4
+ 766 000b 00       		.byte	0
+ 767 000c 0000     		.2byte	0
+ 768 000e 0000     		.2byte	0
+ 769 0010 00000000 		.4byte	.LFB0
+ 770 0014 20000000 		.4byte	.LFE0-.LFB0
+ 771 0018 00000000 		.4byte	.LFB1
+ 772 001c 18000000 		.4byte	.LFE1-.LFB1
+ 773 0020 00000000 		.4byte	.LFB2
+ 774 0024 18000000 		.4byte	.LFE2-.LFB2
+ 775 0028 00000000 		.4byte	.LFB3
+ 776 002c 14000000 		.4byte	.LFE3-.LFB3
+ 777 0030 00000000 		.4byte	.LFB4
+ 778 0034 1E000000 		.4byte	.LFE4-.LFB4
+ 779 0038 00000000 		.4byte	.LFB5
+ 780 003c 18000000 		.4byte	.LFE5-.LFB5
+ 781 0040 00000000 		.4byte	.LFB6
+ 782 0044 18000000 		.4byte	.LFE6-.LFB6
+ 783 0048 00000000 		.4byte	.LFB7
+ 784 004c 0C000000 		.4byte	.LFE7-.LFB7
+ 785 0050 00000000 		.4byte	0
+ 786 0054 00000000 		.4byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 26
+
+
+ 787              		.section	.debug_ranges,"",%progbits
+ 788              	.Ldebug_ranges0:
+ 789 0000 00000000 		.4byte	.LFB0
+ 790 0004 20000000 		.4byte	.LFE0
+ 791 0008 00000000 		.4byte	.LFB1
+ 792 000c 18000000 		.4byte	.LFE1
+ 793 0010 00000000 		.4byte	.LFB2
+ 794 0014 18000000 		.4byte	.LFE2
+ 795 0018 00000000 		.4byte	.LFB3
+ 796 001c 14000000 		.4byte	.LFE3
+ 797 0020 00000000 		.4byte	.LFB4
+ 798 0024 1E000000 		.4byte	.LFE4
+ 799 0028 00000000 		.4byte	.LFB5
+ 800 002c 18000000 		.4byte	.LFE5
+ 801 0030 00000000 		.4byte	.LFB6
+ 802 0034 18000000 		.4byte	.LFE6
+ 803 0038 00000000 		.4byte	.LFB7
+ 804 003c 0C000000 		.4byte	.LFE7
+ 805 0040 00000000 		.4byte	0
+ 806 0044 00000000 		.4byte	0
+ 807              		.section	.debug_line,"",%progbits
+ 808              	.Ldebug_line0:
+ 809 0000 C7010000 		.section	.debug_str,"MS",%progbits,1
+ 809      02003301 
+ 809      00000201 
+ 809      FB0E0D00 
+ 809      01010101 
+ 810              	.LASF3:
+ 811 0000 73686F72 		.ascii	"short int\000"
+ 811      7420696E 
+ 811      7400
+ 812              	.LASF11:
+ 813 000a 73697A65 		.ascii	"sizetype\000"
+ 813      74797065 
+ 813      00
+ 814              	.LASF12:
+ 815 0013 7538675F 		.ascii	"u8g_i2c_get_error\000"
+ 815      6932635F 
+ 815      6765745F 
+ 815      6572726F 
+ 815      7200
+ 816              	.LASF10:
+ 817 0025 75696E74 		.ascii	"uint8_t\000"
+ 817      385F7400 
+ 818              	.LASF26:
+ 819 002d 7538676C 		.ascii	"u8glib_arm_v1.18.1\\src\\u8g_com_i2c.c\000"
+ 819      69625F61 
+ 819      726D5F76 
+ 819      312E3138 
+ 819      2E315C73 
+ 820              	.LASF7:
+ 821 0052 6C6F6E67 		.ascii	"long long int\000"
+ 821      206C6F6E 
+ 821      6720696E 
+ 821      7400
+ 822              	.LASF14:
+ 823 0060 6F707469 		.ascii	"options\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 27
+
+
+ 823      6F6E7300 
+ 824              	.LASF28:
+ 825 0068 7538675F 		.ascii	"u8g_i2c_init\000"
+ 825      6932635F 
+ 825      696E6974 
+ 825      00
+ 826              	.LASF25:
+ 827 0075 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 827      4320342E 
+ 827      392E3320 
+ 827      32303135 
+ 827      30333033 
+ 828 00a8 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 828      20726576 
+ 828      6973696F 
+ 828      6E203232 
+ 828      31323230 
+ 829 00db 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 829      66756E63 
+ 829      74696F6E 
+ 829      2D736563 
+ 829      74696F6E 
+ 830              	.LASF9:
+ 831 0103 5F5F7569 		.ascii	"__uint8_t\000"
+ 831      6E74385F 
+ 831      7400
+ 832              	.LASF2:
+ 833 010d 756E7369 		.ascii	"unsigned char\000"
+ 833      676E6564 
+ 833      20636861 
+ 833      7200
+ 834              	.LASF18:
+ 835 011b 7538675F 		.ascii	"u8g_i2c_send_byte\000"
+ 835      6932635F 
+ 835      73656E64 
+ 835      5F627974 
+ 835      6500
+ 836              	.LASF1:
+ 837 012d 7369676E 		.ascii	"signed char\000"
+ 837      65642063 
+ 837      68617200 
+ 838              	.LASF20:
+ 839 0139 7538675F 		.ascii	"u8g_i2c_clear_error\000"
+ 839      6932635F 
+ 839      636C6561 
+ 839      725F6572 
+ 839      726F7200 
+ 840              	.LASF8:
+ 841 014d 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 841      206C6F6E 
+ 841      6720756E 
+ 841      7369676E 
+ 841      65642069 
+ 842              	.LASF0:
+ 843 0164 756E7369 		.ascii	"unsigned int\000"
+ 843      676E6564 
+ 843      20696E74 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 28
+
+
+ 843      00
+ 844              	.LASF17:
+ 845 0171 7538675F 		.ascii	"u8g_i2c_start\000"
+ 845      6932635F 
+ 845      73746172 
+ 845      7400
+ 846              	.LASF24:
+ 847 017f 7538675F 		.ascii	"u8g_i2c_err_pos\000"
+ 847      6932635F 
+ 847      6572725F 
+ 847      706F7300 
+ 848              	.LASF4:
+ 849 018f 73686F72 		.ascii	"short unsigned int\000"
+ 849      7420756E 
+ 849      7369676E 
+ 849      65642069 
+ 849      6E7400
+ 850              	.LASF16:
+ 851 01a2 7538675F 		.ascii	"u8g_i2c_wait\000"
+ 851      6932635F 
+ 851      77616974 
+ 851      00
+ 852              	.LASF5:
+ 853 01af 6C6F6E67 		.ascii	"long int\000"
+ 853      20696E74 
+ 853      00
+ 854              	.LASF23:
+ 855 01b8 7538675F 		.ascii	"u8g_i2c_opt\000"
+ 855      6932635F 
+ 855      6F707400 
+ 856              	.LASF22:
+ 857 01c4 7538675F 		.ascii	"u8g_i2c_err_code\000"
+ 857      6932635F 
+ 857      6572725F 
+ 857      636F6465 
+ 857      00
+ 858              	.LASF19:
+ 859 01d5 64617461 		.ascii	"data\000"
+ 859      00
+ 860              	.LASF6:
+ 861 01da 6C6F6E67 		.ascii	"long unsigned int\000"
+ 861      20756E73 
+ 861      69676E65 
+ 861      6420696E 
+ 861      7400
+ 862              	.LASF15:
+ 863 01ec 6D61736B 		.ascii	"mask\000"
+ 863      00
+ 864              	.LASF13:
+ 865 01f1 7538675F 		.ascii	"u8g_i2c_get_err_pos\000"
+ 865      6932635F 
+ 865      6765745F 
+ 865      6572725F 
+ 865      706F7300 
+ 866              	.LASF27:
+ 867 0205 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 867      6F726B73 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccRXWpTa.s 			page 29
+
+
+ 867      70616365 
+ 867      5C50536F 
+ 867      435F4372 
+ 868 0234 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 868      392E6379 
+ 868      64736E00 
+ 869              	.LASF21:
+ 870 0240 7538675F 		.ascii	"u8g_i2c_stop\000"
+ 870      6932635F 
+ 870      73746F70 
+ 870      00
+ 871              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

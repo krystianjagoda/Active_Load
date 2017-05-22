@@ -1,0 +1,936 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"LCD_LCDPort.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.LCD_LCDPort_Write,"ax",%progbits
+  19              		.align	2
+  20              		.global	LCD_LCDPort_Write
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	LCD_LCDPort_Write, %function
+  24              	LCD_LCDPort_Write:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\LCD_LCDPort.c"
+   1:.\Generated_Source\PSoC5/LCD_LCDPort.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * File Name: LCD_LCDPort.c  
+   3:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Version 2.10
+   4:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+   5:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Description:
+   6:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  This file contains API to enable firmware control of a Pins component.
+   7:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+   8:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Note:
+   9:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  10:.\Generated_Source\PSoC5/LCD_LCDPort.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  17:.\Generated_Source\PSoC5/LCD_LCDPort.c **** #include "cytypes.h"
+  18:.\Generated_Source\PSoC5/LCD_LCDPort.c **** #include "LCD_LCDPort.h"
+  19:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  20:.\Generated_Source\PSoC5/LCD_LCDPort.c **** /* APIs are not generated for P15[7:6] on PSoC 5 */
+  21:.\Generated_Source\PSoC5/LCD_LCDPort.c **** #if !(CY_PSOC5A &&\
+  22:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	 LCD_LCDPort__PORT == 15 && ((LCD_LCDPort__MASK & 0xC0) != 0))
+  23:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  24:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  25:.\Generated_Source\PSoC5/LCD_LCDPort.c **** /*******************************************************************************
+  26:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Function Name: LCD_LCDPort_Write
+  27:.\Generated_Source\PSoC5/LCD_LCDPort.c **** ********************************************************************************
+  28:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  29:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Summary:
+  30:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Assign a new value to the digital port's data output register.  
+  31:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Parameters:  
+  33:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  prtValue:  The value to be assigned to the Digital Port. 
+  34:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  35:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Return: 
+  36:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  None
+  37:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  
+  38:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *******************************************************************************/
+  39:.\Generated_Source\PSoC5/LCD_LCDPort.c **** void LCD_LCDPort_Write(uint8 value) 
+  40:.\Generated_Source\PSoC5/LCD_LCDPort.c **** {
+  27              		.loc 1 40 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              		.cfi_def_cfa_offset 24
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  39 0006 0346     		mov	r3, r0
+  40 0008 FB71     		strb	r3, [r7, #7]
+  41:.\Generated_Source\PSoC5/LCD_LCDPort.c ****     uint8 staticBits = (LCD_LCDPort_DR & (uint8)(~LCD_LCDPort_MASK));
+  41              		.loc 1 41 0
+  42 000a 0A4B     		ldr	r3, .L2
+  43 000c 1B78     		ldrb	r3, [r3]
+  44 000e DBB2     		uxtb	r3, r3
+  45 0010 23F07F03 		bic	r3, r3, #127
+  46 0014 FB73     		strb	r3, [r7, #15]
+  42:.\Generated_Source\PSoC5/LCD_LCDPort.c ****     LCD_LCDPort_DR = staticBits | ((uint8)(value << LCD_LCDPort_SHIFT) & LCD_LCDPort_MASK);
+  47              		.loc 1 42 0
+  48 0016 0749     		ldr	r1, .L2
+  49 0018 FB79     		ldrb	r3, [r7, #7]
+  50 001a 03F07F03 		and	r3, r3, #127
+  51 001e DAB2     		uxtb	r2, r3
+  52 0020 FB7B     		ldrb	r3, [r7, #15]
+  53 0022 1343     		orrs	r3, r3, r2
+  54 0024 DBB2     		uxtb	r3, r3
+  55 0026 0B70     		strb	r3, [r1]
+  43:.\Generated_Source\PSoC5/LCD_LCDPort.c **** }
+  56              		.loc 1 43 0
+  57 0028 1437     		adds	r7, r7, #20
+  58              		.cfi_def_cfa_offset 4
+  59 002a BD46     		mov	sp, r7
+  60              		.cfi_def_cfa_register 13
+  61              		@ sp needed
+  62 002c 5DF8047B 		ldr	r7, [sp], #4
+  63              		.cfi_restore 7
+  64              		.cfi_def_cfa_offset 0
+  65 0030 7047     		bx	lr
+  66              	.L3:
+  67 0032 00BF     		.align	2
+  68              	.L2:
+  69 0034 20510040 		.word	1073762592
+  70              		.cfi_endproc
+  71              	.LFE0:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 3
+
+
+  72              		.size	LCD_LCDPort_Write, .-LCD_LCDPort_Write
+  73              		.section	.text.LCD_LCDPort_SetDriveMode,"ax",%progbits
+  74              		.align	2
+  75              		.global	LCD_LCDPort_SetDriveMode
+  76              		.thumb
+  77              		.thumb_func
+  78              		.type	LCD_LCDPort_SetDriveMode, %function
+  79              	LCD_LCDPort_SetDriveMode:
+  80              	.LFB1:
+  44:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  45:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  46:.\Generated_Source\PSoC5/LCD_LCDPort.c **** /*******************************************************************************
+  47:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Function Name: LCD_LCDPort_SetDriveMode
+  48:.\Generated_Source\PSoC5/LCD_LCDPort.c **** ********************************************************************************
+  49:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  50:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Summary:
+  51:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Change the drive mode on the pins of the port.
+  52:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * 
+  53:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Parameters:  
+  54:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  mode:  Change the pins to one of the following drive modes.
+  55:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  56:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_STRONG     Strong Drive 
+  57:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_OD_HI      Open Drain, Drives High 
+  58:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_OD_LO      Open Drain, Drives Low 
+  59:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_RES_UP     Resistive Pull Up 
+  60:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_RES_DWN    Resistive Pull Down 
+  61:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_RES_UPDWN  Resistive Pull Up/Down 
+  62:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_DIG_HIZ    High Impedance Digital 
+  63:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  LCD_LCDPort_DM_ALG_HIZ    High Impedance Analog 
+  64:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  65:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Return: 
+  66:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  None
+  67:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  68:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *******************************************************************************/
+  69:.\Generated_Source\PSoC5/LCD_LCDPort.c **** void LCD_LCDPort_SetDriveMode(uint8 mode) 
+  70:.\Generated_Source\PSoC5/LCD_LCDPort.c **** {
+  81              		.loc 1 70 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 8
+  84              		@ frame_needed = 1, uses_anonymous_args = 0
+  85              		@ link register save eliminated.
+  86 0000 80B4     		push	{r7}
+  87              		.cfi_def_cfa_offset 4
+  88              		.cfi_offset 7, -4
+  89 0002 83B0     		sub	sp, sp, #12
+  90              		.cfi_def_cfa_offset 16
+  91 0004 00AF     		add	r7, sp, #0
+  92              		.cfi_def_cfa_register 7
+  93 0006 0346     		mov	r3, r0
+  94 0008 FB71     		strb	r3, [r7, #7]
+  71:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_0, mode);
+  95              		.loc 1 71 0
+  96 000a 3A4B     		ldr	r3, .L5
+  97 000c 394A     		ldr	r2, .L5
+  98 000e 1278     		ldrb	r2, [r2]
+  99 0010 D2B2     		uxtb	r2, r2
+ 100 0012 D2B2     		uxtb	r2, r2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 4
+
+
+ 101 0014 22F00E02 		bic	r2, r2, #14
+ 102 0018 D1B2     		uxtb	r1, r2
+ 103 001a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 104 001c 02F00E02 		and	r2, r2, #14
+ 105 0020 D2B2     		uxtb	r2, r2
+ 106 0022 0A43     		orrs	r2, r2, r1
+ 107 0024 D2B2     		uxtb	r2, r2
+ 108 0026 D2B2     		uxtb	r2, r2
+ 109 0028 1A70     		strb	r2, [r3]
+  72:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_1, mode);
+ 110              		.loc 1 72 0
+ 111 002a 334B     		ldr	r3, .L5+4
+ 112 002c 324A     		ldr	r2, .L5+4
+ 113 002e 1278     		ldrb	r2, [r2]
+ 114 0030 D2B2     		uxtb	r2, r2
+ 115 0032 D2B2     		uxtb	r2, r2
+ 116 0034 22F00E02 		bic	r2, r2, #14
+ 117 0038 D1B2     		uxtb	r1, r2
+ 118 003a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 119 003c 02F00E02 		and	r2, r2, #14
+ 120 0040 D2B2     		uxtb	r2, r2
+ 121 0042 0A43     		orrs	r2, r2, r1
+ 122 0044 D2B2     		uxtb	r2, r2
+ 123 0046 D2B2     		uxtb	r2, r2
+ 124 0048 1A70     		strb	r2, [r3]
+  73:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_2, mode);
+ 125              		.loc 1 73 0
+ 126 004a 2C4B     		ldr	r3, .L5+8
+ 127 004c 2B4A     		ldr	r2, .L5+8
+ 128 004e 1278     		ldrb	r2, [r2]
+ 129 0050 D2B2     		uxtb	r2, r2
+ 130 0052 D2B2     		uxtb	r2, r2
+ 131 0054 22F00E02 		bic	r2, r2, #14
+ 132 0058 D1B2     		uxtb	r1, r2
+ 133 005a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 134 005c 02F00E02 		and	r2, r2, #14
+ 135 0060 D2B2     		uxtb	r2, r2
+ 136 0062 0A43     		orrs	r2, r2, r1
+ 137 0064 D2B2     		uxtb	r2, r2
+ 138 0066 D2B2     		uxtb	r2, r2
+ 139 0068 1A70     		strb	r2, [r3]
+  74:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_3, mode);
+ 140              		.loc 1 74 0
+ 141 006a 254B     		ldr	r3, .L5+12
+ 142 006c 244A     		ldr	r2, .L5+12
+ 143 006e 1278     		ldrb	r2, [r2]
+ 144 0070 D2B2     		uxtb	r2, r2
+ 145 0072 D2B2     		uxtb	r2, r2
+ 146 0074 22F00E02 		bic	r2, r2, #14
+ 147 0078 D1B2     		uxtb	r1, r2
+ 148 007a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 149 007c 02F00E02 		and	r2, r2, #14
+ 150 0080 D2B2     		uxtb	r2, r2
+ 151 0082 0A43     		orrs	r2, r2, r1
+ 152 0084 D2B2     		uxtb	r2, r2
+ 153 0086 D2B2     		uxtb	r2, r2
+ 154 0088 1A70     		strb	r2, [r3]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 5
+
+
+  75:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_4, mode);
+ 155              		.loc 1 75 0
+ 156 008a 1E4B     		ldr	r3, .L5+16
+ 157 008c 1D4A     		ldr	r2, .L5+16
+ 158 008e 1278     		ldrb	r2, [r2]
+ 159 0090 D2B2     		uxtb	r2, r2
+ 160 0092 D2B2     		uxtb	r2, r2
+ 161 0094 22F00E02 		bic	r2, r2, #14
+ 162 0098 D1B2     		uxtb	r1, r2
+ 163 009a FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 164 009c 02F00E02 		and	r2, r2, #14
+ 165 00a0 D2B2     		uxtb	r2, r2
+ 166 00a2 0A43     		orrs	r2, r2, r1
+ 167 00a4 D2B2     		uxtb	r2, r2
+ 168 00a6 D2B2     		uxtb	r2, r2
+ 169 00a8 1A70     		strb	r2, [r3]
+  76:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_5, mode);
+ 170              		.loc 1 76 0
+ 171 00aa 174B     		ldr	r3, .L5+20
+ 172 00ac 164A     		ldr	r2, .L5+20
+ 173 00ae 1278     		ldrb	r2, [r2]
+ 174 00b0 D2B2     		uxtb	r2, r2
+ 175 00b2 D2B2     		uxtb	r2, r2
+ 176 00b4 22F00E02 		bic	r2, r2, #14
+ 177 00b8 D1B2     		uxtb	r1, r2
+ 178 00ba FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 179 00bc 02F00E02 		and	r2, r2, #14
+ 180 00c0 D2B2     		uxtb	r2, r2
+ 181 00c2 0A43     		orrs	r2, r2, r1
+ 182 00c4 D2B2     		uxtb	r2, r2
+ 183 00c6 D2B2     		uxtb	r2, r2
+ 184 00c8 1A70     		strb	r2, [r3]
+  77:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 	CyPins_SetPinDriveMode(LCD_LCDPort_6, mode);
+ 185              		.loc 1 77 0
+ 186 00ca 104B     		ldr	r3, .L5+24
+ 187 00cc 0F4A     		ldr	r2, .L5+24
+ 188 00ce 1278     		ldrb	r2, [r2]
+ 189 00d0 D2B2     		uxtb	r2, r2
+ 190 00d2 D2B2     		uxtb	r2, r2
+ 191 00d4 22F00E02 		bic	r2, r2, #14
+ 192 00d8 D1B2     		uxtb	r1, r2
+ 193 00da FA79     		ldrb	r2, [r7, #7]	@ zero_extendqisi2
+ 194 00dc 02F00E02 		and	r2, r2, #14
+ 195 00e0 D2B2     		uxtb	r2, r2
+ 196 00e2 0A43     		orrs	r2, r2, r1
+ 197 00e4 D2B2     		uxtb	r2, r2
+ 198 00e6 D2B2     		uxtb	r2, r2
+ 199 00e8 1A70     		strb	r2, [r3]
+  78:.\Generated_Source\PSoC5/LCD_LCDPort.c **** }
+ 200              		.loc 1 78 0
+ 201 00ea 0C37     		adds	r7, r7, #12
+ 202              		.cfi_def_cfa_offset 4
+ 203 00ec BD46     		mov	sp, r7
+ 204              		.cfi_def_cfa_register 13
+ 205              		@ sp needed
+ 206 00ee 5DF8047B 		ldr	r7, [sp], #4
+ 207              		.cfi_restore 7
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 6
+
+
+ 208              		.cfi_def_cfa_offset 0
+ 209 00f2 7047     		bx	lr
+ 210              	.L6:
+ 211              		.align	2
+ 212              	.L5:
+ 213 00f4 10500040 		.word	1073762320
+ 214 00f8 11500040 		.word	1073762321
+ 215 00fc 12500040 		.word	1073762322
+ 216 0100 13500040 		.word	1073762323
+ 217 0104 14500040 		.word	1073762324
+ 218 0108 15500040 		.word	1073762325
+ 219 010c 16500040 		.word	1073762326
+ 220              		.cfi_endproc
+ 221              	.LFE1:
+ 222              		.size	LCD_LCDPort_SetDriveMode, .-LCD_LCDPort_SetDriveMode
+ 223              		.section	.text.LCD_LCDPort_Read,"ax",%progbits
+ 224              		.align	2
+ 225              		.global	LCD_LCDPort_Read
+ 226              		.thumb
+ 227              		.thumb_func
+ 228              		.type	LCD_LCDPort_Read, %function
+ 229              	LCD_LCDPort_Read:
+ 230              	.LFB2:
+  79:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  80:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+  81:.\Generated_Source\PSoC5/LCD_LCDPort.c **** /*******************************************************************************
+  82:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Function Name: LCD_LCDPort_Read
+  83:.\Generated_Source\PSoC5/LCD_LCDPort.c **** ********************************************************************************
+  84:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  85:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Summary:
+  86:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Read the current value on the pins of the Digital Port in right justified 
+  87:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  form.
+  88:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  89:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Parameters:  
+  90:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  None
+  91:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+  92:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Return: 
+  93:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Returns the current value of the Digital Port as a right justified number
+  94:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  
+  95:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Note:
+  96:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Macro LCD_LCDPort_ReadPS calls this function. 
+  97:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  
+  98:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *******************************************************************************/
+  99:.\Generated_Source\PSoC5/LCD_LCDPort.c **** uint8 LCD_LCDPort_Read(void) 
+ 100:.\Generated_Source\PSoC5/LCD_LCDPort.c **** {
+ 231              		.loc 1 100 0
+ 232              		.cfi_startproc
+ 233              		@ args = 0, pretend = 0, frame = 0
+ 234              		@ frame_needed = 1, uses_anonymous_args = 0
+ 235              		@ link register save eliminated.
+ 236 0000 80B4     		push	{r7}
+ 237              		.cfi_def_cfa_offset 4
+ 238              		.cfi_offset 7, -4
+ 239 0002 00AF     		add	r7, sp, #0
+ 240              		.cfi_def_cfa_register 7
+ 101:.\Generated_Source\PSoC5/LCD_LCDPort.c ****     return (LCD_LCDPort_PS & LCD_LCDPort_MASK) >> LCD_LCDPort_SHIFT;
+ 241              		.loc 1 101 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 7
+
+
+ 242 0004 054B     		ldr	r3, .L9
+ 243 0006 1B78     		ldrb	r3, [r3]
+ 244 0008 DBB2     		uxtb	r3, r3
+ 245 000a 03F07F03 		and	r3, r3, #127
+ 246 000e DBB2     		uxtb	r3, r3
+ 102:.\Generated_Source\PSoC5/LCD_LCDPort.c **** }
+ 247              		.loc 1 102 0
+ 248 0010 1846     		mov	r0, r3
+ 249 0012 BD46     		mov	sp, r7
+ 250              		.cfi_def_cfa_register 13
+ 251              		@ sp needed
+ 252 0014 5DF8047B 		ldr	r7, [sp], #4
+ 253              		.cfi_restore 7
+ 254              		.cfi_def_cfa_offset 0
+ 255 0018 7047     		bx	lr
+ 256              	.L10:
+ 257 001a 00BF     		.align	2
+ 258              	.L9:
+ 259 001c 21510040 		.word	1073762593
+ 260              		.cfi_endproc
+ 261              	.LFE2:
+ 262              		.size	LCD_LCDPort_Read, .-LCD_LCDPort_Read
+ 263              		.section	.text.LCD_LCDPort_ReadDataReg,"ax",%progbits
+ 264              		.align	2
+ 265              		.global	LCD_LCDPort_ReadDataReg
+ 266              		.thumb
+ 267              		.thumb_func
+ 268              		.type	LCD_LCDPort_ReadDataReg, %function
+ 269              	LCD_LCDPort_ReadDataReg:
+ 270              	.LFB3:
+ 103:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+ 104:.\Generated_Source\PSoC5/LCD_LCDPort.c **** 
+ 105:.\Generated_Source\PSoC5/LCD_LCDPort.c **** /*******************************************************************************
+ 106:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Function Name: LCD_LCDPort_ReadDataReg
+ 107:.\Generated_Source\PSoC5/LCD_LCDPort.c **** ********************************************************************************
+ 108:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+ 109:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Summary:
+ 110:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Read the current value assigned to a Digital Port's data output register
+ 111:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+ 112:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Parameters:  
+ 113:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  None 
+ 114:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *
+ 115:.\Generated_Source\PSoC5/LCD_LCDPort.c **** * Return: 
+ 116:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  Returns the current value assigned to the Digital Port's data output register
+ 117:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *  
+ 118:.\Generated_Source\PSoC5/LCD_LCDPort.c **** *******************************************************************************/
+ 119:.\Generated_Source\PSoC5/LCD_LCDPort.c **** uint8 LCD_LCDPort_ReadDataReg(void) 
+ 120:.\Generated_Source\PSoC5/LCD_LCDPort.c **** {
+ 271              		.loc 1 120 0
+ 272              		.cfi_startproc
+ 273              		@ args = 0, pretend = 0, frame = 0
+ 274              		@ frame_needed = 1, uses_anonymous_args = 0
+ 275              		@ link register save eliminated.
+ 276 0000 80B4     		push	{r7}
+ 277              		.cfi_def_cfa_offset 4
+ 278              		.cfi_offset 7, -4
+ 279 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 8
+
+
+ 280              		.cfi_def_cfa_register 7
+ 121:.\Generated_Source\PSoC5/LCD_LCDPort.c ****     return (LCD_LCDPort_DR & LCD_LCDPort_MASK) >> LCD_LCDPort_SHIFT;
+ 281              		.loc 1 121 0
+ 282 0004 054B     		ldr	r3, .L13
+ 283 0006 1B78     		ldrb	r3, [r3]
+ 284 0008 DBB2     		uxtb	r3, r3
+ 285 000a 03F07F03 		and	r3, r3, #127
+ 286 000e DBB2     		uxtb	r3, r3
+ 122:.\Generated_Source\PSoC5/LCD_LCDPort.c **** }
+ 287              		.loc 1 122 0
+ 288 0010 1846     		mov	r0, r3
+ 289 0012 BD46     		mov	sp, r7
+ 290              		.cfi_def_cfa_register 13
+ 291              		@ sp needed
+ 292 0014 5DF8047B 		ldr	r7, [sp], #4
+ 293              		.cfi_restore 7
+ 294              		.cfi_def_cfa_offset 0
+ 295 0018 7047     		bx	lr
+ 296              	.L14:
+ 297 001a 00BF     		.align	2
+ 298              	.L13:
+ 299 001c 20510040 		.word	1073762592
+ 300              		.cfi_endproc
+ 301              	.LFE3:
+ 302              		.size	LCD_LCDPort_ReadDataReg, .-LCD_LCDPort_ReadDataReg
+ 303              		.text
+ 304              	.Letext0:
+ 305              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 306              		.section	.debug_info,"",%progbits
+ 307              	.Ldebug_info0:
+ 308 0000 19010000 		.4byte	0x119
+ 309 0004 0400     		.2byte	0x4
+ 310 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 311 000a 04       		.byte	0x4
+ 312 000b 01       		.uleb128 0x1
+ 313 000c 18000000 		.4byte	.LASF20
+ 314 0010 01       		.byte	0x1
+ 315 0011 8B010000 		.4byte	.LASF21
+ 316 0015 BE000000 		.4byte	.LASF22
+ 317 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 318 001d 00000000 		.4byte	0
+ 319 0021 00000000 		.4byte	.Ldebug_line0
+ 320 0025 02       		.uleb128 0x2
+ 321 0026 01       		.byte	0x1
+ 322 0027 06       		.byte	0x6
+ 323 0028 EF010000 		.4byte	.LASF0
+ 324 002c 02       		.uleb128 0x2
+ 325 002d 01       		.byte	0x1
+ 326 002e 08       		.byte	0x8
+ 327 002f FF000000 		.4byte	.LASF1
+ 328 0033 02       		.uleb128 0x2
+ 329 0034 02       		.byte	0x2
+ 330 0035 05       		.byte	0x5
+ 331 0036 C5010000 		.4byte	.LASF2
+ 332 003a 02       		.uleb128 0x2
+ 333 003b 02       		.byte	0x2
+ 334 003c 07       		.byte	0x7
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 9
+
+
+ 335 003d 2F010000 		.4byte	.LASF3
+ 336 0041 02       		.uleb128 0x2
+ 337 0042 04       		.byte	0x4
+ 338 0043 05       		.byte	0x5
+ 339 0044 E6010000 		.4byte	.LASF4
+ 340 0048 02       		.uleb128 0x2
+ 341 0049 04       		.byte	0x4
+ 342 004a 07       		.byte	0x7
+ 343 004b 1D010000 		.4byte	.LASF5
+ 344 004f 02       		.uleb128 0x2
+ 345 0050 08       		.byte	0x8
+ 346 0051 05       		.byte	0x5
+ 347 0052 B2010000 		.4byte	.LASF6
+ 348 0056 02       		.uleb128 0x2
+ 349 0057 08       		.byte	0x8
+ 350 0058 07       		.byte	0x7
+ 351 0059 6F010000 		.4byte	.LASF7
+ 352 005d 03       		.uleb128 0x3
+ 353 005e 04       		.byte	0x4
+ 354 005f 05       		.byte	0x5
+ 355 0060 696E7400 		.ascii	"int\000"
+ 356 0064 02       		.uleb128 0x2
+ 357 0065 04       		.byte	0x4
+ 358 0066 07       		.byte	0x7
+ 359 0067 62010000 		.4byte	.LASF8
+ 360 006b 04       		.uleb128 0x4
+ 361 006c CF010000 		.4byte	.LASF12
+ 362 0070 02       		.byte	0x2
+ 363 0071 C2       		.byte	0xc2
+ 364 0072 2C000000 		.4byte	0x2c
+ 365 0076 02       		.uleb128 0x2
+ 366 0077 04       		.byte	0x4
+ 367 0078 04       		.byte	0x4
+ 368 0079 F9000000 		.4byte	.LASF9
+ 369 007d 02       		.uleb128 0x2
+ 370 007e 08       		.byte	0x8
+ 371 007f 04       		.byte	0x4
+ 372 0080 5B010000 		.4byte	.LASF10
+ 373 0084 02       		.uleb128 0x2
+ 374 0085 01       		.byte	0x1
+ 375 0086 08       		.byte	0x8
+ 376 0087 C0010000 		.4byte	.LASF11
+ 377 008b 05       		.uleb128 0x5
+ 378 008c 18010000 		.4byte	.LASF13
+ 379 0090 02       		.byte	0x2
+ 380 0091 6C01     		.2byte	0x16c
+ 381 0093 97000000 		.4byte	0x97
+ 382 0097 06       		.uleb128 0x6
+ 383 0098 6B000000 		.4byte	0x6b
+ 384 009c 07       		.uleb128 0x7
+ 385 009d 06000000 		.4byte	.LASF14
+ 386 00a1 01       		.byte	0x1
+ 387 00a2 27       		.byte	0x27
+ 388 00a3 00000000 		.4byte	.LFB0
+ 389 00a7 38000000 		.4byte	.LFE0-.LFB0
+ 390 00ab 01       		.uleb128 0x1
+ 391 00ac 9C       		.byte	0x9c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 10
+
+
+ 392 00ad CE000000 		.4byte	0xce
+ 393 00b1 08       		.uleb128 0x8
+ 394 00b2 00000000 		.4byte	.LASF16
+ 395 00b6 01       		.byte	0x1
+ 396 00b7 27       		.byte	0x27
+ 397 00b8 6B000000 		.4byte	0x6b
+ 398 00bc 02       		.uleb128 0x2
+ 399 00bd 91       		.byte	0x91
+ 400 00be 6F       		.sleb128 -17
+ 401 00bf 09       		.uleb128 0x9
+ 402 00c0 0D010000 		.4byte	.LASF23
+ 403 00c4 01       		.byte	0x1
+ 404 00c5 29       		.byte	0x29
+ 405 00c6 6B000000 		.4byte	0x6b
+ 406 00ca 02       		.uleb128 0x2
+ 407 00cb 91       		.byte	0x91
+ 408 00cc 77       		.sleb128 -9
+ 409 00cd 00       		.byte	0
+ 410 00ce 07       		.uleb128 0x7
+ 411 00cf 42010000 		.4byte	.LASF15
+ 412 00d3 01       		.byte	0x1
+ 413 00d4 45       		.byte	0x45
+ 414 00d5 00000000 		.4byte	.LFB1
+ 415 00d9 10010000 		.4byte	.LFE1-.LFB1
+ 416 00dd 01       		.uleb128 0x1
+ 417 00de 9C       		.byte	0x9c
+ 418 00df F2000000 		.4byte	0xf2
+ 419 00e3 08       		.uleb128 0x8
+ 420 00e4 86010000 		.4byte	.LASF17
+ 421 00e8 01       		.byte	0x1
+ 422 00e9 45       		.byte	0x45
+ 423 00ea 6B000000 		.4byte	0x6b
+ 424 00ee 02       		.uleb128 0x2
+ 425 00ef 91       		.byte	0x91
+ 426 00f0 77       		.sleb128 -9
+ 427 00f1 00       		.byte	0
+ 428 00f2 0A       		.uleb128 0xa
+ 429 00f3 D5010000 		.4byte	.LASF18
+ 430 00f7 01       		.byte	0x1
+ 431 00f8 63       		.byte	0x63
+ 432 00f9 6B000000 		.4byte	0x6b
+ 433 00fd 00000000 		.4byte	.LFB2
+ 434 0101 20000000 		.4byte	.LFE2-.LFB2
+ 435 0105 01       		.uleb128 0x1
+ 436 0106 9C       		.byte	0x9c
+ 437 0107 0A       		.uleb128 0xa
+ 438 0108 A6000000 		.4byte	.LASF19
+ 439 010c 01       		.byte	0x1
+ 440 010d 77       		.byte	0x77
+ 441 010e 6B000000 		.4byte	0x6b
+ 442 0112 00000000 		.4byte	.LFB3
+ 443 0116 20000000 		.4byte	.LFE3-.LFB3
+ 444 011a 01       		.uleb128 0x1
+ 445 011b 9C       		.byte	0x9c
+ 446 011c 00       		.byte	0
+ 447              		.section	.debug_abbrev,"",%progbits
+ 448              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 11
+
+
+ 449 0000 01       		.uleb128 0x1
+ 450 0001 11       		.uleb128 0x11
+ 451 0002 01       		.byte	0x1
+ 452 0003 25       		.uleb128 0x25
+ 453 0004 0E       		.uleb128 0xe
+ 454 0005 13       		.uleb128 0x13
+ 455 0006 0B       		.uleb128 0xb
+ 456 0007 03       		.uleb128 0x3
+ 457 0008 0E       		.uleb128 0xe
+ 458 0009 1B       		.uleb128 0x1b
+ 459 000a 0E       		.uleb128 0xe
+ 460 000b 55       		.uleb128 0x55
+ 461 000c 17       		.uleb128 0x17
+ 462 000d 11       		.uleb128 0x11
+ 463 000e 01       		.uleb128 0x1
+ 464 000f 10       		.uleb128 0x10
+ 465 0010 17       		.uleb128 0x17
+ 466 0011 00       		.byte	0
+ 467 0012 00       		.byte	0
+ 468 0013 02       		.uleb128 0x2
+ 469 0014 24       		.uleb128 0x24
+ 470 0015 00       		.byte	0
+ 471 0016 0B       		.uleb128 0xb
+ 472 0017 0B       		.uleb128 0xb
+ 473 0018 3E       		.uleb128 0x3e
+ 474 0019 0B       		.uleb128 0xb
+ 475 001a 03       		.uleb128 0x3
+ 476 001b 0E       		.uleb128 0xe
+ 477 001c 00       		.byte	0
+ 478 001d 00       		.byte	0
+ 479 001e 03       		.uleb128 0x3
+ 480 001f 24       		.uleb128 0x24
+ 481 0020 00       		.byte	0
+ 482 0021 0B       		.uleb128 0xb
+ 483 0022 0B       		.uleb128 0xb
+ 484 0023 3E       		.uleb128 0x3e
+ 485 0024 0B       		.uleb128 0xb
+ 486 0025 03       		.uleb128 0x3
+ 487 0026 08       		.uleb128 0x8
+ 488 0027 00       		.byte	0
+ 489 0028 00       		.byte	0
+ 490 0029 04       		.uleb128 0x4
+ 491 002a 16       		.uleb128 0x16
+ 492 002b 00       		.byte	0
+ 493 002c 03       		.uleb128 0x3
+ 494 002d 0E       		.uleb128 0xe
+ 495 002e 3A       		.uleb128 0x3a
+ 496 002f 0B       		.uleb128 0xb
+ 497 0030 3B       		.uleb128 0x3b
+ 498 0031 0B       		.uleb128 0xb
+ 499 0032 49       		.uleb128 0x49
+ 500 0033 13       		.uleb128 0x13
+ 501 0034 00       		.byte	0
+ 502 0035 00       		.byte	0
+ 503 0036 05       		.uleb128 0x5
+ 504 0037 16       		.uleb128 0x16
+ 505 0038 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 12
+
+
+ 506 0039 03       		.uleb128 0x3
+ 507 003a 0E       		.uleb128 0xe
+ 508 003b 3A       		.uleb128 0x3a
+ 509 003c 0B       		.uleb128 0xb
+ 510 003d 3B       		.uleb128 0x3b
+ 511 003e 05       		.uleb128 0x5
+ 512 003f 49       		.uleb128 0x49
+ 513 0040 13       		.uleb128 0x13
+ 514 0041 00       		.byte	0
+ 515 0042 00       		.byte	0
+ 516 0043 06       		.uleb128 0x6
+ 517 0044 35       		.uleb128 0x35
+ 518 0045 00       		.byte	0
+ 519 0046 49       		.uleb128 0x49
+ 520 0047 13       		.uleb128 0x13
+ 521 0048 00       		.byte	0
+ 522 0049 00       		.byte	0
+ 523 004a 07       		.uleb128 0x7
+ 524 004b 2E       		.uleb128 0x2e
+ 525 004c 01       		.byte	0x1
+ 526 004d 3F       		.uleb128 0x3f
+ 527 004e 19       		.uleb128 0x19
+ 528 004f 03       		.uleb128 0x3
+ 529 0050 0E       		.uleb128 0xe
+ 530 0051 3A       		.uleb128 0x3a
+ 531 0052 0B       		.uleb128 0xb
+ 532 0053 3B       		.uleb128 0x3b
+ 533 0054 0B       		.uleb128 0xb
+ 534 0055 27       		.uleb128 0x27
+ 535 0056 19       		.uleb128 0x19
+ 536 0057 11       		.uleb128 0x11
+ 537 0058 01       		.uleb128 0x1
+ 538 0059 12       		.uleb128 0x12
+ 539 005a 06       		.uleb128 0x6
+ 540 005b 40       		.uleb128 0x40
+ 541 005c 18       		.uleb128 0x18
+ 542 005d 9742     		.uleb128 0x2117
+ 543 005f 19       		.uleb128 0x19
+ 544 0060 01       		.uleb128 0x1
+ 545 0061 13       		.uleb128 0x13
+ 546 0062 00       		.byte	0
+ 547 0063 00       		.byte	0
+ 548 0064 08       		.uleb128 0x8
+ 549 0065 05       		.uleb128 0x5
+ 550 0066 00       		.byte	0
+ 551 0067 03       		.uleb128 0x3
+ 552 0068 0E       		.uleb128 0xe
+ 553 0069 3A       		.uleb128 0x3a
+ 554 006a 0B       		.uleb128 0xb
+ 555 006b 3B       		.uleb128 0x3b
+ 556 006c 0B       		.uleb128 0xb
+ 557 006d 49       		.uleb128 0x49
+ 558 006e 13       		.uleb128 0x13
+ 559 006f 02       		.uleb128 0x2
+ 560 0070 18       		.uleb128 0x18
+ 561 0071 00       		.byte	0
+ 562 0072 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 13
+
+
+ 563 0073 09       		.uleb128 0x9
+ 564 0074 34       		.uleb128 0x34
+ 565 0075 00       		.byte	0
+ 566 0076 03       		.uleb128 0x3
+ 567 0077 0E       		.uleb128 0xe
+ 568 0078 3A       		.uleb128 0x3a
+ 569 0079 0B       		.uleb128 0xb
+ 570 007a 3B       		.uleb128 0x3b
+ 571 007b 0B       		.uleb128 0xb
+ 572 007c 49       		.uleb128 0x49
+ 573 007d 13       		.uleb128 0x13
+ 574 007e 02       		.uleb128 0x2
+ 575 007f 18       		.uleb128 0x18
+ 576 0080 00       		.byte	0
+ 577 0081 00       		.byte	0
+ 578 0082 0A       		.uleb128 0xa
+ 579 0083 2E       		.uleb128 0x2e
+ 580 0084 00       		.byte	0
+ 581 0085 3F       		.uleb128 0x3f
+ 582 0086 19       		.uleb128 0x19
+ 583 0087 03       		.uleb128 0x3
+ 584 0088 0E       		.uleb128 0xe
+ 585 0089 3A       		.uleb128 0x3a
+ 586 008a 0B       		.uleb128 0xb
+ 587 008b 3B       		.uleb128 0x3b
+ 588 008c 0B       		.uleb128 0xb
+ 589 008d 27       		.uleb128 0x27
+ 590 008e 19       		.uleb128 0x19
+ 591 008f 49       		.uleb128 0x49
+ 592 0090 13       		.uleb128 0x13
+ 593 0091 11       		.uleb128 0x11
+ 594 0092 01       		.uleb128 0x1
+ 595 0093 12       		.uleb128 0x12
+ 596 0094 06       		.uleb128 0x6
+ 597 0095 40       		.uleb128 0x40
+ 598 0096 18       		.uleb128 0x18
+ 599 0097 9742     		.uleb128 0x2117
+ 600 0099 19       		.uleb128 0x19
+ 601 009a 00       		.byte	0
+ 602 009b 00       		.byte	0
+ 603 009c 00       		.byte	0
+ 604              		.section	.debug_aranges,"",%progbits
+ 605 0000 34000000 		.4byte	0x34
+ 606 0004 0200     		.2byte	0x2
+ 607 0006 00000000 		.4byte	.Ldebug_info0
+ 608 000a 04       		.byte	0x4
+ 609 000b 00       		.byte	0
+ 610 000c 0000     		.2byte	0
+ 611 000e 0000     		.2byte	0
+ 612 0010 00000000 		.4byte	.LFB0
+ 613 0014 38000000 		.4byte	.LFE0-.LFB0
+ 614 0018 00000000 		.4byte	.LFB1
+ 615 001c 10010000 		.4byte	.LFE1-.LFB1
+ 616 0020 00000000 		.4byte	.LFB2
+ 617 0024 20000000 		.4byte	.LFE2-.LFB2
+ 618 0028 00000000 		.4byte	.LFB3
+ 619 002c 20000000 		.4byte	.LFE3-.LFB3
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 14
+
+
+ 620 0030 00000000 		.4byte	0
+ 621 0034 00000000 		.4byte	0
+ 622              		.section	.debug_ranges,"",%progbits
+ 623              	.Ldebug_ranges0:
+ 624 0000 00000000 		.4byte	.LFB0
+ 625 0004 38000000 		.4byte	.LFE0
+ 626 0008 00000000 		.4byte	.LFB1
+ 627 000c 10010000 		.4byte	.LFE1
+ 628 0010 00000000 		.4byte	.LFB2
+ 629 0014 20000000 		.4byte	.LFE2
+ 630 0018 00000000 		.4byte	.LFB3
+ 631 001c 20000000 		.4byte	.LFE3
+ 632 0020 00000000 		.4byte	0
+ 633 0024 00000000 		.4byte	0
+ 634              		.section	.debug_line,"",%progbits
+ 635              	.Ldebug_line0:
+ 636 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
+ 636      02004A00 
+ 636      00000201 
+ 636      FB0E0D00 
+ 636      01010101 
+ 637              	.LASF16:
+ 638 0000 76616C75 		.ascii	"value\000"
+ 638      6500
+ 639              	.LASF14:
+ 640 0006 4C43445F 		.ascii	"LCD_LCDPort_Write\000"
+ 640      4C434450 
+ 640      6F72745F 
+ 640      57726974 
+ 640      6500
+ 641              	.LASF20:
+ 642 0018 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 642      4320342E 
+ 642      392E3320 
+ 642      32303135 
+ 642      30333033 
+ 643 004b 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 643      20726576 
+ 643      6973696F 
+ 643      6E203232 
+ 643      31323230 
+ 644 007e 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 644      66756E63 
+ 644      74696F6E 
+ 644      2D736563 
+ 644      74696F6E 
+ 645              	.LASF19:
+ 646 00a6 4C43445F 		.ascii	"LCD_LCDPort_ReadDataReg\000"
+ 646      4C434450 
+ 646      6F72745F 
+ 646      52656164 
+ 646      44617461 
+ 647              	.LASF22:
+ 648 00be 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Kopia_Poczatki\\QDExam"
+ 648      6F726B73 
+ 648      70616365 
+ 648      5C50536F 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 15
+
+
+ 648      435F4372 
+ 649 00ed 706C6530 		.ascii	"ple01.cydsn\000"
+ 649      312E6379 
+ 649      64736E00 
+ 650              	.LASF9:
+ 651 00f9 666C6F61 		.ascii	"float\000"
+ 651      7400
+ 652              	.LASF1:
+ 653 00ff 756E7369 		.ascii	"unsigned char\000"
+ 653      676E6564 
+ 653      20636861 
+ 653      7200
+ 654              	.LASF23:
+ 655 010d 73746174 		.ascii	"staticBits\000"
+ 655      69634269 
+ 655      747300
+ 656              	.LASF13:
+ 657 0118 72656738 		.ascii	"reg8\000"
+ 657      00
+ 658              	.LASF5:
+ 659 011d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 659      20756E73 
+ 659      69676E65 
+ 659      6420696E 
+ 659      7400
+ 660              	.LASF3:
+ 661 012f 73686F72 		.ascii	"short unsigned int\000"
+ 661      7420756E 
+ 661      7369676E 
+ 661      65642069 
+ 661      6E7400
+ 662              	.LASF15:
+ 663 0142 4C43445F 		.ascii	"LCD_LCDPort_SetDriveMode\000"
+ 663      4C434450 
+ 663      6F72745F 
+ 663      53657444 
+ 663      72697665 
+ 664              	.LASF10:
+ 665 015b 646F7562 		.ascii	"double\000"
+ 665      6C6500
+ 666              	.LASF8:
+ 667 0162 756E7369 		.ascii	"unsigned int\000"
+ 667      676E6564 
+ 667      20696E74 
+ 667      00
+ 668              	.LASF7:
+ 669 016f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 669      206C6F6E 
+ 669      6720756E 
+ 669      7369676E 
+ 669      65642069 
+ 670              	.LASF17:
+ 671 0186 6D6F6465 		.ascii	"mode\000"
+ 671      00
+ 672              	.LASF21:
+ 673 018b 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\LCD_LCDPort.c\000"
+ 673      6E657261 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccKTQWgk.s 			page 16
+
+
+ 673      7465645F 
+ 673      536F7572 
+ 673      63655C50 
+ 674              	.LASF6:
+ 675 01b2 6C6F6E67 		.ascii	"long long int\000"
+ 675      206C6F6E 
+ 675      6720696E 
+ 675      7400
+ 676              	.LASF11:
+ 677 01c0 63686172 		.ascii	"char\000"
+ 677      00
+ 678              	.LASF2:
+ 679 01c5 73686F72 		.ascii	"short int\000"
+ 679      7420696E 
+ 679      7400
+ 680              	.LASF12:
+ 681 01cf 75696E74 		.ascii	"uint8\000"
+ 681      3800
+ 682              	.LASF18:
+ 683 01d5 4C43445F 		.ascii	"LCD_LCDPort_Read\000"
+ 683      4C434450 
+ 683      6F72745F 
+ 683      52656164 
+ 683      00
+ 684              	.LASF4:
+ 685 01e6 6C6F6E67 		.ascii	"long int\000"
+ 685      20696E74 
+ 685      00
+ 686              	.LASF0:
+ 687 01ef 7369676E 		.ascii	"signed char\000"
+ 687      65642063 
+ 687      68617200 
+ 688              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

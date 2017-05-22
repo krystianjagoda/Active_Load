@@ -1,0 +1,3307 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main01.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.comm	Current_State,1,1
+  19              		.comm	Previous_State,1,1
+  20              		.comm	Sound_Enable,1,1
+  21              		.comm	Current_Menu_Position,1,1
+  22              		.comm	CurrentBacklightValue,1,1
+  23              		.comm	CurrentBacklightValueString,8,4
+  24              		.comm	CurrentVolumeValue,1,1
+  25              		.comm	CurrentVolumeValueString,8,4
+  26              		.comm	Current_Calibration_Range1,4,4
+  27              		.comm	Current_Calibration_Range2,4,4
+  28              		.comm	Current_Calibration_Range3,4,4
+  29              		.comm	LEM_Offset_Value,1,1
+  30              		.comm	Two_Wire_Range,4,4
+  31              		.comm	Four_Wire_Range,4,4
+  32              		.comm	Four_Wire_Method,1,1
+  33              		.comm	Actual_Range,1,1
+  34              		.comm	View_Mode,1,1
+  35              		.comm	qdCount,2,2
+  36              		.comm	Last_qdCount,2,2
+  37              		.comm	button1,1,1
+  38              		.comm	button2,1,1
+  39              		.comm	button3,1,1
+  40              		.comm	button4,1,1
+  41              		.comm	button5,1,1
+  42              		.comm	button6,1,1
+  43              		.comm	push,1,1
+  44              		.comm	OutputEnable,1,1
+  45              		.comm	u8g,60,4
+  46              		.comm	Push_Buzzer__Default_Lenght,4,4
+  47              		.comm	Rotate_Buzzer__Default_Lenght,4,4
+  48              		.comm	Edit_Value_Mode,1,1
+  49              		.comm	cVoltage_Actual,16,4
+  50              		.comm	cCurrent_Actual,16,4
+  51              		.comm	cPower_Actual,16,4
+  52              		.comm	cResist_Actual,16,4
+  53              		.comm	cVoltage_Set,16,4
+  54              		.comm	cCurrent_Set,16,4
+  55              		.comm	cPower_Set,16,4
+  56              		.comm	cResist_Set,16,4
+  57              		.comm	TestChar,16,4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 2
+
+
+  58              		.comm	XPosition,2,2
+  59              		.comm	cXPosition,16,4
+  60              		.comm	YPosition,2,2
+  61              		.comm	cYPosition,16,4
+  62              		.comm	Touched,1,1
+  63              		.comm	MeasuredVoltage,2,2
+  64              		.comm	fVoltage,4,4
+  65              		.comm	MeasuredCurrent,2,2
+  66              		.comm	fCurrent,4,4
+  67              		.comm	Power,2,2
+  68              		.comm	fPower,4,4
+  69              		.comm	Resist,2,2
+  70              		.comm	fResist,4,4
+  71              		.comm	Set_Voltage,4,4
+  72              		.comm	Set_Current,4,4
+  73              		.comm	Set_Current_Temporary_Value,4,4
+  74              		.comm	Set_Power,4,4
+  75              		.comm	Set_Power_Temporary_Value,4,4
+  76              		.comm	Set_Resist,4,4
+  77              		.comm	Set_Resist_Temporary_Value,4,4
+  78              		.comm	Position_Number,1,1
+  79              		.comm	MaxPower,4,4
+  80              		.comm	MaxVoltage,4,4
+  81              		.comm	MaxCurrent,4,4
+  82              		.comm	MinResistance,4,4
+  83              		.comm	MaxResistance,4,4
+  84              		.comm	C_Kp,4,4
+  85              		.comm	C_Ki,4,4
+  86              		.comm	C_Kd,4,4
+  87              		.comm	Max_FET_Temp,1,1
+  88              		.comm	OverTemperature,1,1
+  89              		.comm	Set_Ampl,2,2
+  90              		.comm	Set_Ampl_Temporary_Value,2,2
+  91              		.comm	Set_Freq,2,2
+  92              		.comm	Set_Freq_Temporary_Value,4,4
+  93              		.comm	Set_Duty,1,1
+  94              		.comm	Set_Duty_Temporary_Value,1,1
+  95              		.comm	cSet_Ampl,16,4
+  96              		.comm	cSet_Freq,16,4
+  97              		.comm	cSet_Duty,16,4
+  98              		.comm	Current_Edit_Value,1,1
+  99              		.comm	Actual_Multiplier_Value,1,1
+ 100              		.comm	cCounter,32,4
+ 101              		.comm	deltaT,1,1
+ 102              		.comm	Avarage_FET_Temp,4,4
+ 103              		.comm	Current_DIE_Temp,2,2
+ 104              		.comm	Current_DIE_TempString,8,4
+ 105              		.comm	Current_FET_Temp,1,1
+ 106              		.comm	Current_FET_TempString,8,4
+ 107              		.global _printf_float
+ 108              		.thumb
+ 109              		.global	Main_Counter
+ 110              		.bss
+ 111              		.align	2
+ 112              		.type	Main_Counter, %object
+ 113              		.size	Main_Counter, 4
+ 114              	Main_Counter:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 3
+
+
+ 115 0000 00000000 		.space	4
+ 116              		.section	.text.main,"ax",%progbits
+ 117              		.align	2
+ 118              		.global	main
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.type	main, %function
+ 122              	main:
+ 123              	.LFB63:
+ 124              		.file 1 "main01.c"
+   1:main01.c      **** // Krystian Jagoda krystianjagoda@gmail.com
+   2:main01.c      **** // Active Load - Master Thesis 2015-2016
+   3:main01.c      **** 
+   4:main01.c      **** #include <device.h>
+   5:main01.c      **** #include <stdio.h>
+   6:main01.c      **** #include "u8g_arm.h"
+   7:main01.c      **** 
+   8:main01.c      **** #include "global_variables.h"
+   9:main01.c      **** #include "state_machine.h"
+  10:main01.c      **** #include "LCD_Menu.h"
+  11:main01.c      **** #include "temp_manage.h"
+  12:main01.c      **** 
+  13:main01.c      **** #if defined (__GNUC__)
+  14:main01.c      ****     asm (".global _printf_float");  /* Add an explicit reference to the floating point printf libra
+  15:main01.c      **** #endif
+  16:main01.c      **** 
+  17:main01.c      **** //-------------------------------------------------------------------------------------------------
+  18:main01.c      **** 
+  19:main01.c      **** 
+  20:main01.c      **** void Initialize(void);
+  21:main01.c      **** 
+  22:main01.c      **** 
+  23:main01.c      **** uint32 Main_Counter = 0;
+  24:main01.c      **** 
+  25:main01.c      **** 
+  26:main01.c      **** //-------------------------------------------------------------------------------------------------
+  27:main01.c      **** int main()
+  28:main01.c      **** {
+ 125              		.loc 1 28 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 0
+ 128              		@ frame_needed = 1, uses_anonymous_args = 0
+ 129 0000 80B5     		push	{r7, lr}
+ 130              		.cfi_def_cfa_offset 8
+ 131              		.cfi_offset 7, -8
+ 132              		.cfi_offset 14, -4
+ 133 0002 00AF     		add	r7, sp, #0
+ 134              		.cfi_def_cfa_register 7
+  29:main01.c      ****     // Set Limit Values Here
+  30:main01.c      ****     MaxPower = 130.00;
+ 135              		.loc 1 30 0
+ 136 0004 344B     		ldr	r3, .L4
+ 137 0006 354A     		ldr	r2, .L4+4
+ 138 0008 1A60     		str	r2, [r3]	@ float
+  31:main01.c      ****     MaxVoltage = 28.00;
+ 139              		.loc 1 31 0
+ 140 000a 354B     		ldr	r3, .L4+8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 4
+
+
+ 141 000c 354A     		ldr	r2, .L4+12
+ 142 000e 1A60     		str	r2, [r3]	@ float
+  32:main01.c      ****     MaxCurrent = 2.00;
+ 143              		.loc 1 32 0
+ 144 0010 354B     		ldr	r3, .L4+16
+ 145 0012 4FF08042 		mov	r2, #1073741824
+ 146 0016 1A60     		str	r2, [r3]	@ float
+  33:main01.c      ****     MinResistance = 8;
+ 147              		.loc 1 33 0
+ 148 0018 344B     		ldr	r3, .L4+20
+ 149 001a 4FF08242 		mov	r2, #1090519040
+ 150 001e 1A60     		str	r2, [r3]	@ float
+  34:main01.c      ****     MaxResistance = 2000;
+ 151              		.loc 1 34 0
+ 152 0020 334B     		ldr	r3, .L4+24
+ 153 0022 344A     		ldr	r2, .L4+28
+ 154 0024 1A60     		str	r2, [r3]	@ float
+  35:main01.c      ****     Max_FET_Temp = 40;
+ 155              		.loc 1 35 0
+ 156 0026 344B     		ldr	r3, .L4+32
+ 157 0028 2822     		movs	r2, #40
+ 158 002a 1A70     		strb	r2, [r3]
+  36:main01.c      ****     
+  37:main01.c      ****     // Set Current PID Regulator Here
+  38:main01.c      ****     C_Kp = 1.00;
+ 159              		.loc 1 38 0
+ 160 002c 334B     		ldr	r3, .L4+36
+ 161 002e 4FF07E52 		mov	r2, #1065353216
+ 162 0032 1A60     		str	r2, [r3]	@ float
+  39:main01.c      ****     C_Ki = 0.00;
+ 163              		.loc 1 39 0
+ 164 0034 324B     		ldr	r3, .L4+40
+ 165 0036 4FF00002 		mov	r2, #0
+ 166 003a 1A60     		str	r2, [r3]	@ float
+  40:main01.c      ****     C_Kd = 0.00;
+ 167              		.loc 1 40 0
+ 168 003c 314B     		ldr	r3, .L4+44
+ 169 003e 4FF00002 		mov	r2, #0
+ 170 0042 1A60     		str	r2, [r3]	@ float
+  41:main01.c      ****     
+  42:main01.c      ****     //Set Calibration Values Here:
+  43:main01.c      ****     Current_Calibration_Range1 = 1.05;
+ 171              		.loc 1 43 0
+ 172 0044 304B     		ldr	r3, .L4+48
+ 173 0046 314A     		ldr	r2, .L4+52
+ 174 0048 1A60     		str	r2, [r3]	@ float
+  44:main01.c      ****     Current_Calibration_Range2 = 2.60;
+ 175              		.loc 1 44 0
+ 176 004a 314B     		ldr	r3, .L4+56
+ 177 004c 314A     		ldr	r2, .L4+60
+ 178 004e 1A60     		str	r2, [r3]	@ float
+  45:main01.c      ****     Current_Calibration_Range3 = 5.24;
+ 179              		.loc 1 45 0
+ 180 0050 314B     		ldr	r3, .L4+64
+ 181 0052 324A     		ldr	r2, .L4+68
+ 182 0054 1A60     		str	r2, [r3]	@ float
+  46:main01.c      ****     
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 5
+
+
+  47:main01.c      ****     LEM_Offset_Value = 33;
+ 183              		.loc 1 47 0
+ 184 0056 324B     		ldr	r3, .L4+72
+ 185 0058 2122     		movs	r2, #33
+ 186 005a 1A70     		strb	r2, [r3]
+  48:main01.c      ****     
+  49:main01.c      ****     Two_Wire_Range = 15.00;
+ 187              		.loc 1 49 0
+ 188 005c 314B     		ldr	r3, .L4+76
+ 189 005e 324A     		ldr	r2, .L4+80
+ 190 0060 1A60     		str	r2, [r3]	@ float
+  50:main01.c      ****     Four_Wire_Range = 14.63;
+ 191              		.loc 1 50 0
+ 192 0062 324B     		ldr	r3, .L4+84
+ 193 0064 324A     		ldr	r2, .L4+88
+ 194 0066 1A60     		str	r2, [r3]	@ float
+  51:main01.c      ****     
+  52:main01.c      ****     // Interface Values
+  53:main01.c      ****     CurrentVolumeValue = 1;         //10 is Max
+ 195              		.loc 1 53 0
+ 196 0068 324B     		ldr	r3, .L4+92
+ 197 006a 0122     		movs	r2, #1
+ 198 006c 1A70     		strb	r2, [r3]
+  54:main01.c      ****     CurrentBacklightValue = 7;      //10 is Max
+ 199              		.loc 1 54 0
+ 200 006e 324B     		ldr	r3, .L4+96
+ 201 0070 0722     		movs	r2, #7
+ 202 0072 1A70     		strb	r2, [r3]
+  55:main01.c      ****     Push_Buzzer__Default_Lenght = 5000;
+ 203              		.loc 1 55 0
+ 204 0074 314B     		ldr	r3, .L4+100
+ 205 0076 41F28832 		movw	r2, #5000
+ 206 007a 1A60     		str	r2, [r3]
+  56:main01.c      ****     Rotate_Buzzer__Default_Lenght = 1000;
+ 207              		.loc 1 56 0
+ 208 007c 304B     		ldr	r3, .L4+104
+ 209 007e 4FF47A72 		mov	r2, #1000
+ 210 0082 1A60     		str	r2, [r3]
+  57:main01.c      ****     
+  58:main01.c      ****     CyDelay(100); // 100ms Delay
+ 211              		.loc 1 58 0
+ 212 0084 6420     		movs	r0, #100
+ 213 0086 FFF7FEFF 		bl	CyDelay
+  59:main01.c      ****     
+  60:main01.c      ****     Initialize();
+ 214              		.loc 1 60 0
+ 215 008a FFF7FEFF 		bl	Initialize
+  61:main01.c      ****     
+  62:main01.c      ****     
+  63:main01.c      ****     Previous_State = Home;
+ 216              		.loc 1 63 0
+ 217 008e 2D4B     		ldr	r3, .L4+108
+ 218 0090 0122     		movs	r2, #1
+ 219 0092 1A70     		strb	r2, [r3]
+  64:main01.c      ****     Current_State = Home;
+ 220              		.loc 1 64 0
+ 221 0094 2C4B     		ldr	r3, .L4+112
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 6
+
+
+ 222 0096 0122     		movs	r2, #1
+ 223 0098 1A70     		strb	r2, [r3]
+  65:main01.c      ****     
+  66:main01.c      ****    // Current_State = Develop;
+  67:main01.c      **** 
+  68:main01.c      **** 
+  69:main01.c      ****     QD_SetCounter(3);
+ 224              		.loc 1 69 0
+ 225 009a 0320     		movs	r0, #3
+ 226 009c FFF7FEFF 		bl	QD_SetCounter
+  70:main01.c      ****     OutputEnable = 0;
+ 227              		.loc 1 70 0
+ 228 00a0 2A4B     		ldr	r3, .L4+116
+ 229 00a2 0022     		movs	r2, #0
+ 230 00a4 1A70     		strb	r2, [r3]
+ 231              	.L3:
+  71:main01.c      ****     
+  72:main01.c      **** 
+  73:main01.c      ****     
+  74:main01.c      ****     
+  75:main01.c      ****     
+  76:main01.c      ****     
+  77:main01.c      **** 
+  78:main01.c      ****     
+  79:main01.c      **** //-------------------------------------------------------------------------------------------------
+  80:main01.c      ****     while(1)
+  81:main01.c      ****     {
+  82:main01.c      **** 
+  83:main01.c      **** 
+  84:main01.c      ****         Check_Buttons();
+ 232              		.loc 1 84 0
+ 233 00a6 FFF7FEFF 		bl	Check_Buttons
+  85:main01.c      ****         State_Machine();
+ 234              		.loc 1 85 0
+ 235 00aa FFF7FEFF 		bl	State_Machine
+  86:main01.c      ****         
+  87:main01.c      ****         
+  88:main01.c      ****         Main_Counter++;
+ 236              		.loc 1 88 0
+ 237 00ae 284B     		ldr	r3, .L4+120
+ 238 00b0 1B68     		ldr	r3, [r3]
+ 239 00b2 0133     		adds	r3, r3, #1
+ 240 00b4 264A     		ldr	r2, .L4+120
+ 241 00b6 1360     		str	r3, [r2]
+  89:main01.c      ****         if(Main_Counter >= 5000){
+ 242              		.loc 1 89 0
+ 243 00b8 254B     		ldr	r3, .L4+120
+ 244 00ba 1B68     		ldr	r3, [r3]
+ 245 00bc 41F28732 		movw	r2, #4999
+ 246 00c0 9342     		cmp	r3, r2
+ 247 00c2 08D9     		bls	.L2
+  90:main01.c      ****             Temp_Management(Max_FET_Temp);
+ 248              		.loc 1 90 0
+ 249 00c4 0C4B     		ldr	r3, .L4+32
+ 250 00c6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 251 00c8 DBB2     		uxtb	r3, r3
+ 252 00ca 1846     		mov	r0, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 7
+
+
+ 253 00cc FFF7FEFF 		bl	Temp_Management
+  91:main01.c      ****             Main_Counter = 0;
+ 254              		.loc 1 91 0
+ 255 00d0 1F4B     		ldr	r3, .L4+120
+ 256 00d2 0022     		movs	r2, #0
+ 257 00d4 1A60     		str	r2, [r3]
+ 258              	.L2:
+  92:main01.c      ****         }
+  93:main01.c      ****         
+  94:main01.c      ****     }
+ 259              		.loc 1 94 0
+ 260 00d6 E6E7     		b	.L3
+ 261              	.L5:
+ 262              		.align	2
+ 263              	.L4:
+ 264 00d8 00000000 		.word	MaxPower
+ 265 00dc 00000243 		.word	1124204544
+ 266 00e0 00000000 		.word	MaxVoltage
+ 267 00e4 0000E041 		.word	1105199104
+ 268 00e8 00000000 		.word	MaxCurrent
+ 269 00ec 00000000 		.word	MinResistance
+ 270 00f0 00000000 		.word	MaxResistance
+ 271 00f4 0000FA44 		.word	1157234688
+ 272 00f8 00000000 		.word	Max_FET_Temp
+ 273 00fc 00000000 		.word	C_Kp
+ 274 0100 00000000 		.word	C_Ki
+ 275 0104 00000000 		.word	C_Kd
+ 276 0108 00000000 		.word	Current_Calibration_Range1
+ 277 010c 6666863F 		.word	1065772646
+ 278 0110 00000000 		.word	Current_Calibration_Range2
+ 279 0114 66662640 		.word	1076258406
+ 280 0118 00000000 		.word	Current_Calibration_Range3
+ 281 011c 14AEA740 		.word	1084730900
+ 282 0120 00000000 		.word	LEM_Offset_Value
+ 283 0124 00000000 		.word	Two_Wire_Range
+ 284 0128 00007041 		.word	1097859072
+ 285 012c 00000000 		.word	Four_Wire_Range
+ 286 0130 7B146A41 		.word	1097471099
+ 287 0134 00000000 		.word	CurrentVolumeValue
+ 288 0138 00000000 		.word	CurrentBacklightValue
+ 289 013c 00000000 		.word	Push_Buzzer__Default_Lenght
+ 290 0140 00000000 		.word	Rotate_Buzzer__Default_Lenght
+ 291 0144 00000000 		.word	Previous_State
+ 292 0148 00000000 		.word	Current_State
+ 293 014c 00000000 		.word	OutputEnable
+ 294 0150 00000000 		.word	Main_Counter
+ 295              		.cfi_endproc
+ 296              	.LFE63:
+ 297              		.size	main, .-main
+ 298              		.section	.text.Initialize,"ax",%progbits
+ 299              		.align	2
+ 300              		.global	Initialize
+ 301              		.thumb
+ 302              		.thumb_func
+ 303              		.type	Initialize, %function
+ 304              	Initialize:
+ 305              	.LFB64:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 8
+
+
+  95:main01.c      **** }
+  96:main01.c      **** //-------------------------------------------------------------------------------------------------
+  97:main01.c      **** 
+  98:main01.c      **** 
+  99:main01.c      **** void Initialize(void){
+ 306              		.loc 1 99 0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 0
+ 309              		@ frame_needed = 1, uses_anonymous_args = 0
+ 310 0000 80B5     		push	{r7, lr}
+ 311              		.cfi_def_cfa_offset 8
+ 312              		.cfi_offset 7, -8
+ 313              		.cfi_offset 14, -4
+ 314 0002 00AF     		add	r7, sp, #0
+ 315              		.cfi_def_cfa_register 7
+ 100:main01.c      ****     //Enable global interrupts
+ 101:main01.c      ****     CyGlobalIntEnable;
+ 316              		.loc 1 101 0
+ 317              	@ 101 "main01.c" 1
+ 318 0004 62B6     		CPSIE   i
+ 319              	@ 0 "" 2
+ 102:main01.c      ****       
+ 103:main01.c      ****     // Driver
+ 104:main01.c      ****     DAC_MUX_Select(0);
+ 320              		.loc 1 104 0
+ 321              		.thumb
+ 322 0006 0020     		movs	r0, #0
+ 323 0008 FFF7FEFF 		bl	DAC_MUX_Select
+ 105:main01.c      ****     WaveDAC8_1_Start();    
+ 324              		.loc 1 105 0
+ 325 000c FFF7FEFF 		bl	WaveDAC8_1_Start
+ 106:main01.c      ****     DVDAC8_1_Start();  
+ 326              		.loc 1 106 0
+ 327 0010 FFF7FEFF 		bl	DVDAC8_1_Start
+ 107:main01.c      ****     ADC_SAR_1_Start();
+ 328              		.loc 1 107 0
+ 329 0014 FFF7FEFF 		bl	ADC_SAR_1_Start
+ 108:main01.c      ****     ADC_SAR_1_StartConvert();    
+ 330              		.loc 1 108 0
+ 331 0018 FFF7FEFF 		bl	ADC_SAR_1_StartConvert
+ 109:main01.c      ****     ADC_SAR_2_Start();
+ 332              		.loc 1 109 0
+ 333 001c FFF7FEFF 		bl	ADC_SAR_2_Start
+ 110:main01.c      ****     ADC_SAR_2_StartConvert();
+ 334              		.loc 1 110 0
+ 335 0020 FFF7FEFF 		bl	ADC_SAR_2_StartConvert
+ 111:main01.c      ****     
+ 112:main01.c      ****     //I2C
+ 113:main01.c      ****     I2C_Start();
+ 336              		.loc 1 113 0
+ 337 0024 FFF7FEFF 		bl	I2C_Start
+ 114:main01.c      ****     
+ 115:main01.c      ****     // Clocks
+ 116:main01.c      ****     Clock_QD_1_Start();
+ 338              		.loc 1 116 0
+ 339 0028 FFF7FEFF 		bl	Clock_QD_1_Start
+ 117:main01.c      ****     Clock_QD_2_Start();
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 9
+
+
+ 340              		.loc 1 117 0
+ 341 002c FFF7FEFF 		bl	Clock_QD_2_Start
+ 118:main01.c      ****     Clock_QD_4_Start();
+ 342              		.loc 1 118 0
+ 343 0030 FFF7FEFF 		bl	Clock_QD_4_Start
+ 119:main01.c      ****     Clock_FAN_Start();
+ 344              		.loc 1 119 0
+ 345 0034 FFF7FEFF 		bl	Clock_FAN_Start
+ 120:main01.c      ****     
+ 121:main01.c      ****     //LCD
+ 122:main01.c      ****     u8g_InitComFn(&u8g, &u8g_dev_st7565_dogm128_hw_spi, u8g_com_hw_spi_fn);
+ 346              		.loc 1 122 0
+ 347 0038 1248     		ldr	r0, .L7
+ 348 003a 1349     		ldr	r1, .L7+4
+ 349 003c 134A     		ldr	r2, .L7+8
+ 350 003e FFF7FEFF 		bl	u8g_InitComFn
+ 123:main01.c      ****     u8g_SetContrast(&u8g,55); // Ustawienie kontrastu
+ 351              		.loc 1 123 0
+ 352 0042 1048     		ldr	r0, .L7
+ 353 0044 3721     		movs	r1, #55
+ 354 0046 FFF7FEFF 		bl	u8g_SetContrast
+ 124:main01.c      ****     PWM_Back_Start();   
+ 355              		.loc 1 124 0
+ 356 004a FFF7FEFF 		bl	PWM_Back_Start
+ 125:main01.c      ****     SetBacklight(CurrentBacklightValue);
+ 357              		.loc 1 125 0
+ 358 004e 104B     		ldr	r3, .L7+12
+ 359 0050 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 360 0052 1846     		mov	r0, r3
+ 361 0054 FFF7FEFF 		bl	SetBacklight
+ 126:main01.c      ****     
+ 127:main01.c      ****     //Buzzer
+ 128:main01.c      ****     Sound_Enable = 1;
+ 362              		.loc 1 128 0
+ 363 0058 0E4B     		ldr	r3, .L7+16
+ 364 005a 0122     		movs	r2, #1
+ 365 005c 1A70     		strb	r2, [r3]
+ 129:main01.c      ****     PWM_Buzz_Start(); 
+ 366              		.loc 1 129 0
+ 367 005e FFF7FEFF 		bl	PWM_Buzz_Start
+ 130:main01.c      ****     SetVolume(CurrentVolumeValue);
+ 368              		.loc 1 130 0
+ 369 0062 0D4B     		ldr	r3, .L7+20
+ 370 0064 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 371 0066 1846     		mov	r0, r3
+ 372 0068 FFF7FEFF 		bl	SetVolume
+ 131:main01.c      ****     
+ 132:main01.c      ****     //Encoder
+ 133:main01.c      ****     QD_Start();    
+ 373              		.loc 1 133 0
+ 374 006c FFF7FEFF 		bl	QD_Start
+ 134:main01.c      ****     
+ 135:main01.c      ****     //Temperature
+ 136:main01.c      ****     Current_FET_Temp = 1;  //Dummy change for initial check pass...
+ 375              		.loc 1 136 0
+ 376 0070 0A4B     		ldr	r3, .L7+24
+ 377 0072 0122     		movs	r2, #1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 10
+
+
+ 378 0074 1A70     		strb	r2, [r3]
+ 137:main01.c      ****     
+ 138:main01.c      ****     Actual_Range = 1;
+ 379              		.loc 1 138 0
+ 380 0076 0A4B     		ldr	r3, .L7+28
+ 381 0078 0122     		movs	r2, #1
+ 382 007a 1A70     		strb	r2, [r3]
+ 139:main01.c      ****     Four_Wire_Method = 1;            
+ 383              		.loc 1 139 0
+ 384 007c 094B     		ldr	r3, .L7+32
+ 385 007e 0122     		movs	r2, #1
+ 386 0080 1A70     		strb	r2, [r3]
+ 140:main01.c      ****     
+ 141:main01.c      **** }   
+ 387              		.loc 1 141 0
+ 388 0082 80BD     		pop	{r7, pc}
+ 389              	.L8:
+ 390              		.align	2
+ 391              	.L7:
+ 392 0084 00000000 		.word	u8g
+ 393 0088 00000000 		.word	u8g_dev_st7565_dogm128_hw_spi
+ 394 008c 00000000 		.word	u8g_com_hw_spi_fn
+ 395 0090 00000000 		.word	CurrentBacklightValue
+ 396 0094 00000000 		.word	Sound_Enable
+ 397 0098 00000000 		.word	CurrentVolumeValue
+ 398 009c 00000000 		.word	Current_FET_Temp
+ 399 00a0 00000000 		.word	Actual_Range
+ 400 00a4 00000000 		.word	Four_Wire_Method
+ 401              		.cfi_endproc
+ 402              	.LFE64:
+ 403              		.size	Initialize, .-Initialize
+ 404              		.text
+ 405              	.Letext0:
+ 406              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 407              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 408              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 409              		.file 5 "u8g.h"
+ 410              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 411              		.file 7 "global_variables.h"
+ 412              		.file 8 "temp_manage.h"
+ 413              		.section	.debug_info,"",%progbits
+ 414              	.Ldebug_info0:
+ 415 0000 570B0000 		.4byte	0xb57
+ 416 0004 0400     		.2byte	0x4
+ 417 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 418 000a 04       		.byte	0x4
+ 419 000b 01       		.uleb128 0x1
+ 420 000c 5F050000 		.4byte	.LASF185
+ 421 0010 01       		.byte	0x1
+ 422 0011 56050000 		.4byte	.LASF186
+ 423 0015 FB010000 		.4byte	.LASF187
+ 424 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 425 001d 00000000 		.4byte	0
+ 426 0021 00000000 		.4byte	.Ldebug_line0
+ 427 0025 02       		.uleb128 0x2
+ 428 0026 30060000 		.4byte	.LASF0
+ 429 002a 02       		.byte	0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 11
+
+
+ 430 002b 1B       		.byte	0x1b
+ 431 002c 30000000 		.4byte	0x30
+ 432 0030 03       		.uleb128 0x3
+ 433 0031 01       		.byte	0x1
+ 434 0032 06       		.byte	0x6
+ 435 0033 0A090000 		.4byte	.LASF2
+ 436 0037 02       		.uleb128 0x2
+ 437 0038 AD070000 		.4byte	.LASF1
+ 438 003c 02       		.byte	0x2
+ 439 003d 1D       		.byte	0x1d
+ 440 003e 42000000 		.4byte	0x42
+ 441 0042 03       		.uleb128 0x3
+ 442 0043 01       		.byte	0x1
+ 443 0044 08       		.byte	0x8
+ 444 0045 4C080000 		.4byte	.LASF3
+ 445 0049 03       		.uleb128 0x3
+ 446 004a 02       		.byte	0x2
+ 447 004b 05       		.byte	0x5
+ 448 004c A7060000 		.4byte	.LASF4
+ 449 0050 03       		.uleb128 0x3
+ 450 0051 02       		.byte	0x2
+ 451 0052 07       		.byte	0x7
+ 452 0053 16090000 		.4byte	.LASF5
+ 453 0057 02       		.uleb128 0x2
+ 454 0058 00010000 		.4byte	.LASF6
+ 455 005c 02       		.byte	0x2
+ 456 005d 3F       		.byte	0x3f
+ 457 005e 62000000 		.4byte	0x62
+ 458 0062 03       		.uleb128 0x3
+ 459 0063 04       		.byte	0x4
+ 460 0064 05       		.byte	0x5
+ 461 0065 B1060000 		.4byte	.LASF7
+ 462 0069 03       		.uleb128 0x3
+ 463 006a 04       		.byte	0x4
+ 464 006b 07       		.byte	0x7
+ 465 006c DA070000 		.4byte	.LASF8
+ 466 0070 03       		.uleb128 0x3
+ 467 0071 08       		.byte	0x8
+ 468 0072 05       		.byte	0x5
+ 469 0073 BB040000 		.4byte	.LASF9
+ 470 0077 03       		.uleb128 0x3
+ 471 0078 08       		.byte	0x8
+ 472 0079 07       		.byte	0x7
+ 473 007a E3020000 		.4byte	.LASF10
+ 474 007e 04       		.uleb128 0x4
+ 475 007f 04       		.byte	0x4
+ 476 0080 05       		.byte	0x5
+ 477 0081 696E7400 		.ascii	"int\000"
+ 478 0085 03       		.uleb128 0x3
+ 479 0086 04       		.byte	0x4
+ 480 0087 07       		.byte	0x7
+ 481 0088 B8000000 		.4byte	.LASF11
+ 482 008c 02       		.uleb128 0x2
+ 483 008d 49020000 		.4byte	.LASF12
+ 484 0091 03       		.byte	0x3
+ 485 0092 14       		.byte	0x14
+ 486 0093 25000000 		.4byte	0x25
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 12
+
+
+ 487 0097 02       		.uleb128 0x2
+ 488 0098 76040000 		.4byte	.LASF13
+ 489 009c 03       		.byte	0x3
+ 490 009d 15       		.byte	0x15
+ 491 009e 37000000 		.4byte	0x37
+ 492 00a2 02       		.uleb128 0x2
+ 493 00a3 FD070000 		.4byte	.LASF14
+ 494 00a7 03       		.byte	0x3
+ 495 00a8 2C       		.byte	0x2c
+ 496 00a9 57000000 		.4byte	0x57
+ 497 00ad 02       		.uleb128 0x2
+ 498 00ae 5A090000 		.4byte	.LASF15
+ 499 00b2 04       		.byte	0x4
+ 500 00b3 C2       		.byte	0xc2
+ 501 00b4 42000000 		.4byte	0x42
+ 502 00b8 02       		.uleb128 0x2
+ 503 00b9 6A040000 		.4byte	.LASF16
+ 504 00bd 04       		.byte	0x4
+ 505 00be C3       		.byte	0xc3
+ 506 00bf 50000000 		.4byte	0x50
+ 507 00c3 02       		.uleb128 0x2
+ 508 00c4 13060000 		.4byte	.LASF17
+ 509 00c8 04       		.byte	0x4
+ 510 00c9 C4       		.byte	0xc4
+ 511 00ca 69000000 		.4byte	0x69
+ 512 00ce 02       		.uleb128 0x2
+ 513 00cf 71040000 		.4byte	.LASF18
+ 514 00d3 04       		.byte	0x4
+ 515 00d4 C5       		.byte	0xc5
+ 516 00d5 30000000 		.4byte	0x30
+ 517 00d9 02       		.uleb128 0x2
+ 518 00da 0A010000 		.4byte	.LASF19
+ 519 00de 04       		.byte	0x4
+ 520 00df C6       		.byte	0xc6
+ 521 00e0 49000000 		.4byte	0x49
+ 522 00e4 02       		.uleb128 0x2
+ 523 00e5 96020000 		.4byte	.LASF20
+ 524 00e9 04       		.byte	0x4
+ 525 00ea C7       		.byte	0xc7
+ 526 00eb 62000000 		.4byte	0x62
+ 527 00ef 03       		.uleb128 0x3
+ 528 00f0 04       		.byte	0x4
+ 529 00f1 04       		.byte	0x4
+ 530 00f2 85020000 		.4byte	.LASF21
+ 531 00f6 03       		.uleb128 0x3
+ 532 00f7 08       		.byte	0x8
+ 533 00f8 04       		.byte	0x4
+ 534 00f9 60090000 		.4byte	.LASF22
+ 535 00fd 02       		.uleb128 0x2
+ 536 00fe 7E040000 		.4byte	.LASF23
+ 537 0102 04       		.byte	0x4
+ 538 0103 D3       		.byte	0xd3
+ 539 0104 08010000 		.4byte	0x108
+ 540 0108 03       		.uleb128 0x3
+ 541 0109 01       		.byte	0x1
+ 542 010a 08       		.byte	0x8
+ 543 010b 3F040000 		.4byte	.LASF24
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 13
+
+
+ 544 010f 03       		.uleb128 0x3
+ 545 0110 04       		.byte	0x4
+ 546 0111 07       		.byte	0x7
+ 547 0112 C7070000 		.4byte	.LASF25
+ 548 0116 05       		.uleb128 0x5
+ 549 0117 04       		.byte	0x4
+ 550 0118 02       		.uleb128 0x2
+ 551 0119 00000000 		.4byte	.LASF26
+ 552 011d 05       		.byte	0x5
+ 553 011e 80       		.byte	0x80
+ 554 011f 97000000 		.4byte	0x97
+ 555 0123 02       		.uleb128 0x2
+ 556 0124 1A060000 		.4byte	.LASF27
+ 557 0128 05       		.byte	0x5
+ 558 0129 A0       		.byte	0xa0
+ 559 012a 2E010000 		.4byte	0x12e
+ 560 012e 06       		.uleb128 0x6
+ 561 012f 18070000 		.4byte	.LASF54
+ 562 0133 3C       		.byte	0x3c
+ 563 0134 05       		.byte	0x5
+ 564 0135 4B04     		.2byte	0x44b
+ 565 0137 8E020000 		.4byte	0x28e
+ 566 013b 07       		.uleb128 0x7
+ 567 013c 79030000 		.4byte	.LASF28
+ 568 0140 05       		.byte	0x5
+ 569 0141 4D04     		.2byte	0x44d
+ 570 0143 83030000 		.4byte	0x383
+ 571 0147 00       		.byte	0
+ 572 0148 07       		.uleb128 0x7
+ 573 0149 20060000 		.4byte	.LASF29
+ 574 014d 05       		.byte	0x5
+ 575 014e 4E04     		.2byte	0x44e
+ 576 0150 83030000 		.4byte	0x383
+ 577 0154 01       		.byte	0x1
+ 578 0155 08       		.uleb128 0x8
+ 579 0156 64657600 		.ascii	"dev\000"
+ 580 015a 05       		.byte	0x5
+ 581 015b 5104     		.2byte	0x451
+ 582 015d C3030000 		.4byte	0x3c3
+ 583 0161 04       		.byte	0x4
+ 584 0162 07       		.uleb128 0x7
+ 585 0163 C2070000 		.4byte	.LASF30
+ 586 0167 05       		.byte	0x5
+ 587 0168 5204     		.2byte	0x452
+ 588 016a 53040000 		.4byte	0x453
+ 589 016e 08       		.byte	0x8
+ 590 016f 07       		.uleb128 0x7
+ 591 0170 E0080000 		.4byte	.LASF31
+ 592 0174 05       		.byte	0x5
+ 593 0175 5304     		.2byte	0x453
+ 594 0177 53040000 		.4byte	0x453
+ 595 017b 0C       		.byte	0xc
+ 596 017c 07       		.uleb128 0x7
+ 597 017d C9040000 		.4byte	.LASF32
+ 598 0181 05       		.byte	0x5
+ 599 0182 5404     		.2byte	0x454
+ 600 0184 97000000 		.4byte	0x97
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 14
+
+
+ 601 0188 10       		.byte	0x10
+ 602 0189 07       		.uleb128 0x7
+ 603 018a 33010000 		.4byte	.LASF33
+ 604 018e 05       		.byte	0x5
+ 605 018f 5404     		.2byte	0x454
+ 606 0191 97000000 		.4byte	0x97
+ 607 0195 11       		.byte	0x11
+ 608 0196 07       		.uleb128 0x7
+ 609 0197 35070000 		.4byte	.LASF34
+ 610 019b 05       		.byte	0x5
+ 611 019c 5504     		.2byte	0x455
+ 612 019e 97000000 		.4byte	0x97
+ 613 01a2 12       		.byte	0x12
+ 614 01a3 07       		.uleb128 0x7
+ 615 01a4 B0010000 		.4byte	.LASF35
+ 616 01a8 05       		.byte	0x5
+ 617 01a9 5604     		.2byte	0x456
+ 618 01ab 97000000 		.4byte	0x97
+ 619 01af 13       		.byte	0x13
+ 620 01b0 07       		.uleb128 0x7
+ 621 01b1 9C020000 		.4byte	.LASF36
+ 622 01b5 05       		.byte	0x5
+ 623 01b6 5704     		.2byte	0x457
+ 624 01b8 83030000 		.4byte	0x383
+ 625 01bc 14       		.byte	0x14
+ 626 01bd 07       		.uleb128 0x7
+ 627 01be A5020000 		.4byte	.LASF37
+ 628 01c2 05       		.byte	0x5
+ 629 01c3 5804     		.2byte	0x458
+ 630 01c5 83030000 		.4byte	0x383
+ 631 01c9 15       		.byte	0x15
+ 632 01ca 07       		.uleb128 0x7
+ 633 01cb 42060000 		.4byte	.LASF38
+ 634 01cf 05       		.byte	0x5
+ 635 01d0 5904     		.2byte	0x459
+ 636 01d2 F8030000 		.4byte	0x3f8
+ 637 01d6 18       		.byte	0x18
+ 638 01d7 07       		.uleb128 0x7
+ 639 01d8 27060000 		.4byte	.LASF39
+ 640 01dc 05       		.byte	0x5
+ 641 01dd 5B04     		.2byte	0x45b
+ 642 01df 8C000000 		.4byte	0x8c
+ 643 01e3 1C       		.byte	0x1c
+ 644 01e4 07       		.uleb128 0x7
+ 645 01e5 CB030000 		.4byte	.LASF40
+ 646 01e9 05       		.byte	0x5
+ 647 01ea 5C04     		.2byte	0x45c
+ 648 01ec 8C000000 		.4byte	0x8c
+ 649 01f0 1D       		.byte	0x1d
+ 650 01f1 07       		.uleb128 0x7
+ 651 01f2 D3030000 		.4byte	.LASF41
+ 652 01f6 05       		.byte	0x5
+ 653 01f7 5D04     		.2byte	0x45d
+ 654 01f9 8C000000 		.4byte	0x8c
+ 655 01fd 1E       		.byte	0x1e
+ 656 01fe 07       		.uleb128 0x7
+ 657 01ff D4080000 		.4byte	.LASF42
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 15
+
+
+ 658 0203 05       		.byte	0x5
+ 659 0204 5E04     		.2byte	0x45e
+ 660 0206 97000000 		.4byte	0x97
+ 661 020a 1F       		.byte	0x1f
+ 662 020b 07       		.uleb128 0x7
+ 663 020c 6C030000 		.4byte	.LASF43
+ 664 0210 05       		.byte	0x5
+ 665 0211 5F04     		.2byte	0x45f
+ 666 0213 97000000 		.4byte	0x97
+ 667 0217 20       		.byte	0x20
+ 668 0218 07       		.uleb128 0x7
+ 669 0219 B5010000 		.4byte	.LASF44
+ 670 021d 05       		.byte	0x5
+ 671 021e 6104     		.2byte	0x461
+ 672 0220 15040000 		.4byte	0x415
+ 673 0224 24       		.byte	0x24
+ 674 0225 07       		.uleb128 0x7
+ 675 0226 96060000 		.4byte	.LASF45
+ 676 022a 05       		.byte	0x5
+ 677 022b 6204     		.2byte	0x462
+ 678 022d 97000000 		.4byte	0x97
+ 679 0231 28       		.byte	0x28
+ 680 0232 07       		.uleb128 0x7
+ 681 0233 3D000000 		.4byte	.LASF46
+ 682 0237 05       		.byte	0x5
+ 683 0238 6304     		.2byte	0x463
+ 684 023a 8C000000 		.4byte	0x8c
+ 685 023e 29       		.byte	0x29
+ 686 023f 07       		.uleb128 0x7
+ 687 0240 8C070000 		.4byte	.LASF47
+ 688 0244 05       		.byte	0x5
+ 689 0245 6404     		.2byte	0x464
+ 690 0247 8C000000 		.4byte	0x8c
+ 691 024b 2A       		.byte	0x2a
+ 692 024c 07       		.uleb128 0x7
+ 693 024d 1F080000 		.4byte	.LASF48
+ 694 0251 05       		.byte	0x5
+ 695 0252 6504     		.2byte	0x465
+ 696 0254 97000000 		.4byte	0x97
+ 697 0258 2B       		.byte	0x2b
+ 698 0259 07       		.uleb128 0x7
+ 699 025a 6F060000 		.4byte	.LASF49
+ 700 025e 05       		.byte	0x5
+ 701 025f 6604     		.2byte	0x466
+ 702 0261 97000000 		.4byte	0x97
+ 703 0265 2C       		.byte	0x2c
+ 704 0266 07       		.uleb128 0x7
+ 705 0267 43010000 		.4byte	.LASF50
+ 706 026b 05       		.byte	0x5
+ 707 026c 6804     		.2byte	0x468
+ 708 026e CA020000 		.4byte	0x2ca
+ 709 0272 2D       		.byte	0x2d
+ 710 0273 07       		.uleb128 0x7
+ 711 0274 0F070000 		.4byte	.LASF51
+ 712 0278 05       		.byte	0x5
+ 713 0279 6F04     		.2byte	0x46f
+ 714 027b 36040000 		.4byte	0x436
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 16
+
+
+ 715 027f 34       		.byte	0x34
+ 716 0280 07       		.uleb128 0x7
+ 717 0281 54040000 		.4byte	.LASF52
+ 718 0285 05       		.byte	0x5
+ 719 0286 7104     		.2byte	0x471
+ 720 0288 3A030000 		.4byte	0x33a
+ 721 028c 38       		.byte	0x38
+ 722 028d 00       		.byte	0
+ 723 028e 02       		.uleb128 0x2
+ 724 028f 13050000 		.4byte	.LASF53
+ 725 0293 05       		.byte	0x5
+ 726 0294 A1       		.byte	0xa1
+ 727 0295 99020000 		.4byte	0x299
+ 728 0299 09       		.uleb128 0x9
+ 729 029a B7070000 		.4byte	.LASF55
+ 730 029e 0C       		.byte	0xc
+ 731 029f 05       		.byte	0x5
+ 732 02a0 CF       		.byte	0xcf
+ 733 02a1 CA020000 		.4byte	0x2ca
+ 734 02a5 0A       		.uleb128 0xa
+ 735 02a6 4D040000 		.4byte	.LASF56
+ 736 02aa 05       		.byte	0x5
+ 737 02ab D1       		.byte	0xd1
+ 738 02ac 8E030000 		.4byte	0x38e
+ 739 02b0 00       		.byte	0
+ 740 02b1 0A       		.uleb128 0xa
+ 741 02b2 25000000 		.4byte	.LASF57
+ 742 02b6 05       		.byte	0x5
+ 743 02b7 D2       		.byte	0xd2
+ 744 02b8 16010000 		.4byte	0x116
+ 745 02bc 04       		.byte	0x4
+ 746 02bd 0A       		.uleb128 0xa
+ 747 02be 6B010000 		.4byte	.LASF58
+ 748 02c2 05       		.byte	0x5
+ 749 02c3 D3       		.byte	0xd3
+ 750 02c4 C9030000 		.4byte	0x3c9
+ 751 02c8 08       		.byte	0x8
+ 752 02c9 00       		.byte	0
+ 753 02ca 02       		.uleb128 0x2
+ 754 02cb 42050000 		.4byte	.LASF59
+ 755 02cf 05       		.byte	0x5
+ 756 02d0 A3       		.byte	0xa3
+ 757 02d1 D5020000 		.4byte	0x2d5
+ 758 02d5 06       		.uleb128 0x6
+ 759 02d6 5D020000 		.4byte	.LASF60
+ 760 02da 07       		.byte	0x7
+ 761 02db 05       		.byte	0x5
+ 762 02dc 1D02     		.2byte	0x21d
+ 763 02de 3A030000 		.4byte	0x33a
+ 764 02e2 08       		.uleb128 0x8
+ 765 02e3 7800     		.ascii	"x\000"
+ 766 02e5 05       		.byte	0x5
+ 767 02e6 1F02     		.2byte	0x21f
+ 768 02e8 83030000 		.4byte	0x383
+ 769 02ec 00       		.byte	0
+ 770 02ed 08       		.uleb128 0x8
+ 771 02ee 7900     		.ascii	"y\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 17
+
+
+ 772 02f0 05       		.byte	0x5
+ 773 02f1 1F02     		.2byte	0x21f
+ 774 02f3 83030000 		.4byte	0x383
+ 775 02f7 01       		.byte	0x1
+ 776 02f8 07       		.uleb128 0x7
+ 777 02f9 38080000 		.4byte	.LASF61
+ 778 02fd 05       		.byte	0x5
+ 779 02fe 2002     		.2byte	0x220
+ 780 0300 97000000 		.4byte	0x97
+ 781 0304 02       		.byte	0x2
+ 782 0305 08       		.uleb128 0x8
+ 783 0306 64697200 		.ascii	"dir\000"
+ 784 030a 05       		.byte	0x5
+ 785 030b 2102     		.2byte	0x221
+ 786 030d 97000000 		.4byte	0x97
+ 787 0311 03       		.byte	0x3
+ 788 0312 07       		.uleb128 0x7
+ 789 0313 1F070000 		.4byte	.LASF62
+ 790 0317 05       		.byte	0x5
+ 791 0318 2202     		.2byte	0x222
+ 792 031a 97000000 		.4byte	0x97
+ 793 031e 04       		.byte	0x4
+ 794 031f 07       		.uleb128 0x7
+ 795 0320 C5000000 		.4byte	.LASF63
+ 796 0324 05       		.byte	0x5
+ 797 0325 2302     		.2byte	0x223
+ 798 0327 97000000 		.4byte	0x97
+ 799 032b 05       		.byte	0x5
+ 800 032c 07       		.uleb128 0x7
+ 801 032d 66010000 		.4byte	.LASF64
+ 802 0331 05       		.byte	0x5
+ 803 0332 2402     		.2byte	0x224
+ 804 0334 97000000 		.4byte	0x97
+ 805 0338 06       		.byte	0x6
+ 806 0339 00       		.byte	0
+ 807 033a 02       		.uleb128 0x2
+ 808 033b D0070000 		.4byte	.LASF65
+ 809 033f 05       		.byte	0x5
+ 810 0340 A5       		.byte	0xa5
+ 811 0341 45030000 		.4byte	0x345
+ 812 0345 06       		.uleb128 0x6
+ 813 0346 B0040000 		.4byte	.LASF66
+ 814 034a 04       		.byte	0x4
+ 815 034b 05       		.byte	0x5
+ 816 034c 3102     		.2byte	0x231
+ 817 034e 83030000 		.4byte	0x383
+ 818 0352 08       		.uleb128 0x8
+ 819 0353 783000   		.ascii	"x0\000"
+ 820 0356 05       		.byte	0x5
+ 821 0357 3302     		.2byte	0x233
+ 822 0359 83030000 		.4byte	0x383
+ 823 035d 00       		.byte	0
+ 824 035e 08       		.uleb128 0x8
+ 825 035f 793000   		.ascii	"y0\000"
+ 826 0362 05       		.byte	0x5
+ 827 0363 3302     		.2byte	0x233
+ 828 0365 83030000 		.4byte	0x383
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 18
+
+
+ 829 0369 01       		.byte	0x1
+ 830 036a 08       		.uleb128 0x8
+ 831 036b 783100   		.ascii	"x1\000"
+ 832 036e 05       		.byte	0x5
+ 833 036f 3302     		.2byte	0x233
+ 834 0371 83030000 		.4byte	0x383
+ 835 0375 02       		.byte	0x2
+ 836 0376 08       		.uleb128 0x8
+ 837 0377 793100   		.ascii	"y1\000"
+ 838 037a 05       		.byte	0x5
+ 839 037b 3302     		.2byte	0x233
+ 840 037d 83030000 		.4byte	0x383
+ 841 0381 03       		.byte	0x3
+ 842 0382 00       		.byte	0
+ 843 0383 02       		.uleb128 0x2
+ 844 0384 A5040000 		.4byte	.LASF67
+ 845 0388 05       		.byte	0x5
+ 846 0389 AF       		.byte	0xaf
+ 847 038a 97000000 		.4byte	0x97
+ 848 038e 02       		.uleb128 0x2
+ 849 038f 1E030000 		.4byte	.LASF68
+ 850 0393 05       		.byte	0x5
+ 851 0394 C7       		.byte	0xc7
+ 852 0395 99030000 		.4byte	0x399
+ 853 0399 0B       		.uleb128 0xb
+ 854 039a 04       		.byte	0x4
+ 855 039b 9F030000 		.4byte	0x39f
+ 856 039f 0C       		.uleb128 0xc
+ 857 03a0 97000000 		.4byte	0x97
+ 858 03a4 BD030000 		.4byte	0x3bd
+ 859 03a8 0D       		.uleb128 0xd
+ 860 03a9 BD030000 		.4byte	0x3bd
+ 861 03ad 0D       		.uleb128 0xd
+ 862 03ae C3030000 		.4byte	0x3c3
+ 863 03b2 0D       		.uleb128 0xd
+ 864 03b3 97000000 		.4byte	0x97
+ 865 03b7 0D       		.uleb128 0xd
+ 866 03b8 16010000 		.4byte	0x116
+ 867 03bc 00       		.byte	0
+ 868 03bd 0B       		.uleb128 0xb
+ 869 03be 04       		.byte	0x4
+ 870 03bf 23010000 		.4byte	0x123
+ 871 03c3 0B       		.uleb128 0xb
+ 872 03c4 04       		.byte	0x4
+ 873 03c5 8E020000 		.4byte	0x28e
+ 874 03c9 02       		.uleb128 0x2
+ 875 03ca 3D030000 		.4byte	.LASF69
+ 876 03ce 05       		.byte	0x5
+ 877 03cf CA       		.byte	0xca
+ 878 03d0 D4030000 		.4byte	0x3d4
+ 879 03d4 0B       		.uleb128 0xb
+ 880 03d5 04       		.byte	0x4
+ 881 03d6 DA030000 		.4byte	0x3da
+ 882 03da 0C       		.uleb128 0xc
+ 883 03db 97000000 		.4byte	0x97
+ 884 03df F8030000 		.4byte	0x3f8
+ 885 03e3 0D       		.uleb128 0xd
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 19
+
+
+ 886 03e4 BD030000 		.4byte	0x3bd
+ 887 03e8 0D       		.uleb128 0xd
+ 888 03e9 97000000 		.4byte	0x97
+ 889 03ed 0D       		.uleb128 0xd
+ 890 03ee 97000000 		.4byte	0x97
+ 891 03f2 0D       		.uleb128 0xd
+ 892 03f3 16010000 		.4byte	0x116
+ 893 03f7 00       		.byte	0
+ 894 03f8 0E       		.uleb128 0xe
+ 895 03f9 A7090000 		.4byte	.LASF70
+ 896 03fd 05       		.byte	0x5
+ 897 03fe 0D04     		.2byte	0x40d
+ 898 0400 04040000 		.4byte	0x404
+ 899 0404 0B       		.uleb128 0xb
+ 900 0405 04       		.byte	0x4
+ 901 0406 0A040000 		.4byte	0x40a
+ 902 040a 0F       		.uleb128 0xf
+ 903 040b 15040000 		.4byte	0x415
+ 904 040f 0D       		.uleb128 0xd
+ 905 0410 BD030000 		.4byte	0x3bd
+ 906 0414 00       		.byte	0
+ 907 0415 0E       		.uleb128 0xe
+ 908 0416 8F080000 		.4byte	.LASF71
+ 909 041a 05       		.byte	0x5
+ 910 041b 1004     		.2byte	0x410
+ 911 041d 21040000 		.4byte	0x421
+ 912 0421 0B       		.uleb128 0xb
+ 913 0422 04       		.byte	0x4
+ 914 0423 27040000 		.4byte	0x427
+ 915 0427 0C       		.uleb128 0xc
+ 916 0428 83030000 		.4byte	0x383
+ 917 042c 36040000 		.4byte	0x436
+ 918 0430 0D       		.uleb128 0xd
+ 919 0431 BD030000 		.4byte	0x3bd
+ 920 0435 00       		.byte	0
+ 921 0436 0E       		.uleb128 0xe
+ 922 0437 35050000 		.4byte	.LASF72
+ 923 043b 05       		.byte	0x5
+ 924 043c 1304     		.2byte	0x413
+ 925 043e 42040000 		.4byte	0x442
+ 926 0442 0B       		.uleb128 0xb
+ 927 0443 04       		.byte	0x4
+ 928 0444 48040000 		.4byte	0x448
+ 929 0448 0F       		.uleb128 0xf
+ 930 0449 53040000 		.4byte	0x453
+ 931 044d 0D       		.uleb128 0xd
+ 932 044e 97000000 		.4byte	0x97
+ 933 0452 00       		.byte	0
+ 934 0453 0B       		.uleb128 0xb
+ 935 0454 04       		.byte	0x4
+ 936 0455 59040000 		.4byte	0x459
+ 937 0459 10       		.uleb128 0x10
+ 938 045a 18010000 		.4byte	0x118
+ 939 045e 11       		.uleb128 0x11
+ 940 045f AA010000 		.4byte	.LASF188
+ 941 0463 01       		.byte	0x1
+ 942 0464 07       		.byte	0x7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 20
+
+
+ 943 0465 05       		.byte	0x5
+ 944 0466 DD040000 		.4byte	0x4dd
+ 945 046a 12       		.uleb128 0x12
+ 946 046b 02090000 		.4byte	.LASF73
+ 947 046f 00       		.sleb128 0
+ 948 0470 12       		.uleb128 0x12
+ 949 0471 E5030000 		.4byte	.LASF74
+ 950 0475 01       		.sleb128 1
+ 951 0476 12       		.uleb128 0x12
+ 952 0477 BA090000 		.4byte	.LASF75
+ 953 047b 02       		.sleb128 2
+ 954 047c 12       		.uleb128 0x12
+ 955 047d ED010000 		.4byte	.LASF76
+ 956 0481 03       		.sleb128 3
+ 957 0482 12       		.uleb128 0x12
+ 958 0483 7C060000 		.4byte	.LASF77
+ 959 0487 04       		.sleb128 4
+ 960 0488 12       		.uleb128 0x12
+ 961 0489 16080000 		.4byte	.LASF78
+ 962 048d 05       		.sleb128 5
+ 963 048e 12       		.uleb128 0x12
+ 964 048f 49090000 		.4byte	.LASF79
+ 965 0493 06       		.sleb128 6
+ 966 0494 12       		.uleb128 0x12
+ 967 0495 45070000 		.4byte	.LASF80
+ 968 0499 07       		.sleb128 7
+ 969 049a 12       		.uleb128 0x12
+ 970 049b ED050000 		.4byte	.LASF81
+ 971 049f 08       		.sleb128 8
+ 972 04a0 12       		.uleb128 0x12
+ 973 04a1 A8080000 		.4byte	.LASF82
+ 974 04a5 09       		.sleb128 9
+ 975 04a6 12       		.uleb128 0x12
+ 976 04a7 F9050000 		.4byte	.LASF83
+ 977 04ab 0A       		.sleb128 10
+ 978 04ac 12       		.uleb128 0x12
+ 979 04ad 4B030000 		.4byte	.LASF84
+ 980 04b1 0B       		.sleb128 11
+ 981 04b2 12       		.uleb128 0x12
+ 982 04b3 2A010000 		.4byte	.LASF85
+ 983 04b7 0C       		.sleb128 12
+ 984 04b8 12       		.uleb128 0x12
+ 985 04b9 1C000000 		.4byte	.LASF86
+ 986 04bd 0D       		.sleb128 13
+ 987 04be 12       		.uleb128 0x12
+ 988 04bf 21010000 		.4byte	.LASF87
+ 989 04c3 0E       		.sleb128 14
+ 990 04c4 12       		.uleb128 0x12
+ 991 04c5 F7000000 		.4byte	.LASF88
+ 992 04c9 0F       		.sleb128 15
+ 993 04ca 12       		.uleb128 0x12
+ 994 04cb 3E080000 		.4byte	.LASF89
+ 995 04cf 10       		.sleb128 16
+ 996 04d0 12       		.uleb128 0x12
+ 997 04d1 39060000 		.4byte	.LASF90
+ 998 04d5 11       		.sleb128 17
+ 999 04d6 12       		.uleb128 0x12
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 21
+
+
+ 1000 04d7 C7060000 		.4byte	.LASF91
+ 1001 04db 12       		.sleb128 18
+ 1002 04dc 00       		.byte	0
+ 1003 04dd 13       		.uleb128 0x13
+ 1004 04de 2E090000 		.4byte	.LASF92
+ 1005 04e2 01       		.byte	0x1
+ 1006 04e3 1B       		.byte	0x1b
+ 1007 04e4 7E000000 		.4byte	0x7e
+ 1008 04e8 00000000 		.4byte	.LFB63
+ 1009 04ec 54010000 		.4byte	.LFE63-.LFB63
+ 1010 04f0 01       		.uleb128 0x1
+ 1011 04f1 9C       		.byte	0x9c
+ 1012 04f2 14       		.uleb128 0x14
+ 1013 04f3 68070000 		.4byte	.LASF93
+ 1014 04f7 01       		.byte	0x1
+ 1015 04f8 63       		.byte	0x63
+ 1016 04f9 00000000 		.4byte	.LFB64
+ 1017 04fd A8000000 		.4byte	.LFE64-.LFB64
+ 1018 0501 01       		.uleb128 0x1
+ 1019 0502 9C       		.byte	0x9c
+ 1020 0503 15       		.uleb128 0x15
+ 1021 0504 BA060000 		.4byte	.LASF94
+ 1022 0508 06       		.byte	0x6
+ 1023 0509 2A06     		.2byte	0x62a
+ 1024 050b 0F050000 		.4byte	0x50f
+ 1025 050f 16       		.uleb128 0x16
+ 1026 0510 A2000000 		.4byte	0xa2
+ 1027 0514 15       		.uleb128 0x15
+ 1028 0515 67090000 		.4byte	.LASF95
+ 1029 0519 05       		.byte	0x5
+ 1030 051a 0301     		.2byte	0x103
+ 1031 051c 8E020000 		.4byte	0x28e
+ 1032 0520 17       		.uleb128 0x17
+ 1033 0521 72010000 		.4byte	.LASF96
+ 1034 0525 07       		.byte	0x7
+ 1035 0526 09       		.byte	0x9
+ 1036 0527 5E040000 		.4byte	0x45e
+ 1037 052b 05       		.uleb128 0x5
+ 1038 052c 03       		.byte	0x3
+ 1039 052d 00000000 		.4byte	Current_State
+ 1040 0531 17       		.uleb128 0x17
+ 1041 0532 BD020000 		.4byte	.LASF97
+ 1042 0536 07       		.byte	0x7
+ 1043 0537 0A       		.byte	0xa
+ 1044 0538 5E040000 		.4byte	0x45e
+ 1045 053c 05       		.uleb128 0x5
+ 1046 053d 03       		.byte	0x3
+ 1047 053e 00000000 		.4byte	Previous_State
+ 1048 0542 17       		.uleb128 0x17
+ 1049 0543 80010000 		.4byte	.LASF98
+ 1050 0547 07       		.byte	0x7
+ 1051 0548 0C       		.byte	0xc
+ 1052 0549 AD000000 		.4byte	0xad
+ 1053 054d 05       		.uleb128 0x5
+ 1054 054e 03       		.byte	0x3
+ 1055 054f 00000000 		.4byte	Sound_Enable
+ 1056 0553 17       		.uleb128 0x17
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 22
+
+
+ 1057 0554 1F040000 		.4byte	.LASF99
+ 1058 0558 07       		.byte	0x7
+ 1059 0559 0E       		.byte	0xe
+ 1060 055a AD000000 		.4byte	0xad
+ 1061 055e 05       		.uleb128 0x5
+ 1062 055f 03       		.byte	0x3
+ 1063 0560 00000000 		.4byte	Current_Menu_Position
+ 1064 0564 17       		.uleb128 0x17
+ 1065 0565 EC080000 		.4byte	.LASF100
+ 1066 0569 07       		.byte	0x7
+ 1067 056a 11       		.byte	0x11
+ 1068 056b AD000000 		.4byte	0xad
+ 1069 056f 05       		.uleb128 0x5
+ 1070 0570 03       		.byte	0x3
+ 1071 0571 00000000 		.4byte	CurrentBacklightValue
+ 1072 0575 18       		.uleb128 0x18
+ 1073 0576 FD000000 		.4byte	0xfd
+ 1074 057a 85050000 		.4byte	0x585
+ 1075 057e 19       		.uleb128 0x19
+ 1076 057f 0F010000 		.4byte	0x10f
+ 1077 0583 07       		.byte	0x7
+ 1078 0584 00       		.byte	0
+ 1079 0585 17       		.uleb128 0x17
+ 1080 0586 C4010000 		.4byte	.LASF101
+ 1081 058a 07       		.byte	0x7
+ 1082 058b 12       		.byte	0x12
+ 1083 058c 75050000 		.4byte	0x575
+ 1084 0590 05       		.uleb128 0x5
+ 1085 0591 03       		.byte	0x3
+ 1086 0592 00000000 		.4byte	CurrentBacklightValueString
+ 1087 0596 17       		.uleb128 0x17
+ 1088 0597 72020000 		.4byte	.LASF102
+ 1089 059b 07       		.byte	0x7
+ 1090 059c 14       		.byte	0x14
+ 1091 059d AD000000 		.4byte	0xad
+ 1092 05a1 05       		.uleb128 0x5
+ 1093 05a2 03       		.byte	0x3
+ 1094 05a3 00000000 		.4byte	CurrentVolumeValue
+ 1095 05a7 17       		.uleb128 0x17
+ 1096 05a8 8C040000 		.4byte	.LASF103
+ 1097 05ac 07       		.byte	0x7
+ 1098 05ad 15       		.byte	0x15
+ 1099 05ae 75050000 		.4byte	0x575
+ 1100 05b2 05       		.uleb128 0x5
+ 1101 05b3 03       		.byte	0x3
+ 1102 05b4 00000000 		.4byte	CurrentVolumeValueString
+ 1103 05b8 17       		.uleb128 0x17
+ 1104 05b9 5E000000 		.4byte	.LASF104
+ 1105 05bd 07       		.byte	0x7
+ 1106 05be 17       		.byte	0x17
+ 1107 05bf EF000000 		.4byte	0xef
+ 1108 05c3 05       		.uleb128 0x5
+ 1109 05c4 03       		.byte	0x3
+ 1110 05c5 00000000 		.4byte	Current_Calibration_Range1
+ 1111 05c9 17       		.uleb128 0x17
+ 1112 05ca 79000000 		.4byte	.LASF105
+ 1113 05ce 07       		.byte	0x7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 23
+
+
+ 1114 05cf 18       		.byte	0x18
+ 1115 05d0 EF000000 		.4byte	0xef
+ 1116 05d4 05       		.uleb128 0x5
+ 1117 05d5 03       		.byte	0x3
+ 1118 05d6 00000000 		.4byte	Current_Calibration_Range2
+ 1119 05da 17       		.uleb128 0x17
+ 1120 05db 94000000 		.4byte	.LASF106
+ 1121 05df 07       		.byte	0x7
+ 1122 05e0 19       		.byte	0x19
+ 1123 05e1 EF000000 		.4byte	0xef
+ 1124 05e5 05       		.uleb128 0x5
+ 1125 05e6 03       		.byte	0x3
+ 1126 05e7 00000000 		.4byte	Current_Calibration_Range3
+ 1127 05eb 17       		.uleb128 0x17
+ 1128 05ec 10010000 		.4byte	.LASF107
+ 1129 05f0 07       		.byte	0x7
+ 1130 05f1 1B       		.byte	0x1b
+ 1131 05f2 AD000000 		.4byte	0xad
+ 1132 05f6 05       		.uleb128 0x5
+ 1133 05f7 03       		.byte	0x3
+ 1134 05f8 00000000 		.4byte	LEM_Offset_Value
+ 1135 05fc 17       		.uleb128 0x17
+ 1136 05fd C7090000 		.4byte	.LASF108
+ 1137 0601 07       		.byte	0x7
+ 1138 0602 1D       		.byte	0x1d
+ 1139 0603 EF000000 		.4byte	0xef
+ 1140 0607 05       		.uleb128 0x5
+ 1141 0608 03       		.byte	0x3
+ 1142 0609 00000000 		.4byte	Two_Wire_Range
+ 1143 060d 17       		.uleb128 0x17
+ 1144 060e EE090000 		.4byte	.LASF109
+ 1145 0612 07       		.byte	0x7
+ 1146 0613 1E       		.byte	0x1e
+ 1147 0614 EF000000 		.4byte	0xef
+ 1148 0618 05       		.uleb128 0x5
+ 1149 0619 03       		.byte	0x3
+ 1150 061a 00000000 		.4byte	Four_Wire_Range
+ 1151 061e 17       		.uleb128 0x17
+ 1152 061f EC070000 		.4byte	.LASF110
+ 1153 0623 07       		.byte	0x7
+ 1154 0624 1F       		.byte	0x1f
+ 1155 0625 AD000000 		.4byte	0xad
+ 1156 0629 05       		.uleb128 0x5
+ 1157 062a 03       		.byte	0x3
+ 1158 062b 00000000 		.4byte	Four_Wire_Method
+ 1159 062f 17       		.uleb128 0x17
+ 1160 0630 5B070000 		.4byte	.LASF111
+ 1161 0634 07       		.byte	0x7
+ 1162 0635 21       		.byte	0x21
+ 1163 0636 AD000000 		.4byte	0xad
+ 1164 063a 05       		.uleb128 0x5
+ 1165 063b 03       		.byte	0x3
+ 1166 063c 00000000 		.4byte	Actual_Range
+ 1167 0640 17       		.uleb128 0x17
+ 1168 0641 36020000 		.4byte	.LASF112
+ 1169 0645 07       		.byte	0x7
+ 1170 0646 22       		.byte	0x22
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 24
+
+
+ 1171 0647 AD000000 		.4byte	0xad
+ 1172 064b 05       		.uleb128 0x5
+ 1173 064c 03       		.byte	0x3
+ 1174 064d 00000000 		.4byte	View_Mode
+ 1175 0651 17       		.uleb128 0x17
+ 1176 0652 D9040000 		.4byte	.LASF113
+ 1177 0656 07       		.byte	0x7
+ 1178 0657 25       		.byte	0x25
+ 1179 0658 B8000000 		.4byte	0xb8
+ 1180 065c 05       		.uleb128 0x5
+ 1181 065d 03       		.byte	0x3
+ 1182 065e 00000000 		.4byte	qdCount
+ 1183 0662 17       		.uleb128 0x17
+ 1184 0663 E0010000 		.4byte	.LASF114
+ 1185 0667 07       		.byte	0x7
+ 1186 0668 26       		.byte	0x26
+ 1187 0669 B8000000 		.4byte	0xb8
+ 1188 066d 05       		.uleb128 0x5
+ 1189 066e 03       		.byte	0x3
+ 1190 066f 00000000 		.4byte	Last_qdCount
+ 1191 0673 17       		.uleb128 0x17
+ 1192 0674 25070000 		.4byte	.LASF115
+ 1193 0678 07       		.byte	0x7
+ 1194 0679 28       		.byte	0x28
+ 1195 067a AD000000 		.4byte	0xad
+ 1196 067e 05       		.uleb128 0x5
+ 1197 067f 03       		.byte	0x3
+ 1198 0680 00000000 		.4byte	button1
+ 1199 0684 17       		.uleb128 0x17
+ 1200 0685 2D070000 		.4byte	.LASF116
+ 1201 0689 07       		.byte	0x7
+ 1202 068a 28       		.byte	0x28
+ 1203 068b AD000000 		.4byte	0xad
+ 1204 068f 05       		.uleb128 0x5
+ 1205 0690 03       		.byte	0x3
+ 1206 0691 00000000 		.4byte	button2
+ 1207 0695 17       		.uleb128 0x17
+ 1208 0696 03050000 		.4byte	.LASF117
+ 1209 069a 07       		.byte	0x7
+ 1210 069b 28       		.byte	0x28
+ 1211 069c AD000000 		.4byte	0xad
+ 1212 06a0 05       		.uleb128 0x5
+ 1213 06a1 03       		.byte	0x3
+ 1214 06a2 00000000 		.4byte	button3
+ 1215 06a6 17       		.uleb128 0x17
+ 1216 06a7 0B050000 		.4byte	.LASF118
+ 1217 06ab 07       		.byte	0x7
+ 1218 06ac 28       		.byte	0x28
+ 1219 06ad AD000000 		.4byte	0xad
+ 1220 06b1 05       		.uleb128 0x5
+ 1221 06b2 03       		.byte	0x3
+ 1222 06b3 00000000 		.4byte	button4
+ 1223 06b7 17       		.uleb128 0x17
+ 1224 06b8 53070000 		.4byte	.LASF119
+ 1225 06bc 07       		.byte	0x7
+ 1226 06bd 28       		.byte	0x28
+ 1227 06be AD000000 		.4byte	0xad
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 25
+
+
+ 1228 06c2 05       		.uleb128 0x5
+ 1229 06c3 03       		.byte	0x3
+ 1230 06c4 00000000 		.4byte	button5
+ 1231 06c8 17       		.uleb128 0x17
+ 1232 06c9 2D050000 		.4byte	.LASF120
+ 1233 06cd 07       		.byte	0x7
+ 1234 06ce 28       		.byte	0x28
+ 1235 06cf AD000000 		.4byte	0xad
+ 1236 06d3 05       		.uleb128 0x5
+ 1237 06d4 03       		.byte	0x3
+ 1238 06d5 00000000 		.4byte	button6
+ 1239 06d9 17       		.uleb128 0x17
+ 1240 06da B8020000 		.4byte	.LASF121
+ 1241 06de 07       		.byte	0x7
+ 1242 06df 28       		.byte	0x28
+ 1243 06e0 AD000000 		.4byte	0xad
+ 1244 06e4 05       		.uleb128 0x5
+ 1245 06e5 03       		.byte	0x3
+ 1246 06e6 00000000 		.4byte	push
+ 1247 06ea 17       		.uleb128 0x17
+ 1248 06eb C7080000 		.4byte	.LASF122
+ 1249 06ef 07       		.byte	0x7
+ 1250 06f0 2A       		.byte	0x2a
+ 1251 06f1 AD000000 		.4byte	0xad
+ 1252 06f5 05       		.uleb128 0x5
+ 1253 06f6 03       		.byte	0x3
+ 1254 06f7 00000000 		.4byte	OutputEnable
+ 1255 06fb 1A       		.uleb128 0x1a
+ 1256 06fc 75386700 		.ascii	"u8g\000"
+ 1257 0700 07       		.byte	0x7
+ 1258 0701 2C       		.byte	0x2c
+ 1259 0702 23010000 		.4byte	0x123
+ 1260 0706 05       		.uleb128 0x5
+ 1261 0707 03       		.byte	0x3
+ 1262 0708 00000000 		.4byte	u8g
+ 1263 070c 17       		.uleb128 0x17
+ 1264 070d FE090000 		.4byte	.LASF123
+ 1265 0711 07       		.byte	0x7
+ 1266 0712 2E       		.byte	0x2e
+ 1267 0713 C3000000 		.4byte	0xc3
+ 1268 0717 05       		.uleb128 0x5
+ 1269 0718 03       		.byte	0x3
+ 1270 0719 00000000 		.4byte	Push_Buzzer__Default_Lenght
+ 1271 071d 17       		.uleb128 0x17
+ 1272 071e E1060000 		.4byte	.LASF124
+ 1273 0722 07       		.byte	0x7
+ 1274 0723 2F       		.byte	0x2f
+ 1275 0724 C3000000 		.4byte	0xc3
+ 1276 0728 05       		.uleb128 0x5
+ 1277 0729 03       		.byte	0x3
+ 1278 072a 00000000 		.4byte	Rotate_Buzzer__Default_Lenght
+ 1279 072e 17       		.uleb128 0x17
+ 1280 072f 2D000000 		.4byte	.LASF125
+ 1281 0733 07       		.byte	0x7
+ 1282 0734 3C       		.byte	0x3c
+ 1283 0735 AD000000 		.4byte	0xad
+ 1284 0739 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 26
+
+
+ 1285 073a 03       		.byte	0x3
+ 1286 073b 00000000 		.4byte	Edit_Value_Mode
+ 1287 073f 18       		.uleb128 0x18
+ 1288 0740 FD000000 		.4byte	0xfd
+ 1289 0744 4F070000 		.4byte	0x74f
+ 1290 0748 19       		.uleb128 0x19
+ 1291 0749 0F010000 		.4byte	0x10f
+ 1292 074d 0F       		.byte	0xf
+ 1293 074e 00       		.byte	0
+ 1294 074f 17       		.uleb128 0x17
+ 1295 0750 CE000000 		.4byte	.LASF126
+ 1296 0754 07       		.byte	0x7
+ 1297 0755 3E       		.byte	0x3e
+ 1298 0756 3F070000 		.4byte	0x73f
+ 1299 075a 05       		.uleb128 0x5
+ 1300 075b 03       		.byte	0x3
+ 1301 075c 00000000 		.4byte	cVoltage_Actual
+ 1302 0760 17       		.uleb128 0x17
+ 1303 0761 8D010000 		.4byte	.LASF127
+ 1304 0765 07       		.byte	0x7
+ 1305 0766 3F       		.byte	0x3f
+ 1306 0767 3F070000 		.4byte	0x73f
+ 1307 076b 05       		.uleb128 0x5
+ 1308 076c 03       		.byte	0x3
+ 1309 076d 00000000 		.4byte	cCurrent_Actual
+ 1310 0771 17       		.uleb128 0x17
+ 1311 0772 7F030000 		.4byte	.LASF128
+ 1312 0776 07       		.byte	0x7
+ 1313 0777 40       		.byte	0x40
+ 1314 0778 3F070000 		.4byte	0x73f
+ 1315 077c 05       		.uleb128 0x5
+ 1316 077d 03       		.byte	0x3
+ 1317 077e 00000000 		.4byte	cPower_Actual
+ 1318 0782 18       		.uleb128 0x18
+ 1319 0783 08010000 		.4byte	0x108
+ 1320 0787 92070000 		.4byte	0x792
+ 1321 078b 19       		.uleb128 0x19
+ 1322 078c 0F010000 		.4byte	0x10f
+ 1323 0790 0F       		.byte	0xf
+ 1324 0791 00       		.byte	0
+ 1325 0792 17       		.uleb128 0x17
+ 1326 0793 54030000 		.4byte	.LASF129
+ 1327 0797 07       		.byte	0x7
+ 1328 0798 41       		.byte	0x41
+ 1329 0799 82070000 		.4byte	0x782
+ 1330 079d 05       		.uleb128 0x5
+ 1331 079e 03       		.byte	0x3
+ 1332 079f 00000000 		.4byte	cResist_Actual
+ 1333 07a3 17       		.uleb128 0x17
+ 1334 07a4 50020000 		.4byte	.LASF130
+ 1335 07a8 07       		.byte	0x7
+ 1336 07a9 43       		.byte	0x43
+ 1337 07aa 3F070000 		.4byte	0x73f
+ 1338 07ae 05       		.uleb128 0x5
+ 1339 07af 03       		.byte	0x3
+ 1340 07b0 00000000 		.4byte	cVoltage_Set
+ 1341 07b4 17       		.uleb128 0x17
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 27
+
+
+ 1342 07b5 9D010000 		.4byte	.LASF131
+ 1343 07b9 07       		.byte	0x7
+ 1344 07ba 44       		.byte	0x44
+ 1345 07bb 3F070000 		.4byte	0x73f
+ 1346 07bf 05       		.uleb128 0x5
+ 1347 07c0 03       		.byte	0x3
+ 1348 07c1 00000000 		.4byte	cCurrent_Set
+ 1349 07c5 17       		.uleb128 0x17
+ 1350 07c6 8B020000 		.4byte	.LASF132
+ 1351 07ca 07       		.byte	0x7
+ 1352 07cb 45       		.byte	0x45
+ 1353 07cc 3F070000 		.4byte	0x73f
+ 1354 07d0 05       		.uleb128 0x5
+ 1355 07d1 03       		.byte	0x3
+ 1356 07d2 00000000 		.4byte	cPower_Set
+ 1357 07d6 17       		.uleb128 0x17
+ 1358 07d7 10000000 		.4byte	.LASF133
+ 1359 07db 07       		.byte	0x7
+ 1360 07dc 46       		.byte	0x46
+ 1361 07dd 3F070000 		.4byte	0x73f
+ 1362 07e1 05       		.uleb128 0x5
+ 1363 07e2 03       		.byte	0x3
+ 1364 07e3 00000000 		.4byte	cResist_Set
+ 1365 07e7 17       		.uleb128 0x17
+ 1366 07e8 62080000 		.4byte	.LASF134
+ 1367 07ec 07       		.byte	0x7
+ 1368 07ed 48       		.byte	0x48
+ 1369 07ee 3F070000 		.4byte	0x73f
+ 1370 07f2 05       		.uleb128 0x5
+ 1371 07f3 03       		.byte	0x3
+ 1372 07f4 00000000 		.4byte	TestChar
+ 1373 07f8 17       		.uleb128 0x17
+ 1374 07f9 AE020000 		.4byte	.LASF135
+ 1375 07fd 07       		.byte	0x7
+ 1376 07fe 4C       		.byte	0x4c
+ 1377 07ff D9000000 		.4byte	0xd9
+ 1378 0803 05       		.uleb128 0x5
+ 1379 0804 03       		.byte	0x3
+ 1380 0805 00000000 		.4byte	XPosition
+ 1381 0809 17       		.uleb128 0x17
+ 1382 080a 85090000 		.4byte	.LASF136
+ 1383 080e 07       		.byte	0x7
+ 1384 080f 4D       		.byte	0x4d
+ 1385 0810 3F070000 		.4byte	0x73f
+ 1386 0814 05       		.uleb128 0x5
+ 1387 0815 03       		.byte	0x3
+ 1388 0816 00000000 		.4byte	cXPosition
+ 1389 081a 17       		.uleb128 0x17
+ 1390 081b EE040000 		.4byte	.LASF137
+ 1391 081f 07       		.byte	0x7
+ 1392 0820 4E       		.byte	0x4e
+ 1393 0821 D9000000 		.4byte	0xd9
+ 1394 0825 05       		.uleb128 0x5
+ 1395 0826 03       		.byte	0x3
+ 1396 0827 00000000 		.4byte	YPosition
+ 1397 082b 17       		.uleb128 0x17
+ 1398 082c F3030000 		.4byte	.LASF138
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 28
+
+
+ 1399 0830 07       		.byte	0x7
+ 1400 0831 4F       		.byte	0x4f
+ 1401 0832 3F070000 		.4byte	0x73f
+ 1402 0836 05       		.uleb128 0x5
+ 1403 0837 03       		.byte	0x3
+ 1404 0838 00000000 		.4byte	cYPosition
+ 1405 083c 17       		.uleb128 0x17
+ 1406 083d 5A080000 		.4byte	.LASF139
+ 1407 0841 07       		.byte	0x7
+ 1408 0842 50       		.byte	0x50
+ 1409 0843 AD000000 		.4byte	0xad
+ 1410 0847 05       		.uleb128 0x5
+ 1411 0848 03       		.byte	0x3
+ 1412 0849 00000000 		.4byte	Touched
+ 1413 084d 17       		.uleb128 0x17
+ 1414 084e FF060000 		.4byte	.LASF140
+ 1415 0852 07       		.byte	0x7
+ 1416 0853 52       		.byte	0x52
+ 1417 0854 B8000000 		.4byte	0xb8
+ 1418 0858 05       		.uleb128 0x5
+ 1419 0859 03       		.byte	0x3
+ 1420 085a 00000000 		.4byte	MeasuredVoltage
+ 1421 085e 17       		.uleb128 0x17
+ 1422 085f FA020000 		.4byte	.LASF141
+ 1423 0863 07       		.byte	0x7
+ 1424 0864 53       		.byte	0x53
+ 1425 0865 EF000000 		.4byte	0xef
+ 1426 0869 05       		.uleb128 0x5
+ 1427 086a 03       		.byte	0x3
+ 1428 086b 00000000 		.4byte	fVoltage
+ 1429 086f 17       		.uleb128 0x17
+ 1430 0870 1D050000 		.4byte	.LASF142
+ 1431 0874 07       		.byte	0x7
+ 1432 0875 54       		.byte	0x54
+ 1433 0876 D9000000 		.4byte	0xd9
+ 1434 087a 05       		.uleb128 0x5
+ 1435 087b 03       		.byte	0x3
+ 1436 087c 00000000 		.4byte	MeasuredCurrent
+ 1437 0880 17       		.uleb128 0x17
+ 1438 0881 AF000000 		.4byte	.LASF143
+ 1439 0885 07       		.byte	0x7
+ 1440 0886 55       		.byte	0x55
+ 1441 0887 EF000000 		.4byte	0xef
+ 1442 088b 05       		.uleb128 0x5
+ 1443 088c 03       		.byte	0x3
+ 1444 088d 00000000 		.4byte	fCurrent
+ 1445 0891 17       		.uleb128 0x17
+ 1446 0892 4D000000 		.4byte	.LASF144
+ 1447 0896 07       		.byte	0x7
+ 1448 0897 56       		.byte	0x56
+ 1449 0898 D9000000 		.4byte	0xd9
+ 1450 089c 05       		.uleb128 0x5
+ 1451 089d 03       		.byte	0x3
+ 1452 089e 00000000 		.4byte	Power
+ 1453 08a2 17       		.uleb128 0x17
+ 1454 08a3 A7030000 		.4byte	.LASF145
+ 1455 08a7 07       		.byte	0x7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 29
+
+
+ 1456 08a8 57       		.byte	0x57
+ 1457 08a9 EF000000 		.4byte	0xef
+ 1458 08ad 05       		.uleb128 0x5
+ 1459 08ae 03       		.byte	0x3
+ 1460 08af 00000000 		.4byte	fPower
+ 1461 08b3 17       		.uleb128 0x17
+ 1462 08b4 0C060000 		.4byte	.LASF146
+ 1463 08b8 07       		.byte	0x7
+ 1464 08b9 58       		.byte	0x58
+ 1465 08ba D9000000 		.4byte	0xd9
+ 1466 08be 05       		.uleb128 0x5
+ 1467 08bf 03       		.byte	0x3
+ 1468 08c0 00000000 		.4byte	Resist
+ 1469 08c4 17       		.uleb128 0x17
+ 1470 08c5 84040000 		.4byte	.LASF147
+ 1471 08c9 07       		.byte	0x7
+ 1472 08ca 59       		.byte	0x59
+ 1473 08cb EF000000 		.4byte	0xef
+ 1474 08cf 05       		.uleb128 0x5
+ 1475 08d0 03       		.byte	0x3
+ 1476 08d1 00000000 		.4byte	fResist
+ 1477 08d5 17       		.uleb128 0x17
+ 1478 08d6 3D090000 		.4byte	.LASF148
+ 1479 08da 07       		.byte	0x7
+ 1480 08db 5C       		.byte	0x5c
+ 1481 08dc EF000000 		.4byte	0xef
+ 1482 08e0 05       		.uleb128 0x5
+ 1483 08e1 03       		.byte	0x3
+ 1484 08e2 00000000 		.4byte	Set_Voltage
+ 1485 08e6 17       		.uleb128 0x17
+ 1486 08e7 6B080000 		.4byte	.LASF149
+ 1487 08eb 07       		.byte	0x7
+ 1488 08ec 5D       		.byte	0x5d
+ 1489 08ed EF000000 		.4byte	0xef
+ 1490 08f1 05       		.uleb128 0x5
+ 1491 08f2 03       		.byte	0x3
+ 1492 08f3 00000000 		.4byte	Set_Current
+ 1493 08f7 17       		.uleb128 0x17
+ 1494 08f8 4C060000 		.4byte	.LASF150
+ 1495 08fc 07       		.byte	0x7
+ 1496 08fd 5E       		.byte	0x5e
+ 1497 08fe EF000000 		.4byte	0xef
+ 1498 0902 05       		.uleb128 0x5
+ 1499 0903 03       		.byte	0x3
+ 1500 0904 00000000 		.4byte	Set_Current_Temporary_Value
+ 1501 0908 17       		.uleb128 0x17
+ 1502 0909 85080000 		.4byte	.LASF151
+ 1503 090d 07       		.byte	0x7
+ 1504 090e 5F       		.byte	0x5f
+ 1505 090f EF000000 		.4byte	0xef
+ 1506 0913 05       		.uleb128 0x5
+ 1507 0914 03       		.byte	0x3
+ 1508 0915 00000000 		.4byte	Set_Power
+ 1509 0919 17       		.uleb128 0x17
+ 1510 091a 8D030000 		.4byte	.LASF152
+ 1511 091e 07       		.byte	0x7
+ 1512 091f 60       		.byte	0x60
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 30
+
+
+ 1513 0920 EF000000 		.4byte	0xef
+ 1514 0924 05       		.uleb128 0x5
+ 1515 0925 03       		.byte	0x3
+ 1516 0926 00000000 		.4byte	Set_Power_Temporary_Value
+ 1517 092a 17       		.uleb128 0x17
+ 1518 092b 53000000 		.4byte	.LASF153
+ 1519 092f 07       		.byte	0x7
+ 1520 0930 61       		.byte	0x61
+ 1521 0931 EF000000 		.4byte	0xef
+ 1522 0935 05       		.uleb128 0x5
+ 1523 0936 03       		.byte	0x3
+ 1524 0937 00000000 		.4byte	Set_Resist
+ 1525 093b 17       		.uleb128 0x17
+ 1526 093c 03030000 		.4byte	.LASF154
+ 1527 0940 07       		.byte	0x7
+ 1528 0941 62       		.byte	0x62
+ 1529 0942 EF000000 		.4byte	0xef
+ 1530 0946 05       		.uleb128 0x5
+ 1531 0947 03       		.byte	0x3
+ 1532 0948 00000000 		.4byte	Set_Resist_Temporary_Value
+ 1533 094c 17       		.uleb128 0x17
+ 1534 094d BB030000 		.4byte	.LASF155
+ 1535 0951 07       		.byte	0x7
+ 1536 0952 64       		.byte	0x64
+ 1537 0953 CE000000 		.4byte	0xce
+ 1538 0957 05       		.uleb128 0x5
+ 1539 0958 03       		.byte	0x3
+ 1540 0959 00000000 		.4byte	Position_Number
+ 1541 095d 17       		.uleb128 0x17
+ 1542 095e 63030000 		.4byte	.LASF156
+ 1543 0962 07       		.byte	0x7
+ 1544 0963 68       		.byte	0x68
+ 1545 0964 EF000000 		.4byte	0xef
+ 1546 0968 05       		.uleb128 0x5
+ 1547 0969 03       		.byte	0x3
+ 1548 096a 00000000 		.4byte	MaxPower
+ 1549 096e 17       		.uleb128 0x17
+ 1550 096f D6060000 		.4byte	.LASF157
+ 1551 0973 07       		.byte	0x7
+ 1552 0974 69       		.byte	0x69
+ 1553 0975 EF000000 		.4byte	0xef
+ 1554 0979 05       		.uleb128 0x5
+ 1555 097a 03       		.byte	0x3
+ 1556 097b 00000000 		.4byte	MaxVoltage
+ 1557 097f 17       		.uleb128 0x17
+ 1558 0980 F8040000 		.4byte	.LASF158
+ 1559 0984 07       		.byte	0x7
+ 1560 0985 6A       		.byte	0x6a
+ 1561 0986 EF000000 		.4byte	0xef
+ 1562 098a 05       		.uleb128 0x5
+ 1563 098b 03       		.byte	0x3
+ 1564 098c 00000000 		.4byte	MaxCurrent
+ 1565 0990 17       		.uleb128 0x17
+ 1566 0991 11040000 		.4byte	.LASF159
+ 1567 0995 07       		.byte	0x7
+ 1568 0996 6B       		.byte	0x6b
+ 1569 0997 EF000000 		.4byte	0xef
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 31
+
+
+ 1570 099b 05       		.uleb128 0x5
+ 1571 099c 03       		.byte	0x3
+ 1572 099d 00000000 		.4byte	MinResistance
+ 1573 09a1 17       		.uleb128 0x17
+ 1574 09a2 77080000 		.4byte	.LASF160
+ 1575 09a6 07       		.byte	0x7
+ 1576 09a7 6C       		.byte	0x6c
+ 1577 09a8 EF000000 		.4byte	0xef
+ 1578 09ac 05       		.uleb128 0x5
+ 1579 09ad 03       		.byte	0x3
+ 1580 09ae 00000000 		.4byte	MaxResistance
+ 1581 09b2 17       		.uleb128 0x17
+ 1582 09b3 38090000 		.4byte	.LASF161
+ 1583 09b7 07       		.byte	0x7
+ 1584 09b8 6D       		.byte	0x6d
+ 1585 09b9 EF000000 		.4byte	0xef
+ 1586 09bd 05       		.uleb128 0x5
+ 1587 09be 03       		.byte	0x3
+ 1588 09bf 00000000 		.4byte	C_Kp
+ 1589 09c3 17       		.uleb128 0x17
+ 1590 09c4 33090000 		.4byte	.LASF162
+ 1591 09c8 07       		.byte	0x7
+ 1592 09c9 6E       		.byte	0x6e
+ 1593 09ca EF000000 		.4byte	0xef
+ 1594 09ce 05       		.uleb128 0x5
+ 1595 09cf 03       		.byte	0x3
+ 1596 09d0 00000000 		.4byte	C_Ki
+ 1597 09d4 17       		.uleb128 0x17
+ 1598 09d5 29090000 		.4byte	.LASF163
+ 1599 09d9 07       		.byte	0x7
+ 1600 09da 6F       		.byte	0x6f
+ 1601 09db EF000000 		.4byte	0xef
+ 1602 09df 05       		.uleb128 0x5
+ 1603 09e0 03       		.byte	0x3
+ 1604 09e1 00000000 		.4byte	C_Kd
+ 1605 09e5 17       		.uleb128 0x17
+ 1606 09e6 E1040000 		.4byte	.LASF164
+ 1607 09ea 07       		.byte	0x7
+ 1608 09eb 70       		.byte	0x70
+ 1609 09ec CE000000 		.4byte	0xce
+ 1610 09f0 05       		.uleb128 0x5
+ 1611 09f1 03       		.byte	0x3
+ 1612 09f2 00000000 		.4byte	Max_FET_Temp
+ 1613 09f6 17       		.uleb128 0x17
+ 1614 09f7 9D070000 		.4byte	.LASF165
+ 1615 09fb 07       		.byte	0x7
+ 1616 09fc 71       		.byte	0x71
+ 1617 09fd AD000000 		.4byte	0xad
+ 1618 0a01 05       		.uleb128 0x5
+ 1619 0a02 03       		.byte	0x3
+ 1620 0a03 00000000 		.4byte	OverTemperature
+ 1621 0a07 17       		.uleb128 0x17
+ 1622 0a08 40020000 		.4byte	.LASF166
+ 1623 0a0c 07       		.byte	0x7
+ 1624 0a0d 74       		.byte	0x74
+ 1625 0a0e D9000000 		.4byte	0xd9
+ 1626 0a12 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 32
+
+
+ 1627 0a13 03       		.byte	0x3
+ 1628 0a14 00000000 		.4byte	Set_Ampl
+ 1629 0a18 17       		.uleb128 0x17
+ 1630 0a19 73070000 		.4byte	.LASF167
+ 1631 0a1d 07       		.byte	0x7
+ 1632 0a1e 75       		.byte	0x75
+ 1633 0a1f D9000000 		.4byte	0xd9
+ 1634 0a23 05       		.uleb128 0x5
+ 1635 0a24 03       		.byte	0x3
+ 1636 0a25 00000000 		.4byte	Set_Ampl_Temporary_Value
+ 1637 0a29 17       		.uleb128 0x17
+ 1638 0a2a EA030000 		.4byte	.LASF168
+ 1639 0a2e 07       		.byte	0x7
+ 1640 0a2f 76       		.byte	0x76
+ 1641 0a30 B8000000 		.4byte	0xb8
+ 1642 0a34 05       		.uleb128 0x5
+ 1643 0a35 03       		.byte	0x3
+ 1644 0a36 00000000 		.4byte	Set_Freq
+ 1645 0a3a 17       		.uleb128 0x17
+ 1646 0a3b 4D010000 		.4byte	.LASF169
+ 1647 0a3f 07       		.byte	0x7
+ 1648 0a40 77       		.byte	0x77
+ 1649 0a41 E4000000 		.4byte	0xe4
+ 1650 0a45 05       		.uleb128 0x5
+ 1651 0a46 03       		.byte	0x3
+ 1652 0a47 00000000 		.4byte	Set_Freq_Temporary_Value
+ 1653 0a4b 17       		.uleb128 0x17
+ 1654 0a4c 44040000 		.4byte	.LASF170
+ 1655 0a50 07       		.byte	0x7
+ 1656 0a51 78       		.byte	0x78
+ 1657 0a52 CE000000 		.4byte	0xce
+ 1658 0a56 05       		.uleb128 0x5
+ 1659 0a57 03       		.byte	0x3
+ 1660 0a58 00000000 		.4byte	Set_Duty
+ 1661 0a5c 17       		.uleb128 0x17
+ 1662 0a5d DE000000 		.4byte	.LASF171
+ 1663 0a61 07       		.byte	0x7
+ 1664 0a62 79       		.byte	0x79
+ 1665 0a63 CE000000 		.4byte	0xce
+ 1666 0a67 05       		.uleb128 0x5
+ 1667 0a68 03       		.byte	0x3
+ 1668 0a69 00000000 		.4byte	Set_Duty_Temporary_Value
+ 1669 0a6d 17       		.uleb128 0x17
+ 1670 0a6e 8C060000 		.4byte	.LASF172
+ 1671 0a72 07       		.byte	0x7
+ 1672 0a73 7A       		.byte	0x7a
+ 1673 0a74 3F070000 		.4byte	0x73f
+ 1674 0a78 05       		.uleb128 0x5
+ 1675 0a79 03       		.byte	0x3
+ 1676 0a7a 00000000 		.4byte	cSet_Ampl
+ 1677 0a7e 17       		.uleb128 0x17
+ 1678 0a7f DB030000 		.4byte	.LASF173
+ 1679 0a83 07       		.byte	0x7
+ 1680 0a84 7B       		.byte	0x7b
+ 1681 0a85 3F070000 		.4byte	0x73f
+ 1682 0a89 05       		.uleb128 0x5
+ 1683 0a8a 03       		.byte	0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 33
+
+
+ 1684 0a8b 00000000 		.4byte	cSet_Freq
+ 1685 0a8f 17       		.uleb128 0x17
+ 1686 0a90 35040000 		.4byte	.LASF174
+ 1687 0a94 07       		.byte	0x7
+ 1688 0a95 7C       		.byte	0x7c
+ 1689 0a96 3F070000 		.4byte	0x73f
+ 1690 0a9a 05       		.uleb128 0x5
+ 1691 0a9b 03       		.byte	0x3
+ 1692 0a9c 00000000 		.4byte	cSet_Duty
+ 1693 0aa0 17       		.uleb128 0x17
+ 1694 0aa1 FE030000 		.4byte	.LASF175
+ 1695 0aa5 07       		.byte	0x7
+ 1696 0aa6 7E       		.byte	0x7e
+ 1697 0aa7 AD000000 		.4byte	0xad
+ 1698 0aab 05       		.uleb128 0x5
+ 1699 0aac 03       		.byte	0x3
+ 1700 0aad 00000000 		.4byte	Current_Edit_Value
+ 1701 0ab1 17       		.uleb128 0x17
+ 1702 0ab2 D6090000 		.4byte	.LASF176
+ 1703 0ab6 07       		.byte	0x7
+ 1704 0ab7 7F       		.byte	0x7f
+ 1705 0ab8 AD000000 		.4byte	0xad
+ 1706 0abc 05       		.uleb128 0x5
+ 1707 0abd 03       		.byte	0x3
+ 1708 0abe 00000000 		.4byte	Actual_Multiplier_Value
+ 1709 0ac2 18       		.uleb128 0x18
+ 1710 0ac3 FD000000 		.4byte	0xfd
+ 1711 0ac7 D20A0000 		.4byte	0xad2
+ 1712 0acb 19       		.uleb128 0x19
+ 1713 0acc 0F010000 		.4byte	0x10f
+ 1714 0ad0 1F       		.byte	0x1f
+ 1715 0ad1 00       		.byte	0
+ 1716 0ad2 17       		.uleb128 0x17
+ 1717 0ad3 61040000 		.4byte	.LASF177
+ 1718 0ad7 07       		.byte	0x7
+ 1719 0ad8 83       		.byte	0x83
+ 1720 0ad9 C20A0000 		.4byte	0xac2
+ 1721 0add 05       		.uleb128 0x5
+ 1722 0ade 03       		.byte	0x3
+ 1723 0adf 00000000 		.4byte	cCounter
+ 1724 0ae3 17       		.uleb128 0x17
+ 1725 0ae4 68060000 		.4byte	.LASF178
+ 1726 0ae8 08       		.byte	0x8
+ 1727 0ae9 0D       		.byte	0xd
+ 1728 0aea AD000000 		.4byte	0xad
+ 1729 0aee 05       		.uleb128 0x5
+ 1730 0aef 03       		.byte	0x3
+ 1731 0af0 00000000 		.4byte	deltaT
+ 1732 0af4 17       		.uleb128 0x17
+ 1733 0af5 B6080000 		.4byte	.LASF179
+ 1734 0af9 08       		.byte	0x8
+ 1735 0afa 0E       		.byte	0xe
+ 1736 0afb C3000000 		.4byte	0xc3
+ 1737 0aff 05       		.uleb128 0x5
+ 1738 0b00 03       		.byte	0x3
+ 1739 0b01 00000000 		.4byte	Avarage_FET_Temp
+ 1740 0b05 17       		.uleb128 0x17
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 34
+
+
+ 1741 0b06 2C030000 		.4byte	.LASF180
+ 1742 0b0a 08       		.byte	0x8
+ 1743 0b0b 0F       		.byte	0xf
+ 1744 0b0c D9000000 		.4byte	0xd9
+ 1745 0b10 05       		.uleb128 0x5
+ 1746 0b11 03       		.byte	0x3
+ 1747 0b12 00000000 		.4byte	Current_DIE_Temp
+ 1748 0b16 17       		.uleb128 0x17
+ 1749 0b17 90090000 		.4byte	.LASF181
+ 1750 0b1b 08       		.byte	0x8
+ 1751 0b1c 10       		.byte	0x10
+ 1752 0b1d 75050000 		.4byte	0x575
+ 1753 0b21 05       		.uleb128 0x5
+ 1754 0b22 03       		.byte	0x3
+ 1755 0b23 00000000 		.4byte	Current_DIE_TempString
+ 1756 0b27 17       		.uleb128 0x17
+ 1757 0b28 05080000 		.4byte	.LASF182
+ 1758 0b2c 08       		.byte	0x8
+ 1759 0b2d 11       		.byte	0x11
+ 1760 0b2e CE000000 		.4byte	0xce
+ 1761 0b32 05       		.uleb128 0x5
+ 1762 0b33 03       		.byte	0x3
+ 1763 0b34 00000000 		.4byte	Current_FET_Temp
+ 1764 0b38 17       		.uleb128 0x17
+ 1765 0b39 CC020000 		.4byte	.LASF183
+ 1766 0b3d 08       		.byte	0x8
+ 1767 0b3e 12       		.byte	0x12
+ 1768 0b3f 75050000 		.4byte	0x575
+ 1769 0b43 05       		.uleb128 0x5
+ 1770 0b44 03       		.byte	0x3
+ 1771 0b45 00000000 		.4byte	Current_FET_TempString
+ 1772 0b49 17       		.uleb128 0x17
+ 1773 0b4a AE030000 		.4byte	.LASF184
+ 1774 0b4e 01       		.byte	0x1
+ 1775 0b4f 17       		.byte	0x17
+ 1776 0b50 C3000000 		.4byte	0xc3
+ 1777 0b54 05       		.uleb128 0x5
+ 1778 0b55 03       		.byte	0x3
+ 1779 0b56 00000000 		.4byte	Main_Counter
+ 1780 0b5a 00       		.byte	0
+ 1781              		.section	.debug_abbrev,"",%progbits
+ 1782              	.Ldebug_abbrev0:
+ 1783 0000 01       		.uleb128 0x1
+ 1784 0001 11       		.uleb128 0x11
+ 1785 0002 01       		.byte	0x1
+ 1786 0003 25       		.uleb128 0x25
+ 1787 0004 0E       		.uleb128 0xe
+ 1788 0005 13       		.uleb128 0x13
+ 1789 0006 0B       		.uleb128 0xb
+ 1790 0007 03       		.uleb128 0x3
+ 1791 0008 0E       		.uleb128 0xe
+ 1792 0009 1B       		.uleb128 0x1b
+ 1793 000a 0E       		.uleb128 0xe
+ 1794 000b 55       		.uleb128 0x55
+ 1795 000c 17       		.uleb128 0x17
+ 1796 000d 11       		.uleb128 0x11
+ 1797 000e 01       		.uleb128 0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 35
+
+
+ 1798 000f 10       		.uleb128 0x10
+ 1799 0010 17       		.uleb128 0x17
+ 1800 0011 00       		.byte	0
+ 1801 0012 00       		.byte	0
+ 1802 0013 02       		.uleb128 0x2
+ 1803 0014 16       		.uleb128 0x16
+ 1804 0015 00       		.byte	0
+ 1805 0016 03       		.uleb128 0x3
+ 1806 0017 0E       		.uleb128 0xe
+ 1807 0018 3A       		.uleb128 0x3a
+ 1808 0019 0B       		.uleb128 0xb
+ 1809 001a 3B       		.uleb128 0x3b
+ 1810 001b 0B       		.uleb128 0xb
+ 1811 001c 49       		.uleb128 0x49
+ 1812 001d 13       		.uleb128 0x13
+ 1813 001e 00       		.byte	0
+ 1814 001f 00       		.byte	0
+ 1815 0020 03       		.uleb128 0x3
+ 1816 0021 24       		.uleb128 0x24
+ 1817 0022 00       		.byte	0
+ 1818 0023 0B       		.uleb128 0xb
+ 1819 0024 0B       		.uleb128 0xb
+ 1820 0025 3E       		.uleb128 0x3e
+ 1821 0026 0B       		.uleb128 0xb
+ 1822 0027 03       		.uleb128 0x3
+ 1823 0028 0E       		.uleb128 0xe
+ 1824 0029 00       		.byte	0
+ 1825 002a 00       		.byte	0
+ 1826 002b 04       		.uleb128 0x4
+ 1827 002c 24       		.uleb128 0x24
+ 1828 002d 00       		.byte	0
+ 1829 002e 0B       		.uleb128 0xb
+ 1830 002f 0B       		.uleb128 0xb
+ 1831 0030 3E       		.uleb128 0x3e
+ 1832 0031 0B       		.uleb128 0xb
+ 1833 0032 03       		.uleb128 0x3
+ 1834 0033 08       		.uleb128 0x8
+ 1835 0034 00       		.byte	0
+ 1836 0035 00       		.byte	0
+ 1837 0036 05       		.uleb128 0x5
+ 1838 0037 0F       		.uleb128 0xf
+ 1839 0038 00       		.byte	0
+ 1840 0039 0B       		.uleb128 0xb
+ 1841 003a 0B       		.uleb128 0xb
+ 1842 003b 00       		.byte	0
+ 1843 003c 00       		.byte	0
+ 1844 003d 06       		.uleb128 0x6
+ 1845 003e 13       		.uleb128 0x13
+ 1846 003f 01       		.byte	0x1
+ 1847 0040 03       		.uleb128 0x3
+ 1848 0041 0E       		.uleb128 0xe
+ 1849 0042 0B       		.uleb128 0xb
+ 1850 0043 0B       		.uleb128 0xb
+ 1851 0044 3A       		.uleb128 0x3a
+ 1852 0045 0B       		.uleb128 0xb
+ 1853 0046 3B       		.uleb128 0x3b
+ 1854 0047 05       		.uleb128 0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 36
+
+
+ 1855 0048 01       		.uleb128 0x1
+ 1856 0049 13       		.uleb128 0x13
+ 1857 004a 00       		.byte	0
+ 1858 004b 00       		.byte	0
+ 1859 004c 07       		.uleb128 0x7
+ 1860 004d 0D       		.uleb128 0xd
+ 1861 004e 00       		.byte	0
+ 1862 004f 03       		.uleb128 0x3
+ 1863 0050 0E       		.uleb128 0xe
+ 1864 0051 3A       		.uleb128 0x3a
+ 1865 0052 0B       		.uleb128 0xb
+ 1866 0053 3B       		.uleb128 0x3b
+ 1867 0054 05       		.uleb128 0x5
+ 1868 0055 49       		.uleb128 0x49
+ 1869 0056 13       		.uleb128 0x13
+ 1870 0057 38       		.uleb128 0x38
+ 1871 0058 0B       		.uleb128 0xb
+ 1872 0059 00       		.byte	0
+ 1873 005a 00       		.byte	0
+ 1874 005b 08       		.uleb128 0x8
+ 1875 005c 0D       		.uleb128 0xd
+ 1876 005d 00       		.byte	0
+ 1877 005e 03       		.uleb128 0x3
+ 1878 005f 08       		.uleb128 0x8
+ 1879 0060 3A       		.uleb128 0x3a
+ 1880 0061 0B       		.uleb128 0xb
+ 1881 0062 3B       		.uleb128 0x3b
+ 1882 0063 05       		.uleb128 0x5
+ 1883 0064 49       		.uleb128 0x49
+ 1884 0065 13       		.uleb128 0x13
+ 1885 0066 38       		.uleb128 0x38
+ 1886 0067 0B       		.uleb128 0xb
+ 1887 0068 00       		.byte	0
+ 1888 0069 00       		.byte	0
+ 1889 006a 09       		.uleb128 0x9
+ 1890 006b 13       		.uleb128 0x13
+ 1891 006c 01       		.byte	0x1
+ 1892 006d 03       		.uleb128 0x3
+ 1893 006e 0E       		.uleb128 0xe
+ 1894 006f 0B       		.uleb128 0xb
+ 1895 0070 0B       		.uleb128 0xb
+ 1896 0071 3A       		.uleb128 0x3a
+ 1897 0072 0B       		.uleb128 0xb
+ 1898 0073 3B       		.uleb128 0x3b
+ 1899 0074 0B       		.uleb128 0xb
+ 1900 0075 01       		.uleb128 0x1
+ 1901 0076 13       		.uleb128 0x13
+ 1902 0077 00       		.byte	0
+ 1903 0078 00       		.byte	0
+ 1904 0079 0A       		.uleb128 0xa
+ 1905 007a 0D       		.uleb128 0xd
+ 1906 007b 00       		.byte	0
+ 1907 007c 03       		.uleb128 0x3
+ 1908 007d 0E       		.uleb128 0xe
+ 1909 007e 3A       		.uleb128 0x3a
+ 1910 007f 0B       		.uleb128 0xb
+ 1911 0080 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 37
+
+
+ 1912 0081 0B       		.uleb128 0xb
+ 1913 0082 49       		.uleb128 0x49
+ 1914 0083 13       		.uleb128 0x13
+ 1915 0084 38       		.uleb128 0x38
+ 1916 0085 0B       		.uleb128 0xb
+ 1917 0086 00       		.byte	0
+ 1918 0087 00       		.byte	0
+ 1919 0088 0B       		.uleb128 0xb
+ 1920 0089 0F       		.uleb128 0xf
+ 1921 008a 00       		.byte	0
+ 1922 008b 0B       		.uleb128 0xb
+ 1923 008c 0B       		.uleb128 0xb
+ 1924 008d 49       		.uleb128 0x49
+ 1925 008e 13       		.uleb128 0x13
+ 1926 008f 00       		.byte	0
+ 1927 0090 00       		.byte	0
+ 1928 0091 0C       		.uleb128 0xc
+ 1929 0092 15       		.uleb128 0x15
+ 1930 0093 01       		.byte	0x1
+ 1931 0094 27       		.uleb128 0x27
+ 1932 0095 19       		.uleb128 0x19
+ 1933 0096 49       		.uleb128 0x49
+ 1934 0097 13       		.uleb128 0x13
+ 1935 0098 01       		.uleb128 0x1
+ 1936 0099 13       		.uleb128 0x13
+ 1937 009a 00       		.byte	0
+ 1938 009b 00       		.byte	0
+ 1939 009c 0D       		.uleb128 0xd
+ 1940 009d 05       		.uleb128 0x5
+ 1941 009e 00       		.byte	0
+ 1942 009f 49       		.uleb128 0x49
+ 1943 00a0 13       		.uleb128 0x13
+ 1944 00a1 00       		.byte	0
+ 1945 00a2 00       		.byte	0
+ 1946 00a3 0E       		.uleb128 0xe
+ 1947 00a4 16       		.uleb128 0x16
+ 1948 00a5 00       		.byte	0
+ 1949 00a6 03       		.uleb128 0x3
+ 1950 00a7 0E       		.uleb128 0xe
+ 1951 00a8 3A       		.uleb128 0x3a
+ 1952 00a9 0B       		.uleb128 0xb
+ 1953 00aa 3B       		.uleb128 0x3b
+ 1954 00ab 05       		.uleb128 0x5
+ 1955 00ac 49       		.uleb128 0x49
+ 1956 00ad 13       		.uleb128 0x13
+ 1957 00ae 00       		.byte	0
+ 1958 00af 00       		.byte	0
+ 1959 00b0 0F       		.uleb128 0xf
+ 1960 00b1 15       		.uleb128 0x15
+ 1961 00b2 01       		.byte	0x1
+ 1962 00b3 27       		.uleb128 0x27
+ 1963 00b4 19       		.uleb128 0x19
+ 1964 00b5 01       		.uleb128 0x1
+ 1965 00b6 13       		.uleb128 0x13
+ 1966 00b7 00       		.byte	0
+ 1967 00b8 00       		.byte	0
+ 1968 00b9 10       		.uleb128 0x10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 38
+
+
+ 1969 00ba 26       		.uleb128 0x26
+ 1970 00bb 00       		.byte	0
+ 1971 00bc 49       		.uleb128 0x49
+ 1972 00bd 13       		.uleb128 0x13
+ 1973 00be 00       		.byte	0
+ 1974 00bf 00       		.byte	0
+ 1975 00c0 11       		.uleb128 0x11
+ 1976 00c1 04       		.uleb128 0x4
+ 1977 00c2 01       		.byte	0x1
+ 1978 00c3 03       		.uleb128 0x3
+ 1979 00c4 0E       		.uleb128 0xe
+ 1980 00c5 0B       		.uleb128 0xb
+ 1981 00c6 0B       		.uleb128 0xb
+ 1982 00c7 3A       		.uleb128 0x3a
+ 1983 00c8 0B       		.uleb128 0xb
+ 1984 00c9 3B       		.uleb128 0x3b
+ 1985 00ca 0B       		.uleb128 0xb
+ 1986 00cb 01       		.uleb128 0x1
+ 1987 00cc 13       		.uleb128 0x13
+ 1988 00cd 00       		.byte	0
+ 1989 00ce 00       		.byte	0
+ 1990 00cf 12       		.uleb128 0x12
+ 1991 00d0 28       		.uleb128 0x28
+ 1992 00d1 00       		.byte	0
+ 1993 00d2 03       		.uleb128 0x3
+ 1994 00d3 0E       		.uleb128 0xe
+ 1995 00d4 1C       		.uleb128 0x1c
+ 1996 00d5 0D       		.uleb128 0xd
+ 1997 00d6 00       		.byte	0
+ 1998 00d7 00       		.byte	0
+ 1999 00d8 13       		.uleb128 0x13
+ 2000 00d9 2E       		.uleb128 0x2e
+ 2001 00da 00       		.byte	0
+ 2002 00db 3F       		.uleb128 0x3f
+ 2003 00dc 19       		.uleb128 0x19
+ 2004 00dd 03       		.uleb128 0x3
+ 2005 00de 0E       		.uleb128 0xe
+ 2006 00df 3A       		.uleb128 0x3a
+ 2007 00e0 0B       		.uleb128 0xb
+ 2008 00e1 3B       		.uleb128 0x3b
+ 2009 00e2 0B       		.uleb128 0xb
+ 2010 00e3 49       		.uleb128 0x49
+ 2011 00e4 13       		.uleb128 0x13
+ 2012 00e5 11       		.uleb128 0x11
+ 2013 00e6 01       		.uleb128 0x1
+ 2014 00e7 12       		.uleb128 0x12
+ 2015 00e8 06       		.uleb128 0x6
+ 2016 00e9 40       		.uleb128 0x40
+ 2017 00ea 18       		.uleb128 0x18
+ 2018 00eb 9642     		.uleb128 0x2116
+ 2019 00ed 19       		.uleb128 0x19
+ 2020 00ee 00       		.byte	0
+ 2021 00ef 00       		.byte	0
+ 2022 00f0 14       		.uleb128 0x14
+ 2023 00f1 2E       		.uleb128 0x2e
+ 2024 00f2 00       		.byte	0
+ 2025 00f3 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 39
+
+
+ 2026 00f4 19       		.uleb128 0x19
+ 2027 00f5 03       		.uleb128 0x3
+ 2028 00f6 0E       		.uleb128 0xe
+ 2029 00f7 3A       		.uleb128 0x3a
+ 2030 00f8 0B       		.uleb128 0xb
+ 2031 00f9 3B       		.uleb128 0x3b
+ 2032 00fa 0B       		.uleb128 0xb
+ 2033 00fb 27       		.uleb128 0x27
+ 2034 00fc 19       		.uleb128 0x19
+ 2035 00fd 11       		.uleb128 0x11
+ 2036 00fe 01       		.uleb128 0x1
+ 2037 00ff 12       		.uleb128 0x12
+ 2038 0100 06       		.uleb128 0x6
+ 2039 0101 40       		.uleb128 0x40
+ 2040 0102 18       		.uleb128 0x18
+ 2041 0103 9642     		.uleb128 0x2116
+ 2042 0105 19       		.uleb128 0x19
+ 2043 0106 00       		.byte	0
+ 2044 0107 00       		.byte	0
+ 2045 0108 15       		.uleb128 0x15
+ 2046 0109 34       		.uleb128 0x34
+ 2047 010a 00       		.byte	0
+ 2048 010b 03       		.uleb128 0x3
+ 2049 010c 0E       		.uleb128 0xe
+ 2050 010d 3A       		.uleb128 0x3a
+ 2051 010e 0B       		.uleb128 0xb
+ 2052 010f 3B       		.uleb128 0x3b
+ 2053 0110 05       		.uleb128 0x5
+ 2054 0111 49       		.uleb128 0x49
+ 2055 0112 13       		.uleb128 0x13
+ 2056 0113 3F       		.uleb128 0x3f
+ 2057 0114 19       		.uleb128 0x19
+ 2058 0115 3C       		.uleb128 0x3c
+ 2059 0116 19       		.uleb128 0x19
+ 2060 0117 00       		.byte	0
+ 2061 0118 00       		.byte	0
+ 2062 0119 16       		.uleb128 0x16
+ 2063 011a 35       		.uleb128 0x35
+ 2064 011b 00       		.byte	0
+ 2065 011c 49       		.uleb128 0x49
+ 2066 011d 13       		.uleb128 0x13
+ 2067 011e 00       		.byte	0
+ 2068 011f 00       		.byte	0
+ 2069 0120 17       		.uleb128 0x17
+ 2070 0121 34       		.uleb128 0x34
+ 2071 0122 00       		.byte	0
+ 2072 0123 03       		.uleb128 0x3
+ 2073 0124 0E       		.uleb128 0xe
+ 2074 0125 3A       		.uleb128 0x3a
+ 2075 0126 0B       		.uleb128 0xb
+ 2076 0127 3B       		.uleb128 0x3b
+ 2077 0128 0B       		.uleb128 0xb
+ 2078 0129 49       		.uleb128 0x49
+ 2079 012a 13       		.uleb128 0x13
+ 2080 012b 3F       		.uleb128 0x3f
+ 2081 012c 19       		.uleb128 0x19
+ 2082 012d 02       		.uleb128 0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 40
+
+
+ 2083 012e 18       		.uleb128 0x18
+ 2084 012f 00       		.byte	0
+ 2085 0130 00       		.byte	0
+ 2086 0131 18       		.uleb128 0x18
+ 2087 0132 01       		.uleb128 0x1
+ 2088 0133 01       		.byte	0x1
+ 2089 0134 49       		.uleb128 0x49
+ 2090 0135 13       		.uleb128 0x13
+ 2091 0136 01       		.uleb128 0x1
+ 2092 0137 13       		.uleb128 0x13
+ 2093 0138 00       		.byte	0
+ 2094 0139 00       		.byte	0
+ 2095 013a 19       		.uleb128 0x19
+ 2096 013b 21       		.uleb128 0x21
+ 2097 013c 00       		.byte	0
+ 2098 013d 49       		.uleb128 0x49
+ 2099 013e 13       		.uleb128 0x13
+ 2100 013f 2F       		.uleb128 0x2f
+ 2101 0140 0B       		.uleb128 0xb
+ 2102 0141 00       		.byte	0
+ 2103 0142 00       		.byte	0
+ 2104 0143 1A       		.uleb128 0x1a
+ 2105 0144 34       		.uleb128 0x34
+ 2106 0145 00       		.byte	0
+ 2107 0146 03       		.uleb128 0x3
+ 2108 0147 08       		.uleb128 0x8
+ 2109 0148 3A       		.uleb128 0x3a
+ 2110 0149 0B       		.uleb128 0xb
+ 2111 014a 3B       		.uleb128 0x3b
+ 2112 014b 0B       		.uleb128 0xb
+ 2113 014c 49       		.uleb128 0x49
+ 2114 014d 13       		.uleb128 0x13
+ 2115 014e 3F       		.uleb128 0x3f
+ 2116 014f 19       		.uleb128 0x19
+ 2117 0150 02       		.uleb128 0x2
+ 2118 0151 18       		.uleb128 0x18
+ 2119 0152 00       		.byte	0
+ 2120 0153 00       		.byte	0
+ 2121 0154 00       		.byte	0
+ 2122              		.section	.debug_aranges,"",%progbits
+ 2123 0000 24000000 		.4byte	0x24
+ 2124 0004 0200     		.2byte	0x2
+ 2125 0006 00000000 		.4byte	.Ldebug_info0
+ 2126 000a 04       		.byte	0x4
+ 2127 000b 00       		.byte	0
+ 2128 000c 0000     		.2byte	0
+ 2129 000e 0000     		.2byte	0
+ 2130 0010 00000000 		.4byte	.LFB63
+ 2131 0014 54010000 		.4byte	.LFE63-.LFB63
+ 2132 0018 00000000 		.4byte	.LFB64
+ 2133 001c A8000000 		.4byte	.LFE64-.LFB64
+ 2134 0020 00000000 		.4byte	0
+ 2135 0024 00000000 		.4byte	0
+ 2136              		.section	.debug_ranges,"",%progbits
+ 2137              	.Ldebug_ranges0:
+ 2138 0000 00000000 		.4byte	.LFB63
+ 2139 0004 54010000 		.4byte	.LFE63
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 41
+
+
+ 2140 0008 00000000 		.4byte	.LFB64
+ 2141 000c A8000000 		.4byte	.LFE64
+ 2142 0010 00000000 		.4byte	0
+ 2143 0014 00000000 		.4byte	0
+ 2144              		.section	.debug_line,"",%progbits
+ 2145              	.Ldebug_line0:
+ 2146 0000 D9010000 		.section	.debug_str,"MS",%progbits,1
+ 2146      02007901 
+ 2146      00000201 
+ 2146      FB0E0D00 
+ 2146      01010101 
+ 2147              	.LASF26:
+ 2148 0000 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 2148      70676D5F 
+ 2148      75696E74 
+ 2148      385F7400 
+ 2149              	.LASF133:
+ 2150 0010 63526573 		.ascii	"cResist_Set\000"
+ 2150      6973745F 
+ 2150      53657400 
+ 2151              	.LASF86:
+ 2152 001c 4572726F 		.ascii	"Error_NC\000"
+ 2152      725F4E43 
+ 2152      00
+ 2153              	.LASF57:
+ 2154 0025 6465765F 		.ascii	"dev_mem\000"
+ 2154      6D656D00 
+ 2155              	.LASF125:
+ 2156 002d 45646974 		.ascii	"Edit_Value_Mode\000"
+ 2156      5F56616C 
+ 2156      75655F4D 
+ 2156      6F646500 
+ 2157              	.LASF46:
+ 2158 003d 666F6E74 		.ascii	"font_ref_ascent\000"
+ 2158      5F726566 
+ 2158      5F617363 
+ 2158      656E7400 
+ 2159              	.LASF144:
+ 2160 004d 506F7765 		.ascii	"Power\000"
+ 2160      7200
+ 2161              	.LASF153:
+ 2162 0053 5365745F 		.ascii	"Set_Resist\000"
+ 2162      52657369 
+ 2162      737400
+ 2163              	.LASF104:
+ 2164 005e 43757272 		.ascii	"Current_Calibration_Range1\000"
+ 2164      656E745F 
+ 2164      43616C69 
+ 2164      62726174 
+ 2164      696F6E5F 
+ 2165              	.LASF105:
+ 2166 0079 43757272 		.ascii	"Current_Calibration_Range2\000"
+ 2166      656E745F 
+ 2166      43616C69 
+ 2166      62726174 
+ 2166      696F6E5F 
+ 2167              	.LASF106:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 42
+
+
+ 2168 0094 43757272 		.ascii	"Current_Calibration_Range3\000"
+ 2168      656E745F 
+ 2168      43616C69 
+ 2168      62726174 
+ 2168      696F6E5F 
+ 2169              	.LASF143:
+ 2170 00af 66437572 		.ascii	"fCurrent\000"
+ 2170      72656E74 
+ 2170      00
+ 2171              	.LASF11:
+ 2172 00b8 756E7369 		.ascii	"unsigned int\000"
+ 2172      676E6564 
+ 2172      20696E74 
+ 2172      00
+ 2173              	.LASF63:
+ 2174 00c5 68695F63 		.ascii	"hi_color\000"
+ 2174      6F6C6F72 
+ 2174      00
+ 2175              	.LASF126:
+ 2176 00ce 63566F6C 		.ascii	"cVoltage_Actual\000"
+ 2176      74616765 
+ 2176      5F416374 
+ 2176      75616C00 
+ 2177              	.LASF171:
+ 2178 00de 5365745F 		.ascii	"Set_Duty_Temporary_Value\000"
+ 2178      44757479 
+ 2178      5F54656D 
+ 2178      706F7261 
+ 2178      72795F56 
+ 2179              	.LASF88:
+ 2180 00f7 4572726F 		.ascii	"Error_OC\000"
+ 2180      725F4F43 
+ 2180      00
+ 2181              	.LASF6:
+ 2182 0100 5F5F696E 		.ascii	"__int32_t\000"
+ 2182      7433325F 
+ 2182      7400
+ 2183              	.LASF19:
+ 2184 010a 696E7431 		.ascii	"int16\000"
+ 2184      3600
+ 2185              	.LASF107:
+ 2186 0110 4C454D5F 		.ascii	"LEM_Offset_Value\000"
+ 2186      4F666673 
+ 2186      65745F56 
+ 2186      616C7565 
+ 2186      00
+ 2187              	.LASF87:
+ 2188 0121 4572726F 		.ascii	"Error_OT\000"
+ 2188      725F4F54 
+ 2188      00
+ 2189              	.LASF85:
+ 2190 012a 4572726F 		.ascii	"Error_OV\000"
+ 2190      725F4F56 
+ 2190      00
+ 2191              	.LASF33:
+ 2192 0133 63757273 		.ascii	"cursor_bg_color\000"
+ 2192      6F725F62 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 43
+
+
+ 2192      675F636F 
+ 2192      6C6F7200 
+ 2193              	.LASF50:
+ 2194 0143 6172675F 		.ascii	"arg_pixel\000"
+ 2194      70697865 
+ 2194      6C00
+ 2195              	.LASF169:
+ 2196 014d 5365745F 		.ascii	"Set_Freq_Temporary_Value\000"
+ 2196      46726571 
+ 2196      5F54656D 
+ 2196      706F7261 
+ 2196      72795F56 
+ 2197              	.LASF64:
+ 2198 0166 626C7565 		.ascii	"blue\000"
+ 2198      00
+ 2199              	.LASF58:
+ 2200 016b 636F6D5F 		.ascii	"com_fn\000"
+ 2200      666E00
+ 2201              	.LASF96:
+ 2202 0172 43757272 		.ascii	"Current_State\000"
+ 2202      656E745F 
+ 2202      53746174 
+ 2202      6500
+ 2203              	.LASF98:
+ 2204 0180 536F756E 		.ascii	"Sound_Enable\000"
+ 2204      645F456E 
+ 2204      61626C65 
+ 2204      00
+ 2205              	.LASF127:
+ 2206 018d 63437572 		.ascii	"cCurrent_Actual\000"
+ 2206      72656E74 
+ 2206      5F416374 
+ 2206      75616C00 
+ 2207              	.LASF131:
+ 2208 019d 63437572 		.ascii	"cCurrent_Set\000"
+ 2208      72656E74 
+ 2208      5F536574 
+ 2208      00
+ 2209              	.LASF188:
+ 2210 01aa 53746174 		.ascii	"State\000"
+ 2210      6500
+ 2211              	.LASF35:
+ 2212 01b0 6D6F6465 		.ascii	"mode\000"
+ 2212      00
+ 2213              	.LASF44:
+ 2214 01b5 666F6E74 		.ascii	"font_calc_vref\000"
+ 2214      5F63616C 
+ 2214      635F7672 
+ 2214      656600
+ 2215              	.LASF101:
+ 2216 01c4 43757272 		.ascii	"CurrentBacklightValueString\000"
+ 2216      656E7442 
+ 2216      61636B6C 
+ 2216      69676874 
+ 2216      56616C75 
+ 2217              	.LASF114:
+ 2218 01e0 4C617374 		.ascii	"Last_qdCount\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 44
+
+
+ 2218      5F716443 
+ 2218      6F756E74 
+ 2218      00
+ 2219              	.LASF76:
+ 2220 01ed 41726269 		.ascii	"ArbitraryMode\000"
+ 2220      74726172 
+ 2220      794D6F64 
+ 2220      6500
+ 2221              	.LASF187:
+ 2222 01fb 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 2222      6F726B73 
+ 2222      70616365 
+ 2222      5C50536F 
+ 2222      435F4372 
+ 2223 022a 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 2223      392E6379 
+ 2223      64736E00 
+ 2224              	.LASF112:
+ 2225 0236 56696577 		.ascii	"View_Mode\000"
+ 2225      5F4D6F64 
+ 2225      6500
+ 2226              	.LASF166:
+ 2227 0240 5365745F 		.ascii	"Set_Ampl\000"
+ 2227      416D706C 
+ 2227      00
+ 2228              	.LASF12:
+ 2229 0249 696E7438 		.ascii	"int8_t\000"
+ 2229      5F7400
+ 2230              	.LASF130:
+ 2231 0250 63566F6C 		.ascii	"cVoltage_Set\000"
+ 2231      74616765 
+ 2231      5F536574 
+ 2231      00
+ 2232              	.LASF60:
+ 2233 025d 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 2233      5F646576 
+ 2233      5F617267 
+ 2233      5F706978 
+ 2233      656C5F74 
+ 2234              	.LASF102:
+ 2235 0272 43757272 		.ascii	"CurrentVolumeValue\000"
+ 2235      656E7456 
+ 2235      6F6C756D 
+ 2235      6556616C 
+ 2235      756500
+ 2236              	.LASF21:
+ 2237 0285 666C6F61 		.ascii	"float\000"
+ 2237      7400
+ 2238              	.LASF132:
+ 2239 028b 63506F77 		.ascii	"cPower_Set\000"
+ 2239      65725F53 
+ 2239      657400
+ 2240              	.LASF20:
+ 2241 0296 696E7433 		.ascii	"int32\000"
+ 2241      3200
+ 2242              	.LASF36:
+ 2243 029c 63757273 		.ascii	"cursor_x\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 45
+
+
+ 2243      6F725F78 
+ 2243      00
+ 2244              	.LASF37:
+ 2245 02a5 63757273 		.ascii	"cursor_y\000"
+ 2245      6F725F79 
+ 2245      00
+ 2246              	.LASF135:
+ 2247 02ae 58506F73 		.ascii	"XPosition\000"
+ 2247      6974696F 
+ 2247      6E00
+ 2248              	.LASF121:
+ 2249 02b8 70757368 		.ascii	"push\000"
+ 2249      00
+ 2250              	.LASF97:
+ 2251 02bd 50726576 		.ascii	"Previous_State\000"
+ 2251      696F7573 
+ 2251      5F537461 
+ 2251      746500
+ 2252              	.LASF183:
+ 2253 02cc 43757272 		.ascii	"Current_FET_TempString\000"
+ 2253      656E745F 
+ 2253      4645545F 
+ 2253      54656D70 
+ 2253      53747269 
+ 2254              	.LASF10:
+ 2255 02e3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2255      206C6F6E 
+ 2255      6720756E 
+ 2255      7369676E 
+ 2255      65642069 
+ 2256              	.LASF141:
+ 2257 02fa 66566F6C 		.ascii	"fVoltage\000"
+ 2257      74616765 
+ 2257      00
+ 2258              	.LASF154:
+ 2259 0303 5365745F 		.ascii	"Set_Resist_Temporary_Value\000"
+ 2259      52657369 
+ 2259      73745F54 
+ 2259      656D706F 
+ 2259      72617279 
+ 2260              	.LASF68:
+ 2261 031e 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 2261      6465765F 
+ 2261      666E7074 
+ 2261      7200
+ 2262              	.LASF180:
+ 2263 032c 43757272 		.ascii	"Current_DIE_Temp\000"
+ 2263      656E745F 
+ 2263      4449455F 
+ 2263      54656D70 
+ 2263      00
+ 2264              	.LASF69:
+ 2265 033d 7538675F 		.ascii	"u8g_com_fnptr\000"
+ 2265      636F6D5F 
+ 2265      666E7074 
+ 2265      7200
+ 2266              	.LASF84:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 46
+
+
+ 2267 034b 4572726F 		.ascii	"Error_RP\000"
+ 2267      725F5250 
+ 2267      00
+ 2268              	.LASF129:
+ 2269 0354 63526573 		.ascii	"cResist_Actual\000"
+ 2269      6973745F 
+ 2269      41637475 
+ 2269      616C00
+ 2270              	.LASF156:
+ 2271 0363 4D617850 		.ascii	"MaxPower\000"
+ 2271      6F776572 
+ 2271      00
+ 2272              	.LASF43:
+ 2273 036c 676C7970 		.ascii	"glyph_height\000"
+ 2273      685F6865 
+ 2273      69676874 
+ 2273      00
+ 2274              	.LASF28:
+ 2275 0379 77696474 		.ascii	"width\000"
+ 2275      6800
+ 2276              	.LASF128:
+ 2277 037f 63506F77 		.ascii	"cPower_Actual\000"
+ 2277      65725F41 
+ 2277      63747561 
+ 2277      6C00
+ 2278              	.LASF152:
+ 2279 038d 5365745F 		.ascii	"Set_Power_Temporary_Value\000"
+ 2279      506F7765 
+ 2279      725F5465 
+ 2279      6D706F72 
+ 2279      6172795F 
+ 2280              	.LASF145:
+ 2281 03a7 66506F77 		.ascii	"fPower\000"
+ 2281      657200
+ 2282              	.LASF184:
+ 2283 03ae 4D61696E 		.ascii	"Main_Counter\000"
+ 2283      5F436F75 
+ 2283      6E746572 
+ 2283      00
+ 2284              	.LASF155:
+ 2285 03bb 506F7369 		.ascii	"Position_Number\000"
+ 2285      74696F6E 
+ 2285      5F4E756D 
+ 2285      62657200 
+ 2286              	.LASF40:
+ 2287 03cb 676C7970 		.ascii	"glyph_x\000"
+ 2287      685F7800 
+ 2288              	.LASF41:
+ 2289 03d3 676C7970 		.ascii	"glyph_y\000"
+ 2289      685F7900 
+ 2290              	.LASF173:
+ 2291 03db 63536574 		.ascii	"cSet_Freq\000"
+ 2291      5F467265 
+ 2291      7100
+ 2292              	.LASF74:
+ 2293 03e5 486F6D65 		.ascii	"Home\000"
+ 2293      00
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 47
+
+
+ 2294              	.LASF168:
+ 2295 03ea 5365745F 		.ascii	"Set_Freq\000"
+ 2295      46726571 
+ 2295      00
+ 2296              	.LASF138:
+ 2297 03f3 6359506F 		.ascii	"cYPosition\000"
+ 2297      73697469 
+ 2297      6F6E00
+ 2298              	.LASF175:
+ 2299 03fe 43757272 		.ascii	"Current_Edit_Value\000"
+ 2299      656E745F 
+ 2299      45646974 
+ 2299      5F56616C 
+ 2299      756500
+ 2300              	.LASF159:
+ 2301 0411 4D696E52 		.ascii	"MinResistance\000"
+ 2301      65736973 
+ 2301      74616E63 
+ 2301      6500
+ 2302              	.LASF99:
+ 2303 041f 43757272 		.ascii	"Current_Menu_Position\000"
+ 2303      656E745F 
+ 2303      4D656E75 
+ 2303      5F506F73 
+ 2303      6974696F 
+ 2304              	.LASF174:
+ 2305 0435 63536574 		.ascii	"cSet_Duty\000"
+ 2305      5F447574 
+ 2305      7900
+ 2306              	.LASF24:
+ 2307 043f 63686172 		.ascii	"char\000"
+ 2307      00
+ 2308              	.LASF170:
+ 2309 0444 5365745F 		.ascii	"Set_Duty\000"
+ 2309      44757479 
+ 2309      00
+ 2310              	.LASF56:
+ 2311 044d 6465765F 		.ascii	"dev_fn\000"
+ 2311      666E00
+ 2312              	.LASF52:
+ 2313 0454 63757272 		.ascii	"current_page\000"
+ 2313      656E745F 
+ 2313      70616765 
+ 2313      00
+ 2314              	.LASF177:
+ 2315 0461 63436F75 		.ascii	"cCounter\000"
+ 2315      6E746572 
+ 2315      00
+ 2316              	.LASF16:
+ 2317 046a 75696E74 		.ascii	"uint16\000"
+ 2317      313600
+ 2318              	.LASF18:
+ 2319 0471 696E7438 		.ascii	"int8\000"
+ 2319      00
+ 2320              	.LASF13:
+ 2321 0476 75696E74 		.ascii	"uint8_t\000"
+ 2321      385F7400 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 48
+
+
+ 2322              	.LASF23:
+ 2323 047e 63686172 		.ascii	"char8\000"
+ 2323      3800
+ 2324              	.LASF147:
+ 2325 0484 66526573 		.ascii	"fResist\000"
+ 2325      69737400 
+ 2326              	.LASF103:
+ 2327 048c 43757272 		.ascii	"CurrentVolumeValueString\000"
+ 2327      656E7456 
+ 2327      6F6C756D 
+ 2327      6556616C 
+ 2327      75655374 
+ 2328              	.LASF67:
+ 2329 04a5 7538675F 		.ascii	"u8g_uint_t\000"
+ 2329      75696E74 
+ 2329      5F7400
+ 2330              	.LASF66:
+ 2331 04b0 5F753867 		.ascii	"_u8g_box_t\000"
+ 2331      5F626F78 
+ 2331      5F7400
+ 2332              	.LASF9:
+ 2333 04bb 6C6F6E67 		.ascii	"long long int\000"
+ 2333      206C6F6E 
+ 2333      6720696E 
+ 2333      7400
+ 2334              	.LASF32:
+ 2335 04c9 63757273 		.ascii	"cursor_fg_color\000"
+ 2335      6F725F66 
+ 2335      675F636F 
+ 2335      6C6F7200 
+ 2336              	.LASF113:
+ 2337 04d9 7164436F 		.ascii	"qdCount\000"
+ 2337      756E7400 
+ 2338              	.LASF164:
+ 2339 04e1 4D61785F 		.ascii	"Max_FET_Temp\000"
+ 2339      4645545F 
+ 2339      54656D70 
+ 2339      00
+ 2340              	.LASF137:
+ 2341 04ee 59506F73 		.ascii	"YPosition\000"
+ 2341      6974696F 
+ 2341      6E00
+ 2342              	.LASF158:
+ 2343 04f8 4D617843 		.ascii	"MaxCurrent\000"
+ 2343      75727265 
+ 2343      6E7400
+ 2344              	.LASF117:
+ 2345 0503 62757474 		.ascii	"button3\000"
+ 2345      6F6E3300 
+ 2346              	.LASF118:
+ 2347 050b 62757474 		.ascii	"button4\000"
+ 2347      6F6E3400 
+ 2348              	.LASF53:
+ 2349 0513 7538675F 		.ascii	"u8g_dev_t\000"
+ 2349      6465765F 
+ 2349      7400
+ 2350              	.LASF142:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 49
+
+
+ 2351 051d 4D656173 		.ascii	"MeasuredCurrent\000"
+ 2351      75726564 
+ 2351      43757272 
+ 2351      656E7400 
+ 2352              	.LASF120:
+ 2353 052d 62757474 		.ascii	"button6\000"
+ 2353      6F6E3600 
+ 2354              	.LASF72:
+ 2355 0535 7538675F 		.ascii	"u8g_state_cb\000"
+ 2355      73746174 
+ 2355      655F6362 
+ 2355      00
+ 2356              	.LASF59:
+ 2357 0542 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 2357      6465765F 
+ 2357      6172675F 
+ 2357      70697865 
+ 2357      6C5F7400 
+ 2358              	.LASF186:
+ 2359 0556 6D61696E 		.ascii	"main01.c\000"
+ 2359      30312E63 
+ 2359      00
+ 2360              	.LASF185:
+ 2361 055f 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2361      4320342E 
+ 2361      392E3320 
+ 2361      32303135 
+ 2361      30333033 
+ 2362 0592 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2362      20726576 
+ 2362      6973696F 
+ 2362      6E203232 
+ 2362      31323230 
+ 2363 05c5 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 2363      66756E63 
+ 2363      74696F6E 
+ 2363      2D736563 
+ 2363      74696F6E 
+ 2364              	.LASF81:
+ 2365 05ed 496E666F 		.ascii	"Information\000"
+ 2365      726D6174 
+ 2365      696F6E00 
+ 2366              	.LASF83:
+ 2367 05f9 436F6E73 		.ascii	"ConstantResistance\000"
+ 2367      74616E74 
+ 2367      52657369 
+ 2367      7374616E 
+ 2367      636500
+ 2368              	.LASF146:
+ 2369 060c 52657369 		.ascii	"Resist\000"
+ 2369      737400
+ 2370              	.LASF17:
+ 2371 0613 75696E74 		.ascii	"uint32\000"
+ 2371      333200
+ 2372              	.LASF27:
+ 2373 061a 7538675F 		.ascii	"u8g_t\000"
+ 2373      7400
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 50
+
+
+ 2374              	.LASF29:
+ 2375 0620 68656967 		.ascii	"height\000"
+ 2375      687400
+ 2376              	.LASF39:
+ 2377 0627 676C7970 		.ascii	"glyph_dx\000"
+ 2377      685F6478 
+ 2377      00
+ 2378              	.LASF0:
+ 2379 0630 5F5F696E 		.ascii	"__int8_t\000"
+ 2379      74385F74 
+ 2379      00
+ 2380              	.LASF90:
+ 2381 0639 50574D5F 		.ascii	"PWM_Mode\000"
+ 2381      4D6F6465 
+ 2381      00
+ 2382              	.LASF38:
+ 2383 0642 63757273 		.ascii	"cursor_fn\000"
+ 2383      6F725F66 
+ 2383      6E00
+ 2384              	.LASF150:
+ 2385 064c 5365745F 		.ascii	"Set_Current_Temporary_Value\000"
+ 2385      43757272 
+ 2385      656E745F 
+ 2385      54656D70 
+ 2385      6F726172 
+ 2386              	.LASF178:
+ 2387 0668 64656C74 		.ascii	"deltaT\000"
+ 2387      615400
+ 2388              	.LASF49:
+ 2389 066f 6C696E65 		.ascii	"line_spacing\000"
+ 2389      5F737061 
+ 2389      63696E67 
+ 2389      00
+ 2390              	.LASF77:
+ 2391 067c 436F6E73 		.ascii	"ConstantCurrent\000"
+ 2391      74616E74 
+ 2391      43757272 
+ 2391      656E7400 
+ 2392              	.LASF172:
+ 2393 068c 63536574 		.ascii	"cSet_Ampl\000"
+ 2393      5F416D70 
+ 2393      6C00
+ 2394              	.LASF45:
+ 2395 0696 666F6E74 		.ascii	"font_height_mode\000"
+ 2395      5F686569 
+ 2395      6768745F 
+ 2395      6D6F6465 
+ 2395      00
+ 2396              	.LASF4:
+ 2397 06a7 73686F72 		.ascii	"short int\000"
+ 2397      7420696E 
+ 2397      7400
+ 2398              	.LASF7:
+ 2399 06b1 6C6F6E67 		.ascii	"long int\000"
+ 2399      20696E74 
+ 2399      00
+ 2400              	.LASF94:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 51
+
+
+ 2401 06ba 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2401      52784275 
+ 2401      66666572 
+ 2401      00
+ 2402              	.LASF91:
+ 2403 06c7 45787465 		.ascii	"External_Drive\000"
+ 2403      726E616C 
+ 2403      5F447269 
+ 2403      766500
+ 2404              	.LASF157:
+ 2405 06d6 4D617856 		.ascii	"MaxVoltage\000"
+ 2405      6F6C7461 
+ 2405      676500
+ 2406              	.LASF124:
+ 2407 06e1 526F7461 		.ascii	"Rotate_Buzzer__Default_Lenght\000"
+ 2407      74655F42 
+ 2407      757A7A65 
+ 2407      725F5F44 
+ 2407      65666175 
+ 2408              	.LASF140:
+ 2409 06ff 4D656173 		.ascii	"MeasuredVoltage\000"
+ 2409      75726564 
+ 2409      566F6C74 
+ 2409      61676500 
+ 2410              	.LASF51:
+ 2411 070f 73746174 		.ascii	"state_cb\000"
+ 2411      655F6362 
+ 2411      00
+ 2412              	.LASF54:
+ 2413 0718 5F753867 		.ascii	"_u8g_t\000"
+ 2413      5F7400
+ 2414              	.LASF62:
+ 2415 071f 636F6C6F 		.ascii	"color\000"
+ 2415      7200
+ 2416              	.LASF115:
+ 2417 0725 62757474 		.ascii	"button1\000"
+ 2417      6F6E3100 
+ 2418              	.LASF116:
+ 2419 072d 62757474 		.ascii	"button2\000"
+ 2419      6F6E3200 
+ 2420              	.LASF34:
+ 2421 0735 63757273 		.ascii	"cursor_encoding\000"
+ 2421      6F725F65 
+ 2421      6E636F64 
+ 2421      696E6700 
+ 2422              	.LASF80:
+ 2423 0745 566F6C75 		.ascii	"VolumeSetting\000"
+ 2423      6D655365 
+ 2423      7474696E 
+ 2423      6700
+ 2424              	.LASF119:
+ 2425 0753 62757474 		.ascii	"button5\000"
+ 2425      6F6E3500 
+ 2426              	.LASF111:
+ 2427 075b 41637475 		.ascii	"Actual_Range\000"
+ 2427      616C5F52 
+ 2427      616E6765 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 52
+
+
+ 2427      00
+ 2428              	.LASF93:
+ 2429 0768 496E6974 		.ascii	"Initialize\000"
+ 2429      69616C69 
+ 2429      7A6500
+ 2430              	.LASF167:
+ 2431 0773 5365745F 		.ascii	"Set_Ampl_Temporary_Value\000"
+ 2431      416D706C 
+ 2431      5F54656D 
+ 2431      706F7261 
+ 2431      72795F56 
+ 2432              	.LASF47:
+ 2433 078c 666F6E74 		.ascii	"font_ref_descent\000"
+ 2433      5F726566 
+ 2433      5F646573 
+ 2433      63656E74 
+ 2433      00
+ 2434              	.LASF165:
+ 2435 079d 4F766572 		.ascii	"OverTemperature\000"
+ 2435      54656D70 
+ 2435      65726174 
+ 2435      75726500 
+ 2436              	.LASF1:
+ 2437 07ad 5F5F7569 		.ascii	"__uint8_t\000"
+ 2437      6E74385F 
+ 2437      7400
+ 2438              	.LASF55:
+ 2439 07b7 5F753867 		.ascii	"_u8g_dev_t\000"
+ 2439      5F646576 
+ 2439      5F7400
+ 2440              	.LASF30:
+ 2441 07c2 666F6E74 		.ascii	"font\000"
+ 2441      00
+ 2442              	.LASF25:
+ 2443 07c7 73697A65 		.ascii	"sizetype\000"
+ 2443      74797065 
+ 2443      00
+ 2444              	.LASF65:
+ 2445 07d0 7538675F 		.ascii	"u8g_box_t\000"
+ 2445      626F785F 
+ 2445      7400
+ 2446              	.LASF8:
+ 2447 07da 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2447      20756E73 
+ 2447      69676E65 
+ 2447      6420696E 
+ 2447      7400
+ 2448              	.LASF110:
+ 2449 07ec 466F7572 		.ascii	"Four_Wire_Method\000"
+ 2449      5F576972 
+ 2449      655F4D65 
+ 2449      74686F64 
+ 2449      00
+ 2450              	.LASF14:
+ 2451 07fd 696E7433 		.ascii	"int32_t\000"
+ 2451      325F7400 
+ 2452              	.LASF182:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 53
+
+
+ 2453 0805 43757272 		.ascii	"Current_FET_Temp\000"
+ 2453      656E745F 
+ 2453      4645545F 
+ 2453      54656D70 
+ 2453      00
+ 2454              	.LASF78:
+ 2455 0816 53657474 		.ascii	"Settings\000"
+ 2455      696E6773 
+ 2455      00
+ 2456              	.LASF48:
+ 2457 081f 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 2457      5F6C696E 
+ 2457      655F7370 
+ 2457      6163696E 
+ 2457      675F6661 
+ 2458              	.LASF61:
+ 2459 0838 70697865 		.ascii	"pixel\000"
+ 2459      6C00
+ 2460              	.LASF89:
+ 2461 083e 57617665 		.ascii	"WaveForm_Mode\000"
+ 2461      466F726D 
+ 2461      5F4D6F64 
+ 2461      6500
+ 2462              	.LASF3:
+ 2463 084c 756E7369 		.ascii	"unsigned char\000"
+ 2463      676E6564 
+ 2463      20636861 
+ 2463      7200
+ 2464              	.LASF139:
+ 2465 085a 546F7563 		.ascii	"Touched\000"
+ 2465      68656400 
+ 2466              	.LASF134:
+ 2467 0862 54657374 		.ascii	"TestChar\000"
+ 2467      43686172 
+ 2467      00
+ 2468              	.LASF149:
+ 2469 086b 5365745F 		.ascii	"Set_Current\000"
+ 2469      43757272 
+ 2469      656E7400 
+ 2470              	.LASF160:
+ 2471 0877 4D617852 		.ascii	"MaxResistance\000"
+ 2471      65736973 
+ 2471      74616E63 
+ 2471      6500
+ 2472              	.LASF151:
+ 2473 0885 5365745F 		.ascii	"Set_Power\000"
+ 2473      506F7765 
+ 2473      7200
+ 2474              	.LASF71:
+ 2475 088f 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 2475      666F6E74 
+ 2475      5F63616C 
+ 2475      635F7672 
+ 2475      65665F66 
+ 2476              	.LASF82:
+ 2477 08a8 436F6E73 		.ascii	"ConstantPower\000"
+ 2477      74616E74 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 54
+
+
+ 2477      506F7765 
+ 2477      7200
+ 2478              	.LASF179:
+ 2479 08b6 41766172 		.ascii	"Avarage_FET_Temp\000"
+ 2479      6167655F 
+ 2479      4645545F 
+ 2479      54656D70 
+ 2479      00
+ 2480              	.LASF122:
+ 2481 08c7 4F757470 		.ascii	"OutputEnable\000"
+ 2481      7574456E 
+ 2481      61626C65 
+ 2481      00
+ 2482              	.LASF42:
+ 2483 08d4 676C7970 		.ascii	"glyph_width\000"
+ 2483      685F7769 
+ 2483      64746800 
+ 2484              	.LASF31:
+ 2485 08e0 63757273 		.ascii	"cursor_font\000"
+ 2485      6F725F66 
+ 2485      6F6E7400 
+ 2486              	.LASF100:
+ 2487 08ec 43757272 		.ascii	"CurrentBacklightValue\000"
+ 2487      656E7442 
+ 2487      61636B6C 
+ 2487      69676874 
+ 2487      56616C75 
+ 2488              	.LASF73:
+ 2489 0902 44657665 		.ascii	"Develop\000"
+ 2489      6C6F7000 
+ 2490              	.LASF2:
+ 2491 090a 7369676E 		.ascii	"signed char\000"
+ 2491      65642063 
+ 2491      68617200 
+ 2492              	.LASF5:
+ 2493 0916 73686F72 		.ascii	"short unsigned int\000"
+ 2493      7420756E 
+ 2493      7369676E 
+ 2493      65642069 
+ 2493      6E7400
+ 2494              	.LASF163:
+ 2495 0929 435F4B64 		.ascii	"C_Kd\000"
+ 2495      00
+ 2496              	.LASF92:
+ 2497 092e 6D61696E 		.ascii	"main\000"
+ 2497      00
+ 2498              	.LASF162:
+ 2499 0933 435F4B69 		.ascii	"C_Ki\000"
+ 2499      00
+ 2500              	.LASF161:
+ 2501 0938 435F4B70 		.ascii	"C_Kp\000"
+ 2501      00
+ 2502              	.LASF148:
+ 2503 093d 5365745F 		.ascii	"Set_Voltage\000"
+ 2503      566F6C74 
+ 2503      61676500 
+ 2504              	.LASF79:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 55
+
+
+ 2505 0949 4261636B 		.ascii	"BacklightSetting\000"
+ 2505      6C696768 
+ 2505      74536574 
+ 2505      74696E67 
+ 2505      00
+ 2506              	.LASF15:
+ 2507 095a 75696E74 		.ascii	"uint8\000"
+ 2507      3800
+ 2508              	.LASF22:
+ 2509 0960 646F7562 		.ascii	"double\000"
+ 2509      6C6500
+ 2510              	.LASF95:
+ 2511 0967 7538675F 		.ascii	"u8g_dev_st7565_dogm128_hw_spi\000"
+ 2511      6465765F 
+ 2511      73743735 
+ 2511      36355F64 
+ 2511      6F676D31 
+ 2512              	.LASF136:
+ 2513 0985 6358506F 		.ascii	"cXPosition\000"
+ 2513      73697469 
+ 2513      6F6E00
+ 2514              	.LASF181:
+ 2515 0990 43757272 		.ascii	"Current_DIE_TempString\000"
+ 2515      656E745F 
+ 2515      4449455F 
+ 2515      54656D70 
+ 2515      53747269 
+ 2516              	.LASF70:
+ 2517 09a7 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 2517      64726177 
+ 2517      5F637572 
+ 2517      736F725F 
+ 2517      666E00
+ 2518              	.LASF75:
+ 2519 09ba 436F6E73 		.ascii	"ConstantMode\000"
+ 2519      74616E74 
+ 2519      4D6F6465 
+ 2519      00
+ 2520              	.LASF108:
+ 2521 09c7 54776F5F 		.ascii	"Two_Wire_Range\000"
+ 2521      57697265 
+ 2521      5F52616E 
+ 2521      676500
+ 2522              	.LASF176:
+ 2523 09d6 41637475 		.ascii	"Actual_Multiplier_Value\000"
+ 2523      616C5F4D 
+ 2523      756C7469 
+ 2523      706C6965 
+ 2523      725F5661 
+ 2524              	.LASF109:
+ 2525 09ee 466F7572 		.ascii	"Four_Wire_Range\000"
+ 2525      5F576972 
+ 2525      655F5261 
+ 2525      6E676500 
+ 2526              	.LASF123:
+ 2527 09fe 50757368 		.ascii	"Push_Buzzer__Default_Lenght\000"
+ 2527      5F42757A 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccqvIRL8.s 			page 56
+
+
+ 2527      7A65725F 
+ 2527      5F446566 
+ 2527      61756C74 
+ 2528              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

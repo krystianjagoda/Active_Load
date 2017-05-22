@@ -1,0 +1,982 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"WaveDAC8_1_BuffAmp.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	WaveDAC8_1_BuffAmp_initVar
+  19              		.bss
+  20              		.type	WaveDAC8_1_BuffAmp_initVar, %object
+  21              		.size	WaveDAC8_1_BuffAmp_initVar, 1
+  22              	WaveDAC8_1_BuffAmp_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.WaveDAC8_1_BuffAmp_Init,"ax",%progbits
+  25              		.align	2
+  26              		.global	WaveDAC8_1_BuffAmp_Init
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	WaveDAC8_1_BuffAmp_Init, %function
+  30              	WaveDAC8_1_BuffAmp_Init:
+  31              	.LFB0:
+  32              		.file 1 "Generated_Source\\PSoC5\\WaveDAC8_1_BuffAmp.c"
+   1:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * File Name: WaveDAC8_1_BuffAmp.c
+   3:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Version 1.90
+   4:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+   5:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Description:
+   6:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  This file provides the source code to the API for OpAmp (Analog Buffer) 
+   7:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  Component.
+   8:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+   9:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Note:
+  10:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  11:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  18:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** #include "WaveDAC8_1_BuffAmp.h"
+  19:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  20:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** uint8 WaveDAC8_1_BuffAmp_initVar = 0u;
+  21:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  22:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  23:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** /*******************************************************************************   
+  24:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Function Name: WaveDAC8_1_BuffAmp_Init
+  25:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** ********************************************************************************
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 2
+
+
+  26:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  27:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Summary:
+  28:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  Initialize component's parameters to the parameters set by user in the 
+  29:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  customizer of the component placed onto schematic. Usually called in 
+  30:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  WaveDAC8_1_BuffAmp_Start().
+  31:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  32:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Parameters:
+  33:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+  34:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  35:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Return:
+  36:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+  37:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  38:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *******************************************************************************/
+  39:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** void WaveDAC8_1_BuffAmp_Init(void) 
+  40:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** {
+  33              		.loc 1 40 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
+  41:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_SetPower(WaveDAC8_1_BuffAmp_DEFAULT_POWER);
+  43              		.loc 1 41 0
+  44 0004 0220     		movs	r0, #2
+  45 0006 FFF7FEFF 		bl	WaveDAC8_1_BuffAmp_SetPower
+  42:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** }
+  46              		.loc 1 42 0
+  47 000a 80BD     		pop	{r7, pc}
+  48              		.cfi_endproc
+  49              	.LFE0:
+  50              		.size	WaveDAC8_1_BuffAmp_Init, .-WaveDAC8_1_BuffAmp_Init
+  51              		.section	.text.WaveDAC8_1_BuffAmp_Enable,"ax",%progbits
+  52              		.align	2
+  53              		.global	WaveDAC8_1_BuffAmp_Enable
+  54              		.thumb
+  55              		.thumb_func
+  56              		.type	WaveDAC8_1_BuffAmp_Enable, %function
+  57              	WaveDAC8_1_BuffAmp_Enable:
+  58              	.LFB1:
+  43:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  44:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  45:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** /*******************************************************************************   
+  46:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Function Name: WaveDAC8_1_BuffAmp_Enable
+  47:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** ********************************************************************************
+  48:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  49:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Summary:
+  50:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  Enables the OpAmp block operation
+  51:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  52:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Parameters:
+  53:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+  54:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  55:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Return:
+  56:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 3
+
+
+  57:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  58:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *******************************************************************************/
+  59:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** void WaveDAC8_1_BuffAmp_Enable(void) 
+  60:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** {
+  59              		.loc 1 60 0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 1, uses_anonymous_args = 0
+  63              		@ link register save eliminated.
+  64 0000 80B4     		push	{r7}
+  65              		.cfi_def_cfa_offset 4
+  66              		.cfi_offset 7, -4
+  67 0002 00AF     		add	r7, sp, #0
+  68              		.cfi_def_cfa_register 7
+  61:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     /* Enable negative charge pumps in ANIF */
+  62:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_PUMP_CR1_REG  |= (WaveDAC8_1_BuffAmp_PUMP_CR1_CLKSEL | WaveDAC8_1_BuffAmp_PU
+  69              		.loc 1 62 0
+  70 0004 0D4A     		ldr	r2, .L3
+  71 0006 0D4B     		ldr	r3, .L3
+  72 0008 1B78     		ldrb	r3, [r3]
+  73 000a DBB2     		uxtb	r3, r3
+  74 000c 43F06003 		orr	r3, r3, #96
+  75 0010 DBB2     		uxtb	r3, r3
+  76 0012 1370     		strb	r3, [r2]
+  63:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  64:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     /* Enable power to buffer in active mode */
+  65:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_PM_ACT_CFG_REG |= WaveDAC8_1_BuffAmp_ACT_PWR_EN;
+  77              		.loc 1 65 0
+  78 0014 0A4A     		ldr	r2, .L3+4
+  79 0016 0A4B     		ldr	r3, .L3+4
+  80 0018 1B78     		ldrb	r3, [r3]
+  81 001a DBB2     		uxtb	r3, r3
+  82 001c 43F00803 		orr	r3, r3, #8
+  83 0020 DBB2     		uxtb	r3, r3
+  84 0022 1370     		strb	r3, [r2]
+  66:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  67:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     /* Enable power to buffer in alternative active mode */
+  68:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_PM_STBY_CFG_REG |= WaveDAC8_1_BuffAmp_STBY_PWR_EN;
+  85              		.loc 1 68 0
+  86 0024 074A     		ldr	r2, .L3+8
+  87 0026 074B     		ldr	r3, .L3+8
+  88 0028 1B78     		ldrb	r3, [r3]
+  89 002a DBB2     		uxtb	r3, r3
+  90 002c 43F00803 		orr	r3, r3, #8
+  91 0030 DBB2     		uxtb	r3, r3
+  92 0032 1370     		strb	r3, [r2]
+  69:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** }
+  93              		.loc 1 69 0
+  94 0034 BD46     		mov	sp, r7
+  95              		.cfi_def_cfa_register 13
+  96              		@ sp needed
+  97 0036 5DF8047B 		ldr	r7, [sp], #4
+  98              		.cfi_restore 7
+  99              		.cfi_def_cfa_offset 0
+ 100 003a 7047     		bx	lr
+ 101              	.L4:
+ 102              		.align	2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 4
+
+
+ 103              	.L3:
+ 104 003c 77580040 		.word	1073764471
+ 105 0040 A4430040 		.word	1073759140
+ 106 0044 B4430040 		.word	1073759156
+ 107              		.cfi_endproc
+ 108              	.LFE1:
+ 109              		.size	WaveDAC8_1_BuffAmp_Enable, .-WaveDAC8_1_BuffAmp_Enable
+ 110              		.section	.text.WaveDAC8_1_BuffAmp_Start,"ax",%progbits
+ 111              		.align	2
+ 112              		.global	WaveDAC8_1_BuffAmp_Start
+ 113              		.thumb
+ 114              		.thumb_func
+ 115              		.type	WaveDAC8_1_BuffAmp_Start, %function
+ 116              	WaveDAC8_1_BuffAmp_Start:
+ 117              	.LFB2:
+  70:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  71:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+  72:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** /*******************************************************************************
+  73:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Function Name:   WaveDAC8_1_BuffAmp_Start
+  74:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** ********************************************************************************
+  75:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  76:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Summary:
+  77:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  The start function initializes the Analog Buffer with the default values and 
+  78:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  sets the power to the given level. A power level of 0, is same as 
+  79:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  executing the stop function.
+  80:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  81:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Parameters:
+  82:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+  83:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  84:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Return:
+  85:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+  86:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  87:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Global variables:
+  88:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  WaveDAC8_1_BuffAmp_initVar: Used to check the initial configuration, modified 
+  89:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  when this function is called for the first time.
+  90:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+  91:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *******************************************************************************/
+  92:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** void WaveDAC8_1_BuffAmp_Start(void) 
+  93:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** {
+ 118              		.loc 1 93 0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 1, uses_anonymous_args = 0
+ 122 0000 80B5     		push	{r7, lr}
+ 123              		.cfi_def_cfa_offset 8
+ 124              		.cfi_offset 7, -8
+ 125              		.cfi_offset 14, -4
+ 126 0002 00AF     		add	r7, sp, #0
+ 127              		.cfi_def_cfa_register 7
+  94:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     if(WaveDAC8_1_BuffAmp_initVar == 0u)
+ 128              		.loc 1 94 0
+ 129 0004 054B     		ldr	r3, .L7
+ 130 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 131 0008 002B     		cmp	r3, #0
+ 132 000a 04D1     		bne	.L6
+  95:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     {
+  96:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****         WaveDAC8_1_BuffAmp_initVar = 1u;
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 5
+
+
+ 133              		.loc 1 96 0
+ 134 000c 034B     		ldr	r3, .L7
+ 135 000e 0122     		movs	r2, #1
+ 136 0010 1A70     		strb	r2, [r3]
+  97:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****         WaveDAC8_1_BuffAmp_Init();
+ 137              		.loc 1 97 0
+ 138 0012 FFF7FEFF 		bl	WaveDAC8_1_BuffAmp_Init
+ 139              	.L6:
+  98:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     }
+  99:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+ 100:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_Enable();
+ 140              		.loc 1 100 0
+ 141 0016 FFF7FEFF 		bl	WaveDAC8_1_BuffAmp_Enable
+ 101:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** }
+ 142              		.loc 1 101 0
+ 143 001a 80BD     		pop	{r7, pc}
+ 144              	.L8:
+ 145              		.align	2
+ 146              	.L7:
+ 147 001c 00000000 		.word	WaveDAC8_1_BuffAmp_initVar
+ 148              		.cfi_endproc
+ 149              	.LFE2:
+ 150              		.size	WaveDAC8_1_BuffAmp_Start, .-WaveDAC8_1_BuffAmp_Start
+ 151              		.section	.text.WaveDAC8_1_BuffAmp_Stop,"ax",%progbits
+ 152              		.align	2
+ 153              		.global	WaveDAC8_1_BuffAmp_Stop
+ 154              		.thumb
+ 155              		.thumb_func
+ 156              		.type	WaveDAC8_1_BuffAmp_Stop, %function
+ 157              	WaveDAC8_1_BuffAmp_Stop:
+ 158              	.LFB3:
+ 102:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+ 103:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+ 104:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** /*******************************************************************************
+ 105:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Function Name: WaveDAC8_1_BuffAmp_Stop
+ 106:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** ********************************************************************************
+ 107:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 108:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Summary:
+ 109:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  Powers down amplifier to lowest power state.
+ 110:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 111:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Parameters:
+ 112:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+ 113:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 114:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Return:
+ 115:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+ 116:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 117:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *******************************************************************************/
+ 118:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** void WaveDAC8_1_BuffAmp_Stop(void) 
+ 119:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** {
+ 159              		.loc 1 119 0
+ 160              		.cfi_startproc
+ 161              		@ args = 0, pretend = 0, frame = 0
+ 162              		@ frame_needed = 1, uses_anonymous_args = 0
+ 163              		@ link register save eliminated.
+ 164 0000 80B4     		push	{r7}
+ 165              		.cfi_def_cfa_offset 4
+ 166              		.cfi_offset 7, -4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 6
+
+
+ 167 0002 00AF     		add	r7, sp, #0
+ 168              		.cfi_def_cfa_register 7
+ 120:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     /* Disable power to buffer in active mode template */
+ 121:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_PM_ACT_CFG_REG &= (uint8)(~WaveDAC8_1_BuffAmp_ACT_PWR_EN);
+ 169              		.loc 1 121 0
+ 170 0004 104A     		ldr	r2, .L11
+ 171 0006 104B     		ldr	r3, .L11
+ 172 0008 1B78     		ldrb	r3, [r3]
+ 173 000a DBB2     		uxtb	r3, r3
+ 174 000c 23F00803 		bic	r3, r3, #8
+ 175 0010 DBB2     		uxtb	r3, r3
+ 176 0012 1370     		strb	r3, [r2]
+ 122:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+ 123:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     /* Disable power to buffer in alternative active mode template */
+ 124:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     WaveDAC8_1_BuffAmp_PM_STBY_CFG_REG &= (uint8)(~WaveDAC8_1_BuffAmp_STBY_PWR_EN);
+ 177              		.loc 1 124 0
+ 178 0014 0D4A     		ldr	r2, .L11+4
+ 179 0016 0D4B     		ldr	r3, .L11+4
+ 180 0018 1B78     		ldrb	r3, [r3]
+ 181 001a DBB2     		uxtb	r3, r3
+ 182 001c 23F00803 		bic	r3, r3, #8
+ 183 0020 DBB2     		uxtb	r3, r3
+ 184 0022 1370     		strb	r3, [r2]
+ 125:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     
+ 126:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     /* Disable negative charge pumps for ANIF only if all ABuf is turned OFF */
+ 127:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     if(WaveDAC8_1_BuffAmp_PM_ACT_CFG_REG == 0u)
+ 185              		.loc 1 127 0
+ 186 0024 084B     		ldr	r3, .L11
+ 187 0026 1B78     		ldrb	r3, [r3]
+ 188 0028 DBB2     		uxtb	r3, r3
+ 189 002a 002B     		cmp	r3, #0
+ 190 002c 07D1     		bne	.L9
+ 128:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     {
+ 129:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****         WaveDAC8_1_BuffAmp_PUMP_CR1_REG &= (uint8)(~(WaveDAC8_1_BuffAmp_PUMP_CR1_CLKSEL | WaveDAC8_
+ 191              		.loc 1 129 0
+ 192 002e 084A     		ldr	r2, .L11+8
+ 193 0030 074B     		ldr	r3, .L11+8
+ 194 0032 1B78     		ldrb	r3, [r3]
+ 195 0034 DBB2     		uxtb	r3, r3
+ 196 0036 23F06003 		bic	r3, r3, #96
+ 197 003a DBB2     		uxtb	r3, r3
+ 198 003c 1370     		strb	r3, [r2]
+ 199              	.L9:
+ 130:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     }
+ 131:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** }
+ 200              		.loc 1 131 0
+ 201 003e BD46     		mov	sp, r7
+ 202              		.cfi_def_cfa_register 13
+ 203              		@ sp needed
+ 204 0040 5DF8047B 		ldr	r7, [sp], #4
+ 205              		.cfi_restore 7
+ 206              		.cfi_def_cfa_offset 0
+ 207 0044 7047     		bx	lr
+ 208              	.L12:
+ 209 0046 00BF     		.align	2
+ 210              	.L11:
+ 211 0048 A4430040 		.word	1073759140
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 7
+
+
+ 212 004c B4430040 		.word	1073759156
+ 213 0050 77580040 		.word	1073764471
+ 214              		.cfi_endproc
+ 215              	.LFE3:
+ 216              		.size	WaveDAC8_1_BuffAmp_Stop, .-WaveDAC8_1_BuffAmp_Stop
+ 217              		.section	.text.WaveDAC8_1_BuffAmp_SetPower,"ax",%progbits
+ 218              		.align	2
+ 219              		.global	WaveDAC8_1_BuffAmp_SetPower
+ 220              		.thumb
+ 221              		.thumb_func
+ 222              		.type	WaveDAC8_1_BuffAmp_SetPower, %function
+ 223              	WaveDAC8_1_BuffAmp_SetPower:
+ 224              	.LFB4:
+ 132:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+ 133:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** 
+ 134:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** /*******************************************************************************
+ 135:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Function Name: WaveDAC8_1_BuffAmp_SetPower
+ 136:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** ********************************************************************************
+ 137:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 138:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Summary:
+ 139:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  Sets power level of Analog buffer.
+ 140:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 141:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Parameters: 
+ 142:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  power: PSoC3: Sets power level between low (1) and high power (3).
+ 143:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *         PSoC5: Sets power level High (0)
+ 144:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 145:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** * Return:
+ 146:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *  void
+ 147:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** *
+ 148:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** **********************************************************************************/
+ 149:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** void WaveDAC8_1_BuffAmp_SetPower(uint8 power) 
+ 150:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** {
+ 225              		.loc 1 150 0
+ 226              		.cfi_startproc
+ 227              		@ args = 0, pretend = 0, frame = 8
+ 228              		@ frame_needed = 1, uses_anonymous_args = 0
+ 229              		@ link register save eliminated.
+ 230 0000 80B4     		push	{r7}
+ 231              		.cfi_def_cfa_offset 4
+ 232              		.cfi_offset 7, -4
+ 233 0002 83B0     		sub	sp, sp, #12
+ 234              		.cfi_def_cfa_offset 16
+ 235 0004 00AF     		add	r7, sp, #0
+ 236              		.cfi_def_cfa_register 7
+ 237 0006 0346     		mov	r3, r0
+ 238 0008 FB71     		strb	r3, [r7, #7]
+ 151:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     #if (CY_PSOC3 || CY_PSOC5LP)
+ 152:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****         WaveDAC8_1_BuffAmp_CR_REG &= (uint8)(~WaveDAC8_1_BuffAmp_PWR_MASK);
+ 239              		.loc 1 152 0
+ 240 000a 0C4A     		ldr	r2, .L14
+ 241 000c 0B4B     		ldr	r3, .L14
+ 242 000e 1B78     		ldrb	r3, [r3]
+ 243 0010 DBB2     		uxtb	r3, r3
+ 244 0012 23F00303 		bic	r3, r3, #3
+ 245 0016 DBB2     		uxtb	r3, r3
+ 246 0018 1370     		strb	r3, [r2]
+ 153:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****         WaveDAC8_1_BuffAmp_CR_REG |= power & WaveDAC8_1_BuffAmp_PWR_MASK;      /* Set device power 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 8
+
+
+ 247              		.loc 1 153 0
+ 248 001a 0849     		ldr	r1, .L14
+ 249 001c 074B     		ldr	r3, .L14
+ 250 001e 1B78     		ldrb	r3, [r3]
+ 251 0020 DAB2     		uxtb	r2, r3
+ 252 0022 FB79     		ldrb	r3, [r7, #7]
+ 253 0024 03F00303 		and	r3, r3, #3
+ 254 0028 DBB2     		uxtb	r3, r3
+ 255 002a 1343     		orrs	r3, r3, r2
+ 256 002c DBB2     		uxtb	r3, r3
+ 257 002e 0B70     		strb	r3, [r1]
+ 154:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     #else
+ 155:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****         CYASSERT(WaveDAC8_1_BuffAmp_HIGHPOWER == power);
+ 156:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c ****     #endif /* CY_PSOC3 || CY_PSOC5LP */
+ 157:Generated_Source\PSoC5/WaveDAC8_1_BuffAmp.c **** }
+ 258              		.loc 1 157 0
+ 259 0030 0C37     		adds	r7, r7, #12
+ 260              		.cfi_def_cfa_offset 4
+ 261 0032 BD46     		mov	sp, r7
+ 262              		.cfi_def_cfa_register 13
+ 263              		@ sp needed
+ 264 0034 5DF8047B 		ldr	r7, [sp], #4
+ 265              		.cfi_restore 7
+ 266              		.cfi_def_cfa_offset 0
+ 267 0038 7047     		bx	lr
+ 268              	.L15:
+ 269 003a 00BF     		.align	2
+ 270              	.L14:
+ 271 003c 5E580040 		.word	1073764446
+ 272              		.cfi_endproc
+ 273              	.LFE4:
+ 274              		.size	WaveDAC8_1_BuffAmp_SetPower, .-WaveDAC8_1_BuffAmp_SetPower
+ 275              		.text
+ 276              	.Letext0:
+ 277              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 278              		.section	.debug_info,"",%progbits
+ 279              	.Ldebug_info0:
+ 280 0000 19010000 		.4byte	0x119
+ 281 0004 0400     		.2byte	0x4
+ 282 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 283 000a 04       		.byte	0x4
+ 284 000b 01       		.uleb128 0x1
+ 285 000c B8000000 		.4byte	.LASF19
+ 286 0010 01       		.byte	0x1
+ 287 0011 50010000 		.4byte	.LASF20
+ 288 0015 DD010000 		.4byte	.LASF21
+ 289 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 290 001d 00000000 		.4byte	0
+ 291 0021 00000000 		.4byte	.Ldebug_line0
+ 292 0025 02       		.uleb128 0x2
+ 293 0026 01       		.byte	0x1
+ 294 0027 06       		.byte	0x6
+ 295 0028 96010000 		.4byte	.LASF0
+ 296 002c 02       		.uleb128 0x2
+ 297 002d 01       		.byte	0x1
+ 298 002e 08       		.byte	0x8
+ 299 002f 81000000 		.4byte	.LASF1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 9
+
+
+ 300 0033 02       		.uleb128 0x2
+ 301 0034 02       		.byte	0x2
+ 302 0035 05       		.byte	0x5
+ 303 0036 46010000 		.4byte	.LASF2
+ 304 003a 02       		.uleb128 0x2
+ 305 003b 02       		.byte	0x2
+ 306 003c 07       		.byte	0x7
+ 307 003d 83010000 		.4byte	.LASF3
+ 308 0041 02       		.uleb128 0x2
+ 309 0042 04       		.byte	0x4
+ 310 0043 05       		.byte	0x5
+ 311 0044 AF000000 		.4byte	.LASF4
+ 312 0048 02       		.uleb128 0x2
+ 313 0049 04       		.byte	0x4
+ 314 004a 07       		.byte	0x7
+ 315 004b 40000000 		.4byte	.LASF5
+ 316 004f 02       		.uleb128 0x2
+ 317 0050 08       		.byte	0x8
+ 318 0051 05       		.byte	0x5
+ 319 0052 00000000 		.4byte	.LASF6
+ 320 0056 02       		.uleb128 0x2
+ 321 0057 08       		.byte	0x8
+ 322 0058 07       		.byte	0x7
+ 323 0059 52000000 		.4byte	.LASF7
+ 324 005d 03       		.uleb128 0x3
+ 325 005e 04       		.byte	0x4
+ 326 005f 05       		.byte	0x5
+ 327 0060 696E7400 		.ascii	"int\000"
+ 328 0064 02       		.uleb128 0x2
+ 329 0065 04       		.byte	0x4
+ 330 0066 07       		.byte	0x7
+ 331 0067 0E000000 		.4byte	.LASF8
+ 332 006b 04       		.uleb128 0x4
+ 333 006c 3A000000 		.4byte	.LASF12
+ 334 0070 02       		.byte	0x2
+ 335 0071 C2       		.byte	0xc2
+ 336 0072 2C000000 		.4byte	0x2c
+ 337 0076 02       		.uleb128 0x2
+ 338 0077 04       		.byte	0x4
+ 339 0078 04       		.byte	0x4
+ 340 0079 BB010000 		.4byte	.LASF9
+ 341 007d 02       		.uleb128 0x2
+ 342 007e 08       		.byte	0x8
+ 343 007f 04       		.byte	0x4
+ 344 0080 7C010000 		.4byte	.LASF10
+ 345 0084 02       		.uleb128 0x2
+ 346 0085 01       		.byte	0x1
+ 347 0086 08       		.byte	0x8
+ 348 0087 AA000000 		.4byte	.LASF11
+ 349 008b 05       		.uleb128 0x5
+ 350 008c 35000000 		.4byte	.LASF13
+ 351 0090 02       		.byte	0x2
+ 352 0091 6C01     		.2byte	0x16c
+ 353 0093 97000000 		.4byte	0x97
+ 354 0097 06       		.uleb128 0x6
+ 355 0098 6B000000 		.4byte	0x6b
+ 356 009c 02       		.uleb128 0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 10
+
+
+ 357 009d 04       		.byte	0x4
+ 358 009e 07       		.byte	0x7
+ 359 009f 30020000 		.4byte	.LASF14
+ 360 00a3 07       		.uleb128 0x7
+ 361 00a4 18020000 		.4byte	.LASF15
+ 362 00a8 01       		.byte	0x1
+ 363 00a9 27       		.byte	0x27
+ 364 00aa 00000000 		.4byte	.LFB0
+ 365 00ae 0C000000 		.4byte	.LFE0-.LFB0
+ 366 00b2 01       		.uleb128 0x1
+ 367 00b3 9C       		.byte	0x9c
+ 368 00b4 08       		.uleb128 0x8
+ 369 00b5 1B000000 		.4byte	.LASF16
+ 370 00b9 01       		.byte	0x1
+ 371 00ba 3B       		.byte	0x3b
+ 372 00bb 00000000 		.4byte	.LFB1
+ 373 00bf 48000000 		.4byte	.LFE1-.LFB1
+ 374 00c3 01       		.uleb128 0x1
+ 375 00c4 9C       		.byte	0x9c
+ 376 00c5 07       		.uleb128 0x7
+ 377 00c6 A2010000 		.4byte	.LASF17
+ 378 00ca 01       		.byte	0x1
+ 379 00cb 5C       		.byte	0x5c
+ 380 00cc 00000000 		.4byte	.LFB2
+ 381 00d0 20000000 		.4byte	.LFE2-.LFB2
+ 382 00d4 01       		.uleb128 0x1
+ 383 00d5 9C       		.byte	0x9c
+ 384 00d6 08       		.uleb128 0x8
+ 385 00d7 69000000 		.4byte	.LASF18
+ 386 00db 01       		.byte	0x1
+ 387 00dc 76       		.byte	0x76
+ 388 00dd 00000000 		.4byte	.LFB3
+ 389 00e1 54000000 		.4byte	.LFE3-.LFB3
+ 390 00e5 01       		.uleb128 0x1
+ 391 00e6 9C       		.byte	0x9c
+ 392 00e7 09       		.uleb128 0x9
+ 393 00e8 C1010000 		.4byte	.LASF22
+ 394 00ec 01       		.byte	0x1
+ 395 00ed 95       		.byte	0x95
+ 396 00ee 00000000 		.4byte	.LFB4
+ 397 00f2 40000000 		.4byte	.LFE4-.LFB4
+ 398 00f6 01       		.uleb128 0x1
+ 399 00f7 9C       		.byte	0x9c
+ 400 00f8 0B010000 		.4byte	0x10b
+ 401 00fc 0A       		.uleb128 0xa
+ 402 00fd 39020000 		.4byte	.LASF23
+ 403 0101 01       		.byte	0x1
+ 404 0102 95       		.byte	0x95
+ 405 0103 6B000000 		.4byte	0x6b
+ 406 0107 02       		.uleb128 0x2
+ 407 0108 91       		.byte	0x91
+ 408 0109 77       		.sleb128 -9
+ 409 010a 00       		.byte	0
+ 410 010b 0B       		.uleb128 0xb
+ 411 010c 8F000000 		.4byte	.LASF24
+ 412 0110 01       		.byte	0x1
+ 413 0111 14       		.byte	0x14
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 11
+
+
+ 414 0112 6B000000 		.4byte	0x6b
+ 415 0116 05       		.uleb128 0x5
+ 416 0117 03       		.byte	0x3
+ 417 0118 00000000 		.4byte	WaveDAC8_1_BuffAmp_initVar
+ 418 011c 00       		.byte	0
+ 419              		.section	.debug_abbrev,"",%progbits
+ 420              	.Ldebug_abbrev0:
+ 421 0000 01       		.uleb128 0x1
+ 422 0001 11       		.uleb128 0x11
+ 423 0002 01       		.byte	0x1
+ 424 0003 25       		.uleb128 0x25
+ 425 0004 0E       		.uleb128 0xe
+ 426 0005 13       		.uleb128 0x13
+ 427 0006 0B       		.uleb128 0xb
+ 428 0007 03       		.uleb128 0x3
+ 429 0008 0E       		.uleb128 0xe
+ 430 0009 1B       		.uleb128 0x1b
+ 431 000a 0E       		.uleb128 0xe
+ 432 000b 55       		.uleb128 0x55
+ 433 000c 17       		.uleb128 0x17
+ 434 000d 11       		.uleb128 0x11
+ 435 000e 01       		.uleb128 0x1
+ 436 000f 10       		.uleb128 0x10
+ 437 0010 17       		.uleb128 0x17
+ 438 0011 00       		.byte	0
+ 439 0012 00       		.byte	0
+ 440 0013 02       		.uleb128 0x2
+ 441 0014 24       		.uleb128 0x24
+ 442 0015 00       		.byte	0
+ 443 0016 0B       		.uleb128 0xb
+ 444 0017 0B       		.uleb128 0xb
+ 445 0018 3E       		.uleb128 0x3e
+ 446 0019 0B       		.uleb128 0xb
+ 447 001a 03       		.uleb128 0x3
+ 448 001b 0E       		.uleb128 0xe
+ 449 001c 00       		.byte	0
+ 450 001d 00       		.byte	0
+ 451 001e 03       		.uleb128 0x3
+ 452 001f 24       		.uleb128 0x24
+ 453 0020 00       		.byte	0
+ 454 0021 0B       		.uleb128 0xb
+ 455 0022 0B       		.uleb128 0xb
+ 456 0023 3E       		.uleb128 0x3e
+ 457 0024 0B       		.uleb128 0xb
+ 458 0025 03       		.uleb128 0x3
+ 459 0026 08       		.uleb128 0x8
+ 460 0027 00       		.byte	0
+ 461 0028 00       		.byte	0
+ 462 0029 04       		.uleb128 0x4
+ 463 002a 16       		.uleb128 0x16
+ 464 002b 00       		.byte	0
+ 465 002c 03       		.uleb128 0x3
+ 466 002d 0E       		.uleb128 0xe
+ 467 002e 3A       		.uleb128 0x3a
+ 468 002f 0B       		.uleb128 0xb
+ 469 0030 3B       		.uleb128 0x3b
+ 470 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 12
+
+
+ 471 0032 49       		.uleb128 0x49
+ 472 0033 13       		.uleb128 0x13
+ 473 0034 00       		.byte	0
+ 474 0035 00       		.byte	0
+ 475 0036 05       		.uleb128 0x5
+ 476 0037 16       		.uleb128 0x16
+ 477 0038 00       		.byte	0
+ 478 0039 03       		.uleb128 0x3
+ 479 003a 0E       		.uleb128 0xe
+ 480 003b 3A       		.uleb128 0x3a
+ 481 003c 0B       		.uleb128 0xb
+ 482 003d 3B       		.uleb128 0x3b
+ 483 003e 05       		.uleb128 0x5
+ 484 003f 49       		.uleb128 0x49
+ 485 0040 13       		.uleb128 0x13
+ 486 0041 00       		.byte	0
+ 487 0042 00       		.byte	0
+ 488 0043 06       		.uleb128 0x6
+ 489 0044 35       		.uleb128 0x35
+ 490 0045 00       		.byte	0
+ 491 0046 49       		.uleb128 0x49
+ 492 0047 13       		.uleb128 0x13
+ 493 0048 00       		.byte	0
+ 494 0049 00       		.byte	0
+ 495 004a 07       		.uleb128 0x7
+ 496 004b 2E       		.uleb128 0x2e
+ 497 004c 00       		.byte	0
+ 498 004d 3F       		.uleb128 0x3f
+ 499 004e 19       		.uleb128 0x19
+ 500 004f 03       		.uleb128 0x3
+ 501 0050 0E       		.uleb128 0xe
+ 502 0051 3A       		.uleb128 0x3a
+ 503 0052 0B       		.uleb128 0xb
+ 504 0053 3B       		.uleb128 0x3b
+ 505 0054 0B       		.uleb128 0xb
+ 506 0055 27       		.uleb128 0x27
+ 507 0056 19       		.uleb128 0x19
+ 508 0057 11       		.uleb128 0x11
+ 509 0058 01       		.uleb128 0x1
+ 510 0059 12       		.uleb128 0x12
+ 511 005a 06       		.uleb128 0x6
+ 512 005b 40       		.uleb128 0x40
+ 513 005c 18       		.uleb128 0x18
+ 514 005d 9642     		.uleb128 0x2116
+ 515 005f 19       		.uleb128 0x19
+ 516 0060 00       		.byte	0
+ 517 0061 00       		.byte	0
+ 518 0062 08       		.uleb128 0x8
+ 519 0063 2E       		.uleb128 0x2e
+ 520 0064 00       		.byte	0
+ 521 0065 3F       		.uleb128 0x3f
+ 522 0066 19       		.uleb128 0x19
+ 523 0067 03       		.uleb128 0x3
+ 524 0068 0E       		.uleb128 0xe
+ 525 0069 3A       		.uleb128 0x3a
+ 526 006a 0B       		.uleb128 0xb
+ 527 006b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 13
+
+
+ 528 006c 0B       		.uleb128 0xb
+ 529 006d 27       		.uleb128 0x27
+ 530 006e 19       		.uleb128 0x19
+ 531 006f 11       		.uleb128 0x11
+ 532 0070 01       		.uleb128 0x1
+ 533 0071 12       		.uleb128 0x12
+ 534 0072 06       		.uleb128 0x6
+ 535 0073 40       		.uleb128 0x40
+ 536 0074 18       		.uleb128 0x18
+ 537 0075 9742     		.uleb128 0x2117
+ 538 0077 19       		.uleb128 0x19
+ 539 0078 00       		.byte	0
+ 540 0079 00       		.byte	0
+ 541 007a 09       		.uleb128 0x9
+ 542 007b 2E       		.uleb128 0x2e
+ 543 007c 01       		.byte	0x1
+ 544 007d 3F       		.uleb128 0x3f
+ 545 007e 19       		.uleb128 0x19
+ 546 007f 03       		.uleb128 0x3
+ 547 0080 0E       		.uleb128 0xe
+ 548 0081 3A       		.uleb128 0x3a
+ 549 0082 0B       		.uleb128 0xb
+ 550 0083 3B       		.uleb128 0x3b
+ 551 0084 0B       		.uleb128 0xb
+ 552 0085 27       		.uleb128 0x27
+ 553 0086 19       		.uleb128 0x19
+ 554 0087 11       		.uleb128 0x11
+ 555 0088 01       		.uleb128 0x1
+ 556 0089 12       		.uleb128 0x12
+ 557 008a 06       		.uleb128 0x6
+ 558 008b 40       		.uleb128 0x40
+ 559 008c 18       		.uleb128 0x18
+ 560 008d 9742     		.uleb128 0x2117
+ 561 008f 19       		.uleb128 0x19
+ 562 0090 01       		.uleb128 0x1
+ 563 0091 13       		.uleb128 0x13
+ 564 0092 00       		.byte	0
+ 565 0093 00       		.byte	0
+ 566 0094 0A       		.uleb128 0xa
+ 567 0095 05       		.uleb128 0x5
+ 568 0096 00       		.byte	0
+ 569 0097 03       		.uleb128 0x3
+ 570 0098 0E       		.uleb128 0xe
+ 571 0099 3A       		.uleb128 0x3a
+ 572 009a 0B       		.uleb128 0xb
+ 573 009b 3B       		.uleb128 0x3b
+ 574 009c 0B       		.uleb128 0xb
+ 575 009d 49       		.uleb128 0x49
+ 576 009e 13       		.uleb128 0x13
+ 577 009f 02       		.uleb128 0x2
+ 578 00a0 18       		.uleb128 0x18
+ 579 00a1 00       		.byte	0
+ 580 00a2 00       		.byte	0
+ 581 00a3 0B       		.uleb128 0xb
+ 582 00a4 34       		.uleb128 0x34
+ 583 00a5 00       		.byte	0
+ 584 00a6 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 14
+
+
+ 585 00a7 0E       		.uleb128 0xe
+ 586 00a8 3A       		.uleb128 0x3a
+ 587 00a9 0B       		.uleb128 0xb
+ 588 00aa 3B       		.uleb128 0x3b
+ 589 00ab 0B       		.uleb128 0xb
+ 590 00ac 49       		.uleb128 0x49
+ 591 00ad 13       		.uleb128 0x13
+ 592 00ae 3F       		.uleb128 0x3f
+ 593 00af 19       		.uleb128 0x19
+ 594 00b0 02       		.uleb128 0x2
+ 595 00b1 18       		.uleb128 0x18
+ 596 00b2 00       		.byte	0
+ 597 00b3 00       		.byte	0
+ 598 00b4 00       		.byte	0
+ 599              		.section	.debug_aranges,"",%progbits
+ 600 0000 3C000000 		.4byte	0x3c
+ 601 0004 0200     		.2byte	0x2
+ 602 0006 00000000 		.4byte	.Ldebug_info0
+ 603 000a 04       		.byte	0x4
+ 604 000b 00       		.byte	0
+ 605 000c 0000     		.2byte	0
+ 606 000e 0000     		.2byte	0
+ 607 0010 00000000 		.4byte	.LFB0
+ 608 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 609 0018 00000000 		.4byte	.LFB1
+ 610 001c 48000000 		.4byte	.LFE1-.LFB1
+ 611 0020 00000000 		.4byte	.LFB2
+ 612 0024 20000000 		.4byte	.LFE2-.LFB2
+ 613 0028 00000000 		.4byte	.LFB3
+ 614 002c 54000000 		.4byte	.LFE3-.LFB3
+ 615 0030 00000000 		.4byte	.LFB4
+ 616 0034 40000000 		.4byte	.LFE4-.LFB4
+ 617 0038 00000000 		.4byte	0
+ 618 003c 00000000 		.4byte	0
+ 619              		.section	.debug_ranges,"",%progbits
+ 620              	.Ldebug_ranges0:
+ 621 0000 00000000 		.4byte	.LFB0
+ 622 0004 0C000000 		.4byte	.LFE0
+ 623 0008 00000000 		.4byte	.LFB1
+ 624 000c 48000000 		.4byte	.LFE1
+ 625 0010 00000000 		.4byte	.LFB2
+ 626 0014 20000000 		.4byte	.LFE2
+ 627 0018 00000000 		.4byte	.LFB3
+ 628 001c 54000000 		.4byte	.LFE3
+ 629 0020 00000000 		.4byte	.LFB4
+ 630 0024 40000000 		.4byte	.LFE4
+ 631 0028 00000000 		.4byte	0
+ 632 002c 00000000 		.4byte	0
+ 633              		.section	.debug_line,"",%progbits
+ 634              	.Ldebug_line0:
+ 635 0000 B6000000 		.section	.debug_str,"MS",%progbits,1
+ 635      02004F00 
+ 635      00000201 
+ 635      FB0E0D00 
+ 635      01010101 
+ 636              	.LASF6:
+ 637 0000 6C6F6E67 		.ascii	"long long int\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 15
+
+
+ 637      206C6F6E 
+ 637      6720696E 
+ 637      7400
+ 638              	.LASF8:
+ 639 000e 756E7369 		.ascii	"unsigned int\000"
+ 639      676E6564 
+ 639      20696E74 
+ 639      00
+ 640              	.LASF16:
+ 641 001b 57617665 		.ascii	"WaveDAC8_1_BuffAmp_Enable\000"
+ 641      44414338 
+ 641      5F315F42 
+ 641      75666641 
+ 641      6D705F45 
+ 642              	.LASF13:
+ 643 0035 72656738 		.ascii	"reg8\000"
+ 643      00
+ 644              	.LASF12:
+ 645 003a 75696E74 		.ascii	"uint8\000"
+ 645      3800
+ 646              	.LASF5:
+ 647 0040 6C6F6E67 		.ascii	"long unsigned int\000"
+ 647      20756E73 
+ 647      69676E65 
+ 647      6420696E 
+ 647      7400
+ 648              	.LASF7:
+ 649 0052 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 649      206C6F6E 
+ 649      6720756E 
+ 649      7369676E 
+ 649      65642069 
+ 650              	.LASF18:
+ 651 0069 57617665 		.ascii	"WaveDAC8_1_BuffAmp_Stop\000"
+ 651      44414338 
+ 651      5F315F42 
+ 651      75666641 
+ 651      6D705F53 
+ 652              	.LASF1:
+ 653 0081 756E7369 		.ascii	"unsigned char\000"
+ 653      676E6564 
+ 653      20636861 
+ 653      7200
+ 654              	.LASF24:
+ 655 008f 57617665 		.ascii	"WaveDAC8_1_BuffAmp_initVar\000"
+ 655      44414338 
+ 655      5F315F42 
+ 655      75666641 
+ 655      6D705F69 
+ 656              	.LASF11:
+ 657 00aa 63686172 		.ascii	"char\000"
+ 657      00
+ 658              	.LASF4:
+ 659 00af 6C6F6E67 		.ascii	"long int\000"
+ 659      20696E74 
+ 659      00
+ 660              	.LASF19:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 16
+
+
+ 661 00b8 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 661      4320342E 
+ 661      392E3320 
+ 661      32303135 
+ 661      30333033 
+ 662 00eb 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 662      20726576 
+ 662      6973696F 
+ 662      6E203232 
+ 662      31323230 
+ 663 011e 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 663      66756E63 
+ 663      74696F6E 
+ 663      2D736563 
+ 663      74696F6E 
+ 664              	.LASF2:
+ 665 0146 73686F72 		.ascii	"short int\000"
+ 665      7420696E 
+ 665      7400
+ 666              	.LASF20:
+ 667 0150 47656E65 		.ascii	"Generated_Source\\PSoC5\\WaveDAC8_1_BuffAmp.c\000"
+ 667      72617465 
+ 667      645F536F 
+ 667      75726365 
+ 667      5C50536F 
+ 668              	.LASF10:
+ 669 017c 646F7562 		.ascii	"double\000"
+ 669      6C6500
+ 670              	.LASF3:
+ 671 0183 73686F72 		.ascii	"short unsigned int\000"
+ 671      7420756E 
+ 671      7369676E 
+ 671      65642069 
+ 671      6E7400
+ 672              	.LASF0:
+ 673 0196 7369676E 		.ascii	"signed char\000"
+ 673      65642063 
+ 673      68617200 
+ 674              	.LASF17:
+ 675 01a2 57617665 		.ascii	"WaveDAC8_1_BuffAmp_Start\000"
+ 675      44414338 
+ 675      5F315F42 
+ 675      75666641 
+ 675      6D705F53 
+ 676              	.LASF9:
+ 677 01bb 666C6F61 		.ascii	"float\000"
+ 677      7400
+ 678              	.LASF22:
+ 679 01c1 57617665 		.ascii	"WaveDAC8_1_BuffAmp_SetPower\000"
+ 679      44414338 
+ 679      5F315F42 
+ 679      75666641 
+ 679      6D705F53 
+ 680              	.LASF21:
+ 681 01dd 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 681      6F726B73 
+ 681      70616365 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc7EkQUg.s 			page 17
+
+
+ 681      5C50536F 
+ 681      435F4372 
+ 682 020c 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 682      392E6379 
+ 682      64736E00 
+ 683              	.LASF15:
+ 684 0218 57617665 		.ascii	"WaveDAC8_1_BuffAmp_Init\000"
+ 684      44414338 
+ 684      5F315F42 
+ 684      75666641 
+ 684      6D705F49 
+ 685              	.LASF14:
+ 686 0230 73697A65 		.ascii	"sizetype\000"
+ 686      74797065 
+ 686      00
+ 687              	.LASF23:
+ 688 0239 706F7765 		.ascii	"power\000"
+ 688      7200
+ 689              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

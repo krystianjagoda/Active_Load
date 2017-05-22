@@ -1,0 +1,2120 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Timer_1.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	Timer_1_initVar
+  19              		.bss
+  20              		.type	Timer_1_initVar, %object
+  21              		.size	Timer_1_initVar, 1
+  22              	Timer_1_initVar:
+  23 0000 00       		.space	1
+  24              		.section	.text.Timer_1_Init,"ax",%progbits
+  25              		.align	2
+  26              		.global	Timer_1_Init
+  27              		.thumb
+  28              		.thumb_func
+  29              		.type	Timer_1_Init, %function
+  30              	Timer_1_Init:
+  31              	.LFB0:
+  32              		.file 1 ".\\Generated_Source\\PSoC5\\Timer_1.c"
+   1:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/Timer_1.c **** * File Name: Timer_1.c
+   3:.\Generated_Source\PSoC5/Timer_1.c **** * Version 2.70
+   4:.\Generated_Source\PSoC5/Timer_1.c **** *
+   5:.\Generated_Source\PSoC5/Timer_1.c **** * Description:
+   6:.\Generated_Source\PSoC5/Timer_1.c **** *  The Timer component consists of a 8, 16, 24 or 32-bit timer with
+   7:.\Generated_Source\PSoC5/Timer_1.c **** *  a selectable period between 2 and 2^Width - 1.  The timer may free run
+   8:.\Generated_Source\PSoC5/Timer_1.c **** *  or be used as a capture timer as well.  The capture can be initiated
+   9:.\Generated_Source\PSoC5/Timer_1.c **** *  by a positive or negative edge signal as well as via software.
+  10:.\Generated_Source\PSoC5/Timer_1.c **** *  A trigger input can be programmed to enable the timer on rising edge
+  11:.\Generated_Source\PSoC5/Timer_1.c **** *  falling edge, either edge or continous run.
+  12:.\Generated_Source\PSoC5/Timer_1.c **** *  Interrupts may be generated due to a terminal count condition
+  13:.\Generated_Source\PSoC5/Timer_1.c **** *  or a capture event.
+  14:.\Generated_Source\PSoC5/Timer_1.c **** *
+  15:.\Generated_Source\PSoC5/Timer_1.c **** * Note:
+  16:.\Generated_Source\PSoC5/Timer_1.c **** *
+  17:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+  18:.\Generated_Source\PSoC5/Timer_1.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  19:.\Generated_Source\PSoC5/Timer_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  20:.\Generated_Source\PSoC5/Timer_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  21:.\Generated_Source\PSoC5/Timer_1.c **** * the software package with which this file was provided.
+  22:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************/
+  23:.\Generated_Source\PSoC5/Timer_1.c **** 
+  24:.\Generated_Source\PSoC5/Timer_1.c **** #include "Timer_1.h"
+  25:.\Generated_Source\PSoC5/Timer_1.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 2
+
+
+  26:.\Generated_Source\PSoC5/Timer_1.c **** uint8 Timer_1_initVar = 0u;
+  27:.\Generated_Source\PSoC5/Timer_1.c **** 
+  28:.\Generated_Source\PSoC5/Timer_1.c **** 
+  29:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+  30:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_Init
+  31:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+  32:.\Generated_Source\PSoC5/Timer_1.c **** *
+  33:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+  34:.\Generated_Source\PSoC5/Timer_1.c **** *  Initialize to the schematic state
+  35:.\Generated_Source\PSoC5/Timer_1.c **** *
+  36:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+  37:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+  38:.\Generated_Source\PSoC5/Timer_1.c **** *
+  39:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+  40:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+  41:.\Generated_Source\PSoC5/Timer_1.c **** *
+  42:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+  43:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_Init(void) 
+  44:.\Generated_Source\PSoC5/Timer_1.c **** {
+  33              		.loc 1 44 0
+  34              		.cfi_startproc
+  35              		@ args = 0, pretend = 0, frame = 0
+  36              		@ frame_needed = 1, uses_anonymous_args = 0
+  37 0000 80B5     		push	{r7, lr}
+  38              		.cfi_def_cfa_offset 8
+  39              		.cfi_offset 7, -8
+  40              		.cfi_offset 14, -4
+  41 0002 00AF     		add	r7, sp, #0
+  42              		.cfi_def_cfa_register 7
+  45:.\Generated_Source\PSoC5/Timer_1.c ****     #if(!Timer_1_UsingFixedFunction)
+  46:.\Generated_Source\PSoC5/Timer_1.c ****             /* Interrupt State Backup for Critical Region*/
+  47:.\Generated_Source\PSoC5/Timer_1.c ****             uint8 Timer_1_interruptState;
+  48:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Interrupt state back up for Fixed Function only */
+  49:.\Generated_Source\PSoC5/Timer_1.c **** 
+  50:.\Generated_Source\PSoC5/Timer_1.c ****     #if (Timer_1_UsingFixedFunction)
+  51:.\Generated_Source\PSoC5/Timer_1.c ****         /* Clear all bits but the enable bit (if it's already set) for Timer operation */
+  52:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_CONTROL &= Timer_1_CTRL_ENABLE;
+  43              		.loc 1 52 0
+  44 0004 254A     		ldr	r2, .L2
+  45 0006 254B     		ldr	r3, .L2
+  46 0008 1B78     		ldrb	r3, [r3]
+  47 000a DBB2     		uxtb	r3, r3
+  48 000c 03F00103 		and	r3, r3, #1
+  49 0010 DBB2     		uxtb	r3, r3
+  50 0012 1370     		strb	r3, [r2]
+  53:.\Generated_Source\PSoC5/Timer_1.c **** 
+  54:.\Generated_Source\PSoC5/Timer_1.c ****         /* Clear the mode bits for continuous run mode */
+  55:.\Generated_Source\PSoC5/Timer_1.c ****         #if (CY_PSOC5A)
+  56:.\Generated_Source\PSoC5/Timer_1.c ****             Timer_1_CONTROL2 &= ((uint8)(~Timer_1_CTRL_MODE_MASK));
+  57:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Clear bits in CONTROL2 only in PSOC5A */
+  58:.\Generated_Source\PSoC5/Timer_1.c **** 
+  59:.\Generated_Source\PSoC5/Timer_1.c ****         #if (CY_PSOC3 || CY_PSOC5LP)
+  60:.\Generated_Source\PSoC5/Timer_1.c ****             Timer_1_CONTROL3 &= ((uint8)(~Timer_1_CTRL_MODE_MASK));
+  51              		.loc 1 60 0
+  52 0014 224A     		ldr	r2, .L2+4
+  53 0016 224B     		ldr	r3, .L2+4
+  54 0018 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 3
+
+
+  55 001a DBB2     		uxtb	r3, r3
+  56 001c 23F00303 		bic	r3, r3, #3
+  57 0020 DBB2     		uxtb	r3, r3
+  58 0022 1370     		strb	r3, [r2]
+  61:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* CONTROL3 register exists only in PSoC3 OR PSoC5LP */
+  62:.\Generated_Source\PSoC5/Timer_1.c **** 
+  63:.\Generated_Source\PSoC5/Timer_1.c ****         /* Check if One Shot mode is enabled i.e. RunMode !=0*/
+  64:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_RunModeUsed != 0x0u)
+  65:.\Generated_Source\PSoC5/Timer_1.c ****             /* Set 3rd bit of Control register to enable one shot mode */
+  66:.\Generated_Source\PSoC5/Timer_1.c ****             Timer_1_CONTROL |= 0x04u;
+  59              		.loc 1 66 0
+  60 0024 1D4A     		ldr	r2, .L2
+  61 0026 1D4B     		ldr	r3, .L2
+  62 0028 1B78     		ldrb	r3, [r3]
+  63 002a DBB2     		uxtb	r3, r3
+  64 002c 43F00403 		orr	r3, r3, #4
+  65 0030 DBB2     		uxtb	r3, r3
+  66 0032 1370     		strb	r3, [r2]
+  67:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* One Shot enabled only when RunModeUsed is not Continuous*/
+  68:.\Generated_Source\PSoC5/Timer_1.c **** 
+  69:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_RunModeUsed == 2)
+  70:.\Generated_Source\PSoC5/Timer_1.c ****             #if (CY_PSOC5A)
+  71:.\Generated_Source\PSoC5/Timer_1.c ****                 /* Set last 2 bits of control2 register if one shot(halt on
+  72:.\Generated_Source\PSoC5/Timer_1.c ****                 interrupt) is enabled*/
+  73:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL2 |= 0x03u;
+  74:.\Generated_Source\PSoC5/Timer_1.c ****             #endif /* Set One-Shot Halt on Interrupt bit in CONTROL2 for PSoC5A */
+  75:.\Generated_Source\PSoC5/Timer_1.c **** 
+  76:.\Generated_Source\PSoC5/Timer_1.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  77:.\Generated_Source\PSoC5/Timer_1.c ****                 /* Set last 2 bits of control3 register if one shot(halt on
+  78:.\Generated_Source\PSoC5/Timer_1.c ****                 interrupt) is enabled*/
+  79:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL3 |= 0x03u;
+  80:.\Generated_Source\PSoC5/Timer_1.c ****             #endif /* Set One-Shot Halt on Interrupt bit in CONTROL3 for PSoC3 or PSoC5LP */
+  81:.\Generated_Source\PSoC5/Timer_1.c **** 
+  82:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Remove section if One Shot Halt on Interrupt is not enabled */
+  83:.\Generated_Source\PSoC5/Timer_1.c **** 
+  84:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_UsingHWEnable != 0)
+  85:.\Generated_Source\PSoC5/Timer_1.c ****             #if (CY_PSOC5A)
+  86:.\Generated_Source\PSoC5/Timer_1.c ****                 /* Set the default Run Mode of the Timer to Continuous */
+  87:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL2 |= Timer_1_CTRL_MODE_PULSEWIDTH;
+  88:.\Generated_Source\PSoC5/Timer_1.c ****             #endif /* Set Continuous Run Mode in CONTROL2 for PSoC5A */
+  89:.\Generated_Source\PSoC5/Timer_1.c **** 
+  90:.\Generated_Source\PSoC5/Timer_1.c ****             #if (CY_PSOC3 || CY_PSOC5LP)
+  91:.\Generated_Source\PSoC5/Timer_1.c ****                 /* Clear and Set ROD and COD bits of CFG2 register */
+  92:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL3 &= ((uint8)(~Timer_1_CTRL_RCOD_MASK));
+  93:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL3 |= Timer_1_CTRL_RCOD;
+  94:.\Generated_Source\PSoC5/Timer_1.c **** 
+  95:.\Generated_Source\PSoC5/Timer_1.c ****                 /* Clear and Enable the HW enable bit in CFG2 register */
+  96:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL3 &= ((uint8)(~Timer_1_CTRL_ENBL_MASK));
+  97:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL3 |= Timer_1_CTRL_ENBL;
+  98:.\Generated_Source\PSoC5/Timer_1.c **** 
+  99:.\Generated_Source\PSoC5/Timer_1.c ****                 /* Set the default Run Mode of the Timer to Continuous */
+ 100:.\Generated_Source\PSoC5/Timer_1.c ****                 Timer_1_CONTROL3 |= Timer_1_CTRL_MODE_CONTINUOUS;
+ 101:.\Generated_Source\PSoC5/Timer_1.c ****             #endif /* Set Continuous Run Mode in CONTROL3 for PSoC3ES3 or PSoC5A */
+ 102:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 103:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Configure Run Mode with hardware enable */
+ 104:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 105:.\Generated_Source\PSoC5/Timer_1.c ****         /* Clear and Set SYNCTC and SYNCCMP bits of RT1 register */
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 4
+
+
+ 106:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_RT1 &= ((uint8)(~Timer_1_RT1_MASK));
+  67              		.loc 1 106 0
+  68 0034 1B4A     		ldr	r2, .L2+8
+  69 0036 1B4B     		ldr	r3, .L2+8
+  70 0038 1B78     		ldrb	r3, [r3]
+  71 003a DBB2     		uxtb	r3, r3
+  72 003c 23F03003 		bic	r3, r3, #48
+  73 0040 DBB2     		uxtb	r3, r3
+  74 0042 1370     		strb	r3, [r2]
+ 107:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_RT1 |= Timer_1_SYNC;
+  75              		.loc 1 107 0
+  76 0044 174A     		ldr	r2, .L2+8
+  77 0046 174B     		ldr	r3, .L2+8
+  78 0048 1B78     		ldrb	r3, [r3]
+  79 004a DBB2     		uxtb	r3, r3
+  80 004c 43F03003 		orr	r3, r3, #48
+  81 0050 DBB2     		uxtb	r3, r3
+  82 0052 1370     		strb	r3, [r2]
+ 108:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 109:.\Generated_Source\PSoC5/Timer_1.c ****         /*Enable DSI Sync all all inputs of the Timer*/
+ 110:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_RT1 &= ((uint8)(~Timer_1_SYNCDSI_MASK));
+  83              		.loc 1 110 0
+  84 0054 134A     		ldr	r2, .L2+8
+  85 0056 134B     		ldr	r3, .L2+8
+  86 0058 1B78     		ldrb	r3, [r3]
+  87 005a DBB2     		uxtb	r3, r3
+  88 005c 23F00F03 		bic	r3, r3, #15
+  89 0060 DBB2     		uxtb	r3, r3
+  90 0062 1370     		strb	r3, [r2]
+ 111:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_RT1 |= Timer_1_SYNCDSI_EN;
+  91              		.loc 1 111 0
+  92 0064 0F4A     		ldr	r2, .L2+8
+  93 0066 0F4B     		ldr	r3, .L2+8
+  94 0068 1B78     		ldrb	r3, [r3]
+  95 006a DBB2     		uxtb	r3, r3
+  96 006c 43F00F03 		orr	r3, r3, #15
+  97 0070 DBB2     		uxtb	r3, r3
+  98 0072 1370     		strb	r3, [r2]
+ 112:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 113:.\Generated_Source\PSoC5/Timer_1.c ****         /* Set the IRQ to use the status register interrupts */
+ 114:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_CONTROL2 |= Timer_1_CTRL2_IRQ_SEL;
+  99              		.loc 1 114 0
+ 100 0074 0C4A     		ldr	r2, .L2+12
+ 101 0076 0C4B     		ldr	r3, .L2+12
+ 102 0078 1B78     		ldrb	r3, [r3]
+ 103 007a DBB2     		uxtb	r3, r3
+ 104 007c 43F00103 		orr	r3, r3, #1
+ 105 0080 DBB2     		uxtb	r3, r3
+ 106 0082 1370     		strb	r3, [r2]
+ 115:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Configuring registers of fixed function implementation */
+ 116:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 117:.\Generated_Source\PSoC5/Timer_1.c ****     /* Set Initial values from Configuration */
+ 118:.\Generated_Source\PSoC5/Timer_1.c ****     Timer_1_WritePeriod(Timer_1_INIT_PERIOD);
+ 107              		.loc 1 118 0
+ 108 0084 4FF6FF70 		movw	r0, #65535
+ 109 0088 FFF7FEFF 		bl	Timer_1_WritePeriod
+ 119:.\Generated_Source\PSoC5/Timer_1.c ****     Timer_1_WriteCounter(Timer_1_INIT_PERIOD);
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 5
+
+
+ 110              		.loc 1 119 0
+ 111 008c 4FF6FF70 		movw	r0, #65535
+ 112 0090 FFF7FEFF 		bl	Timer_1_WriteCounter
+ 120:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 121:.\Generated_Source\PSoC5/Timer_1.c ****     #if (Timer_1_UsingHWCaptureCounter)/* Capture counter is enabled */
+ 122:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_CAPTURE_COUNT_CTRL |= Timer_1_CNTR_ENABLE;
+ 123:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_SetCaptureCount(Timer_1_INIT_CAPTURE_COUNT);
+ 124:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Configure capture counter value */
+ 125:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 126:.\Generated_Source\PSoC5/Timer_1.c ****     #if (!Timer_1_UsingFixedFunction)
+ 127:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_SoftwareCaptureMode)
+ 128:.\Generated_Source\PSoC5/Timer_1.c ****             Timer_1_SetCaptureMode(Timer_1_INIT_CAPTURE_MODE);
+ 129:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Set Capture Mode for UDB implementation if capture mode is software controlled */
+ 130:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 131:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_SoftwareTriggerMode)
+ 132:.\Generated_Source\PSoC5/Timer_1.c ****             #if (!Timer_1_UDB_CONTROL_REG_REMOVED)
+ 133:.\Generated_Source\PSoC5/Timer_1.c ****                 if (0u == (Timer_1_CONTROL & Timer_1__B_TIMER__TM_SOFTWARE))
+ 134:.\Generated_Source\PSoC5/Timer_1.c ****                 {
+ 135:.\Generated_Source\PSoC5/Timer_1.c ****                     Timer_1_SetTriggerMode(Timer_1_INIT_TRIGGER_MODE);
+ 136:.\Generated_Source\PSoC5/Timer_1.c ****                 }
+ 137:.\Generated_Source\PSoC5/Timer_1.c ****             #endif /* (!Timer_1_UDB_CONTROL_REG_REMOVED) */
+ 138:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Set trigger mode for UDB Implementation if trigger mode is software controlled */
+ 139:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 140:.\Generated_Source\PSoC5/Timer_1.c ****         /* CyEnterCriticalRegion and CyExitCriticalRegion are used to mark following region critica
+ 141:.\Generated_Source\PSoC5/Timer_1.c ****         /* Enter Critical Region*/
+ 142:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_interruptState = CyEnterCriticalSection();
+ 143:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 144:.\Generated_Source\PSoC5/Timer_1.c ****         /* Use the interrupt output of the status register for IRQ output */
+ 145:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_STATUS_AUX_CTRL |= Timer_1_STATUS_ACTL_INT_EN_MASK;
+ 146:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 147:.\Generated_Source\PSoC5/Timer_1.c ****         /* Exit Critical Region*/
+ 148:.\Generated_Source\PSoC5/Timer_1.c ****         CyExitCriticalSection(Timer_1_interruptState);
+ 149:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 150:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_EnableTriggerMode)
+ 151:.\Generated_Source\PSoC5/Timer_1.c ****             Timer_1_EnableTrigger();
+ 152:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Set Trigger enable bit for UDB implementation in the control register*/
+ 153:.\Generated_Source\PSoC5/Timer_1.c **** 		
+ 154:.\Generated_Source\PSoC5/Timer_1.c **** 		
+ 155:.\Generated_Source\PSoC5/Timer_1.c ****         #if (Timer_1_InterruptOnCaptureCount && !Timer_1_UDB_CONTROL_REG_REMOVED)
+ 156:.\Generated_Source\PSoC5/Timer_1.c ****             Timer_1_SetInterruptCount(Timer_1_INIT_INT_CAPTURE_COUNT);
+ 157:.\Generated_Source\PSoC5/Timer_1.c ****         #endif /* Set interrupt count in UDB implementation if interrupt count feature is checked.*
+ 158:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 159:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_ClearFIFO();
+ 160:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Configure additional features of UDB implementation */
+ 161:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 162:.\Generated_Source\PSoC5/Timer_1.c ****     Timer_1_SetInterruptMode(Timer_1_INIT_INTERRUPT_MODE);
+ 113              		.loc 1 162 0
+ 114 0094 0020     		movs	r0, #0
+ 115 0096 FFF7FEFF 		bl	Timer_1_SetInterruptMode
+ 163:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 116              		.loc 1 163 0
+ 117 009a 80BD     		pop	{r7, pc}
+ 118              	.L3:
+ 119              		.align	2
+ 120              	.L2:
+ 121 009c 004F0040 		.word	1073762048
+ 122 00a0 024F0040 		.word	1073762050
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 6
+
+
+ 123 00a4 0B4F0040 		.word	1073762059
+ 124 00a8 014F0040 		.word	1073762049
+ 125              		.cfi_endproc
+ 126              	.LFE0:
+ 127              		.size	Timer_1_Init, .-Timer_1_Init
+ 128              		.section	.text.Timer_1_Enable,"ax",%progbits
+ 129              		.align	2
+ 130              		.global	Timer_1_Enable
+ 131              		.thumb
+ 132              		.thumb_func
+ 133              		.type	Timer_1_Enable, %function
+ 134              	Timer_1_Enable:
+ 135              	.LFB1:
+ 164:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 165:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 166:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 167:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_Enable
+ 168:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 169:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 170:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 171:.\Generated_Source\PSoC5/Timer_1.c **** *  Enable the Timer
+ 172:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 173:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 174:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 175:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 176:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 177:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 178:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 179:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 180:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_Enable(void) 
+ 181:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 136              		.loc 1 181 0
+ 137              		.cfi_startproc
+ 138              		@ args = 0, pretend = 0, frame = 0
+ 139              		@ frame_needed = 1, uses_anonymous_args = 0
+ 140              		@ link register save eliminated.
+ 141 0000 80B4     		push	{r7}
+ 142              		.cfi_def_cfa_offset 4
+ 143              		.cfi_offset 7, -4
+ 144 0002 00AF     		add	r7, sp, #0
+ 145              		.cfi_def_cfa_register 7
+ 182:.\Generated_Source\PSoC5/Timer_1.c ****     /* Globally Enable the Fixed Function Block chosen */
+ 183:.\Generated_Source\PSoC5/Timer_1.c ****     #if (Timer_1_UsingFixedFunction)
+ 184:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_GLOBAL_ENABLE |= Timer_1_BLOCK_EN_MASK;
+ 146              		.loc 1 184 0
+ 147 0004 0D4A     		ldr	r2, .L5
+ 148 0006 0D4B     		ldr	r3, .L5
+ 149 0008 1B78     		ldrb	r3, [r3]
+ 150 000a DBB2     		uxtb	r3, r3
+ 151 000c 43F00103 		orr	r3, r3, #1
+ 152 0010 DBB2     		uxtb	r3, r3
+ 153 0012 1370     		strb	r3, [r2]
+ 185:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_GLOBAL_STBY_ENABLE |= Timer_1_BLOCK_STBY_EN_MASK;
+ 154              		.loc 1 185 0
+ 155 0014 0A4A     		ldr	r2, .L5+4
+ 156 0016 0A4B     		ldr	r3, .L5+4
+ 157 0018 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 7
+
+
+ 158 001a DBB2     		uxtb	r3, r3
+ 159 001c 43F00103 		orr	r3, r3, #1
+ 160 0020 DBB2     		uxtb	r3, r3
+ 161 0022 1370     		strb	r3, [r2]
+ 186:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Set Enable bit for enabling Fixed function timer*/
+ 187:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 188:.\Generated_Source\PSoC5/Timer_1.c ****     /* Remove assignment if control register is removed */
+ 189:.\Generated_Source\PSoC5/Timer_1.c ****     #if (!Timer_1_UDB_CONTROL_REG_REMOVED || Timer_1_UsingFixedFunction)
+ 190:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_CONTROL |= Timer_1_CTRL_ENABLE;
+ 162              		.loc 1 190 0
+ 163 0024 074A     		ldr	r2, .L5+8
+ 164 0026 074B     		ldr	r3, .L5+8
+ 165 0028 1B78     		ldrb	r3, [r3]
+ 166 002a DBB2     		uxtb	r3, r3
+ 167 002c 43F00103 		orr	r3, r3, #1
+ 168 0030 DBB2     		uxtb	r3, r3
+ 169 0032 1370     		strb	r3, [r2]
+ 191:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Remove assignment if control register is removed */
+ 192:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 170              		.loc 1 192 0
+ 171 0034 BD46     		mov	sp, r7
+ 172              		.cfi_def_cfa_register 13
+ 173              		@ sp needed
+ 174 0036 5DF8047B 		ldr	r7, [sp], #4
+ 175              		.cfi_restore 7
+ 176              		.cfi_def_cfa_offset 0
+ 177 003a 7047     		bx	lr
+ 178              	.L6:
+ 179              		.align	2
+ 180              	.L5:
+ 181 003c A3430040 		.word	1073759139
+ 182 0040 B3430040 		.word	1073759155
+ 183 0044 004F0040 		.word	1073762048
+ 184              		.cfi_endproc
+ 185              	.LFE1:
+ 186              		.size	Timer_1_Enable, .-Timer_1_Enable
+ 187              		.section	.text.Timer_1_Start,"ax",%progbits
+ 188              		.align	2
+ 189              		.global	Timer_1_Start
+ 190              		.thumb
+ 191              		.thumb_func
+ 192              		.type	Timer_1_Start, %function
+ 193              	Timer_1_Start:
+ 194              	.LFB2:
+ 193:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 194:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 195:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 196:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_Start
+ 197:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 198:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 199:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 200:.\Generated_Source\PSoC5/Timer_1.c **** *  The start function initializes the timer with the default values, the
+ 201:.\Generated_Source\PSoC5/Timer_1.c **** *  enables the timerto begin counting.  It does not enable interrupts,
+ 202:.\Generated_Source\PSoC5/Timer_1.c **** *  the EnableInt command should be called if interrupt generation is required.
+ 203:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 204:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 205:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 8
+
+
+ 206:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 207:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 208:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 209:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 210:.\Generated_Source\PSoC5/Timer_1.c **** * Global variables:
+ 211:.\Generated_Source\PSoC5/Timer_1.c **** *  Timer_1_initVar: Is modified when this function is called for the
+ 212:.\Generated_Source\PSoC5/Timer_1.c **** *   first time. Is used to ensure that initialization happens only once.
+ 213:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 214:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 215:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_Start(void) 
+ 216:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 195              		.loc 1 216 0
+ 196              		.cfi_startproc
+ 197              		@ args = 0, pretend = 0, frame = 0
+ 198              		@ frame_needed = 1, uses_anonymous_args = 0
+ 199 0000 80B5     		push	{r7, lr}
+ 200              		.cfi_def_cfa_offset 8
+ 201              		.cfi_offset 7, -8
+ 202              		.cfi_offset 14, -4
+ 203 0002 00AF     		add	r7, sp, #0
+ 204              		.cfi_def_cfa_register 7
+ 217:.\Generated_Source\PSoC5/Timer_1.c ****     if(Timer_1_initVar == 0u)
+ 205              		.loc 1 217 0
+ 206 0004 054B     		ldr	r3, .L9
+ 207 0006 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 208 0008 002B     		cmp	r3, #0
+ 209 000a 04D1     		bne	.L8
+ 218:.\Generated_Source\PSoC5/Timer_1.c ****     {
+ 219:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_Init();
+ 210              		.loc 1 219 0
+ 211 000c FFF7FEFF 		bl	Timer_1_Init
+ 220:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 221:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_initVar = 1u;   /* Clear this bit for Initialization */
+ 212              		.loc 1 221 0
+ 213 0010 024B     		ldr	r3, .L9
+ 214 0012 0122     		movs	r2, #1
+ 215 0014 1A70     		strb	r2, [r3]
+ 216              	.L8:
+ 222:.\Generated_Source\PSoC5/Timer_1.c ****     }
+ 223:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 224:.\Generated_Source\PSoC5/Timer_1.c ****     /* Enable the Timer */
+ 225:.\Generated_Source\PSoC5/Timer_1.c ****     Timer_1_Enable();
+ 217              		.loc 1 225 0
+ 218 0016 FFF7FEFF 		bl	Timer_1_Enable
+ 226:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 219              		.loc 1 226 0
+ 220 001a 80BD     		pop	{r7, pc}
+ 221              	.L10:
+ 222              		.align	2
+ 223              	.L9:
+ 224 001c 00000000 		.word	Timer_1_initVar
+ 225              		.cfi_endproc
+ 226              	.LFE2:
+ 227              		.size	Timer_1_Start, .-Timer_1_Start
+ 228              		.section	.text.Timer_1_Stop,"ax",%progbits
+ 229              		.align	2
+ 230              		.global	Timer_1_Stop
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 9
+
+
+ 231              		.thumb
+ 232              		.thumb_func
+ 233              		.type	Timer_1_Stop, %function
+ 234              	Timer_1_Stop:
+ 235              	.LFB3:
+ 227:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 228:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 229:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 230:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_Stop
+ 231:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 232:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 233:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 234:.\Generated_Source\PSoC5/Timer_1.c **** *  The stop function halts the timer, but does not change any modes or disable
+ 235:.\Generated_Source\PSoC5/Timer_1.c **** *  interrupts.
+ 236:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 237:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 238:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 239:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 240:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 241:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 242:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 243:.\Generated_Source\PSoC5/Timer_1.c **** * Side Effects: If the Enable mode is set to Hardware only then this function
+ 244:.\Generated_Source\PSoC5/Timer_1.c **** *               has no effect on the operation of the timer.
+ 245:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 246:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 247:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_Stop(void) 
+ 248:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 236              		.loc 1 248 0
+ 237              		.cfi_startproc
+ 238              		@ args = 0, pretend = 0, frame = 0
+ 239              		@ frame_needed = 1, uses_anonymous_args = 0
+ 240              		@ link register save eliminated.
+ 241 0000 80B4     		push	{r7}
+ 242              		.cfi_def_cfa_offset 4
+ 243              		.cfi_offset 7, -4
+ 244 0002 00AF     		add	r7, sp, #0
+ 245              		.cfi_def_cfa_register 7
+ 249:.\Generated_Source\PSoC5/Timer_1.c ****     /* Disable Timer */
+ 250:.\Generated_Source\PSoC5/Timer_1.c ****     #if(!Timer_1_UDB_CONTROL_REG_REMOVED || Timer_1_UsingFixedFunction)
+ 251:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_CONTROL &= ((uint8)(~Timer_1_CTRL_ENABLE));
+ 246              		.loc 1 251 0
+ 247 0004 0D4A     		ldr	r2, .L12
+ 248 0006 0D4B     		ldr	r3, .L12
+ 249 0008 1B78     		ldrb	r3, [r3]
+ 250 000a DBB2     		uxtb	r3, r3
+ 251 000c 23F00103 		bic	r3, r3, #1
+ 252 0010 DBB2     		uxtb	r3, r3
+ 253 0012 1370     		strb	r3, [r2]
+ 252:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Remove assignment if control register is removed */
+ 253:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 254:.\Generated_Source\PSoC5/Timer_1.c ****     /* Globally disable the Fixed Function Block chosen */
+ 255:.\Generated_Source\PSoC5/Timer_1.c ****     #if (Timer_1_UsingFixedFunction)
+ 256:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_GLOBAL_ENABLE &= ((uint8)(~Timer_1_BLOCK_EN_MASK));
+ 254              		.loc 1 256 0
+ 255 0014 0A4A     		ldr	r2, .L12+4
+ 256 0016 0A4B     		ldr	r3, .L12+4
+ 257 0018 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 10
+
+
+ 258 001a DBB2     		uxtb	r3, r3
+ 259 001c 23F00103 		bic	r3, r3, #1
+ 260 0020 DBB2     		uxtb	r3, r3
+ 261 0022 1370     		strb	r3, [r2]
+ 257:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_GLOBAL_STBY_ENABLE &= ((uint8)(~Timer_1_BLOCK_STBY_EN_MASK));
+ 262              		.loc 1 257 0
+ 263 0024 074A     		ldr	r2, .L12+8
+ 264 0026 074B     		ldr	r3, .L12+8
+ 265 0028 1B78     		ldrb	r3, [r3]
+ 266 002a DBB2     		uxtb	r3, r3
+ 267 002c 23F00103 		bic	r3, r3, #1
+ 268 0030 DBB2     		uxtb	r3, r3
+ 269 0032 1370     		strb	r3, [r2]
+ 258:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Disable global enable for the Timer Fixed function block to stop the Timer*/
+ 259:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 270              		.loc 1 259 0
+ 271 0034 BD46     		mov	sp, r7
+ 272              		.cfi_def_cfa_register 13
+ 273              		@ sp needed
+ 274 0036 5DF8047B 		ldr	r7, [sp], #4
+ 275              		.cfi_restore 7
+ 276              		.cfi_def_cfa_offset 0
+ 277 003a 7047     		bx	lr
+ 278              	.L13:
+ 279              		.align	2
+ 280              	.L12:
+ 281 003c 004F0040 		.word	1073762048
+ 282 0040 A3430040 		.word	1073759139
+ 283 0044 B3430040 		.word	1073759155
+ 284              		.cfi_endproc
+ 285              	.LFE3:
+ 286              		.size	Timer_1_Stop, .-Timer_1_Stop
+ 287              		.section	.text.Timer_1_SetInterruptMode,"ax",%progbits
+ 288              		.align	2
+ 289              		.global	Timer_1_SetInterruptMode
+ 290              		.thumb
+ 291              		.thumb_func
+ 292              		.type	Timer_1_SetInterruptMode, %function
+ 293              	Timer_1_SetInterruptMode:
+ 294              	.LFB4:
+ 260:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 261:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 262:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 263:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_SetInterruptMode
+ 264:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 265:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 266:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 267:.\Generated_Source\PSoC5/Timer_1.c **** *  This function selects which of the interrupt inputs may cause an interrupt.
+ 268:.\Generated_Source\PSoC5/Timer_1.c **** *  The twosources are caputure and terminal.  One, both or neither may
+ 269:.\Generated_Source\PSoC5/Timer_1.c **** *  be selected.
+ 270:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 271:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 272:.\Generated_Source\PSoC5/Timer_1.c **** *  interruptMode:   This parameter is used to enable interrups on either/or
+ 273:.\Generated_Source\PSoC5/Timer_1.c **** *                   terminal count or capture.
+ 274:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 275:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 276:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 11
+
+
+ 277:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 278:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 279:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_SetInterruptMode(uint8 interruptMode) 
+ 280:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 295              		.loc 1 280 0
+ 296              		.cfi_startproc
+ 297              		@ args = 0, pretend = 0, frame = 8
+ 298              		@ frame_needed = 1, uses_anonymous_args = 0
+ 299              		@ link register save eliminated.
+ 300 0000 80B4     		push	{r7}
+ 301              		.cfi_def_cfa_offset 4
+ 302              		.cfi_offset 7, -4
+ 303 0002 83B0     		sub	sp, sp, #12
+ 304              		.cfi_def_cfa_offset 16
+ 305 0004 00AF     		add	r7, sp, #0
+ 306              		.cfi_def_cfa_register 7
+ 307 0006 0346     		mov	r3, r0
+ 308 0008 FB71     		strb	r3, [r7, #7]
+ 281:.\Generated_Source\PSoC5/Timer_1.c ****     Timer_1_STATUS_MASK = interruptMode;
+ 309              		.loc 1 281 0
+ 310 000a 044A     		ldr	r2, .L15
+ 311 000c FB79     		ldrb	r3, [r7, #7]
+ 312 000e 1370     		strb	r3, [r2]
+ 282:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 313              		.loc 1 282 0
+ 314 0010 0C37     		adds	r7, r7, #12
+ 315              		.cfi_def_cfa_offset 4
+ 316 0012 BD46     		mov	sp, r7
+ 317              		.cfi_def_cfa_register 13
+ 318              		@ sp needed
+ 319 0014 5DF8047B 		ldr	r7, [sp], #4
+ 320              		.cfi_restore 7
+ 321              		.cfi_def_cfa_offset 0
+ 322 0018 7047     		bx	lr
+ 323              	.L16:
+ 324 001a 00BF     		.align	2
+ 325              	.L15:
+ 326 001c 034F0040 		.word	1073762051
+ 327              		.cfi_endproc
+ 328              	.LFE4:
+ 329              		.size	Timer_1_SetInterruptMode, .-Timer_1_SetInterruptMode
+ 330              		.section	.text.Timer_1_SoftwareCapture,"ax",%progbits
+ 331              		.align	2
+ 332              		.global	Timer_1_SoftwareCapture
+ 333              		.thumb
+ 334              		.thumb_func
+ 335              		.type	Timer_1_SoftwareCapture, %function
+ 336              	Timer_1_SoftwareCapture:
+ 337              	.LFB5:
+ 283:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 284:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 285:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 286:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_SoftwareCapture
+ 287:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 288:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 289:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 290:.\Generated_Source\PSoC5/Timer_1.c **** *  This function forces a capture independent of the capture signal.
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 12
+
+
+ 291:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 292:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 293:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 294:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 295:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 296:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 297:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 298:.\Generated_Source\PSoC5/Timer_1.c **** * Side Effects:
+ 299:.\Generated_Source\PSoC5/Timer_1.c **** *  An existing hardware capture could be overwritten.
+ 300:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 301:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 302:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_SoftwareCapture(void) 
+ 303:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 338              		.loc 1 303 0
+ 339              		.cfi_startproc
+ 340              		@ args = 0, pretend = 0, frame = 0
+ 341              		@ frame_needed = 1, uses_anonymous_args = 0
+ 342              		@ link register save eliminated.
+ 343 0000 80B4     		push	{r7}
+ 344              		.cfi_def_cfa_offset 4
+ 345              		.cfi_offset 7, -4
+ 346 0002 00AF     		add	r7, sp, #0
+ 347              		.cfi_def_cfa_register 7
+ 304:.\Generated_Source\PSoC5/Timer_1.c ****     /* Generate a software capture by reading the counter register */
+ 305:.\Generated_Source\PSoC5/Timer_1.c ****     #if(Timer_1_UsingFixedFunction)
+ 306:.\Generated_Source\PSoC5/Timer_1.c ****         (void)CY_GET_REG16(Timer_1_COUNTER_LSB_PTR);
+ 348              		.loc 1 306 0
+ 349 0004 024B     		ldr	r3, .L18
+ 350 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 307:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 308:.\Generated_Source\PSoC5/Timer_1.c ****         (void)CY_GET_REG8(Timer_1_COUNTER_LSB_PTR_8BIT);
+ 309:.\Generated_Source\PSoC5/Timer_1.c ****     #endif/* (Timer_1_UsingFixedFunction) */
+ 310:.\Generated_Source\PSoC5/Timer_1.c ****     /* Capture Data is now in the FIFO */
+ 311:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 351              		.loc 1 311 0
+ 352 0008 BD46     		mov	sp, r7
+ 353              		.cfi_def_cfa_register 13
+ 354              		@ sp needed
+ 355 000a 5DF8047B 		ldr	r7, [sp], #4
+ 356              		.cfi_restore 7
+ 357              		.cfi_def_cfa_offset 0
+ 358 000e 7047     		bx	lr
+ 359              	.L19:
+ 360              		.align	2
+ 361              	.L18:
+ 362 0010 064F0040 		.word	1073762054
+ 363              		.cfi_endproc
+ 364              	.LFE5:
+ 365              		.size	Timer_1_SoftwareCapture, .-Timer_1_SoftwareCapture
+ 366              		.section	.text.Timer_1_ReadStatusRegister,"ax",%progbits
+ 367              		.align	2
+ 368              		.global	Timer_1_ReadStatusRegister
+ 369              		.thumb
+ 370              		.thumb_func
+ 371              		.type	Timer_1_ReadStatusRegister, %function
+ 372              	Timer_1_ReadStatusRegister:
+ 373              	.LFB6:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 13
+
+
+ 312:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 313:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 314:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 315:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_ReadStatusRegister
+ 316:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 317:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 318:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 319:.\Generated_Source\PSoC5/Timer_1.c **** *  Reads the status register and returns it's state. This function should use
+ 320:.\Generated_Source\PSoC5/Timer_1.c **** *  defined types for the bit-field information as the bits in this register may
+ 321:.\Generated_Source\PSoC5/Timer_1.c **** *  be permuteable.
+ 322:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 323:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 324:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 325:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 326:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 327:.\Generated_Source\PSoC5/Timer_1.c **** *  The contents of the status register
+ 328:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 329:.\Generated_Source\PSoC5/Timer_1.c **** * Side Effects:
+ 330:.\Generated_Source\PSoC5/Timer_1.c **** *  Status register bits may be clear on read.
+ 331:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 332:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 333:.\Generated_Source\PSoC5/Timer_1.c **** uint8   Timer_1_ReadStatusRegister(void) 
+ 334:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 374              		.loc 1 334 0
+ 375              		.cfi_startproc
+ 376              		@ args = 0, pretend = 0, frame = 0
+ 377              		@ frame_needed = 1, uses_anonymous_args = 0
+ 378              		@ link register save eliminated.
+ 379 0000 80B4     		push	{r7}
+ 380              		.cfi_def_cfa_offset 4
+ 381              		.cfi_offset 7, -4
+ 382 0002 00AF     		add	r7, sp, #0
+ 383              		.cfi_def_cfa_register 7
+ 335:.\Generated_Source\PSoC5/Timer_1.c ****     return (Timer_1_STATUS);
+ 384              		.loc 1 335 0
+ 385 0004 034B     		ldr	r3, .L22
+ 386 0006 1B78     		ldrb	r3, [r3]
+ 387 0008 DBB2     		uxtb	r3, r3
+ 336:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 388              		.loc 1 336 0
+ 389 000a 1846     		mov	r0, r3
+ 390 000c BD46     		mov	sp, r7
+ 391              		.cfi_def_cfa_register 13
+ 392              		@ sp needed
+ 393 000e 5DF8047B 		ldr	r7, [sp], #4
+ 394              		.cfi_restore 7
+ 395              		.cfi_def_cfa_offset 0
+ 396 0012 7047     		bx	lr
+ 397              	.L23:
+ 398              		.align	2
+ 399              	.L22:
+ 400 0014 034F0040 		.word	1073762051
+ 401              		.cfi_endproc
+ 402              	.LFE6:
+ 403              		.size	Timer_1_ReadStatusRegister, .-Timer_1_ReadStatusRegister
+ 404              		.section	.text.Timer_1_ReadControlRegister,"ax",%progbits
+ 405              		.align	2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 14
+
+
+ 406              		.global	Timer_1_ReadControlRegister
+ 407              		.thumb
+ 408              		.thumb_func
+ 409              		.type	Timer_1_ReadControlRegister, %function
+ 410              	Timer_1_ReadControlRegister:
+ 411              	.LFB7:
+ 337:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 338:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 339:.\Generated_Source\PSoC5/Timer_1.c **** #if (!Timer_1_UDB_CONTROL_REG_REMOVED) /* Remove API if control register is unused */
+ 340:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 341:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 342:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 343:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_ReadControlRegister
+ 344:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 345:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 346:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 347:.\Generated_Source\PSoC5/Timer_1.c **** *  Reads the control register and returns it's value.
+ 348:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 349:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 350:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 351:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 352:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 353:.\Generated_Source\PSoC5/Timer_1.c **** *  The contents of the control register
+ 354:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 355:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 356:.\Generated_Source\PSoC5/Timer_1.c **** uint8 Timer_1_ReadControlRegister(void) 
+ 357:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 412              		.loc 1 357 0
+ 413              		.cfi_startproc
+ 414              		@ args = 0, pretend = 0, frame = 0
+ 415              		@ frame_needed = 1, uses_anonymous_args = 0
+ 416              		@ link register save eliminated.
+ 417 0000 80B4     		push	{r7}
+ 418              		.cfi_def_cfa_offset 4
+ 419              		.cfi_offset 7, -4
+ 420 0002 00AF     		add	r7, sp, #0
+ 421              		.cfi_def_cfa_register 7
+ 358:.\Generated_Source\PSoC5/Timer_1.c ****     #if (!Timer_1_UDB_CONTROL_REG_REMOVED) 
+ 359:.\Generated_Source\PSoC5/Timer_1.c ****         return ((uint8)Timer_1_CONTROL);
+ 422              		.loc 1 359 0
+ 423 0004 034B     		ldr	r3, .L26
+ 424 0006 1B78     		ldrb	r3, [r3]
+ 425 0008 DBB2     		uxtb	r3, r3
+ 360:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 361:.\Generated_Source\PSoC5/Timer_1.c ****         return (0);
+ 362:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* (!Timer_1_UDB_CONTROL_REG_REMOVED) */
+ 363:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 426              		.loc 1 363 0
+ 427 000a 1846     		mov	r0, r3
+ 428 000c BD46     		mov	sp, r7
+ 429              		.cfi_def_cfa_register 13
+ 430              		@ sp needed
+ 431 000e 5DF8047B 		ldr	r7, [sp], #4
+ 432              		.cfi_restore 7
+ 433              		.cfi_def_cfa_offset 0
+ 434 0012 7047     		bx	lr
+ 435              	.L27:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 15
+
+
+ 436              		.align	2
+ 437              	.L26:
+ 438 0014 004F0040 		.word	1073762048
+ 439              		.cfi_endproc
+ 440              	.LFE7:
+ 441              		.size	Timer_1_ReadControlRegister, .-Timer_1_ReadControlRegister
+ 442              		.section	.text.Timer_1_WriteControlRegister,"ax",%progbits
+ 443              		.align	2
+ 444              		.global	Timer_1_WriteControlRegister
+ 445              		.thumb
+ 446              		.thumb_func
+ 447              		.type	Timer_1_WriteControlRegister, %function
+ 448              	Timer_1_WriteControlRegister:
+ 449              	.LFB8:
+ 364:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 365:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 366:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 367:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_WriteControlRegister
+ 368:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 369:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 370:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 371:.\Generated_Source\PSoC5/Timer_1.c **** *  Sets the bit-field of the control register.
+ 372:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 373:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 374:.\Generated_Source\PSoC5/Timer_1.c **** *  control: The contents of the control register
+ 375:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 376:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 377:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 378:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 379:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_WriteControlRegister(uint8 control) 
+ 380:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 450              		.loc 1 380 0
+ 451              		.cfi_startproc
+ 452              		@ args = 0, pretend = 0, frame = 8
+ 453              		@ frame_needed = 1, uses_anonymous_args = 0
+ 454              		@ link register save eliminated.
+ 455 0000 80B4     		push	{r7}
+ 456              		.cfi_def_cfa_offset 4
+ 457              		.cfi_offset 7, -4
+ 458 0002 83B0     		sub	sp, sp, #12
+ 459              		.cfi_def_cfa_offset 16
+ 460 0004 00AF     		add	r7, sp, #0
+ 461              		.cfi_def_cfa_register 7
+ 462 0006 0346     		mov	r3, r0
+ 463 0008 FB71     		strb	r3, [r7, #7]
+ 381:.\Generated_Source\PSoC5/Timer_1.c ****     #if (!Timer_1_UDB_CONTROL_REG_REMOVED) 
+ 382:.\Generated_Source\PSoC5/Timer_1.c ****         Timer_1_CONTROL = control;
+ 464              		.loc 1 382 0
+ 465 000a 044A     		ldr	r2, .L29
+ 466 000c FB79     		ldrb	r3, [r7, #7]
+ 467 000e 1370     		strb	r3, [r2]
+ 383:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 384:.\Generated_Source\PSoC5/Timer_1.c ****         control = 0u;
+ 385:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* (!Timer_1_UDB_CONTROL_REG_REMOVED) */
+ 386:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 468              		.loc 1 386 0
+ 469 0010 0C37     		adds	r7, r7, #12
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 16
+
+
+ 470              		.cfi_def_cfa_offset 4
+ 471 0012 BD46     		mov	sp, r7
+ 472              		.cfi_def_cfa_register 13
+ 473              		@ sp needed
+ 474 0014 5DF8047B 		ldr	r7, [sp], #4
+ 475              		.cfi_restore 7
+ 476              		.cfi_def_cfa_offset 0
+ 477 0018 7047     		bx	lr
+ 478              	.L30:
+ 479 001a 00BF     		.align	2
+ 480              	.L29:
+ 481 001c 004F0040 		.word	1073762048
+ 482              		.cfi_endproc
+ 483              	.LFE8:
+ 484              		.size	Timer_1_WriteControlRegister, .-Timer_1_WriteControlRegister
+ 485              		.section	.text.Timer_1_ReadPeriod,"ax",%progbits
+ 486              		.align	2
+ 487              		.global	Timer_1_ReadPeriod
+ 488              		.thumb
+ 489              		.thumb_func
+ 490              		.type	Timer_1_ReadPeriod, %function
+ 491              	Timer_1_ReadPeriod:
+ 492              	.LFB9:
+ 387:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 388:.\Generated_Source\PSoC5/Timer_1.c **** #endif /* Remove API if control register is unused */
+ 389:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 390:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 391:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 392:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_ReadPeriod
+ 393:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 394:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 395:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 396:.\Generated_Source\PSoC5/Timer_1.c **** *  This function returns the current value of the Period.
+ 397:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 398:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 399:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 400:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 401:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 402:.\Generated_Source\PSoC5/Timer_1.c **** *  The present value of the counter.
+ 403:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 404:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 405:.\Generated_Source\PSoC5/Timer_1.c **** uint16 Timer_1_ReadPeriod(void) 
+ 406:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 493              		.loc 1 406 0
+ 494              		.cfi_startproc
+ 495              		@ args = 0, pretend = 0, frame = 0
+ 496              		@ frame_needed = 1, uses_anonymous_args = 0
+ 497              		@ link register save eliminated.
+ 498 0000 80B4     		push	{r7}
+ 499              		.cfi_def_cfa_offset 4
+ 500              		.cfi_offset 7, -4
+ 501 0002 00AF     		add	r7, sp, #0
+ 502              		.cfi_def_cfa_register 7
+ 407:.\Generated_Source\PSoC5/Timer_1.c ****    #if(Timer_1_UsingFixedFunction)
+ 408:.\Generated_Source\PSoC5/Timer_1.c ****        return ((uint16)CY_GET_REG16(Timer_1_PERIOD_LSB_PTR));
+ 503              		.loc 1 408 0
+ 504 0004 034B     		ldr	r3, .L33
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 17
+
+
+ 505 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 506 0008 9BB2     		uxth	r3, r3
+ 409:.\Generated_Source\PSoC5/Timer_1.c ****    #else
+ 410:.\Generated_Source\PSoC5/Timer_1.c ****        return (CY_GET_REG16(Timer_1_PERIOD_LSB_PTR));
+ 411:.\Generated_Source\PSoC5/Timer_1.c ****    #endif /* (Timer_1_UsingFixedFunction) */
+ 412:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 507              		.loc 1 412 0
+ 508 000a 1846     		mov	r0, r3
+ 509 000c BD46     		mov	sp, r7
+ 510              		.cfi_def_cfa_register 13
+ 511              		@ sp needed
+ 512 000e 5DF8047B 		ldr	r7, [sp], #4
+ 513              		.cfi_restore 7
+ 514              		.cfi_def_cfa_offset 0
+ 515 0012 7047     		bx	lr
+ 516              	.L34:
+ 517              		.align	2
+ 518              	.L33:
+ 519 0014 044F0040 		.word	1073762052
+ 520              		.cfi_endproc
+ 521              	.LFE9:
+ 522              		.size	Timer_1_ReadPeriod, .-Timer_1_ReadPeriod
+ 523              		.section	.text.Timer_1_WritePeriod,"ax",%progbits
+ 524              		.align	2
+ 525              		.global	Timer_1_WritePeriod
+ 526              		.thumb
+ 527              		.thumb_func
+ 528              		.type	Timer_1_WritePeriod, %function
+ 529              	Timer_1_WritePeriod:
+ 530              	.LFB10:
+ 413:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 414:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 415:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 416:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_WritePeriod
+ 417:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 418:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 419:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 420:.\Generated_Source\PSoC5/Timer_1.c **** *  This function is used to change the period of the counter.  The new period
+ 421:.\Generated_Source\PSoC5/Timer_1.c **** *  will be loaded the next time terminal count is detected.
+ 422:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 423:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 424:.\Generated_Source\PSoC5/Timer_1.c **** *  period: This value may be between 1 and (2^Resolution)-1.  A value of 0 will
+ 425:.\Generated_Source\PSoC5/Timer_1.c **** *          result in the counter remaining at zero.
+ 426:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 427:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 428:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 429:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 430:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 431:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_WritePeriod(uint16 period) 
+ 432:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 531              		.loc 1 432 0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 16
+ 534              		@ frame_needed = 1, uses_anonymous_args = 0
+ 535              		@ link register save eliminated.
+ 536 0000 80B4     		push	{r7}
+ 537              		.cfi_def_cfa_offset 4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 18
+
+
+ 538              		.cfi_offset 7, -4
+ 539 0002 85B0     		sub	sp, sp, #20
+ 540              		.cfi_def_cfa_offset 24
+ 541 0004 00AF     		add	r7, sp, #0
+ 542              		.cfi_def_cfa_register 7
+ 543 0006 0346     		mov	r3, r0
+ 544 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 433:.\Generated_Source\PSoC5/Timer_1.c ****     #if(Timer_1_UsingFixedFunction)
+ 434:.\Generated_Source\PSoC5/Timer_1.c ****         uint16 period_temp = (uint16)period;
+ 545              		.loc 1 434 0
+ 546 000a FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 547 000c FB81     		strh	r3, [r7, #14]	@ movhi
+ 435:.\Generated_Source\PSoC5/Timer_1.c ****         CY_SET_REG16(Timer_1_PERIOD_LSB_PTR, period_temp);
+ 548              		.loc 1 435 0
+ 549 000e 044A     		ldr	r2, .L36
+ 550 0010 FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 551 0012 1380     		strh	r3, [r2]	@ movhi
+ 436:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 437:.\Generated_Source\PSoC5/Timer_1.c ****         CY_SET_REG16(Timer_1_PERIOD_LSB_PTR, period);
+ 438:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /*Write Period value with appropriate resolution suffix depending on UDB or fixed functi
+ 439:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 552              		.loc 1 439 0
+ 553 0014 1437     		adds	r7, r7, #20
+ 554              		.cfi_def_cfa_offset 4
+ 555 0016 BD46     		mov	sp, r7
+ 556              		.cfi_def_cfa_register 13
+ 557              		@ sp needed
+ 558 0018 5DF8047B 		ldr	r7, [sp], #4
+ 559              		.cfi_restore 7
+ 560              		.cfi_def_cfa_offset 0
+ 561 001c 7047     		bx	lr
+ 562              	.L37:
+ 563 001e 00BF     		.align	2
+ 564              	.L36:
+ 565 0020 044F0040 		.word	1073762052
+ 566              		.cfi_endproc
+ 567              	.LFE10:
+ 568              		.size	Timer_1_WritePeriod, .-Timer_1_WritePeriod
+ 569              		.section	.text.Timer_1_ReadCapture,"ax",%progbits
+ 570              		.align	2
+ 571              		.global	Timer_1_ReadCapture
+ 572              		.thumb
+ 573              		.thumb_func
+ 574              		.type	Timer_1_ReadCapture, %function
+ 575              	Timer_1_ReadCapture:
+ 576              	.LFB11:
+ 440:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 441:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 442:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 443:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_ReadCapture
+ 444:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 445:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 446:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 447:.\Generated_Source\PSoC5/Timer_1.c **** *  This function returns the last value captured.
+ 448:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 449:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 450:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 19
+
+
+ 451:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 452:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 453:.\Generated_Source\PSoC5/Timer_1.c **** *  Present Capture value.
+ 454:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 455:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 456:.\Generated_Source\PSoC5/Timer_1.c **** uint16 Timer_1_ReadCapture(void) 
+ 457:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 577              		.loc 1 457 0
+ 578              		.cfi_startproc
+ 579              		@ args = 0, pretend = 0, frame = 0
+ 580              		@ frame_needed = 1, uses_anonymous_args = 0
+ 581              		@ link register save eliminated.
+ 582 0000 80B4     		push	{r7}
+ 583              		.cfi_def_cfa_offset 4
+ 584              		.cfi_offset 7, -4
+ 585 0002 00AF     		add	r7, sp, #0
+ 586              		.cfi_def_cfa_register 7
+ 458:.\Generated_Source\PSoC5/Timer_1.c ****    #if(Timer_1_UsingFixedFunction)
+ 459:.\Generated_Source\PSoC5/Timer_1.c ****        return ((uint16)CY_GET_REG16(Timer_1_CAPTURE_LSB_PTR));
+ 587              		.loc 1 459 0
+ 588 0004 034B     		ldr	r3, .L40
+ 589 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 590 0008 9BB2     		uxth	r3, r3
+ 460:.\Generated_Source\PSoC5/Timer_1.c ****    #else
+ 461:.\Generated_Source\PSoC5/Timer_1.c ****        return (CY_GET_REG16(Timer_1_CAPTURE_LSB_PTR));
+ 462:.\Generated_Source\PSoC5/Timer_1.c ****    #endif /* (Timer_1_UsingFixedFunction) */
+ 463:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 591              		.loc 1 463 0
+ 592 000a 1846     		mov	r0, r3
+ 593 000c BD46     		mov	sp, r7
+ 594              		.cfi_def_cfa_register 13
+ 595              		@ sp needed
+ 596 000e 5DF8047B 		ldr	r7, [sp], #4
+ 597              		.cfi_restore 7
+ 598              		.cfi_def_cfa_offset 0
+ 599 0012 7047     		bx	lr
+ 600              	.L41:
+ 601              		.align	2
+ 602              	.L40:
+ 603 0014 084F0040 		.word	1073762056
+ 604              		.cfi_endproc
+ 605              	.LFE11:
+ 606              		.size	Timer_1_ReadCapture, .-Timer_1_ReadCapture
+ 607              		.section	.text.Timer_1_WriteCounter,"ax",%progbits
+ 608              		.align	2
+ 609              		.global	Timer_1_WriteCounter
+ 610              		.thumb
+ 611              		.thumb_func
+ 612              		.type	Timer_1_WriteCounter, %function
+ 613              	Timer_1_WriteCounter:
+ 614              	.LFB12:
+ 464:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 465:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 466:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 467:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_WriteCounter
+ 468:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 469:.\Generated_Source\PSoC5/Timer_1.c **** *
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 20
+
+
+ 470:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 471:.\Generated_Source\PSoC5/Timer_1.c **** *  This funtion is used to set the counter to a specific value
+ 472:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 473:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 474:.\Generated_Source\PSoC5/Timer_1.c **** *  counter:  New counter value.
+ 475:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 476:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 477:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 478:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 479:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 480:.\Generated_Source\PSoC5/Timer_1.c **** void Timer_1_WriteCounter(uint16 counter) 
+ 481:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 615              		.loc 1 481 0
+ 616              		.cfi_startproc
+ 617              		@ args = 0, pretend = 0, frame = 8
+ 618              		@ frame_needed = 1, uses_anonymous_args = 0
+ 619              		@ link register save eliminated.
+ 620 0000 80B4     		push	{r7}
+ 621              		.cfi_def_cfa_offset 4
+ 622              		.cfi_offset 7, -4
+ 623 0002 83B0     		sub	sp, sp, #12
+ 624              		.cfi_def_cfa_offset 16
+ 625 0004 00AF     		add	r7, sp, #0
+ 626              		.cfi_def_cfa_register 7
+ 627 0006 0346     		mov	r3, r0
+ 628 0008 FB80     		strh	r3, [r7, #6]	@ movhi
+ 482:.\Generated_Source\PSoC5/Timer_1.c ****    #if(Timer_1_UsingFixedFunction)
+ 483:.\Generated_Source\PSoC5/Timer_1.c ****         /* This functionality is removed until a FixedFunction HW update to
+ 484:.\Generated_Source\PSoC5/Timer_1.c ****          * allow this register to be written
+ 485:.\Generated_Source\PSoC5/Timer_1.c ****          */
+ 486:.\Generated_Source\PSoC5/Timer_1.c ****         CY_SET_REG16(Timer_1_COUNTER_LSB_PTR, (uint16)counter);
+ 629              		.loc 1 486 0
+ 630 000a 044A     		ldr	r2, .L43
+ 631 000c FB88     		ldrh	r3, [r7, #6]	@ movhi
+ 632 000e 1380     		strh	r3, [r2]	@ movhi
+ 487:.\Generated_Source\PSoC5/Timer_1.c ****         
+ 488:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 489:.\Generated_Source\PSoC5/Timer_1.c ****         CY_SET_REG16(Timer_1_COUNTER_LSB_PTR, counter);
+ 490:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* Set Write Counter only for the UDB implementation (Write Counter not available in fix
+ 491:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 633              		.loc 1 491 0
+ 634 0010 0C37     		adds	r7, r7, #12
+ 635              		.cfi_def_cfa_offset 4
+ 636 0012 BD46     		mov	sp, r7
+ 637              		.cfi_def_cfa_register 13
+ 638              		@ sp needed
+ 639 0014 5DF8047B 		ldr	r7, [sp], #4
+ 640              		.cfi_restore 7
+ 641              		.cfi_def_cfa_offset 0
+ 642 0018 7047     		bx	lr
+ 643              	.L44:
+ 644 001a 00BF     		.align	2
+ 645              	.L43:
+ 646 001c 064F0040 		.word	1073762054
+ 647              		.cfi_endproc
+ 648              	.LFE12:
+ 649              		.size	Timer_1_WriteCounter, .-Timer_1_WriteCounter
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 21
+
+
+ 650              		.section	.text.Timer_1_ReadCounter,"ax",%progbits
+ 651              		.align	2
+ 652              		.global	Timer_1_ReadCounter
+ 653              		.thumb
+ 654              		.thumb_func
+ 655              		.type	Timer_1_ReadCounter, %function
+ 656              	Timer_1_ReadCounter:
+ 657              	.LFB13:
+ 492:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 493:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 494:.\Generated_Source\PSoC5/Timer_1.c **** /*******************************************************************************
+ 495:.\Generated_Source\PSoC5/Timer_1.c **** * Function Name: Timer_1_ReadCounter
+ 496:.\Generated_Source\PSoC5/Timer_1.c **** ********************************************************************************
+ 497:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 498:.\Generated_Source\PSoC5/Timer_1.c **** * Summary:
+ 499:.\Generated_Source\PSoC5/Timer_1.c **** *  This function returns the current counter value.
+ 500:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 501:.\Generated_Source\PSoC5/Timer_1.c **** * Parameters:
+ 502:.\Generated_Source\PSoC5/Timer_1.c **** *  void
+ 503:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 504:.\Generated_Source\PSoC5/Timer_1.c **** * Return:
+ 505:.\Generated_Source\PSoC5/Timer_1.c **** *  Present compare value.
+ 506:.\Generated_Source\PSoC5/Timer_1.c **** *
+ 507:.\Generated_Source\PSoC5/Timer_1.c **** *******************************************************************************/
+ 508:.\Generated_Source\PSoC5/Timer_1.c **** uint16 Timer_1_ReadCounter(void) 
+ 509:.\Generated_Source\PSoC5/Timer_1.c **** {
+ 658              		.loc 1 509 0
+ 659              		.cfi_startproc
+ 660              		@ args = 0, pretend = 0, frame = 0
+ 661              		@ frame_needed = 1, uses_anonymous_args = 0
+ 662              		@ link register save eliminated.
+ 663 0000 80B4     		push	{r7}
+ 664              		.cfi_def_cfa_offset 4
+ 665              		.cfi_offset 7, -4
+ 666 0002 00AF     		add	r7, sp, #0
+ 667              		.cfi_def_cfa_register 7
+ 510:.\Generated_Source\PSoC5/Timer_1.c ****     /* Force capture by reading Accumulator */
+ 511:.\Generated_Source\PSoC5/Timer_1.c ****     /* Must first do a software capture to be able to read the counter */
+ 512:.\Generated_Source\PSoC5/Timer_1.c ****     /* It is up to the user code to make sure there isn't already captured data in the FIFO */
+ 513:.\Generated_Source\PSoC5/Timer_1.c ****     #if(Timer_1_UsingFixedFunction)
+ 514:.\Generated_Source\PSoC5/Timer_1.c ****         (void)CY_GET_REG16(Timer_1_COUNTER_LSB_PTR);
+ 668              		.loc 1 514 0
+ 669 0004 044B     		ldr	r3, .L47
+ 670 0006 1B88     		ldrh	r3, [r3]	@ movhi
+ 515:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 516:.\Generated_Source\PSoC5/Timer_1.c ****         (void)CY_GET_REG8(Timer_1_COUNTER_LSB_PTR_8BIT);
+ 517:.\Generated_Source\PSoC5/Timer_1.c ****     #endif/* (Timer_1_UsingFixedFunction) */
+ 518:.\Generated_Source\PSoC5/Timer_1.c **** 
+ 519:.\Generated_Source\PSoC5/Timer_1.c ****     /* Read the data from the FIFO (or capture register for Fixed Function)*/
+ 520:.\Generated_Source\PSoC5/Timer_1.c ****     #if(Timer_1_UsingFixedFunction)
+ 521:.\Generated_Source\PSoC5/Timer_1.c ****         return ((uint16)CY_GET_REG16(Timer_1_CAPTURE_LSB_PTR));
+ 671              		.loc 1 521 0
+ 672 0008 044B     		ldr	r3, .L47+4
+ 673 000a 1B88     		ldrh	r3, [r3]	@ movhi
+ 674 000c 9BB2     		uxth	r3, r3
+ 522:.\Generated_Source\PSoC5/Timer_1.c ****     #else
+ 523:.\Generated_Source\PSoC5/Timer_1.c ****         return (CY_GET_REG16(Timer_1_CAPTURE_LSB_PTR));
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 22
+
+
+ 524:.\Generated_Source\PSoC5/Timer_1.c ****     #endif /* (Timer_1_UsingFixedFunction) */
+ 525:.\Generated_Source\PSoC5/Timer_1.c **** }
+ 675              		.loc 1 525 0
+ 676 000e 1846     		mov	r0, r3
+ 677 0010 BD46     		mov	sp, r7
+ 678              		.cfi_def_cfa_register 13
+ 679              		@ sp needed
+ 680 0012 5DF8047B 		ldr	r7, [sp], #4
+ 681              		.cfi_restore 7
+ 682              		.cfi_def_cfa_offset 0
+ 683 0016 7047     		bx	lr
+ 684              	.L48:
+ 685              		.align	2
+ 686              	.L47:
+ 687 0018 064F0040 		.word	1073762054
+ 688 001c 084F0040 		.word	1073762056
+ 689              		.cfi_endproc
+ 690              	.LFE13:
+ 691              		.size	Timer_1_ReadCounter, .-Timer_1_ReadCounter
+ 692              		.text
+ 693              	.Letext0:
+ 694              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 695              		.section	.debug_info,"",%progbits
+ 696              	.Ldebug_info0:
+ 697 0000 38020000 		.4byte	0x238
+ 698 0004 0400     		.2byte	0x4
+ 699 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 700 000a 04       		.byte	0x4
+ 701 000b 01       		.uleb128 0x1
+ 702 000c F5000000 		.4byte	.LASF35
+ 703 0010 01       		.byte	0x1
+ 704 0011 8A010000 		.4byte	.LASF36
+ 705 0015 8F000000 		.4byte	.LASF37
+ 706 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 707 001d 00000000 		.4byte	0
+ 708 0021 00000000 		.4byte	.Ldebug_line0
+ 709 0025 02       		.uleb128 0x2
+ 710 0026 01       		.byte	0x1
+ 711 0027 06       		.byte	0x6
+ 712 0028 EB020000 		.4byte	.LASF0
+ 713 002c 02       		.uleb128 0x2
+ 714 002d 01       		.byte	0x1
+ 715 002e 08       		.byte	0x8
+ 716 002f D8000000 		.4byte	.LASF1
+ 717 0033 02       		.uleb128 0x2
+ 718 0034 02       		.byte	0x2
+ 719 0035 05       		.byte	0x5
+ 720 0036 B8020000 		.4byte	.LASF2
+ 721 003a 02       		.uleb128 0x2
+ 722 003b 02       		.byte	0x2
+ 723 003c 07       		.byte	0x7
+ 724 003d 39000000 		.4byte	.LASF3
+ 725 0041 02       		.uleb128 0x2
+ 726 0042 04       		.byte	0x4
+ 727 0043 05       		.byte	0x5
+ 728 0044 DD020000 		.4byte	.LASF4
+ 729 0048 02       		.uleb128 0x2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 23
+
+
+ 730 0049 04       		.byte	0x4
+ 731 004a 07       		.byte	0x7
+ 732 004b 06020000 		.4byte	.LASF5
+ 733 004f 02       		.uleb128 0x2
+ 734 0050 08       		.byte	0x8
+ 735 0051 05       		.byte	0x5
+ 736 0052 88020000 		.4byte	.LASF6
+ 737 0056 02       		.uleb128 0x2
+ 738 0057 08       		.byte	0x8
+ 739 0058 07       		.byte	0x7
+ 740 0059 33020000 		.4byte	.LASF7
+ 741 005d 03       		.uleb128 0x3
+ 742 005e 04       		.byte	0x4
+ 743 005f 05       		.byte	0x5
+ 744 0060 696E7400 		.ascii	"int\000"
+ 745 0064 02       		.uleb128 0x2
+ 746 0065 04       		.byte	0x4
+ 747 0066 07       		.byte	0x7
+ 748 0067 4C000000 		.4byte	.LASF8
+ 749 006b 04       		.uleb128 0x4
+ 750 006c CA000000 		.4byte	.LASF9
+ 751 0070 02       		.byte	0x2
+ 752 0071 C2       		.byte	0xc2
+ 753 0072 2C000000 		.4byte	0x2c
+ 754 0076 04       		.uleb128 0x4
+ 755 0077 C6010000 		.4byte	.LASF10
+ 756 007b 02       		.byte	0x2
+ 757 007c C3       		.byte	0xc3
+ 758 007d 3A000000 		.4byte	0x3a
+ 759 0081 02       		.uleb128 0x2
+ 760 0082 04       		.byte	0x4
+ 761 0083 04       		.byte	0x4
+ 762 0084 59000000 		.4byte	.LASF11
+ 763 0088 02       		.uleb128 0x2
+ 764 0089 08       		.byte	0x8
+ 765 008a 04       		.byte	0x4
+ 766 008b 83010000 		.4byte	.LASF12
+ 767 008f 02       		.uleb128 0x2
+ 768 0090 01       		.byte	0x1
+ 769 0091 08       		.byte	0x8
+ 770 0092 E6020000 		.4byte	.LASF13
+ 771 0096 05       		.uleb128 0x5
+ 772 0097 77000000 		.4byte	.LASF14
+ 773 009b 02       		.byte	0x2
+ 774 009c 6C01     		.2byte	0x16c
+ 775 009e A2000000 		.4byte	0xa2
+ 776 00a2 06       		.uleb128 0x6
+ 777 00a3 6B000000 		.4byte	0x6b
+ 778 00a7 05       		.uleb128 0x5
+ 779 00a8 00000000 		.4byte	.LASF15
+ 780 00ac 02       		.byte	0x2
+ 781 00ad 6D01     		.2byte	0x16d
+ 782 00af B3000000 		.4byte	0xb3
+ 783 00b3 06       		.uleb128 0x6
+ 784 00b4 76000000 		.4byte	0x76
+ 785 00b8 02       		.uleb128 0x2
+ 786 00b9 04       		.byte	0x4
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 24
+
+
+ 787 00ba 07       		.byte	0x7
+ 788 00bb 7F020000 		.4byte	.LASF16
+ 789 00bf 07       		.uleb128 0x7
+ 790 00c0 26020000 		.4byte	.LASF17
+ 791 00c4 01       		.byte	0x1
+ 792 00c5 2B       		.byte	0x2b
+ 793 00c6 00000000 		.4byte	.LFB0
+ 794 00ca AC000000 		.4byte	.LFE0-.LFB0
+ 795 00ce 01       		.uleb128 0x1
+ 796 00cf 9C       		.byte	0x9c
+ 797 00d0 08       		.uleb128 0x8
+ 798 00d1 E6000000 		.4byte	.LASF18
+ 799 00d5 01       		.byte	0x1
+ 800 00d6 B4       		.byte	0xb4
+ 801 00d7 00000000 		.4byte	.LFB1
+ 802 00db 48000000 		.4byte	.LFE1-.LFB1
+ 803 00df 01       		.uleb128 0x1
+ 804 00e0 9C       		.byte	0x9c
+ 805 00e1 07       		.uleb128 0x7
+ 806 00e2 18020000 		.4byte	.LASF19
+ 807 00e6 01       		.byte	0x1
+ 808 00e7 D7       		.byte	0xd7
+ 809 00e8 00000000 		.4byte	.LFB2
+ 810 00ec 20000000 		.4byte	.LFE2-.LFB2
+ 811 00f0 01       		.uleb128 0x1
+ 812 00f1 9C       		.byte	0x9c
+ 813 00f2 08       		.uleb128 0x8
+ 814 00f3 F7020000 		.4byte	.LASF20
+ 815 00f7 01       		.byte	0x1
+ 816 00f8 F7       		.byte	0xf7
+ 817 00f9 00000000 		.4byte	.LFB3
+ 818 00fd 48000000 		.4byte	.LFE3-.LFB3
+ 819 0101 01       		.uleb128 0x1
+ 820 0102 9C       		.byte	0x9c
+ 821 0103 09       		.uleb128 0x9
+ 822 0104 AD010000 		.4byte	.LASF24
+ 823 0108 01       		.byte	0x1
+ 824 0109 1701     		.2byte	0x117
+ 825 010b 00000000 		.4byte	.LFB4
+ 826 010f 20000000 		.4byte	.LFE4-.LFB4
+ 827 0113 01       		.uleb128 0x1
+ 828 0114 9C       		.byte	0x9c
+ 829 0115 29010000 		.4byte	0x129
+ 830 0119 0A       		.uleb128 0xa
+ 831 011a 96020000 		.4byte	.LASF26
+ 832 011e 01       		.byte	0x1
+ 833 011f 1701     		.2byte	0x117
+ 834 0121 6B000000 		.4byte	0x6b
+ 835 0125 02       		.uleb128 0x2
+ 836 0126 91       		.byte	0x91
+ 837 0127 77       		.sleb128 -9
+ 838 0128 00       		.byte	0
+ 839 0129 0B       		.uleb128 0xb
+ 840 012a 06000000 		.4byte	.LASF21
+ 841 012e 01       		.byte	0x1
+ 842 012f 2E01     		.2byte	0x12e
+ 843 0131 00000000 		.4byte	.LFB5
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 25
+
+
+ 844 0135 14000000 		.4byte	.LFE5-.LFB5
+ 845 0139 01       		.uleb128 0x1
+ 846 013a 9C       		.byte	0x9c
+ 847 013b 0C       		.uleb128 0xc
+ 848 013c C2020000 		.4byte	.LASF22
+ 849 0140 01       		.byte	0x1
+ 850 0141 4D01     		.2byte	0x14d
+ 851 0143 6B000000 		.4byte	0x6b
+ 852 0147 00000000 		.4byte	.LFB6
+ 853 014b 18000000 		.4byte	.LFE6-.LFB6
+ 854 014f 01       		.uleb128 0x1
+ 855 0150 9C       		.byte	0x9c
+ 856 0151 0C       		.uleb128 0xc
+ 857 0152 EA010000 		.4byte	.LASF23
+ 858 0156 01       		.byte	0x1
+ 859 0157 6401     		.2byte	0x164
+ 860 0159 6B000000 		.4byte	0x6b
+ 861 015d 00000000 		.4byte	.LFB7
+ 862 0161 18000000 		.4byte	.LFE7-.LFB7
+ 863 0165 01       		.uleb128 0x1
+ 864 0166 9C       		.byte	0x9c
+ 865 0167 09       		.uleb128 0x9
+ 866 0168 CD010000 		.4byte	.LASF25
+ 867 016c 01       		.byte	0x1
+ 868 016d 7B01     		.2byte	0x17b
+ 869 016f 00000000 		.4byte	.LFB8
+ 870 0173 20000000 		.4byte	.LFE8-.LFB8
+ 871 0177 01       		.uleb128 0x1
+ 872 0178 9C       		.byte	0x9c
+ 873 0179 8D010000 		.4byte	0x18d
+ 874 017d 0A       		.uleb128 0xa
+ 875 017e D0000000 		.4byte	.LASF27
+ 876 0182 01       		.byte	0x1
+ 877 0183 7B01     		.2byte	0x17b
+ 878 0185 6B000000 		.4byte	0x6b
+ 879 0189 02       		.uleb128 0x2
+ 880 018a 91       		.byte	0x91
+ 881 018b 77       		.sleb128 -9
+ 882 018c 00       		.byte	0
+ 883 018d 0C       		.uleb128 0xc
+ 884 018e 7C000000 		.4byte	.LASF28
+ 885 0192 01       		.byte	0x1
+ 886 0193 9501     		.2byte	0x195
+ 887 0195 76000000 		.4byte	0x76
+ 888 0199 00000000 		.4byte	.LFB9
+ 889 019d 18000000 		.4byte	.LFE9-.LFB9
+ 890 01a1 01       		.uleb128 0x1
+ 891 01a2 9C       		.byte	0x9c
+ 892 01a3 09       		.uleb128 0x9
+ 893 01a4 1E000000 		.4byte	.LASF29
+ 894 01a8 01       		.byte	0x1
+ 895 01a9 AF01     		.2byte	0x1af
+ 896 01ab 00000000 		.4byte	.LFB10
+ 897 01af 24000000 		.4byte	.LFE10-.LFB10
+ 898 01b3 01       		.uleb128 0x1
+ 899 01b4 9C       		.byte	0x9c
+ 900 01b5 D8010000 		.4byte	0x1d8
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 26
+
+
+ 901 01b9 0A       		.uleb128 0xa
+ 902 01ba 32000000 		.4byte	.LASF30
+ 903 01be 01       		.byte	0x1
+ 904 01bf AF01     		.2byte	0x1af
+ 905 01c1 76000000 		.4byte	0x76
+ 906 01c5 02       		.uleb128 0x2
+ 907 01c6 91       		.byte	0x91
+ 908 01c7 6E       		.sleb128 -18
+ 909 01c8 0D       		.uleb128 0xd
+ 910 01c9 73020000 		.4byte	.LASF38
+ 911 01cd 01       		.byte	0x1
+ 912 01ce B201     		.2byte	0x1b2
+ 913 01d0 76000000 		.4byte	0x76
+ 914 01d4 02       		.uleb128 0x2
+ 915 01d5 91       		.byte	0x91
+ 916 01d6 76       		.sleb128 -10
+ 917 01d7 00       		.byte	0
+ 918 01d8 0C       		.uleb128 0xc
+ 919 01d9 5F020000 		.4byte	.LASF31
+ 920 01dd 01       		.byte	0x1
+ 921 01de C801     		.2byte	0x1c8
+ 922 01e0 76000000 		.4byte	0x76
+ 923 01e4 00000000 		.4byte	.LFB11
+ 924 01e8 18000000 		.4byte	.LFE11-.LFB11
+ 925 01ec 01       		.uleb128 0x1
+ 926 01ed 9C       		.byte	0x9c
+ 927 01ee 09       		.uleb128 0x9
+ 928 01ef 4A020000 		.4byte	.LASF32
+ 929 01f3 01       		.byte	0x1
+ 930 01f4 E001     		.2byte	0x1e0
+ 931 01f6 00000000 		.4byte	.LFB12
+ 932 01fa 20000000 		.4byte	.LFE12-.LFB12
+ 933 01fe 01       		.uleb128 0x1
+ 934 01ff 9C       		.byte	0x9c
+ 935 0200 14020000 		.4byte	0x214
+ 936 0204 0A       		.uleb128 0xa
+ 937 0205 5F000000 		.4byte	.LASF33
+ 938 0209 01       		.byte	0x1
+ 939 020a E001     		.2byte	0x1e0
+ 940 020c 76000000 		.4byte	0x76
+ 941 0210 02       		.uleb128 0x2
+ 942 0211 91       		.byte	0x91
+ 943 0212 76       		.sleb128 -10
+ 944 0213 00       		.byte	0
+ 945 0214 0C       		.uleb128 0xc
+ 946 0215 A4020000 		.4byte	.LASF34
+ 947 0219 01       		.byte	0x1
+ 948 021a FC01     		.2byte	0x1fc
+ 949 021c 76000000 		.4byte	0x76
+ 950 0220 00000000 		.4byte	.LFB13
+ 951 0224 20000000 		.4byte	.LFE13-.LFB13
+ 952 0228 01       		.uleb128 0x1
+ 953 0229 9C       		.byte	0x9c
+ 954 022a 0E       		.uleb128 0xe
+ 955 022b 67000000 		.4byte	.LASF39
+ 956 022f 01       		.byte	0x1
+ 957 0230 1A       		.byte	0x1a
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 27
+
+
+ 958 0231 6B000000 		.4byte	0x6b
+ 959 0235 05       		.uleb128 0x5
+ 960 0236 03       		.byte	0x3
+ 961 0237 00000000 		.4byte	Timer_1_initVar
+ 962 023b 00       		.byte	0
+ 963              		.section	.debug_abbrev,"",%progbits
+ 964              	.Ldebug_abbrev0:
+ 965 0000 01       		.uleb128 0x1
+ 966 0001 11       		.uleb128 0x11
+ 967 0002 01       		.byte	0x1
+ 968 0003 25       		.uleb128 0x25
+ 969 0004 0E       		.uleb128 0xe
+ 970 0005 13       		.uleb128 0x13
+ 971 0006 0B       		.uleb128 0xb
+ 972 0007 03       		.uleb128 0x3
+ 973 0008 0E       		.uleb128 0xe
+ 974 0009 1B       		.uleb128 0x1b
+ 975 000a 0E       		.uleb128 0xe
+ 976 000b 55       		.uleb128 0x55
+ 977 000c 17       		.uleb128 0x17
+ 978 000d 11       		.uleb128 0x11
+ 979 000e 01       		.uleb128 0x1
+ 980 000f 10       		.uleb128 0x10
+ 981 0010 17       		.uleb128 0x17
+ 982 0011 00       		.byte	0
+ 983 0012 00       		.byte	0
+ 984 0013 02       		.uleb128 0x2
+ 985 0014 24       		.uleb128 0x24
+ 986 0015 00       		.byte	0
+ 987 0016 0B       		.uleb128 0xb
+ 988 0017 0B       		.uleb128 0xb
+ 989 0018 3E       		.uleb128 0x3e
+ 990 0019 0B       		.uleb128 0xb
+ 991 001a 03       		.uleb128 0x3
+ 992 001b 0E       		.uleb128 0xe
+ 993 001c 00       		.byte	0
+ 994 001d 00       		.byte	0
+ 995 001e 03       		.uleb128 0x3
+ 996 001f 24       		.uleb128 0x24
+ 997 0020 00       		.byte	0
+ 998 0021 0B       		.uleb128 0xb
+ 999 0022 0B       		.uleb128 0xb
+ 1000 0023 3E       		.uleb128 0x3e
+ 1001 0024 0B       		.uleb128 0xb
+ 1002 0025 03       		.uleb128 0x3
+ 1003 0026 08       		.uleb128 0x8
+ 1004 0027 00       		.byte	0
+ 1005 0028 00       		.byte	0
+ 1006 0029 04       		.uleb128 0x4
+ 1007 002a 16       		.uleb128 0x16
+ 1008 002b 00       		.byte	0
+ 1009 002c 03       		.uleb128 0x3
+ 1010 002d 0E       		.uleb128 0xe
+ 1011 002e 3A       		.uleb128 0x3a
+ 1012 002f 0B       		.uleb128 0xb
+ 1013 0030 3B       		.uleb128 0x3b
+ 1014 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 28
+
+
+ 1015 0032 49       		.uleb128 0x49
+ 1016 0033 13       		.uleb128 0x13
+ 1017 0034 00       		.byte	0
+ 1018 0035 00       		.byte	0
+ 1019 0036 05       		.uleb128 0x5
+ 1020 0037 16       		.uleb128 0x16
+ 1021 0038 00       		.byte	0
+ 1022 0039 03       		.uleb128 0x3
+ 1023 003a 0E       		.uleb128 0xe
+ 1024 003b 3A       		.uleb128 0x3a
+ 1025 003c 0B       		.uleb128 0xb
+ 1026 003d 3B       		.uleb128 0x3b
+ 1027 003e 05       		.uleb128 0x5
+ 1028 003f 49       		.uleb128 0x49
+ 1029 0040 13       		.uleb128 0x13
+ 1030 0041 00       		.byte	0
+ 1031 0042 00       		.byte	0
+ 1032 0043 06       		.uleb128 0x6
+ 1033 0044 35       		.uleb128 0x35
+ 1034 0045 00       		.byte	0
+ 1035 0046 49       		.uleb128 0x49
+ 1036 0047 13       		.uleb128 0x13
+ 1037 0048 00       		.byte	0
+ 1038 0049 00       		.byte	0
+ 1039 004a 07       		.uleb128 0x7
+ 1040 004b 2E       		.uleb128 0x2e
+ 1041 004c 00       		.byte	0
+ 1042 004d 3F       		.uleb128 0x3f
+ 1043 004e 19       		.uleb128 0x19
+ 1044 004f 03       		.uleb128 0x3
+ 1045 0050 0E       		.uleb128 0xe
+ 1046 0051 3A       		.uleb128 0x3a
+ 1047 0052 0B       		.uleb128 0xb
+ 1048 0053 3B       		.uleb128 0x3b
+ 1049 0054 0B       		.uleb128 0xb
+ 1050 0055 27       		.uleb128 0x27
+ 1051 0056 19       		.uleb128 0x19
+ 1052 0057 11       		.uleb128 0x11
+ 1053 0058 01       		.uleb128 0x1
+ 1054 0059 12       		.uleb128 0x12
+ 1055 005a 06       		.uleb128 0x6
+ 1056 005b 40       		.uleb128 0x40
+ 1057 005c 18       		.uleb128 0x18
+ 1058 005d 9642     		.uleb128 0x2116
+ 1059 005f 19       		.uleb128 0x19
+ 1060 0060 00       		.byte	0
+ 1061 0061 00       		.byte	0
+ 1062 0062 08       		.uleb128 0x8
+ 1063 0063 2E       		.uleb128 0x2e
+ 1064 0064 00       		.byte	0
+ 1065 0065 3F       		.uleb128 0x3f
+ 1066 0066 19       		.uleb128 0x19
+ 1067 0067 03       		.uleb128 0x3
+ 1068 0068 0E       		.uleb128 0xe
+ 1069 0069 3A       		.uleb128 0x3a
+ 1070 006a 0B       		.uleb128 0xb
+ 1071 006b 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 29
+
+
+ 1072 006c 0B       		.uleb128 0xb
+ 1073 006d 27       		.uleb128 0x27
+ 1074 006e 19       		.uleb128 0x19
+ 1075 006f 11       		.uleb128 0x11
+ 1076 0070 01       		.uleb128 0x1
+ 1077 0071 12       		.uleb128 0x12
+ 1078 0072 06       		.uleb128 0x6
+ 1079 0073 40       		.uleb128 0x40
+ 1080 0074 18       		.uleb128 0x18
+ 1081 0075 9742     		.uleb128 0x2117
+ 1082 0077 19       		.uleb128 0x19
+ 1083 0078 00       		.byte	0
+ 1084 0079 00       		.byte	0
+ 1085 007a 09       		.uleb128 0x9
+ 1086 007b 2E       		.uleb128 0x2e
+ 1087 007c 01       		.byte	0x1
+ 1088 007d 3F       		.uleb128 0x3f
+ 1089 007e 19       		.uleb128 0x19
+ 1090 007f 03       		.uleb128 0x3
+ 1091 0080 0E       		.uleb128 0xe
+ 1092 0081 3A       		.uleb128 0x3a
+ 1093 0082 0B       		.uleb128 0xb
+ 1094 0083 3B       		.uleb128 0x3b
+ 1095 0084 05       		.uleb128 0x5
+ 1096 0085 27       		.uleb128 0x27
+ 1097 0086 19       		.uleb128 0x19
+ 1098 0087 11       		.uleb128 0x11
+ 1099 0088 01       		.uleb128 0x1
+ 1100 0089 12       		.uleb128 0x12
+ 1101 008a 06       		.uleb128 0x6
+ 1102 008b 40       		.uleb128 0x40
+ 1103 008c 18       		.uleb128 0x18
+ 1104 008d 9742     		.uleb128 0x2117
+ 1105 008f 19       		.uleb128 0x19
+ 1106 0090 01       		.uleb128 0x1
+ 1107 0091 13       		.uleb128 0x13
+ 1108 0092 00       		.byte	0
+ 1109 0093 00       		.byte	0
+ 1110 0094 0A       		.uleb128 0xa
+ 1111 0095 05       		.uleb128 0x5
+ 1112 0096 00       		.byte	0
+ 1113 0097 03       		.uleb128 0x3
+ 1114 0098 0E       		.uleb128 0xe
+ 1115 0099 3A       		.uleb128 0x3a
+ 1116 009a 0B       		.uleb128 0xb
+ 1117 009b 3B       		.uleb128 0x3b
+ 1118 009c 05       		.uleb128 0x5
+ 1119 009d 49       		.uleb128 0x49
+ 1120 009e 13       		.uleb128 0x13
+ 1121 009f 02       		.uleb128 0x2
+ 1122 00a0 18       		.uleb128 0x18
+ 1123 00a1 00       		.byte	0
+ 1124 00a2 00       		.byte	0
+ 1125 00a3 0B       		.uleb128 0xb
+ 1126 00a4 2E       		.uleb128 0x2e
+ 1127 00a5 00       		.byte	0
+ 1128 00a6 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 30
+
+
+ 1129 00a7 19       		.uleb128 0x19
+ 1130 00a8 03       		.uleb128 0x3
+ 1131 00a9 0E       		.uleb128 0xe
+ 1132 00aa 3A       		.uleb128 0x3a
+ 1133 00ab 0B       		.uleb128 0xb
+ 1134 00ac 3B       		.uleb128 0x3b
+ 1135 00ad 05       		.uleb128 0x5
+ 1136 00ae 27       		.uleb128 0x27
+ 1137 00af 19       		.uleb128 0x19
+ 1138 00b0 11       		.uleb128 0x11
+ 1139 00b1 01       		.uleb128 0x1
+ 1140 00b2 12       		.uleb128 0x12
+ 1141 00b3 06       		.uleb128 0x6
+ 1142 00b4 40       		.uleb128 0x40
+ 1143 00b5 18       		.uleb128 0x18
+ 1144 00b6 9742     		.uleb128 0x2117
+ 1145 00b8 19       		.uleb128 0x19
+ 1146 00b9 00       		.byte	0
+ 1147 00ba 00       		.byte	0
+ 1148 00bb 0C       		.uleb128 0xc
+ 1149 00bc 2E       		.uleb128 0x2e
+ 1150 00bd 00       		.byte	0
+ 1151 00be 3F       		.uleb128 0x3f
+ 1152 00bf 19       		.uleb128 0x19
+ 1153 00c0 03       		.uleb128 0x3
+ 1154 00c1 0E       		.uleb128 0xe
+ 1155 00c2 3A       		.uleb128 0x3a
+ 1156 00c3 0B       		.uleb128 0xb
+ 1157 00c4 3B       		.uleb128 0x3b
+ 1158 00c5 05       		.uleb128 0x5
+ 1159 00c6 27       		.uleb128 0x27
+ 1160 00c7 19       		.uleb128 0x19
+ 1161 00c8 49       		.uleb128 0x49
+ 1162 00c9 13       		.uleb128 0x13
+ 1163 00ca 11       		.uleb128 0x11
+ 1164 00cb 01       		.uleb128 0x1
+ 1165 00cc 12       		.uleb128 0x12
+ 1166 00cd 06       		.uleb128 0x6
+ 1167 00ce 40       		.uleb128 0x40
+ 1168 00cf 18       		.uleb128 0x18
+ 1169 00d0 9742     		.uleb128 0x2117
+ 1170 00d2 19       		.uleb128 0x19
+ 1171 00d3 00       		.byte	0
+ 1172 00d4 00       		.byte	0
+ 1173 00d5 0D       		.uleb128 0xd
+ 1174 00d6 34       		.uleb128 0x34
+ 1175 00d7 00       		.byte	0
+ 1176 00d8 03       		.uleb128 0x3
+ 1177 00d9 0E       		.uleb128 0xe
+ 1178 00da 3A       		.uleb128 0x3a
+ 1179 00db 0B       		.uleb128 0xb
+ 1180 00dc 3B       		.uleb128 0x3b
+ 1181 00dd 05       		.uleb128 0x5
+ 1182 00de 49       		.uleb128 0x49
+ 1183 00df 13       		.uleb128 0x13
+ 1184 00e0 02       		.uleb128 0x2
+ 1185 00e1 18       		.uleb128 0x18
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 31
+
+
+ 1186 00e2 00       		.byte	0
+ 1187 00e3 00       		.byte	0
+ 1188 00e4 0E       		.uleb128 0xe
+ 1189 00e5 34       		.uleb128 0x34
+ 1190 00e6 00       		.byte	0
+ 1191 00e7 03       		.uleb128 0x3
+ 1192 00e8 0E       		.uleb128 0xe
+ 1193 00e9 3A       		.uleb128 0x3a
+ 1194 00ea 0B       		.uleb128 0xb
+ 1195 00eb 3B       		.uleb128 0x3b
+ 1196 00ec 0B       		.uleb128 0xb
+ 1197 00ed 49       		.uleb128 0x49
+ 1198 00ee 13       		.uleb128 0x13
+ 1199 00ef 3F       		.uleb128 0x3f
+ 1200 00f0 19       		.uleb128 0x19
+ 1201 00f1 02       		.uleb128 0x2
+ 1202 00f2 18       		.uleb128 0x18
+ 1203 00f3 00       		.byte	0
+ 1204 00f4 00       		.byte	0
+ 1205 00f5 00       		.byte	0
+ 1206              		.section	.debug_aranges,"",%progbits
+ 1207 0000 84000000 		.4byte	0x84
+ 1208 0004 0200     		.2byte	0x2
+ 1209 0006 00000000 		.4byte	.Ldebug_info0
+ 1210 000a 04       		.byte	0x4
+ 1211 000b 00       		.byte	0
+ 1212 000c 0000     		.2byte	0
+ 1213 000e 0000     		.2byte	0
+ 1214 0010 00000000 		.4byte	.LFB0
+ 1215 0014 AC000000 		.4byte	.LFE0-.LFB0
+ 1216 0018 00000000 		.4byte	.LFB1
+ 1217 001c 48000000 		.4byte	.LFE1-.LFB1
+ 1218 0020 00000000 		.4byte	.LFB2
+ 1219 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1220 0028 00000000 		.4byte	.LFB3
+ 1221 002c 48000000 		.4byte	.LFE3-.LFB3
+ 1222 0030 00000000 		.4byte	.LFB4
+ 1223 0034 20000000 		.4byte	.LFE4-.LFB4
+ 1224 0038 00000000 		.4byte	.LFB5
+ 1225 003c 14000000 		.4byte	.LFE5-.LFB5
+ 1226 0040 00000000 		.4byte	.LFB6
+ 1227 0044 18000000 		.4byte	.LFE6-.LFB6
+ 1228 0048 00000000 		.4byte	.LFB7
+ 1229 004c 18000000 		.4byte	.LFE7-.LFB7
+ 1230 0050 00000000 		.4byte	.LFB8
+ 1231 0054 20000000 		.4byte	.LFE8-.LFB8
+ 1232 0058 00000000 		.4byte	.LFB9
+ 1233 005c 18000000 		.4byte	.LFE9-.LFB9
+ 1234 0060 00000000 		.4byte	.LFB10
+ 1235 0064 24000000 		.4byte	.LFE10-.LFB10
+ 1236 0068 00000000 		.4byte	.LFB11
+ 1237 006c 18000000 		.4byte	.LFE11-.LFB11
+ 1238 0070 00000000 		.4byte	.LFB12
+ 1239 0074 20000000 		.4byte	.LFE12-.LFB12
+ 1240 0078 00000000 		.4byte	.LFB13
+ 1241 007c 20000000 		.4byte	.LFE13-.LFB13
+ 1242 0080 00000000 		.4byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 32
+
+
+ 1243 0084 00000000 		.4byte	0
+ 1244              		.section	.debug_ranges,"",%progbits
+ 1245              	.Ldebug_ranges0:
+ 1246 0000 00000000 		.4byte	.LFB0
+ 1247 0004 AC000000 		.4byte	.LFE0
+ 1248 0008 00000000 		.4byte	.LFB1
+ 1249 000c 48000000 		.4byte	.LFE1
+ 1250 0010 00000000 		.4byte	.LFB2
+ 1251 0014 20000000 		.4byte	.LFE2
+ 1252 0018 00000000 		.4byte	.LFB3
+ 1253 001c 48000000 		.4byte	.LFE3
+ 1254 0020 00000000 		.4byte	.LFB4
+ 1255 0024 20000000 		.4byte	.LFE4
+ 1256 0028 00000000 		.4byte	.LFB5
+ 1257 002c 14000000 		.4byte	.LFE5
+ 1258 0030 00000000 		.4byte	.LFB6
+ 1259 0034 18000000 		.4byte	.LFE6
+ 1260 0038 00000000 		.4byte	.LFB7
+ 1261 003c 18000000 		.4byte	.LFE7
+ 1262 0040 00000000 		.4byte	.LFB8
+ 1263 0044 20000000 		.4byte	.LFE8
+ 1264 0048 00000000 		.4byte	.LFB9
+ 1265 004c 18000000 		.4byte	.LFE9
+ 1266 0050 00000000 		.4byte	.LFB10
+ 1267 0054 24000000 		.4byte	.LFE10
+ 1268 0058 00000000 		.4byte	.LFB11
+ 1269 005c 18000000 		.4byte	.LFE11
+ 1270 0060 00000000 		.4byte	.LFB12
+ 1271 0064 20000000 		.4byte	.LFE12
+ 1272 0068 00000000 		.4byte	.LFB13
+ 1273 006c 20000000 		.4byte	.LFE13
+ 1274 0070 00000000 		.4byte	0
+ 1275 0074 00000000 		.4byte	0
+ 1276              		.section	.debug_line,"",%progbits
+ 1277              	.Ldebug_line0:
+ 1278 0000 5E010000 		.section	.debug_str,"MS",%progbits,1
+ 1278      02004600 
+ 1278      00000201 
+ 1278      FB0E0D00 
+ 1278      01010101 
+ 1279              	.LASF15:
+ 1280 0000 72656731 		.ascii	"reg16\000"
+ 1280      3600
+ 1281              	.LASF21:
+ 1282 0006 54696D65 		.ascii	"Timer_1_SoftwareCapture\000"
+ 1282      725F315F 
+ 1282      536F6674 
+ 1282      77617265 
+ 1282      43617074 
+ 1283              	.LASF29:
+ 1284 001e 54696D65 		.ascii	"Timer_1_WritePeriod\000"
+ 1284      725F315F 
+ 1284      57726974 
+ 1284      65506572 
+ 1284      696F6400 
+ 1285              	.LASF30:
+ 1286 0032 70657269 		.ascii	"period\000"
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 33
+
+
+ 1286      6F6400
+ 1287              	.LASF3:
+ 1288 0039 73686F72 		.ascii	"short unsigned int\000"
+ 1288      7420756E 
+ 1288      7369676E 
+ 1288      65642069 
+ 1288      6E7400
+ 1289              	.LASF8:
+ 1290 004c 756E7369 		.ascii	"unsigned int\000"
+ 1290      676E6564 
+ 1290      20696E74 
+ 1290      00
+ 1291              	.LASF11:
+ 1292 0059 666C6F61 		.ascii	"float\000"
+ 1292      7400
+ 1293              	.LASF33:
+ 1294 005f 636F756E 		.ascii	"counter\000"
+ 1294      74657200 
+ 1295              	.LASF39:
+ 1296 0067 54696D65 		.ascii	"Timer_1_initVar\000"
+ 1296      725F315F 
+ 1296      696E6974 
+ 1296      56617200 
+ 1297              	.LASF14:
+ 1298 0077 72656738 		.ascii	"reg8\000"
+ 1298      00
+ 1299              	.LASF28:
+ 1300 007c 54696D65 		.ascii	"Timer_1_ReadPeriod\000"
+ 1300      725F315F 
+ 1300      52656164 
+ 1300      50657269 
+ 1300      6F6400
+ 1301              	.LASF37:
+ 1302 008f 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 1302      6F726B73 
+ 1302      70616365 
+ 1302      5C50536F 
+ 1302      435F4372 
+ 1303 00be 61645F76 		.ascii	"ad_v3.cydsn\000"
+ 1303      332E6379 
+ 1303      64736E00 
+ 1304              	.LASF9:
+ 1305 00ca 75696E74 		.ascii	"uint8\000"
+ 1305      3800
+ 1306              	.LASF27:
+ 1307 00d0 636F6E74 		.ascii	"control\000"
+ 1307      726F6C00 
+ 1308              	.LASF1:
+ 1309 00d8 756E7369 		.ascii	"unsigned char\000"
+ 1309      676E6564 
+ 1309      20636861 
+ 1309      7200
+ 1310              	.LASF18:
+ 1311 00e6 54696D65 		.ascii	"Timer_1_Enable\000"
+ 1311      725F315F 
+ 1311      456E6162 
+ 1311      6C6500
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 34
+
+
+ 1312              	.LASF35:
+ 1313 00f5 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 1313      4320342E 
+ 1313      392E3320 
+ 1313      32303135 
+ 1313      30333033 
+ 1314 0128 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 1314      20726576 
+ 1314      6973696F 
+ 1314      6E203232 
+ 1314      31323230 
+ 1315 015b 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 1315      66756E63 
+ 1315      74696F6E 
+ 1315      2D736563 
+ 1315      74696F6E 
+ 1316              	.LASF12:
+ 1317 0183 646F7562 		.ascii	"double\000"
+ 1317      6C6500
+ 1318              	.LASF36:
+ 1319 018a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\Timer_1.c\000"
+ 1319      6E657261 
+ 1319      7465645F 
+ 1319      536F7572 
+ 1319      63655C50 
+ 1320              	.LASF24:
+ 1321 01ad 54696D65 		.ascii	"Timer_1_SetInterruptMode\000"
+ 1321      725F315F 
+ 1321      53657449 
+ 1321      6E746572 
+ 1321      72757074 
+ 1322              	.LASF10:
+ 1323 01c6 75696E74 		.ascii	"uint16\000"
+ 1323      313600
+ 1324              	.LASF25:
+ 1325 01cd 54696D65 		.ascii	"Timer_1_WriteControlRegister\000"
+ 1325      725F315F 
+ 1325      57726974 
+ 1325      65436F6E 
+ 1325      74726F6C 
+ 1326              	.LASF23:
+ 1327 01ea 54696D65 		.ascii	"Timer_1_ReadControlRegister\000"
+ 1327      725F315F 
+ 1327      52656164 
+ 1327      436F6E74 
+ 1327      726F6C52 
+ 1328              	.LASF5:
+ 1329 0206 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1329      20756E73 
+ 1329      69676E65 
+ 1329      6420696E 
+ 1329      7400
+ 1330              	.LASF19:
+ 1331 0218 54696D65 		.ascii	"Timer_1_Start\000"
+ 1331      725F315F 
+ 1331      53746172 
+ 1331      7400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 35
+
+
+ 1332              	.LASF17:
+ 1333 0226 54696D65 		.ascii	"Timer_1_Init\000"
+ 1333      725F315F 
+ 1333      496E6974 
+ 1333      00
+ 1334              	.LASF7:
+ 1335 0233 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1335      206C6F6E 
+ 1335      6720756E 
+ 1335      7369676E 
+ 1335      65642069 
+ 1336              	.LASF32:
+ 1337 024a 54696D65 		.ascii	"Timer_1_WriteCounter\000"
+ 1337      725F315F 
+ 1337      57726974 
+ 1337      65436F75 
+ 1337      6E746572 
+ 1338              	.LASF31:
+ 1339 025f 54696D65 		.ascii	"Timer_1_ReadCapture\000"
+ 1339      725F315F 
+ 1339      52656164 
+ 1339      43617074 
+ 1339      75726500 
+ 1340              	.LASF38:
+ 1341 0273 70657269 		.ascii	"period_temp\000"
+ 1341      6F645F74 
+ 1341      656D7000 
+ 1342              	.LASF16:
+ 1343 027f 73697A65 		.ascii	"sizetype\000"
+ 1343      74797065 
+ 1343      00
+ 1344              	.LASF6:
+ 1345 0288 6C6F6E67 		.ascii	"long long int\000"
+ 1345      206C6F6E 
+ 1345      6720696E 
+ 1345      7400
+ 1346              	.LASF26:
+ 1347 0296 696E7465 		.ascii	"interruptMode\000"
+ 1347      72727570 
+ 1347      744D6F64 
+ 1347      6500
+ 1348              	.LASF34:
+ 1349 02a4 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 1349      725F315F 
+ 1349      52656164 
+ 1349      436F756E 
+ 1349      74657200 
+ 1350              	.LASF2:
+ 1351 02b8 73686F72 		.ascii	"short int\000"
+ 1351      7420696E 
+ 1351      7400
+ 1352              	.LASF22:
+ 1353 02c2 54696D65 		.ascii	"Timer_1_ReadStatusRegister\000"
+ 1353      725F315F 
+ 1353      52656164 
+ 1353      53746174 
+ 1353      75735265 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\ccl2FajJ.s 			page 36
+
+
+ 1354              	.LASF4:
+ 1355 02dd 6C6F6E67 		.ascii	"long int\000"
+ 1355      20696E74 
+ 1355      00
+ 1356              	.LASF13:
+ 1357 02e6 63686172 		.ascii	"char\000"
+ 1357      00
+ 1358              	.LASF0:
+ 1359 02eb 7369676E 		.ascii	"signed char\000"
+ 1359      65642063 
+ 1359      68617200 
+ 1360              	.LASF20:
+ 1361 02f7 54696D65 		.ascii	"Timer_1_Stop\000"
+ 1361      725F315F 
+ 1361      53746F70 
+ 1361      00
+ 1362              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

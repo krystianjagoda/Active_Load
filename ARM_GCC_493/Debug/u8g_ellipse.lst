@@ -1,0 +1,3591 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"u8g_ellipse.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.u8g_draw_ellipse_section,"ax",%progbits
+  19              		.align	2
+  20              		.thumb
+  21              		.thumb_func
+  22              		.type	u8g_draw_ellipse_section, %function
+  23              	u8g_draw_ellipse_section:
+  24              	.LFB0:
+  25              		.file 1 "u8glib_arm_v1.18.1\\src\\u8g_ellipse.c"
+   1:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** /*
+   2:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+   3:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_ellipse.c
+   4:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+   5:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Utility to draw empty and filled ellipses.
+   6:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+   7:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Universal 8bit Graphics Library
+   8:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+   9:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Copyright (c) 2011, bjthom@gmail.com
+  10:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   All rights reserved.
+  11:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  12:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  13:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   are permitted provided that the following conditions are met:
+  14:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  15:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  16:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     of conditions and the following disclaimer.
+  17:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+  18:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  19:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  20:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     materials provided with the distribution.
+  21:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  22:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  23:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  24:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  25:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  26:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  27:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  28:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  29:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  30:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  31:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  32:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 2
+
+
+  33:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  34:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  35:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+  36:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Addition to the U8G Library as of 02/29/12
+  37:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Adapted from Bresenham's Algorithm and the following websites:
+  38:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	http://free.pages.at/easyfilter/bresenham.html
+  39:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	http://homepage.smc.edu/kennedy_john/belipse.pdf
+  40:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+  41:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** */
+  42:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  43:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** #include "u8g.h"
+  44:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  45:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  46:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** #ifdef WORK_IN_PROGRESS
+  47:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  48:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** void u8g_DrawEllipseRect(u8g_t *u8g, u8g_uint_t x0, u8g_uint_t y0, u8g_uint_t x1, u8g_uint_t y1)
+  49:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+  50:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	int a = abs(x1 - x0);
+  51:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	int b = abs(y1 - y0);	//get diameters
+  52:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	int b1 = b&1;
+  53:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	long dx = 4*(1-a)*b*b;
+  54:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	long dy = 4*(b1+1)*a*a;
+  55:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	long err = dx+dy+b1*a*a;
+  56:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	long e2;
+  57:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	
+  58:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	if (x0 > x1) { x0 = x1; x1 += a; }
+  59:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	if (y0 > y1) { y0 = y1; } 
+  60:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	y0 += (b+1)/2;
+  61:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	y1 = y0-b1;
+  62:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	a *= 8*a;
+  63:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	b1 = 8*b*b;
+  64:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	
+  65:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	do {
+  66:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x1, y0);
+  67:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x0, y0);
+  68:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x0, y1);
+  69:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x1, y1);
+  70:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		e2 = 2*err;
+  71:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		if (e2 >= dx) {
+  72:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 			x0++;
+  73:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 			x1--;
+  74:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 			err += dx += b1;
+  75:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		}
+  76:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		if (e2 <= dy) {
+  77:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 			y0++;
+  78:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 			y1--;
+  79:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 			err += dy += a;
+  80:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		}
+  81:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	} while (x0 <= x1);
+  82:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	
+  83:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	while (y0-y1 < b) {
+  84:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x0-1, y0);
+  85:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x1+1, y0++);
+  86:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x0-1, y1);
+  87:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 		u8g_DrawPixel(u8g, x1+1, y1--);
+  88:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	}
+  89:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 3
+
+
+  90:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  91:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** void u8g_DrawEllipse(u8g_t *u8g, u8g_uint_t x0, u8g_uint_t y0, u8g_uint_t xr, u8g_uint_t yr)
+  92:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+  93:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	u8g_DrawPixel(u8g, x0, y0+yr);
+  94:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	u8g_DrawPixel(u8g, x0, y0-yr);
+  95:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	u8g_DrawPixel(u8g, x0+xr, y0);
+  96:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 	u8g_DrawPixel(u8g, x0-xr, y0);
+  97:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+  98:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+  99:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** #endif
+ 100:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 101:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** #if defined(U8G_16BIT)
+ 102:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** typedef  int32_t u8g_long_t;
+ 103:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** #else
+ 104:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** typedef  int16_t u8g_long_t;
+ 105:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** #endif
+ 106:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 107:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 108:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** /*
+ 109:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   Source: 
+ 110:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ftp://pc.fk0.name/pub/books/programming/bezier-ellipse.pdf
+ 111:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     Foley, Computer Graphics, p 90
+ 112:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** */
+ 113:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** static void u8g_draw_ellipse_section(u8g_t *u8g, u8g_uint_t x, u8g_uint_t y, u8g_uint_t x0, u8g_uin
+ 114:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** static void u8g_draw_ellipse_section(u8g_t *u8g, u8g_uint_t x, u8g_uint_t y, u8g_uint_t x0, u8g_uin
+ 115:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+  26              		.loc 1 115 0
+  27              		.cfi_startproc
+  28              		@ args = 8, pretend = 0, frame = 8
+  29              		@ frame_needed = 1, uses_anonymous_args = 0
+  30 0000 80B5     		push	{r7, lr}
+  31              		.cfi_def_cfa_offset 8
+  32              		.cfi_offset 7, -8
+  33              		.cfi_offset 14, -4
+  34 0002 82B0     		sub	sp, sp, #8
+  35              		.cfi_def_cfa_offset 16
+  36 0004 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  38 0006 7860     		str	r0, [r7, #4]
+  39 0008 0846     		mov	r0, r1
+  40 000a 1146     		mov	r1, r2
+  41 000c 1A46     		mov	r2, r3
+  42 000e 0346     		mov	r3, r0
+  43 0010 FB70     		strb	r3, [r7, #3]
+  44 0012 0B46     		mov	r3, r1
+  45 0014 BB70     		strb	r3, [r7, #2]
+  46 0016 1346     		mov	r3, r2
+  47 0018 7B70     		strb	r3, [r7, #1]
+ 116:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* upper right */
+ 117:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_UPPER_RIGHT )
+  48              		.loc 1 117 0
+  49 001a 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+  50 001c 03F00103 		and	r3, r3, #1
+  51 0020 002B     		cmp	r3, #0
+  52 0022 0BD0     		beq	.L2
+ 118:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 119:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawPixel(u8g, x0 + x, y0 - y);
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 4
+
+
+  53              		.loc 1 119 0
+  54 0024 7A78     		ldrb	r2, [r7, #1]
+  55 0026 FB78     		ldrb	r3, [r7, #3]
+  56 0028 1344     		add	r3, r3, r2
+  57 002a D9B2     		uxtb	r1, r3
+  58 002c 3A7C     		ldrb	r2, [r7, #16]
+  59 002e BB78     		ldrb	r3, [r7, #2]
+  60 0030 D31A     		subs	r3, r2, r3
+  61 0032 DBB2     		uxtb	r3, r3
+  62 0034 7868     		ldr	r0, [r7, #4]
+  63 0036 1A46     		mov	r2, r3
+  64 0038 FFF7FEFF 		bl	u8g_DrawPixel
+  65              	.L2:
+ 120:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 121:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 122:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* upper left */
+ 123:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_UPPER_LEFT )
+  66              		.loc 1 123 0
+  67 003c 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+  68 003e 03F00203 		and	r3, r3, #2
+  69 0042 002B     		cmp	r3, #0
+  70 0044 0BD0     		beq	.L3
+ 124:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 125:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawPixel(u8g, x0 - x, y0 - y);
+  71              		.loc 1 125 0
+  72 0046 7A78     		ldrb	r2, [r7, #1]
+  73 0048 FB78     		ldrb	r3, [r7, #3]
+  74 004a D31A     		subs	r3, r2, r3
+  75 004c D9B2     		uxtb	r1, r3
+  76 004e 3A7C     		ldrb	r2, [r7, #16]
+  77 0050 BB78     		ldrb	r3, [r7, #2]
+  78 0052 D31A     		subs	r3, r2, r3
+  79 0054 DBB2     		uxtb	r3, r3
+  80 0056 7868     		ldr	r0, [r7, #4]
+  81 0058 1A46     		mov	r2, r3
+  82 005a FFF7FEFF 		bl	u8g_DrawPixel
+  83              	.L3:
+ 126:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 127:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 128:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* lower right */
+ 129:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_LOWER_RIGHT )
+  84              		.loc 1 129 0
+  85 005e 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+  86 0060 03F00803 		and	r3, r3, #8
+  87 0064 002B     		cmp	r3, #0
+  88 0066 0BD0     		beq	.L4
+ 130:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 131:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawPixel(u8g, x0 + x, y0 + y);
+  89              		.loc 1 131 0
+  90 0068 7A78     		ldrb	r2, [r7, #1]
+  91 006a FB78     		ldrb	r3, [r7, #3]
+  92 006c 1344     		add	r3, r3, r2
+  93 006e D9B2     		uxtb	r1, r3
+  94 0070 3A7C     		ldrb	r2, [r7, #16]
+  95 0072 BB78     		ldrb	r3, [r7, #2]
+  96 0074 1344     		add	r3, r3, r2
+  97 0076 DBB2     		uxtb	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 5
+
+
+  98 0078 7868     		ldr	r0, [r7, #4]
+  99 007a 1A46     		mov	r2, r3
+ 100 007c FFF7FEFF 		bl	u8g_DrawPixel
+ 101              	.L4:
+ 132:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 133:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 134:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* lower left */
+ 135:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_LOWER_LEFT )
+ 102              		.loc 1 135 0
+ 103 0080 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 104 0082 03F00403 		and	r3, r3, #4
+ 105 0086 002B     		cmp	r3, #0
+ 106 0088 0BD0     		beq	.L1
+ 136:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 137:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawPixel(u8g, x0 - x, y0 + y);
+ 107              		.loc 1 137 0
+ 108 008a 7A78     		ldrb	r2, [r7, #1]
+ 109 008c FB78     		ldrb	r3, [r7, #3]
+ 110 008e D31A     		subs	r3, r2, r3
+ 111 0090 D9B2     		uxtb	r1, r3
+ 112 0092 3A7C     		ldrb	r2, [r7, #16]
+ 113 0094 BB78     		ldrb	r3, [r7, #2]
+ 114 0096 1344     		add	r3, r3, r2
+ 115 0098 DBB2     		uxtb	r3, r3
+ 116 009a 7868     		ldr	r0, [r7, #4]
+ 117 009c 1A46     		mov	r2, r3
+ 118 009e FFF7FEFF 		bl	u8g_DrawPixel
+ 119              	.L1:
+ 138:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 139:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ 120              		.loc 1 139 0
+ 121 00a2 0837     		adds	r7, r7, #8
+ 122              		.cfi_def_cfa_offset 8
+ 123 00a4 BD46     		mov	sp, r7
+ 124              		.cfi_def_cfa_register 13
+ 125              		@ sp needed
+ 126 00a6 80BD     		pop	{r7, pc}
+ 127              		.cfi_endproc
+ 128              	.LFE0:
+ 129              		.size	u8g_draw_ellipse_section, .-u8g_draw_ellipse_section
+ 130              		.section	.text.u8g_draw_ellipse,"ax",%progbits
+ 131              		.align	2
+ 132              		.global	u8g_draw_ellipse
+ 133              		.thumb
+ 134              		.thumb_func
+ 135              		.type	u8g_draw_ellipse, %function
+ 136              	u8g_draw_ellipse:
+ 137              	.LFB1:
+ 140:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 141:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** void u8g_draw_ellipse(u8g_t *u8g, u8g_uint_t x0, u8g_uint_t y0, u8g_uint_t rx, u8g_uint_t ry, uint8
+ 142:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+ 138              		.loc 1 142 0
+ 139              		.cfi_startproc
+ 140              		@ args = 8, pretend = 0, frame = 24
+ 141              		@ frame_needed = 1, uses_anonymous_args = 0
+ 142 0000 90B5     		push	{r4, r7, lr}
+ 143              		.cfi_def_cfa_offset 12
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 6
+
+
+ 144              		.cfi_offset 4, -12
+ 145              		.cfi_offset 7, -8
+ 146              		.cfi_offset 14, -4
+ 147 0002 89B0     		sub	sp, sp, #36
+ 148              		.cfi_def_cfa_offset 48
+ 149 0004 02AF     		add	r7, sp, #8
+ 150              		.cfi_def_cfa 7, 40
+ 151 0006 7860     		str	r0, [r7, #4]
+ 152 0008 0846     		mov	r0, r1
+ 153 000a 1146     		mov	r1, r2
+ 154 000c 1A46     		mov	r2, r3
+ 155 000e 0346     		mov	r3, r0
+ 156 0010 FB70     		strb	r3, [r7, #3]
+ 157 0012 0B46     		mov	r3, r1
+ 158 0014 BB70     		strb	r3, [r7, #2]
+ 159 0016 1346     		mov	r3, r2
+ 160 0018 7B70     		strb	r3, [r7, #1]
+ 143:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_uint_t x, y;
+ 144:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t xchg, ychg;
+ 145:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t err;
+ 146:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t rxrx2;
+ 147:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t ryry2;
+ 148:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t stopx, stopy;
+ 149:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 150:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   rxrx2 = rx;
+ 161              		.loc 1 150 0
+ 162 001a 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 163 001c 7B81     		strh	r3, [r7, #10]	@ movhi
+ 151:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   rxrx2 *= rx;
+ 164              		.loc 1 151 0
+ 165 001e 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 166 0020 9BB2     		uxth	r3, r3
+ 167 0022 7A89     		ldrh	r2, [r7, #10]
+ 168 0024 02FB03F3 		mul	r3, r2, r3
+ 169 0028 9BB2     		uxth	r3, r3
+ 170 002a 7B81     		strh	r3, [r7, #10]	@ movhi
+ 152:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   rxrx2 *= 2;
+ 171              		.loc 1 152 0
+ 172 002c 7B89     		ldrh	r3, [r7, #10]
+ 173 002e 5B00     		lsls	r3, r3, #1
+ 174 0030 9BB2     		uxth	r3, r3
+ 175 0032 7B81     		strh	r3, [r7, #10]	@ movhi
+ 153:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 154:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ryry2 = ry;
+ 176              		.loc 1 154 0
+ 177 0034 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 178 0038 3B81     		strh	r3, [r7, #8]	@ movhi
+ 155:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ryry2 *= ry;
+ 179              		.loc 1 155 0
+ 180 003a 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 181 003e 9BB2     		uxth	r3, r3
+ 182 0040 3A89     		ldrh	r2, [r7, #8]
+ 183 0042 02FB03F3 		mul	r3, r2, r3
+ 184 0046 9BB2     		uxth	r3, r3
+ 185 0048 3B81     		strh	r3, [r7, #8]	@ movhi
+ 156:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ryry2 *= 2;
+ 186              		.loc 1 156 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 7
+
+
+ 187 004a 3B89     		ldrh	r3, [r7, #8]
+ 188 004c 5B00     		lsls	r3, r3, #1
+ 189 004e 9BB2     		uxth	r3, r3
+ 190 0050 3B81     		strh	r3, [r7, #8]	@ movhi
+ 157:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 158:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   x = rx;
+ 191              		.loc 1 158 0
+ 192 0052 7B78     		ldrb	r3, [r7, #1]
+ 193 0054 FB75     		strb	r3, [r7, #23]
+ 159:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   y = 0;
+ 194              		.loc 1 159 0
+ 195 0056 0023     		movs	r3, #0
+ 196 0058 BB75     		strb	r3, [r7, #22]
+ 160:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 161:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg = 1;
+ 197              		.loc 1 161 0
+ 198 005a 0123     		movs	r3, #1
+ 199 005c BB82     		strh	r3, [r7, #20]	@ movhi
+ 162:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg -= rx;
+ 200              		.loc 1 162 0
+ 201 005e BA8A     		ldrh	r2, [r7, #20]
+ 202 0060 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 203 0062 9BB2     		uxth	r3, r3
+ 204 0064 D31A     		subs	r3, r2, r3
+ 205 0066 9BB2     		uxth	r3, r3
+ 206 0068 BB82     		strh	r3, [r7, #20]	@ movhi
+ 163:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg -= rx;
+ 207              		.loc 1 163 0
+ 208 006a BA8A     		ldrh	r2, [r7, #20]
+ 209 006c 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 210 006e 9BB2     		uxth	r3, r3
+ 211 0070 D31A     		subs	r3, r2, r3
+ 212 0072 9BB2     		uxth	r3, r3
+ 213 0074 BB82     		strh	r3, [r7, #20]	@ movhi
+ 164:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg *= ry;
+ 214              		.loc 1 164 0
+ 215 0076 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 216 007a 9BB2     		uxth	r3, r3
+ 217 007c BA8A     		ldrh	r2, [r7, #20]
+ 218 007e 02FB03F3 		mul	r3, r2, r3
+ 219 0082 9BB2     		uxth	r3, r3
+ 220 0084 BB82     		strh	r3, [r7, #20]	@ movhi
+ 165:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg *= ry;
+ 221              		.loc 1 165 0
+ 222 0086 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 223 008a 9BB2     		uxth	r3, r3
+ 224 008c BA8A     		ldrh	r2, [r7, #20]
+ 225 008e 02FB03F3 		mul	r3, r2, r3
+ 226 0092 9BB2     		uxth	r3, r3
+ 227 0094 BB82     		strh	r3, [r7, #20]	@ movhi
+ 166:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 167:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg = rx;
+ 228              		.loc 1 167 0
+ 229 0096 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 230 0098 7B82     		strh	r3, [r7, #18]	@ movhi
+ 168:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg *= rx;
+ 231              		.loc 1 168 0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 8
+
+
+ 232 009a 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 233 009c 9BB2     		uxth	r3, r3
+ 234 009e 7A8A     		ldrh	r2, [r7, #18]
+ 235 00a0 02FB03F3 		mul	r3, r2, r3
+ 236 00a4 9BB2     		uxth	r3, r3
+ 237 00a6 7B82     		strh	r3, [r7, #18]	@ movhi
+ 169:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 170:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   err = 0;
+ 238              		.loc 1 170 0
+ 239 00a8 0023     		movs	r3, #0
+ 240 00aa 3B82     		strh	r3, [r7, #16]	@ movhi
+ 171:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 172:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopx = ryry2;
+ 241              		.loc 1 172 0
+ 242 00ac 3B89     		ldrh	r3, [r7, #8]	@ movhi
+ 243 00ae FB81     		strh	r3, [r7, #14]	@ movhi
+ 173:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopx *= rx;
+ 244              		.loc 1 173 0
+ 245 00b0 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 246 00b2 9BB2     		uxth	r3, r3
+ 247 00b4 FA89     		ldrh	r2, [r7, #14]
+ 248 00b6 02FB03F3 		mul	r3, r2, r3
+ 249 00ba 9BB2     		uxth	r3, r3
+ 250 00bc FB81     		strh	r3, [r7, #14]	@ movhi
+ 174:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopy = 0;
+ 251              		.loc 1 174 0
+ 252 00be 0023     		movs	r3, #0
+ 253 00c0 BB81     		strh	r3, [r7, #12]	@ movhi
+ 175:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 176:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   while( stopx >= stopy )
+ 254              		.loc 1 176 0
+ 255 00c2 37E0     		b	.L7
+ 256              	.L8:
+ 177:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 178:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_draw_ellipse_section(u8g, x, y, x0, y0, option);
+ 257              		.loc 1 178 0
+ 258 00c4 F97D     		ldrb	r1, [r7, #23]	@ zero_extendqisi2
+ 259 00c6 BA7D     		ldrb	r2, [r7, #22]	@ zero_extendqisi2
+ 260 00c8 FC78     		ldrb	r4, [r7, #3]	@ zero_extendqisi2
+ 261 00ca BB78     		ldrb	r3, [r7, #2]	@ zero_extendqisi2
+ 262 00cc 0093     		str	r3, [sp]
+ 263 00ce 97F82C30 		ldrb	r3, [r7, #44]	@ zero_extendqisi2
+ 264 00d2 0193     		str	r3, [sp, #4]
+ 265 00d4 7868     		ldr	r0, [r7, #4]
+ 266 00d6 2346     		mov	r3, r4
+ 267 00d8 FFF7FEFF 		bl	u8g_draw_ellipse_section
+ 179:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     y++;
+ 268              		.loc 1 179 0
+ 269 00dc BB7D     		ldrb	r3, [r7, #22]	@ zero_extendqisi2
+ 270 00de 0133     		adds	r3, r3, #1
+ 271 00e0 BB75     		strb	r3, [r7, #22]
+ 180:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     stopy += rxrx2;
+ 272              		.loc 1 180 0
+ 273 00e2 BA89     		ldrh	r2, [r7, #12]
+ 274 00e4 7B89     		ldrh	r3, [r7, #10]
+ 275 00e6 1344     		add	r3, r3, r2
+ 276 00e8 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 9
+
+
+ 277 00ea BB81     		strh	r3, [r7, #12]	@ movhi
+ 181:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     err += ychg;
+ 278              		.loc 1 181 0
+ 279 00ec 3A8A     		ldrh	r2, [r7, #16]
+ 280 00ee 7B8A     		ldrh	r3, [r7, #18]
+ 281 00f0 1344     		add	r3, r3, r2
+ 282 00f2 9BB2     		uxth	r3, r3
+ 283 00f4 3B82     		strh	r3, [r7, #16]	@ movhi
+ 182:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ychg += rxrx2;
+ 284              		.loc 1 182 0
+ 285 00f6 7A8A     		ldrh	r2, [r7, #18]
+ 286 00f8 7B89     		ldrh	r3, [r7, #10]
+ 287 00fa 1344     		add	r3, r3, r2
+ 288 00fc 9BB2     		uxth	r3, r3
+ 289 00fe 7B82     		strh	r3, [r7, #18]	@ movhi
+ 183:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( 2*err+xchg > 0 )
+ 290              		.loc 1 183 0
+ 291 0100 B7F91030 		ldrsh	r3, [r7, #16]
+ 292 0104 5A00     		lsls	r2, r3, #1
+ 293 0106 B7F91430 		ldrsh	r3, [r7, #20]
+ 294 010a 1344     		add	r3, r3, r2
+ 295 010c 002B     		cmp	r3, #0
+ 296 010e 11DD     		ble	.L7
+ 184:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 185:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       x--;
+ 297              		.loc 1 185 0
+ 298 0110 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 299 0112 013B     		subs	r3, r3, #1
+ 300 0114 FB75     		strb	r3, [r7, #23]
+ 186:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       stopx -= ryry2;
+ 301              		.loc 1 186 0
+ 302 0116 FA89     		ldrh	r2, [r7, #14]
+ 303 0118 3B89     		ldrh	r3, [r7, #8]
+ 304 011a D31A     		subs	r3, r2, r3
+ 305 011c 9BB2     		uxth	r3, r3
+ 306 011e FB81     		strh	r3, [r7, #14]	@ movhi
+ 187:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       err += xchg;
+ 307              		.loc 1 187 0
+ 308 0120 3A8A     		ldrh	r2, [r7, #16]
+ 309 0122 BB8A     		ldrh	r3, [r7, #20]
+ 310 0124 1344     		add	r3, r3, r2
+ 311 0126 9BB2     		uxth	r3, r3
+ 312 0128 3B82     		strh	r3, [r7, #16]	@ movhi
+ 188:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       xchg += ryry2;      
+ 313              		.loc 1 188 0
+ 314 012a BA8A     		ldrh	r2, [r7, #20]
+ 315 012c 3B89     		ldrh	r3, [r7, #8]
+ 316 012e 1344     		add	r3, r3, r2
+ 317 0130 9BB2     		uxth	r3, r3
+ 318 0132 BB82     		strh	r3, [r7, #20]	@ movhi
+ 319              	.L7:
+ 176:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 320              		.loc 1 176 0
+ 321 0134 B7F90E20 		ldrsh	r2, [r7, #14]
+ 322 0138 B7F90C30 		ldrsh	r3, [r7, #12]
+ 323 013c 9A42     		cmp	r2, r3
+ 324 013e C1DA     		bge	.L8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 10
+
+
+ 189:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 190:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   }
+ 191:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 192:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   x = 0;
+ 325              		.loc 1 192 0
+ 326 0140 0023     		movs	r3, #0
+ 327 0142 FB75     		strb	r3, [r7, #23]
+ 193:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   y = ry;
+ 328              		.loc 1 193 0
+ 329 0144 97F82830 		ldrb	r3, [r7, #40]
+ 330 0148 BB75     		strb	r3, [r7, #22]
+ 194:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 195:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg = ry;
+ 331              		.loc 1 195 0
+ 332 014a 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 333 014e BB82     		strh	r3, [r7, #20]	@ movhi
+ 196:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg *= ry;
+ 334              		.loc 1 196 0
+ 335 0150 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 336 0154 9BB2     		uxth	r3, r3
+ 337 0156 BA8A     		ldrh	r2, [r7, #20]
+ 338 0158 02FB03F3 		mul	r3, r2, r3
+ 339 015c 9BB2     		uxth	r3, r3
+ 340 015e BB82     		strh	r3, [r7, #20]	@ movhi
+ 197:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 198:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg = 1;
+ 341              		.loc 1 198 0
+ 342 0160 0123     		movs	r3, #1
+ 343 0162 7B82     		strh	r3, [r7, #18]	@ movhi
+ 199:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg -= ry;
+ 344              		.loc 1 199 0
+ 345 0164 7A8A     		ldrh	r2, [r7, #18]
+ 346 0166 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 347 016a 9BB2     		uxth	r3, r3
+ 348 016c D31A     		subs	r3, r2, r3
+ 349 016e 9BB2     		uxth	r3, r3
+ 350 0170 7B82     		strh	r3, [r7, #18]	@ movhi
+ 200:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg -= ry;
+ 351              		.loc 1 200 0
+ 352 0172 7A8A     		ldrh	r2, [r7, #18]
+ 353 0174 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 354 0178 9BB2     		uxth	r3, r3
+ 355 017a D31A     		subs	r3, r2, r3
+ 356 017c 9BB2     		uxth	r3, r3
+ 357 017e 7B82     		strh	r3, [r7, #18]	@ movhi
+ 201:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg *= rx;
+ 358              		.loc 1 201 0
+ 359 0180 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 360 0182 9BB2     		uxth	r3, r3
+ 361 0184 7A8A     		ldrh	r2, [r7, #18]
+ 362 0186 02FB03F3 		mul	r3, r2, r3
+ 363 018a 9BB2     		uxth	r3, r3
+ 364 018c 7B82     		strh	r3, [r7, #18]	@ movhi
+ 202:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg *= rx;
+ 365              		.loc 1 202 0
+ 366 018e 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 367 0190 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 11
+
+
+ 368 0192 7A8A     		ldrh	r2, [r7, #18]
+ 369 0194 02FB03F3 		mul	r3, r2, r3
+ 370 0198 9BB2     		uxth	r3, r3
+ 371 019a 7B82     		strh	r3, [r7, #18]	@ movhi
+ 203:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 204:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   err = 0;
+ 372              		.loc 1 204 0
+ 373 019c 0023     		movs	r3, #0
+ 374 019e 3B82     		strh	r3, [r7, #16]	@ movhi
+ 205:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 206:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopx = 0;
+ 375              		.loc 1 206 0
+ 376 01a0 0023     		movs	r3, #0
+ 377 01a2 FB81     		strh	r3, [r7, #14]	@ movhi
+ 207:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 208:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopy = rxrx2;
+ 378              		.loc 1 208 0
+ 379 01a4 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 380 01a6 BB81     		strh	r3, [r7, #12]	@ movhi
+ 209:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopy *= ry;
+ 381              		.loc 1 209 0
+ 382 01a8 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 383 01ac 9BB2     		uxth	r3, r3
+ 384 01ae BA89     		ldrh	r2, [r7, #12]
+ 385 01b0 02FB03F3 		mul	r3, r2, r3
+ 386 01b4 9BB2     		uxth	r3, r3
+ 387 01b6 BB81     		strh	r3, [r7, #12]	@ movhi
+ 210:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 211:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 212:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   while( stopx <= stopy )
+ 388              		.loc 1 212 0
+ 389 01b8 37E0     		b	.L9
+ 390              	.L10:
+ 213:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 214:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_draw_ellipse_section(u8g, x, y, x0, y0, option);
+ 391              		.loc 1 214 0
+ 392 01ba F97D     		ldrb	r1, [r7, #23]	@ zero_extendqisi2
+ 393 01bc BA7D     		ldrb	r2, [r7, #22]	@ zero_extendqisi2
+ 394 01be FC78     		ldrb	r4, [r7, #3]	@ zero_extendqisi2
+ 395 01c0 BB78     		ldrb	r3, [r7, #2]	@ zero_extendqisi2
+ 396 01c2 0093     		str	r3, [sp]
+ 397 01c4 97F82C30 		ldrb	r3, [r7, #44]	@ zero_extendqisi2
+ 398 01c8 0193     		str	r3, [sp, #4]
+ 399 01ca 7868     		ldr	r0, [r7, #4]
+ 400 01cc 2346     		mov	r3, r4
+ 401 01ce FFF7FEFF 		bl	u8g_draw_ellipse_section
+ 215:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     x++;
+ 402              		.loc 1 215 0
+ 403 01d2 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 404 01d4 0133     		adds	r3, r3, #1
+ 405 01d6 FB75     		strb	r3, [r7, #23]
+ 216:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     stopx += ryry2;
+ 406              		.loc 1 216 0
+ 407 01d8 FA89     		ldrh	r2, [r7, #14]
+ 408 01da 3B89     		ldrh	r3, [r7, #8]
+ 409 01dc 1344     		add	r3, r3, r2
+ 410 01de 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 12
+
+
+ 411 01e0 FB81     		strh	r3, [r7, #14]	@ movhi
+ 217:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     err += xchg;
+ 412              		.loc 1 217 0
+ 413 01e2 3A8A     		ldrh	r2, [r7, #16]
+ 414 01e4 BB8A     		ldrh	r3, [r7, #20]
+ 415 01e6 1344     		add	r3, r3, r2
+ 416 01e8 9BB2     		uxth	r3, r3
+ 417 01ea 3B82     		strh	r3, [r7, #16]	@ movhi
+ 218:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     xchg += ryry2;
+ 418              		.loc 1 218 0
+ 419 01ec BA8A     		ldrh	r2, [r7, #20]
+ 420 01ee 3B89     		ldrh	r3, [r7, #8]
+ 421 01f0 1344     		add	r3, r3, r2
+ 422 01f2 9BB2     		uxth	r3, r3
+ 423 01f4 BB82     		strh	r3, [r7, #20]	@ movhi
+ 219:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( 2*err+ychg > 0 )
+ 424              		.loc 1 219 0
+ 425 01f6 B7F91030 		ldrsh	r3, [r7, #16]
+ 426 01fa 5A00     		lsls	r2, r3, #1
+ 427 01fc B7F91230 		ldrsh	r3, [r7, #18]
+ 428 0200 1344     		add	r3, r3, r2
+ 429 0202 002B     		cmp	r3, #0
+ 430 0204 11DD     		ble	.L9
+ 220:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 221:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       y--;
+ 431              		.loc 1 221 0
+ 432 0206 BB7D     		ldrb	r3, [r7, #22]	@ zero_extendqisi2
+ 433 0208 013B     		subs	r3, r3, #1
+ 434 020a BB75     		strb	r3, [r7, #22]
+ 222:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       stopy -= rxrx2;
+ 435              		.loc 1 222 0
+ 436 020c BA89     		ldrh	r2, [r7, #12]
+ 437 020e 7B89     		ldrh	r3, [r7, #10]
+ 438 0210 D31A     		subs	r3, r2, r3
+ 439 0212 9BB2     		uxth	r3, r3
+ 440 0214 BB81     		strh	r3, [r7, #12]	@ movhi
+ 223:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       err += ychg;
+ 441              		.loc 1 223 0
+ 442 0216 3A8A     		ldrh	r2, [r7, #16]
+ 443 0218 7B8A     		ldrh	r3, [r7, #18]
+ 444 021a 1344     		add	r3, r3, r2
+ 445 021c 9BB2     		uxth	r3, r3
+ 446 021e 3B82     		strh	r3, [r7, #16]	@ movhi
+ 224:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       ychg += rxrx2;
+ 447              		.loc 1 224 0
+ 448 0220 7A8A     		ldrh	r2, [r7, #18]
+ 449 0222 7B89     		ldrh	r3, [r7, #10]
+ 450 0224 1344     		add	r3, r3, r2
+ 451 0226 9BB2     		uxth	r3, r3
+ 452 0228 7B82     		strh	r3, [r7, #18]	@ movhi
+ 453              	.L9:
+ 212:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 454              		.loc 1 212 0
+ 455 022a B7F90E20 		ldrsh	r2, [r7, #14]
+ 456 022e B7F90C30 		ldrsh	r3, [r7, #12]
+ 457 0232 9A42     		cmp	r2, r3
+ 458 0234 C1DD     		ble	.L10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 13
+
+
+ 225:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 226:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   }
+ 227:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 228:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ 459              		.loc 1 228 0
+ 460 0236 1C37     		adds	r7, r7, #28
+ 461              		.cfi_def_cfa_offset 12
+ 462 0238 BD46     		mov	sp, r7
+ 463              		.cfi_def_cfa_register 13
+ 464              		@ sp needed
+ 465 023a 90BD     		pop	{r4, r7, pc}
+ 466              		.cfi_endproc
+ 467              	.LFE1:
+ 468              		.size	u8g_draw_ellipse, .-u8g_draw_ellipse
+ 469              		.section	.text.u8g_DrawEllipse,"ax",%progbits
+ 470              		.align	2
+ 471              		.global	u8g_DrawEllipse
+ 472              		.thumb
+ 473              		.thumb_func
+ 474              		.type	u8g_DrawEllipse, %function
+ 475              	u8g_DrawEllipse:
+ 476              	.LFB2:
+ 229:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 230:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** void u8g_DrawEllipse(u8g_t *u8g, u8g_uint_t x0, u8g_uint_t y0, u8g_uint_t rx, u8g_uint_t ry, uint8_
+ 231:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+ 477              		.loc 1 231 0
+ 478              		.cfi_startproc
+ 479              		@ args = 8, pretend = 0, frame = 16
+ 480              		@ frame_needed = 1, uses_anonymous_args = 0
+ 481 0000 90B5     		push	{r4, r7, lr}
+ 482              		.cfi_def_cfa_offset 12
+ 483              		.cfi_offset 4, -12
+ 484              		.cfi_offset 7, -8
+ 485              		.cfi_offset 14, -4
+ 486 0002 87B0     		sub	sp, sp, #28
+ 487              		.cfi_def_cfa_offset 40
+ 488 0004 02AF     		add	r7, sp, #8
+ 489              		.cfi_def_cfa 7, 32
+ 490 0006 7860     		str	r0, [r7, #4]
+ 491 0008 0846     		mov	r0, r1
+ 492 000a 1146     		mov	r1, r2
+ 493 000c 1A46     		mov	r2, r3
+ 494 000e 0346     		mov	r3, r0
+ 495 0010 FB70     		strb	r3, [r7, #3]
+ 496 0012 0B46     		mov	r3, r1
+ 497 0014 BB70     		strb	r3, [r7, #2]
+ 498 0016 1346     		mov	r3, r2
+ 499 0018 7B70     		strb	r3, [r7, #1]
+ 500              	.LBB2:
+ 232:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   /* check for bounding box */
+ 233:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 234:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_uint_t rxp, rxp2;
+ 235:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_uint_t ryp, ryp2;
+ 236:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 237:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp = rx;
+ 501              		.loc 1 237 0
+ 502 001a 7B78     		ldrb	r3, [r7, #1]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 14
+
+
+ 503 001c FB73     		strb	r3, [r7, #15]
+ 238:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp++;
+ 504              		.loc 1 238 0
+ 505 001e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 506 0020 0133     		adds	r3, r3, #1
+ 507 0022 FB73     		strb	r3, [r7, #15]
+ 239:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp2 = rxp;
+ 508              		.loc 1 239 0
+ 509 0024 FB7B     		ldrb	r3, [r7, #15]
+ 510 0026 BB73     		strb	r3, [r7, #14]
+ 240:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp2 *= 2;
+ 511              		.loc 1 240 0
+ 512 0028 BB7B     		ldrb	r3, [r7, #14]
+ 513 002a 5B00     		lsls	r3, r3, #1
+ 514 002c BB73     		strb	r3, [r7, #14]
+ 241:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 242:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp = ry;
+ 515              		.loc 1 242 0
+ 516 002e 97F82030 		ldrb	r3, [r7, #32]
+ 517 0032 7B73     		strb	r3, [r7, #13]
+ 243:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp++;
+ 518              		.loc 1 243 0
+ 519 0034 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 520 0036 0133     		adds	r3, r3, #1
+ 521 0038 7B73     		strb	r3, [r7, #13]
+ 244:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp2 = ryp;
+ 522              		.loc 1 244 0
+ 523 003a 7B7B     		ldrb	r3, [r7, #13]
+ 524 003c 3B73     		strb	r3, [r7, #12]
+ 245:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp2 *= 2;
+ 525              		.loc 1 245 0
+ 526 003e 3B7B     		ldrb	r3, [r7, #12]
+ 527 0040 5B00     		lsls	r3, r3, #1
+ 528 0042 3B73     		strb	r3, [r7, #12]
+ 246:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 247:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( u8g_IsBBXIntersection(u8g, x0-rxp, y0-ryp, rxp2, ryp2) == 0)
+ 529              		.loc 1 247 0
+ 530 0044 FA78     		ldrb	r2, [r7, #3]
+ 531 0046 FB7B     		ldrb	r3, [r7, #15]
+ 532 0048 D31A     		subs	r3, r2, r3
+ 533 004a D9B2     		uxtb	r1, r3
+ 534 004c BA78     		ldrb	r2, [r7, #2]
+ 535 004e 7B7B     		ldrb	r3, [r7, #13]
+ 536 0050 D31A     		subs	r3, r2, r3
+ 537 0052 DAB2     		uxtb	r2, r3
+ 538 0054 BC7B     		ldrb	r4, [r7, #14]	@ zero_extendqisi2
+ 539 0056 3B7B     		ldrb	r3, [r7, #12]	@ zero_extendqisi2
+ 540 0058 0093     		str	r3, [sp]
+ 541 005a 7868     		ldr	r0, [r7, #4]
+ 542 005c 2346     		mov	r3, r4
+ 543 005e FFF7FEFF 		bl	u8g_IsBBXIntersection
+ 544 0062 0346     		mov	r3, r0
+ 545 0064 002B     		cmp	r3, #0
+ 546 0066 00D1     		bne	.L12
+ 248:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       return;    
+ 547              		.loc 1 248 0
+ 548 0068 0CE0     		b	.L11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 15
+
+
+ 549              	.L12:
+ 550              	.LBE2:
+ 249:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   }
+ 250:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 251:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_draw_ellipse(u8g, x0, y0, rx, ry, option);
+ 551              		.loc 1 251 0
+ 552 006a F978     		ldrb	r1, [r7, #3]	@ zero_extendqisi2
+ 553 006c BA78     		ldrb	r2, [r7, #2]	@ zero_extendqisi2
+ 554 006e 7C78     		ldrb	r4, [r7, #1]	@ zero_extendqisi2
+ 555 0070 97F82030 		ldrb	r3, [r7, #32]	@ zero_extendqisi2
+ 556 0074 0093     		str	r3, [sp]
+ 557 0076 97F82430 		ldrb	r3, [r7, #36]	@ zero_extendqisi2
+ 558 007a 0193     		str	r3, [sp, #4]
+ 559 007c 7868     		ldr	r0, [r7, #4]
+ 560 007e 2346     		mov	r3, r4
+ 561 0080 FFF7FEFF 		bl	u8g_draw_ellipse
+ 562              	.L11:
+ 252:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ 563              		.loc 1 252 0
+ 564 0084 1437     		adds	r7, r7, #20
+ 565              		.cfi_def_cfa_offset 12
+ 566 0086 BD46     		mov	sp, r7
+ 567              		.cfi_def_cfa_register 13
+ 568              		@ sp needed
+ 569 0088 90BD     		pop	{r4, r7, pc}
+ 570              		.cfi_endproc
+ 571              	.LFE2:
+ 572              		.size	u8g_DrawEllipse, .-u8g_DrawEllipse
+ 573 008a 00BF     		.section	.text.u8g_draw_filled_ellipse_section,"ax",%progbits
+ 574              		.align	2
+ 575              		.thumb
+ 576              		.thumb_func
+ 577              		.type	u8g_draw_filled_ellipse_section, %function
+ 578              	u8g_draw_filled_ellipse_section:
+ 579              	.LFB3:
+ 253:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 254:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** static void u8g_draw_filled_ellipse_section(u8g_t *u8g, u8g_uint_t x, u8g_uint_t y, u8g_uint_t x0, 
+ 255:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** static void u8g_draw_filled_ellipse_section(u8g_t *u8g, u8g_uint_t x, u8g_uint_t y, u8g_uint_t x0, 
+ 256:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+ 580              		.loc 1 256 0
+ 581              		.cfi_startproc
+ 582              		@ args = 8, pretend = 0, frame = 8
+ 583              		@ frame_needed = 1, uses_anonymous_args = 0
+ 584 0000 80B5     		push	{r7, lr}
+ 585              		.cfi_def_cfa_offset 8
+ 586              		.cfi_offset 7, -8
+ 587              		.cfi_offset 14, -4
+ 588 0002 82B0     		sub	sp, sp, #8
+ 589              		.cfi_def_cfa_offset 16
+ 590 0004 00AF     		add	r7, sp, #0
+ 591              		.cfi_def_cfa_register 7
+ 592 0006 7860     		str	r0, [r7, #4]
+ 593 0008 0846     		mov	r0, r1
+ 594 000a 1146     		mov	r1, r2
+ 595 000c 1A46     		mov	r2, r3
+ 596 000e 0346     		mov	r3, r0
+ 597 0010 FB70     		strb	r3, [r7, #3]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 16
+
+
+ 598 0012 0B46     		mov	r3, r1
+ 599 0014 BB70     		strb	r3, [r7, #2]
+ 600 0016 1346     		mov	r3, r2
+ 601 0018 7B70     		strb	r3, [r7, #1]
+ 257:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* upper right */
+ 258:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_UPPER_RIGHT )
+ 602              		.loc 1 258 0
+ 603 001a 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 604 001c 03F00103 		and	r3, r3, #1
+ 605 0020 002B     		cmp	r3, #0
+ 606 0022 0DD0     		beq	.L15
+ 259:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 260:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawVLine(u8g, x0+x, y0-y, y+1);
+ 607              		.loc 1 260 0
+ 608 0024 7A78     		ldrb	r2, [r7, #1]
+ 609 0026 FB78     		ldrb	r3, [r7, #3]
+ 610 0028 1344     		add	r3, r3, r2
+ 611 002a D9B2     		uxtb	r1, r3
+ 612 002c 3A7C     		ldrb	r2, [r7, #16]
+ 613 002e BB78     		ldrb	r3, [r7, #2]
+ 614 0030 D31A     		subs	r3, r2, r3
+ 615 0032 DAB2     		uxtb	r2, r3
+ 616 0034 BB78     		ldrb	r3, [r7, #2]
+ 617 0036 0133     		adds	r3, r3, #1
+ 618 0038 DBB2     		uxtb	r3, r3
+ 619 003a 7868     		ldr	r0, [r7, #4]
+ 620 003c FFF7FEFF 		bl	u8g_DrawVLine
+ 621              	.L15:
+ 261:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 262:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 263:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* upper left */
+ 264:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_UPPER_LEFT )
+ 622              		.loc 1 264 0
+ 623 0040 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 624 0042 03F00203 		and	r3, r3, #2
+ 625 0046 002B     		cmp	r3, #0
+ 626 0048 0DD0     		beq	.L16
+ 265:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 266:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawVLine(u8g, x0-x, y0-y, y+1);
+ 627              		.loc 1 266 0
+ 628 004a 7A78     		ldrb	r2, [r7, #1]
+ 629 004c FB78     		ldrb	r3, [r7, #3]
+ 630 004e D31A     		subs	r3, r2, r3
+ 631 0050 D9B2     		uxtb	r1, r3
+ 632 0052 3A7C     		ldrb	r2, [r7, #16]
+ 633 0054 BB78     		ldrb	r3, [r7, #2]
+ 634 0056 D31A     		subs	r3, r2, r3
+ 635 0058 DAB2     		uxtb	r2, r3
+ 636 005a BB78     		ldrb	r3, [r7, #2]
+ 637 005c 0133     		adds	r3, r3, #1
+ 638 005e DBB2     		uxtb	r3, r3
+ 639 0060 7868     		ldr	r0, [r7, #4]
+ 640 0062 FFF7FEFF 		bl	u8g_DrawVLine
+ 641              	.L16:
+ 267:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 268:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 269:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* lower right */
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 17
+
+
+ 270:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_LOWER_RIGHT )
+ 642              		.loc 1 270 0
+ 643 0066 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 644 0068 03F00803 		and	r3, r3, #8
+ 645 006c 002B     		cmp	r3, #0
+ 646 006e 0AD0     		beq	.L17
+ 271:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 272:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawVLine(u8g, x0+x, y0, y+1);
+ 647              		.loc 1 272 0
+ 648 0070 7A78     		ldrb	r2, [r7, #1]
+ 649 0072 FB78     		ldrb	r3, [r7, #3]
+ 650 0074 1344     		add	r3, r3, r2
+ 651 0076 D9B2     		uxtb	r1, r3
+ 652 0078 BB78     		ldrb	r3, [r7, #2]
+ 653 007a 0133     		adds	r3, r3, #1
+ 654 007c DBB2     		uxtb	r3, r3
+ 655 007e 3A7C     		ldrb	r2, [r7, #16]	@ zero_extendqisi2
+ 656 0080 7868     		ldr	r0, [r7, #4]
+ 657 0082 FFF7FEFF 		bl	u8g_DrawVLine
+ 658              	.L17:
+ 273:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 274:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 275:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     /* lower left */
+ 276:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( option & U8G_DRAW_LOWER_LEFT )
+ 659              		.loc 1 276 0
+ 660 0086 3B7D     		ldrb	r3, [r7, #20]	@ zero_extendqisi2
+ 661 0088 03F00403 		and	r3, r3, #4
+ 662 008c 002B     		cmp	r3, #0
+ 663 008e 0AD0     		beq	.L14
+ 277:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 278:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       u8g_DrawVLine(u8g, x0-x, y0, y+1);
+ 664              		.loc 1 278 0
+ 665 0090 7A78     		ldrb	r2, [r7, #1]
+ 666 0092 FB78     		ldrb	r3, [r7, #3]
+ 667 0094 D31A     		subs	r3, r2, r3
+ 668 0096 D9B2     		uxtb	r1, r3
+ 669 0098 BB78     		ldrb	r3, [r7, #2]
+ 670 009a 0133     		adds	r3, r3, #1
+ 671 009c DBB2     		uxtb	r3, r3
+ 672 009e 3A7C     		ldrb	r2, [r7, #16]	@ zero_extendqisi2
+ 673 00a0 7868     		ldr	r0, [r7, #4]
+ 674 00a2 FFF7FEFF 		bl	u8g_DrawVLine
+ 675              	.L14:
+ 279:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 280:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ 676              		.loc 1 280 0
+ 677 00a6 0837     		adds	r7, r7, #8
+ 678              		.cfi_def_cfa_offset 8
+ 679 00a8 BD46     		mov	sp, r7
+ 680              		.cfi_def_cfa_register 13
+ 681              		@ sp needed
+ 682 00aa 80BD     		pop	{r7, pc}
+ 683              		.cfi_endproc
+ 684              	.LFE3:
+ 685              		.size	u8g_draw_filled_ellipse_section, .-u8g_draw_filled_ellipse_section
+ 686              		.section	.text.u8g_draw_filled_ellipse,"ax",%progbits
+ 687              		.align	2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 18
+
+
+ 688              		.global	u8g_draw_filled_ellipse
+ 689              		.thumb
+ 690              		.thumb_func
+ 691              		.type	u8g_draw_filled_ellipse, %function
+ 692              	u8g_draw_filled_ellipse:
+ 693              	.LFB4:
+ 281:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 282:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** void u8g_draw_filled_ellipse(u8g_t *u8g, u8g_uint_t x0, u8g_uint_t y0, u8g_uint_t rx, u8g_uint_t ry
+ 283:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+ 694              		.loc 1 283 0
+ 695              		.cfi_startproc
+ 696              		@ args = 8, pretend = 0, frame = 24
+ 697              		@ frame_needed = 1, uses_anonymous_args = 0
+ 698 0000 90B5     		push	{r4, r7, lr}
+ 699              		.cfi_def_cfa_offset 12
+ 700              		.cfi_offset 4, -12
+ 701              		.cfi_offset 7, -8
+ 702              		.cfi_offset 14, -4
+ 703 0002 89B0     		sub	sp, sp, #36
+ 704              		.cfi_def_cfa_offset 48
+ 705 0004 02AF     		add	r7, sp, #8
+ 706              		.cfi_def_cfa 7, 40
+ 707 0006 7860     		str	r0, [r7, #4]
+ 708 0008 0846     		mov	r0, r1
+ 709 000a 1146     		mov	r1, r2
+ 710 000c 1A46     		mov	r2, r3
+ 711 000e 0346     		mov	r3, r0
+ 712 0010 FB70     		strb	r3, [r7, #3]
+ 713 0012 0B46     		mov	r3, r1
+ 714 0014 BB70     		strb	r3, [r7, #2]
+ 715 0016 1346     		mov	r3, r2
+ 716 0018 7B70     		strb	r3, [r7, #1]
+ 284:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_uint_t x, y;
+ 285:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t xchg, ychg;
+ 286:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t err;
+ 287:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t rxrx2;
+ 288:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t ryry2;
+ 289:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_long_t stopx, stopy;
+ 290:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 291:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   rxrx2 = rx;
+ 717              		.loc 1 291 0
+ 718 001a 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 719 001c 7B81     		strh	r3, [r7, #10]	@ movhi
+ 292:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   rxrx2 *= rx;
+ 720              		.loc 1 292 0
+ 721 001e 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 722 0020 9BB2     		uxth	r3, r3
+ 723 0022 7A89     		ldrh	r2, [r7, #10]
+ 724 0024 02FB03F3 		mul	r3, r2, r3
+ 725 0028 9BB2     		uxth	r3, r3
+ 726 002a 7B81     		strh	r3, [r7, #10]	@ movhi
+ 293:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   rxrx2 *= 2;
+ 727              		.loc 1 293 0
+ 728 002c 7B89     		ldrh	r3, [r7, #10]
+ 729 002e 5B00     		lsls	r3, r3, #1
+ 730 0030 9BB2     		uxth	r3, r3
+ 731 0032 7B81     		strh	r3, [r7, #10]	@ movhi
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 19
+
+
+ 294:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 295:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ryry2 = ry;
+ 732              		.loc 1 295 0
+ 733 0034 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 734 0038 3B81     		strh	r3, [r7, #8]	@ movhi
+ 296:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ryry2 *= ry;
+ 735              		.loc 1 296 0
+ 736 003a 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 737 003e 9BB2     		uxth	r3, r3
+ 738 0040 3A89     		ldrh	r2, [r7, #8]
+ 739 0042 02FB03F3 		mul	r3, r2, r3
+ 740 0046 9BB2     		uxth	r3, r3
+ 741 0048 3B81     		strh	r3, [r7, #8]	@ movhi
+ 297:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ryry2 *= 2;
+ 742              		.loc 1 297 0
+ 743 004a 3B89     		ldrh	r3, [r7, #8]
+ 744 004c 5B00     		lsls	r3, r3, #1
+ 745 004e 9BB2     		uxth	r3, r3
+ 746 0050 3B81     		strh	r3, [r7, #8]	@ movhi
+ 298:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 299:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   x = rx;
+ 747              		.loc 1 299 0
+ 748 0052 7B78     		ldrb	r3, [r7, #1]
+ 749 0054 FB75     		strb	r3, [r7, #23]
+ 300:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   y = 0;
+ 750              		.loc 1 300 0
+ 751 0056 0023     		movs	r3, #0
+ 752 0058 BB75     		strb	r3, [r7, #22]
+ 301:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 302:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg = 1;
+ 753              		.loc 1 302 0
+ 754 005a 0123     		movs	r3, #1
+ 755 005c BB82     		strh	r3, [r7, #20]	@ movhi
+ 303:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg -= rx;
+ 756              		.loc 1 303 0
+ 757 005e BA8A     		ldrh	r2, [r7, #20]
+ 758 0060 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 759 0062 9BB2     		uxth	r3, r3
+ 760 0064 D31A     		subs	r3, r2, r3
+ 761 0066 9BB2     		uxth	r3, r3
+ 762 0068 BB82     		strh	r3, [r7, #20]	@ movhi
+ 304:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg -= rx;
+ 763              		.loc 1 304 0
+ 764 006a BA8A     		ldrh	r2, [r7, #20]
+ 765 006c 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 766 006e 9BB2     		uxth	r3, r3
+ 767 0070 D31A     		subs	r3, r2, r3
+ 768 0072 9BB2     		uxth	r3, r3
+ 769 0074 BB82     		strh	r3, [r7, #20]	@ movhi
+ 305:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg *= ry;
+ 770              		.loc 1 305 0
+ 771 0076 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 772 007a 9BB2     		uxth	r3, r3
+ 773 007c BA8A     		ldrh	r2, [r7, #20]
+ 774 007e 02FB03F3 		mul	r3, r2, r3
+ 775 0082 9BB2     		uxth	r3, r3
+ 776 0084 BB82     		strh	r3, [r7, #20]	@ movhi
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 20
+
+
+ 306:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg *= ry;
+ 777              		.loc 1 306 0
+ 778 0086 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 779 008a 9BB2     		uxth	r3, r3
+ 780 008c BA8A     		ldrh	r2, [r7, #20]
+ 781 008e 02FB03F3 		mul	r3, r2, r3
+ 782 0092 9BB2     		uxth	r3, r3
+ 783 0094 BB82     		strh	r3, [r7, #20]	@ movhi
+ 307:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 308:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg = rx;
+ 784              		.loc 1 308 0
+ 785 0096 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 786 0098 7B82     		strh	r3, [r7, #18]	@ movhi
+ 309:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg *= rx;
+ 787              		.loc 1 309 0
+ 788 009a 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 789 009c 9BB2     		uxth	r3, r3
+ 790 009e 7A8A     		ldrh	r2, [r7, #18]
+ 791 00a0 02FB03F3 		mul	r3, r2, r3
+ 792 00a4 9BB2     		uxth	r3, r3
+ 793 00a6 7B82     		strh	r3, [r7, #18]	@ movhi
+ 310:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 311:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   err = 0;
+ 794              		.loc 1 311 0
+ 795 00a8 0023     		movs	r3, #0
+ 796 00aa 3B82     		strh	r3, [r7, #16]	@ movhi
+ 312:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 313:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopx = ryry2;
+ 797              		.loc 1 313 0
+ 798 00ac 3B89     		ldrh	r3, [r7, #8]	@ movhi
+ 799 00ae FB81     		strh	r3, [r7, #14]	@ movhi
+ 314:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopx *= rx;
+ 800              		.loc 1 314 0
+ 801 00b0 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 802 00b2 9BB2     		uxth	r3, r3
+ 803 00b4 FA89     		ldrh	r2, [r7, #14]
+ 804 00b6 02FB03F3 		mul	r3, r2, r3
+ 805 00ba 9BB2     		uxth	r3, r3
+ 806 00bc FB81     		strh	r3, [r7, #14]	@ movhi
+ 315:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopy = 0;
+ 807              		.loc 1 315 0
+ 808 00be 0023     		movs	r3, #0
+ 809 00c0 BB81     		strh	r3, [r7, #12]	@ movhi
+ 316:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 317:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   while( stopx >= stopy )
+ 810              		.loc 1 317 0
+ 811 00c2 37E0     		b	.L20
+ 812              	.L21:
+ 318:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 319:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_draw_filled_ellipse_section(u8g, x, y, x0, y0, option);
+ 813              		.loc 1 319 0
+ 814 00c4 F97D     		ldrb	r1, [r7, #23]	@ zero_extendqisi2
+ 815 00c6 BA7D     		ldrb	r2, [r7, #22]	@ zero_extendqisi2
+ 816 00c8 FC78     		ldrb	r4, [r7, #3]	@ zero_extendqisi2
+ 817 00ca BB78     		ldrb	r3, [r7, #2]	@ zero_extendqisi2
+ 818 00cc 0093     		str	r3, [sp]
+ 819 00ce 97F82C30 		ldrb	r3, [r7, #44]	@ zero_extendqisi2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 21
+
+
+ 820 00d2 0193     		str	r3, [sp, #4]
+ 821 00d4 7868     		ldr	r0, [r7, #4]
+ 822 00d6 2346     		mov	r3, r4
+ 823 00d8 FFF7FEFF 		bl	u8g_draw_filled_ellipse_section
+ 320:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     y++;
+ 824              		.loc 1 320 0
+ 825 00dc BB7D     		ldrb	r3, [r7, #22]	@ zero_extendqisi2
+ 826 00de 0133     		adds	r3, r3, #1
+ 827 00e0 BB75     		strb	r3, [r7, #22]
+ 321:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     stopy += rxrx2;
+ 828              		.loc 1 321 0
+ 829 00e2 BA89     		ldrh	r2, [r7, #12]
+ 830 00e4 7B89     		ldrh	r3, [r7, #10]
+ 831 00e6 1344     		add	r3, r3, r2
+ 832 00e8 9BB2     		uxth	r3, r3
+ 833 00ea BB81     		strh	r3, [r7, #12]	@ movhi
+ 322:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     err += ychg;
+ 834              		.loc 1 322 0
+ 835 00ec 3A8A     		ldrh	r2, [r7, #16]
+ 836 00ee 7B8A     		ldrh	r3, [r7, #18]
+ 837 00f0 1344     		add	r3, r3, r2
+ 838 00f2 9BB2     		uxth	r3, r3
+ 839 00f4 3B82     		strh	r3, [r7, #16]	@ movhi
+ 323:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ychg += rxrx2;
+ 840              		.loc 1 323 0
+ 841 00f6 7A8A     		ldrh	r2, [r7, #18]
+ 842 00f8 7B89     		ldrh	r3, [r7, #10]
+ 843 00fa 1344     		add	r3, r3, r2
+ 844 00fc 9BB2     		uxth	r3, r3
+ 845 00fe 7B82     		strh	r3, [r7, #18]	@ movhi
+ 324:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( 2*err+xchg > 0 )
+ 846              		.loc 1 324 0
+ 847 0100 B7F91030 		ldrsh	r3, [r7, #16]
+ 848 0104 5A00     		lsls	r2, r3, #1
+ 849 0106 B7F91430 		ldrsh	r3, [r7, #20]
+ 850 010a 1344     		add	r3, r3, r2
+ 851 010c 002B     		cmp	r3, #0
+ 852 010e 11DD     		ble	.L20
+ 325:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 326:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       x--;
+ 853              		.loc 1 326 0
+ 854 0110 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 855 0112 013B     		subs	r3, r3, #1
+ 856 0114 FB75     		strb	r3, [r7, #23]
+ 327:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       stopx -= ryry2;
+ 857              		.loc 1 327 0
+ 858 0116 FA89     		ldrh	r2, [r7, #14]
+ 859 0118 3B89     		ldrh	r3, [r7, #8]
+ 860 011a D31A     		subs	r3, r2, r3
+ 861 011c 9BB2     		uxth	r3, r3
+ 862 011e FB81     		strh	r3, [r7, #14]	@ movhi
+ 328:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       err += xchg;
+ 863              		.loc 1 328 0
+ 864 0120 3A8A     		ldrh	r2, [r7, #16]
+ 865 0122 BB8A     		ldrh	r3, [r7, #20]
+ 866 0124 1344     		add	r3, r3, r2
+ 867 0126 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 22
+
+
+ 868 0128 3B82     		strh	r3, [r7, #16]	@ movhi
+ 329:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       xchg += ryry2;      
+ 869              		.loc 1 329 0
+ 870 012a BA8A     		ldrh	r2, [r7, #20]
+ 871 012c 3B89     		ldrh	r3, [r7, #8]
+ 872 012e 1344     		add	r3, r3, r2
+ 873 0130 9BB2     		uxth	r3, r3
+ 874 0132 BB82     		strh	r3, [r7, #20]	@ movhi
+ 875              	.L20:
+ 317:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 876              		.loc 1 317 0
+ 877 0134 B7F90E20 		ldrsh	r2, [r7, #14]
+ 878 0138 B7F90C30 		ldrsh	r3, [r7, #12]
+ 879 013c 9A42     		cmp	r2, r3
+ 880 013e C1DA     		bge	.L21
+ 330:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 331:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   }
+ 332:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 333:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   x = 0;
+ 881              		.loc 1 333 0
+ 882 0140 0023     		movs	r3, #0
+ 883 0142 FB75     		strb	r3, [r7, #23]
+ 334:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   y = ry;
+ 884              		.loc 1 334 0
+ 885 0144 97F82830 		ldrb	r3, [r7, #40]
+ 886 0148 BB75     		strb	r3, [r7, #22]
+ 335:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 336:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg = ry;
+ 887              		.loc 1 336 0
+ 888 014a 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 889 014e BB82     		strh	r3, [r7, #20]	@ movhi
+ 337:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   xchg *= ry;
+ 890              		.loc 1 337 0
+ 891 0150 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 892 0154 9BB2     		uxth	r3, r3
+ 893 0156 BA8A     		ldrh	r2, [r7, #20]
+ 894 0158 02FB03F3 		mul	r3, r2, r3
+ 895 015c 9BB2     		uxth	r3, r3
+ 896 015e BB82     		strh	r3, [r7, #20]	@ movhi
+ 338:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 339:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg = 1;
+ 897              		.loc 1 339 0
+ 898 0160 0123     		movs	r3, #1
+ 899 0162 7B82     		strh	r3, [r7, #18]	@ movhi
+ 340:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg -= ry;
+ 900              		.loc 1 340 0
+ 901 0164 7A8A     		ldrh	r2, [r7, #18]
+ 902 0166 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 903 016a 9BB2     		uxth	r3, r3
+ 904 016c D31A     		subs	r3, r2, r3
+ 905 016e 9BB2     		uxth	r3, r3
+ 906 0170 7B82     		strh	r3, [r7, #18]	@ movhi
+ 341:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg -= ry;
+ 907              		.loc 1 341 0
+ 908 0172 7A8A     		ldrh	r2, [r7, #18]
+ 909 0174 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 910 0178 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 23
+
+
+ 911 017a D31A     		subs	r3, r2, r3
+ 912 017c 9BB2     		uxth	r3, r3
+ 913 017e 7B82     		strh	r3, [r7, #18]	@ movhi
+ 342:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg *= rx;
+ 914              		.loc 1 342 0
+ 915 0180 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 916 0182 9BB2     		uxth	r3, r3
+ 917 0184 7A8A     		ldrh	r2, [r7, #18]
+ 918 0186 02FB03F3 		mul	r3, r2, r3
+ 919 018a 9BB2     		uxth	r3, r3
+ 920 018c 7B82     		strh	r3, [r7, #18]	@ movhi
+ 343:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   ychg *= rx;
+ 921              		.loc 1 343 0
+ 922 018e 7B78     		ldrb	r3, [r7, #1]	@ zero_extendqisi2
+ 923 0190 9BB2     		uxth	r3, r3
+ 924 0192 7A8A     		ldrh	r2, [r7, #18]
+ 925 0194 02FB03F3 		mul	r3, r2, r3
+ 926 0198 9BB2     		uxth	r3, r3
+ 927 019a 7B82     		strh	r3, [r7, #18]	@ movhi
+ 344:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 345:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   err = 0;
+ 928              		.loc 1 345 0
+ 929 019c 0023     		movs	r3, #0
+ 930 019e 3B82     		strh	r3, [r7, #16]	@ movhi
+ 346:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 347:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopx = 0;
+ 931              		.loc 1 347 0
+ 932 01a0 0023     		movs	r3, #0
+ 933 01a2 FB81     		strh	r3, [r7, #14]	@ movhi
+ 348:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 349:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopy = rxrx2;
+ 934              		.loc 1 349 0
+ 935 01a4 7B89     		ldrh	r3, [r7, #10]	@ movhi
+ 936 01a6 BB81     		strh	r3, [r7, #12]	@ movhi
+ 350:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   stopy *= ry;
+ 937              		.loc 1 350 0
+ 938 01a8 97F82830 		ldrb	r3, [r7, #40]	@ zero_extendqisi2
+ 939 01ac 9BB2     		uxth	r3, r3
+ 940 01ae BA89     		ldrh	r2, [r7, #12]
+ 941 01b0 02FB03F3 		mul	r3, r2, r3
+ 942 01b4 9BB2     		uxth	r3, r3
+ 943 01b6 BB81     		strh	r3, [r7, #12]	@ movhi
+ 351:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 352:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 353:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   while( stopx <= stopy )
+ 944              		.loc 1 353 0
+ 945 01b8 37E0     		b	.L22
+ 946              	.L23:
+ 354:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 355:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_draw_filled_ellipse_section(u8g, x, y, x0, y0, option);
+ 947              		.loc 1 355 0
+ 948 01ba F97D     		ldrb	r1, [r7, #23]	@ zero_extendqisi2
+ 949 01bc BA7D     		ldrb	r2, [r7, #22]	@ zero_extendqisi2
+ 950 01be FC78     		ldrb	r4, [r7, #3]	@ zero_extendqisi2
+ 951 01c0 BB78     		ldrb	r3, [r7, #2]	@ zero_extendqisi2
+ 952 01c2 0093     		str	r3, [sp]
+ 953 01c4 97F82C30 		ldrb	r3, [r7, #44]	@ zero_extendqisi2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 24
+
+
+ 954 01c8 0193     		str	r3, [sp, #4]
+ 955 01ca 7868     		ldr	r0, [r7, #4]
+ 956 01cc 2346     		mov	r3, r4
+ 957 01ce FFF7FEFF 		bl	u8g_draw_filled_ellipse_section
+ 356:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     x++;
+ 958              		.loc 1 356 0
+ 959 01d2 FB7D     		ldrb	r3, [r7, #23]	@ zero_extendqisi2
+ 960 01d4 0133     		adds	r3, r3, #1
+ 961 01d6 FB75     		strb	r3, [r7, #23]
+ 357:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     stopx += ryry2;
+ 962              		.loc 1 357 0
+ 963 01d8 FA89     		ldrh	r2, [r7, #14]
+ 964 01da 3B89     		ldrh	r3, [r7, #8]
+ 965 01dc 1344     		add	r3, r3, r2
+ 966 01de 9BB2     		uxth	r3, r3
+ 967 01e0 FB81     		strh	r3, [r7, #14]	@ movhi
+ 358:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     err += xchg;
+ 968              		.loc 1 358 0
+ 969 01e2 3A8A     		ldrh	r2, [r7, #16]
+ 970 01e4 BB8A     		ldrh	r3, [r7, #20]
+ 971 01e6 1344     		add	r3, r3, r2
+ 972 01e8 9BB2     		uxth	r3, r3
+ 973 01ea 3B82     		strh	r3, [r7, #16]	@ movhi
+ 359:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     xchg += ryry2;
+ 974              		.loc 1 359 0
+ 975 01ec BA8A     		ldrh	r2, [r7, #20]
+ 976 01ee 3B89     		ldrh	r3, [r7, #8]
+ 977 01f0 1344     		add	r3, r3, r2
+ 978 01f2 9BB2     		uxth	r3, r3
+ 979 01f4 BB82     		strh	r3, [r7, #20]	@ movhi
+ 360:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( 2*err+ychg > 0 )
+ 980              		.loc 1 360 0
+ 981 01f6 B7F91030 		ldrsh	r3, [r7, #16]
+ 982 01fa 5A00     		lsls	r2, r3, #1
+ 983 01fc B7F91230 		ldrsh	r3, [r7, #18]
+ 984 0200 1344     		add	r3, r3, r2
+ 985 0202 002B     		cmp	r3, #0
+ 986 0204 11DD     		ble	.L22
+ 361:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     {
+ 362:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       y--;
+ 987              		.loc 1 362 0
+ 988 0206 BB7D     		ldrb	r3, [r7, #22]	@ zero_extendqisi2
+ 989 0208 013B     		subs	r3, r3, #1
+ 990 020a BB75     		strb	r3, [r7, #22]
+ 363:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       stopy -= rxrx2;
+ 991              		.loc 1 363 0
+ 992 020c BA89     		ldrh	r2, [r7, #12]
+ 993 020e 7B89     		ldrh	r3, [r7, #10]
+ 994 0210 D31A     		subs	r3, r2, r3
+ 995 0212 9BB2     		uxth	r3, r3
+ 996 0214 BB81     		strh	r3, [r7, #12]	@ movhi
+ 364:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       err += ychg;
+ 997              		.loc 1 364 0
+ 998 0216 3A8A     		ldrh	r2, [r7, #16]
+ 999 0218 7B8A     		ldrh	r3, [r7, #18]
+ 1000 021a 1344     		add	r3, r3, r2
+ 1001 021c 9BB2     		uxth	r3, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 25
+
+
+ 1002 021e 3B82     		strh	r3, [r7, #16]	@ movhi
+ 365:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       ychg += rxrx2;
+ 1003              		.loc 1 365 0
+ 1004 0220 7A8A     		ldrh	r2, [r7, #18]
+ 1005 0222 7B89     		ldrh	r3, [r7, #10]
+ 1006 0224 1344     		add	r3, r3, r2
+ 1007 0226 9BB2     		uxth	r3, r3
+ 1008 0228 7B82     		strh	r3, [r7, #18]	@ movhi
+ 1009              	.L22:
+ 353:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 1010              		.loc 1 353 0
+ 1011 022a B7F90E20 		ldrsh	r2, [r7, #14]
+ 1012 022e B7F90C30 		ldrsh	r3, [r7, #12]
+ 1013 0232 9A42     		cmp	r2, r3
+ 1014 0234 C1DD     		ble	.L23
+ 366:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     }
+ 367:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   }
+ 368:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 369:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ 1015              		.loc 1 369 0
+ 1016 0236 1C37     		adds	r7, r7, #28
+ 1017              		.cfi_def_cfa_offset 12
+ 1018 0238 BD46     		mov	sp, r7
+ 1019              		.cfi_def_cfa_register 13
+ 1020              		@ sp needed
+ 1021 023a 90BD     		pop	{r4, r7, pc}
+ 1022              		.cfi_endproc
+ 1023              	.LFE4:
+ 1024              		.size	u8g_draw_filled_ellipse, .-u8g_draw_filled_ellipse
+ 1025              		.section	.text.u8g_DrawFilledEllipse,"ax",%progbits
+ 1026              		.align	2
+ 1027              		.global	u8g_DrawFilledEllipse
+ 1028              		.thumb
+ 1029              		.thumb_func
+ 1030              		.type	u8g_DrawFilledEllipse, %function
+ 1031              	u8g_DrawFilledEllipse:
+ 1032              	.LFB5:
+ 370:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 371:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** void u8g_DrawFilledEllipse(u8g_t *u8g, u8g_uint_t x0, u8g_uint_t y0, u8g_uint_t rx, u8g_uint_t ry, 
+ 372:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** {
+ 1033              		.loc 1 372 0
+ 1034              		.cfi_startproc
+ 1035              		@ args = 8, pretend = 0, frame = 16
+ 1036              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1037 0000 90B5     		push	{r4, r7, lr}
+ 1038              		.cfi_def_cfa_offset 12
+ 1039              		.cfi_offset 4, -12
+ 1040              		.cfi_offset 7, -8
+ 1041              		.cfi_offset 14, -4
+ 1042 0002 87B0     		sub	sp, sp, #28
+ 1043              		.cfi_def_cfa_offset 40
+ 1044 0004 02AF     		add	r7, sp, #8
+ 1045              		.cfi_def_cfa 7, 32
+ 1046 0006 7860     		str	r0, [r7, #4]
+ 1047 0008 0846     		mov	r0, r1
+ 1048 000a 1146     		mov	r1, r2
+ 1049 000c 1A46     		mov	r2, r3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 26
+
+
+ 1050 000e 0346     		mov	r3, r0
+ 1051 0010 FB70     		strb	r3, [r7, #3]
+ 1052 0012 0B46     		mov	r3, r1
+ 1053 0014 BB70     		strb	r3, [r7, #2]
+ 1054 0016 1346     		mov	r3, r2
+ 1055 0018 7B70     		strb	r3, [r7, #1]
+ 1056              	.LBB3:
+ 373:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   /* check for bounding box */
+ 374:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   {
+ 375:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_uint_t rxp, rxp2;
+ 376:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     u8g_uint_t ryp, ryp2;
+ 377:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 378:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp = rx;
+ 1057              		.loc 1 378 0
+ 1058 001a 7B78     		ldrb	r3, [r7, #1]
+ 1059 001c FB73     		strb	r3, [r7, #15]
+ 379:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp++;
+ 1060              		.loc 1 379 0
+ 1061 001e FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 1062 0020 0133     		adds	r3, r3, #1
+ 1063 0022 FB73     		strb	r3, [r7, #15]
+ 380:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp2 = rxp;
+ 1064              		.loc 1 380 0
+ 1065 0024 FB7B     		ldrb	r3, [r7, #15]
+ 1066 0026 BB73     		strb	r3, [r7, #14]
+ 381:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     rxp2 *= 2;
+ 1067              		.loc 1 381 0
+ 1068 0028 BB7B     		ldrb	r3, [r7, #14]
+ 1069 002a 5B00     		lsls	r3, r3, #1
+ 1070 002c BB73     		strb	r3, [r7, #14]
+ 382:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** 
+ 383:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp = ry;
+ 1071              		.loc 1 383 0
+ 1072 002e 97F82030 		ldrb	r3, [r7, #32]
+ 1073 0032 7B73     		strb	r3, [r7, #13]
+ 384:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp++;
+ 1074              		.loc 1 384 0
+ 1075 0034 7B7B     		ldrb	r3, [r7, #13]	@ zero_extendqisi2
+ 1076 0036 0133     		adds	r3, r3, #1
+ 1077 0038 7B73     		strb	r3, [r7, #13]
+ 385:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp2 = ryp;
+ 1078              		.loc 1 385 0
+ 1079 003a 7B7B     		ldrb	r3, [r7, #13]
+ 1080 003c 3B73     		strb	r3, [r7, #12]
+ 386:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     ryp2 *= 2;
+ 1081              		.loc 1 386 0
+ 1082 003e 3B7B     		ldrb	r3, [r7, #12]
+ 1083 0040 5B00     		lsls	r3, r3, #1
+ 1084 0042 3B73     		strb	r3, [r7, #12]
+ 387:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     
+ 388:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****     if ( u8g_IsBBXIntersection(u8g, x0-rxp, y0-ryp, rxp2, ryp2) == 0)
+ 1085              		.loc 1 388 0
+ 1086 0044 FA78     		ldrb	r2, [r7, #3]
+ 1087 0046 FB7B     		ldrb	r3, [r7, #15]
+ 1088 0048 D31A     		subs	r3, r2, r3
+ 1089 004a D9B2     		uxtb	r1, r3
+ 1090 004c BA78     		ldrb	r2, [r7, #2]
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 27
+
+
+ 1091 004e 7B7B     		ldrb	r3, [r7, #13]
+ 1092 0050 D31A     		subs	r3, r2, r3
+ 1093 0052 DAB2     		uxtb	r2, r3
+ 1094 0054 BC7B     		ldrb	r4, [r7, #14]	@ zero_extendqisi2
+ 1095 0056 3B7B     		ldrb	r3, [r7, #12]	@ zero_extendqisi2
+ 1096 0058 0093     		str	r3, [sp]
+ 1097 005a 7868     		ldr	r0, [r7, #4]
+ 1098 005c 2346     		mov	r3, r4
+ 1099 005e FFF7FEFF 		bl	u8g_IsBBXIntersection
+ 1100 0062 0346     		mov	r3, r0
+ 1101 0064 002B     		cmp	r3, #0
+ 1102 0066 00D1     		bne	.L25
+ 389:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****       return;    
+ 1103              		.loc 1 389 0
+ 1104 0068 0CE0     		b	.L24
+ 1105              	.L25:
+ 1106              	.LBE3:
+ 390:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   }
+ 391:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   
+ 392:u8glib_arm_v1.18.1\src/u8g_ellipse.c ****   u8g_draw_filled_ellipse(u8g, x0, y0, rx, ry, option);
+ 1107              		.loc 1 392 0
+ 1108 006a F978     		ldrb	r1, [r7, #3]	@ zero_extendqisi2
+ 1109 006c BA78     		ldrb	r2, [r7, #2]	@ zero_extendqisi2
+ 1110 006e 7C78     		ldrb	r4, [r7, #1]	@ zero_extendqisi2
+ 1111 0070 97F82030 		ldrb	r3, [r7, #32]	@ zero_extendqisi2
+ 1112 0074 0093     		str	r3, [sp]
+ 1113 0076 97F82430 		ldrb	r3, [r7, #36]	@ zero_extendqisi2
+ 1114 007a 0193     		str	r3, [sp, #4]
+ 1115 007c 7868     		ldr	r0, [r7, #4]
+ 1116 007e 2346     		mov	r3, r4
+ 1117 0080 FFF7FEFF 		bl	u8g_draw_filled_ellipse
+ 1118              	.L24:
+ 393:u8glib_arm_v1.18.1\src/u8g_ellipse.c **** }
+ 1119              		.loc 1 393 0
+ 1120 0084 1437     		adds	r7, r7, #20
+ 1121              		.cfi_def_cfa_offset 12
+ 1122 0086 BD46     		mov	sp, r7
+ 1123              		.cfi_def_cfa_register 13
+ 1124              		@ sp needed
+ 1125 0088 90BD     		pop	{r4, r7, pc}
+ 1126              		.cfi_endproc
+ 1127              	.LFE5:
+ 1128              		.size	u8g_DrawFilledEllipse, .-u8g_DrawFilledEllipse
+ 1129 008a 00BF     		.text
+ 1130              	.Letext0:
+ 1131              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1132              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 1133              		.file 4 "u8glib_arm_v1.18.1\\src\\u8g.h"
+ 1134              		.section	.debug_info,"",%progbits
+ 1135              	.Ldebug_info0:
+ 1136 0000 F3070000 		.4byte	0x7f3
+ 1137 0004 0400     		.2byte	0x4
+ 1138 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1139 000a 04       		.byte	0x4
+ 1140 000b 01       		.uleb128 0x1
+ 1141 000c 65010000 		.4byte	.LASF78
+ 1142 0010 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 28
+
+
+ 1143 0011 6D030000 		.4byte	.LASF79
+ 1144 0015 3A040000 		.4byte	.LASF80
+ 1145 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1146 001d 00000000 		.4byte	0
+ 1147 0021 00000000 		.4byte	.Ldebug_line0
+ 1148 0025 02       		.uleb128 0x2
+ 1149 0026 04       		.byte	0x4
+ 1150 0027 05       		.byte	0x5
+ 1151 0028 696E7400 		.ascii	"int\000"
+ 1152 002c 03       		.uleb128 0x3
+ 1153 002d 04       		.byte	0x4
+ 1154 002e 07       		.byte	0x7
+ 1155 002f BE020000 		.4byte	.LASF0
+ 1156 0033 04       		.uleb128 0x4
+ 1157 0034 F3020000 		.4byte	.LASF2
+ 1158 0038 02       		.byte	0x2
+ 1159 0039 1B       		.byte	0x1b
+ 1160 003a 3E000000 		.4byte	0x3e
+ 1161 003e 03       		.uleb128 0x3
+ 1162 003f 01       		.byte	0x1
+ 1163 0040 06       		.byte	0x6
+ 1164 0041 94020000 		.4byte	.LASF1
+ 1165 0045 04       		.uleb128 0x4
+ 1166 0046 1D020000 		.4byte	.LASF3
+ 1167 004a 02       		.byte	0x2
+ 1168 004b 1D       		.byte	0x1d
+ 1169 004c 50000000 		.4byte	0x50
+ 1170 0050 03       		.uleb128 0x3
+ 1171 0051 01       		.byte	0x1
+ 1172 0052 08       		.byte	0x8
+ 1173 0053 6F020000 		.4byte	.LASF4
+ 1174 0057 04       		.uleb128 0x4
+ 1175 0058 D9030000 		.4byte	.LASF5
+ 1176 005c 02       		.byte	0x2
+ 1177 005d 29       		.byte	0x29
+ 1178 005e 62000000 		.4byte	0x62
+ 1179 0062 03       		.uleb128 0x3
+ 1180 0063 02       		.byte	0x2
+ 1181 0064 05       		.byte	0x5
+ 1182 0065 28000000 		.4byte	.LASF6
+ 1183 0069 03       		.uleb128 0x3
+ 1184 006a 02       		.byte	0x2
+ 1185 006b 07       		.byte	0x7
+ 1186 006c E0020000 		.4byte	.LASF7
+ 1187 0070 03       		.uleb128 0x3
+ 1188 0071 04       		.byte	0x4
+ 1189 0072 05       		.byte	0x5
+ 1190 0073 07030000 		.4byte	.LASF8
+ 1191 0077 03       		.uleb128 0x3
+ 1192 0078 04       		.byte	0x4
+ 1193 0079 07       		.byte	0x7
+ 1194 007a 43030000 		.4byte	.LASF9
+ 1195 007e 03       		.uleb128 0x3
+ 1196 007f 08       		.byte	0x8
+ 1197 0080 05       		.byte	0x5
+ 1198 0081 34010000 		.4byte	.LASF10
+ 1199 0085 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 29
+
+
+ 1200 0086 08       		.byte	0x8
+ 1201 0087 07       		.byte	0x7
+ 1202 0088 A0020000 		.4byte	.LASF11
+ 1203 008c 04       		.uleb128 0x4
+ 1204 008d 1C000000 		.4byte	.LASF12
+ 1205 0091 03       		.byte	0x3
+ 1206 0092 14       		.byte	0x14
+ 1207 0093 33000000 		.4byte	0x33
+ 1208 0097 04       		.uleb128 0x4
+ 1209 0098 D8000000 		.4byte	.LASF13
+ 1210 009c 03       		.byte	0x3
+ 1211 009d 15       		.byte	0x15
+ 1212 009e 45000000 		.4byte	0x45
+ 1213 00a2 04       		.uleb128 0x4
+ 1214 00a3 34030000 		.4byte	.LASF14
+ 1215 00a7 03       		.byte	0x3
+ 1216 00a8 20       		.byte	0x20
+ 1217 00a9 57000000 		.4byte	0x57
+ 1218 00ad 04       		.uleb128 0x4
+ 1219 00ae 06000000 		.4byte	.LASF15
+ 1220 00b2 04       		.byte	0x4
+ 1221 00b3 80       		.byte	0x80
+ 1222 00b4 97000000 		.4byte	0x97
+ 1223 00b8 04       		.uleb128 0x4
+ 1224 00b9 00000000 		.4byte	.LASF16
+ 1225 00bd 04       		.byte	0x4
+ 1226 00be A0       		.byte	0xa0
+ 1227 00bf C3000000 		.4byte	0xc3
+ 1228 00c3 05       		.uleb128 0x5
+ 1229 00c4 45000000 		.4byte	.LASF43
+ 1230 00c8 3C       		.byte	0x3c
+ 1231 00c9 04       		.byte	0x4
+ 1232 00ca 4B04     		.2byte	0x44b
+ 1233 00cc 23020000 		.4byte	0x223
+ 1234 00d0 06       		.uleb128 0x6
+ 1235 00d1 09010000 		.4byte	.LASF17
+ 1236 00d5 04       		.byte	0x4
+ 1237 00d6 4D04     		.2byte	0x44d
+ 1238 00d8 18030000 		.4byte	0x318
+ 1239 00dc 00       		.byte	0
+ 1240 00dd 06       		.uleb128 0x6
+ 1241 00de B7020000 		.4byte	.LASF18
+ 1242 00e2 04       		.byte	0x4
+ 1243 00e3 4E04     		.2byte	0x44e
+ 1244 00e5 18030000 		.4byte	0x318
+ 1245 00e9 01       		.byte	0x1
+ 1246 00ea 07       		.uleb128 0x7
+ 1247 00eb 64657600 		.ascii	"dev\000"
+ 1248 00ef 04       		.byte	0x4
+ 1249 00f0 5104     		.2byte	0x451
+ 1250 00f2 58030000 		.4byte	0x358
+ 1251 00f6 04       		.byte	0x4
+ 1252 00f7 06       		.uleb128 0x6
+ 1253 00f8 23000000 		.4byte	.LASF19
+ 1254 00fc 04       		.byte	0x4
+ 1255 00fd 5204     		.2byte	0x452
+ 1256 00ff EA030000 		.4byte	0x3ea
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 30
+
+
+ 1257 0103 08       		.byte	0x8
+ 1258 0104 06       		.uleb128 0x6
+ 1259 0105 0E040000 		.4byte	.LASF20
+ 1260 0109 04       		.byte	0x4
+ 1261 010a 5304     		.2byte	0x453
+ 1262 010c EA030000 		.4byte	0x3ea
+ 1263 0110 0C       		.byte	0xc
+ 1264 0111 06       		.uleb128 0x6
+ 1265 0112 80000000 		.4byte	.LASF21
+ 1266 0116 04       		.byte	0x4
+ 1267 0117 5404     		.2byte	0x454
+ 1268 0119 97000000 		.4byte	0x97
+ 1269 011d 10       		.byte	0x10
+ 1270 011e 06       		.uleb128 0x6
+ 1271 011f F9000000 		.4byte	.LASF22
+ 1272 0123 04       		.byte	0x4
+ 1273 0124 5404     		.2byte	0x454
+ 1274 0126 97000000 		.4byte	0x97
+ 1275 012a 11       		.byte	0x11
+ 1276 012b 06       		.uleb128 0x6
+ 1277 012c 5F020000 		.4byte	.LASF23
+ 1278 0130 04       		.byte	0x4
+ 1279 0131 5504     		.2byte	0x455
+ 1280 0133 97000000 		.4byte	0x97
+ 1281 0137 12       		.byte	0x12
+ 1282 0138 06       		.uleb128 0x6
+ 1283 0139 2F030000 		.4byte	.LASF24
+ 1284 013d 04       		.byte	0x4
+ 1285 013e 5604     		.2byte	0x456
+ 1286 0140 97000000 		.4byte	0x97
+ 1287 0144 13       		.byte	0x13
+ 1288 0145 06       		.uleb128 0x6
+ 1289 0146 4C000000 		.4byte	.LASF25
+ 1290 014a 04       		.byte	0x4
+ 1291 014b 5704     		.2byte	0x457
+ 1292 014d 18030000 		.4byte	0x318
+ 1293 0151 14       		.byte	0x14
+ 1294 0152 06       		.uleb128 0x6
+ 1295 0153 55000000 		.4byte	.LASF26
+ 1296 0157 04       		.byte	0x4
+ 1297 0158 5804     		.2byte	0x458
+ 1298 015a 18030000 		.4byte	0x318
+ 1299 015e 15       		.byte	0x15
+ 1300 015f 06       		.uleb128 0x6
+ 1301 0160 CB020000 		.4byte	.LASF27
+ 1302 0164 04       		.byte	0x4
+ 1303 0165 5904     		.2byte	0x459
+ 1304 0167 8F030000 		.4byte	0x38f
+ 1305 016b 18       		.byte	0x18
+ 1306 016c 06       		.uleb128 0x6
+ 1307 016d E5000000 		.4byte	.LASF28
+ 1308 0171 04       		.byte	0x4
+ 1309 0172 5B04     		.2byte	0x45b
+ 1310 0174 8C000000 		.4byte	0x8c
+ 1311 0178 1C       		.byte	0x1c
+ 1312 0179 06       		.uleb128 0x6
+ 1313 017a 27020000 		.4byte	.LASF29
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 31
+
+
+ 1314 017e 04       		.byte	0x4
+ 1315 017f 5C04     		.2byte	0x45c
+ 1316 0181 8C000000 		.4byte	0x8c
+ 1317 0185 1D       		.byte	0x1d
+ 1318 0186 06       		.uleb128 0x6
+ 1319 0187 2F020000 		.4byte	.LASF30
+ 1320 018b 04       		.byte	0x4
+ 1321 018c 5D04     		.2byte	0x45d
+ 1322 018e 8C000000 		.4byte	0x8c
+ 1323 0192 1E       		.byte	0x1e
+ 1324 0193 06       		.uleb128 0x6
+ 1325 0194 7A040000 		.4byte	.LASF31
+ 1326 0198 04       		.byte	0x4
+ 1327 0199 5E04     		.2byte	0x45e
+ 1328 019b 97000000 		.4byte	0x97
+ 1329 019f 1F       		.byte	0x1f
+ 1330 01a0 06       		.uleb128 0x6
+ 1331 01a1 7D020000 		.4byte	.LASF32
+ 1332 01a5 04       		.byte	0x4
+ 1333 01a6 5F04     		.2byte	0x45f
+ 1334 01a8 97000000 		.4byte	0x97
+ 1335 01ac 20       		.byte	0x20
+ 1336 01ad 06       		.uleb128 0x6
+ 1337 01ae 1A040000 		.4byte	.LASF33
+ 1338 01b2 04       		.byte	0x4
+ 1339 01b3 6104     		.2byte	0x461
+ 1340 01b5 AC030000 		.4byte	0x3ac
+ 1341 01b9 24       		.byte	0x24
+ 1342 01ba 06       		.uleb128 0x6
+ 1343 01bb 29040000 		.4byte	.LASF34
+ 1344 01bf 04       		.byte	0x4
+ 1345 01c0 6204     		.2byte	0x462
+ 1346 01c2 97000000 		.4byte	0x97
+ 1347 01c6 28       		.byte	0x28
+ 1348 01c7 06       		.uleb128 0x6
+ 1349 01c8 C8000000 		.4byte	.LASF35
+ 1350 01cc 04       		.byte	0x4
+ 1351 01cd 6304     		.2byte	0x463
+ 1352 01cf 8C000000 		.4byte	0x8c
+ 1353 01d3 29       		.byte	0x29
+ 1354 01d4 06       		.uleb128 0x6
+ 1355 01d5 B7030000 		.4byte	.LASF36
+ 1356 01d9 04       		.byte	0x4
+ 1357 01da 6404     		.2byte	0x464
+ 1358 01dc 8C000000 		.4byte	0x8c
+ 1359 01e0 2A       		.byte	0x2a
+ 1360 01e1 06       		.uleb128 0x6
+ 1361 01e2 E3030000 		.4byte	.LASF37
+ 1362 01e6 04       		.byte	0x4
+ 1363 01e7 6504     		.2byte	0x465
+ 1364 01e9 97000000 		.4byte	0x97
+ 1365 01ed 2B       		.byte	0x2b
+ 1366 01ee 06       		.uleb128 0x6
+ 1367 01ef B5000000 		.4byte	.LASF38
+ 1368 01f3 04       		.byte	0x4
+ 1369 01f4 6604     		.2byte	0x466
+ 1370 01f6 97000000 		.4byte	0x97
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 32
+
+
+ 1371 01fa 2C       		.byte	0x2c
+ 1372 01fb 06       		.uleb128 0x6
+ 1373 01fc 8A020000 		.4byte	.LASF39
+ 1374 0200 04       		.byte	0x4
+ 1375 0201 6804     		.2byte	0x468
+ 1376 0203 5F020000 		.4byte	0x25f
+ 1377 0207 2D       		.byte	0x2d
+ 1378 0208 06       		.uleb128 0x6
+ 1379 0209 5E000000 		.4byte	.LASF40
+ 1380 020d 04       		.byte	0x4
+ 1381 020e 6F04     		.2byte	0x46f
+ 1382 0210 CD030000 		.4byte	0x3cd
+ 1383 0214 34       		.byte	0x34
+ 1384 0215 06       		.uleb128 0x6
+ 1385 0216 58010000 		.4byte	.LASF41
+ 1386 021a 04       		.byte	0x4
+ 1387 021b 7104     		.2byte	0x471
+ 1388 021d CF020000 		.4byte	0x2cf
+ 1389 0221 38       		.byte	0x38
+ 1390 0222 00       		.byte	0
+ 1391 0223 04       		.uleb128 0x4
+ 1392 0224 96000000 		.4byte	.LASF42
+ 1393 0228 04       		.byte	0x4
+ 1394 0229 A1       		.byte	0xa1
+ 1395 022a 2E020000 		.4byte	0x22e
+ 1396 022e 08       		.uleb128 0x8
+ 1397 022f 86040000 		.4byte	.LASF44
+ 1398 0233 0C       		.byte	0xc
+ 1399 0234 04       		.byte	0x4
+ 1400 0235 CF       		.byte	0xcf
+ 1401 0236 5F020000 		.4byte	0x25f
+ 1402 023a 09       		.uleb128 0x9
+ 1403 023b 3C030000 		.4byte	.LASF45
+ 1404 023f 04       		.byte	0x4
+ 1405 0240 D1       		.byte	0xd1
+ 1406 0241 23030000 		.4byte	0x323
+ 1407 0245 00       		.byte	0
+ 1408 0246 09       		.uleb128 0x9
+ 1409 0247 06040000 		.4byte	.LASF46
+ 1410 024b 04       		.byte	0x4
+ 1411 024c D2       		.byte	0xd2
+ 1412 024d 5E030000 		.4byte	0x35e
+ 1413 0251 04       		.byte	0x4
+ 1414 0252 09       		.uleb128 0x9
+ 1415 0253 91040000 		.4byte	.LASF47
+ 1416 0257 04       		.byte	0x4
+ 1417 0258 D3       		.byte	0xd3
+ 1418 0259 60030000 		.4byte	0x360
+ 1419 025d 08       		.byte	0x8
+ 1420 025e 00       		.byte	0
+ 1421 025f 04       		.uleb128 0x4
+ 1422 0260 45020000 		.4byte	.LASF48
+ 1423 0264 04       		.byte	0x4
+ 1424 0265 A3       		.byte	0xa3
+ 1425 0266 6A020000 		.4byte	0x26a
+ 1426 026a 05       		.uleb128 0x5
+ 1427 026b 18010000 		.4byte	.LASF49
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 33
+
+
+ 1428 026f 07       		.byte	0x7
+ 1429 0270 04       		.byte	0x4
+ 1430 0271 1D02     		.2byte	0x21d
+ 1431 0273 CF020000 		.4byte	0x2cf
+ 1432 0277 07       		.uleb128 0x7
+ 1433 0278 7800     		.ascii	"x\000"
+ 1434 027a 04       		.byte	0x4
+ 1435 027b 1F02     		.2byte	0x21f
+ 1436 027d 18030000 		.4byte	0x318
+ 1437 0281 00       		.byte	0
+ 1438 0282 07       		.uleb128 0x7
+ 1439 0283 7900     		.ascii	"y\000"
+ 1440 0285 04       		.byte	0x4
+ 1441 0286 1F02     		.2byte	0x21f
+ 1442 0288 18030000 		.4byte	0x318
+ 1443 028c 01       		.byte	0x1
+ 1444 028d 06       		.uleb128 0x6
+ 1445 028e 16000000 		.4byte	.LASF50
+ 1446 0292 04       		.byte	0x4
+ 1447 0293 2002     		.2byte	0x220
+ 1448 0295 97000000 		.4byte	0x97
+ 1449 0299 02       		.byte	0x2
+ 1450 029a 07       		.uleb128 0x7
+ 1451 029b 64697200 		.ascii	"dir\000"
+ 1452 029f 04       		.byte	0x4
+ 1453 02a0 2102     		.2byte	0x221
+ 1454 02a2 97000000 		.4byte	0x97
+ 1455 02a6 03       		.byte	0x3
+ 1456 02a7 06       		.uleb128 0x6
+ 1457 02a8 32000000 		.4byte	.LASF51
+ 1458 02ac 04       		.byte	0x4
+ 1459 02ad 2202     		.2byte	0x222
+ 1460 02af 97000000 		.4byte	0x97
+ 1461 02b3 04       		.byte	0x4
+ 1462 02b4 06       		.uleb128 0x6
+ 1463 02b5 0F010000 		.4byte	.LASF52
+ 1464 02b9 04       		.byte	0x4
+ 1465 02ba 2302     		.2byte	0x223
+ 1466 02bc 97000000 		.4byte	0x97
+ 1467 02c0 05       		.byte	0x5
+ 1468 02c1 06       		.uleb128 0x6
+ 1469 02c2 A0000000 		.4byte	.LASF53
+ 1470 02c6 04       		.byte	0x4
+ 1471 02c7 2402     		.2byte	0x224
+ 1472 02c9 97000000 		.4byte	0x97
+ 1473 02cd 06       		.byte	0x6
+ 1474 02ce 00       		.byte	0
+ 1475 02cf 04       		.uleb128 0x4
+ 1476 02d0 FC030000 		.4byte	.LASF54
+ 1477 02d4 04       		.byte	0x4
+ 1478 02d5 A5       		.byte	0xa5
+ 1479 02d6 DA020000 		.4byte	0x2da
+ 1480 02da 05       		.uleb128 0x5
+ 1481 02db FC020000 		.4byte	.LASF55
+ 1482 02df 04       		.byte	0x4
+ 1483 02e0 04       		.byte	0x4
+ 1484 02e1 3102     		.2byte	0x231
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 34
+
+
+ 1485 02e3 18030000 		.4byte	0x318
+ 1486 02e7 07       		.uleb128 0x7
+ 1487 02e8 783000   		.ascii	"x0\000"
+ 1488 02eb 04       		.byte	0x4
+ 1489 02ec 3302     		.2byte	0x233
+ 1490 02ee 18030000 		.4byte	0x318
+ 1491 02f2 00       		.byte	0
+ 1492 02f3 07       		.uleb128 0x7
+ 1493 02f4 793000   		.ascii	"y0\000"
+ 1494 02f7 04       		.byte	0x4
+ 1495 02f8 3302     		.2byte	0x233
+ 1496 02fa 18030000 		.4byte	0x318
+ 1497 02fe 01       		.byte	0x1
+ 1498 02ff 07       		.uleb128 0x7
+ 1499 0300 783100   		.ascii	"x1\000"
+ 1500 0303 04       		.byte	0x4
+ 1501 0304 3302     		.2byte	0x233
+ 1502 0306 18030000 		.4byte	0x318
+ 1503 030a 02       		.byte	0x2
+ 1504 030b 07       		.uleb128 0x7
+ 1505 030c 793100   		.ascii	"y1\000"
+ 1506 030f 04       		.byte	0x4
+ 1507 0310 3302     		.2byte	0x233
+ 1508 0312 18030000 		.4byte	0x318
+ 1509 0316 03       		.byte	0x3
+ 1510 0317 00       		.byte	0
+ 1511 0318 04       		.uleb128 0x4
+ 1512 0319 D5020000 		.4byte	.LASF56
+ 1513 031d 04       		.byte	0x4
+ 1514 031e AF       		.byte	0xaf
+ 1515 031f 97000000 		.4byte	0x97
+ 1516 0323 04       		.uleb128 0x4
+ 1517 0324 0F020000 		.4byte	.LASF57
+ 1518 0328 04       		.byte	0x4
+ 1519 0329 C7       		.byte	0xc7
+ 1520 032a 2E030000 		.4byte	0x32e
+ 1521 032e 0A       		.uleb128 0xa
+ 1522 032f 04       		.byte	0x4
+ 1523 0330 34030000 		.4byte	0x334
+ 1524 0334 0B       		.uleb128 0xb
+ 1525 0335 97000000 		.4byte	0x97
+ 1526 0339 52030000 		.4byte	0x352
+ 1527 033d 0C       		.uleb128 0xc
+ 1528 033e 52030000 		.4byte	0x352
+ 1529 0342 0C       		.uleb128 0xc
+ 1530 0343 58030000 		.4byte	0x358
+ 1531 0347 0C       		.uleb128 0xc
+ 1532 0348 97000000 		.4byte	0x97
+ 1533 034c 0C       		.uleb128 0xc
+ 1534 034d 5E030000 		.4byte	0x35e
+ 1535 0351 00       		.byte	0
+ 1536 0352 0A       		.uleb128 0xa
+ 1537 0353 04       		.byte	0x4
+ 1538 0354 B8000000 		.4byte	0xb8
+ 1539 0358 0A       		.uleb128 0xa
+ 1540 0359 04       		.byte	0x4
+ 1541 035a 23020000 		.4byte	0x223
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 35
+
+
+ 1542 035e 0D       		.uleb128 0xd
+ 1543 035f 04       		.byte	0x4
+ 1544 0360 04       		.uleb128 0x4
+ 1545 0361 37020000 		.4byte	.LASF58
+ 1546 0365 04       		.byte	0x4
+ 1547 0366 CA       		.byte	0xca
+ 1548 0367 6B030000 		.4byte	0x36b
+ 1549 036b 0A       		.uleb128 0xa
+ 1550 036c 04       		.byte	0x4
+ 1551 036d 71030000 		.4byte	0x371
+ 1552 0371 0B       		.uleb128 0xb
+ 1553 0372 97000000 		.4byte	0x97
+ 1554 0376 8F030000 		.4byte	0x38f
+ 1555 037a 0C       		.uleb128 0xc
+ 1556 037b 52030000 		.4byte	0x352
+ 1557 037f 0C       		.uleb128 0xc
+ 1558 0380 97000000 		.4byte	0x97
+ 1559 0384 0C       		.uleb128 0xc
+ 1560 0385 97000000 		.4byte	0x97
+ 1561 0389 0C       		.uleb128 0xc
+ 1562 038a 5E030000 		.4byte	0x35e
+ 1563 038e 00       		.byte	0
+ 1564 038f 0E       		.uleb128 0xe
+ 1565 0390 F3010000 		.4byte	.LASF59
+ 1566 0394 04       		.byte	0x4
+ 1567 0395 0D04     		.2byte	0x40d
+ 1568 0397 9B030000 		.4byte	0x39b
+ 1569 039b 0A       		.uleb128 0xa
+ 1570 039c 04       		.byte	0x4
+ 1571 039d A1030000 		.4byte	0x3a1
+ 1572 03a1 0F       		.uleb128 0xf
+ 1573 03a2 AC030000 		.4byte	0x3ac
+ 1574 03a6 0C       		.uleb128 0xc
+ 1575 03a7 52030000 		.4byte	0x352
+ 1576 03ab 00       		.byte	0
+ 1577 03ac 0E       		.uleb128 0xe
+ 1578 03ad 67000000 		.4byte	.LASF60
+ 1579 03b1 04       		.byte	0x4
+ 1580 03b2 1004     		.2byte	0x410
+ 1581 03b4 B8030000 		.4byte	0x3b8
+ 1582 03b8 0A       		.uleb128 0xa
+ 1583 03b9 04       		.byte	0x4
+ 1584 03ba BE030000 		.4byte	0x3be
+ 1585 03be 0B       		.uleb128 0xb
+ 1586 03bf 18030000 		.4byte	0x318
+ 1587 03c3 CD030000 		.4byte	0x3cd
+ 1588 03c7 0C       		.uleb128 0xc
+ 1589 03c8 52030000 		.4byte	0x352
+ 1590 03cc 00       		.byte	0
+ 1591 03cd 0E       		.uleb128 0xe
+ 1592 03ce 38000000 		.4byte	.LASF61
+ 1593 03d2 04       		.byte	0x4
+ 1594 03d3 1304     		.2byte	0x413
+ 1595 03d5 D9030000 		.4byte	0x3d9
+ 1596 03d9 0A       		.uleb128 0xa
+ 1597 03da 04       		.byte	0x4
+ 1598 03db DF030000 		.4byte	0x3df
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 36
+
+
+ 1599 03df 0F       		.uleb128 0xf
+ 1600 03e0 EA030000 		.4byte	0x3ea
+ 1601 03e4 0C       		.uleb128 0xc
+ 1602 03e5 97000000 		.4byte	0x97
+ 1603 03e9 00       		.byte	0
+ 1604 03ea 0A       		.uleb128 0xa
+ 1605 03eb 04       		.byte	0x4
+ 1606 03ec F0030000 		.4byte	0x3f0
+ 1607 03f0 10       		.uleb128 0x10
+ 1608 03f1 AD000000 		.4byte	0xad
+ 1609 03f5 03       		.uleb128 0x3
+ 1610 03f6 04       		.byte	0x4
+ 1611 03f7 07       		.byte	0x7
+ 1612 03f8 06020000 		.4byte	.LASF62
+ 1613 03fc 04       		.uleb128 0x4
+ 1614 03fd EE000000 		.4byte	.LASF63
+ 1615 0401 01       		.byte	0x1
+ 1616 0402 68       		.byte	0x68
+ 1617 0403 A2000000 		.4byte	0xa2
+ 1618 0407 11       		.uleb128 0x11
+ 1619 0408 10030000 		.4byte	.LASF75
+ 1620 040c 01       		.byte	0x1
+ 1621 040d 72       		.byte	0x72
+ 1622 040e 00000000 		.4byte	.LFB0
+ 1623 0412 A8000000 		.4byte	.LFE0-.LFB0
+ 1624 0416 01       		.uleb128 0x1
+ 1625 0417 9C       		.byte	0x9c
+ 1626 0418 6B040000 		.4byte	0x46b
+ 1627 041c 12       		.uleb128 0x12
+ 1628 041d 75386700 		.ascii	"u8g\000"
+ 1629 0421 01       		.byte	0x1
+ 1630 0422 72       		.byte	0x72
+ 1631 0423 52030000 		.4byte	0x352
+ 1632 0427 02       		.uleb128 0x2
+ 1633 0428 91       		.byte	0x91
+ 1634 0429 74       		.sleb128 -12
+ 1635 042a 12       		.uleb128 0x12
+ 1636 042b 7800     		.ascii	"x\000"
+ 1637 042d 01       		.byte	0x1
+ 1638 042e 72       		.byte	0x72
+ 1639 042f 18030000 		.4byte	0x318
+ 1640 0433 02       		.uleb128 0x2
+ 1641 0434 91       		.byte	0x91
+ 1642 0435 73       		.sleb128 -13
+ 1643 0436 12       		.uleb128 0x12
+ 1644 0437 7900     		.ascii	"y\000"
+ 1645 0439 01       		.byte	0x1
+ 1646 043a 72       		.byte	0x72
+ 1647 043b 18030000 		.4byte	0x318
+ 1648 043f 02       		.uleb128 0x2
+ 1649 0440 91       		.byte	0x91
+ 1650 0441 72       		.sleb128 -14
+ 1651 0442 12       		.uleb128 0x12
+ 1652 0443 783000   		.ascii	"x0\000"
+ 1653 0446 01       		.byte	0x1
+ 1654 0447 72       		.byte	0x72
+ 1655 0448 18030000 		.4byte	0x318
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 37
+
+
+ 1656 044c 02       		.uleb128 0x2
+ 1657 044d 91       		.byte	0x91
+ 1658 044e 71       		.sleb128 -15
+ 1659 044f 12       		.uleb128 0x12
+ 1660 0450 793000   		.ascii	"y0\000"
+ 1661 0453 01       		.byte	0x1
+ 1662 0454 72       		.byte	0x72
+ 1663 0455 18030000 		.4byte	0x318
+ 1664 0459 02       		.uleb128 0x2
+ 1665 045a 91       		.byte	0x91
+ 1666 045b 00       		.sleb128 0
+ 1667 045c 13       		.uleb128 0x13
+ 1668 045d 2D010000 		.4byte	.LASF64
+ 1669 0461 01       		.byte	0x1
+ 1670 0462 72       		.byte	0x72
+ 1671 0463 97000000 		.4byte	0x97
+ 1672 0467 02       		.uleb128 0x2
+ 1673 0468 91       		.byte	0x91
+ 1674 0469 04       		.sleb128 4
+ 1675 046a 00       		.byte	0
+ 1676 046b 14       		.uleb128 0x14
+ 1677 046c C8030000 		.4byte	.LASF71
+ 1678 0470 01       		.byte	0x1
+ 1679 0471 8D       		.byte	0x8d
+ 1680 0472 00000000 		.4byte	.LFB1
+ 1681 0476 3C020000 		.4byte	.LFE1-.LFB1
+ 1682 047a 01       		.uleb128 0x1
+ 1683 047b 9C       		.byte	0x9c
+ 1684 047c 4B050000 		.4byte	0x54b
+ 1685 0480 12       		.uleb128 0x12
+ 1686 0481 75386700 		.ascii	"u8g\000"
+ 1687 0485 01       		.byte	0x1
+ 1688 0486 8D       		.byte	0x8d
+ 1689 0487 52030000 		.4byte	0x352
+ 1690 048b 02       		.uleb128 0x2
+ 1691 048c 91       		.byte	0x91
+ 1692 048d 5C       		.sleb128 -36
+ 1693 048e 12       		.uleb128 0x12
+ 1694 048f 783000   		.ascii	"x0\000"
+ 1695 0492 01       		.byte	0x1
+ 1696 0493 8D       		.byte	0x8d
+ 1697 0494 18030000 		.4byte	0x318
+ 1698 0498 02       		.uleb128 0x2
+ 1699 0499 91       		.byte	0x91
+ 1700 049a 5B       		.sleb128 -37
+ 1701 049b 12       		.uleb128 0x12
+ 1702 049c 793000   		.ascii	"y0\000"
+ 1703 049f 01       		.byte	0x1
+ 1704 04a0 8D       		.byte	0x8d
+ 1705 04a1 18030000 		.4byte	0x318
+ 1706 04a5 02       		.uleb128 0x2
+ 1707 04a6 91       		.byte	0x91
+ 1708 04a7 5A       		.sleb128 -38
+ 1709 04a8 12       		.uleb128 0x12
+ 1710 04a9 727800   		.ascii	"rx\000"
+ 1711 04ac 01       		.byte	0x1
+ 1712 04ad 8D       		.byte	0x8d
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 38
+
+
+ 1713 04ae 18030000 		.4byte	0x318
+ 1714 04b2 02       		.uleb128 0x2
+ 1715 04b3 91       		.byte	0x91
+ 1716 04b4 59       		.sleb128 -39
+ 1717 04b5 12       		.uleb128 0x12
+ 1718 04b6 727900   		.ascii	"ry\000"
+ 1719 04b9 01       		.byte	0x1
+ 1720 04ba 8D       		.byte	0x8d
+ 1721 04bb 18030000 		.4byte	0x318
+ 1722 04bf 02       		.uleb128 0x2
+ 1723 04c0 91       		.byte	0x91
+ 1724 04c1 00       		.sleb128 0
+ 1725 04c2 13       		.uleb128 0x13
+ 1726 04c3 2D010000 		.4byte	.LASF64
+ 1727 04c7 01       		.byte	0x1
+ 1728 04c8 8D       		.byte	0x8d
+ 1729 04c9 97000000 		.4byte	0x97
+ 1730 04cd 02       		.uleb128 0x2
+ 1731 04ce 91       		.byte	0x91
+ 1732 04cf 04       		.sleb128 4
+ 1733 04d0 15       		.uleb128 0x15
+ 1734 04d1 7800     		.ascii	"x\000"
+ 1735 04d3 01       		.byte	0x1
+ 1736 04d4 8F       		.byte	0x8f
+ 1737 04d5 18030000 		.4byte	0x318
+ 1738 04d9 02       		.uleb128 0x2
+ 1739 04da 91       		.byte	0x91
+ 1740 04db 6F       		.sleb128 -17
+ 1741 04dc 15       		.uleb128 0x15
+ 1742 04dd 7900     		.ascii	"y\000"
+ 1743 04df 01       		.byte	0x1
+ 1744 04e0 8F       		.byte	0x8f
+ 1745 04e1 18030000 		.4byte	0x318
+ 1746 04e5 02       		.uleb128 0x2
+ 1747 04e6 91       		.byte	0x91
+ 1748 04e7 6E       		.sleb128 -18
+ 1749 04e8 16       		.uleb128 0x16
+ 1750 04e9 98040000 		.4byte	.LASF65
+ 1751 04ed 01       		.byte	0x1
+ 1752 04ee 90       		.byte	0x90
+ 1753 04ef FC030000 		.4byte	0x3fc
+ 1754 04f3 02       		.uleb128 0x2
+ 1755 04f4 91       		.byte	0x91
+ 1756 04f5 6C       		.sleb128 -20
+ 1757 04f6 16       		.uleb128 0x16
+ 1758 04f7 E0000000 		.4byte	.LASF66
+ 1759 04fb 01       		.byte	0x1
+ 1760 04fc 90       		.byte	0x90
+ 1761 04fd FC030000 		.4byte	0x3fc
+ 1762 0501 02       		.uleb128 0x2
+ 1763 0502 91       		.byte	0x91
+ 1764 0503 6A       		.sleb128 -22
+ 1765 0504 15       		.uleb128 0x15
+ 1766 0505 65727200 		.ascii	"err\000"
+ 1767 0509 01       		.byte	0x1
+ 1768 050a 91       		.byte	0x91
+ 1769 050b FC030000 		.4byte	0x3fc
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 39
+
+
+ 1770 050f 02       		.uleb128 0x2
+ 1771 0510 91       		.byte	0x91
+ 1772 0511 68       		.sleb128 -24
+ 1773 0512 16       		.uleb128 0x16
+ 1774 0513 29030000 		.4byte	.LASF67
+ 1775 0517 01       		.byte	0x1
+ 1776 0518 92       		.byte	0x92
+ 1777 0519 FC030000 		.4byte	0x3fc
+ 1778 051d 02       		.uleb128 0x2
+ 1779 051e 91       		.byte	0x91
+ 1780 051f 62       		.sleb128 -30
+ 1781 0520 16       		.uleb128 0x16
+ 1782 0521 90000000 		.4byte	.LASF68
+ 1783 0525 01       		.byte	0x1
+ 1784 0526 93       		.byte	0x93
+ 1785 0527 FC030000 		.4byte	0x3fc
+ 1786 052b 02       		.uleb128 0x2
+ 1787 052c 91       		.byte	0x91
+ 1788 052d 60       		.sleb128 -32
+ 1789 052e 16       		.uleb128 0x16
+ 1790 052f 59020000 		.4byte	.LASF69
+ 1791 0533 01       		.byte	0x1
+ 1792 0534 94       		.byte	0x94
+ 1793 0535 FC030000 		.4byte	0x3fc
+ 1794 0539 02       		.uleb128 0x2
+ 1795 053a 91       		.byte	0x91
+ 1796 053b 66       		.sleb128 -26
+ 1797 053c 16       		.uleb128 0x16
+ 1798 053d C2000000 		.4byte	.LASF70
+ 1799 0541 01       		.byte	0x1
+ 1800 0542 94       		.byte	0x94
+ 1801 0543 FC030000 		.4byte	0x3fc
+ 1802 0547 02       		.uleb128 0x2
+ 1803 0548 91       		.byte	0x91
+ 1804 0549 64       		.sleb128 -28
+ 1805 054a 00       		.byte	0
+ 1806 054b 14       		.uleb128 0x14
+ 1807 054c A5000000 		.4byte	.LASF72
+ 1808 0550 01       		.byte	0x1
+ 1809 0551 E6       		.byte	0xe6
+ 1810 0552 00000000 		.4byte	.LFB2
+ 1811 0556 8A000000 		.4byte	.LFE2-.LFB2
+ 1812 055a 01       		.uleb128 0x1
+ 1813 055b 9C       		.byte	0x9c
+ 1814 055c F3050000 		.4byte	0x5f3
+ 1815 0560 12       		.uleb128 0x12
+ 1816 0561 75386700 		.ascii	"u8g\000"
+ 1817 0565 01       		.byte	0x1
+ 1818 0566 E6       		.byte	0xe6
+ 1819 0567 52030000 		.4byte	0x352
+ 1820 056b 02       		.uleb128 0x2
+ 1821 056c 91       		.byte	0x91
+ 1822 056d 64       		.sleb128 -28
+ 1823 056e 12       		.uleb128 0x12
+ 1824 056f 783000   		.ascii	"x0\000"
+ 1825 0572 01       		.byte	0x1
+ 1826 0573 E6       		.byte	0xe6
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 40
+
+
+ 1827 0574 18030000 		.4byte	0x318
+ 1828 0578 02       		.uleb128 0x2
+ 1829 0579 91       		.byte	0x91
+ 1830 057a 63       		.sleb128 -29
+ 1831 057b 12       		.uleb128 0x12
+ 1832 057c 793000   		.ascii	"y0\000"
+ 1833 057f 01       		.byte	0x1
+ 1834 0580 E6       		.byte	0xe6
+ 1835 0581 18030000 		.4byte	0x318
+ 1836 0585 02       		.uleb128 0x2
+ 1837 0586 91       		.byte	0x91
+ 1838 0587 62       		.sleb128 -30
+ 1839 0588 12       		.uleb128 0x12
+ 1840 0589 727800   		.ascii	"rx\000"
+ 1841 058c 01       		.byte	0x1
+ 1842 058d E6       		.byte	0xe6
+ 1843 058e 18030000 		.4byte	0x318
+ 1844 0592 02       		.uleb128 0x2
+ 1845 0593 91       		.byte	0x91
+ 1846 0594 61       		.sleb128 -31
+ 1847 0595 12       		.uleb128 0x12
+ 1848 0596 727900   		.ascii	"ry\000"
+ 1849 0599 01       		.byte	0x1
+ 1850 059a E6       		.byte	0xe6
+ 1851 059b 18030000 		.4byte	0x318
+ 1852 059f 02       		.uleb128 0x2
+ 1853 05a0 91       		.byte	0x91
+ 1854 05a1 00       		.sleb128 0
+ 1855 05a2 13       		.uleb128 0x13
+ 1856 05a3 2D010000 		.4byte	.LASF64
+ 1857 05a7 01       		.byte	0x1
+ 1858 05a8 E6       		.byte	0xe6
+ 1859 05a9 97000000 		.4byte	0x97
+ 1860 05ad 02       		.uleb128 0x2
+ 1861 05ae 91       		.byte	0x91
+ 1862 05af 04       		.sleb128 4
+ 1863 05b0 17       		.uleb128 0x17
+ 1864 05b1 1A000000 		.4byte	.LBB2
+ 1865 05b5 50000000 		.4byte	.LBE2-.LBB2
+ 1866 05b9 15       		.uleb128 0x15
+ 1867 05ba 72787000 		.ascii	"rxp\000"
+ 1868 05be 01       		.byte	0x1
+ 1869 05bf EA       		.byte	0xea
+ 1870 05c0 18030000 		.4byte	0x318
+ 1871 05c4 02       		.uleb128 0x2
+ 1872 05c5 91       		.byte	0x91
+ 1873 05c6 6F       		.sleb128 -17
+ 1874 05c7 16       		.uleb128 0x16
+ 1875 05c8 75040000 		.4byte	.LASF73
+ 1876 05cc 01       		.byte	0x1
+ 1877 05cd EA       		.byte	0xea
+ 1878 05ce 18030000 		.4byte	0x318
+ 1879 05d2 02       		.uleb128 0x2
+ 1880 05d3 91       		.byte	0x91
+ 1881 05d4 6E       		.sleb128 -18
+ 1882 05d5 15       		.uleb128 0x15
+ 1883 05d6 72797000 		.ascii	"ryp\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 41
+
+
+ 1884 05da 01       		.byte	0x1
+ 1885 05db EB       		.byte	0xeb
+ 1886 05dc 18030000 		.4byte	0x318
+ 1887 05e0 02       		.uleb128 0x2
+ 1888 05e1 91       		.byte	0x91
+ 1889 05e2 6D       		.sleb128 -19
+ 1890 05e3 16       		.uleb128 0x16
+ 1891 05e4 B2030000 		.4byte	.LASF74
+ 1892 05e8 01       		.byte	0x1
+ 1893 05e9 EB       		.byte	0xeb
+ 1894 05ea 18030000 		.4byte	0x318
+ 1895 05ee 02       		.uleb128 0x2
+ 1896 05ef 91       		.byte	0x91
+ 1897 05f0 6C       		.sleb128 -20
+ 1898 05f1 00       		.byte	0
+ 1899 05f2 00       		.byte	0
+ 1900 05f3 11       		.uleb128 0x11
+ 1901 05f4 92030000 		.4byte	.LASF76
+ 1902 05f8 01       		.byte	0x1
+ 1903 05f9 FF       		.byte	0xff
+ 1904 05fa 00000000 		.4byte	.LFB3
+ 1905 05fe AC000000 		.4byte	.LFE3-.LFB3
+ 1906 0602 01       		.uleb128 0x1
+ 1907 0603 9C       		.byte	0x9c
+ 1908 0604 57060000 		.4byte	0x657
+ 1909 0608 12       		.uleb128 0x12
+ 1910 0609 75386700 		.ascii	"u8g\000"
+ 1911 060d 01       		.byte	0x1
+ 1912 060e FF       		.byte	0xff
+ 1913 060f 52030000 		.4byte	0x352
+ 1914 0613 02       		.uleb128 0x2
+ 1915 0614 91       		.byte	0x91
+ 1916 0615 74       		.sleb128 -12
+ 1917 0616 12       		.uleb128 0x12
+ 1918 0617 7800     		.ascii	"x\000"
+ 1919 0619 01       		.byte	0x1
+ 1920 061a FF       		.byte	0xff
+ 1921 061b 18030000 		.4byte	0x318
+ 1922 061f 02       		.uleb128 0x2
+ 1923 0620 91       		.byte	0x91
+ 1924 0621 73       		.sleb128 -13
+ 1925 0622 12       		.uleb128 0x12
+ 1926 0623 7900     		.ascii	"y\000"
+ 1927 0625 01       		.byte	0x1
+ 1928 0626 FF       		.byte	0xff
+ 1929 0627 18030000 		.4byte	0x318
+ 1930 062b 02       		.uleb128 0x2
+ 1931 062c 91       		.byte	0x91
+ 1932 062d 72       		.sleb128 -14
+ 1933 062e 12       		.uleb128 0x12
+ 1934 062f 783000   		.ascii	"x0\000"
+ 1935 0632 01       		.byte	0x1
+ 1936 0633 FF       		.byte	0xff
+ 1937 0634 18030000 		.4byte	0x318
+ 1938 0638 02       		.uleb128 0x2
+ 1939 0639 91       		.byte	0x91
+ 1940 063a 71       		.sleb128 -15
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 42
+
+
+ 1941 063b 12       		.uleb128 0x12
+ 1942 063c 793000   		.ascii	"y0\000"
+ 1943 063f 01       		.byte	0x1
+ 1944 0640 FF       		.byte	0xff
+ 1945 0641 18030000 		.4byte	0x318
+ 1946 0645 02       		.uleb128 0x2
+ 1947 0646 91       		.byte	0x91
+ 1948 0647 00       		.sleb128 0
+ 1949 0648 13       		.uleb128 0x13
+ 1950 0649 2D010000 		.4byte	.LASF64
+ 1951 064d 01       		.byte	0x1
+ 1952 064e FF       		.byte	0xff
+ 1953 064f 97000000 		.4byte	0x97
+ 1954 0653 02       		.uleb128 0x2
+ 1955 0654 91       		.byte	0x91
+ 1956 0655 04       		.sleb128 4
+ 1957 0656 00       		.byte	0
+ 1958 0657 18       		.uleb128 0x18
+ 1959 0658 55030000 		.4byte	.LASF77
+ 1960 065c 01       		.byte	0x1
+ 1961 065d 1A01     		.2byte	0x11a
+ 1962 065f 00000000 		.4byte	.LFB4
+ 1963 0663 3C020000 		.4byte	.LFE4-.LFB4
+ 1964 0667 01       		.uleb128 0x1
+ 1965 0668 9C       		.byte	0x9c
+ 1966 0669 47070000 		.4byte	0x747
+ 1967 066d 19       		.uleb128 0x19
+ 1968 066e 75386700 		.ascii	"u8g\000"
+ 1969 0672 01       		.byte	0x1
+ 1970 0673 1A01     		.2byte	0x11a
+ 1971 0675 52030000 		.4byte	0x352
+ 1972 0679 02       		.uleb128 0x2
+ 1973 067a 91       		.byte	0x91
+ 1974 067b 5C       		.sleb128 -36
+ 1975 067c 19       		.uleb128 0x19
+ 1976 067d 783000   		.ascii	"x0\000"
+ 1977 0680 01       		.byte	0x1
+ 1978 0681 1A01     		.2byte	0x11a
+ 1979 0683 18030000 		.4byte	0x318
+ 1980 0687 02       		.uleb128 0x2
+ 1981 0688 91       		.byte	0x91
+ 1982 0689 5B       		.sleb128 -37
+ 1983 068a 19       		.uleb128 0x19
+ 1984 068b 793000   		.ascii	"y0\000"
+ 1985 068e 01       		.byte	0x1
+ 1986 068f 1A01     		.2byte	0x11a
+ 1987 0691 18030000 		.4byte	0x318
+ 1988 0695 02       		.uleb128 0x2
+ 1989 0696 91       		.byte	0x91
+ 1990 0697 5A       		.sleb128 -38
+ 1991 0698 19       		.uleb128 0x19
+ 1992 0699 727800   		.ascii	"rx\000"
+ 1993 069c 01       		.byte	0x1
+ 1994 069d 1A01     		.2byte	0x11a
+ 1995 069f 18030000 		.4byte	0x318
+ 1996 06a3 02       		.uleb128 0x2
+ 1997 06a4 91       		.byte	0x91
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 43
+
+
+ 1998 06a5 59       		.sleb128 -39
+ 1999 06a6 19       		.uleb128 0x19
+ 2000 06a7 727900   		.ascii	"ry\000"
+ 2001 06aa 01       		.byte	0x1
+ 2002 06ab 1A01     		.2byte	0x11a
+ 2003 06ad 18030000 		.4byte	0x318
+ 2004 06b1 02       		.uleb128 0x2
+ 2005 06b2 91       		.byte	0x91
+ 2006 06b3 00       		.sleb128 0
+ 2007 06b4 1A       		.uleb128 0x1a
+ 2008 06b5 2D010000 		.4byte	.LASF64
+ 2009 06b9 01       		.byte	0x1
+ 2010 06ba 1A01     		.2byte	0x11a
+ 2011 06bc 97000000 		.4byte	0x97
+ 2012 06c0 02       		.uleb128 0x2
+ 2013 06c1 91       		.byte	0x91
+ 2014 06c2 04       		.sleb128 4
+ 2015 06c3 1B       		.uleb128 0x1b
+ 2016 06c4 7800     		.ascii	"x\000"
+ 2017 06c6 01       		.byte	0x1
+ 2018 06c7 1C01     		.2byte	0x11c
+ 2019 06c9 18030000 		.4byte	0x318
+ 2020 06cd 02       		.uleb128 0x2
+ 2021 06ce 91       		.byte	0x91
+ 2022 06cf 6F       		.sleb128 -17
+ 2023 06d0 1B       		.uleb128 0x1b
+ 2024 06d1 7900     		.ascii	"y\000"
+ 2025 06d3 01       		.byte	0x1
+ 2026 06d4 1C01     		.2byte	0x11c
+ 2027 06d6 18030000 		.4byte	0x318
+ 2028 06da 02       		.uleb128 0x2
+ 2029 06db 91       		.byte	0x91
+ 2030 06dc 6E       		.sleb128 -18
+ 2031 06dd 1C       		.uleb128 0x1c
+ 2032 06de 98040000 		.4byte	.LASF65
+ 2033 06e2 01       		.byte	0x1
+ 2034 06e3 1D01     		.2byte	0x11d
+ 2035 06e5 FC030000 		.4byte	0x3fc
+ 2036 06e9 02       		.uleb128 0x2
+ 2037 06ea 91       		.byte	0x91
+ 2038 06eb 6C       		.sleb128 -20
+ 2039 06ec 1C       		.uleb128 0x1c
+ 2040 06ed E0000000 		.4byte	.LASF66
+ 2041 06f1 01       		.byte	0x1
+ 2042 06f2 1D01     		.2byte	0x11d
+ 2043 06f4 FC030000 		.4byte	0x3fc
+ 2044 06f8 02       		.uleb128 0x2
+ 2045 06f9 91       		.byte	0x91
+ 2046 06fa 6A       		.sleb128 -22
+ 2047 06fb 1B       		.uleb128 0x1b
+ 2048 06fc 65727200 		.ascii	"err\000"
+ 2049 0700 01       		.byte	0x1
+ 2050 0701 1E01     		.2byte	0x11e
+ 2051 0703 FC030000 		.4byte	0x3fc
+ 2052 0707 02       		.uleb128 0x2
+ 2053 0708 91       		.byte	0x91
+ 2054 0709 68       		.sleb128 -24
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 44
+
+
+ 2055 070a 1C       		.uleb128 0x1c
+ 2056 070b 29030000 		.4byte	.LASF67
+ 2057 070f 01       		.byte	0x1
+ 2058 0710 1F01     		.2byte	0x11f
+ 2059 0712 FC030000 		.4byte	0x3fc
+ 2060 0716 02       		.uleb128 0x2
+ 2061 0717 91       		.byte	0x91
+ 2062 0718 62       		.sleb128 -30
+ 2063 0719 1C       		.uleb128 0x1c
+ 2064 071a 90000000 		.4byte	.LASF68
+ 2065 071e 01       		.byte	0x1
+ 2066 071f 2001     		.2byte	0x120
+ 2067 0721 FC030000 		.4byte	0x3fc
+ 2068 0725 02       		.uleb128 0x2
+ 2069 0726 91       		.byte	0x91
+ 2070 0727 60       		.sleb128 -32
+ 2071 0728 1C       		.uleb128 0x1c
+ 2072 0729 59020000 		.4byte	.LASF69
+ 2073 072d 01       		.byte	0x1
+ 2074 072e 2101     		.2byte	0x121
+ 2075 0730 FC030000 		.4byte	0x3fc
+ 2076 0734 02       		.uleb128 0x2
+ 2077 0735 91       		.byte	0x91
+ 2078 0736 66       		.sleb128 -26
+ 2079 0737 1C       		.uleb128 0x1c
+ 2080 0738 C2000000 		.4byte	.LASF70
+ 2081 073c 01       		.byte	0x1
+ 2082 073d 2101     		.2byte	0x121
+ 2083 073f FC030000 		.4byte	0x3fc
+ 2084 0743 02       		.uleb128 0x2
+ 2085 0744 91       		.byte	0x91
+ 2086 0745 64       		.sleb128 -28
+ 2087 0746 00       		.byte	0
+ 2088 0747 1D       		.uleb128 0x1d
+ 2089 0748 42010000 		.4byte	.LASF81
+ 2090 074c 01       		.byte	0x1
+ 2091 074d 7301     		.2byte	0x173
+ 2092 074f 00000000 		.4byte	.LFB5
+ 2093 0753 8A000000 		.4byte	.LFE5-.LFB5
+ 2094 0757 01       		.uleb128 0x1
+ 2095 0758 9C       		.byte	0x9c
+ 2096 0759 19       		.uleb128 0x19
+ 2097 075a 75386700 		.ascii	"u8g\000"
+ 2098 075e 01       		.byte	0x1
+ 2099 075f 7301     		.2byte	0x173
+ 2100 0761 52030000 		.4byte	0x352
+ 2101 0765 02       		.uleb128 0x2
+ 2102 0766 91       		.byte	0x91
+ 2103 0767 64       		.sleb128 -28
+ 2104 0768 19       		.uleb128 0x19
+ 2105 0769 783000   		.ascii	"x0\000"
+ 2106 076c 01       		.byte	0x1
+ 2107 076d 7301     		.2byte	0x173
+ 2108 076f 18030000 		.4byte	0x318
+ 2109 0773 02       		.uleb128 0x2
+ 2110 0774 91       		.byte	0x91
+ 2111 0775 63       		.sleb128 -29
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 45
+
+
+ 2112 0776 19       		.uleb128 0x19
+ 2113 0777 793000   		.ascii	"y0\000"
+ 2114 077a 01       		.byte	0x1
+ 2115 077b 7301     		.2byte	0x173
+ 2116 077d 18030000 		.4byte	0x318
+ 2117 0781 02       		.uleb128 0x2
+ 2118 0782 91       		.byte	0x91
+ 2119 0783 62       		.sleb128 -30
+ 2120 0784 19       		.uleb128 0x19
+ 2121 0785 727800   		.ascii	"rx\000"
+ 2122 0788 01       		.byte	0x1
+ 2123 0789 7301     		.2byte	0x173
+ 2124 078b 18030000 		.4byte	0x318
+ 2125 078f 02       		.uleb128 0x2
+ 2126 0790 91       		.byte	0x91
+ 2127 0791 61       		.sleb128 -31
+ 2128 0792 19       		.uleb128 0x19
+ 2129 0793 727900   		.ascii	"ry\000"
+ 2130 0796 01       		.byte	0x1
+ 2131 0797 7301     		.2byte	0x173
+ 2132 0799 18030000 		.4byte	0x318
+ 2133 079d 02       		.uleb128 0x2
+ 2134 079e 91       		.byte	0x91
+ 2135 079f 00       		.sleb128 0
+ 2136 07a0 1A       		.uleb128 0x1a
+ 2137 07a1 2D010000 		.4byte	.LASF64
+ 2138 07a5 01       		.byte	0x1
+ 2139 07a6 7301     		.2byte	0x173
+ 2140 07a8 97000000 		.4byte	0x97
+ 2141 07ac 02       		.uleb128 0x2
+ 2142 07ad 91       		.byte	0x91
+ 2143 07ae 04       		.sleb128 4
+ 2144 07af 17       		.uleb128 0x17
+ 2145 07b0 1A000000 		.4byte	.LBB3
+ 2146 07b4 50000000 		.4byte	.LBE3-.LBB3
+ 2147 07b8 1B       		.uleb128 0x1b
+ 2148 07b9 72787000 		.ascii	"rxp\000"
+ 2149 07bd 01       		.byte	0x1
+ 2150 07be 7701     		.2byte	0x177
+ 2151 07c0 18030000 		.4byte	0x318
+ 2152 07c4 02       		.uleb128 0x2
+ 2153 07c5 91       		.byte	0x91
+ 2154 07c6 6F       		.sleb128 -17
+ 2155 07c7 1C       		.uleb128 0x1c
+ 2156 07c8 75040000 		.4byte	.LASF73
+ 2157 07cc 01       		.byte	0x1
+ 2158 07cd 7701     		.2byte	0x177
+ 2159 07cf 18030000 		.4byte	0x318
+ 2160 07d3 02       		.uleb128 0x2
+ 2161 07d4 91       		.byte	0x91
+ 2162 07d5 6E       		.sleb128 -18
+ 2163 07d6 1B       		.uleb128 0x1b
+ 2164 07d7 72797000 		.ascii	"ryp\000"
+ 2165 07db 01       		.byte	0x1
+ 2166 07dc 7801     		.2byte	0x178
+ 2167 07de 18030000 		.4byte	0x318
+ 2168 07e2 02       		.uleb128 0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 46
+
+
+ 2169 07e3 91       		.byte	0x91
+ 2170 07e4 6D       		.sleb128 -19
+ 2171 07e5 1C       		.uleb128 0x1c
+ 2172 07e6 B2030000 		.4byte	.LASF74
+ 2173 07ea 01       		.byte	0x1
+ 2174 07eb 7801     		.2byte	0x178
+ 2175 07ed 18030000 		.4byte	0x318
+ 2176 07f1 02       		.uleb128 0x2
+ 2177 07f2 91       		.byte	0x91
+ 2178 07f3 6C       		.sleb128 -20
+ 2179 07f4 00       		.byte	0
+ 2180 07f5 00       		.byte	0
+ 2181 07f6 00       		.byte	0
+ 2182              		.section	.debug_abbrev,"",%progbits
+ 2183              	.Ldebug_abbrev0:
+ 2184 0000 01       		.uleb128 0x1
+ 2185 0001 11       		.uleb128 0x11
+ 2186 0002 01       		.byte	0x1
+ 2187 0003 25       		.uleb128 0x25
+ 2188 0004 0E       		.uleb128 0xe
+ 2189 0005 13       		.uleb128 0x13
+ 2190 0006 0B       		.uleb128 0xb
+ 2191 0007 03       		.uleb128 0x3
+ 2192 0008 0E       		.uleb128 0xe
+ 2193 0009 1B       		.uleb128 0x1b
+ 2194 000a 0E       		.uleb128 0xe
+ 2195 000b 55       		.uleb128 0x55
+ 2196 000c 17       		.uleb128 0x17
+ 2197 000d 11       		.uleb128 0x11
+ 2198 000e 01       		.uleb128 0x1
+ 2199 000f 10       		.uleb128 0x10
+ 2200 0010 17       		.uleb128 0x17
+ 2201 0011 00       		.byte	0
+ 2202 0012 00       		.byte	0
+ 2203 0013 02       		.uleb128 0x2
+ 2204 0014 24       		.uleb128 0x24
+ 2205 0015 00       		.byte	0
+ 2206 0016 0B       		.uleb128 0xb
+ 2207 0017 0B       		.uleb128 0xb
+ 2208 0018 3E       		.uleb128 0x3e
+ 2209 0019 0B       		.uleb128 0xb
+ 2210 001a 03       		.uleb128 0x3
+ 2211 001b 08       		.uleb128 0x8
+ 2212 001c 00       		.byte	0
+ 2213 001d 00       		.byte	0
+ 2214 001e 03       		.uleb128 0x3
+ 2215 001f 24       		.uleb128 0x24
+ 2216 0020 00       		.byte	0
+ 2217 0021 0B       		.uleb128 0xb
+ 2218 0022 0B       		.uleb128 0xb
+ 2219 0023 3E       		.uleb128 0x3e
+ 2220 0024 0B       		.uleb128 0xb
+ 2221 0025 03       		.uleb128 0x3
+ 2222 0026 0E       		.uleb128 0xe
+ 2223 0027 00       		.byte	0
+ 2224 0028 00       		.byte	0
+ 2225 0029 04       		.uleb128 0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 47
+
+
+ 2226 002a 16       		.uleb128 0x16
+ 2227 002b 00       		.byte	0
+ 2228 002c 03       		.uleb128 0x3
+ 2229 002d 0E       		.uleb128 0xe
+ 2230 002e 3A       		.uleb128 0x3a
+ 2231 002f 0B       		.uleb128 0xb
+ 2232 0030 3B       		.uleb128 0x3b
+ 2233 0031 0B       		.uleb128 0xb
+ 2234 0032 49       		.uleb128 0x49
+ 2235 0033 13       		.uleb128 0x13
+ 2236 0034 00       		.byte	0
+ 2237 0035 00       		.byte	0
+ 2238 0036 05       		.uleb128 0x5
+ 2239 0037 13       		.uleb128 0x13
+ 2240 0038 01       		.byte	0x1
+ 2241 0039 03       		.uleb128 0x3
+ 2242 003a 0E       		.uleb128 0xe
+ 2243 003b 0B       		.uleb128 0xb
+ 2244 003c 0B       		.uleb128 0xb
+ 2245 003d 3A       		.uleb128 0x3a
+ 2246 003e 0B       		.uleb128 0xb
+ 2247 003f 3B       		.uleb128 0x3b
+ 2248 0040 05       		.uleb128 0x5
+ 2249 0041 01       		.uleb128 0x1
+ 2250 0042 13       		.uleb128 0x13
+ 2251 0043 00       		.byte	0
+ 2252 0044 00       		.byte	0
+ 2253 0045 06       		.uleb128 0x6
+ 2254 0046 0D       		.uleb128 0xd
+ 2255 0047 00       		.byte	0
+ 2256 0048 03       		.uleb128 0x3
+ 2257 0049 0E       		.uleb128 0xe
+ 2258 004a 3A       		.uleb128 0x3a
+ 2259 004b 0B       		.uleb128 0xb
+ 2260 004c 3B       		.uleb128 0x3b
+ 2261 004d 05       		.uleb128 0x5
+ 2262 004e 49       		.uleb128 0x49
+ 2263 004f 13       		.uleb128 0x13
+ 2264 0050 38       		.uleb128 0x38
+ 2265 0051 0B       		.uleb128 0xb
+ 2266 0052 00       		.byte	0
+ 2267 0053 00       		.byte	0
+ 2268 0054 07       		.uleb128 0x7
+ 2269 0055 0D       		.uleb128 0xd
+ 2270 0056 00       		.byte	0
+ 2271 0057 03       		.uleb128 0x3
+ 2272 0058 08       		.uleb128 0x8
+ 2273 0059 3A       		.uleb128 0x3a
+ 2274 005a 0B       		.uleb128 0xb
+ 2275 005b 3B       		.uleb128 0x3b
+ 2276 005c 05       		.uleb128 0x5
+ 2277 005d 49       		.uleb128 0x49
+ 2278 005e 13       		.uleb128 0x13
+ 2279 005f 38       		.uleb128 0x38
+ 2280 0060 0B       		.uleb128 0xb
+ 2281 0061 00       		.byte	0
+ 2282 0062 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 48
+
+
+ 2283 0063 08       		.uleb128 0x8
+ 2284 0064 13       		.uleb128 0x13
+ 2285 0065 01       		.byte	0x1
+ 2286 0066 03       		.uleb128 0x3
+ 2287 0067 0E       		.uleb128 0xe
+ 2288 0068 0B       		.uleb128 0xb
+ 2289 0069 0B       		.uleb128 0xb
+ 2290 006a 3A       		.uleb128 0x3a
+ 2291 006b 0B       		.uleb128 0xb
+ 2292 006c 3B       		.uleb128 0x3b
+ 2293 006d 0B       		.uleb128 0xb
+ 2294 006e 01       		.uleb128 0x1
+ 2295 006f 13       		.uleb128 0x13
+ 2296 0070 00       		.byte	0
+ 2297 0071 00       		.byte	0
+ 2298 0072 09       		.uleb128 0x9
+ 2299 0073 0D       		.uleb128 0xd
+ 2300 0074 00       		.byte	0
+ 2301 0075 03       		.uleb128 0x3
+ 2302 0076 0E       		.uleb128 0xe
+ 2303 0077 3A       		.uleb128 0x3a
+ 2304 0078 0B       		.uleb128 0xb
+ 2305 0079 3B       		.uleb128 0x3b
+ 2306 007a 0B       		.uleb128 0xb
+ 2307 007b 49       		.uleb128 0x49
+ 2308 007c 13       		.uleb128 0x13
+ 2309 007d 38       		.uleb128 0x38
+ 2310 007e 0B       		.uleb128 0xb
+ 2311 007f 00       		.byte	0
+ 2312 0080 00       		.byte	0
+ 2313 0081 0A       		.uleb128 0xa
+ 2314 0082 0F       		.uleb128 0xf
+ 2315 0083 00       		.byte	0
+ 2316 0084 0B       		.uleb128 0xb
+ 2317 0085 0B       		.uleb128 0xb
+ 2318 0086 49       		.uleb128 0x49
+ 2319 0087 13       		.uleb128 0x13
+ 2320 0088 00       		.byte	0
+ 2321 0089 00       		.byte	0
+ 2322 008a 0B       		.uleb128 0xb
+ 2323 008b 15       		.uleb128 0x15
+ 2324 008c 01       		.byte	0x1
+ 2325 008d 27       		.uleb128 0x27
+ 2326 008e 19       		.uleb128 0x19
+ 2327 008f 49       		.uleb128 0x49
+ 2328 0090 13       		.uleb128 0x13
+ 2329 0091 01       		.uleb128 0x1
+ 2330 0092 13       		.uleb128 0x13
+ 2331 0093 00       		.byte	0
+ 2332 0094 00       		.byte	0
+ 2333 0095 0C       		.uleb128 0xc
+ 2334 0096 05       		.uleb128 0x5
+ 2335 0097 00       		.byte	0
+ 2336 0098 49       		.uleb128 0x49
+ 2337 0099 13       		.uleb128 0x13
+ 2338 009a 00       		.byte	0
+ 2339 009b 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 49
+
+
+ 2340 009c 0D       		.uleb128 0xd
+ 2341 009d 0F       		.uleb128 0xf
+ 2342 009e 00       		.byte	0
+ 2343 009f 0B       		.uleb128 0xb
+ 2344 00a0 0B       		.uleb128 0xb
+ 2345 00a1 00       		.byte	0
+ 2346 00a2 00       		.byte	0
+ 2347 00a3 0E       		.uleb128 0xe
+ 2348 00a4 16       		.uleb128 0x16
+ 2349 00a5 00       		.byte	0
+ 2350 00a6 03       		.uleb128 0x3
+ 2351 00a7 0E       		.uleb128 0xe
+ 2352 00a8 3A       		.uleb128 0x3a
+ 2353 00a9 0B       		.uleb128 0xb
+ 2354 00aa 3B       		.uleb128 0x3b
+ 2355 00ab 05       		.uleb128 0x5
+ 2356 00ac 49       		.uleb128 0x49
+ 2357 00ad 13       		.uleb128 0x13
+ 2358 00ae 00       		.byte	0
+ 2359 00af 00       		.byte	0
+ 2360 00b0 0F       		.uleb128 0xf
+ 2361 00b1 15       		.uleb128 0x15
+ 2362 00b2 01       		.byte	0x1
+ 2363 00b3 27       		.uleb128 0x27
+ 2364 00b4 19       		.uleb128 0x19
+ 2365 00b5 01       		.uleb128 0x1
+ 2366 00b6 13       		.uleb128 0x13
+ 2367 00b7 00       		.byte	0
+ 2368 00b8 00       		.byte	0
+ 2369 00b9 10       		.uleb128 0x10
+ 2370 00ba 26       		.uleb128 0x26
+ 2371 00bb 00       		.byte	0
+ 2372 00bc 49       		.uleb128 0x49
+ 2373 00bd 13       		.uleb128 0x13
+ 2374 00be 00       		.byte	0
+ 2375 00bf 00       		.byte	0
+ 2376 00c0 11       		.uleb128 0x11
+ 2377 00c1 2E       		.uleb128 0x2e
+ 2378 00c2 01       		.byte	0x1
+ 2379 00c3 03       		.uleb128 0x3
+ 2380 00c4 0E       		.uleb128 0xe
+ 2381 00c5 3A       		.uleb128 0x3a
+ 2382 00c6 0B       		.uleb128 0xb
+ 2383 00c7 3B       		.uleb128 0x3b
+ 2384 00c8 0B       		.uleb128 0xb
+ 2385 00c9 27       		.uleb128 0x27
+ 2386 00ca 19       		.uleb128 0x19
+ 2387 00cb 11       		.uleb128 0x11
+ 2388 00cc 01       		.uleb128 0x1
+ 2389 00cd 12       		.uleb128 0x12
+ 2390 00ce 06       		.uleb128 0x6
+ 2391 00cf 40       		.uleb128 0x40
+ 2392 00d0 18       		.uleb128 0x18
+ 2393 00d1 9642     		.uleb128 0x2116
+ 2394 00d3 19       		.uleb128 0x19
+ 2395 00d4 01       		.uleb128 0x1
+ 2396 00d5 13       		.uleb128 0x13
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 50
+
+
+ 2397 00d6 00       		.byte	0
+ 2398 00d7 00       		.byte	0
+ 2399 00d8 12       		.uleb128 0x12
+ 2400 00d9 05       		.uleb128 0x5
+ 2401 00da 00       		.byte	0
+ 2402 00db 03       		.uleb128 0x3
+ 2403 00dc 08       		.uleb128 0x8
+ 2404 00dd 3A       		.uleb128 0x3a
+ 2405 00de 0B       		.uleb128 0xb
+ 2406 00df 3B       		.uleb128 0x3b
+ 2407 00e0 0B       		.uleb128 0xb
+ 2408 00e1 49       		.uleb128 0x49
+ 2409 00e2 13       		.uleb128 0x13
+ 2410 00e3 02       		.uleb128 0x2
+ 2411 00e4 18       		.uleb128 0x18
+ 2412 00e5 00       		.byte	0
+ 2413 00e6 00       		.byte	0
+ 2414 00e7 13       		.uleb128 0x13
+ 2415 00e8 05       		.uleb128 0x5
+ 2416 00e9 00       		.byte	0
+ 2417 00ea 03       		.uleb128 0x3
+ 2418 00eb 0E       		.uleb128 0xe
+ 2419 00ec 3A       		.uleb128 0x3a
+ 2420 00ed 0B       		.uleb128 0xb
+ 2421 00ee 3B       		.uleb128 0x3b
+ 2422 00ef 0B       		.uleb128 0xb
+ 2423 00f0 49       		.uleb128 0x49
+ 2424 00f1 13       		.uleb128 0x13
+ 2425 00f2 02       		.uleb128 0x2
+ 2426 00f3 18       		.uleb128 0x18
+ 2427 00f4 00       		.byte	0
+ 2428 00f5 00       		.byte	0
+ 2429 00f6 14       		.uleb128 0x14
+ 2430 00f7 2E       		.uleb128 0x2e
+ 2431 00f8 01       		.byte	0x1
+ 2432 00f9 3F       		.uleb128 0x3f
+ 2433 00fa 19       		.uleb128 0x19
+ 2434 00fb 03       		.uleb128 0x3
+ 2435 00fc 0E       		.uleb128 0xe
+ 2436 00fd 3A       		.uleb128 0x3a
+ 2437 00fe 0B       		.uleb128 0xb
+ 2438 00ff 3B       		.uleb128 0x3b
+ 2439 0100 0B       		.uleb128 0xb
+ 2440 0101 27       		.uleb128 0x27
+ 2441 0102 19       		.uleb128 0x19
+ 2442 0103 11       		.uleb128 0x11
+ 2443 0104 01       		.uleb128 0x1
+ 2444 0105 12       		.uleb128 0x12
+ 2445 0106 06       		.uleb128 0x6
+ 2446 0107 40       		.uleb128 0x40
+ 2447 0108 18       		.uleb128 0x18
+ 2448 0109 9642     		.uleb128 0x2116
+ 2449 010b 19       		.uleb128 0x19
+ 2450 010c 01       		.uleb128 0x1
+ 2451 010d 13       		.uleb128 0x13
+ 2452 010e 00       		.byte	0
+ 2453 010f 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 51
+
+
+ 2454 0110 15       		.uleb128 0x15
+ 2455 0111 34       		.uleb128 0x34
+ 2456 0112 00       		.byte	0
+ 2457 0113 03       		.uleb128 0x3
+ 2458 0114 08       		.uleb128 0x8
+ 2459 0115 3A       		.uleb128 0x3a
+ 2460 0116 0B       		.uleb128 0xb
+ 2461 0117 3B       		.uleb128 0x3b
+ 2462 0118 0B       		.uleb128 0xb
+ 2463 0119 49       		.uleb128 0x49
+ 2464 011a 13       		.uleb128 0x13
+ 2465 011b 02       		.uleb128 0x2
+ 2466 011c 18       		.uleb128 0x18
+ 2467 011d 00       		.byte	0
+ 2468 011e 00       		.byte	0
+ 2469 011f 16       		.uleb128 0x16
+ 2470 0120 34       		.uleb128 0x34
+ 2471 0121 00       		.byte	0
+ 2472 0122 03       		.uleb128 0x3
+ 2473 0123 0E       		.uleb128 0xe
+ 2474 0124 3A       		.uleb128 0x3a
+ 2475 0125 0B       		.uleb128 0xb
+ 2476 0126 3B       		.uleb128 0x3b
+ 2477 0127 0B       		.uleb128 0xb
+ 2478 0128 49       		.uleb128 0x49
+ 2479 0129 13       		.uleb128 0x13
+ 2480 012a 02       		.uleb128 0x2
+ 2481 012b 18       		.uleb128 0x18
+ 2482 012c 00       		.byte	0
+ 2483 012d 00       		.byte	0
+ 2484 012e 17       		.uleb128 0x17
+ 2485 012f 0B       		.uleb128 0xb
+ 2486 0130 01       		.byte	0x1
+ 2487 0131 11       		.uleb128 0x11
+ 2488 0132 01       		.uleb128 0x1
+ 2489 0133 12       		.uleb128 0x12
+ 2490 0134 06       		.uleb128 0x6
+ 2491 0135 00       		.byte	0
+ 2492 0136 00       		.byte	0
+ 2493 0137 18       		.uleb128 0x18
+ 2494 0138 2E       		.uleb128 0x2e
+ 2495 0139 01       		.byte	0x1
+ 2496 013a 3F       		.uleb128 0x3f
+ 2497 013b 19       		.uleb128 0x19
+ 2498 013c 03       		.uleb128 0x3
+ 2499 013d 0E       		.uleb128 0xe
+ 2500 013e 3A       		.uleb128 0x3a
+ 2501 013f 0B       		.uleb128 0xb
+ 2502 0140 3B       		.uleb128 0x3b
+ 2503 0141 05       		.uleb128 0x5
+ 2504 0142 27       		.uleb128 0x27
+ 2505 0143 19       		.uleb128 0x19
+ 2506 0144 11       		.uleb128 0x11
+ 2507 0145 01       		.uleb128 0x1
+ 2508 0146 12       		.uleb128 0x12
+ 2509 0147 06       		.uleb128 0x6
+ 2510 0148 40       		.uleb128 0x40
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 52
+
+
+ 2511 0149 18       		.uleb128 0x18
+ 2512 014a 9642     		.uleb128 0x2116
+ 2513 014c 19       		.uleb128 0x19
+ 2514 014d 01       		.uleb128 0x1
+ 2515 014e 13       		.uleb128 0x13
+ 2516 014f 00       		.byte	0
+ 2517 0150 00       		.byte	0
+ 2518 0151 19       		.uleb128 0x19
+ 2519 0152 05       		.uleb128 0x5
+ 2520 0153 00       		.byte	0
+ 2521 0154 03       		.uleb128 0x3
+ 2522 0155 08       		.uleb128 0x8
+ 2523 0156 3A       		.uleb128 0x3a
+ 2524 0157 0B       		.uleb128 0xb
+ 2525 0158 3B       		.uleb128 0x3b
+ 2526 0159 05       		.uleb128 0x5
+ 2527 015a 49       		.uleb128 0x49
+ 2528 015b 13       		.uleb128 0x13
+ 2529 015c 02       		.uleb128 0x2
+ 2530 015d 18       		.uleb128 0x18
+ 2531 015e 00       		.byte	0
+ 2532 015f 00       		.byte	0
+ 2533 0160 1A       		.uleb128 0x1a
+ 2534 0161 05       		.uleb128 0x5
+ 2535 0162 00       		.byte	0
+ 2536 0163 03       		.uleb128 0x3
+ 2537 0164 0E       		.uleb128 0xe
+ 2538 0165 3A       		.uleb128 0x3a
+ 2539 0166 0B       		.uleb128 0xb
+ 2540 0167 3B       		.uleb128 0x3b
+ 2541 0168 05       		.uleb128 0x5
+ 2542 0169 49       		.uleb128 0x49
+ 2543 016a 13       		.uleb128 0x13
+ 2544 016b 02       		.uleb128 0x2
+ 2545 016c 18       		.uleb128 0x18
+ 2546 016d 00       		.byte	0
+ 2547 016e 00       		.byte	0
+ 2548 016f 1B       		.uleb128 0x1b
+ 2549 0170 34       		.uleb128 0x34
+ 2550 0171 00       		.byte	0
+ 2551 0172 03       		.uleb128 0x3
+ 2552 0173 08       		.uleb128 0x8
+ 2553 0174 3A       		.uleb128 0x3a
+ 2554 0175 0B       		.uleb128 0xb
+ 2555 0176 3B       		.uleb128 0x3b
+ 2556 0177 05       		.uleb128 0x5
+ 2557 0178 49       		.uleb128 0x49
+ 2558 0179 13       		.uleb128 0x13
+ 2559 017a 02       		.uleb128 0x2
+ 2560 017b 18       		.uleb128 0x18
+ 2561 017c 00       		.byte	0
+ 2562 017d 00       		.byte	0
+ 2563 017e 1C       		.uleb128 0x1c
+ 2564 017f 34       		.uleb128 0x34
+ 2565 0180 00       		.byte	0
+ 2566 0181 03       		.uleb128 0x3
+ 2567 0182 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 53
+
+
+ 2568 0183 3A       		.uleb128 0x3a
+ 2569 0184 0B       		.uleb128 0xb
+ 2570 0185 3B       		.uleb128 0x3b
+ 2571 0186 05       		.uleb128 0x5
+ 2572 0187 49       		.uleb128 0x49
+ 2573 0188 13       		.uleb128 0x13
+ 2574 0189 02       		.uleb128 0x2
+ 2575 018a 18       		.uleb128 0x18
+ 2576 018b 00       		.byte	0
+ 2577 018c 00       		.byte	0
+ 2578 018d 1D       		.uleb128 0x1d
+ 2579 018e 2E       		.uleb128 0x2e
+ 2580 018f 01       		.byte	0x1
+ 2581 0190 3F       		.uleb128 0x3f
+ 2582 0191 19       		.uleb128 0x19
+ 2583 0192 03       		.uleb128 0x3
+ 2584 0193 0E       		.uleb128 0xe
+ 2585 0194 3A       		.uleb128 0x3a
+ 2586 0195 0B       		.uleb128 0xb
+ 2587 0196 3B       		.uleb128 0x3b
+ 2588 0197 05       		.uleb128 0x5
+ 2589 0198 27       		.uleb128 0x27
+ 2590 0199 19       		.uleb128 0x19
+ 2591 019a 11       		.uleb128 0x11
+ 2592 019b 01       		.uleb128 0x1
+ 2593 019c 12       		.uleb128 0x12
+ 2594 019d 06       		.uleb128 0x6
+ 2595 019e 40       		.uleb128 0x40
+ 2596 019f 18       		.uleb128 0x18
+ 2597 01a0 9642     		.uleb128 0x2116
+ 2598 01a2 19       		.uleb128 0x19
+ 2599 01a3 00       		.byte	0
+ 2600 01a4 00       		.byte	0
+ 2601 01a5 00       		.byte	0
+ 2602              		.section	.debug_aranges,"",%progbits
+ 2603 0000 44000000 		.4byte	0x44
+ 2604 0004 0200     		.2byte	0x2
+ 2605 0006 00000000 		.4byte	.Ldebug_info0
+ 2606 000a 04       		.byte	0x4
+ 2607 000b 00       		.byte	0
+ 2608 000c 0000     		.2byte	0
+ 2609 000e 0000     		.2byte	0
+ 2610 0010 00000000 		.4byte	.LFB0
+ 2611 0014 A8000000 		.4byte	.LFE0-.LFB0
+ 2612 0018 00000000 		.4byte	.LFB1
+ 2613 001c 3C020000 		.4byte	.LFE1-.LFB1
+ 2614 0020 00000000 		.4byte	.LFB2
+ 2615 0024 8A000000 		.4byte	.LFE2-.LFB2
+ 2616 0028 00000000 		.4byte	.LFB3
+ 2617 002c AC000000 		.4byte	.LFE3-.LFB3
+ 2618 0030 00000000 		.4byte	.LFB4
+ 2619 0034 3C020000 		.4byte	.LFE4-.LFB4
+ 2620 0038 00000000 		.4byte	.LFB5
+ 2621 003c 8A000000 		.4byte	.LFE5-.LFB5
+ 2622 0040 00000000 		.4byte	0
+ 2623 0044 00000000 		.4byte	0
+ 2624              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 54
+
+
+ 2625              	.Ldebug_ranges0:
+ 2626 0000 00000000 		.4byte	.LFB0
+ 2627 0004 A8000000 		.4byte	.LFE0
+ 2628 0008 00000000 		.4byte	.LFB1
+ 2629 000c 3C020000 		.4byte	.LFE1
+ 2630 0010 00000000 		.4byte	.LFB2
+ 2631 0014 8A000000 		.4byte	.LFE2
+ 2632 0018 00000000 		.4byte	.LFB3
+ 2633 001c AC000000 		.4byte	.LFE3
+ 2634 0020 00000000 		.4byte	.LFB4
+ 2635 0024 3C020000 		.4byte	.LFE4
+ 2636 0028 00000000 		.4byte	.LFB5
+ 2637 002c 8A000000 		.4byte	.LFE5
+ 2638 0030 00000000 		.4byte	0
+ 2639 0034 00000000 		.4byte	0
+ 2640              		.section	.debug_line,"",%progbits
+ 2641              	.Ldebug_line0:
+ 2642 0000 50020000 		.section	.debug_str,"MS",%progbits,1
+ 2642      02003C01 
+ 2642      00000201 
+ 2642      FB0E0D00 
+ 2642      01010101 
+ 2643              	.LASF16:
+ 2644 0000 7538675F 		.ascii	"u8g_t\000"
+ 2644      7400
+ 2645              	.LASF15:
+ 2646 0006 7538675F 		.ascii	"u8g_pgm_uint8_t\000"
+ 2646      70676D5F 
+ 2646      75696E74 
+ 2646      385F7400 
+ 2647              	.LASF50:
+ 2648 0016 70697865 		.ascii	"pixel\000"
+ 2648      6C00
+ 2649              	.LASF12:
+ 2650 001c 696E7438 		.ascii	"int8_t\000"
+ 2650      5F7400
+ 2651              	.LASF19:
+ 2652 0023 666F6E74 		.ascii	"font\000"
+ 2652      00
+ 2653              	.LASF6:
+ 2654 0028 73686F72 		.ascii	"short int\000"
+ 2654      7420696E 
+ 2654      7400
+ 2655              	.LASF51:
+ 2656 0032 636F6C6F 		.ascii	"color\000"
+ 2656      7200
+ 2657              	.LASF61:
+ 2658 0038 7538675F 		.ascii	"u8g_state_cb\000"
+ 2658      73746174 
+ 2658      655F6362 
+ 2658      00
+ 2659              	.LASF43:
+ 2660 0045 5F753867 		.ascii	"_u8g_t\000"
+ 2660      5F7400
+ 2661              	.LASF25:
+ 2662 004c 63757273 		.ascii	"cursor_x\000"
+ 2662      6F725F78 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 55
+
+
+ 2662      00
+ 2663              	.LASF26:
+ 2664 0055 63757273 		.ascii	"cursor_y\000"
+ 2664      6F725F79 
+ 2664      00
+ 2665              	.LASF40:
+ 2666 005e 73746174 		.ascii	"state_cb\000"
+ 2666      655F6362 
+ 2666      00
+ 2667              	.LASF60:
+ 2668 0067 7538675F 		.ascii	"u8g_font_calc_vref_fnptr\000"
+ 2668      666F6E74 
+ 2668      5F63616C 
+ 2668      635F7672 
+ 2668      65665F66 
+ 2669              	.LASF21:
+ 2670 0080 63757273 		.ascii	"cursor_fg_color\000"
+ 2670      6F725F66 
+ 2670      675F636F 
+ 2670      6C6F7200 
+ 2671              	.LASF68:
+ 2672 0090 72797279 		.ascii	"ryry2\000"
+ 2672      3200
+ 2673              	.LASF42:
+ 2674 0096 7538675F 		.ascii	"u8g_dev_t\000"
+ 2674      6465765F 
+ 2674      7400
+ 2675              	.LASF53:
+ 2676 00a0 626C7565 		.ascii	"blue\000"
+ 2676      00
+ 2677              	.LASF72:
+ 2678 00a5 7538675F 		.ascii	"u8g_DrawEllipse\000"
+ 2678      44726177 
+ 2678      456C6C69 
+ 2678      70736500 
+ 2679              	.LASF38:
+ 2680 00b5 6C696E65 		.ascii	"line_spacing\000"
+ 2680      5F737061 
+ 2680      63696E67 
+ 2680      00
+ 2681              	.LASF70:
+ 2682 00c2 73746F70 		.ascii	"stopy\000"
+ 2682      7900
+ 2683              	.LASF35:
+ 2684 00c8 666F6E74 		.ascii	"font_ref_ascent\000"
+ 2684      5F726566 
+ 2684      5F617363 
+ 2684      656E7400 
+ 2685              	.LASF13:
+ 2686 00d8 75696E74 		.ascii	"uint8_t\000"
+ 2686      385F7400 
+ 2687              	.LASF66:
+ 2688 00e0 79636867 		.ascii	"ychg\000"
+ 2688      00
+ 2689              	.LASF28:
+ 2690 00e5 676C7970 		.ascii	"glyph_dx\000"
+ 2690      685F6478 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 56
+
+
+ 2690      00
+ 2691              	.LASF63:
+ 2692 00ee 7538675F 		.ascii	"u8g_long_t\000"
+ 2692      6C6F6E67 
+ 2692      5F7400
+ 2693              	.LASF22:
+ 2694 00f9 63757273 		.ascii	"cursor_bg_color\000"
+ 2694      6F725F62 
+ 2694      675F636F 
+ 2694      6C6F7200 
+ 2695              	.LASF17:
+ 2696 0109 77696474 		.ascii	"width\000"
+ 2696      6800
+ 2697              	.LASF52:
+ 2698 010f 68695F63 		.ascii	"hi_color\000"
+ 2698      6F6C6F72 
+ 2698      00
+ 2699              	.LASF49:
+ 2700 0118 5F753867 		.ascii	"_u8g_dev_arg_pixel_t\000"
+ 2700      5F646576 
+ 2700      5F617267 
+ 2700      5F706978 
+ 2700      656C5F74 
+ 2701              	.LASF64:
+ 2702 012d 6F707469 		.ascii	"option\000"
+ 2702      6F6E00
+ 2703              	.LASF10:
+ 2704 0134 6C6F6E67 		.ascii	"long long int\000"
+ 2704      206C6F6E 
+ 2704      6720696E 
+ 2704      7400
+ 2705              	.LASF81:
+ 2706 0142 7538675F 		.ascii	"u8g_DrawFilledEllipse\000"
+ 2706      44726177 
+ 2706      46696C6C 
+ 2706      6564456C 
+ 2706      6C697073 
+ 2707              	.LASF41:
+ 2708 0158 63757272 		.ascii	"current_page\000"
+ 2708      656E745F 
+ 2708      70616765 
+ 2708      00
+ 2709              	.LASF78:
+ 2710 0165 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2710      4320342E 
+ 2710      392E3320 
+ 2710      32303135 
+ 2710      30333033 
+ 2711 0198 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 2711      20726576 
+ 2711      6973696F 
+ 2711      6E203232 
+ 2711      31323230 
+ 2712 01cb 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 2712      66756E63 
+ 2712      74696F6E 
+ 2712      2D736563 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 57
+
+
+ 2712      74696F6E 
+ 2713              	.LASF59:
+ 2714 01f3 7538675F 		.ascii	"u8g_draw_cursor_fn\000"
+ 2714      64726177 
+ 2714      5F637572 
+ 2714      736F725F 
+ 2714      666E00
+ 2715              	.LASF62:
+ 2716 0206 73697A65 		.ascii	"sizetype\000"
+ 2716      74797065 
+ 2716      00
+ 2717              	.LASF57:
+ 2718 020f 7538675F 		.ascii	"u8g_dev_fnptr\000"
+ 2718      6465765F 
+ 2718      666E7074 
+ 2718      7200
+ 2719              	.LASF3:
+ 2720 021d 5F5F7569 		.ascii	"__uint8_t\000"
+ 2720      6E74385F 
+ 2720      7400
+ 2721              	.LASF29:
+ 2722 0227 676C7970 		.ascii	"glyph_x\000"
+ 2722      685F7800 
+ 2723              	.LASF30:
+ 2724 022f 676C7970 		.ascii	"glyph_y\000"
+ 2724      685F7900 
+ 2725              	.LASF58:
+ 2726 0237 7538675F 		.ascii	"u8g_com_fnptr\000"
+ 2726      636F6D5F 
+ 2726      666E7074 
+ 2726      7200
+ 2727              	.LASF48:
+ 2728 0245 7538675F 		.ascii	"u8g_dev_arg_pixel_t\000"
+ 2728      6465765F 
+ 2728      6172675F 
+ 2728      70697865 
+ 2728      6C5F7400 
+ 2729              	.LASF69:
+ 2730 0259 73746F70 		.ascii	"stopx\000"
+ 2730      7800
+ 2731              	.LASF23:
+ 2732 025f 63757273 		.ascii	"cursor_encoding\000"
+ 2732      6F725F65 
+ 2732      6E636F64 
+ 2732      696E6700 
+ 2733              	.LASF4:
+ 2734 026f 756E7369 		.ascii	"unsigned char\000"
+ 2734      676E6564 
+ 2734      20636861 
+ 2734      7200
+ 2735              	.LASF32:
+ 2736 027d 676C7970 		.ascii	"glyph_height\000"
+ 2736      685F6865 
+ 2736      69676874 
+ 2736      00
+ 2737              	.LASF39:
+ 2738 028a 6172675F 		.ascii	"arg_pixel\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 58
+
+
+ 2738      70697865 
+ 2738      6C00
+ 2739              	.LASF1:
+ 2740 0294 7369676E 		.ascii	"signed char\000"
+ 2740      65642063 
+ 2740      68617200 
+ 2741              	.LASF11:
+ 2742 02a0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2742      206C6F6E 
+ 2742      6720756E 
+ 2742      7369676E 
+ 2742      65642069 
+ 2743              	.LASF18:
+ 2744 02b7 68656967 		.ascii	"height\000"
+ 2744      687400
+ 2745              	.LASF0:
+ 2746 02be 756E7369 		.ascii	"unsigned int\000"
+ 2746      676E6564 
+ 2746      20696E74 
+ 2746      00
+ 2747              	.LASF27:
+ 2748 02cb 63757273 		.ascii	"cursor_fn\000"
+ 2748      6F725F66 
+ 2748      6E00
+ 2749              	.LASF56:
+ 2750 02d5 7538675F 		.ascii	"u8g_uint_t\000"
+ 2750      75696E74 
+ 2750      5F7400
+ 2751              	.LASF7:
+ 2752 02e0 73686F72 		.ascii	"short unsigned int\000"
+ 2752      7420756E 
+ 2752      7369676E 
+ 2752      65642069 
+ 2752      6E7400
+ 2753              	.LASF2:
+ 2754 02f3 5F5F696E 		.ascii	"__int8_t\000"
+ 2754      74385F74 
+ 2754      00
+ 2755              	.LASF55:
+ 2756 02fc 5F753867 		.ascii	"_u8g_box_t\000"
+ 2756      5F626F78 
+ 2756      5F7400
+ 2757              	.LASF8:
+ 2758 0307 6C6F6E67 		.ascii	"long int\000"
+ 2758      20696E74 
+ 2758      00
+ 2759              	.LASF75:
+ 2760 0310 7538675F 		.ascii	"u8g_draw_ellipse_section\000"
+ 2760      64726177 
+ 2760      5F656C6C 
+ 2760      69707365 
+ 2760      5F736563 
+ 2761              	.LASF67:
+ 2762 0329 72787278 		.ascii	"rxrx2\000"
+ 2762      3200
+ 2763              	.LASF24:
+ 2764 032f 6D6F6465 		.ascii	"mode\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 59
+
+
+ 2764      00
+ 2765              	.LASF14:
+ 2766 0334 696E7431 		.ascii	"int16_t\000"
+ 2766      365F7400 
+ 2767              	.LASF45:
+ 2768 033c 6465765F 		.ascii	"dev_fn\000"
+ 2768      666E00
+ 2769              	.LASF9:
+ 2770 0343 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2770      20756E73 
+ 2770      69676E65 
+ 2770      6420696E 
+ 2770      7400
+ 2771              	.LASF77:
+ 2772 0355 7538675F 		.ascii	"u8g_draw_filled_ellipse\000"
+ 2772      64726177 
+ 2772      5F66696C 
+ 2772      6C65645F 
+ 2772      656C6C69 
+ 2773              	.LASF79:
+ 2774 036d 7538676C 		.ascii	"u8glib_arm_v1.18.1\\src\\u8g_ellipse.c\000"
+ 2774      69625F61 
+ 2774      726D5F76 
+ 2774      312E3138 
+ 2774      2E315C73 
+ 2775              	.LASF76:
+ 2776 0392 7538675F 		.ascii	"u8g_draw_filled_ellipse_section\000"
+ 2776      64726177 
+ 2776      5F66696C 
+ 2776      6C65645F 
+ 2776      656C6C69 
+ 2777              	.LASF74:
+ 2778 03b2 72797032 		.ascii	"ryp2\000"
+ 2778      00
+ 2779              	.LASF36:
+ 2780 03b7 666F6E74 		.ascii	"font_ref_descent\000"
+ 2780      5F726566 
+ 2780      5F646573 
+ 2780      63656E74 
+ 2780      00
+ 2781              	.LASF71:
+ 2782 03c8 7538675F 		.ascii	"u8g_draw_ellipse\000"
+ 2782      64726177 
+ 2782      5F656C6C 
+ 2782      69707365 
+ 2782      00
+ 2783              	.LASF5:
+ 2784 03d9 5F5F696E 		.ascii	"__int16_t\000"
+ 2784      7431365F 
+ 2784      7400
+ 2785              	.LASF37:
+ 2786 03e3 666F6E74 		.ascii	"font_line_spacing_factor\000"
+ 2786      5F6C696E 
+ 2786      655F7370 
+ 2786      6163696E 
+ 2786      675F6661 
+ 2787              	.LASF54:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cc6Wl3zN.s 			page 60
+
+
+ 2788 03fc 7538675F 		.ascii	"u8g_box_t\000"
+ 2788      626F785F 
+ 2788      7400
+ 2789              	.LASF46:
+ 2790 0406 6465765F 		.ascii	"dev_mem\000"
+ 2790      6D656D00 
+ 2791              	.LASF20:
+ 2792 040e 63757273 		.ascii	"cursor_font\000"
+ 2792      6F725F66 
+ 2792      6F6E7400 
+ 2793              	.LASF33:
+ 2794 041a 666F6E74 		.ascii	"font_calc_vref\000"
+ 2794      5F63616C 
+ 2794      635F7672 
+ 2794      656600
+ 2795              	.LASF34:
+ 2796 0429 666F6E74 		.ascii	"font_height_mode\000"
+ 2796      5F686569 
+ 2796      6768745F 
+ 2796      6D6F6465 
+ 2796      00
+ 2797              	.LASF80:
+ 2798 043a 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 2798      6F726B73 
+ 2798      70616365 
+ 2798      5C50536F 
+ 2798      435F4372 
+ 2799 0469 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 2799      392E6379 
+ 2799      64736E00 
+ 2800              	.LASF73:
+ 2801 0475 72787032 		.ascii	"rxp2\000"
+ 2801      00
+ 2802              	.LASF31:
+ 2803 047a 676C7970 		.ascii	"glyph_width\000"
+ 2803      685F7769 
+ 2803      64746800 
+ 2804              	.LASF44:
+ 2805 0486 5F753867 		.ascii	"_u8g_dev_t\000"
+ 2805      5F646576 
+ 2805      5F7400
+ 2806              	.LASF47:
+ 2807 0491 636F6D5F 		.ascii	"com_fn\000"
+ 2807      666E00
+ 2808              	.LASF65:
+ 2809 0498 78636867 		.ascii	"xchg\000"
+ 2809      00
+ 2810              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

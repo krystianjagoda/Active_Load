@@ -1,0 +1,885 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"Counter_Buzz_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	Counter_Buzz_backup:
+  21 0000 00000000 		.space	12
+  21      00000000 
+  21      00000000 
+  22              		.section	.text.Counter_Buzz_SaveConfig,"ax",%progbits
+  23              		.align	2
+  24              		.global	Counter_Buzz_SaveConfig
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	Counter_Buzz_SaveConfig, %function
+  28              	Counter_Buzz_SaveConfig:
+  29              	.LFB0:
+  30              		.file 1 "Generated_Source\\PSoC5\\Counter_Buzz_PM.c"
+   1:Generated_Source\PSoC5/Counter_Buzz_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * File Name: Counter_Buzz_PM.c  
+   3:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Version 3.0
+   4:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+   5:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Description:
+   6:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *    This file provides the power management source code to API for the
+   7:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *    Counter.  
+   8:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+   9:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *   Note:
+  10:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *     None
+  11:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  12:Generated_Source\PSoC5/Counter_Buzz_PM.c **** ********************************************************************************
+  13:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  14:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  15:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  16:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * the software package with which this file was provided.
+  17:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *******************************************************************************/
+  18:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  19:Generated_Source\PSoC5/Counter_Buzz_PM.c **** #include "Counter_Buzz.h"
+  20:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  21:Generated_Source\PSoC5/Counter_Buzz_PM.c **** static Counter_Buzz_backupStruct Counter_Buzz_backup;
+  22:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  23:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  24:Generated_Source\PSoC5/Counter_Buzz_PM.c **** /*******************************************************************************
+  25:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Function Name: Counter_Buzz_SaveConfig
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 2
+
+
+  26:Generated_Source\PSoC5/Counter_Buzz_PM.c **** ********************************************************************************
+  27:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Summary:
+  28:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *     Save the current user configuration
+  29:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  30:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Parameters:  
+  31:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+  32:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  33:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Return: 
+  34:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+  35:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  36:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Global variables:
+  37:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Counter_Buzz_backup:  Variables of this global structure are modified to 
+  38:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  store the values of non retention configuration registers when Sleep() API is 
+  39:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  called.
+  40:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  41:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *******************************************************************************/
+  42:Generated_Source\PSoC5/Counter_Buzz_PM.c **** void Counter_Buzz_SaveConfig(void) 
+  43:Generated_Source\PSoC5/Counter_Buzz_PM.c **** {
+  31              		.loc 1 43 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  44:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #if (!Counter_Buzz_UsingFixedFunction)
+  45:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  46:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         Counter_Buzz_backup.CounterUdb = Counter_Buzz_ReadCounter();
+  41              		.loc 1 46 0
+  42 0004 FFF7FEFF 		bl	Counter_Buzz_ReadCounter
+  43 0008 0246     		mov	r2, r0
+  44 000a 044B     		ldr	r3, .L2
+  45 000c 5A60     		str	r2, [r3, #4]
+  47:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  48:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         #if(!Counter_Buzz_ControlRegRemoved)
+  49:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             Counter_Buzz_backup.CounterControlRegister = Counter_Buzz_ReadControlRegister();
+  46              		.loc 1 49 0
+  47 000e FFF7FEFF 		bl	Counter_Buzz_ReadControlRegister
+  48 0012 0346     		mov	r3, r0
+  49 0014 1A46     		mov	r2, r3
+  50 0016 014B     		ldr	r3, .L2
+  51 0018 1A72     		strb	r2, [r3, #8]
+  50:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         #endif /* (!Counter_Buzz_ControlRegRemoved) */
+  51:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  52:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #endif /* (!Counter_Buzz_UsingFixedFunction) */
+  53:Generated_Source\PSoC5/Counter_Buzz_PM.c **** }
+  52              		.loc 1 53 0
+  53 001a 80BD     		pop	{r7, pc}
+  54              	.L3:
+  55              		.align	2
+  56              	.L2:
+  57 001c 00000000 		.word	Counter_Buzz_backup
+  58              		.cfi_endproc
+  59              	.LFE0:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 3
+
+
+  60              		.size	Counter_Buzz_SaveConfig, .-Counter_Buzz_SaveConfig
+  61              		.section	.text.Counter_Buzz_RestoreConfig,"ax",%progbits
+  62              		.align	2
+  63              		.global	Counter_Buzz_RestoreConfig
+  64              		.thumb
+  65              		.thumb_func
+  66              		.type	Counter_Buzz_RestoreConfig, %function
+  67              	Counter_Buzz_RestoreConfig:
+  68              	.LFB1:
+  54:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  55:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  56:Generated_Source\PSoC5/Counter_Buzz_PM.c **** /*******************************************************************************
+  57:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Function Name: Counter_Buzz_RestoreConfig
+  58:Generated_Source\PSoC5/Counter_Buzz_PM.c **** ********************************************************************************
+  59:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  60:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Summary:
+  61:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Restores the current user configuration.
+  62:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  63:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Parameters:  
+  64:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+  65:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  66:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Return: 
+  67:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+  68:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  69:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Global variables:
+  70:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Counter_Buzz_backup:  Variables of this global structure are used to 
+  71:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  72:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  73:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *******************************************************************************/
+  74:Generated_Source\PSoC5/Counter_Buzz_PM.c **** void Counter_Buzz_RestoreConfig(void) 
+  75:Generated_Source\PSoC5/Counter_Buzz_PM.c **** {      
+  69              		.loc 1 75 0
+  70              		.cfi_startproc
+  71              		@ args = 0, pretend = 0, frame = 0
+  72              		@ frame_needed = 1, uses_anonymous_args = 0
+  73 0000 80B5     		push	{r7, lr}
+  74              		.cfi_def_cfa_offset 8
+  75              		.cfi_offset 7, -8
+  76              		.cfi_offset 14, -4
+  77 0002 00AF     		add	r7, sp, #0
+  78              		.cfi_def_cfa_register 7
+  76:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #if (!Counter_Buzz_UsingFixedFunction)
+  77:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  78:Generated_Source\PSoC5/Counter_Buzz_PM.c ****        Counter_Buzz_WriteCounter(Counter_Buzz_backup.CounterUdb);
+  79              		.loc 1 78 0
+  80 0004 054B     		ldr	r3, .L5
+  81 0006 5B68     		ldr	r3, [r3, #4]
+  82 0008 1846     		mov	r0, r3
+  83 000a FFF7FEFF 		bl	Counter_Buzz_WriteCounter
+  79:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  80:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         #if(!Counter_Buzz_ControlRegRemoved)
+  81:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             Counter_Buzz_WriteControlRegister(Counter_Buzz_backup.CounterControlRegister);
+  84              		.loc 1 81 0
+  85 000e 034B     		ldr	r3, .L5
+  86 0010 1B7A     		ldrb	r3, [r3, #8]	@ zero_extendqisi2
+  87 0012 1846     		mov	r0, r3
+  88 0014 FFF7FEFF 		bl	Counter_Buzz_WriteControlRegister
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 4
+
+
+  82:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         #endif /* (!Counter_Buzz_ControlRegRemoved) */
+  83:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  84:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #endif /* (!Counter_Buzz_UsingFixedFunction) */
+  85:Generated_Source\PSoC5/Counter_Buzz_PM.c **** }
+  89              		.loc 1 85 0
+  90 0018 80BD     		pop	{r7, pc}
+  91              	.L6:
+  92 001a 00BF     		.align	2
+  93              	.L5:
+  94 001c 00000000 		.word	Counter_Buzz_backup
+  95              		.cfi_endproc
+  96              	.LFE1:
+  97              		.size	Counter_Buzz_RestoreConfig, .-Counter_Buzz_RestoreConfig
+  98              		.section	.text.Counter_Buzz_Sleep,"ax",%progbits
+  99              		.align	2
+ 100              		.global	Counter_Buzz_Sleep
+ 101              		.thumb
+ 102              		.thumb_func
+ 103              		.type	Counter_Buzz_Sleep, %function
+ 104              	Counter_Buzz_Sleep:
+ 105              	.LFB2:
+  86:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  87:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+  88:Generated_Source\PSoC5/Counter_Buzz_PM.c **** /*******************************************************************************
+  89:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Function Name: Counter_Buzz_Sleep
+  90:Generated_Source\PSoC5/Counter_Buzz_PM.c **** ********************************************************************************
+  91:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Summary:
+  92:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *     Stop and Save the user configuration
+  93:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  94:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Parameters:  
+  95:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+  96:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+  97:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Return: 
+  98:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+  99:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+ 100:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Global variables:
+ 101:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Counter_Buzz_backup.enableState:  Is modified depending on the enable 
+ 102:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  state of the block before entering sleep mode.
+ 103:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+ 104:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *******************************************************************************/
+ 105:Generated_Source\PSoC5/Counter_Buzz_PM.c **** void Counter_Buzz_Sleep(void) 
+ 106:Generated_Source\PSoC5/Counter_Buzz_PM.c **** {
+ 106              		.loc 1 106 0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 1, uses_anonymous_args = 0
+ 110 0000 80B5     		push	{r7, lr}
+ 111              		.cfi_def_cfa_offset 8
+ 112              		.cfi_offset 7, -8
+ 113              		.cfi_offset 14, -4
+ 114 0002 00AF     		add	r7, sp, #0
+ 115              		.cfi_def_cfa_register 7
+ 107:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #if(!Counter_Buzz_ControlRegRemoved)
+ 108:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         /* Save Counter's enable state */
+ 109:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         if(Counter_Buzz_CTRL_ENABLE == (Counter_Buzz_CONTROL & Counter_Buzz_CTRL_ENABLE))
+ 116              		.loc 1 109 0
+ 117 0004 094B     		ldr	r3, .L10
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 5
+
+
+ 118 0006 1B78     		ldrb	r3, [r3]
+ 119 0008 DBB2     		uxtb	r3, r3
+ 120 000a DBB2     		uxtb	r3, r3
+ 121 000c 5BB2     		sxtb	r3, r3
+ 122 000e 002B     		cmp	r3, #0
+ 123 0010 03DA     		bge	.L8
+ 110:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         {
+ 111:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             /* Counter is enabled */
+ 112:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             Counter_Buzz_backup.CounterEnableState = 1u;
+ 124              		.loc 1 112 0
+ 125 0012 074B     		ldr	r3, .L10+4
+ 126 0014 0122     		movs	r2, #1
+ 127 0016 1A70     		strb	r2, [r3]
+ 128 0018 02E0     		b	.L9
+ 129              	.L8:
+ 113:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         }
+ 114:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         else
+ 115:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         {
+ 116:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             /* Counter is disabled */
+ 117:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             Counter_Buzz_backup.CounterEnableState = 0u;
+ 130              		.loc 1 117 0
+ 131 001a 054B     		ldr	r3, .L10+4
+ 132 001c 0022     		movs	r2, #0
+ 133 001e 1A70     		strb	r2, [r3]
+ 134              	.L9:
+ 118:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         }
+ 119:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #else
+ 120:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         Counter_Buzz_backup.CounterEnableState = 1u;
+ 121:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         if(Counter_Buzz_backup.CounterEnableState != 0u)
+ 122:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         {
+ 123:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             Counter_Buzz_backup.CounterEnableState = 0u;
+ 124:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         }
+ 125:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #endif /* (!Counter_Buzz_ControlRegRemoved) */
+ 126:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     
+ 127:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     Counter_Buzz_Stop();
+ 135              		.loc 1 127 0
+ 136 0020 FFF7FEFF 		bl	Counter_Buzz_Stop
+ 128:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     Counter_Buzz_SaveConfig();
+ 137              		.loc 1 128 0
+ 138 0024 FFF7FEFF 		bl	Counter_Buzz_SaveConfig
+ 129:Generated_Source\PSoC5/Counter_Buzz_PM.c **** }
+ 139              		.loc 1 129 0
+ 140 0028 80BD     		pop	{r7, pc}
+ 141              	.L11:
+ 142 002a 00BF     		.align	2
+ 143              	.L10:
+ 144 002c 75650040 		.word	1073767797
+ 145 0030 00000000 		.word	Counter_Buzz_backup
+ 146              		.cfi_endproc
+ 147              	.LFE2:
+ 148              		.size	Counter_Buzz_Sleep, .-Counter_Buzz_Sleep
+ 149              		.section	.text.Counter_Buzz_Wakeup,"ax",%progbits
+ 150              		.align	2
+ 151              		.global	Counter_Buzz_Wakeup
+ 152              		.thumb
+ 153              		.thumb_func
+ 154              		.type	Counter_Buzz_Wakeup, %function
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 6
+
+
+ 155              	Counter_Buzz_Wakeup:
+ 156              	.LFB3:
+ 130:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+ 131:Generated_Source\PSoC5/Counter_Buzz_PM.c **** 
+ 132:Generated_Source\PSoC5/Counter_Buzz_PM.c **** /*******************************************************************************
+ 133:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Function Name: Counter_Buzz_Wakeup
+ 134:Generated_Source\PSoC5/Counter_Buzz_PM.c **** ********************************************************************************
+ 135:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+ 136:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Summary:
+ 137:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Restores and enables the user configuration
+ 138:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  
+ 139:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Parameters:  
+ 140:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+ 141:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+ 142:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Return: 
+ 143:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  void
+ 144:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+ 145:Generated_Source\PSoC5/Counter_Buzz_PM.c **** * Global variables:
+ 146:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  Counter_Buzz_backup.enableState:  Is used to restore the enable state of 
+ 147:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *  block on wakeup from sleep mode.
+ 148:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *
+ 149:Generated_Source\PSoC5/Counter_Buzz_PM.c **** *******************************************************************************/
+ 150:Generated_Source\PSoC5/Counter_Buzz_PM.c **** void Counter_Buzz_Wakeup(void) 
+ 151:Generated_Source\PSoC5/Counter_Buzz_PM.c **** {
+ 157              		.loc 1 151 0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 1, uses_anonymous_args = 0
+ 161 0000 80B5     		push	{r7, lr}
+ 162              		.cfi_def_cfa_offset 8
+ 163              		.cfi_offset 7, -8
+ 164              		.cfi_offset 14, -4
+ 165 0002 00AF     		add	r7, sp, #0
+ 166              		.cfi_def_cfa_register 7
+ 152:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     Counter_Buzz_RestoreConfig();
+ 167              		.loc 1 152 0
+ 168 0004 FFF7FEFF 		bl	Counter_Buzz_RestoreConfig
+ 153:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #if(!Counter_Buzz_ControlRegRemoved)
+ 154:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         if(Counter_Buzz_backup.CounterEnableState == 1u)
+ 169              		.loc 1 154 0
+ 170 0008 034B     		ldr	r3, .L14
+ 171 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 172 000c 012B     		cmp	r3, #1
+ 173 000e 01D1     		bne	.L12
+ 155:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         {
+ 156:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             /* Enable Counter's operation */
+ 157:Generated_Source\PSoC5/Counter_Buzz_PM.c ****             Counter_Buzz_Enable();
+ 174              		.loc 1 157 0
+ 175 0010 FFF7FEFF 		bl	Counter_Buzz_Enable
+ 176              	.L12:
+ 158:Generated_Source\PSoC5/Counter_Buzz_PM.c ****         } /* Do nothing if Counter was disabled before */    
+ 159:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     #endif /* (!Counter_Buzz_ControlRegRemoved) */
+ 160:Generated_Source\PSoC5/Counter_Buzz_PM.c ****     
+ 161:Generated_Source\PSoC5/Counter_Buzz_PM.c **** }
+ 177              		.loc 1 161 0
+ 178 0014 80BD     		pop	{r7, pc}
+ 179              	.L15:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 7
+
+
+ 180 0016 00BF     		.align	2
+ 181              	.L14:
+ 182 0018 00000000 		.word	Counter_Buzz_backup
+ 183              		.cfi_endproc
+ 184              	.LFE3:
+ 185              		.size	Counter_Buzz_Wakeup, .-Counter_Buzz_Wakeup
+ 186              		.text
+ 187              	.Letext0:
+ 188              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 189              		.file 3 "Generated_Source\\PSoC5\\Counter_Buzz.h"
+ 190              		.section	.debug_info,"",%progbits
+ 191              	.Ldebug_info0:
+ 192 0000 38010000 		.4byte	0x138
+ 193 0004 0400     		.2byte	0x4
+ 194 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 195 000a 04       		.byte	0x4
+ 196 000b 01       		.uleb128 0x1
+ 197 000c BE000000 		.4byte	.LASF24
+ 198 0010 01       		.byte	0x1
+ 199 0011 37020000 		.4byte	.LASF25
+ 200 0015 E8010000 		.4byte	.LASF26
+ 201 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 202 001d 00000000 		.4byte	0
+ 203 0021 00000000 		.4byte	.Ldebug_line0
+ 204 0025 02       		.uleb128 0x2
+ 205 0026 01       		.byte	0x1
+ 206 0027 06       		.byte	0x6
+ 207 0028 A7010000 		.4byte	.LASF0
+ 208 002c 02       		.uleb128 0x2
+ 209 002d 01       		.byte	0x1
+ 210 002e 08       		.byte	0x8
+ 211 002f A2000000 		.4byte	.LASF1
+ 212 0033 02       		.uleb128 0x2
+ 213 0034 02       		.byte	0x2
+ 214 0035 05       		.byte	0x5
+ 215 0036 DE010000 		.4byte	.LASF2
+ 216 003a 02       		.uleb128 0x2
+ 217 003b 02       		.byte	0x2
+ 218 003c 07       		.byte	0x7
+ 219 003d 94010000 		.4byte	.LASF3
+ 220 0041 02       		.uleb128 0x2
+ 221 0042 04       		.byte	0x4
+ 222 0043 05       		.byte	0x5
+ 223 0044 B5000000 		.4byte	.LASF4
+ 224 0048 02       		.uleb128 0x2
+ 225 0049 04       		.byte	0x4
+ 226 004a 07       		.byte	0x7
+ 227 004b 60000000 		.4byte	.LASF5
+ 228 004f 02       		.uleb128 0x2
+ 229 0050 08       		.byte	0x8
+ 230 0051 05       		.byte	0x5
+ 231 0052 00000000 		.4byte	.LASF6
+ 232 0056 02       		.uleb128 0x2
+ 233 0057 08       		.byte	0x8
+ 234 0058 07       		.byte	0x7
+ 235 0059 85000000 		.4byte	.LASF7
+ 236 005d 03       		.uleb128 0x3
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 8
+
+
+ 237 005e 04       		.byte	0x4
+ 238 005f 05       		.byte	0x5
+ 239 0060 696E7400 		.ascii	"int\000"
+ 240 0064 02       		.uleb128 0x2
+ 241 0065 04       		.byte	0x4
+ 242 0066 07       		.byte	0x7
+ 243 0067 2D000000 		.4byte	.LASF8
+ 244 006b 04       		.uleb128 0x4
+ 245 006c 5A000000 		.4byte	.LASF9
+ 246 0070 02       		.byte	0x2
+ 247 0071 C2       		.byte	0xc2
+ 248 0072 2C000000 		.4byte	0x2c
+ 249 0076 04       		.uleb128 0x4
+ 250 0077 0E000000 		.4byte	.LASF10
+ 251 007b 02       		.byte	0x2
+ 252 007c C4       		.byte	0xc4
+ 253 007d 48000000 		.4byte	0x48
+ 254 0081 02       		.uleb128 0x2
+ 255 0082 04       		.byte	0x4
+ 256 0083 04       		.byte	0x4
+ 257 0084 9C000000 		.4byte	.LASF11
+ 258 0088 02       		.uleb128 0x2
+ 259 0089 08       		.byte	0x8
+ 260 008a 04       		.byte	0x4
+ 261 008b 79010000 		.4byte	.LASF12
+ 262 008f 02       		.uleb128 0x2
+ 263 0090 01       		.byte	0x1
+ 264 0091 08       		.byte	0x8
+ 265 0092 B0000000 		.4byte	.LASF13
+ 266 0096 05       		.uleb128 0x5
+ 267 0097 55000000 		.4byte	.LASF14
+ 268 009b 02       		.byte	0x2
+ 269 009c 6C01     		.2byte	0x16c
+ 270 009e A2000000 		.4byte	0xa2
+ 271 00a2 06       		.uleb128 0x6
+ 272 00a3 6B000000 		.4byte	0x6b
+ 273 00a7 02       		.uleb128 0x2
+ 274 00a8 04       		.byte	0x4
+ 275 00a9 07       		.byte	0x7
+ 276 00aa 2E020000 		.4byte	.LASF15
+ 277 00ae 07       		.uleb128 0x7
+ 278 00af 0C       		.byte	0xc
+ 279 00b0 03       		.byte	0x3
+ 280 00b1 40       		.byte	0x40
+ 281 00b2 DB000000 		.4byte	0xdb
+ 282 00b6 08       		.uleb128 0x8
+ 283 00b7 4C010000 		.4byte	.LASF16
+ 284 00bb 03       		.byte	0x3
+ 285 00bc 42       		.byte	0x42
+ 286 00bd 6B000000 		.4byte	0x6b
+ 287 00c1 00       		.byte	0
+ 288 00c2 08       		.uleb128 0x8
+ 289 00c3 23020000 		.4byte	.LASF17
+ 290 00c7 03       		.byte	0x3
+ 291 00c8 43       		.byte	0x43
+ 292 00c9 76000000 		.4byte	0x76
+ 293 00cd 04       		.byte	0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 9
+
+
+ 294 00ce 08       		.uleb128 0x8
+ 295 00cf B3010000 		.4byte	.LASF18
+ 296 00d3 03       		.byte	0x3
+ 297 00d4 46       		.byte	0x46
+ 298 00d5 6B000000 		.4byte	0x6b
+ 299 00d9 08       		.byte	0x8
+ 300 00da 00       		.byte	0
+ 301 00db 04       		.uleb128 0x4
+ 302 00dc 5F010000 		.4byte	.LASF19
+ 303 00e0 03       		.byte	0x3
+ 304 00e1 49       		.byte	0x49
+ 305 00e2 AE000000 		.4byte	0xae
+ 306 00e6 09       		.uleb128 0x9
+ 307 00e7 15000000 		.4byte	.LASF20
+ 308 00eb 01       		.byte	0x1
+ 309 00ec 2A       		.byte	0x2a
+ 310 00ed 00000000 		.4byte	.LFB0
+ 311 00f1 20000000 		.4byte	.LFE0-.LFB0
+ 312 00f5 01       		.uleb128 0x1
+ 313 00f6 9C       		.byte	0x9c
+ 314 00f7 09       		.uleb128 0x9
+ 315 00f8 3A000000 		.4byte	.LASF21
+ 316 00fc 01       		.byte	0x1
+ 317 00fd 4A       		.byte	0x4a
+ 318 00fe 00000000 		.4byte	.LFB1
+ 319 0102 20000000 		.4byte	.LFE1-.LFB1
+ 320 0106 01       		.uleb128 0x1
+ 321 0107 9C       		.byte	0x9c
+ 322 0108 09       		.uleb128 0x9
+ 323 0109 72000000 		.4byte	.LASF22
+ 324 010d 01       		.byte	0x1
+ 325 010e 69       		.byte	0x69
+ 326 010f 00000000 		.4byte	.LFB2
+ 327 0113 34000000 		.4byte	.LFE2-.LFB2
+ 328 0117 01       		.uleb128 0x1
+ 329 0118 9C       		.byte	0x9c
+ 330 0119 09       		.uleb128 0x9
+ 331 011a CA010000 		.4byte	.LASF23
+ 332 011e 01       		.byte	0x1
+ 333 011f 96       		.byte	0x96
+ 334 0120 00000000 		.4byte	.LFB3
+ 335 0124 1C000000 		.4byte	.LFE3-.LFB3
+ 336 0128 01       		.uleb128 0x1
+ 337 0129 9C       		.byte	0x9c
+ 338 012a 0A       		.uleb128 0xa
+ 339 012b 80010000 		.4byte	.LASF27
+ 340 012f 01       		.byte	0x1
+ 341 0130 15       		.byte	0x15
+ 342 0131 DB000000 		.4byte	0xdb
+ 343 0135 05       		.uleb128 0x5
+ 344 0136 03       		.byte	0x3
+ 345 0137 00000000 		.4byte	Counter_Buzz_backup
+ 346 013b 00       		.byte	0
+ 347              		.section	.debug_abbrev,"",%progbits
+ 348              	.Ldebug_abbrev0:
+ 349 0000 01       		.uleb128 0x1
+ 350 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 10
+
+
+ 351 0002 01       		.byte	0x1
+ 352 0003 25       		.uleb128 0x25
+ 353 0004 0E       		.uleb128 0xe
+ 354 0005 13       		.uleb128 0x13
+ 355 0006 0B       		.uleb128 0xb
+ 356 0007 03       		.uleb128 0x3
+ 357 0008 0E       		.uleb128 0xe
+ 358 0009 1B       		.uleb128 0x1b
+ 359 000a 0E       		.uleb128 0xe
+ 360 000b 55       		.uleb128 0x55
+ 361 000c 17       		.uleb128 0x17
+ 362 000d 11       		.uleb128 0x11
+ 363 000e 01       		.uleb128 0x1
+ 364 000f 10       		.uleb128 0x10
+ 365 0010 17       		.uleb128 0x17
+ 366 0011 00       		.byte	0
+ 367 0012 00       		.byte	0
+ 368 0013 02       		.uleb128 0x2
+ 369 0014 24       		.uleb128 0x24
+ 370 0015 00       		.byte	0
+ 371 0016 0B       		.uleb128 0xb
+ 372 0017 0B       		.uleb128 0xb
+ 373 0018 3E       		.uleb128 0x3e
+ 374 0019 0B       		.uleb128 0xb
+ 375 001a 03       		.uleb128 0x3
+ 376 001b 0E       		.uleb128 0xe
+ 377 001c 00       		.byte	0
+ 378 001d 00       		.byte	0
+ 379 001e 03       		.uleb128 0x3
+ 380 001f 24       		.uleb128 0x24
+ 381 0020 00       		.byte	0
+ 382 0021 0B       		.uleb128 0xb
+ 383 0022 0B       		.uleb128 0xb
+ 384 0023 3E       		.uleb128 0x3e
+ 385 0024 0B       		.uleb128 0xb
+ 386 0025 03       		.uleb128 0x3
+ 387 0026 08       		.uleb128 0x8
+ 388 0027 00       		.byte	0
+ 389 0028 00       		.byte	0
+ 390 0029 04       		.uleb128 0x4
+ 391 002a 16       		.uleb128 0x16
+ 392 002b 00       		.byte	0
+ 393 002c 03       		.uleb128 0x3
+ 394 002d 0E       		.uleb128 0xe
+ 395 002e 3A       		.uleb128 0x3a
+ 396 002f 0B       		.uleb128 0xb
+ 397 0030 3B       		.uleb128 0x3b
+ 398 0031 0B       		.uleb128 0xb
+ 399 0032 49       		.uleb128 0x49
+ 400 0033 13       		.uleb128 0x13
+ 401 0034 00       		.byte	0
+ 402 0035 00       		.byte	0
+ 403 0036 05       		.uleb128 0x5
+ 404 0037 16       		.uleb128 0x16
+ 405 0038 00       		.byte	0
+ 406 0039 03       		.uleb128 0x3
+ 407 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 11
+
+
+ 408 003b 3A       		.uleb128 0x3a
+ 409 003c 0B       		.uleb128 0xb
+ 410 003d 3B       		.uleb128 0x3b
+ 411 003e 05       		.uleb128 0x5
+ 412 003f 49       		.uleb128 0x49
+ 413 0040 13       		.uleb128 0x13
+ 414 0041 00       		.byte	0
+ 415 0042 00       		.byte	0
+ 416 0043 06       		.uleb128 0x6
+ 417 0044 35       		.uleb128 0x35
+ 418 0045 00       		.byte	0
+ 419 0046 49       		.uleb128 0x49
+ 420 0047 13       		.uleb128 0x13
+ 421 0048 00       		.byte	0
+ 422 0049 00       		.byte	0
+ 423 004a 07       		.uleb128 0x7
+ 424 004b 13       		.uleb128 0x13
+ 425 004c 01       		.byte	0x1
+ 426 004d 0B       		.uleb128 0xb
+ 427 004e 0B       		.uleb128 0xb
+ 428 004f 3A       		.uleb128 0x3a
+ 429 0050 0B       		.uleb128 0xb
+ 430 0051 3B       		.uleb128 0x3b
+ 431 0052 0B       		.uleb128 0xb
+ 432 0053 01       		.uleb128 0x1
+ 433 0054 13       		.uleb128 0x13
+ 434 0055 00       		.byte	0
+ 435 0056 00       		.byte	0
+ 436 0057 08       		.uleb128 0x8
+ 437 0058 0D       		.uleb128 0xd
+ 438 0059 00       		.byte	0
+ 439 005a 03       		.uleb128 0x3
+ 440 005b 0E       		.uleb128 0xe
+ 441 005c 3A       		.uleb128 0x3a
+ 442 005d 0B       		.uleb128 0xb
+ 443 005e 3B       		.uleb128 0x3b
+ 444 005f 0B       		.uleb128 0xb
+ 445 0060 49       		.uleb128 0x49
+ 446 0061 13       		.uleb128 0x13
+ 447 0062 38       		.uleb128 0x38
+ 448 0063 0B       		.uleb128 0xb
+ 449 0064 00       		.byte	0
+ 450 0065 00       		.byte	0
+ 451 0066 09       		.uleb128 0x9
+ 452 0067 2E       		.uleb128 0x2e
+ 453 0068 00       		.byte	0
+ 454 0069 3F       		.uleb128 0x3f
+ 455 006a 19       		.uleb128 0x19
+ 456 006b 03       		.uleb128 0x3
+ 457 006c 0E       		.uleb128 0xe
+ 458 006d 3A       		.uleb128 0x3a
+ 459 006e 0B       		.uleb128 0xb
+ 460 006f 3B       		.uleb128 0x3b
+ 461 0070 0B       		.uleb128 0xb
+ 462 0071 27       		.uleb128 0x27
+ 463 0072 19       		.uleb128 0x19
+ 464 0073 11       		.uleb128 0x11
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 12
+
+
+ 465 0074 01       		.uleb128 0x1
+ 466 0075 12       		.uleb128 0x12
+ 467 0076 06       		.uleb128 0x6
+ 468 0077 40       		.uleb128 0x40
+ 469 0078 18       		.uleb128 0x18
+ 470 0079 9642     		.uleb128 0x2116
+ 471 007b 19       		.uleb128 0x19
+ 472 007c 00       		.byte	0
+ 473 007d 00       		.byte	0
+ 474 007e 0A       		.uleb128 0xa
+ 475 007f 34       		.uleb128 0x34
+ 476 0080 00       		.byte	0
+ 477 0081 03       		.uleb128 0x3
+ 478 0082 0E       		.uleb128 0xe
+ 479 0083 3A       		.uleb128 0x3a
+ 480 0084 0B       		.uleb128 0xb
+ 481 0085 3B       		.uleb128 0x3b
+ 482 0086 0B       		.uleb128 0xb
+ 483 0087 49       		.uleb128 0x49
+ 484 0088 13       		.uleb128 0x13
+ 485 0089 02       		.uleb128 0x2
+ 486 008a 18       		.uleb128 0x18
+ 487 008b 00       		.byte	0
+ 488 008c 00       		.byte	0
+ 489 008d 00       		.byte	0
+ 490              		.section	.debug_aranges,"",%progbits
+ 491 0000 34000000 		.4byte	0x34
+ 492 0004 0200     		.2byte	0x2
+ 493 0006 00000000 		.4byte	.Ldebug_info0
+ 494 000a 04       		.byte	0x4
+ 495 000b 00       		.byte	0
+ 496 000c 0000     		.2byte	0
+ 497 000e 0000     		.2byte	0
+ 498 0010 00000000 		.4byte	.LFB0
+ 499 0014 20000000 		.4byte	.LFE0-.LFB0
+ 500 0018 00000000 		.4byte	.LFB1
+ 501 001c 20000000 		.4byte	.LFE1-.LFB1
+ 502 0020 00000000 		.4byte	.LFB2
+ 503 0024 34000000 		.4byte	.LFE2-.LFB2
+ 504 0028 00000000 		.4byte	.LFB3
+ 505 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 506 0030 00000000 		.4byte	0
+ 507 0034 00000000 		.4byte	0
+ 508              		.section	.debug_ranges,"",%progbits
+ 509              	.Ldebug_ranges0:
+ 510 0000 00000000 		.4byte	.LFB0
+ 511 0004 20000000 		.4byte	.LFE0
+ 512 0008 00000000 		.4byte	.LFB1
+ 513 000c 20000000 		.4byte	.LFE1
+ 514 0010 00000000 		.4byte	.LFB2
+ 515 0014 34000000 		.4byte	.LFE2
+ 516 0018 00000000 		.4byte	.LFB3
+ 517 001c 1C000000 		.4byte	.LFE3
+ 518 0020 00000000 		.4byte	0
+ 519 0024 00000000 		.4byte	0
+ 520              		.section	.debug_line,"",%progbits
+ 521              	.Ldebug_line0:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 13
+
+
+ 522 0000 B5000000 		.section	.debug_str,"MS",%progbits,1
+ 522      02005E00 
+ 522      00000201 
+ 522      FB0E0D00 
+ 522      01010101 
+ 523              	.LASF6:
+ 524 0000 6C6F6E67 		.ascii	"long long int\000"
+ 524      206C6F6E 
+ 524      6720696E 
+ 524      7400
+ 525              	.LASF10:
+ 526 000e 75696E74 		.ascii	"uint32\000"
+ 526      333200
+ 527              	.LASF20:
+ 528 0015 436F756E 		.ascii	"Counter_Buzz_SaveConfig\000"
+ 528      7465725F 
+ 528      42757A7A 
+ 528      5F536176 
+ 528      65436F6E 
+ 529              	.LASF8:
+ 530 002d 756E7369 		.ascii	"unsigned int\000"
+ 530      676E6564 
+ 530      20696E74 
+ 530      00
+ 531              	.LASF21:
+ 532 003a 436F756E 		.ascii	"Counter_Buzz_RestoreConfig\000"
+ 532      7465725F 
+ 532      42757A7A 
+ 532      5F526573 
+ 532      746F7265 
+ 533              	.LASF14:
+ 534 0055 72656738 		.ascii	"reg8\000"
+ 534      00
+ 535              	.LASF9:
+ 536 005a 75696E74 		.ascii	"uint8\000"
+ 536      3800
+ 537              	.LASF5:
+ 538 0060 6C6F6E67 		.ascii	"long unsigned int\000"
+ 538      20756E73 
+ 538      69676E65 
+ 538      6420696E 
+ 538      7400
+ 539              	.LASF22:
+ 540 0072 436F756E 		.ascii	"Counter_Buzz_Sleep\000"
+ 540      7465725F 
+ 540      42757A7A 
+ 540      5F536C65 
+ 540      657000
+ 541              	.LASF7:
+ 542 0085 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 542      206C6F6E 
+ 542      6720756E 
+ 542      7369676E 
+ 542      65642069 
+ 543              	.LASF11:
+ 544 009c 666C6F61 		.ascii	"float\000"
+ 544      7400
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 14
+
+
+ 545              	.LASF1:
+ 546 00a2 756E7369 		.ascii	"unsigned char\000"
+ 546      676E6564 
+ 546      20636861 
+ 546      7200
+ 547              	.LASF13:
+ 548 00b0 63686172 		.ascii	"char\000"
+ 548      00
+ 549              	.LASF4:
+ 550 00b5 6C6F6E67 		.ascii	"long int\000"
+ 550      20696E74 
+ 550      00
+ 551              	.LASF24:
+ 552 00be 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 552      4320342E 
+ 552      392E3320 
+ 552      32303135 
+ 552      30333033 
+ 553 00f1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 553      20726576 
+ 553      6973696F 
+ 553      6E203232 
+ 553      31323230 
+ 554 0124 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 554      66756E63 
+ 554      74696F6E 
+ 554      2D736563 
+ 554      74696F6E 
+ 555              	.LASF16:
+ 556 014c 436F756E 		.ascii	"CounterEnableState\000"
+ 556      74657245 
+ 556      6E61626C 
+ 556      65537461 
+ 556      746500
+ 557              	.LASF19:
+ 558 015f 436F756E 		.ascii	"Counter_Buzz_backupStruct\000"
+ 558      7465725F 
+ 558      42757A7A 
+ 558      5F626163 
+ 558      6B757053 
+ 559              	.LASF12:
+ 560 0179 646F7562 		.ascii	"double\000"
+ 560      6C6500
+ 561              	.LASF27:
+ 562 0180 436F756E 		.ascii	"Counter_Buzz_backup\000"
+ 562      7465725F 
+ 562      42757A7A 
+ 562      5F626163 
+ 562      6B757000 
+ 563              	.LASF3:
+ 564 0194 73686F72 		.ascii	"short unsigned int\000"
+ 564      7420756E 
+ 564      7369676E 
+ 564      65642069 
+ 564      6E7400
+ 565              	.LASF0:
+ 566 01a7 7369676E 		.ascii	"signed char\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccUU5Q8A.s 			page 15
+
+
+ 566      65642063 
+ 566      68617200 
+ 567              	.LASF18:
+ 568 01b3 436F756E 		.ascii	"CounterControlRegister\000"
+ 568      74657243 
+ 568      6F6E7472 
+ 568      6F6C5265 
+ 568      67697374 
+ 569              	.LASF23:
+ 570 01ca 436F756E 		.ascii	"Counter_Buzz_Wakeup\000"
+ 570      7465725F 
+ 570      42757A7A 
+ 570      5F57616B 
+ 570      65757000 
+ 571              	.LASF2:
+ 572 01de 73686F72 		.ascii	"short int\000"
+ 572      7420696E 
+ 572      7400
+ 573              	.LASF26:
+ 574 01e8 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 574      6F726B73 
+ 574      70616365 
+ 574      5C50536F 
+ 574      435F4372 
+ 575 0217 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 575      392E6379 
+ 575      64736E00 
+ 576              	.LASF17:
+ 577 0223 436F756E 		.ascii	"CounterUdb\000"
+ 577      74657255 
+ 577      646200
+ 578              	.LASF15:
+ 579 022e 73697A65 		.ascii	"sizetype\000"
+ 579      74797065 
+ 579      00
+ 580              	.LASF25:
+ 581 0237 47656E65 		.ascii	"Generated_Source\\PSoC5\\Counter_Buzz_PM.c\000"
+ 581      72617465 
+ 581      645F536F 
+ 581      75726365 
+ 581      5C50536F 
+ 582              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

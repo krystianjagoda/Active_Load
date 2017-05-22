@@ -1,0 +1,1364 @@
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"DieTemp_1.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.DieTemp_1_Start,"ax",%progbits
+  19              		.align	2
+  20              		.global	DieTemp_1_Start
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	DieTemp_1_Start, %function
+  24              	DieTemp_1_Start:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\DieTemp_1.c"
+   1:.\Generated_Source\PSoC5/DieTemp_1.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/DieTemp_1.c **** * File Name: DieTemp_1_DieTemp.c
+   3:.\Generated_Source\PSoC5/DieTemp_1.c **** * Version 2.0
+   4:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+   5:.\Generated_Source\PSoC5/DieTemp_1.c **** * Description:
+   6:.\Generated_Source\PSoC5/DieTemp_1.c **** *  Provides the API to acquire the die temperature.
+   7:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+   8:.\Generated_Source\PSoC5/DieTemp_1.c **** ********************************************************************************
+   9:.\Generated_Source\PSoC5/DieTemp_1.c **** * Copyright 2008-2012, Cypress Semiconductor Corporation.  All rights reserved.
+  10:.\Generated_Source\PSoC5/DieTemp_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  11:.\Generated_Source\PSoC5/DieTemp_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  12:.\Generated_Source\PSoC5/DieTemp_1.c **** * the software package with which this file was provided.
+  13:.\Generated_Source\PSoC5/DieTemp_1.c **** *******************************************************************************/
+  14:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  15:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  16:.\Generated_Source\PSoC5/DieTemp_1.c **** #include <cydevice_trm.H>
+  17:.\Generated_Source\PSoC5/DieTemp_1.c **** #include <DieTemp_1.h>
+  18:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  19:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  20:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_NUMBER_OF_SAMPLES      (0x1u)
+  21:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_TIMER_PERIOD           (0xFFFu)
+  22:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_CLK_DIV_SELECT         (0x4u)
+  23:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_SPC_CLK_PERIOD         (120u) /* In nano seconds. */
+  24:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_NANO_TO_MILLI_FACTOR   (1000000u)
+  25:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_FRM_EXEC_TIME          (1000u) /* In nano seconds. */
+  26:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  27:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_GET_TEMPR_TIME     (uint32)(((((uint32)1u << (DieTemp_1_NUMBER_OF_SAMPLES + 1u)))
+  28:.\Generated_Source\PSoC5/DieTemp_1.c ****                                                 ((uint32)(DieTemp_1_SPC_CLK_PERIOD * \
+  29:.\Generated_Source\PSoC5/DieTemp_1.c ****                                                 DieTemp_1_CLK_DIV_SELECT)) * \
+  30:.\Generated_Source\PSoC5/DieTemp_1.c ****                                                 ((uint32)DieTemp_1_TIMER_PERIOD)) + \
+  31:.\Generated_Source\PSoC5/DieTemp_1.c ****                                                 (uint32)DieTemp_1_FRM_EXEC_TIME)
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  33:.\Generated_Source\PSoC5/DieTemp_1.c **** #define DieTemp_1_MAX_WAIT           (uint16)(((DieTemp_1_GET_TEMPR_TIME + \
+  34:.\Generated_Source\PSoC5/DieTemp_1.c ****                                                 DieTemp_1_NANO_TO_MILLI_FACTOR) - 1u) / \
+  35:.\Generated_Source\PSoC5/DieTemp_1.c ****                                                 DieTemp_1_NANO_TO_MILLI_FACTOR)  /* In milli second
+  36:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  37:.\Generated_Source\PSoC5/DieTemp_1.c **** static cystatus DieTemp_1_GetTempT(int16 * temperature);
+  38:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  39:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  40:.\Generated_Source\PSoC5/DieTemp_1.c **** /*******************************************************************************
+  41:.\Generated_Source\PSoC5/DieTemp_1.c **** * Function Name: DieTemp_1_Start
+  42:.\Generated_Source\PSoC5/DieTemp_1.c **** ********************************************************************************
+  43:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+  44:.\Generated_Source\PSoC5/DieTemp_1.c **** * Summary:
+  45:.\Generated_Source\PSoC5/DieTemp_1.c **** *  Starts the SPC command to get the die temperature. If this function is
+  46:.\Generated_Source\PSoC5/DieTemp_1.c **** *  called successfuly. The SPC will be locked and DieTemp_1_QueryDieTemp
+  47:.\Generated_Source\PSoC5/DieTemp_1.c **** *  will have to be successfuly called to unlock it. CySpcUnlock() can also
+  48:.\Generated_Source\PSoC5/DieTemp_1.c **** *  be called if the caller decides not to finish the temperature reading.
+  49:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+  50:.\Generated_Source\PSoC5/DieTemp_1.c **** * Parameters:
+  51:.\Generated_Source\PSoC5/DieTemp_1.c **** *  void.
+  52:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+  53:.\Generated_Source\PSoC5/DieTemp_1.c **** * Return:
+  54:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_STARTED if the spc command was started sucessfuly.
+  55:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_UNKNOWN if the spc command failed.
+  56:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_LOCKED if the spc was busy.
+  57:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+  58:.\Generated_Source\PSoC5/DieTemp_1.c **** *******************************************************************************/
+  59:.\Generated_Source\PSoC5/DieTemp_1.c **** cystatus DieTemp_1_Start(void) 
+  60:.\Generated_Source\PSoC5/DieTemp_1.c **** {
+  27              		.loc 1 60 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 8
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31 0000 80B5     		push	{r7, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 7, -8
+  34              		.cfi_offset 14, -4
+  35 0002 82B0     		sub	sp, sp, #8
+  36              		.cfi_def_cfa_offset 16
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  61:.\Generated_Source\PSoC5/DieTemp_1.c ****     cystatus status;
+  62:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  63:.\Generated_Source\PSoC5/DieTemp_1.c ****     /* Plan for failure. */
+  64:.\Generated_Source\PSoC5/DieTemp_1.c ****     status = CYRET_UNKNOWN;
+  39              		.loc 1 64 0
+  40 0006 4FF0FF33 		mov	r3, #-1
+  41 000a 7B60     		str	r3, [r7, #4]
+  65:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  66:.\Generated_Source\PSoC5/DieTemp_1.c ****     /* Power up the SPC. */
+  67:.\Generated_Source\PSoC5/DieTemp_1.c ****     CySpcStart();
+  42              		.loc 1 67 0
+  43 000c FFF7FEFF 		bl	CySpcStart
+  68:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  69:.\Generated_Source\PSoC5/DieTemp_1.c ****     if(CySpcLock() == CYRET_SUCCESS)
+  44              		.loc 1 69 0
+  45 0010 FFF7FEFF 		bl	CySpcLock
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 3
+
+
+  46 0014 0346     		mov	r3, r0
+  47 0016 002B     		cmp	r3, #0
+  48 0018 0AD1     		bne	.L2
+  70:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+  71:.\Generated_Source\PSoC5/DieTemp_1.c ****         #if(CY_PSOC5A)
+  72:.\Generated_Source\PSoC5/DieTemp_1.c ****             if(CYRET_STARTED == CySpcGetTemp(DieTemp_1_NUMBER_OF_SAMPLES,
+  73:.\Generated_Source\PSoC5/DieTemp_1.c ****                                              DieTemp_1_TIMER_PERIOD,
+  74:.\Generated_Source\PSoC5/DieTemp_1.c ****                                              DieTemp_1_CLK_DIV_SELECT))
+  75:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+  76:.\Generated_Source\PSoC5/DieTemp_1.c ****                 status = CYRET_STARTED;
+  77:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+  78:.\Generated_Source\PSoC5/DieTemp_1.c ****         #else
+  79:.\Generated_Source\PSoC5/DieTemp_1.c ****             if(CYRET_STARTED == CySpcGetTemp(DieTemp_1_NUMBER_OF_SAMPLES))
+  49              		.loc 1 79 0
+  50 001a 0120     		movs	r0, #1
+  51 001c FFF7FEFF 		bl	CySpcGetTemp
+  52 0020 0346     		mov	r3, r0
+  53 0022 072B     		cmp	r3, #7
+  54 0024 01D1     		bne	.L3
+  80:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+  81:.\Generated_Source\PSoC5/DieTemp_1.c ****                 status = CYRET_STARTED;
+  55              		.loc 1 81 0
+  56 0026 0723     		movs	r3, #7
+  57 0028 7B60     		str	r3, [r7, #4]
+  58              	.L3:
+  82:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+  83:.\Generated_Source\PSoC5/DieTemp_1.c ****         #endif  /* (CY_PSOC5A) */
+  84:.\Generated_Source\PSoC5/DieTemp_1.c ****         CySpcUnlock();
+  59              		.loc 1 84 0
+  60 002a FFF7FEFF 		bl	CySpcUnlock
+  61 002e 01E0     		b	.L4
+  62              	.L2:
+  85:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+  86:.\Generated_Source\PSoC5/DieTemp_1.c ****     else
+  87:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+  88:.\Generated_Source\PSoC5/DieTemp_1.c ****         status = CYRET_LOCKED;
+  63              		.loc 1 88 0
+  64 0030 0423     		movs	r3, #4
+  65 0032 7B60     		str	r3, [r7, #4]
+  66              	.L4:
+  89:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+  90:.\Generated_Source\PSoC5/DieTemp_1.c ****     return (status);
+  67              		.loc 1 90 0
+  68 0034 7B68     		ldr	r3, [r7, #4]
+  91:.\Generated_Source\PSoC5/DieTemp_1.c **** }
+  69              		.loc 1 91 0
+  70 0036 1846     		mov	r0, r3
+  71 0038 0837     		adds	r7, r7, #8
+  72              		.cfi_def_cfa_offset 8
+  73 003a BD46     		mov	sp, r7
+  74              		.cfi_def_cfa_register 13
+  75              		@ sp needed
+  76 003c 80BD     		pop	{r7, pc}
+  77              		.cfi_endproc
+  78              	.LFE0:
+  79              		.size	DieTemp_1_Start, .-DieTemp_1_Start
+  80 003e 00BF     		.section	.text.DieTemp_1_Stop,"ax",%progbits
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 4
+
+
+  81              		.align	2
+  82              		.global	DieTemp_1_Stop
+  83              		.thumb
+  84              		.thumb_func
+  85              		.type	DieTemp_1_Stop, %function
+  86              	DieTemp_1_Stop:
+  87              	.LFB1:
+  92:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  93:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+  94:.\Generated_Source\PSoC5/DieTemp_1.c **** /*******************************************************************************
+  95:.\Generated_Source\PSoC5/DieTemp_1.c **** * FUNCTION NAME:   DieTemp_1_Stop
+  96:.\Generated_Source\PSoC5/DieTemp_1.c **** ********************************************************************************
+  97:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+  98:.\Generated_Source\PSoC5/DieTemp_1.c **** * Summary:
+  99:.\Generated_Source\PSoC5/DieTemp_1.c **** *  There is no need to stop or disable this component. This component is
+ 100:.\Generated_Source\PSoC5/DieTemp_1.c **** *  naturally a slave that sends request to SPC through SPC API of cy_boot
+ 101:.\Generated_Source\PSoC5/DieTemp_1.c **** *  and waits for data to be ready or in case of non-blocking operation it
+ 102:.\Generated_Source\PSoC5/DieTemp_1.c **** *  sends request to SPC and user can manually poll the result.
+ 103:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 104:.\Generated_Source\PSoC5/DieTemp_1.c **** * Parameters:
+ 105:.\Generated_Source\PSoC5/DieTemp_1.c **** *  void
+ 106:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 107:.\Generated_Source\PSoC5/DieTemp_1.c **** * Return:
+ 108:.\Generated_Source\PSoC5/DieTemp_1.c **** *  void
+ 109:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 110:.\Generated_Source\PSoC5/DieTemp_1.c **** *******************************************************************************/
+ 111:.\Generated_Source\PSoC5/DieTemp_1.c **** void DieTemp_1_Stop(void) 
+ 112:.\Generated_Source\PSoC5/DieTemp_1.c **** {
+  88              		.loc 1 112 0
+  89              		.cfi_startproc
+  90              		@ args = 0, pretend = 0, frame = 0
+  91              		@ frame_needed = 1, uses_anonymous_args = 0
+  92              		@ link register save eliminated.
+  93 0000 80B4     		push	{r7}
+  94              		.cfi_def_cfa_offset 4
+  95              		.cfi_offset 7, -4
+  96 0002 00AF     		add	r7, sp, #0
+  97              		.cfi_def_cfa_register 7
+ 113:.\Generated_Source\PSoC5/DieTemp_1.c ****     /* There aren't anything to stop */
+ 114:.\Generated_Source\PSoC5/DieTemp_1.c **** }
+  98              		.loc 1 114 0
+  99 0004 BD46     		mov	sp, r7
+ 100              		.cfi_def_cfa_register 13
+ 101              		@ sp needed
+ 102 0006 5DF8047B 		ldr	r7, [sp], #4
+ 103              		.cfi_restore 7
+ 104              		.cfi_def_cfa_offset 0
+ 105 000a 7047     		bx	lr
+ 106              		.cfi_endproc
+ 107              	.LFE1:
+ 108              		.size	DieTemp_1_Stop, .-DieTemp_1_Stop
+ 109              		.section	.text.DieTemp_1_Query,"ax",%progbits
+ 110              		.align	2
+ 111              		.global	DieTemp_1_Query
+ 112              		.thumb
+ 113              		.thumb_func
+ 114              		.type	DieTemp_1_Query, %function
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 5
+
+
+ 115              	DieTemp_1_Query:
+ 116              	.LFB2:
+ 115:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 116:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 117:.\Generated_Source\PSoC5/DieTemp_1.c **** /*******************************************************************************
+ 118:.\Generated_Source\PSoC5/DieTemp_1.c **** * Function Name: DieTemp_1_Query
+ 119:.\Generated_Source\PSoC5/DieTemp_1.c **** ********************************************************************************
+ 120:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 121:.\Generated_Source\PSoC5/DieTemp_1.c **** * Summary:
+ 122:.\Generated_Source\PSoC5/DieTemp_1.c **** *  Querys the SPC to see if the termperature command is finished.
+ 123:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 124:.\Generated_Source\PSoC5/DieTemp_1.c **** * Parameters:
+ 125:.\Generated_Source\PSoC5/DieTemp_1.c **** *  temperature: Address to store the two byte temperature value.
+ 126:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 127:.\Generated_Source\PSoC5/DieTemp_1.c **** * Return:
+ 128:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_SUCCESS if the temperature command completed sucessfully.
+ 129:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_UNKNOWN if the there was an spc failure.
+ 130:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_STARTED if the temperature command has not completed.
+ 131:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_TIMEOUT if waited to long before reading data.
+ 132:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 133:.\Generated_Source\PSoC5/DieTemp_1.c **** *******************************************************************************/
+ 134:.\Generated_Source\PSoC5/DieTemp_1.c **** cystatus DieTemp_1_Query(int16 * temperature) 
+ 135:.\Generated_Source\PSoC5/DieTemp_1.c **** {
+ 117              		.loc 1 135 0
+ 118              		.cfi_startproc
+ 119              		@ args = 0, pretend = 0, frame = 16
+ 120              		@ frame_needed = 1, uses_anonymous_args = 0
+ 121 0000 80B5     		push	{r7, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 7, -8
+ 124              		.cfi_offset 14, -4
+ 125 0002 84B0     		sub	sp, sp, #16
+ 126              		.cfi_def_cfa_offset 24
+ 127 0004 00AF     		add	r7, sp, #0
+ 128              		.cfi_def_cfa_register 7
+ 129 0006 7860     		str	r0, [r7, #4]
+ 136:.\Generated_Source\PSoC5/DieTemp_1.c ****     uint8 temp[2u];
+ 137:.\Generated_Source\PSoC5/DieTemp_1.c ****     cystatus status;
+ 138:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 139:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 140:.\Generated_Source\PSoC5/DieTemp_1.c ****     if(CY_SPC_BUSY)
+ 130              		.loc 1 140 0
+ 131 0008 1D4B     		ldr	r3, .L18
+ 132 000a 1B78     		ldrb	r3, [r3]
+ 133 000c DBB2     		uxtb	r3, r3
+ 134 000e 03F00203 		and	r3, r3, #2
+ 135 0012 002B     		cmp	r3, #0
+ 136 0014 28D1     		bne	.L8
+ 141:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+ 142:.\Generated_Source\PSoC5/DieTemp_1.c ****         if((CY_SPC_STATUS_REG>>2u) == CYRET_SUCCESS)
+ 137              		.loc 1 142 0
+ 138 0016 1A4B     		ldr	r3, .L18
+ 139 0018 1B78     		ldrb	r3, [r3]
+ 140 001a DBB2     		uxtb	r3, r3
+ 141 001c 9B08     		lsrs	r3, r3, #2
+ 142 001e DBB2     		uxtb	r3, r3
+ 143 0020 002B     		cmp	r3, #0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 6
+
+
+ 144 0022 1ED1     		bne	.L9
+ 143:.\Generated_Source\PSoC5/DieTemp_1.c ****         {
+ 144:.\Generated_Source\PSoC5/DieTemp_1.c ****             /* See if any data is ready. */
+ 145:.\Generated_Source\PSoC5/DieTemp_1.c ****             if(CySpcReadData(temp, 2u) == 2u)
+ 145              		.loc 1 145 0
+ 146 0024 07F10803 		add	r3, r7, #8
+ 147 0028 1846     		mov	r0, r3
+ 148 002a 0221     		movs	r1, #2
+ 149 002c FFF7FEFF 		bl	CySpcReadData
+ 150 0030 0346     		mov	r3, r0
+ 151 0032 022B     		cmp	r3, #2
+ 152 0034 11D1     		bne	.L10
+ 146:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+ 147:.\Generated_Source\PSoC5/DieTemp_1.c ****                 if(temp[0u] == 1u)
+ 153              		.loc 1 147 0
+ 154 0036 3B7A     		ldrb	r3, [r7, #8]	@ zero_extendqisi2
+ 155 0038 012B     		cmp	r3, #1
+ 156 003a 04D1     		bne	.L11
+ 148:.\Generated_Source\PSoC5/DieTemp_1.c ****                 {
+ 149:.\Generated_Source\PSoC5/DieTemp_1.c ****                     *temperature = (int16) ((uint16) temp[1]);
+ 157              		.loc 1 149 0
+ 158 003c 7B7A     		ldrb	r3, [r7, #9]	@ zero_extendqisi2
+ 159 003e 9AB2     		uxth	r2, r3
+ 160 0040 7B68     		ldr	r3, [r7, #4]
+ 161 0042 1A80     		strh	r2, [r3]	@ movhi
+ 162 0044 06E0     		b	.L12
+ 163              	.L11:
+ 150:.\Generated_Source\PSoC5/DieTemp_1.c ****                 }
+ 151:.\Generated_Source\PSoC5/DieTemp_1.c ****                 else
+ 152:.\Generated_Source\PSoC5/DieTemp_1.c ****                 {
+ 153:.\Generated_Source\PSoC5/DieTemp_1.c ****                     *temperature = (int16) - ((int16) temp[1]);
+ 164              		.loc 1 153 0
+ 165 0046 7B7A     		ldrb	r3, [r7, #9]	@ zero_extendqisi2
+ 166 0048 9BB2     		uxth	r3, r3
+ 167 004a 5B42     		negs	r3, r3
+ 168 004c 9BB2     		uxth	r3, r3
+ 169 004e 9AB2     		uxth	r2, r3
+ 170 0050 7B68     		ldr	r3, [r7, #4]
+ 171 0052 1A80     		strh	r2, [r3]	@ movhi
+ 172              	.L12:
+ 154:.\Generated_Source\PSoC5/DieTemp_1.c ****                 }
+ 155:.\Generated_Source\PSoC5/DieTemp_1.c ****                 status = CYRET_SUCCESS;
+ 173              		.loc 1 155 0
+ 174 0054 0023     		movs	r3, #0
+ 175 0056 FB60     		str	r3, [r7, #12]
+ 176 0058 08E0     		b	.L15
+ 177              	.L10:
+ 156:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+ 157:.\Generated_Source\PSoC5/DieTemp_1.c ****             else
+ 158:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+ 159:.\Generated_Source\PSoC5/DieTemp_1.c ****                 status = CYRET_UNKNOWN;
+ 178              		.loc 1 159 0
+ 179 005a 4FF0FF33 		mov	r3, #-1
+ 180 005e FB60     		str	r3, [r7, #12]
+ 181 0060 04E0     		b	.L15
+ 182              	.L9:
+ 160:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 7
+
+
+ 161:.\Generated_Source\PSoC5/DieTemp_1.c ****         }
+ 162:.\Generated_Source\PSoC5/DieTemp_1.c ****         else
+ 163:.\Generated_Source\PSoC5/DieTemp_1.c ****         {
+ 164:.\Generated_Source\PSoC5/DieTemp_1.c ****             status = CYRET_STARTED;
+ 183              		.loc 1 164 0
+ 184 0062 0723     		movs	r3, #7
+ 185 0064 FB60     		str	r3, [r7, #12]
+ 186 0066 01E0     		b	.L15
+ 187              	.L8:
+ 165:.\Generated_Source\PSoC5/DieTemp_1.c ****         }
+ 166:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+ 167:.\Generated_Source\PSoC5/DieTemp_1.c ****     else
+ 168:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+ 169:.\Generated_Source\PSoC5/DieTemp_1.c ****         status = CYRET_TIMEOUT;
+ 188              		.loc 1 169 0
+ 189 0068 1023     		movs	r3, #16
+ 190 006a FB60     		str	r3, [r7, #12]
+ 191              	.L15:
+ 170:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+ 171:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 172:.\Generated_Source\PSoC5/DieTemp_1.c ****     if(status != CYRET_STARTED)
+ 192              		.loc 1 172 0
+ 193 006c FB68     		ldr	r3, [r7, #12]
+ 194 006e 072B     		cmp	r3, #7
+ 195 0070 01D0     		beq	.L16
+ 173:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+ 174:.\Generated_Source\PSoC5/DieTemp_1.c ****         /* Unlock the SPC so someone else can use it. */
+ 175:.\Generated_Source\PSoC5/DieTemp_1.c ****         CySpcUnlock();
+ 196              		.loc 1 175 0
+ 197 0072 FFF7FEFF 		bl	CySpcUnlock
+ 198              	.L16:
+ 176:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+ 177:.\Generated_Source\PSoC5/DieTemp_1.c ****     return (status);
+ 199              		.loc 1 177 0
+ 200 0076 FB68     		ldr	r3, [r7, #12]
+ 178:.\Generated_Source\PSoC5/DieTemp_1.c **** }
+ 201              		.loc 1 178 0
+ 202 0078 1846     		mov	r0, r3
+ 203 007a 1037     		adds	r7, r7, #16
+ 204              		.cfi_def_cfa_offset 8
+ 205 007c BD46     		mov	sp, r7
+ 206              		.cfi_def_cfa_register 13
+ 207              		@ sp needed
+ 208 007e 80BD     		pop	{r7, pc}
+ 209              	.L19:
+ 210              		.align	2
+ 211              	.L18:
+ 212 0080 22470040 		.word	1073760034
+ 213              		.cfi_endproc
+ 214              	.LFE2:
+ 215              		.size	DieTemp_1_Query, .-DieTemp_1_Query
+ 216              		.section	.text.DieTemp_1_GetTempT,"ax",%progbits
+ 217              		.align	2
+ 218              		.thumb
+ 219              		.thumb_func
+ 220              		.type	DieTemp_1_GetTempT, %function
+ 221              	DieTemp_1_GetTempT:
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 8
+
+
+ 222              	.LFB3:
+ 179:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 180:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 181:.\Generated_Source\PSoC5/DieTemp_1.c **** /*******************************************************************************
+ 182:.\Generated_Source\PSoC5/DieTemp_1.c **** * Function Name: DieTemp_1_GetTemp
+ 183:.\Generated_Source\PSoC5/DieTemp_1.c **** ********************************************************************************
+ 184:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 185:.\Generated_Source\PSoC5/DieTemp_1.c **** * Summary:
+ 186:.\Generated_Source\PSoC5/DieTemp_1.c **** *  Sets up the command to get the temperature and blocks until finished. After
+ 187:.\Generated_Source\PSoC5/DieTemp_1.c **** *  DieTemp_1_MAX_WAIT ticks the function will return even if the
+ 188:.\Generated_Source\PSoC5/DieTemp_1.c **** *  SPC has not finished.
+ 189:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 190:.\Generated_Source\PSoC5/DieTemp_1.c **** * Parameters:
+ 191:.\Generated_Source\PSoC5/DieTemp_1.c **** *  temperature: Address to store the two byte temperature value.
+ 192:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 193:.\Generated_Source\PSoC5/DieTemp_1.c **** * Return:
+ 194:.\Generated_Source\PSoC5/DieTemp_1.c **** *  CYRET_SUCCESS if the command was completed sucessfuly.
+ 195:.\Generated_Source\PSoC5/DieTemp_1.c **** *  Status code from DieTemp_1_Start or DieTemp_1_Query
+ 196:.\Generated_Source\PSoC5/DieTemp_1.c **** *
+ 197:.\Generated_Source\PSoC5/DieTemp_1.c **** *******************************************************************************/
+ 198:.\Generated_Source\PSoC5/DieTemp_1.c **** static cystatus DieTemp_1_GetTempT(int16 * temperature) 
+ 199:.\Generated_Source\PSoC5/DieTemp_1.c **** {
+ 223              		.loc 1 199 0
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 16
+ 226              		@ frame_needed = 1, uses_anonymous_args = 0
+ 227 0000 80B5     		push	{r7, lr}
+ 228              		.cfi_def_cfa_offset 8
+ 229              		.cfi_offset 7, -8
+ 230              		.cfi_offset 14, -4
+ 231 0002 84B0     		sub	sp, sp, #16
+ 232              		.cfi_def_cfa_offset 24
+ 233 0004 00AF     		add	r7, sp, #0
+ 234              		.cfi_def_cfa_register 7
+ 235 0006 7860     		str	r0, [r7, #4]
+ 200:.\Generated_Source\PSoC5/DieTemp_1.c ****     uint16 us;
+ 201:.\Generated_Source\PSoC5/DieTemp_1.c ****     cystatus status;
+ 202:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 203:.\Generated_Source\PSoC5/DieTemp_1.c ****     /* Start the temp reading */
+ 204:.\Generated_Source\PSoC5/DieTemp_1.c ****     status = DieTemp_1_Start();
+ 236              		.loc 1 204 0
+ 237 0008 FFF7FEFF 		bl	DieTemp_1_Start
+ 238 000c B860     		str	r0, [r7, #8]
+ 205:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ 206:.\Generated_Source\PSoC5/DieTemp_1.c ****     if(status == CYRET_STARTED)
+ 239              		.loc 1 206 0
+ 240 000e BB68     		ldr	r3, [r7, #8]
+ 241 0010 072B     		cmp	r3, #7
+ 242 0012 1DD1     		bne	.L21
+ 207:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+ 208:.\Generated_Source\PSoC5/DieTemp_1.c ****         /**************************************************************************
+ 209:.\Generated_Source\PSoC5/DieTemp_1.c ****         * Wait for SPC to finish temperature reading. If state will change and SPC
+ 210:.\Generated_Source\PSoC5/DieTemp_1.c ****         * will finish - break cycle.
+ 211:.\Generated_Source\PSoC5/DieTemp_1.c ****         * DieTemp_1_MAX_WAIT is maximum time in ms to wait for SPC.
+ 212:.\Generated_Source\PSoC5/DieTemp_1.c ****         **************************************************************************/
+ 213:.\Generated_Source\PSoC5/DieTemp_1.c ****         for (us=(DieTemp_1_MAX_WAIT*1000u); us>0u; us-=10u)
+ 243              		.loc 1 213 0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 9
+
+
+ 244 0014 4FF4FA53 		mov	r3, #8000
+ 245 0018 FB81     		strh	r3, [r7, #14]	@ movhi
+ 246 001a 16E0     		b	.L22
+ 247              	.L25:
+ 214:.\Generated_Source\PSoC5/DieTemp_1.c ****         {
+ 215:.\Generated_Source\PSoC5/DieTemp_1.c ****             if((CYRET_STARTED != status)&&(CY_SPC_IDLE))
+ 248              		.loc 1 215 0
+ 249 001c BB68     		ldr	r3, [r7, #8]
+ 250 001e 072B     		cmp	r3, #7
+ 251 0020 06D0     		beq	.L23
+ 252              		.loc 1 215 0 is_stmt 0 discriminator 1
+ 253 0022 0E4B     		ldr	r3, .L27
+ 254 0024 1B78     		ldrb	r3, [r3]
+ 255 0026 DBB2     		uxtb	r3, r3
+ 256 0028 03F00203 		and	r3, r3, #2
+ 257 002c 002B     		cmp	r3, #0
+ 258 002e 0FD1     		bne	.L21
+ 259              	.L23:
+ 216:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+ 217:.\Generated_Source\PSoC5/DieTemp_1.c ****                 break;
+ 218:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+ 219:.\Generated_Source\PSoC5/DieTemp_1.c ****             else if(CYRET_STARTED == status)
+ 260              		.loc 1 219 0 is_stmt 1
+ 261 0030 BB68     		ldr	r3, [r7, #8]
+ 262 0032 072B     		cmp	r3, #7
+ 263 0034 03D1     		bne	.L24
+ 220:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+ 221:.\Generated_Source\PSoC5/DieTemp_1.c ****                 status = DieTemp_1_Query(temperature);
+ 264              		.loc 1 221 0
+ 265 0036 7868     		ldr	r0, [r7, #4]
+ 266 0038 FFF7FEFF 		bl	DieTemp_1_Query
+ 267 003c B860     		str	r0, [r7, #8]
+ 268              	.L24:
+ 222:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+ 223:.\Generated_Source\PSoC5/DieTemp_1.c ****             else
+ 224:.\Generated_Source\PSoC5/DieTemp_1.c ****             {
+ 225:.\Generated_Source\PSoC5/DieTemp_1.c ****                 /* SPC has not finished reading or isn't idle */
+ 226:.\Generated_Source\PSoC5/DieTemp_1.c ****             }
+ 227:.\Generated_Source\PSoC5/DieTemp_1.c ****             CyDelayUs(10u);
+ 269              		.loc 1 227 0 discriminator 2
+ 270 003e 0A20     		movs	r0, #10
+ 271 0040 FFF7FEFF 		bl	CyDelayUs
+ 213:.\Generated_Source\PSoC5/DieTemp_1.c ****         {
+ 272              		.loc 1 213 0 discriminator 2
+ 273 0044 FB89     		ldrh	r3, [r7, #14]	@ movhi
+ 274 0046 0A3B     		subs	r3, r3, #10
+ 275 0048 FB81     		strh	r3, [r7, #14]	@ movhi
+ 276              	.L22:
+ 213:.\Generated_Source\PSoC5/DieTemp_1.c ****         {
+ 277              		.loc 1 213 0 is_stmt 0 discriminator 1
+ 278 004a FB89     		ldrh	r3, [r7, #14]
+ 279 004c 002B     		cmp	r3, #0
+ 280 004e E5D1     		bne	.L25
+ 281              	.L21:
+ 228:.\Generated_Source\PSoC5/DieTemp_1.c ****         }
+ 229:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+ 230:.\Generated_Source\PSoC5/DieTemp_1.c **** 
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 10
+
+
+ 231:.\Generated_Source\PSoC5/DieTemp_1.c ****     return status;
+ 282              		.loc 1 231 0 is_stmt 1
+ 283 0050 BB68     		ldr	r3, [r7, #8]
+ 232:.\Generated_Source\PSoC5/DieTemp_1.c **** }
+ 284              		.loc 1 232 0
+ 285 0052 1846     		mov	r0, r3
+ 286 0054 1037     		adds	r7, r7, #16
+ 287              		.cfi_def_cfa_offset 8
+ 288 0056 BD46     		mov	sp, r7
+ 289              		.cfi_def_cfa_register 13
+ 290              		@ sp needed
+ 291 0058 80BD     		pop	{r7, pc}
+ 292              	.L28:
+ 293 005a 00BF     		.align	2
+ 294              	.L27:
+ 295 005c 22470040 		.word	1073760034
+ 296              		.cfi_endproc
+ 297              	.LFE3:
+ 298              		.size	DieTemp_1_GetTempT, .-DieTemp_1_GetTempT
+ 299              		.section	.text.DieTemp_1_GetTemp,"ax",%progbits
+ 300              		.align	2
+ 301              		.global	DieTemp_1_GetTemp
+ 302              		.thumb
+ 303              		.thumb_func
+ 304              		.type	DieTemp_1_GetTemp, %function
+ 305              	DieTemp_1_GetTemp:
+ 306              	.LFB4:
+ 233:.\Generated_Source\PSoC5/DieTemp_1.c **** cystatus DieTemp_1_GetTemp(int16 * temperature) 
+ 234:.\Generated_Source\PSoC5/DieTemp_1.c **** {
+ 307              		.loc 1 234 0
+ 308              		.cfi_startproc
+ 309              		@ args = 0, pretend = 0, frame = 16
+ 310              		@ frame_needed = 1, uses_anonymous_args = 0
+ 311 0000 80B5     		push	{r7, lr}
+ 312              		.cfi_def_cfa_offset 8
+ 313              		.cfi_offset 7, -8
+ 314              		.cfi_offset 14, -4
+ 315 0002 84B0     		sub	sp, sp, #16
+ 316              		.cfi_def_cfa_offset 24
+ 317 0004 00AF     		add	r7, sp, #0
+ 318              		.cfi_def_cfa_register 7
+ 319 0006 7860     		str	r0, [r7, #4]
+ 235:.\Generated_Source\PSoC5/DieTemp_1.c ****     cystatus status;
+ 236:.\Generated_Source\PSoC5/DieTemp_1.c ****     uint8 count = 2u;
+ 320              		.loc 1 236 0
+ 321 0008 0223     		movs	r3, #2
+ 322 000a FB72     		strb	r3, [r7, #11]
+ 237:.\Generated_Source\PSoC5/DieTemp_1.c ****     while (count != 0u)
+ 323              		.loc 1 237 0
+ 324 000c 0AE0     		b	.L30
+ 325              	.L33:
+ 238:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+ 239:.\Generated_Source\PSoC5/DieTemp_1.c ****         status = DieTemp_1_GetTempT(temperature);
+ 326              		.loc 1 239 0
+ 327 000e 7868     		ldr	r0, [r7, #4]
+ 328 0010 FFF7FEFF 		bl	DieTemp_1_GetTempT
+ 329 0014 F860     		str	r0, [r7, #12]
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 11
+
+
+ 240:.\Generated_Source\PSoC5/DieTemp_1.c ****         if (status != CYRET_SUCCESS)
+ 330              		.loc 1 240 0
+ 331 0016 FB68     		ldr	r3, [r7, #12]
+ 332 0018 002B     		cmp	r3, #0
+ 333 001a 00D0     		beq	.L31
+ 241:.\Generated_Source\PSoC5/DieTemp_1.c ****         {
+ 242:.\Generated_Source\PSoC5/DieTemp_1.c ****             break;
+ 334              		.loc 1 242 0
+ 335 001c 05E0     		b	.L32
+ 336              	.L31:
+ 243:.\Generated_Source\PSoC5/DieTemp_1.c ****         }
+ 244:.\Generated_Source\PSoC5/DieTemp_1.c ****         count--;
+ 337              		.loc 1 244 0
+ 338 001e FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 339 0020 013B     		subs	r3, r3, #1
+ 340 0022 FB72     		strb	r3, [r7, #11]
+ 341              	.L30:
+ 237:.\Generated_Source\PSoC5/DieTemp_1.c ****     {
+ 342              		.loc 1 237 0
+ 343 0024 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 344 0026 002B     		cmp	r3, #0
+ 345 0028 F1D1     		bne	.L33
+ 346              	.L32:
+ 245:.\Generated_Source\PSoC5/DieTemp_1.c ****     }
+ 246:.\Generated_Source\PSoC5/DieTemp_1.c ****     return status;
+ 347              		.loc 1 246 0
+ 348 002a FB68     		ldr	r3, [r7, #12]
+ 247:.\Generated_Source\PSoC5/DieTemp_1.c **** }
+ 349              		.loc 1 247 0
+ 350 002c 1846     		mov	r0, r3
+ 351 002e 1037     		adds	r7, r7, #16
+ 352              		.cfi_def_cfa_offset 8
+ 353 0030 BD46     		mov	sp, r7
+ 354              		.cfi_def_cfa_register 13
+ 355              		@ sp needed
+ 356 0032 80BD     		pop	{r7, pc}
+ 357              		.cfi_endproc
+ 358              	.LFE4:
+ 359              		.size	DieTemp_1_GetTemp, .-DieTemp_1_GetTemp
+ 360              		.text
+ 361              	.Letext0:
+ 362              		.file 2 "Generated_Source\\PSoC5/cytypes.h"
+ 363              		.section	.debug_info,"",%progbits
+ 364              	.Ldebug_info0:
+ 365 0000 E3010000 		.4byte	0x1e3
+ 366 0004 0400     		.2byte	0x4
+ 367 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 368 000a 04       		.byte	0x4
+ 369 000b 01       		.uleb128 0x1
+ 370 000c CB000000 		.4byte	.LASF25
+ 371 0010 01       		.byte	0x1
+ 372 0011 67010000 		.4byte	.LASF26
+ 373 0015 93000000 		.4byte	.LASF27
+ 374 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 375 001d 00000000 		.4byte	0
+ 376 0021 00000000 		.4byte	.Ldebug_line0
+ 377 0025 02       		.uleb128 0x2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 12
+
+
+ 378 0026 01       		.byte	0x1
+ 379 0027 06       		.byte	0x6
+ 380 0028 08020000 		.4byte	.LASF0
+ 381 002c 02       		.uleb128 0x2
+ 382 002d 01       		.byte	0x1
+ 383 002e 08       		.byte	0x8
+ 384 002f 5D000000 		.4byte	.LASF1
+ 385 0033 02       		.uleb128 0x2
+ 386 0034 02       		.byte	0x2
+ 387 0035 05       		.byte	0x5
+ 388 0036 E6010000 		.4byte	.LASF2
+ 389 003a 02       		.uleb128 0x2
+ 390 003b 02       		.byte	0x2
+ 391 003c 07       		.byte	0x7
+ 392 003d 25000000 		.4byte	.LASF3
+ 393 0041 02       		.uleb128 0x2
+ 394 0042 04       		.byte	0x4
+ 395 0043 05       		.byte	0x5
+ 396 0044 FF010000 		.4byte	.LASF4
+ 397 0048 02       		.uleb128 0x2
+ 398 0049 04       		.byte	0x4
+ 399 004a 07       		.byte	0x7
+ 400 004b 76000000 		.4byte	.LASF5
+ 401 004f 02       		.uleb128 0x2
+ 402 0050 08       		.byte	0x8
+ 403 0051 05       		.byte	0x5
+ 404 0052 D3010000 		.4byte	.LASF6
+ 405 0056 02       		.uleb128 0x2
+ 406 0057 08       		.byte	0x8
+ 407 0058 07       		.byte	0x7
+ 408 0059 B3010000 		.4byte	.LASF7
+ 409 005d 03       		.uleb128 0x3
+ 410 005e 04       		.byte	0x4
+ 411 005f 05       		.byte	0x5
+ 412 0060 696E7400 		.ascii	"int\000"
+ 413 0064 02       		.uleb128 0x2
+ 414 0065 04       		.byte	0x4
+ 415 0066 07       		.byte	0x7
+ 416 0067 93010000 		.4byte	.LASF8
+ 417 006b 04       		.uleb128 0x4
+ 418 006c 8D000000 		.4byte	.LASF9
+ 419 0070 02       		.byte	0x2
+ 420 0071 C2       		.byte	0xc2
+ 421 0072 2C000000 		.4byte	0x2c
+ 422 0076 04       		.uleb128 0x4
+ 423 0077 60010000 		.4byte	.LASF10
+ 424 007b 02       		.byte	0x2
+ 425 007c C3       		.byte	0xc3
+ 426 007d 3A000000 		.4byte	0x3a
+ 427 0081 04       		.uleb128 0x4
+ 428 0082 8C010000 		.4byte	.LASF11
+ 429 0086 02       		.byte	0x2
+ 430 0087 C4       		.byte	0xc4
+ 431 0088 48000000 		.4byte	0x48
+ 432 008c 04       		.uleb128 0x4
+ 433 008d 70000000 		.4byte	.LASF12
+ 434 0091 02       		.byte	0x2
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 13
+
+
+ 435 0092 C6       		.byte	0xc6
+ 436 0093 33000000 		.4byte	0x33
+ 437 0097 02       		.uleb128 0x2
+ 438 0098 04       		.byte	0x4
+ 439 0099 04       		.byte	0x4
+ 440 009a 09000000 		.4byte	.LASF13
+ 441 009e 02       		.uleb128 0x2
+ 442 009f 08       		.byte	0x8
+ 443 00a0 04       		.byte	0x4
+ 444 00a1 59010000 		.4byte	.LASF14
+ 445 00a5 02       		.uleb128 0x2
+ 446 00a6 01       		.byte	0x1
+ 447 00a7 08       		.byte	0x8
+ 448 00a8 E1010000 		.4byte	.LASF15
+ 449 00ac 05       		.uleb128 0x5
+ 450 00ad 00000000 		.4byte	.LASF16
+ 451 00b1 02       		.byte	0x2
+ 452 00b2 6401     		.2byte	0x164
+ 453 00b4 48000000 		.4byte	0x48
+ 454 00b8 05       		.uleb128 0x5
+ 455 00b9 6B000000 		.4byte	.LASF17
+ 456 00bd 02       		.byte	0x2
+ 457 00be 6C01     		.2byte	0x16c
+ 458 00c0 C4000000 		.4byte	0xc4
+ 459 00c4 06       		.uleb128 0x6
+ 460 00c5 6B000000 		.4byte	0x6b
+ 461 00c9 02       		.uleb128 0x2
+ 462 00ca 04       		.byte	0x4
+ 463 00cb 07       		.byte	0x7
+ 464 00cc CA010000 		.4byte	.LASF18
+ 465 00d0 07       		.uleb128 0x7
+ 466 00d1 14020000 		.4byte	.LASF19
+ 467 00d5 01       		.byte	0x1
+ 468 00d6 3B       		.byte	0x3b
+ 469 00d7 AC000000 		.4byte	0xac
+ 470 00db 00000000 		.4byte	.LFB0
+ 471 00df 3E000000 		.4byte	.LFE0-.LFB0
+ 472 00e3 01       		.uleb128 0x1
+ 473 00e4 9C       		.byte	0x9c
+ 474 00e5 F8000000 		.4byte	0xf8
+ 475 00e9 08       		.uleb128 0x8
+ 476 00ea 38000000 		.4byte	.LASF21
+ 477 00ee 01       		.byte	0x1
+ 478 00ef 3D       		.byte	0x3d
+ 479 00f0 AC000000 		.4byte	0xac
+ 480 00f4 02       		.uleb128 0x2
+ 481 00f5 91       		.byte	0x91
+ 482 00f6 74       		.sleb128 -12
+ 483 00f7 00       		.byte	0
+ 484 00f8 09       		.uleb128 0x9
+ 485 00f9 F0010000 		.4byte	.LASF28
+ 486 00fd 01       		.byte	0x1
+ 487 00fe 6F       		.byte	0x6f
+ 488 00ff 00000000 		.4byte	.LFB1
+ 489 0103 0C000000 		.4byte	.LFE1-.LFB1
+ 490 0107 01       		.uleb128 0x1
+ 491 0108 9C       		.byte	0x9c
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 14
+
+
+ 492 0109 07       		.uleb128 0x7
+ 493 010a 15000000 		.4byte	.LASF20
+ 494 010e 01       		.byte	0x1
+ 495 010f 86       		.byte	0x86
+ 496 0110 AC000000 		.4byte	0xac
+ 497 0114 00000000 		.4byte	.LFB2
+ 498 0118 84000000 		.4byte	.LFE2-.LFB2
+ 499 011c 01       		.uleb128 0x1
+ 500 011d 9C       		.byte	0x9c
+ 501 011e 4D010000 		.4byte	0x14d
+ 502 0122 0A       		.uleb128 0xa
+ 503 0123 51000000 		.4byte	.LASF23
+ 504 0127 01       		.byte	0x1
+ 505 0128 86       		.byte	0x86
+ 506 0129 4D010000 		.4byte	0x14d
+ 507 012d 02       		.uleb128 0x2
+ 508 012e 91       		.byte	0x91
+ 509 012f 6C       		.sleb128 -20
+ 510 0130 08       		.uleb128 0x8
+ 511 0131 88000000 		.4byte	.LASF22
+ 512 0135 01       		.byte	0x1
+ 513 0136 88       		.byte	0x88
+ 514 0137 53010000 		.4byte	0x153
+ 515 013b 02       		.uleb128 0x2
+ 516 013c 91       		.byte	0x91
+ 517 013d 70       		.sleb128 -16
+ 518 013e 08       		.uleb128 0x8
+ 519 013f 38000000 		.4byte	.LASF21
+ 520 0143 01       		.byte	0x1
+ 521 0144 89       		.byte	0x89
+ 522 0145 AC000000 		.4byte	0xac
+ 523 0149 02       		.uleb128 0x2
+ 524 014a 91       		.byte	0x91
+ 525 014b 74       		.sleb128 -12
+ 526 014c 00       		.byte	0
+ 527 014d 0B       		.uleb128 0xb
+ 528 014e 04       		.byte	0x4
+ 529 014f 8C000000 		.4byte	0x8c
+ 530 0153 0C       		.uleb128 0xc
+ 531 0154 6B000000 		.4byte	0x6b
+ 532 0158 63010000 		.4byte	0x163
+ 533 015c 0D       		.uleb128 0xd
+ 534 015d C9000000 		.4byte	0xc9
+ 535 0161 01       		.byte	0x1
+ 536 0162 00       		.byte	0
+ 537 0163 0E       		.uleb128 0xe
+ 538 0164 A0010000 		.4byte	.LASF29
+ 539 0168 01       		.byte	0x1
+ 540 0169 C6       		.byte	0xc6
+ 541 016a AC000000 		.4byte	0xac
+ 542 016e 00000000 		.4byte	.LFB3
+ 543 0172 60000000 		.4byte	.LFE3-.LFB3
+ 544 0176 01       		.uleb128 0x1
+ 545 0177 9C       		.byte	0x9c
+ 546 0178 A6010000 		.4byte	0x1a6
+ 547 017c 0A       		.uleb128 0xa
+ 548 017d 51000000 		.4byte	.LASF23
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 15
+
+
+ 549 0181 01       		.byte	0x1
+ 550 0182 C6       		.byte	0xc6
+ 551 0183 4D010000 		.4byte	0x14d
+ 552 0187 02       		.uleb128 0x2
+ 553 0188 91       		.byte	0x91
+ 554 0189 6C       		.sleb128 -20
+ 555 018a 0F       		.uleb128 0xf
+ 556 018b 757300   		.ascii	"us\000"
+ 557 018e 01       		.byte	0x1
+ 558 018f C8       		.byte	0xc8
+ 559 0190 76000000 		.4byte	0x76
+ 560 0194 02       		.uleb128 0x2
+ 561 0195 91       		.byte	0x91
+ 562 0196 76       		.sleb128 -10
+ 563 0197 08       		.uleb128 0x8
+ 564 0198 38000000 		.4byte	.LASF21
+ 565 019c 01       		.byte	0x1
+ 566 019d C9       		.byte	0xc9
+ 567 019e AC000000 		.4byte	0xac
+ 568 01a2 02       		.uleb128 0x2
+ 569 01a3 91       		.byte	0x91
+ 570 01a4 70       		.sleb128 -16
+ 571 01a5 00       		.byte	0
+ 572 01a6 10       		.uleb128 0x10
+ 573 01a7 3F000000 		.4byte	.LASF30
+ 574 01ab 01       		.byte	0x1
+ 575 01ac E9       		.byte	0xe9
+ 576 01ad AC000000 		.4byte	0xac
+ 577 01b1 00000000 		.4byte	.LFB4
+ 578 01b5 34000000 		.4byte	.LFE4-.LFB4
+ 579 01b9 01       		.uleb128 0x1
+ 580 01ba 9C       		.byte	0x9c
+ 581 01bb 0A       		.uleb128 0xa
+ 582 01bc 51000000 		.4byte	.LASF23
+ 583 01c0 01       		.byte	0x1
+ 584 01c1 E9       		.byte	0xe9
+ 585 01c2 4D010000 		.4byte	0x14d
+ 586 01c6 02       		.uleb128 0x2
+ 587 01c7 91       		.byte	0x91
+ 588 01c8 6C       		.sleb128 -20
+ 589 01c9 08       		.uleb128 0x8
+ 590 01ca 38000000 		.4byte	.LASF21
+ 591 01ce 01       		.byte	0x1
+ 592 01cf EB       		.byte	0xeb
+ 593 01d0 AC000000 		.4byte	0xac
+ 594 01d4 02       		.uleb128 0x2
+ 595 01d5 91       		.byte	0x91
+ 596 01d6 74       		.sleb128 -12
+ 597 01d7 08       		.uleb128 0x8
+ 598 01d8 0F000000 		.4byte	.LASF24
+ 599 01dc 01       		.byte	0x1
+ 600 01dd EC       		.byte	0xec
+ 601 01de 6B000000 		.4byte	0x6b
+ 602 01e2 02       		.uleb128 0x2
+ 603 01e3 91       		.byte	0x91
+ 604 01e4 73       		.sleb128 -13
+ 605 01e5 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 16
+
+
+ 606 01e6 00       		.byte	0
+ 607              		.section	.debug_abbrev,"",%progbits
+ 608              	.Ldebug_abbrev0:
+ 609 0000 01       		.uleb128 0x1
+ 610 0001 11       		.uleb128 0x11
+ 611 0002 01       		.byte	0x1
+ 612 0003 25       		.uleb128 0x25
+ 613 0004 0E       		.uleb128 0xe
+ 614 0005 13       		.uleb128 0x13
+ 615 0006 0B       		.uleb128 0xb
+ 616 0007 03       		.uleb128 0x3
+ 617 0008 0E       		.uleb128 0xe
+ 618 0009 1B       		.uleb128 0x1b
+ 619 000a 0E       		.uleb128 0xe
+ 620 000b 55       		.uleb128 0x55
+ 621 000c 17       		.uleb128 0x17
+ 622 000d 11       		.uleb128 0x11
+ 623 000e 01       		.uleb128 0x1
+ 624 000f 10       		.uleb128 0x10
+ 625 0010 17       		.uleb128 0x17
+ 626 0011 00       		.byte	0
+ 627 0012 00       		.byte	0
+ 628 0013 02       		.uleb128 0x2
+ 629 0014 24       		.uleb128 0x24
+ 630 0015 00       		.byte	0
+ 631 0016 0B       		.uleb128 0xb
+ 632 0017 0B       		.uleb128 0xb
+ 633 0018 3E       		.uleb128 0x3e
+ 634 0019 0B       		.uleb128 0xb
+ 635 001a 03       		.uleb128 0x3
+ 636 001b 0E       		.uleb128 0xe
+ 637 001c 00       		.byte	0
+ 638 001d 00       		.byte	0
+ 639 001e 03       		.uleb128 0x3
+ 640 001f 24       		.uleb128 0x24
+ 641 0020 00       		.byte	0
+ 642 0021 0B       		.uleb128 0xb
+ 643 0022 0B       		.uleb128 0xb
+ 644 0023 3E       		.uleb128 0x3e
+ 645 0024 0B       		.uleb128 0xb
+ 646 0025 03       		.uleb128 0x3
+ 647 0026 08       		.uleb128 0x8
+ 648 0027 00       		.byte	0
+ 649 0028 00       		.byte	0
+ 650 0029 04       		.uleb128 0x4
+ 651 002a 16       		.uleb128 0x16
+ 652 002b 00       		.byte	0
+ 653 002c 03       		.uleb128 0x3
+ 654 002d 0E       		.uleb128 0xe
+ 655 002e 3A       		.uleb128 0x3a
+ 656 002f 0B       		.uleb128 0xb
+ 657 0030 3B       		.uleb128 0x3b
+ 658 0031 0B       		.uleb128 0xb
+ 659 0032 49       		.uleb128 0x49
+ 660 0033 13       		.uleb128 0x13
+ 661 0034 00       		.byte	0
+ 662 0035 00       		.byte	0
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 17
+
+
+ 663 0036 05       		.uleb128 0x5
+ 664 0037 16       		.uleb128 0x16
+ 665 0038 00       		.byte	0
+ 666 0039 03       		.uleb128 0x3
+ 667 003a 0E       		.uleb128 0xe
+ 668 003b 3A       		.uleb128 0x3a
+ 669 003c 0B       		.uleb128 0xb
+ 670 003d 3B       		.uleb128 0x3b
+ 671 003e 05       		.uleb128 0x5
+ 672 003f 49       		.uleb128 0x49
+ 673 0040 13       		.uleb128 0x13
+ 674 0041 00       		.byte	0
+ 675 0042 00       		.byte	0
+ 676 0043 06       		.uleb128 0x6
+ 677 0044 35       		.uleb128 0x35
+ 678 0045 00       		.byte	0
+ 679 0046 49       		.uleb128 0x49
+ 680 0047 13       		.uleb128 0x13
+ 681 0048 00       		.byte	0
+ 682 0049 00       		.byte	0
+ 683 004a 07       		.uleb128 0x7
+ 684 004b 2E       		.uleb128 0x2e
+ 685 004c 01       		.byte	0x1
+ 686 004d 3F       		.uleb128 0x3f
+ 687 004e 19       		.uleb128 0x19
+ 688 004f 03       		.uleb128 0x3
+ 689 0050 0E       		.uleb128 0xe
+ 690 0051 3A       		.uleb128 0x3a
+ 691 0052 0B       		.uleb128 0xb
+ 692 0053 3B       		.uleb128 0x3b
+ 693 0054 0B       		.uleb128 0xb
+ 694 0055 27       		.uleb128 0x27
+ 695 0056 19       		.uleb128 0x19
+ 696 0057 49       		.uleb128 0x49
+ 697 0058 13       		.uleb128 0x13
+ 698 0059 11       		.uleb128 0x11
+ 699 005a 01       		.uleb128 0x1
+ 700 005b 12       		.uleb128 0x12
+ 701 005c 06       		.uleb128 0x6
+ 702 005d 40       		.uleb128 0x40
+ 703 005e 18       		.uleb128 0x18
+ 704 005f 9642     		.uleb128 0x2116
+ 705 0061 19       		.uleb128 0x19
+ 706 0062 01       		.uleb128 0x1
+ 707 0063 13       		.uleb128 0x13
+ 708 0064 00       		.byte	0
+ 709 0065 00       		.byte	0
+ 710 0066 08       		.uleb128 0x8
+ 711 0067 34       		.uleb128 0x34
+ 712 0068 00       		.byte	0
+ 713 0069 03       		.uleb128 0x3
+ 714 006a 0E       		.uleb128 0xe
+ 715 006b 3A       		.uleb128 0x3a
+ 716 006c 0B       		.uleb128 0xb
+ 717 006d 3B       		.uleb128 0x3b
+ 718 006e 0B       		.uleb128 0xb
+ 719 006f 49       		.uleb128 0x49
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 18
+
+
+ 720 0070 13       		.uleb128 0x13
+ 721 0071 02       		.uleb128 0x2
+ 722 0072 18       		.uleb128 0x18
+ 723 0073 00       		.byte	0
+ 724 0074 00       		.byte	0
+ 725 0075 09       		.uleb128 0x9
+ 726 0076 2E       		.uleb128 0x2e
+ 727 0077 00       		.byte	0
+ 728 0078 3F       		.uleb128 0x3f
+ 729 0079 19       		.uleb128 0x19
+ 730 007a 03       		.uleb128 0x3
+ 731 007b 0E       		.uleb128 0xe
+ 732 007c 3A       		.uleb128 0x3a
+ 733 007d 0B       		.uleb128 0xb
+ 734 007e 3B       		.uleb128 0x3b
+ 735 007f 0B       		.uleb128 0xb
+ 736 0080 27       		.uleb128 0x27
+ 737 0081 19       		.uleb128 0x19
+ 738 0082 11       		.uleb128 0x11
+ 739 0083 01       		.uleb128 0x1
+ 740 0084 12       		.uleb128 0x12
+ 741 0085 06       		.uleb128 0x6
+ 742 0086 40       		.uleb128 0x40
+ 743 0087 18       		.uleb128 0x18
+ 744 0088 9742     		.uleb128 0x2117
+ 745 008a 19       		.uleb128 0x19
+ 746 008b 00       		.byte	0
+ 747 008c 00       		.byte	0
+ 748 008d 0A       		.uleb128 0xa
+ 749 008e 05       		.uleb128 0x5
+ 750 008f 00       		.byte	0
+ 751 0090 03       		.uleb128 0x3
+ 752 0091 0E       		.uleb128 0xe
+ 753 0092 3A       		.uleb128 0x3a
+ 754 0093 0B       		.uleb128 0xb
+ 755 0094 3B       		.uleb128 0x3b
+ 756 0095 0B       		.uleb128 0xb
+ 757 0096 49       		.uleb128 0x49
+ 758 0097 13       		.uleb128 0x13
+ 759 0098 02       		.uleb128 0x2
+ 760 0099 18       		.uleb128 0x18
+ 761 009a 00       		.byte	0
+ 762 009b 00       		.byte	0
+ 763 009c 0B       		.uleb128 0xb
+ 764 009d 0F       		.uleb128 0xf
+ 765 009e 00       		.byte	0
+ 766 009f 0B       		.uleb128 0xb
+ 767 00a0 0B       		.uleb128 0xb
+ 768 00a1 49       		.uleb128 0x49
+ 769 00a2 13       		.uleb128 0x13
+ 770 00a3 00       		.byte	0
+ 771 00a4 00       		.byte	0
+ 772 00a5 0C       		.uleb128 0xc
+ 773 00a6 01       		.uleb128 0x1
+ 774 00a7 01       		.byte	0x1
+ 775 00a8 49       		.uleb128 0x49
+ 776 00a9 13       		.uleb128 0x13
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 19
+
+
+ 777 00aa 01       		.uleb128 0x1
+ 778 00ab 13       		.uleb128 0x13
+ 779 00ac 00       		.byte	0
+ 780 00ad 00       		.byte	0
+ 781 00ae 0D       		.uleb128 0xd
+ 782 00af 21       		.uleb128 0x21
+ 783 00b0 00       		.byte	0
+ 784 00b1 49       		.uleb128 0x49
+ 785 00b2 13       		.uleb128 0x13
+ 786 00b3 2F       		.uleb128 0x2f
+ 787 00b4 0B       		.uleb128 0xb
+ 788 00b5 00       		.byte	0
+ 789 00b6 00       		.byte	0
+ 790 00b7 0E       		.uleb128 0xe
+ 791 00b8 2E       		.uleb128 0x2e
+ 792 00b9 01       		.byte	0x1
+ 793 00ba 03       		.uleb128 0x3
+ 794 00bb 0E       		.uleb128 0xe
+ 795 00bc 3A       		.uleb128 0x3a
+ 796 00bd 0B       		.uleb128 0xb
+ 797 00be 3B       		.uleb128 0x3b
+ 798 00bf 0B       		.uleb128 0xb
+ 799 00c0 27       		.uleb128 0x27
+ 800 00c1 19       		.uleb128 0x19
+ 801 00c2 49       		.uleb128 0x49
+ 802 00c3 13       		.uleb128 0x13
+ 803 00c4 11       		.uleb128 0x11
+ 804 00c5 01       		.uleb128 0x1
+ 805 00c6 12       		.uleb128 0x12
+ 806 00c7 06       		.uleb128 0x6
+ 807 00c8 40       		.uleb128 0x40
+ 808 00c9 18       		.uleb128 0x18
+ 809 00ca 9642     		.uleb128 0x2116
+ 810 00cc 19       		.uleb128 0x19
+ 811 00cd 01       		.uleb128 0x1
+ 812 00ce 13       		.uleb128 0x13
+ 813 00cf 00       		.byte	0
+ 814 00d0 00       		.byte	0
+ 815 00d1 0F       		.uleb128 0xf
+ 816 00d2 34       		.uleb128 0x34
+ 817 00d3 00       		.byte	0
+ 818 00d4 03       		.uleb128 0x3
+ 819 00d5 08       		.uleb128 0x8
+ 820 00d6 3A       		.uleb128 0x3a
+ 821 00d7 0B       		.uleb128 0xb
+ 822 00d8 3B       		.uleb128 0x3b
+ 823 00d9 0B       		.uleb128 0xb
+ 824 00da 49       		.uleb128 0x49
+ 825 00db 13       		.uleb128 0x13
+ 826 00dc 02       		.uleb128 0x2
+ 827 00dd 18       		.uleb128 0x18
+ 828 00de 00       		.byte	0
+ 829 00df 00       		.byte	0
+ 830 00e0 10       		.uleb128 0x10
+ 831 00e1 2E       		.uleb128 0x2e
+ 832 00e2 01       		.byte	0x1
+ 833 00e3 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 20
+
+
+ 834 00e4 19       		.uleb128 0x19
+ 835 00e5 03       		.uleb128 0x3
+ 836 00e6 0E       		.uleb128 0xe
+ 837 00e7 3A       		.uleb128 0x3a
+ 838 00e8 0B       		.uleb128 0xb
+ 839 00e9 3B       		.uleb128 0x3b
+ 840 00ea 0B       		.uleb128 0xb
+ 841 00eb 27       		.uleb128 0x27
+ 842 00ec 19       		.uleb128 0x19
+ 843 00ed 49       		.uleb128 0x49
+ 844 00ee 13       		.uleb128 0x13
+ 845 00ef 11       		.uleb128 0x11
+ 846 00f0 01       		.uleb128 0x1
+ 847 00f1 12       		.uleb128 0x12
+ 848 00f2 06       		.uleb128 0x6
+ 849 00f3 40       		.uleb128 0x40
+ 850 00f4 18       		.uleb128 0x18
+ 851 00f5 9642     		.uleb128 0x2116
+ 852 00f7 19       		.uleb128 0x19
+ 853 00f8 00       		.byte	0
+ 854 00f9 00       		.byte	0
+ 855 00fa 00       		.byte	0
+ 856              		.section	.debug_aranges,"",%progbits
+ 857 0000 3C000000 		.4byte	0x3c
+ 858 0004 0200     		.2byte	0x2
+ 859 0006 00000000 		.4byte	.Ldebug_info0
+ 860 000a 04       		.byte	0x4
+ 861 000b 00       		.byte	0
+ 862 000c 0000     		.2byte	0
+ 863 000e 0000     		.2byte	0
+ 864 0010 00000000 		.4byte	.LFB0
+ 865 0014 3E000000 		.4byte	.LFE0-.LFB0
+ 866 0018 00000000 		.4byte	.LFB1
+ 867 001c 0C000000 		.4byte	.LFE1-.LFB1
+ 868 0020 00000000 		.4byte	.LFB2
+ 869 0024 84000000 		.4byte	.LFE2-.LFB2
+ 870 0028 00000000 		.4byte	.LFB3
+ 871 002c 60000000 		.4byte	.LFE3-.LFB3
+ 872 0030 00000000 		.4byte	.LFB4
+ 873 0034 34000000 		.4byte	.LFE4-.LFB4
+ 874 0038 00000000 		.4byte	0
+ 875 003c 00000000 		.4byte	0
+ 876              		.section	.debug_ranges,"",%progbits
+ 877              	.Ldebug_ranges0:
+ 878 0000 00000000 		.4byte	.LFB0
+ 879 0004 3E000000 		.4byte	.LFE0
+ 880 0008 00000000 		.4byte	.LFB1
+ 881 000c 0C000000 		.4byte	.LFE1
+ 882 0010 00000000 		.4byte	.LFB2
+ 883 0014 84000000 		.4byte	.LFE2
+ 884 0018 00000000 		.4byte	.LFB3
+ 885 001c 60000000 		.4byte	.LFE3
+ 886 0020 00000000 		.4byte	.LFB4
+ 887 0024 34000000 		.4byte	.LFE4
+ 888 0028 00000000 		.4byte	0
+ 889 002c 00000000 		.4byte	0
+ 890              		.section	.debug_line,"",%progbits
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 21
+
+
+ 891              	.Ldebug_line0:
+ 892 0000 FF000000 		.section	.debug_str,"MS",%progbits,1
+ 892      02005F00 
+ 892      00000201 
+ 892      FB0E0D00 
+ 892      01010101 
+ 893              	.LASF16:
+ 894 0000 63797374 		.ascii	"cystatus\000"
+ 894      61747573 
+ 894      00
+ 895              	.LASF13:
+ 896 0009 666C6F61 		.ascii	"float\000"
+ 896      7400
+ 897              	.LASF24:
+ 898 000f 636F756E 		.ascii	"count\000"
+ 898      7400
+ 899              	.LASF20:
+ 900 0015 44696554 		.ascii	"DieTemp_1_Query\000"
+ 900      656D705F 
+ 900      315F5175 
+ 900      65727900 
+ 901              	.LASF3:
+ 902 0025 73686F72 		.ascii	"short unsigned int\000"
+ 902      7420756E 
+ 902      7369676E 
+ 902      65642069 
+ 902      6E7400
+ 903              	.LASF21:
+ 904 0038 73746174 		.ascii	"status\000"
+ 904      757300
+ 905              	.LASF30:
+ 906 003f 44696554 		.ascii	"DieTemp_1_GetTemp\000"
+ 906      656D705F 
+ 906      315F4765 
+ 906      7454656D 
+ 906      7000
+ 907              	.LASF23:
+ 908 0051 74656D70 		.ascii	"temperature\000"
+ 908      65726174 
+ 908      75726500 
+ 909              	.LASF1:
+ 910 005d 756E7369 		.ascii	"unsigned char\000"
+ 910      676E6564 
+ 910      20636861 
+ 910      7200
+ 911              	.LASF17:
+ 912 006b 72656738 		.ascii	"reg8\000"
+ 912      00
+ 913              	.LASF12:
+ 914 0070 696E7431 		.ascii	"int16\000"
+ 914      3600
+ 915              	.LASF5:
+ 916 0076 6C6F6E67 		.ascii	"long unsigned int\000"
+ 916      20756E73 
+ 916      69676E65 
+ 916      6420696E 
+ 916      7400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 22
+
+
+ 917              	.LASF22:
+ 918 0088 74656D70 		.ascii	"temp\000"
+ 918      00
+ 919              	.LASF9:
+ 920 008d 75696E74 		.ascii	"uint8\000"
+ 920      3800
+ 921              	.LASF27:
+ 922 0093 433A5C57 		.ascii	"C:\\Workspace\\PSoC_Creator\\QDExample01\\QDExample"
+ 922      6F726B73 
+ 922      70616365 
+ 922      5C50536F 
+ 922      435F4372 
+ 923 00c2 30312E63 		.ascii	"01.cydsn\000"
+ 923      7964736E 
+ 923      00
+ 924              	.LASF25:
+ 925 00cb 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 925      4320342E 
+ 925      392E3320 
+ 925      32303135 
+ 925      30333033 
+ 926 00fe 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 926      20726576 
+ 926      6973696F 
+ 926      6E203232 
+ 926      31323230 
+ 927 0131 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 927      66756E63 
+ 927      74696F6E 
+ 927      2D736563 
+ 927      74696F6E 
+ 928              	.LASF14:
+ 929 0159 646F7562 		.ascii	"double\000"
+ 929      6C6500
+ 930              	.LASF10:
+ 931 0160 75696E74 		.ascii	"uint16\000"
+ 931      313600
+ 932              	.LASF26:
+ 933 0167 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\DieTemp_1.c\000"
+ 933      6E657261 
+ 933      7465645F 
+ 933      536F7572 
+ 933      63655C50 
+ 934              	.LASF11:
+ 935 018c 75696E74 		.ascii	"uint32\000"
+ 935      333200
+ 936              	.LASF8:
+ 937 0193 756E7369 		.ascii	"unsigned int\000"
+ 937      676E6564 
+ 937      20696E74 
+ 937      00
+ 938              	.LASF29:
+ 939 01a0 44696554 		.ascii	"DieTemp_1_GetTempT\000"
+ 939      656D705F 
+ 939      315F4765 
+ 939      7454656D 
+ 939      705400
+ARM GAS  C:\Users\Shiguruy\AppData\Local\Temp\cc2ANScs.s 			page 23
+
+
+ 940              	.LASF7:
+ 941 01b3 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 941      206C6F6E 
+ 941      6720756E 
+ 941      7369676E 
+ 941      65642069 
+ 942              	.LASF18:
+ 943 01ca 73697A65 		.ascii	"sizetype\000"
+ 943      74797065 
+ 943      00
+ 944              	.LASF6:
+ 945 01d3 6C6F6E67 		.ascii	"long long int\000"
+ 945      206C6F6E 
+ 945      6720696E 
+ 945      7400
+ 946              	.LASF15:
+ 947 01e1 63686172 		.ascii	"char\000"
+ 947      00
+ 948              	.LASF2:
+ 949 01e6 73686F72 		.ascii	"short int\000"
+ 949      7420696E 
+ 949      7400
+ 950              	.LASF28:
+ 951 01f0 44696554 		.ascii	"DieTemp_1_Stop\000"
+ 951      656D705F 
+ 951      315F5374 
+ 951      6F7000
+ 952              	.LASF4:
+ 953 01ff 6C6F6E67 		.ascii	"long int\000"
+ 953      20696E74 
+ 953      00
+ 954              	.LASF0:
+ 955 0208 7369676E 		.ascii	"signed char\000"
+ 955      65642063 
+ 955      68617200 
+ 956              	.LASF19:
+ 957 0214 44696554 		.ascii	"DieTemp_1_Start\000"
+ 957      656D705F 
+ 957      315F5374 
+ 957      61727400 
+ 958              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

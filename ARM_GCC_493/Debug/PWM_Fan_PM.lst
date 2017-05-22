@@ -1,0 +1,923 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"PWM_Fan_PM.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.bss
+  19              		.align	2
+  20              	PWM_Fan_backup:
+  21 0000 00000000 		.space	4
+  22              		.section	.text.PWM_Fan_SaveConfig,"ax",%progbits
+  23              		.align	2
+  24              		.global	PWM_Fan_SaveConfig
+  25              		.thumb
+  26              		.thumb_func
+  27              		.type	PWM_Fan_SaveConfig, %function
+  28              	PWM_Fan_SaveConfig:
+  29              	.LFB0:
+  30              		.file 1 "Generated_Source\\PSoC5\\PWM_Fan_PM.c"
+   1:Generated_Source\PSoC5/PWM_Fan_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/PWM_Fan_PM.c **** * File Name: PWM_Fan_PM.c
+   3:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Version 3.30
+   4:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+   5:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Description:
+   6:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  This file provides the power management source code to API for the
+   7:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  PWM.
+   8:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+   9:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Note:
+  10:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  11:Generated_Source\PSoC5/PWM_Fan_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Copyright 2008-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/PWM_Fan_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC5/PWM_Fan_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC5/PWM_Fan_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/PWM_Fan_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  18:Generated_Source\PSoC5/PWM_Fan_PM.c **** #include "PWM_Fan.h"
+  19:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  20:Generated_Source\PSoC5/PWM_Fan_PM.c **** static PWM_Fan_backupStruct PWM_Fan_backup;
+  21:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  22:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  23:Generated_Source\PSoC5/PWM_Fan_PM.c **** /*******************************************************************************
+  24:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Function Name: PWM_Fan_SaveConfig
+  25:Generated_Source\PSoC5/PWM_Fan_PM.c **** ********************************************************************************
+  26:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  27:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Summary:
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 2
+
+
+  28:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  Saves the current user configuration of the component.
+  29:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  30:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Parameters:
+  31:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+  32:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  33:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Return:
+  34:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+  35:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  36:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Global variables:
+  37:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  PWM_Fan_backup:  Variables of this global structure are modified to
+  38:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  store the values of non retention configuration registers when Sleep() API is
+  39:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  called.
+  40:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  41:Generated_Source\PSoC5/PWM_Fan_PM.c **** *******************************************************************************/
+  42:Generated_Source\PSoC5/PWM_Fan_PM.c **** void PWM_Fan_SaveConfig(void) 
+  43:Generated_Source\PSoC5/PWM_Fan_PM.c **** {
+  31              		.loc 1 43 0
+  32              		.cfi_startproc
+  33              		@ args = 0, pretend = 0, frame = 0
+  34              		@ frame_needed = 1, uses_anonymous_args = 0
+  35 0000 80B5     		push	{r7, lr}
+  36              		.cfi_def_cfa_offset 8
+  37              		.cfi_offset 7, -8
+  38              		.cfi_offset 14, -4
+  39 0002 00AF     		add	r7, sp, #0
+  40              		.cfi_def_cfa_register 7
+  44:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  45:Generated_Source\PSoC5/PWM_Fan_PM.c ****     #if(!PWM_Fan_UsingFixedFunction)
+  46:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #if(!PWM_Fan_PWMModeIsCenterAligned)
+  47:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_backup.PWMPeriod = PWM_Fan_ReadPeriod();
+  41              		.loc 1 47 0
+  42 0004 FFF7FEFF 		bl	PWM_Fan_ReadPeriod
+  43 0008 0346     		mov	r3, r0
+  44 000a 1A46     		mov	r2, r3
+  45 000c 074B     		ldr	r3, .L2
+  46 000e 9A70     		strb	r2, [r3, #2]
+  48:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #endif /* (!PWM_Fan_PWMModeIsCenterAligned) */
+  49:Generated_Source\PSoC5/PWM_Fan_PM.c ****         PWM_Fan_backup.PWMUdb = PWM_Fan_ReadCounter();
+  47              		.loc 1 49 0
+  48 0010 FFF7FEFF 		bl	PWM_Fan_ReadCounter
+  49 0014 0346     		mov	r3, r0
+  50 0016 1A46     		mov	r2, r3
+  51 0018 044B     		ldr	r3, .L2
+  52 001a 5A70     		strb	r2, [r3, #1]
+  50:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #if (PWM_Fan_UseStatus)
+  51:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_backup.InterruptMaskValue = PWM_Fan_STATUS_MASK;
+  52:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #endif /* (PWM_Fan_UseStatus) */
+  53:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  54:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #if(PWM_Fan_DeadBandMode == PWM_Fan__B_PWM__DBM_256_CLOCKS || \
+  55:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_DeadBandMode == PWM_Fan__B_PWM__DBM_2_4_CLOCKS)
+  56:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_backup.PWMdeadBandValue = PWM_Fan_ReadDeadTime();
+  57:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #endif /*  deadband count is either 2-4 clocks or 256 clocks */
+  58:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  59:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #if(PWM_Fan_KillModeMinTime)
+  60:Generated_Source\PSoC5/PWM_Fan_PM.c ****              PWM_Fan_backup.PWMKillCounterPeriod = PWM_Fan_ReadKillTime();
+  61:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #endif /* (PWM_Fan_KillModeMinTime) */
+  62:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 3
+
+
+  63:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #if(PWM_Fan_UseControl)
+  64:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_backup.PWMControlRegister = PWM_Fan_ReadControlRegister();
+  53              		.loc 1 64 0
+  54 001c FFF7FEFF 		bl	PWM_Fan_ReadControlRegister
+  55 0020 0346     		mov	r3, r0
+  56 0022 1A46     		mov	r2, r3
+  57 0024 014B     		ldr	r3, .L2
+  58 0026 DA70     		strb	r2, [r3, #3]
+  65:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #endif /* (PWM_Fan_UseControl) */
+  66:Generated_Source\PSoC5/PWM_Fan_PM.c ****     #endif  /* (!PWM_Fan_UsingFixedFunction) */
+  67:Generated_Source\PSoC5/PWM_Fan_PM.c **** }
+  59              		.loc 1 67 0
+  60 0028 80BD     		pop	{r7, pc}
+  61              	.L3:
+  62 002a 00BF     		.align	2
+  63              	.L2:
+  64 002c 00000000 		.word	PWM_Fan_backup
+  65              		.cfi_endproc
+  66              	.LFE0:
+  67              		.size	PWM_Fan_SaveConfig, .-PWM_Fan_SaveConfig
+  68              		.section	.text.PWM_Fan_RestoreConfig,"ax",%progbits
+  69              		.align	2
+  70              		.global	PWM_Fan_RestoreConfig
+  71              		.thumb
+  72              		.thumb_func
+  73              		.type	PWM_Fan_RestoreConfig, %function
+  74              	PWM_Fan_RestoreConfig:
+  75              	.LFB1:
+  68:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  69:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  70:Generated_Source\PSoC5/PWM_Fan_PM.c **** /*******************************************************************************
+  71:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Function Name: PWM_Fan_RestoreConfig
+  72:Generated_Source\PSoC5/PWM_Fan_PM.c **** ********************************************************************************
+  73:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  74:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Summary:
+  75:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  Restores the current user configuration of the component.
+  76:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  77:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Parameters:
+  78:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+  79:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  80:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Return:
+  81:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+  82:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  83:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Global variables:
+  84:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  PWM_Fan_backup:  Variables of this global structure are used to
+  85:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  restore the values of non retention registers on wakeup from sleep mode.
+  86:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+  87:Generated_Source\PSoC5/PWM_Fan_PM.c **** *******************************************************************************/
+  88:Generated_Source\PSoC5/PWM_Fan_PM.c **** void PWM_Fan_RestoreConfig(void) 
+  89:Generated_Source\PSoC5/PWM_Fan_PM.c **** {
+  76              		.loc 1 89 0
+  77              		.cfi_startproc
+  78              		@ args = 0, pretend = 0, frame = 0
+  79              		@ frame_needed = 1, uses_anonymous_args = 0
+  80 0000 80B5     		push	{r7, lr}
+  81              		.cfi_def_cfa_offset 8
+  82              		.cfi_offset 7, -8
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 4
+
+
+  83              		.cfi_offset 14, -4
+  84 0002 00AF     		add	r7, sp, #0
+  85              		.cfi_def_cfa_register 7
+  90:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #if(!PWM_Fan_UsingFixedFunction)
+  91:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #if(!PWM_Fan_PWMModeIsCenterAligned)
+  92:Generated_Source\PSoC5/PWM_Fan_PM.c ****                 PWM_Fan_WritePeriod(PWM_Fan_backup.PWMPeriod);
+  86              		.loc 1 92 0
+  87 0004 074B     		ldr	r3, .L5
+  88 0006 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+  89 0008 1846     		mov	r0, r3
+  90 000a FFF7FEFF 		bl	PWM_Fan_WritePeriod
+  93:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #endif /* (!PWM_Fan_PWMModeIsCenterAligned) */
+  94:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  95:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_WriteCounter(PWM_Fan_backup.PWMUdb);
+  91              		.loc 1 95 0
+  92 000e 054B     		ldr	r3, .L5
+  93 0010 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+  94 0012 1846     		mov	r0, r3
+  95 0014 FFF7FEFF 		bl	PWM_Fan_WriteCounter
+  96:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+  97:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #if (PWM_Fan_UseStatus)
+  98:Generated_Source\PSoC5/PWM_Fan_PM.c ****                 PWM_Fan_STATUS_MASK = PWM_Fan_backup.InterruptMaskValue;
+  99:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #endif /* (PWM_Fan_UseStatus) */
+ 100:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 101:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #if(PWM_Fan_DeadBandMode == PWM_Fan__B_PWM__DBM_256_CLOCKS || \
+ 102:Generated_Source\PSoC5/PWM_Fan_PM.c ****                 PWM_Fan_DeadBandMode == PWM_Fan__B_PWM__DBM_2_4_CLOCKS)
+ 103:Generated_Source\PSoC5/PWM_Fan_PM.c ****                 PWM_Fan_WriteDeadTime(PWM_Fan_backup.PWMdeadBandValue);
+ 104:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #endif /* deadband count is either 2-4 clocks or 256 clocks */
+ 105:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 106:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #if(PWM_Fan_KillModeMinTime)
+ 107:Generated_Source\PSoC5/PWM_Fan_PM.c ****                 PWM_Fan_WriteKillTime(PWM_Fan_backup.PWMKillCounterPeriod);
+ 108:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #endif /* (PWM_Fan_KillModeMinTime) */
+ 109:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 110:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #if(PWM_Fan_UseControl)
+ 111:Generated_Source\PSoC5/PWM_Fan_PM.c ****                 PWM_Fan_WriteControlRegister(PWM_Fan_backup.PWMControlRegister);
+  96              		.loc 1 111 0
+  97 0018 024B     		ldr	r3, .L5
+  98 001a DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+  99 001c 1846     		mov	r0, r3
+ 100 001e FFF7FEFF 		bl	PWM_Fan_WriteControlRegister
+ 112:Generated_Source\PSoC5/PWM_Fan_PM.c ****             #endif /* (PWM_Fan_UseControl) */
+ 113:Generated_Source\PSoC5/PWM_Fan_PM.c ****         #endif  /* (!PWM_Fan_UsingFixedFunction) */
+ 114:Generated_Source\PSoC5/PWM_Fan_PM.c ****     }
+ 101              		.loc 1 114 0
+ 102 0022 80BD     		pop	{r7, pc}
+ 103              	.L6:
+ 104              		.align	2
+ 105              	.L5:
+ 106 0024 00000000 		.word	PWM_Fan_backup
+ 107              		.cfi_endproc
+ 108              	.LFE1:
+ 109              		.size	PWM_Fan_RestoreConfig, .-PWM_Fan_RestoreConfig
+ 110              		.section	.text.PWM_Fan_Sleep,"ax",%progbits
+ 111              		.align	2
+ 112              		.global	PWM_Fan_Sleep
+ 113              		.thumb
+ 114              		.thumb_func
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 5
+
+
+ 115              		.type	PWM_Fan_Sleep, %function
+ 116              	PWM_Fan_Sleep:
+ 117              	.LFB2:
+ 115:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 116:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 117:Generated_Source\PSoC5/PWM_Fan_PM.c **** /*******************************************************************************
+ 118:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Function Name: PWM_Fan_Sleep
+ 119:Generated_Source\PSoC5/PWM_Fan_PM.c **** ********************************************************************************
+ 120:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 121:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Summary:
+ 122:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  Disables block's operation and saves the user configuration. Should be called
+ 123:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  just prior to entering sleep.
+ 124:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 125:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Parameters:
+ 126:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+ 127:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 128:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Return:
+ 129:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+ 130:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 131:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Global variables:
+ 132:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  PWM_Fan_backup.PWMEnableState:  Is modified depending on the enable
+ 133:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  state of the block before entering sleep mode.
+ 134:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 135:Generated_Source\PSoC5/PWM_Fan_PM.c **** *******************************************************************************/
+ 136:Generated_Source\PSoC5/PWM_Fan_PM.c **** void PWM_Fan_Sleep(void) 
+ 137:Generated_Source\PSoC5/PWM_Fan_PM.c **** {
+ 118              		.loc 1 137 0
+ 119              		.cfi_startproc
+ 120              		@ args = 0, pretend = 0, frame = 0
+ 121              		@ frame_needed = 1, uses_anonymous_args = 0
+ 122 0000 80B5     		push	{r7, lr}
+ 123              		.cfi_def_cfa_offset 8
+ 124              		.cfi_offset 7, -8
+ 125              		.cfi_offset 14, -4
+ 126 0002 00AF     		add	r7, sp, #0
+ 127              		.cfi_def_cfa_register 7
+ 138:Generated_Source\PSoC5/PWM_Fan_PM.c ****     #if(PWM_Fan_UseControl)
+ 139:Generated_Source\PSoC5/PWM_Fan_PM.c ****         if(PWM_Fan_CTRL_ENABLE == (PWM_Fan_CONTROL & PWM_Fan_CTRL_ENABLE))
+ 128              		.loc 1 139 0
+ 129 0004 094B     		ldr	r3, .L10
+ 130 0006 1B78     		ldrb	r3, [r3]
+ 131 0008 DBB2     		uxtb	r3, r3
+ 132 000a DBB2     		uxtb	r3, r3
+ 133 000c 5BB2     		sxtb	r3, r3
+ 134 000e 002B     		cmp	r3, #0
+ 135 0010 03DA     		bge	.L8
+ 140:Generated_Source\PSoC5/PWM_Fan_PM.c ****         {
+ 141:Generated_Source\PSoC5/PWM_Fan_PM.c ****             /*Component is enabled */
+ 142:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_backup.PWMEnableState = 1u;
+ 136              		.loc 1 142 0
+ 137 0012 074B     		ldr	r3, .L10+4
+ 138 0014 0122     		movs	r2, #1
+ 139 0016 1A70     		strb	r2, [r3]
+ 140 0018 02E0     		b	.L9
+ 141              	.L8:
+ 143:Generated_Source\PSoC5/PWM_Fan_PM.c ****         }
+ 144:Generated_Source\PSoC5/PWM_Fan_PM.c ****         else
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 6
+
+
+ 145:Generated_Source\PSoC5/PWM_Fan_PM.c ****         {
+ 146:Generated_Source\PSoC5/PWM_Fan_PM.c ****             /* Component is disabled */
+ 147:Generated_Source\PSoC5/PWM_Fan_PM.c ****             PWM_Fan_backup.PWMEnableState = 0u;
+ 142              		.loc 1 147 0
+ 143 001a 054B     		ldr	r3, .L10+4
+ 144 001c 0022     		movs	r2, #0
+ 145 001e 1A70     		strb	r2, [r3]
+ 146              	.L9:
+ 148:Generated_Source\PSoC5/PWM_Fan_PM.c ****         }
+ 149:Generated_Source\PSoC5/PWM_Fan_PM.c ****     #endif /* (PWM_Fan_UseControl) */
+ 150:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 151:Generated_Source\PSoC5/PWM_Fan_PM.c ****     /* Stop component */
+ 152:Generated_Source\PSoC5/PWM_Fan_PM.c ****     PWM_Fan_Stop();
+ 147              		.loc 1 152 0
+ 148 0020 FFF7FEFF 		bl	PWM_Fan_Stop
+ 153:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 154:Generated_Source\PSoC5/PWM_Fan_PM.c ****     /* Save registers configuration */
+ 155:Generated_Source\PSoC5/PWM_Fan_PM.c ****     PWM_Fan_SaveConfig();
+ 149              		.loc 1 155 0
+ 150 0024 FFF7FEFF 		bl	PWM_Fan_SaveConfig
+ 156:Generated_Source\PSoC5/PWM_Fan_PM.c **** }
+ 151              		.loc 1 156 0
+ 152 0028 80BD     		pop	{r7, pc}
+ 153              	.L11:
+ 154 002a 00BF     		.align	2
+ 155              	.L10:
+ 156 002c 76650040 		.word	1073767798
+ 157 0030 00000000 		.word	PWM_Fan_backup
+ 158              		.cfi_endproc
+ 159              	.LFE2:
+ 160              		.size	PWM_Fan_Sleep, .-PWM_Fan_Sleep
+ 161              		.section	.text.PWM_Fan_Wakeup,"ax",%progbits
+ 162              		.align	2
+ 163              		.global	PWM_Fan_Wakeup
+ 164              		.thumb
+ 165              		.thumb_func
+ 166              		.type	PWM_Fan_Wakeup, %function
+ 167              	PWM_Fan_Wakeup:
+ 168              	.LFB3:
+ 157:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 158:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 159:Generated_Source\PSoC5/PWM_Fan_PM.c **** /*******************************************************************************
+ 160:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Function Name: PWM_Fan_Wakeup
+ 161:Generated_Source\PSoC5/PWM_Fan_PM.c **** ********************************************************************************
+ 162:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 163:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Summary:
+ 164:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  Restores and enables the user configuration. Should be called just after
+ 165:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  awaking from sleep.
+ 166:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 167:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Parameters:
+ 168:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+ 169:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 170:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Return:
+ 171:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  None
+ 172:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 173:Generated_Source\PSoC5/PWM_Fan_PM.c **** * Global variables:
+ 174:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  PWM_Fan_backup.pwmEnable:  Is used to restore the enable state of
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 7
+
+
+ 175:Generated_Source\PSoC5/PWM_Fan_PM.c **** *  block on wakeup from sleep mode.
+ 176:Generated_Source\PSoC5/PWM_Fan_PM.c **** *
+ 177:Generated_Source\PSoC5/PWM_Fan_PM.c **** *******************************************************************************/
+ 178:Generated_Source\PSoC5/PWM_Fan_PM.c **** void PWM_Fan_Wakeup(void) 
+ 179:Generated_Source\PSoC5/PWM_Fan_PM.c **** {
+ 169              		.loc 1 179 0
+ 170              		.cfi_startproc
+ 171              		@ args = 0, pretend = 0, frame = 0
+ 172              		@ frame_needed = 1, uses_anonymous_args = 0
+ 173 0000 80B5     		push	{r7, lr}
+ 174              		.cfi_def_cfa_offset 8
+ 175              		.cfi_offset 7, -8
+ 176              		.cfi_offset 14, -4
+ 177 0002 00AF     		add	r7, sp, #0
+ 178              		.cfi_def_cfa_register 7
+ 180:Generated_Source\PSoC5/PWM_Fan_PM.c ****      /* Restore registers values */
+ 181:Generated_Source\PSoC5/PWM_Fan_PM.c ****     PWM_Fan_RestoreConfig();
+ 179              		.loc 1 181 0
+ 180 0004 FFF7FEFF 		bl	PWM_Fan_RestoreConfig
+ 182:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 183:Generated_Source\PSoC5/PWM_Fan_PM.c ****     if(PWM_Fan_backup.PWMEnableState != 0u)
+ 181              		.loc 1 183 0
+ 182 0008 034B     		ldr	r3, .L14
+ 183 000a 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 184 000c 002B     		cmp	r3, #0
+ 185 000e 01D0     		beq	.L12
+ 184:Generated_Source\PSoC5/PWM_Fan_PM.c ****     {
+ 185:Generated_Source\PSoC5/PWM_Fan_PM.c ****         /* Enable component's operation */
+ 186:Generated_Source\PSoC5/PWM_Fan_PM.c ****         PWM_Fan_Enable();
+ 186              		.loc 1 186 0
+ 187 0010 FFF7FEFF 		bl	PWM_Fan_Enable
+ 188              	.L12:
+ 187:Generated_Source\PSoC5/PWM_Fan_PM.c ****     } /* Do nothing if component's block was disabled before */
+ 188:Generated_Source\PSoC5/PWM_Fan_PM.c **** 
+ 189:Generated_Source\PSoC5/PWM_Fan_PM.c **** }
+ 189              		.loc 1 189 0
+ 190 0014 80BD     		pop	{r7, pc}
+ 191              	.L15:
+ 192 0016 00BF     		.align	2
+ 193              	.L14:
+ 194 0018 00000000 		.word	PWM_Fan_backup
+ 195              		.cfi_endproc
+ 196              	.LFE3:
+ 197              		.size	PWM_Fan_Wakeup, .-PWM_Fan_Wakeup
+ 198              		.text
+ 199              	.Letext0:
+ 200              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 201              		.file 3 "Generated_Source\\PSoC5\\PWM_Fan.h"
+ 202              		.section	.debug_info,"",%progbits
+ 203              	.Ldebug_info0:
+ 204 0000 39010000 		.4byte	0x139
+ 205 0004 0400     		.2byte	0x4
+ 206 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 207 000a 04       		.byte	0x4
+ 208 000b 01       		.uleb128 0x1
+ 209 000c 09010000 		.4byte	.LASF24
+ 210 0010 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 8
+
+
+ 211 0011 C9000000 		.4byte	.LASF25
+ 212 0015 2A000000 		.4byte	.LASF26
+ 213 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 214 001d 00000000 		.4byte	0
+ 215 0021 00000000 		.4byte	.Ldebug_line0
+ 216 0025 02       		.uleb128 0x2
+ 217 0026 01       		.byte	0x1
+ 218 0027 06       		.byte	0x6
+ 219 0028 CB010000 		.4byte	.LASF0
+ 220 002c 02       		.uleb128 0x2
+ 221 002d 01       		.byte	0x1
+ 222 002e 08       		.byte	0x8
+ 223 002f BB000000 		.4byte	.LASF1
+ 224 0033 02       		.uleb128 0x2
+ 225 0034 02       		.byte	0x2
+ 226 0035 05       		.byte	0x5
+ 227 0036 01020000 		.4byte	.LASF2
+ 228 003a 02       		.uleb128 0x2
+ 229 003b 02       		.byte	0x2
+ 230 003c 07       		.byte	0x7
+ 231 003d B8010000 		.4byte	.LASF3
+ 232 0041 02       		.uleb128 0x2
+ 233 0042 04       		.byte	0x4
+ 234 0043 05       		.byte	0x5
+ 235 0044 00010000 		.4byte	.LASF4
+ 236 0048 02       		.uleb128 0x2
+ 237 0049 04       		.byte	0x4
+ 238 004a 07       		.byte	0x7
+ 239 004b 70000000 		.4byte	.LASF5
+ 240 004f 02       		.uleb128 0x2
+ 241 0050 08       		.byte	0x8
+ 242 0051 05       		.byte	0x5
+ 243 0052 00000000 		.4byte	.LASF6
+ 244 0056 02       		.uleb128 0x2
+ 245 0057 08       		.byte	0x8
+ 246 0058 07       		.byte	0x7
+ 247 0059 82000000 		.4byte	.LASF7
+ 248 005d 03       		.uleb128 0x3
+ 249 005e 04       		.byte	0x4
+ 250 005f 05       		.byte	0x5
+ 251 0060 696E7400 		.ascii	"int\000"
+ 252 0064 02       		.uleb128 0x2
+ 253 0065 04       		.byte	0x4
+ 254 0066 07       		.byte	0x7
+ 255 0067 0E000000 		.4byte	.LASF8
+ 256 006b 04       		.uleb128 0x4
+ 257 006c 6A000000 		.4byte	.LASF12
+ 258 0070 02       		.byte	0x2
+ 259 0071 C2       		.byte	0xc2
+ 260 0072 2C000000 		.4byte	0x2c
+ 261 0076 02       		.uleb128 0x2
+ 262 0077 04       		.byte	0x4
+ 263 0078 04       		.byte	0x4
+ 264 0079 FB010000 		.4byte	.LASF9
+ 265 007d 02       		.uleb128 0x2
+ 266 007e 08       		.byte	0x8
+ 267 007f 04       		.byte	0x4
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 9
+
+
+ 268 0080 97010000 		.4byte	.LASF10
+ 269 0084 02       		.uleb128 0x2
+ 270 0085 01       		.byte	0x1
+ 271 0086 08       		.byte	0x8
+ 272 0087 A8000000 		.4byte	.LASF11
+ 273 008b 05       		.uleb128 0x5
+ 274 008c 65000000 		.4byte	.LASF13
+ 275 0090 02       		.byte	0x2
+ 276 0091 6C01     		.2byte	0x16c
+ 277 0093 97000000 		.4byte	0x97
+ 278 0097 06       		.uleb128 0x6
+ 279 0098 6B000000 		.4byte	0x6b
+ 280 009c 02       		.uleb128 0x2
+ 281 009d 04       		.byte	0x4
+ 282 009e 07       		.byte	0x7
+ 283 009f 2B020000 		.4byte	.LASF14
+ 284 00a3 07       		.uleb128 0x7
+ 285 00a4 04       		.byte	0x4
+ 286 00a5 03       		.byte	0x3
+ 287 00a6 6B       		.byte	0x6b
+ 288 00a7 DC000000 		.4byte	0xdc
+ 289 00ab 08       		.uleb128 0x8
+ 290 00ac 1B000000 		.4byte	.LASF15
+ 291 00b0 03       		.byte	0x3
+ 292 00b1 6E       		.byte	0x6e
+ 293 00b2 6B000000 		.4byte	0x6b
+ 294 00b6 00       		.byte	0
+ 295 00b7 08       		.uleb128 0x8
+ 296 00b8 B1010000 		.4byte	.LASF16
+ 297 00bc 03       		.byte	0x3
+ 298 00bd 71       		.byte	0x71
+ 299 00be 6B000000 		.4byte	0x6b
+ 300 00c2 01       		.byte	0x1
+ 301 00c3 08       		.uleb128 0x8
+ 302 00c4 21020000 		.4byte	.LASF17
+ 303 00c8 03       		.byte	0x3
+ 304 00c9 73       		.byte	0x73
+ 305 00ca 6B000000 		.4byte	0x6b
+ 306 00ce 02       		.byte	0x2
+ 307 00cf 08       		.uleb128 0x8
+ 308 00d0 ED000000 		.4byte	.LASF18
+ 309 00d4 03       		.byte	0x3
+ 310 00d5 86       		.byte	0x86
+ 311 00d6 6B000000 		.4byte	0x6b
+ 312 00da 03       		.byte	0x3
+ 313 00db 00       		.byte	0
+ 314 00dc 04       		.uleb128 0x4
+ 315 00dd D7010000 		.4byte	.LASF19
+ 316 00e1 03       		.byte	0x3
+ 317 00e2 8B       		.byte	0x8b
+ 318 00e3 A3000000 		.4byte	0xa3
+ 319 00e7 09       		.uleb128 0x9
+ 320 00e8 9E010000 		.4byte	.LASF20
+ 321 00ec 01       		.byte	0x1
+ 322 00ed 2A       		.byte	0x2a
+ 323 00ee 00000000 		.4byte	.LFB0
+ 324 00f2 30000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 10
+
+
+ 325 00f6 01       		.uleb128 0x1
+ 326 00f7 9C       		.byte	0x9c
+ 327 00f8 09       		.uleb128 0x9
+ 328 00f9 0B020000 		.4byte	.LASF21
+ 329 00fd 01       		.byte	0x1
+ 330 00fe 58       		.byte	0x58
+ 331 00ff 00000000 		.4byte	.LFB1
+ 332 0103 28000000 		.4byte	.LFE1-.LFB1
+ 333 0107 01       		.uleb128 0x1
+ 334 0108 9C       		.byte	0x9c
+ 335 0109 09       		.uleb128 0x9
+ 336 010a AD000000 		.4byte	.LASF22
+ 337 010e 01       		.byte	0x1
+ 338 010f 88       		.byte	0x88
+ 339 0110 00000000 		.4byte	.LFB2
+ 340 0114 34000000 		.4byte	.LFE2-.LFB2
+ 341 0118 01       		.uleb128 0x1
+ 342 0119 9C       		.byte	0x9c
+ 343 011a 09       		.uleb128 0x9
+ 344 011b 99000000 		.4byte	.LASF23
+ 345 011f 01       		.byte	0x1
+ 346 0120 B2       		.byte	0xb2
+ 347 0121 00000000 		.4byte	.LFB3
+ 348 0125 1C000000 		.4byte	.LFE3-.LFB3
+ 349 0129 01       		.uleb128 0x1
+ 350 012a 9C       		.byte	0x9c
+ 351 012b 0A       		.uleb128 0xa
+ 352 012c EC010000 		.4byte	.LASF27
+ 353 0130 01       		.byte	0x1
+ 354 0131 14       		.byte	0x14
+ 355 0132 DC000000 		.4byte	0xdc
+ 356 0136 05       		.uleb128 0x5
+ 357 0137 03       		.byte	0x3
+ 358 0138 00000000 		.4byte	PWM_Fan_backup
+ 359 013c 00       		.byte	0
+ 360              		.section	.debug_abbrev,"",%progbits
+ 361              	.Ldebug_abbrev0:
+ 362 0000 01       		.uleb128 0x1
+ 363 0001 11       		.uleb128 0x11
+ 364 0002 01       		.byte	0x1
+ 365 0003 25       		.uleb128 0x25
+ 366 0004 0E       		.uleb128 0xe
+ 367 0005 13       		.uleb128 0x13
+ 368 0006 0B       		.uleb128 0xb
+ 369 0007 03       		.uleb128 0x3
+ 370 0008 0E       		.uleb128 0xe
+ 371 0009 1B       		.uleb128 0x1b
+ 372 000a 0E       		.uleb128 0xe
+ 373 000b 55       		.uleb128 0x55
+ 374 000c 17       		.uleb128 0x17
+ 375 000d 11       		.uleb128 0x11
+ 376 000e 01       		.uleb128 0x1
+ 377 000f 10       		.uleb128 0x10
+ 378 0010 17       		.uleb128 0x17
+ 379 0011 00       		.byte	0
+ 380 0012 00       		.byte	0
+ 381 0013 02       		.uleb128 0x2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 11
+
+
+ 382 0014 24       		.uleb128 0x24
+ 383 0015 00       		.byte	0
+ 384 0016 0B       		.uleb128 0xb
+ 385 0017 0B       		.uleb128 0xb
+ 386 0018 3E       		.uleb128 0x3e
+ 387 0019 0B       		.uleb128 0xb
+ 388 001a 03       		.uleb128 0x3
+ 389 001b 0E       		.uleb128 0xe
+ 390 001c 00       		.byte	0
+ 391 001d 00       		.byte	0
+ 392 001e 03       		.uleb128 0x3
+ 393 001f 24       		.uleb128 0x24
+ 394 0020 00       		.byte	0
+ 395 0021 0B       		.uleb128 0xb
+ 396 0022 0B       		.uleb128 0xb
+ 397 0023 3E       		.uleb128 0x3e
+ 398 0024 0B       		.uleb128 0xb
+ 399 0025 03       		.uleb128 0x3
+ 400 0026 08       		.uleb128 0x8
+ 401 0027 00       		.byte	0
+ 402 0028 00       		.byte	0
+ 403 0029 04       		.uleb128 0x4
+ 404 002a 16       		.uleb128 0x16
+ 405 002b 00       		.byte	0
+ 406 002c 03       		.uleb128 0x3
+ 407 002d 0E       		.uleb128 0xe
+ 408 002e 3A       		.uleb128 0x3a
+ 409 002f 0B       		.uleb128 0xb
+ 410 0030 3B       		.uleb128 0x3b
+ 411 0031 0B       		.uleb128 0xb
+ 412 0032 49       		.uleb128 0x49
+ 413 0033 13       		.uleb128 0x13
+ 414 0034 00       		.byte	0
+ 415 0035 00       		.byte	0
+ 416 0036 05       		.uleb128 0x5
+ 417 0037 16       		.uleb128 0x16
+ 418 0038 00       		.byte	0
+ 419 0039 03       		.uleb128 0x3
+ 420 003a 0E       		.uleb128 0xe
+ 421 003b 3A       		.uleb128 0x3a
+ 422 003c 0B       		.uleb128 0xb
+ 423 003d 3B       		.uleb128 0x3b
+ 424 003e 05       		.uleb128 0x5
+ 425 003f 49       		.uleb128 0x49
+ 426 0040 13       		.uleb128 0x13
+ 427 0041 00       		.byte	0
+ 428 0042 00       		.byte	0
+ 429 0043 06       		.uleb128 0x6
+ 430 0044 35       		.uleb128 0x35
+ 431 0045 00       		.byte	0
+ 432 0046 49       		.uleb128 0x49
+ 433 0047 13       		.uleb128 0x13
+ 434 0048 00       		.byte	0
+ 435 0049 00       		.byte	0
+ 436 004a 07       		.uleb128 0x7
+ 437 004b 13       		.uleb128 0x13
+ 438 004c 01       		.byte	0x1
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 12
+
+
+ 439 004d 0B       		.uleb128 0xb
+ 440 004e 0B       		.uleb128 0xb
+ 441 004f 3A       		.uleb128 0x3a
+ 442 0050 0B       		.uleb128 0xb
+ 443 0051 3B       		.uleb128 0x3b
+ 444 0052 0B       		.uleb128 0xb
+ 445 0053 01       		.uleb128 0x1
+ 446 0054 13       		.uleb128 0x13
+ 447 0055 00       		.byte	0
+ 448 0056 00       		.byte	0
+ 449 0057 08       		.uleb128 0x8
+ 450 0058 0D       		.uleb128 0xd
+ 451 0059 00       		.byte	0
+ 452 005a 03       		.uleb128 0x3
+ 453 005b 0E       		.uleb128 0xe
+ 454 005c 3A       		.uleb128 0x3a
+ 455 005d 0B       		.uleb128 0xb
+ 456 005e 3B       		.uleb128 0x3b
+ 457 005f 0B       		.uleb128 0xb
+ 458 0060 49       		.uleb128 0x49
+ 459 0061 13       		.uleb128 0x13
+ 460 0062 38       		.uleb128 0x38
+ 461 0063 0B       		.uleb128 0xb
+ 462 0064 00       		.byte	0
+ 463 0065 00       		.byte	0
+ 464 0066 09       		.uleb128 0x9
+ 465 0067 2E       		.uleb128 0x2e
+ 466 0068 00       		.byte	0
+ 467 0069 3F       		.uleb128 0x3f
+ 468 006a 19       		.uleb128 0x19
+ 469 006b 03       		.uleb128 0x3
+ 470 006c 0E       		.uleb128 0xe
+ 471 006d 3A       		.uleb128 0x3a
+ 472 006e 0B       		.uleb128 0xb
+ 473 006f 3B       		.uleb128 0x3b
+ 474 0070 0B       		.uleb128 0xb
+ 475 0071 27       		.uleb128 0x27
+ 476 0072 19       		.uleb128 0x19
+ 477 0073 11       		.uleb128 0x11
+ 478 0074 01       		.uleb128 0x1
+ 479 0075 12       		.uleb128 0x12
+ 480 0076 06       		.uleb128 0x6
+ 481 0077 40       		.uleb128 0x40
+ 482 0078 18       		.uleb128 0x18
+ 483 0079 9642     		.uleb128 0x2116
+ 484 007b 19       		.uleb128 0x19
+ 485 007c 00       		.byte	0
+ 486 007d 00       		.byte	0
+ 487 007e 0A       		.uleb128 0xa
+ 488 007f 34       		.uleb128 0x34
+ 489 0080 00       		.byte	0
+ 490 0081 03       		.uleb128 0x3
+ 491 0082 0E       		.uleb128 0xe
+ 492 0083 3A       		.uleb128 0x3a
+ 493 0084 0B       		.uleb128 0xb
+ 494 0085 3B       		.uleb128 0x3b
+ 495 0086 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 13
+
+
+ 496 0087 49       		.uleb128 0x49
+ 497 0088 13       		.uleb128 0x13
+ 498 0089 02       		.uleb128 0x2
+ 499 008a 18       		.uleb128 0x18
+ 500 008b 00       		.byte	0
+ 501 008c 00       		.byte	0
+ 502 008d 00       		.byte	0
+ 503              		.section	.debug_aranges,"",%progbits
+ 504 0000 34000000 		.4byte	0x34
+ 505 0004 0200     		.2byte	0x2
+ 506 0006 00000000 		.4byte	.Ldebug_info0
+ 507 000a 04       		.byte	0x4
+ 508 000b 00       		.byte	0
+ 509 000c 0000     		.2byte	0
+ 510 000e 0000     		.2byte	0
+ 511 0010 00000000 		.4byte	.LFB0
+ 512 0014 30000000 		.4byte	.LFE0-.LFB0
+ 513 0018 00000000 		.4byte	.LFB1
+ 514 001c 28000000 		.4byte	.LFE1-.LFB1
+ 515 0020 00000000 		.4byte	.LFB2
+ 516 0024 34000000 		.4byte	.LFE2-.LFB2
+ 517 0028 00000000 		.4byte	.LFB3
+ 518 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 519 0030 00000000 		.4byte	0
+ 520 0034 00000000 		.4byte	0
+ 521              		.section	.debug_ranges,"",%progbits
+ 522              	.Ldebug_ranges0:
+ 523 0000 00000000 		.4byte	.LFB0
+ 524 0004 30000000 		.4byte	.LFE0
+ 525 0008 00000000 		.4byte	.LFB1
+ 526 000c 28000000 		.4byte	.LFE1
+ 527 0010 00000000 		.4byte	.LFB2
+ 528 0014 34000000 		.4byte	.LFE2
+ 529 0018 00000000 		.4byte	.LFB3
+ 530 001c 1C000000 		.4byte	.LFE3
+ 531 0020 00000000 		.4byte	0
+ 532 0024 00000000 		.4byte	0
+ 533              		.section	.debug_line,"",%progbits
+ 534              	.Ldebug_line0:
+ 535 0000 AF000000 		.section	.debug_str,"MS",%progbits,1
+ 535      02005400 
+ 535      00000201 
+ 535      FB0E0D00 
+ 535      01010101 
+ 536              	.LASF6:
+ 537 0000 6C6F6E67 		.ascii	"long long int\000"
+ 537      206C6F6E 
+ 537      6720696E 
+ 537      7400
+ 538              	.LASF8:
+ 539 000e 756E7369 		.ascii	"unsigned int\000"
+ 539      676E6564 
+ 539      20696E74 
+ 539      00
+ 540              	.LASF15:
+ 541 001b 50574D45 		.ascii	"PWMEnableState\000"
+ 541      6E61626C 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 14
+
+
+ 541      65537461 
+ 541      746500
+ 542              	.LASF26:
+ 543 002a 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 543      6F726B73 
+ 543      70616365 
+ 543      5C50536F 
+ 543      435F4372 
+ 544 0059 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 544      392E6379 
+ 544      64736E00 
+ 545              	.LASF13:
+ 546 0065 72656738 		.ascii	"reg8\000"
+ 546      00
+ 547              	.LASF12:
+ 548 006a 75696E74 		.ascii	"uint8\000"
+ 548      3800
+ 549              	.LASF5:
+ 550 0070 6C6F6E67 		.ascii	"long unsigned int\000"
+ 550      20756E73 
+ 550      69676E65 
+ 550      6420696E 
+ 550      7400
+ 551              	.LASF7:
+ 552 0082 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 552      206C6F6E 
+ 552      6720756E 
+ 552      7369676E 
+ 552      65642069 
+ 553              	.LASF23:
+ 554 0099 50574D5F 		.ascii	"PWM_Fan_Wakeup\000"
+ 554      46616E5F 
+ 554      57616B65 
+ 554      757000
+ 555              	.LASF11:
+ 556 00a8 63686172 		.ascii	"char\000"
+ 556      00
+ 557              	.LASF22:
+ 558 00ad 50574D5F 		.ascii	"PWM_Fan_Sleep\000"
+ 558      46616E5F 
+ 558      536C6565 
+ 558      7000
+ 559              	.LASF1:
+ 560 00bb 756E7369 		.ascii	"unsigned char\000"
+ 560      676E6564 
+ 560      20636861 
+ 560      7200
+ 561              	.LASF25:
+ 562 00c9 47656E65 		.ascii	"Generated_Source\\PSoC5\\PWM_Fan_PM.c\000"
+ 562      72617465 
+ 562      645F536F 
+ 562      75726365 
+ 562      5C50536F 
+ 563              	.LASF18:
+ 564 00ed 50574D43 		.ascii	"PWMControlRegister\000"
+ 564      6F6E7472 
+ 564      6F6C5265 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 15
+
+
+ 564      67697374 
+ 564      657200
+ 565              	.LASF4:
+ 566 0100 6C6F6E67 		.ascii	"long int\000"
+ 566      20696E74 
+ 566      00
+ 567              	.LASF24:
+ 568 0109 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 568      4320342E 
+ 568      392E3320 
+ 568      32303135 
+ 568      30333033 
+ 569 013c 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 569      20726576 
+ 569      6973696F 
+ 569      6E203232 
+ 569      31323230 
+ 570 016f 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 570      66756E63 
+ 570      74696F6E 
+ 570      2D736563 
+ 570      74696F6E 
+ 571              	.LASF10:
+ 572 0197 646F7562 		.ascii	"double\000"
+ 572      6C6500
+ 573              	.LASF20:
+ 574 019e 50574D5F 		.ascii	"PWM_Fan_SaveConfig\000"
+ 574      46616E5F 
+ 574      53617665 
+ 574      436F6E66 
+ 574      696700
+ 575              	.LASF16:
+ 576 01b1 50574D55 		.ascii	"PWMUdb\000"
+ 576      646200
+ 577              	.LASF3:
+ 578 01b8 73686F72 		.ascii	"short unsigned int\000"
+ 578      7420756E 
+ 578      7369676E 
+ 578      65642069 
+ 578      6E7400
+ 579              	.LASF0:
+ 580 01cb 7369676E 		.ascii	"signed char\000"
+ 580      65642063 
+ 580      68617200 
+ 581              	.LASF19:
+ 582 01d7 50574D5F 		.ascii	"PWM_Fan_backupStruct\000"
+ 582      46616E5F 
+ 582      6261636B 
+ 582      75705374 
+ 582      72756374 
+ 583              	.LASF27:
+ 584 01ec 50574D5F 		.ascii	"PWM_Fan_backup\000"
+ 584      46616E5F 
+ 584      6261636B 
+ 584      757000
+ 585              	.LASF9:
+ 586 01fb 666C6F61 		.ascii	"float\000"
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\cck8RnmM.s 			page 16
+
+
+ 586      7400
+ 587              	.LASF2:
+ 588 0201 73686F72 		.ascii	"short int\000"
+ 588      7420696E 
+ 588      7400
+ 589              	.LASF21:
+ 590 020b 50574D5F 		.ascii	"PWM_Fan_RestoreConfig\000"
+ 590      46616E5F 
+ 590      52657374 
+ 590      6F726543 
+ 590      6F6E6669 
+ 591              	.LASF17:
+ 592 0221 50574D50 		.ascii	"PWMPeriod\000"
+ 592      6572696F 
+ 592      6400
+ 593              	.LASF14:
+ 594 022b 73697A65 		.ascii	"sizetype\000"
+ 594      74797065 
+ 594      00
+ 595              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

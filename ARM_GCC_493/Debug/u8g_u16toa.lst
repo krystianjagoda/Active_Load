@@ -1,0 +1,799 @@
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"u8g_u16toa.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.u8g_u16toap,"ax",%progbits
+  19              		.align	2
+  20              		.global	u8g_u16toap
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	u8g_u16toap, %function
+  24              	u8g_u16toap:
+  25              	.LFB0:
+  26              		.file 1 "u8glib_arm_v1.18.1\\src\\u8g_u16toa.c"
+   1:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** /*
+   2:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+   3:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   u8g_u16toa.c
+   4:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+   5:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+   6:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   Universal 8bit Graphics Library
+   7:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   
+   8:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   Copyright (c) 2012, olikraus@gmail.com
+   9:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   All rights reserved.
+  10:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  11:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   Redistribution and use in source and binary forms, with or without modification, 
+  12:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   are permitted provided that the following conditions are met:
+  13:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  14:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   * Redistributions of source code must retain the above copyright notice, this list 
+  15:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****     of conditions and the following disclaimer.
+  16:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****     
+  17:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   * Redistributions in binary form must reproduce the above copyright notice, this 
+  18:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****     list of conditions and the following disclaimer in the documentation and/or other 
+  19:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****     materials provided with the distribution.
+  20:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  21:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND 
+  22:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+  23:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF 
+  24:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE 
+  25:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR 
+  26:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+  27:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+  29:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
+  30:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, 
+  31:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 2
+
+
+  32:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF 
+  33:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.  
+  34:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   
+  35:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** */
+  36:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  37:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  38:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** #include "u8g.h"
+  39:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  40:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** const char *u8g_u16toap(char * dest, uint16_t v)
+  41:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** {
+  27              		.loc 1 41 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              		.cfi_def_cfa_offset 24
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  39 0006 7860     		str	r0, [r7, #4]
+  40 0008 0B46     		mov	r3, r1
+  41 000a 7B80     		strh	r3, [r7, #2]	@ movhi
+  42:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   uint8_t pos;
+  43:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   uint8_t d;
+  44:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   uint16_t c;
+  45:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   c = 10000;
+  42              		.loc 1 45 0
+  43 000c 42F21073 		movw	r3, #10000
+  44 0010 BB81     		strh	r3, [r7, #12]	@ movhi
+  46:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   for( pos = 0; pos < 5; pos++ )
+  45              		.loc 1 46 0
+  46 0012 0023     		movs	r3, #0
+  47 0014 FB73     		strb	r3, [r7, #15]
+  48 0016 1BE0     		b	.L2
+  49              	.L5:
+  47:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   {
+  48:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       d = '0';
+  50              		.loc 1 48 0
+  51 0018 3023     		movs	r3, #48
+  52 001a BB73     		strb	r3, [r7, #14]
+  49:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       while( v >= c )
+  53              		.loc 1 49 0
+  54 001c 06E0     		b	.L3
+  55              	.L4:
+  50:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       {
+  51:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 	v -= c;
+  56              		.loc 1 51 0
+  57 001e 7A88     		ldrh	r2, [r7, #2]	@ movhi
+  58 0020 BB89     		ldrh	r3, [r7, #12]	@ movhi
+  59 0022 D31A     		subs	r3, r2, r3
+  60 0024 7B80     		strh	r3, [r7, #2]	@ movhi
+  52:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 	d++;
+  61              		.loc 1 52 0
+  62 0026 BB7B     		ldrb	r3, [r7, #14]	@ zero_extendqisi2
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 3
+
+
+  63 0028 0133     		adds	r3, r3, #1
+  64 002a BB73     		strb	r3, [r7, #14]
+  65              	.L3:
+  49:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       while( v >= c )
+  66              		.loc 1 49 0
+  67 002c 7A88     		ldrh	r2, [r7, #2]
+  68 002e BB89     		ldrh	r3, [r7, #12]
+  69 0030 9A42     		cmp	r2, r3
+  70 0032 F4D2     		bcs	.L4
+  53:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       }
+  54:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       dest[pos] = d;
+  71              		.loc 1 54 0 discriminator 2
+  72 0034 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  73 0036 7A68     		ldr	r2, [r7, #4]
+  74 0038 1344     		add	r3, r3, r2
+  75 003a BA7B     		ldrb	r2, [r7, #14]
+  76 003c 1A70     		strb	r2, [r3]
+  55:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****       c /= 10;
+  77              		.loc 1 55 0 discriminator 2
+  78 003e BB89     		ldrh	r3, [r7, #12]
+  79 0040 0A4A     		ldr	r2, .L7
+  80 0042 A2FB0323 		umull	r2, r3, r2, r3
+  81 0046 DB08     		lsrs	r3, r3, #3
+  82 0048 BB81     		strh	r3, [r7, #12]	@ movhi
+  46:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   {
+  83              		.loc 1 46 0 discriminator 2
+  84 004a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  85 004c 0133     		adds	r3, r3, #1
+  86 004e FB73     		strb	r3, [r7, #15]
+  87              	.L2:
+  46:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   {
+  88              		.loc 1 46 0 is_stmt 0 discriminator 1
+  89 0050 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+  90 0052 042B     		cmp	r3, #4
+  91 0054 E0D9     		bls	.L5
+  56:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   }  
+  57:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   dest[5] = '\0';
+  92              		.loc 1 57 0 is_stmt 1
+  93 0056 7B68     		ldr	r3, [r7, #4]
+  94 0058 0533     		adds	r3, r3, #5
+  95 005a 0022     		movs	r2, #0
+  96 005c 1A70     		strb	r2, [r3]
+  58:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   return dest;
+  97              		.loc 1 58 0
+  98 005e 7B68     		ldr	r3, [r7, #4]
+  59:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** }
+  99              		.loc 1 59 0
+ 100 0060 1846     		mov	r0, r3
+ 101 0062 1437     		adds	r7, r7, #20
+ 102              		.cfi_def_cfa_offset 4
+ 103 0064 BD46     		mov	sp, r7
+ 104              		.cfi_def_cfa_register 13
+ 105              		@ sp needed
+ 106 0066 5DF8047B 		ldr	r7, [sp], #4
+ 107              		.cfi_restore 7
+ 108              		.cfi_def_cfa_offset 0
+ 109 006a 7047     		bx	lr
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 4
+
+
+ 110              	.L8:
+ 111              		.align	2
+ 112              	.L7:
+ 113 006c CDCCCCCC 		.word	-858993459
+ 114              		.cfi_endproc
+ 115              	.LFE0:
+ 116              		.size	u8g_u16toap, .-u8g_u16toap
+ 117              		.section	.text.u8g_u16toa,"ax",%progbits
+ 118              		.align	2
+ 119              		.global	u8g_u16toa
+ 120              		.thumb
+ 121              		.thumb_func
+ 122              		.type	u8g_u16toa, %function
+ 123              	u8g_u16toa:
+ 124              	.LFB1:
+  60:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** 
+  61:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** /* v = value, d = number of digits */
+  62:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** const char *u8g_u16toa(uint16_t v, uint8_t d)
+  63:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** {
+ 125              		.loc 1 63 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 8
+ 128              		@ frame_needed = 1, uses_anonymous_args = 0
+ 129 0000 80B5     		push	{r7, lr}
+ 130              		.cfi_def_cfa_offset 8
+ 131              		.cfi_offset 7, -8
+ 132              		.cfi_offset 14, -4
+ 133 0002 82B0     		sub	sp, sp, #8
+ 134              		.cfi_def_cfa_offset 16
+ 135 0004 00AF     		add	r7, sp, #0
+ 136              		.cfi_def_cfa_register 7
+ 137 0006 0346     		mov	r3, r0
+ 138 0008 0A46     		mov	r2, r1
+ 139 000a FB80     		strh	r3, [r7, #6]	@ movhi
+ 140 000c 1346     		mov	r3, r2
+ 141 000e 7B71     		strb	r3, [r7, #5]
+  64:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   static char buf[6];
+  65:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   d = 5-d;
+ 142              		.loc 1 65 0
+ 143 0010 7B79     		ldrb	r3, [r7, #5]
+ 144 0012 C3F10503 		rsb	r3, r3, #5
+ 145 0016 7B71     		strb	r3, [r7, #5]
+  66:u8glib_arm_v1.18.1\src/u8g_u16toa.c ****   return u8g_u16toap(buf, v) + d;
+ 146              		.loc 1 66 0
+ 147 0018 FB88     		ldrh	r3, [r7, #6]
+ 148 001a 0548     		ldr	r0, .L11
+ 149 001c 1946     		mov	r1, r3
+ 150 001e FFF7FEFF 		bl	u8g_u16toap
+ 151 0022 0246     		mov	r2, r0
+ 152 0024 7B79     		ldrb	r3, [r7, #5]	@ zero_extendqisi2
+ 153 0026 1344     		add	r3, r3, r2
+  67:u8glib_arm_v1.18.1\src/u8g_u16toa.c **** }
+ 154              		.loc 1 67 0
+ 155 0028 1846     		mov	r0, r3
+ 156 002a 0837     		adds	r7, r7, #8
+ 157              		.cfi_def_cfa_offset 8
+ 158 002c BD46     		mov	sp, r7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 5
+
+
+ 159              		.cfi_def_cfa_register 13
+ 160              		@ sp needed
+ 161 002e 80BD     		pop	{r7, pc}
+ 162              	.L12:
+ 163              		.align	2
+ 164              	.L11:
+ 165 0030 00000000 		.word	buf.5758
+ 166              		.cfi_endproc
+ 167              	.LFE1:
+ 168              		.size	u8g_u16toa, .-u8g_u16toa
+ 169              		.bss
+ 170              		.align	2
+ 171              	buf.5758:
+ 172 0000 00000000 		.space	6
+ 172      0000
+ 173 0006 0000     		.text
+ 174              	.Letext0:
+ 175              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 176              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.0\\psoc creator\\import\\gnu\\arm\\4.9.
+ 177              		.section	.debug_info,"",%progbits
+ 178              	.Ldebug_info0:
+ 179 0000 5C010000 		.4byte	0x15c
+ 180 0004 0400     		.2byte	0x4
+ 181 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 182 000a 04       		.byte	0x4
+ 183 000b 01       		.uleb128 0x1
+ 184 000c 8A000000 		.4byte	.LASF18
+ 185 0010 01       		.byte	0x1
+ 186 0011 94010000 		.4byte	.LASF19
+ 187 0015 59010000 		.4byte	.LASF20
+ 188 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 189 001d 00000000 		.4byte	0
+ 190 0021 00000000 		.4byte	.Ldebug_line0
+ 191 0025 02       		.uleb128 0x2
+ 192 0026 04       		.byte	0x4
+ 193 0027 05       		.byte	0x5
+ 194 0028 696E7400 		.ascii	"int\000"
+ 195 002c 03       		.uleb128 0x3
+ 196 002d 04       		.byte	0x4
+ 197 002e 07       		.byte	0x7
+ 198 002f 21000000 		.4byte	.LASF0
+ 199 0033 03       		.uleb128 0x3
+ 200 0034 01       		.byte	0x1
+ 201 0035 06       		.byte	0x6
+ 202 0036 4F000000 		.4byte	.LASF1
+ 203 003a 04       		.uleb128 0x4
+ 204 003b 45000000 		.4byte	.LASF4
+ 205 003f 02       		.byte	0x2
+ 206 0040 1D       		.byte	0x1d
+ 207 0041 45000000 		.4byte	0x45
+ 208 0045 03       		.uleb128 0x3
+ 209 0046 01       		.byte	0x1
+ 210 0047 08       		.byte	0x8
+ 211 0048 6E000000 		.4byte	.LASF2
+ 212 004c 03       		.uleb128 0x3
+ 213 004d 02       		.byte	0x2
+ 214 004e 05       		.byte	0x5
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 6
+
+
+ 215 004f 4F010000 		.4byte	.LASF3
+ 216 0053 04       		.uleb128 0x4
+ 217 0054 5B000000 		.4byte	.LASF5
+ 218 0058 02       		.byte	0x2
+ 219 0059 2B       		.byte	0x2b
+ 220 005a 5E000000 		.4byte	0x5e
+ 221 005e 03       		.uleb128 0x3
+ 222 005f 02       		.byte	0x2
+ 223 0060 07       		.byte	0x7
+ 224 0061 0E000000 		.4byte	.LASF6
+ 225 0065 03       		.uleb128 0x3
+ 226 0066 04       		.byte	0x4
+ 227 0067 05       		.byte	0x5
+ 228 0068 81000000 		.4byte	.LASF7
+ 229 006c 03       		.uleb128 0x3
+ 230 006d 04       		.byte	0x4
+ 231 006e 07       		.byte	0x7
+ 232 006f 33000000 		.4byte	.LASF8
+ 233 0073 03       		.uleb128 0x3
+ 234 0074 08       		.byte	0x8
+ 235 0075 05       		.byte	0x5
+ 236 0076 00000000 		.4byte	.LASF9
+ 237 007a 03       		.uleb128 0x3
+ 238 007b 08       		.byte	0x8
+ 239 007c 07       		.byte	0x7
+ 240 007d 24010000 		.4byte	.LASF10
+ 241 0081 04       		.uleb128 0x4
+ 242 0082 66000000 		.4byte	.LASF11
+ 243 0086 03       		.byte	0x3
+ 244 0087 15       		.byte	0x15
+ 245 0088 3A000000 		.4byte	0x3a
+ 246 008c 04       		.uleb128 0x4
+ 247 008d 3B010000 		.4byte	.LASF12
+ 248 0091 03       		.byte	0x3
+ 249 0092 21       		.byte	0x21
+ 250 0093 53000000 		.4byte	0x53
+ 251 0097 03       		.uleb128 0x3
+ 252 0098 04       		.byte	0x4
+ 253 0099 07       		.byte	0x7
+ 254 009a B8010000 		.4byte	.LASF13
+ 255 009e 05       		.uleb128 0x5
+ 256 009f 18010000 		.4byte	.LASF16
+ 257 00a3 01       		.byte	0x1
+ 258 00a4 28       		.byte	0x28
+ 259 00a5 F8000000 		.4byte	0xf8
+ 260 00a9 00000000 		.4byte	.LFB0
+ 261 00ad 70000000 		.4byte	.LFE0-.LFB0
+ 262 00b1 01       		.uleb128 0x1
+ 263 00b2 9C       		.byte	0x9c
+ 264 00b3 F8000000 		.4byte	0xf8
+ 265 00b7 06       		.uleb128 0x6
+ 266 00b8 2E000000 		.4byte	.LASF14
+ 267 00bc 01       		.byte	0x1
+ 268 00bd 28       		.byte	0x28
+ 269 00be 0A010000 		.4byte	0x10a
+ 270 00c2 02       		.uleb128 0x2
+ 271 00c3 91       		.byte	0x91
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 7
+
+
+ 272 00c4 6C       		.sleb128 -20
+ 273 00c5 07       		.uleb128 0x7
+ 274 00c6 7600     		.ascii	"v\000"
+ 275 00c8 01       		.byte	0x1
+ 276 00c9 28       		.byte	0x28
+ 277 00ca 8C000000 		.4byte	0x8c
+ 278 00ce 02       		.uleb128 0x2
+ 279 00cf 91       		.byte	0x91
+ 280 00d0 6A       		.sleb128 -22
+ 281 00d1 08       		.uleb128 0x8
+ 282 00d2 706F7300 		.ascii	"pos\000"
+ 283 00d6 01       		.byte	0x1
+ 284 00d7 2A       		.byte	0x2a
+ 285 00d8 81000000 		.4byte	0x81
+ 286 00dc 02       		.uleb128 0x2
+ 287 00dd 91       		.byte	0x91
+ 288 00de 77       		.sleb128 -9
+ 289 00df 08       		.uleb128 0x8
+ 290 00e0 6400     		.ascii	"d\000"
+ 291 00e2 01       		.byte	0x1
+ 292 00e3 2B       		.byte	0x2b
+ 293 00e4 81000000 		.4byte	0x81
+ 294 00e8 02       		.uleb128 0x2
+ 295 00e9 91       		.byte	0x91
+ 296 00ea 76       		.sleb128 -10
+ 297 00eb 08       		.uleb128 0x8
+ 298 00ec 6300     		.ascii	"c\000"
+ 299 00ee 01       		.byte	0x1
+ 300 00ef 2C       		.byte	0x2c
+ 301 00f0 8C000000 		.4byte	0x8c
+ 302 00f4 02       		.uleb128 0x2
+ 303 00f5 91       		.byte	0x91
+ 304 00f6 74       		.sleb128 -12
+ 305 00f7 00       		.byte	0
+ 306 00f8 09       		.uleb128 0x9
+ 307 00f9 04       		.byte	0x4
+ 308 00fa FE000000 		.4byte	0xfe
+ 309 00fe 0A       		.uleb128 0xa
+ 310 00ff 03010000 		.4byte	0x103
+ 311 0103 03       		.uleb128 0x3
+ 312 0104 01       		.byte	0x1
+ 313 0105 08       		.byte	0x8
+ 314 0106 7C000000 		.4byte	.LASF15
+ 315 010a 09       		.uleb128 0x9
+ 316 010b 04       		.byte	0x4
+ 317 010c 03010000 		.4byte	0x103
+ 318 0110 0B       		.uleb128 0xb
+ 319 0111 44010000 		.4byte	.LASF17
+ 320 0115 01       		.byte	0x1
+ 321 0116 3E       		.byte	0x3e
+ 322 0117 F8000000 		.4byte	0xf8
+ 323 011b 00000000 		.4byte	.LFB1
+ 324 011f 34000000 		.4byte	.LFE1-.LFB1
+ 325 0123 01       		.uleb128 0x1
+ 326 0124 9C       		.byte	0x9c
+ 327 0125 53010000 		.4byte	0x153
+ 328 0129 07       		.uleb128 0x7
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 8
+
+
+ 329 012a 7600     		.ascii	"v\000"
+ 330 012c 01       		.byte	0x1
+ 331 012d 3E       		.byte	0x3e
+ 332 012e 8C000000 		.4byte	0x8c
+ 333 0132 02       		.uleb128 0x2
+ 334 0133 91       		.byte	0x91
+ 335 0134 76       		.sleb128 -10
+ 336 0135 07       		.uleb128 0x7
+ 337 0136 6400     		.ascii	"d\000"
+ 338 0138 01       		.byte	0x1
+ 339 0139 3E       		.byte	0x3e
+ 340 013a 81000000 		.4byte	0x81
+ 341 013e 02       		.uleb128 0x2
+ 342 013f 91       		.byte	0x91
+ 343 0140 75       		.sleb128 -11
+ 344 0141 08       		.uleb128 0x8
+ 345 0142 62756600 		.ascii	"buf\000"
+ 346 0146 01       		.byte	0x1
+ 347 0147 40       		.byte	0x40
+ 348 0148 53010000 		.4byte	0x153
+ 349 014c 05       		.uleb128 0x5
+ 350 014d 03       		.byte	0x3
+ 351 014e 00000000 		.4byte	buf.5758
+ 352 0152 00       		.byte	0
+ 353 0153 0C       		.uleb128 0xc
+ 354 0154 03010000 		.4byte	0x103
+ 355 0158 0D       		.uleb128 0xd
+ 356 0159 97000000 		.4byte	0x97
+ 357 015d 05       		.byte	0x5
+ 358 015e 00       		.byte	0
+ 359 015f 00       		.byte	0
+ 360              		.section	.debug_abbrev,"",%progbits
+ 361              	.Ldebug_abbrev0:
+ 362 0000 01       		.uleb128 0x1
+ 363 0001 11       		.uleb128 0x11
+ 364 0002 01       		.byte	0x1
+ 365 0003 25       		.uleb128 0x25
+ 366 0004 0E       		.uleb128 0xe
+ 367 0005 13       		.uleb128 0x13
+ 368 0006 0B       		.uleb128 0xb
+ 369 0007 03       		.uleb128 0x3
+ 370 0008 0E       		.uleb128 0xe
+ 371 0009 1B       		.uleb128 0x1b
+ 372 000a 0E       		.uleb128 0xe
+ 373 000b 55       		.uleb128 0x55
+ 374 000c 17       		.uleb128 0x17
+ 375 000d 11       		.uleb128 0x11
+ 376 000e 01       		.uleb128 0x1
+ 377 000f 10       		.uleb128 0x10
+ 378 0010 17       		.uleb128 0x17
+ 379 0011 00       		.byte	0
+ 380 0012 00       		.byte	0
+ 381 0013 02       		.uleb128 0x2
+ 382 0014 24       		.uleb128 0x24
+ 383 0015 00       		.byte	0
+ 384 0016 0B       		.uleb128 0xb
+ 385 0017 0B       		.uleb128 0xb
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 9
+
+
+ 386 0018 3E       		.uleb128 0x3e
+ 387 0019 0B       		.uleb128 0xb
+ 388 001a 03       		.uleb128 0x3
+ 389 001b 08       		.uleb128 0x8
+ 390 001c 00       		.byte	0
+ 391 001d 00       		.byte	0
+ 392 001e 03       		.uleb128 0x3
+ 393 001f 24       		.uleb128 0x24
+ 394 0020 00       		.byte	0
+ 395 0021 0B       		.uleb128 0xb
+ 396 0022 0B       		.uleb128 0xb
+ 397 0023 3E       		.uleb128 0x3e
+ 398 0024 0B       		.uleb128 0xb
+ 399 0025 03       		.uleb128 0x3
+ 400 0026 0E       		.uleb128 0xe
+ 401 0027 00       		.byte	0
+ 402 0028 00       		.byte	0
+ 403 0029 04       		.uleb128 0x4
+ 404 002a 16       		.uleb128 0x16
+ 405 002b 00       		.byte	0
+ 406 002c 03       		.uleb128 0x3
+ 407 002d 0E       		.uleb128 0xe
+ 408 002e 3A       		.uleb128 0x3a
+ 409 002f 0B       		.uleb128 0xb
+ 410 0030 3B       		.uleb128 0x3b
+ 411 0031 0B       		.uleb128 0xb
+ 412 0032 49       		.uleb128 0x49
+ 413 0033 13       		.uleb128 0x13
+ 414 0034 00       		.byte	0
+ 415 0035 00       		.byte	0
+ 416 0036 05       		.uleb128 0x5
+ 417 0037 2E       		.uleb128 0x2e
+ 418 0038 01       		.byte	0x1
+ 419 0039 3F       		.uleb128 0x3f
+ 420 003a 19       		.uleb128 0x19
+ 421 003b 03       		.uleb128 0x3
+ 422 003c 0E       		.uleb128 0xe
+ 423 003d 3A       		.uleb128 0x3a
+ 424 003e 0B       		.uleb128 0xb
+ 425 003f 3B       		.uleb128 0x3b
+ 426 0040 0B       		.uleb128 0xb
+ 427 0041 27       		.uleb128 0x27
+ 428 0042 19       		.uleb128 0x19
+ 429 0043 49       		.uleb128 0x49
+ 430 0044 13       		.uleb128 0x13
+ 431 0045 11       		.uleb128 0x11
+ 432 0046 01       		.uleb128 0x1
+ 433 0047 12       		.uleb128 0x12
+ 434 0048 06       		.uleb128 0x6
+ 435 0049 40       		.uleb128 0x40
+ 436 004a 18       		.uleb128 0x18
+ 437 004b 9742     		.uleb128 0x2117
+ 438 004d 19       		.uleb128 0x19
+ 439 004e 01       		.uleb128 0x1
+ 440 004f 13       		.uleb128 0x13
+ 441 0050 00       		.byte	0
+ 442 0051 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 10
+
+
+ 443 0052 06       		.uleb128 0x6
+ 444 0053 05       		.uleb128 0x5
+ 445 0054 00       		.byte	0
+ 446 0055 03       		.uleb128 0x3
+ 447 0056 0E       		.uleb128 0xe
+ 448 0057 3A       		.uleb128 0x3a
+ 449 0058 0B       		.uleb128 0xb
+ 450 0059 3B       		.uleb128 0x3b
+ 451 005a 0B       		.uleb128 0xb
+ 452 005b 49       		.uleb128 0x49
+ 453 005c 13       		.uleb128 0x13
+ 454 005d 02       		.uleb128 0x2
+ 455 005e 18       		.uleb128 0x18
+ 456 005f 00       		.byte	0
+ 457 0060 00       		.byte	0
+ 458 0061 07       		.uleb128 0x7
+ 459 0062 05       		.uleb128 0x5
+ 460 0063 00       		.byte	0
+ 461 0064 03       		.uleb128 0x3
+ 462 0065 08       		.uleb128 0x8
+ 463 0066 3A       		.uleb128 0x3a
+ 464 0067 0B       		.uleb128 0xb
+ 465 0068 3B       		.uleb128 0x3b
+ 466 0069 0B       		.uleb128 0xb
+ 467 006a 49       		.uleb128 0x49
+ 468 006b 13       		.uleb128 0x13
+ 469 006c 02       		.uleb128 0x2
+ 470 006d 18       		.uleb128 0x18
+ 471 006e 00       		.byte	0
+ 472 006f 00       		.byte	0
+ 473 0070 08       		.uleb128 0x8
+ 474 0071 34       		.uleb128 0x34
+ 475 0072 00       		.byte	0
+ 476 0073 03       		.uleb128 0x3
+ 477 0074 08       		.uleb128 0x8
+ 478 0075 3A       		.uleb128 0x3a
+ 479 0076 0B       		.uleb128 0xb
+ 480 0077 3B       		.uleb128 0x3b
+ 481 0078 0B       		.uleb128 0xb
+ 482 0079 49       		.uleb128 0x49
+ 483 007a 13       		.uleb128 0x13
+ 484 007b 02       		.uleb128 0x2
+ 485 007c 18       		.uleb128 0x18
+ 486 007d 00       		.byte	0
+ 487 007e 00       		.byte	0
+ 488 007f 09       		.uleb128 0x9
+ 489 0080 0F       		.uleb128 0xf
+ 490 0081 00       		.byte	0
+ 491 0082 0B       		.uleb128 0xb
+ 492 0083 0B       		.uleb128 0xb
+ 493 0084 49       		.uleb128 0x49
+ 494 0085 13       		.uleb128 0x13
+ 495 0086 00       		.byte	0
+ 496 0087 00       		.byte	0
+ 497 0088 0A       		.uleb128 0xa
+ 498 0089 26       		.uleb128 0x26
+ 499 008a 00       		.byte	0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 11
+
+
+ 500 008b 49       		.uleb128 0x49
+ 501 008c 13       		.uleb128 0x13
+ 502 008d 00       		.byte	0
+ 503 008e 00       		.byte	0
+ 504 008f 0B       		.uleb128 0xb
+ 505 0090 2E       		.uleb128 0x2e
+ 506 0091 01       		.byte	0x1
+ 507 0092 3F       		.uleb128 0x3f
+ 508 0093 19       		.uleb128 0x19
+ 509 0094 03       		.uleb128 0x3
+ 510 0095 0E       		.uleb128 0xe
+ 511 0096 3A       		.uleb128 0x3a
+ 512 0097 0B       		.uleb128 0xb
+ 513 0098 3B       		.uleb128 0x3b
+ 514 0099 0B       		.uleb128 0xb
+ 515 009a 27       		.uleb128 0x27
+ 516 009b 19       		.uleb128 0x19
+ 517 009c 49       		.uleb128 0x49
+ 518 009d 13       		.uleb128 0x13
+ 519 009e 11       		.uleb128 0x11
+ 520 009f 01       		.uleb128 0x1
+ 521 00a0 12       		.uleb128 0x12
+ 522 00a1 06       		.uleb128 0x6
+ 523 00a2 40       		.uleb128 0x40
+ 524 00a3 18       		.uleb128 0x18
+ 525 00a4 9642     		.uleb128 0x2116
+ 526 00a6 19       		.uleb128 0x19
+ 527 00a7 01       		.uleb128 0x1
+ 528 00a8 13       		.uleb128 0x13
+ 529 00a9 00       		.byte	0
+ 530 00aa 00       		.byte	0
+ 531 00ab 0C       		.uleb128 0xc
+ 532 00ac 01       		.uleb128 0x1
+ 533 00ad 01       		.byte	0x1
+ 534 00ae 49       		.uleb128 0x49
+ 535 00af 13       		.uleb128 0x13
+ 536 00b0 00       		.byte	0
+ 537 00b1 00       		.byte	0
+ 538 00b2 0D       		.uleb128 0xd
+ 539 00b3 21       		.uleb128 0x21
+ 540 00b4 00       		.byte	0
+ 541 00b5 49       		.uleb128 0x49
+ 542 00b6 13       		.uleb128 0x13
+ 543 00b7 2F       		.uleb128 0x2f
+ 544 00b8 0B       		.uleb128 0xb
+ 545 00b9 00       		.byte	0
+ 546 00ba 00       		.byte	0
+ 547 00bb 00       		.byte	0
+ 548              		.section	.debug_aranges,"",%progbits
+ 549 0000 24000000 		.4byte	0x24
+ 550 0004 0200     		.2byte	0x2
+ 551 0006 00000000 		.4byte	.Ldebug_info0
+ 552 000a 04       		.byte	0x4
+ 553 000b 00       		.byte	0
+ 554 000c 0000     		.2byte	0
+ 555 000e 0000     		.2byte	0
+ 556 0010 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 12
+
+
+ 557 0014 70000000 		.4byte	.LFE0-.LFB0
+ 558 0018 00000000 		.4byte	.LFB1
+ 559 001c 34000000 		.4byte	.LFE1-.LFB1
+ 560 0020 00000000 		.4byte	0
+ 561 0024 00000000 		.4byte	0
+ 562              		.section	.debug_ranges,"",%progbits
+ 563              	.Ldebug_ranges0:
+ 564 0000 00000000 		.4byte	.LFB0
+ 565 0004 70000000 		.4byte	.LFE0
+ 566 0008 00000000 		.4byte	.LFB1
+ 567 000c 34000000 		.4byte	.LFE1
+ 568 0010 00000000 		.4byte	0
+ 569 0014 00000000 		.4byte	0
+ 570              		.section	.debug_line,"",%progbits
+ 571              	.Ldebug_line0:
+ 572 0000 7D010000 		.section	.debug_str,"MS",%progbits,1
+ 572      02003201 
+ 572      00000201 
+ 572      FB0E0D00 
+ 572      01010101 
+ 573              	.LASF9:
+ 574 0000 6C6F6E67 		.ascii	"long long int\000"
+ 574      206C6F6E 
+ 574      6720696E 
+ 574      7400
+ 575              	.LASF6:
+ 576 000e 73686F72 		.ascii	"short unsigned int\000"
+ 576      7420756E 
+ 576      7369676E 
+ 576      65642069 
+ 576      6E7400
+ 577              	.LASF0:
+ 578 0021 756E7369 		.ascii	"unsigned int\000"
+ 578      676E6564 
+ 578      20696E74 
+ 578      00
+ 579              	.LASF14:
+ 580 002e 64657374 		.ascii	"dest\000"
+ 580      00
+ 581              	.LASF8:
+ 582 0033 6C6F6E67 		.ascii	"long unsigned int\000"
+ 582      20756E73 
+ 582      69676E65 
+ 582      6420696E 
+ 582      7400
+ 583              	.LASF4:
+ 584 0045 5F5F7569 		.ascii	"__uint8_t\000"
+ 584      6E74385F 
+ 584      7400
+ 585              	.LASF1:
+ 586 004f 7369676E 		.ascii	"signed char\000"
+ 586      65642063 
+ 586      68617200 
+ 587              	.LASF5:
+ 588 005b 5F5F7569 		.ascii	"__uint16_t\000"
+ 588      6E743136 
+ 588      5F7400
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 13
+
+
+ 589              	.LASF11:
+ 590 0066 75696E74 		.ascii	"uint8_t\000"
+ 590      385F7400 
+ 591              	.LASF2:
+ 592 006e 756E7369 		.ascii	"unsigned char\000"
+ 592      676E6564 
+ 592      20636861 
+ 592      7200
+ 593              	.LASF15:
+ 594 007c 63686172 		.ascii	"char\000"
+ 594      00
+ 595              	.LASF7:
+ 596 0081 6C6F6E67 		.ascii	"long int\000"
+ 596      20696E74 
+ 596      00
+ 597              	.LASF18:
+ 598 008a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 598      4320342E 
+ 598      392E3320 
+ 598      32303135 
+ 598      30333033 
+ 599 00bd 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 599      20726576 
+ 599      6973696F 
+ 599      6E203232 
+ 599      31323230 
+ 600 00f0 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 600      66756E63 
+ 600      74696F6E 
+ 600      2D736563 
+ 600      74696F6E 
+ 601              	.LASF16:
+ 602 0118 7538675F 		.ascii	"u8g_u16toap\000"
+ 602      75313674 
+ 602      6F617000 
+ 603              	.LASF10:
+ 604 0124 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 604      206C6F6E 
+ 604      6720756E 
+ 604      7369676E 
+ 604      65642069 
+ 605              	.LASF12:
+ 606 013b 75696E74 		.ascii	"uint16_t\000"
+ 606      31365F74 
+ 606      00
+ 607              	.LASF17:
+ 608 0144 7538675F 		.ascii	"u8g_u16toa\000"
+ 608      75313674 
+ 608      6F6100
+ 609              	.LASF3:
+ 610 014f 73686F72 		.ascii	"short int\000"
+ 610      7420696E 
+ 610      7400
+ 611              	.LASF20:
+ 612 0159 443A5C57 		.ascii	"D:\\Workspace\\PSoC_Creator\\Active_Load\\Active_Lo"
+ 612      6F726B73 
+ 612      70616365 
+ARM GAS  C:\Users\KJA\AppData\Local\Temp\ccLML7Uo.s 			page 14
+
+
+ 612      5C50536F 
+ 612      435F4372 
+ 613 0188 61645F76 		.ascii	"ad_v9.cydsn\000"
+ 613      392E6379 
+ 613      64736E00 
+ 614              	.LASF19:
+ 615 0194 7538676C 		.ascii	"u8glib_arm_v1.18.1\\src\\u8g_u16toa.c\000"
+ 615      69625F61 
+ 615      726D5F76 
+ 615      312E3138 
+ 615      2E315C73 
+ 616              	.LASF13:
+ 617 01b8 73697A65 		.ascii	"sizetype\000"
+ 617      74797065 
+ 617      00
+ 618              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
