@@ -10,3 +10,7 @@
 - Closed loop temperature control [Temperature Sensors, FANs]
 - Handling user input [Buttons, Rotary Knob]
 - Rendering graphics and driving 128x64 LCD using u8glib library
+
+
+**Fotos:**
+https://github.com/krystianjagoda/Active_Load/blob/master/Resources/
