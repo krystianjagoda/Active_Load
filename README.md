@@ -2,7 +2,7 @@
 200W Electronic Active Load
 
 
-CY8C5888LTI-LP097 System on Chip with Cortex M3 Core
+**CY8C5888LTI-LP097** System on Chip with Cortex M3 Core
 
 
 **Main Functionalities:**
